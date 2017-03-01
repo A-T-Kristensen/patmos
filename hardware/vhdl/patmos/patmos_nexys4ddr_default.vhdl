@@ -88,20 +88,7 @@ architecture rtl of patmos_top is
 			io_nexys4DDRIOPins_MData      : out std_logic_vector(31 downto 0);
 			io_nexys4DDRIOPins_MByteEn    : out std_logic_vector(3 downto 0);
 			io_nexys4DDRIOPins_SResp      : in  std_logic_vector(1 downto 0);
-			io_nexys4DDRIOPins_SData      : in  std_logic_vector(31 downto 0);
-			
-			io_bRamCtrlPins_MCmd       : out std_logic_vector(2 downto 0);
-			io_bRamCtrlPins_MAddr      : out std_logic_vector(15 downto 0);
-			io_bRamCtrlPins_MData      : out std_logic_vector(31 downto 0);
-			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
-			io_bRamCtrlPins_SResp      : in  std_logic_vector(1 downto 0);
-			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0);
-			
-			io_hLSControlRegPins_ap_start_out 	: out std_logic;
-			io_hLSControlRegPins_ap_reset_out 	: out std_logic;
-			io_hLSControlRegPins_ap_ready_in 	: in std_logic;
-			io_hLSControlRegPins_ap_idle_in 	: in std_logic;
-			io_hLSControlRegPins_ap_done_in 	: in std_logic
+			io_nexys4DDRIOPins_SData      : in  std_logic_vector(31 downto 0)
 		);
 	end component;
 
@@ -201,40 +188,6 @@ architecture rtl of patmos_top is
 			app_wdf_rdy       : in  std_logic
 		);
 	end component;
-	
-	
-	component bram_tdp is
-		port (
-		-- Port A
-			a_clk   : in  std_logic;
-			a_wr    : in  std_logic;
-			a_addr  : in  std_logic_vector(15 downto 0);
-			a_din   : in  std_logic_vector(31 downto 0);
-			a_dout  : out std_logic_vector(31 downto 0);
-
-		-- Port B
-			b_clk   : in  std_logic;
-			b_wr    : in  std_logic;
-			b_addr  : in  std_logic_vector(15 downto 0);
-			b_din   : in  std_logic_vector(31 downto 0);
-			b_dout  : out std_logic_vector(31 downto 0)
-		);
-	end component;	
-	
-	component matrixmul is
-		port (
-			ap_clk : IN STD_LOGIC;
-			ap_rst : IN STD_LOGIC;
-			ap_start : IN STD_LOGIC;
-			ap_done : OUT STD_LOGIC;
-			ap_idle : OUT STD_LOGIC;
-			ap_ready : OUT STD_LOGIC;
-			a_address0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-			a_ce0 : OUT STD_LOGIC;
-			a_we0 : OUT STD_LOGIC;
-			a_d0 : OUT STD_LOGIC_VECTOR (31 downto 0);
-			a_q0 : IN STD_LOGIC_VECTOR (31 downto 0) );
-	end component;	
 
 	component clk_manager is
 		port(
@@ -257,34 +210,13 @@ architecture rtl of patmos_top is
     signal debounce_count  : unsigned(12 downto 0);
     constant DEBOUNCE_TIME : integer := 8000;
 
-	-- signals for nexys4DDRIO
+
 	signal nexys4DDRIO_MCmd    : std_logic_vector(2 downto 0);
 	signal nexys4DDRIO_MAddr   : std_logic_vector(15 downto 0);
 	signal nexys4DDRIO_MData   : std_logic_vector(31 downto 0);
 	signal nexys4DDRIO_MByteEn : std_logic_vector(3 downto 0);
 	signal nexys4DDRIO_SResp   : std_logic_vector(1 downto 0);
 	signal nexys4DDRIO_SData   : std_logic_vector(31 downto 0);
-
-	-- Signals for true dual port bram
-	signal bRamCtrl_Mcmd    : std_logic_vector(2 downto 0);
-	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
-	signal bRamCtrl_MData   : std_logic_vector(31 downto 0);
-	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
-	signal bRamCtrl_SResp   : std_logic_vector(1 downto 0);
-	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
-
-	-- Signals for hls accel
-
-	signal hLSControlReg_ap_start_out 	: std_logic;
-	signal hLSControlReg_ap_reset_out 	: std_logic;
-	signal hLSControlReg_ap_ready_in 	: std_logic;
-	signal hLSControlReg_ap_idle_in 	: std_logic;
-	signal hLSControlReg_ap_done_in 	: std_logic;
-
-	signal hlsWe    : std_logic;
-	signal hlsAddr   : std_logic_vector(15 downto 0);
-	signal hlsIn   : std_logic_vector(31 downto 0);
-	signal hlsOut : std_logic_vector(31 downto 0);
 
 	-- signals for the bridge
 	signal MCmd_bridge        : std_logic_vector(2 downto 0);
@@ -310,19 +242,19 @@ architecture rtl of patmos_top is
 	signal app_rdy_bridge           : std_logic;
 	signal app_wdf_rdy_bridge       : std_logic;
 
-  attribute mark_debug : string;
-  attribute mark_debug of app_addr_bridge             : signal is "true";
-  attribute mark_debug of app_cmd_bridge              : signal is "true";
-  attribute mark_debug of app_en_bridge               : signal is "true";
-  attribute mark_debug of app_wdf_data_bridge         : signal is "true";
-  attribute mark_debug of app_wdf_end_bridge          : signal is "true";
-  attribute mark_debug of app_wdf_mask_bridge         : signal is "true";
-  attribute mark_debug of app_wdf_wren_bridge         : signal is "true";
-  attribute mark_debug of app_rd_data_bridge          : signal is "true";
-  attribute mark_debug of app_rd_data_end_bridge      : signal is "true";
-  attribute mark_debug of app_rd_data_valid_bridge    : signal is "true";
-  attribute mark_debug of app_rdy_bridge              : signal is "true";
-  attribute mark_debug of app_wdf_rdy_bridge          : signal is "true";
+--  attribute mark_debug : string;
+--  attribute mark_debug of app_addr_bridge             : signal is "true";
+--  attribute mark_debug of app_cmd_bridge              : signal is "true";
+--  attribute mark_debug of app_en_bridge               : signal is "true";
+--  attribute mark_debug of app_wdf_data_bridge         : signal is "true";
+--  attribute mark_debug of app_wdf_end_bridge          : signal is "true";
+--  attribute mark_debug of app_wdf_mask_bridge         : signal is "true";
+--  attribute mark_debug of app_wdf_wren_bridge         : signal is "true";
+--  attribute mark_debug of app_rd_data_bridge          : signal is "true";
+--  attribute mark_debug of app_rd_data_end_bridge      : signal is "true";
+--  attribute mark_debug of app_rd_data_valid_bridge    : signal is "true";
+--  attribute mark_debug of app_rdy_bridge              : signal is "true";
+--  attribute mark_debug of app_wdf_rdy_bridge          : signal is "true";
 
 begin
 	clk_manager_inst_0 : clk_manager port map(
@@ -490,20 +422,7 @@ begin
 			io_nexys4DDRIOPins_MData      => nexys4DDRIO_MData,
 			io_nexys4DDRIOPins_MByteEn    => nexys4DDRIO_MByteEn,
 			io_nexys4DDRIOPins_SResp      => nexys4DDRIO_SResp,
-			io_nexys4DDRIOPins_SData      => nexys4DDRIO_SData,
-		
-			io_bRamCtrlPins_MCmd       => bRamCtrl_Mcmd,
-			io_bRamCtrlPins_MAddr      => bRamCtrl_MAddr,
-			io_bRamCtrlPins_MData      => bRamCtrl_MData,
-			io_bRamCtrlPins_MByteEn    => bRamCtrl_MByteEn,
-			io_bRamCtrlPins_SResp      => bRamCtrl_SResp,
-			io_bRamCtrlPins_SData      => bRamCtrl_SData,
-		
-			io_hLSControlRegPins_ap_start_out 	=> hLSControlReg_ap_start_out,
-			io_hLSControlRegPins_ap_reset_out 	=> hLSControlReg_ap_reset_out,
-			io_hLSControlRegPins_ap_ready_in 	=> hLSControlReg_ap_ready_in,
-			io_hLSControlRegPins_ap_idle_in 	=> hLSControlReg_ap_idle_in,
-			io_hLSControlRegPins_ap_done_in 	=> hLSControlReg_ap_done_in
+			io_nexys4DDRIOPins_SData      => nexys4DDRIO_SData
 		);
 
 	nexys4ddr_io_inst_0 : nexys4ddr_io port map(
@@ -525,35 +444,5 @@ begin
 			buttons              => buttons,
 			switches             => switches
 		);
-		
-	bram_tdp_inst_0 : bram_tdp port map(
-		-- Port A
-			a_clk   => clk_int,
-			a_wr    => bRamCtrl_MCmd(0),
-			a_addr  => bRamCtrl_MAddr,
-			a_din   => bRamCtrl_MData,
-			a_dout  => bramCtrl_SData,
-
-		-- Port B
-			b_clk   => clk_int,
-			b_wr    => hlsWe,
-			b_addr  => hlsAddr,
-			b_din   => hlsOut,
-			b_dout  => hlsIn --bRamSData
-		);
-		matrixmul_inst_0 : matrixmul port map(
-			ap_clk => clk_int,
-			ap_rst => hLSControlReg_ap_reset_out,
-			ap_start => hLSControlReg_ap_start_out,
-			ap_done => hLSControlReg_ap_done_in,
-			ap_idle => hLSControlReg_ap_idle_in,
-			ap_ready => hLSControlReg_ap_ready_in,
-			a_address0 => hlsAddr,
-			a_ce0 => open,
-			a_we0 => hlsWe,
-			a_d0 => hlsOut,
-			a_q0 => hlsIn
-		);
-		
 
 end architecture rtl;

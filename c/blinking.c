@@ -10,6 +10,10 @@
 
 #include <machine/spm.h>
 
+#include "include/patio.h"
+
+#include "include/bootable.h"
+
 int main() {
 
 	volatile _SPM int *led_ptr  = (volatile _SPM int *) 0xF0090000;

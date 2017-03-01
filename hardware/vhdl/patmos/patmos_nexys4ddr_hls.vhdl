@@ -310,19 +310,19 @@ architecture rtl of patmos_top is
 	signal app_rdy_bridge           : std_logic;
 	signal app_wdf_rdy_bridge       : std_logic;
 
-  attribute mark_debug : string;
-  attribute mark_debug of app_addr_bridge             : signal is "true";
-  attribute mark_debug of app_cmd_bridge              : signal is "true";
-  attribute mark_debug of app_en_bridge               : signal is "true";
-  attribute mark_debug of app_wdf_data_bridge         : signal is "true";
-  attribute mark_debug of app_wdf_end_bridge          : signal is "true";
-  attribute mark_debug of app_wdf_mask_bridge         : signal is "true";
-  attribute mark_debug of app_wdf_wren_bridge         : signal is "true";
-  attribute mark_debug of app_rd_data_bridge          : signal is "true";
-  attribute mark_debug of app_rd_data_end_bridge      : signal is "true";
-  attribute mark_debug of app_rd_data_valid_bridge    : signal is "true";
-  attribute mark_debug of app_rdy_bridge              : signal is "true";
-  attribute mark_debug of app_wdf_rdy_bridge          : signal is "true";
+--  attribute mark_debug : string;
+--  attribute mark_debug of app_addr_bridge             : signal is "true";
+--  attribute mark_debug of app_cmd_bridge              : signal is "true";
+--  attribute mark_debug of app_en_bridge               : signal is "true";
+--  attribute mark_debug of app_wdf_data_bridge         : signal is "true";
+--  attribute mark_debug of app_wdf_end_bridge          : signal is "true";
+--  attribute mark_debug of app_wdf_mask_bridge         : signal is "true";
+--  attribute mark_debug of app_wdf_wren_bridge         : signal is "true";
+--  attribute mark_debug of app_rd_data_bridge          : signal is "true";
+--  attribute mark_debug of app_rd_data_end_bridge      : signal is "true";
+--  attribute mark_debug of app_rd_data_valid_bridge    : signal is "true";
+--  attribute mark_debug of app_rdy_bridge              : signal is "true";
+--  attribute mark_debug of app_wdf_rdy_bridge          : signal is "true";
 
 begin
 	clk_manager_inst_0 : clk_manager port map(

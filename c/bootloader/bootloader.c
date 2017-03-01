@@ -38,9 +38,9 @@
  *
  */
 
+//We need this if we want to make it a bootapp
 #include "boot.h"
 #include "include/patio.h"
-
 #include "include/bootable.h"
 
 // #define DEBUG

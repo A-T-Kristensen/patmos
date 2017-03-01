@@ -9,11 +9,12 @@
 */
 
 #include <machine/spm.h>
+#include <machine/patmos.h>
 
 int main() {
 	volatile _SPM int *uart_ptr = (volatile _SPM int *) 0xF0080004;
 	volatile _SPM int *led_ptr  = (volatile _SPM int *) 0xF0090000;
-	volatile int *bram_ptr = (volatile int *) 0xF00A0000;
+	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00A0000;
 	
 	int i, j;
 	
