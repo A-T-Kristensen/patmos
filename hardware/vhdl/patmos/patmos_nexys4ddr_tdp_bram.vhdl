@@ -60,6 +60,8 @@ architecture rtl of patmos_top is
 			io_comConf_S_Resp             : in  std_logic_vector(1 downto 0);
 			io_comConf_S_Data             : in  std_logic_vector(31 downto 0);
 			io_comConf_S_CmdAccept        : in  std_logic;
+            io_comConf_S_Reset_n          : in  std_logic;
+            io_comConf_S_Flag             : in  std_logic_vector(1 downto 0);			
 
 			io_comSpm_M_Cmd               : out std_logic_vector(2 downto 0);
 			io_comSpm_M_Addr              : out std_logic_vector(31 downto 0);
@@ -435,6 +437,9 @@ begin
 			io_comConf_S_Resp             => (others => '0'),
 			io_comConf_S_Data             => (others => '0'),
 			io_comConf_S_CmdAccept        => '0',
+			io_comConf_S_Reset_n          => '0',
+            io_comConf_S_Flag             => (others => '0'),
+		
 			io_comSpm_M_Cmd               => open,
 			io_comSpm_M_Addr              => open,
 			io_comSpm_M_Data              => open,

@@ -60,6 +60,8 @@ architecture rtl of patmos_top is
 			io_comConf_S_Resp             : in  std_logic_vector(1 downto 0);
 			io_comConf_S_Data             : in  std_logic_vector(31 downto 0);
 			io_comConf_S_CmdAccept        : in  std_logic;
+            io_comConf_S_Reset_n          : in  std_logic;
+            io_comConf_S_Flag             : in  std_logic_vector(1 downto 0);
 
 			io_comSpm_M_Cmd               : out std_logic_vector(2 downto 0);
 			io_comSpm_M_Addr              : out std_logic_vector(31 downto 0);
@@ -310,19 +312,34 @@ architecture rtl of patmos_top is
 	signal app_rdy_bridge           : std_logic;
 	signal app_wdf_rdy_bridge       : std_logic;
 
-  attribute mark_debug : string;
-  attribute mark_debug of app_addr_bridge             : signal is "true";
-  attribute mark_debug of app_cmd_bridge              : signal is "true";
-  attribute mark_debug of app_en_bridge               : signal is "true";
-  attribute mark_debug of app_wdf_data_bridge         : signal is "true";
-  attribute mark_debug of app_wdf_end_bridge          : signal is "true";
-  attribute mark_debug of app_wdf_mask_bridge         : signal is "true";
-  attribute mark_debug of app_wdf_wren_bridge         : signal is "true";
-  attribute mark_debug of app_rd_data_bridge          : signal is "true";
-  attribute mark_debug of app_rd_data_end_bridge      : signal is "true";
-  attribute mark_debug of app_rd_data_valid_bridge    : signal is "true";
-  attribute mark_debug of app_rdy_bridge              : signal is "true";
-  attribute mark_debug of app_wdf_rdy_bridge          : signal is "true";
+    attribute mark_debug : string;
+  
+    attribute mark_debug of bRamCtrl_MCmd             : signal is "true";
+    attribute mark_debug of bRamCtrl_MAddr             : signal is "true";  
+    attribute mark_debug of bRamCtrl_MData             : signal is "true";  
+    attribute mark_debug of bramCtrl_SData             : signal is "true";  
+    attribute mark_debug of bramCtrl_SResp             : signal is "true";
+      
+    attribute mark_debug of hLSControlReg_ap_reset_out             : signal is "true";  
+    attribute mark_debug of hLSControlReg_ap_start_out             : signal is "true";  
+    attribute mark_debug of hLSControlReg_ap_done_in             : signal is "true";  
+    attribute mark_debug of hLSControlReg_ap_idle_in             : signal is "true";
+    attribute mark_debug of hLSControlReg_ap_ready_in             : signal is "true";
+    attribute mark_debug of hlsAddr             : signal is "true";               
+
+
+--  attribute mark_debug of app_addr_bridge             : signal is "true";
+--  attribute mark_debug of app_cmd_bridge              : signal is "true";
+--  attribute mark_debug of app_en_bridge               : signal is "true";
+--  attribute mark_debug of app_wdf_data_bridge         : signal is "true";
+--  attribute mark_debug of app_wdf_end_bridge          : signal is "true";
+--  attribute mark_debug of app_wdf_mask_bridge         : signal is "true";
+--  attribute mark_debug of app_wdf_wren_bridge         : signal is "true";
+--  attribute mark_debug of app_rd_data_bridge          : signal is "true";
+--  attribute mark_debug of app_rd_data_end_bridge      : signal is "true";
+--  attribute mark_debug of app_rd_data_valid_bridge    : signal is "true";
+--  attribute mark_debug of app_rdy_bridge              : signal is "true";
+--  attribute mark_debug of app_wdf_rdy_bridge          : signal is "true";
 
 begin
 	clk_manager_inst_0 : clk_manager port map(
@@ -462,6 +479,8 @@ begin
 			io_comConf_S_Resp             => (others => '0'),
 			io_comConf_S_Data             => (others => '0'),
 			io_comConf_S_CmdAccept        => '0',
+			io_comConf_S_Reset_n          => '0',
+            io_comConf_S_Flag             => (others => '0'),
 			io_comSpm_M_Cmd               => open,
 			io_comSpm_M_Addr              => open,
 			io_comSpm_M_Data              => open,
@@ -533,7 +552,7 @@ begin
 			a_addr  => bRamCtrl_MAddr,
 			a_din   => bRamCtrl_MData,
 			a_dout  => bramCtrl_SData,
-
+			
 		-- Port B
 			b_clk   => clk_int,
 			b_wr    => hlsWe,
