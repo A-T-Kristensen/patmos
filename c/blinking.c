@@ -8,11 +8,12 @@
     Copyright: DTU, BSD License
 */
 
-#include <machine/spm.h>
-
+//We need this if we want to make it a bootapp
+#include <machine/patmos.h>
 #include "include/patio.h"
-
 #include "include/bootable.h"
+
+#include <machine/spm.h>
 
 int main() {
 
