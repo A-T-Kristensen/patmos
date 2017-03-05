@@ -28,7 +28,7 @@ endif
 # The FPGA vendor (Altera, Xilinx, XilinxVivado)
 #VENDOR?=Xilinx
 #VENDOR?=XilinxVivado
-#VENDOR?=Altera
+VENDOR?=Altera
 
 # The Quartus/ISE project
 #BOARD=ml605oc
@@ -38,7 +38,7 @@ endif
 #BOARD?=nexys4ddr
 
 # My own additions
-BOARD?=altde2-115_bram
+BOARD?=altde2-115-bram
 
 
 # Where to put elf files and binaries

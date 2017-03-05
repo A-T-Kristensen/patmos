@@ -76,7 +76,7 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MAddr      : out std_logic_vector(15 downto 0);
 			io_bRamCtrlPins_MData      : out std_logic_vector(31 downto 0);
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
-			io_bRamCtrlPins_SResp      : in  std_logic_vector(1 downto 0) := (others => '0');
+			--io_bRamCtrlPins_SResp      : in  std_logic_vector(1 downto 0) := (others => '0');
 			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0) := (others => '0')	
 
 			--io_bRamCtrlPins_MCmd       => open,
@@ -137,7 +137,7 @@ architecture rtl of patmos_top is
 	signal bRamMAddr   : std_logic_vector(15 downto 0) := (others => '0');
 	signal bRamMData   : std_logic_vector(31 downto 0) := (others => '0');
 	signal bRamMByteEn : std_logic_vector(3 downto 0) := (others => '0');
-	signal bRamResp   : std_logic_vector(1 downto 0) := (others => '0');
+	signal bRamResp   : std_logic_vector(1 downto 0); -- := (others => '0');
 	signal bRamSData   : std_logic_vector(31 downto 0) := (others => '0');
 
 	attribute altera_attribute : string;
@@ -214,7 +214,7 @@ begin
 	io_bRamCtrlPins_MAddr      => bRamCtrl_MAddr,
 	io_bRamCtrlPins_MData      => bRamCtrl_MData,
 	io_bRamCtrlPins_MByteEn    => bRamCtrl_MByteEn,
-	io_bRamCtrlPins_SResp      => bRamCtrl_SResp ,
+	--io_bRamCtrlPins_SResp      => bRamCtrl_SResp ,
 	io_bRamCtrlPins_SData      => bRamCtrl_SData
 
 	);		
