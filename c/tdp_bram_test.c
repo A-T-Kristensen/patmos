@@ -22,6 +22,8 @@ int main() {
 	int temp = 0;
 	int cnt = 0;
 	
+	/*
+	
 	for (i=2000; i!=0; --i)
 		for (j=2000; j!=0; --j)
 			*led_ptr = 1;
@@ -29,7 +31,8 @@ int main() {
 	for (i=2000; i!=0; --i)
 		for (j=2000; j!=0; --j)
 			*led_ptr = 0;
-
+	*/
+	
 	// Now write to bram
 	
 	for(i = 0; i < 10; i++){
@@ -40,11 +43,10 @@ int main() {
 	
 	for(i = 0; i < 10; i++){
 		
-		
-		if(*(bram_ptr + i) != 0){ //Blink the led when we read
+		if(*(bram_ptr + i) == (i+1)){ //Blink the led when we read
 			
 			cnt++;
-			
+			/*
 			for (i=2000; i!=0; --i)
 				for (j=2000; j!=0; --j)
 					*led_ptr = 1;
@@ -53,7 +55,9 @@ int main() {
 			for (i=2000; i!=0; --i)
 				for (j=2000; j!=0; --j)
 					*led_ptr = 0;
+		*/
 		}
+		
 	}
 	
 	if(cnt == 10){
@@ -70,6 +74,9 @@ int main() {
 					*led_ptr = 0;
 		}			
 			
+	}else {
+		
+		return 0;
 	}
 		
 	
