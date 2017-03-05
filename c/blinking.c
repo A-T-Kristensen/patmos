@@ -19,7 +19,11 @@ int main() {
 
 	volatile _SPM int *led_ptr  = (volatile _SPM int *) 0xF0090000;
 	volatile _SPM int *uart_ptr = (volatile _SPM int *) 0xF0080004;
+	volatile _SPM int *bram_ptr = (volatile _SPM int *) 0xF00B0000;
+	
 	int i, j;
+	
+	bram_ptr = 0;
 
 	for (;;) {
 		*uart_ptr = '1';
