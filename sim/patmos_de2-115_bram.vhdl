@@ -77,7 +77,7 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MData      : out std_logic_vector(31 downto 0);
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
 			--io_bRamCtrlPins_SResp      : in  std_logic_vector(1 downto 0) := (others => '0');
-			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0) := (others => '0')	
+			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0) -- := (others => '0')	
 
 			--io_bRamCtrlPins_MCmd       => open,
 			--io_bRamCtrlPins_MAddr      => open,
@@ -130,8 +130,8 @@ architecture rtl of patmos_top is
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
 	signal bRamCtrl_MData   : std_logic_vector(31 downto 0);
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
-	signal bRamCtrl_SResp   : std_logic_vector(1 downto 0) := (others => '0');
-	signal bRamCtrl_SData   : std_logic_vector(31 downto 0) := (others => '0');
+	--signal bRamCtrl_SResp   : std_logic_vector(1 downto 0) := (others => '0');
+	signal bRamCtrl_SData   : std_logic_vector(31 downto 0); -- := (others => '0');
 
 	signal bRamMcmd    : std_logic_vector(2 downto 0) := (others => '0');
 	signal bRamMAddr   : std_logic_vector(15 downto 0) := (others => '0');

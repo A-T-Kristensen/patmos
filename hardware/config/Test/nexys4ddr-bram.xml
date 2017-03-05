@@ -13,7 +13,7 @@
   <IOs>
 	<IO DevTypeRef="Uart" offset="8"/>
 	<IO DevTypeRef="Nexys4DDRIO" offset="9"/>
-	<IO DevTypeRef="BRamCtrl" offset="11"/>   
+	<IO DevTypeRef="BRamCtrl" offset="11"/> 
   </IOs>
 
   <Devs>
@@ -34,7 +34,7 @@
             <param name="extAddrWidth" value="16" />
             <param name="dataWidth" value="32" />
           </params>
-	</Dev>
+	</Dev>  
     <Dev DevType="MemBridge" entity="MemBridge" iface="OcpBurst">
     </Dev>
   </Devs>

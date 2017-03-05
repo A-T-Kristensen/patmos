@@ -96,14 +96,14 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MAddr      : out std_logic_vector(15 downto 0);
 			io_bRamCtrlPins_MData      : out std_logic_vector(31 downto 0);
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
-			io_bRamCtrlPins_SResp      : in  std_logic_vector(1 downto 0);
-			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0);
+			--io_bRamCtrlPins_SResp      : in  std_logic_vector(1 downto 0);
+			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0)
 			
-			io_hLSControlRegPins_ap_start_out 	: out std_logic;
-			io_hLSControlRegPins_ap_reset_out 	: out std_logic;
-			io_hLSControlRegPins_ap_ready_in 	: in std_logic;
-			io_hLSControlRegPins_ap_idle_in 	: in std_logic;
-			io_hLSControlRegPins_ap_done_in 	: in std_logic
+			--io_hLSControlRegPins_ap_start_out 	: out std_logic;
+			--io_hLSControlRegPins_ap_reset_out 	: out std_logic;
+			--io_hLSControlRegPins_ap_ready_in 	: in std_logic;
+			--io_hLSControlRegPins_ap_idle_in 	: in std_logic;
+			--io_hLSControlRegPins_ap_done_in 	: in std_logic
 		);
 	end component;
 
@@ -222,21 +222,6 @@ architecture rtl of patmos_top is
 			b_dout  : out std_logic_vector(31 downto 0)
 		);
 	end component;	
-	
-	component matrixmul is
-		port (
-			ap_clk : IN STD_LOGIC;
-			ap_rst : IN STD_LOGIC;
-			ap_start : IN STD_LOGIC;
-			ap_done : OUT STD_LOGIC;
-			ap_idle : OUT STD_LOGIC;
-			ap_ready : OUT STD_LOGIC;
-			a_address0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-			a_ce0 : OUT STD_LOGIC;
-			a_we0 : OUT STD_LOGIC;
-			a_d0 : OUT STD_LOGIC_VECTOR (31 downto 0);
-			a_q0 : IN STD_LOGIC_VECTOR (31 downto 0) );
-	end component;	
 
 	component clk_manager is
 		port(
@@ -275,18 +260,25 @@ architecture rtl of patmos_top is
 	signal bRamCtrl_SResp   : std_logic_vector(1 downto 0);
 	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
 
+	signal bRamMcmd    : std_logic_vector(2 downto 0) := (others => '0');
+	signal bRamMAddr   : std_logic_vector(15 downto 0) := (others => '0');
+	signal bRamMData   : std_logic_vector(31 downto 0) := (others => '0');
+	signal bRamMByteEn : std_logic_vector(3 downto 0) := (others => '0');
+	--signal bRamResp   : std_logic_vector(1 downto 0); -- := (others => '0');
+	signal bRamSData   : std_logic_vector(31 downto 0) := (others => '0');
+
 	-- Signals for hls accel
 
-	signal hLSControlReg_ap_start_out 	: std_logic;
-	signal hLSControlReg_ap_reset_out 	: std_logic;
-	signal hLSControlReg_ap_ready_in 	: std_logic;
-	signal hLSControlReg_ap_idle_in 	: std_logic;
-	signal hLSControlReg_ap_done_in 	: std_logic;
+	--signal hLSControlReg_ap_start_out 	: std_logic;
+	--signal hLSControlReg_ap_reset_out 	: std_logic;
+	--signal hLSControlReg_ap_ready_in 	: std_logic;
+	--signal hLSControlReg_ap_idle_in 	: std_logic;
+	--signal hLSControlReg_ap_done_in 	: std_logic;
 
-	signal hlsWe    : std_logic;
-	signal hlsAddr   : std_logic_vector(15 downto 0);
-	signal hlsIn   : std_logic_vector(31 downto 0);
-	signal hlsOut : std_logic_vector(31 downto 0);
+	--signal hlsWe    : std_logic;
+	--signal hlsAddr   : std_logic_vector(15 downto 0);
+	--signal hlsIn   : std_logic_vector(31 downto 0);
+	--signal hlsOut : std_logic_vector(31 downto 0);
 
 	-- signals for the bridge
 	signal MCmd_bridge        : std_logic_vector(2 downto 0);
@@ -312,20 +304,20 @@ architecture rtl of patmos_top is
 	signal app_rdy_bridge           : std_logic;
 	signal app_wdf_rdy_bridge       : std_logic;
 
-    attribute mark_debug : string;
+--    attribute mark_debug : string;
   
-    attribute mark_debug of bRamCtrl_MCmd             : signal is "true";
-    attribute mark_debug of bRamCtrl_MAddr             : signal is "true";  
-    attribute mark_debug of bRamCtrl_MData             : signal is "true";  
-    attribute mark_debug of bramCtrl_SData             : signal is "true";  
-    attribute mark_debug of bramCtrl_SResp             : signal is "true";
+--    attribute mark_debug of bRamCtrl_MCmd             : signal is "true";
+--    attribute mark_debug of bRamCtrl_MAddr             : signal is "true";  
+--    attribute mark_debug of bRamCtrl_MData             : signal is "true";  
+--    attribute mark_debug of bramCtrl_SData             : signal is "true";  
+--    attribute mark_debug of bramCtrl_SResp             : signal is "true";
       
-    attribute mark_debug of hLSControlReg_ap_reset_out             : signal is "true";  
-    attribute mark_debug of hLSControlReg_ap_start_out             : signal is "true";  
-    attribute mark_debug of hLSControlReg_ap_done_in             : signal is "true";  
-    attribute mark_debug of hLSControlReg_ap_idle_in             : signal is "true";
-    attribute mark_debug of hLSControlReg_ap_ready_in             : signal is "true";
-    attribute mark_debug of hlsAddr             : signal is "true";               
+--    attribute mark_debug of hLSControlReg_ap_reset_out             : signal is "true";  
+--    attribute mark_debug of hLSControlReg_ap_start_out             : signal is "true";  
+--    attribute mark_debug of hLSControlReg_ap_done_in             : signal is "true";  
+--    attribute mark_debug of hLSControlReg_ap_idle_in             : signal is "true";
+--    attribute mark_debug of hLSControlReg_ap_ready_in             : signal is "true";
+--    attribute mark_debug of hlsAddr             : signal is "true";               
 
 
 --  attribute mark_debug of app_addr_bridge             : signal is "true";
@@ -515,14 +507,14 @@ begin
 			io_bRamCtrlPins_MAddr      => bRamCtrl_MAddr,
 			io_bRamCtrlPins_MData      => bRamCtrl_MData,
 			io_bRamCtrlPins_MByteEn    => bRamCtrl_MByteEn,
-			io_bRamCtrlPins_SResp      => bRamCtrl_SResp,
-			io_bRamCtrlPins_SData      => bRamCtrl_SData,
+			--io_bRamCtrlPins_SResp      => bRamCtrl_SResp,
+			io_bRamCtrlPins_SData      => bRamCtrl_SData
 		
-			io_hLSControlRegPins_ap_start_out 	=> hLSControlReg_ap_start_out,
-			io_hLSControlRegPins_ap_reset_out 	=> hLSControlReg_ap_reset_out,
-			io_hLSControlRegPins_ap_ready_in 	=> hLSControlReg_ap_ready_in,
-			io_hLSControlRegPins_ap_idle_in 	=> hLSControlReg_ap_idle_in,
-			io_hLSControlRegPins_ap_done_in 	=> hLSControlReg_ap_done_in
+			--io_hLSControlRegPins_ap_start_out 	=> hLSControlReg_ap_start_out,
+			--io_hLSControlRegPins_ap_reset_out 	=> hLSControlReg_ap_reset_out,
+			--io_hLSControlRegPins_ap_ready_in 	=> hLSControlReg_ap_ready_in,
+			--io_hLSControlRegPins_ap_idle_in 	=> hLSControlReg_ap_idle_in,
+			--io_hLSControlRegPins_ap_done_in 	=> hLSControlReg_ap_done_in
 		);
 
 	nexys4ddr_io_inst_0 : nexys4ddr_io port map(
@@ -555,24 +547,10 @@ begin
 			
 		-- Port B
 			b_clk   => clk_int,
-			b_wr    => hlsWe,
-			b_addr  => hlsAddr,
-			b_din   => hlsOut,
-			b_dout  => hlsIn --bRamSData
-		);
-		matrixmul_inst_0 : matrixmul port map(
-			ap_clk => clk_int,
-			ap_rst => hLSControlReg_ap_reset_out,
-			ap_start => hLSControlReg_ap_start_out,
-			ap_done => hLSControlReg_ap_done_in,
-			ap_idle => hLSControlReg_ap_idle_in,
-			ap_ready => hLSControlReg_ap_ready_in,
-			a_address0 => hlsAddr,
-			a_ce0 => open,
-			a_we0 => hlsWe,
-			a_d0 => hlsOut,
-			a_q0 => hlsIn
+			b_wr    => bRamMcmd(0),
+			b_addr  => bRamMAddr,
+			b_din   => bRamMData,
+			b_dout  => open --bRamSData
 		);
 		
-
 end architecture rtl;

@@ -9,10 +9,10 @@
 */
 
 #include <machine/spm.h>
-#include <machine/patmos.h>
+//#include <machine/patmos.h>
 
-#include "include/patio.h"
-#include "include/bootable.h"
+//#include "include/patio.h"
+//#include "include/bootable.h"
 
 int main() {
 	volatile _SPM int *led_ptr  = (volatile _SPM int *) 0xF0090000;
@@ -20,13 +20,14 @@ int main() {
 	
 	int i, j;
 	int temp = 0;
+	int cnt = 0;
 	
-	for (i=2; i!=0; --i)
-		for (j=2; j!=0; --j)
+	for (i=2000; i!=0; --i)
+		for (j=2000; j!=0; --j)
 			*led_ptr = 1;
 
-	for (i=2; i!=0; --i)
-		for (j=2; j!=0; --j)
+	for (i=2000; i!=0; --i)
+		for (j=2000; j!=0; --j)
 			*led_ptr = 0;
 
 	// Now write to bram
@@ -39,16 +40,37 @@ int main() {
 	
 	for(i = 0; i < 10; i++){
 		
+		
 		if(*(bram_ptr + i) != 0){ //Blink the led when we read
 			
-			for (i=2; i!=0; --i)
-				for (j=2; j!=0; --j)
+			cnt++;
+			
+			for (i=2000; i!=0; --i)
+				for (j=2000; j!=0; --j)
 					*led_ptr = 1;
 
 
-			for (i=2; i!=0; --i)
-				for (j=2; j!=0; --j)
+			for (i=2000; i!=0; --i)
+				for (j=2000; j!=0; --j)
 					*led_ptr = 0;
 		}
 	}
+	
+	if(cnt == 10){
+		
+		for(;;){
+		
+			for (i=2000; i!=0; --i)
+				for (j=2000; j!=0; --j)
+					*led_ptr = 1;
+
+
+			for (i=2000; i!=0; --i)
+				for (j=2000; j!=0; --j)
+					*led_ptr = 0;
+		}			
+			
+	}
+		
+	
 }
