@@ -9,33 +9,40 @@
 */
 
 //We need this if we want to make it a bootapp
-#include <machine/patmos.h>
-#include "include/patio.h"
-#include "include/bootable.h"
 
-#include <machine/spm.h>
+//#include "include/patio.h"
+//#include "include/bootable.h"
 
-int main() {
+// These are used to write to SPM and IO devices
 
-	volatile _SPM int *led_ptr  = (volatile _SPM int *) 0xF0090000;
-	volatile _SPM int *uart_ptr = (volatile _SPM int *) 0xF0080004;
-	volatile _SPM int *bram_ptr = (volatile _SPM int *) 0xF00B0000;
+#include <machine/spm.h> // Defines _SPM
+#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+
+#define LED_RUN_LENGTH 2000
+
+int main() 
+{
+
+	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
+	volatile _IODEV int *uart_ptr = (volatile _IODEV int *) 0xF0080004;
+	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 	
 	int i, j;
 	
 	bram_ptr = 0;
 
-	for (;;) {
+	for (;;) 
+	{
 		*uart_ptr = '1';
-		for (i=2; i!=0; --i)
-			for (j=2; j!=0; --j) {
+
+		for (i=LED_RUN_LENGTH; i!=0; --i)
+			for (j=LED_RUN_LENGTH; j!=0; --j)
 				*led_ptr = 1;
-			}
 
 		*uart_ptr = '0';
-		for (i=2; i!=0; --i)
-			for (j=2; j!=0; --j) {
+
+		for (i=LED_RUN_LENGTH; i!=0; --i)
+			for (j=LED_RUN_LENGTH; j!=0; --j)
 				*led_ptr = 0;
-			}
 	}
 }

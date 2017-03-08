@@ -48,7 +48,7 @@ class HLSControlReg(extAddrWidth : Int = 32,
 
   //For count register
 
-  val CNT_MAX = UInt(25);
+  val CNT_MAX = UInt(3); // The number of cycles that we reset
 
   val cntReg = Reg(init = UInt(0, 5))
   cntReg:= cntReg

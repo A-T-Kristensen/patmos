@@ -25,32 +25,32 @@ entity patmos_top is
 		switches             : in    std_logic_vector(15 downto 0); -- (15) -> SW15 ... SW0 <- (0)
 
 		--TXD, RXD naming uses terminal-centric naming convention
-		uart_txd             : in    std_logic;
-		uart_rxd             : out   std_logic;
+		uart_txd    : in    std_logic;
+		uart_rxd    : out   std_logic;
 
 		--DDR2 pins
-		ddr2_dq              : inout std_logic_vector(15 downto 0);
-		ddr2_dqs_n           : inout std_logic_vector(1 downto 0);
-		ddr2_dqs_p           : inout std_logic_vector(1 downto 0);
-		ddr2_addr            : out   std_logic_vector(12 downto 0);
-		ddr2_ba              : out   std_logic_vector(2 downto 0);
-		ddr2_ras_n           : out   std_logic;
-		ddr2_cas_n           : out   std_logic;
-		ddr2_we_n            : out   std_logic;
-		ddr2_ck_p            : out   std_logic_vector(0 to 0);
-		ddr2_ck_n            : out   std_logic_vector(0 to 0);
-		ddr2_cke             : out   std_logic_vector(0 to 0);
-		ddr2_cs_n            : out   std_logic_vector(0 to 0);
-		ddr2_dm              : out   std_logic_vector(1 downto 0);
-		ddr2_odt             : out   std_logic_vector(0 to 0)
+		ddr2_dq     : inout std_logic_vector(15 downto 0);
+		ddr2_dqs_n  : inout std_logic_vector(1 downto 0);
+		ddr2_dqs_p  : inout std_logic_vector(1 downto 0);
+		ddr2_addr   : out   std_logic_vector(12 downto 0);
+		ddr2_ba     : out   std_logic_vector(2 downto 0);
+		ddr2_ras_n  : out   std_logic;
+		ddr2_cas_n  : out   std_logic;
+		ddr2_we_n   : out   std_logic;
+		ddr2_ck_p   : out   std_logic_vector(0 to 0);
+		ddr2_ck_n   : out   std_logic_vector(0 to 0);
+		ddr2_cke    : out   std_logic_vector(0 to 0);
+		ddr2_cs_n   : out   std_logic_vector(0 to 0);
+		ddr2_dm     : out   std_logic_vector(1 downto 0);
+		ddr2_odt	: out   std_logic_vector(0 to 0)
 	);
 end entity patmos_top;
 
 architecture rtl of patmos_top is
 	component Patmos is
 		port(
-			clk                           : in  std_logic;
-			reset                         : in  std_logic;
+			clk     : in  std_logic;
+			reset   : in  std_logic;
 
 			io_comConf_M_Cmd              : out std_logic_vector(2 downto 0);
 			io_comConf_M_Addr             : out std_logic_vector(31 downto 0);
@@ -63,12 +63,12 @@ architecture rtl of patmos_top is
             io_comConf_S_Reset_n          : in  std_logic;
             io_comConf_S_Flag             : in  std_logic_vector(1 downto 0);
 
-			io_comSpm_M_Cmd               : out std_logic_vector(2 downto 0);
-			io_comSpm_M_Addr              : out std_logic_vector(31 downto 0);
-			io_comSpm_M_Data              : out std_logic_vector(31 downto 0);
-			io_comSpm_M_ByteEn            : out std_logic_vector(3 downto 0);
-			io_comSpm_S_Resp              : in  std_logic_vector(1 downto 0);
-			io_comSpm_S_Data              : in  std_logic_vector(31 downto 0);
+			io_comSpm_M_Cmd     : out std_logic_vector(2 downto 0);
+			io_comSpm_M_Addr    : out std_logic_vector(31 downto 0);
+			io_comSpm_M_Data    : out std_logic_vector(31 downto 0);
+			io_comSpm_M_ByteEn  : out std_logic_vector(3 downto 0);
+			io_comSpm_S_Resp    : in  std_logic_vector(1 downto 0);
+			io_comSpm_S_Data	: in  std_logic_vector(31 downto 0);
 
 			io_memBridgePins_M_Cmd        : out std_logic_vector(2 downto 0);
 			io_memBridgePins_M_Addr       : out std_logic_vector(31 downto 0);
@@ -80,10 +80,10 @@ architecture rtl of patmos_top is
 			io_memBridgePins_S_CmdAccept  : in  std_logic;
 			io_memBridgePins_S_DataAccept : in  std_logic;
 
-			io_cpuInfoPins_id             : in  std_logic_vector(31 downto 0);
-			io_cpuInfoPins_cnt            : in  std_logic_vector(31 downto 0);
-			io_uartPins_tx                : out std_logic;
-			io_uartPins_rx                : in  std_logic;
+			io_cpuInfoPins_id   : in  std_logic_vector(31 downto 0);
+			io_cpuInfoPins_cnt  : in  std_logic_vector(31 downto 0);
+			io_uartPins_tx      : out std_logic;
+			io_uartPins_rx		: in  std_logic;
 
 			io_nexys4DDRIOPins_MCmd       : out std_logic_vector(2 downto 0);
 			io_nexys4DDRIOPins_MAddr      : out std_logic_vector(15 downto 0);
@@ -108,16 +108,16 @@ architecture rtl of patmos_top is
 
 	component nexys4ddr_io is
 		port(
-			clk                  : in  std_logic;
-			clk_pwm              : in  std_logic;
-			reset                : in  std_logic;
+			clk     : in  std_logic;
+			clk_pwm : in  std_logic;
+			reset   : in  std_logic;
 
-			MCmd                 : in  std_logic_vector(2 downto 0);
-			MAddr                : in  std_logic_vector(15 downto 0);
-			MData                : in  std_logic_vector(31 downto 0);
-			MByteEn              : in  std_logic_vector(3 downto 0);
-			SResp                : out std_logic_vector(1 downto 0);
-			SData                : out std_logic_vector(31 downto 0);
+			MCmd    : in  std_logic_vector(2 downto 0);
+			MAddr   : in  std_logic_vector(15 downto 0);
+			MData   : in  std_logic_vector(31 downto 0);
+			MByteEn : in  std_logic_vector(3 downto 0);
+			SResp   : out std_logic_vector(1 downto 0);
+			SData 	: out std_logic_vector(31 downto 0);
 
 			green_leds           : out std_logic_vector(15 downto 0); -- (15) -> LD15 ... LD0 <- (0)
 			rgb_leds             : out std_logic_vector(5 downto 0); -- (5) -> LD17_R LD17_G LD17_B | LD16_R LD16_G LD16_B <- (0)
@@ -129,20 +129,20 @@ architecture rtl of patmos_top is
 
 	component ddr2_ctrl is
 		port(
-			ddr2_dq             : inout std_logic_vector(15 downto 0);
-			ddr2_dqs_n          : inout std_logic_vector(1 downto 0);
-			ddr2_dqs_p          : inout std_logic_vector(1 downto 0);
-			ddr2_addr           : out   std_logic_vector(12 downto 0);
-			ddr2_ba             : out   std_logic_vector(2 downto 0);
-			ddr2_ras_n          : out   std_logic;
-			ddr2_cas_n          : out   std_logic;
-			ddr2_we_n           : out   std_logic;
-			ddr2_ck_p           : out   std_logic_vector(0 to 0);
-			ddr2_ck_n           : out   std_logic_vector(0 to 0);
-			ddr2_cke            : out   std_logic_vector(0 to 0);
-			ddr2_cs_n           : out   std_logic_vector(0 to 0);
-			ddr2_dm             : out   std_logic_vector(1 downto 0);
-			ddr2_odt            : out   std_logic_vector(0 to 0);
+			ddr2_dq 	: inout std_logic_vector(15 downto 0);
+			ddr2_dqs_n  : inout std_logic_vector(1 downto 0);
+			ddr2_dqs_p  : inout std_logic_vector(1 downto 0);
+			ddr2_addr   : out   std_logic_vector(12 downto 0);
+			ddr2_ba     : out   std_logic_vector(2 downto 0);
+			ddr2_ras_n  : out   std_logic;
+			ddr2_cas_n  : out   std_logic;
+			ddr2_we_n   : out   std_logic;
+			ddr2_ck_p   : out   std_logic_vector(0 to 0);
+			ddr2_ck_n   : out   std_logic_vector(0 to 0);
+			ddr2_cke    : out   std_logic_vector(0 to 0);
+			ddr2_cs_n   : out   std_logic_vector(0 to 0);
+			ddr2_dm     : out   std_logic_vector(1 downto 0);
+			ddr2_odt    : out   std_logic_vector(0 to 0);
 
 			sys_clk_i           : in    std_logic;
 			app_addr            : in    std_logic_vector(26 downto 0);
@@ -173,19 +173,19 @@ architecture rtl of patmos_top is
 	component ocp_burst_to_ddr2_ctrl is
 		port(
 			-- Common
-			clk               : in  std_logic;
-			rst               : in  std_logic;
+			clk     : in  std_logic;
+			rst 	: in  std_logic;
 
-			-- OCPburst IN (slave)
-			MCmd              : in  std_logic_vector(2 downto 0);
-			MAddr             : in  std_logic_vector(31 downto 0);
-			MData             : in  std_logic_vector(31 downto 0);
-			MDataValid        : in  std_logic;
-			MDataByteEn       : in  std_logic_vector(3 downto 0);
-			SResp             : out std_logic_vector(1 downto 0);
-			SData             : out std_logic_vector(31 downto 0);
-			SCmdAccept        : out std_logic;
-			SDataAccept       : out std_logic;
+			-- OCPburst in (slave)
+			MCmd            : in  std_logic_vector(2 downto 0);
+			MAddr           : in  std_logic_vector(31 downto 0);
+			MData           : in  std_logic_vector(31 downto 0);
+			MDataValid      : in  std_logic;
+			MDataByteEn     : in  std_logic_vector(3 downto 0);
+			SResp           : out std_logic_vector(1 downto 0);
+			SData           : out std_logic_vector(31 downto 0);
+			SCmdAccept      : out std_logic;
+			SDataAccept 	: out std_logic;
 
 			-- Xilinx interface
 			app_addr          : out std_logic_vector(26 downto 0);
@@ -223,19 +223,21 @@ architecture rtl of patmos_top is
 	end component;	
 	
 	component matrixmul is
-		port (
-			ap_clk : IN STD_LOGIC;
-			ap_rst : IN STD_LOGIC;
-			ap_start : IN STD_LOGIC;
-			ap_done : OUT STD_LOGIC;
-			ap_idle : OUT STD_LOGIC;
-			ap_ready : OUT STD_LOGIC;
-			a_address0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-			a_ce0 : OUT STD_LOGIC;
-			a_we0 : OUT STD_LOGIC;
-			a_d0 : OUT STD_LOGIC_VECTOR (31 downto 0);
-			a_q0 : IN STD_LOGIC_VECTOR (31 downto 0) );
-	end component;		
+	port (
+			ap_clk : in std_logic;
+			ap_rst : in std_logic;
+			ap_start : in std_logic;
+			ap_done : out std_logic;
+			ap_idle : out std_logic;
+			ap_ready : out std_logic;
+			a_Addr_A : out std_logic_vector (31 downto 0);
+			a_EN_A : out std_logic;
+			a_WEN_A : out std_logic_vector (3 downto 0);
+			a_Din_A : out std_logic_vector (31 downto 0);
+			a_Dout_A : in std_logic_vector (31 downto 0);
+			a_Clk_A : out std_logic;
+			a_Rst_A : out std_logic );
+end component; 	
 
 	component clk_manager is
 		port(
@@ -271,14 +273,13 @@ architecture rtl of patmos_top is
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
 	signal bRamCtrl_MData   : std_logic_vector(31 downto 0);
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
-	signal bRamCtrl_SResp   : std_logic_vector(1 downto 0);
 	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
 
-	signal bRamMcmd    : std_logic_vector(2 downto 0) := (others => '0');
-	signal bRamMAddr   : std_logic_vector(15 downto 0) := (others => '0');
-	signal bRamMData   : std_logic_vector(31 downto 0) := (others => '0');
-	signal bRamMByteEn : std_logic_vector(3 downto 0) := (others => '0');
-	signal bRamSData   : std_logic_vector(31 downto 0) := (others => '0');
+	--signal bRamMcmd    : std_logic_vector(2 downto 0) := (others => '0');
+	--signal bRamMAddr   : std_logic_vector(15 downto 0) := (others => '0');
+	--signal bRamMData   : std_logic_vector(31 downto 0) := (others => '0');
+	--signal bRamMByteEn : std_logic_vector(3 downto 0) := (others => '0');
+	--signal bRamSData   : std_logic_vector(31 downto 0) := (others => '0');
 
 	-- Signals for hls accel
 
@@ -288,10 +289,12 @@ architecture rtl of patmos_top is
 	signal hLSControlReg_ap_idle_in 	: std_logic;
 	signal hLSControlReg_ap_done_in 	: std_logic;
 
-	signal hlsWe    : std_logic;
-	signal hlsAddr   : std_logic_vector(15 downto 0);
+	signal hlsWe   : std_logic_vector (3 downto 0);
+	signal hlsAddr   : std_logic_vector (31 downto 0);
+	signal hlsAddr_resized   : std_logic_vector (15 downto 0);
 	signal hlsIn   : std_logic_vector(31 downto 0);
 	signal hlsOut : std_logic_vector(31 downto 0);
+	signal hlsReset : std_logic;	
 
 	-- signals for the bridge
 	signal MCmd_bridge        : std_logic_vector(2 downto 0);
@@ -317,20 +320,28 @@ architecture rtl of patmos_top is
 	signal app_rdy_bridge           : std_logic;
 	signal app_wdf_rdy_bridge       : std_logic;
 
---    attribute mark_debug : string;
+    attribute mark_debug : string;
   
---    attribute mark_debug of bRamCtrl_MCmd             : signal is "true";
---    attribute mark_debug of bRamCtrl_MAddr             : signal is "true";  
---    attribute mark_debug of bRamCtrl_MData             : signal is "true";  
---    attribute mark_debug of bramCtrl_SData             : signal is "true";  
---    attribute mark_debug of bramCtrl_SResp             : signal is "true";
+    attribute mark_debug of bRamCtrl_MCmd             : signal is "true";
+    attribute mark_debug of bRamCtrl_MAddr             : signal is "true";  
+    attribute mark_debug of bRamCtrl_MData             : signal is "true";  
+    attribute mark_debug of bramCtrl_SData             : signal is "true";  
       
---    attribute mark_debug of hLSControlReg_ap_reset_out             : signal is "true";  
---    attribute mark_debug of hLSControlReg_ap_start_out             : signal is "true";  
---    attribute mark_debug of hLSControlReg_ap_done_in             : signal is "true";  
---    attribute mark_debug of hLSControlReg_ap_idle_in             : signal is "true";
---    attribute mark_debug of hLSControlReg_ap_ready_in             : signal is "true";
---    attribute mark_debug of hlsAddr             : signal is "true";               
+    attribute mark_debug of hLSControlReg_ap_reset_out             : signal is "true";  
+    attribute mark_debug of hLSControlReg_ap_start_out             : signal is "true";  
+    attribute mark_debug of hLSControlReg_ap_done_in             : signal is "true";  
+    attribute mark_debug of hLSControlReg_ap_idle_in             : signal is "true";
+    attribute mark_debug of hLSControlReg_ap_ready_in             : signal is "true";          
+
+	attribute mark_debug of hlsWe             : signal is "true";  
+	attribute mark_debug of hlsAddr             : signal is "true";  
+	attribute mark_debug of hlsAddr_resized             : signal is "true";  
+	attribute mark_debug of hlsIn             : signal is "true";
+	attribute mark_debug of hlsOut             : signal is "true";
+	attribute mark_debug of hlsReset             : signal is "true";          
+
+    attribute mark_debug of reset_int             : signal is "true";        
+  
 
 
 --  attribute mark_debug of app_addr_bridge             : signal is "true";
@@ -406,7 +417,7 @@ begin
 			clk               => clk_int,
 			rst               => reset_int, -- --            : in std_logic; -- (=1 is reset)
 
-			-- OCPburst IN (slave)
+			-- OCPburst in (slave)
 			MCmd              => MCmd_bridge, --              : in  std_logic_vector(2 downto 0);
 			MAddr             => MAddr_bridge, --             : in  std_logic_vector(31 downto 0);
 			MData             => MData_bridge, --             : in  std_logic_vector(31 downto 0);
@@ -559,25 +570,31 @@ begin
 			
 		-- Port B
 			b_clk   => clk_int,
-			b_wr    => hlsWe,
-			b_addr  => hlsAddr,
+			b_wr    => hlsWe(0),
+			b_addr  => hlsAddr_resized,
 			b_din   => hlsOut,
 			b_dout  => hlsIn --bRamSData
 		);
 		
-		matrixmul_inst_0 : matrixmul port map(
-			ap_clk => clk_int,
-			ap_rst => hLSControlReg_ap_reset_out,
-			ap_start => hLSControlReg_ap_start_out,
-			ap_done => hLSControlReg_ap_done_in,
-			ap_idle => hLSControlReg_ap_idle_in,
-			ap_ready => hLSControlReg_ap_ready_in,
-			a_address0 => hlsAddr,
-			a_ce0 => open,
-			a_we0 => hlsWe,
-			a_d0 => hlsOut,
-			a_q0 => hlsIn
-		);
+	matrixmul_inst_0 : matrixmul port map(
+			ap_clk 		=> clk_int,
+			ap_rst 		=> hlsReset,
+			ap_start 	=> hLSControlReg_ap_start_out,
+			ap_done 	=> hLSControlReg_ap_done_in,
+			ap_idle 	=> hLSControlReg_ap_idle_in,
+			ap_ready 	=> hLSControlReg_ap_ready_in,
+			a_Addr_A 	=> hlsAddr,
+			a_EN_A  	=> open,
+			a_WEN_A 	=> hlsWe,
+			a_Din_A  	=> hlsOut,
+			a_Dout_A 	=> hlsIn,
+			a_Clk_A 	=> open,
+			a_Rst_A 	=> open
+		);			
+		
+					  
+	hlsAddr_resized <= std_logic_vector(resize(unsigned(hlsAddr),16));	
+	hlsReset 		<= hLSControlReg_ap_reset_out or reset_int;
 				
 		
 end architecture rtl;

@@ -8,34 +8,31 @@
     Copyright: DTU, BSD License
 */
 
-#include <machine/spm.h>
-//#include <machine/patmos.h>
+//We need this if we want to make it a bootapp
 
 //#include "include/patio.h"
 //#include "include/bootable.h"
 
-int main() {
-	volatile _SPM int *led_ptr  = (volatile _SPM int *) 0xF0090000;
-	volatile _SPM int *bram_ptr = (volatile _SPM int *) 0xF00B0000;
+// These are used to write to SPM and IO devices
+
+#include <machine/spm.h> // Defines _SPM
+#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+
+#define LED_RUN_LENGTH 2000
+
+int main() 
+{
+	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
+	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 	
 	int i, j;
 	int temp = 0;
 	int cnt = 0;
-	
-	/*
-	
-	for (i=2000; i!=0; --i)
-		for (j=2000; j!=0; --j)
-			*led_ptr = 1;
 
-	for (i=2000; i!=0; --i)
-		for (j=2000; j!=0; --j)
-			*led_ptr = 0;
-	*/
-	
 	// Now write to bram
 	
-	for(i = 0; i < 10; i++){
+	for(i = 0; i < 10; i++)
+	{
 		*(bram_ptr + i) = i + 1;
 	}
 	
@@ -43,41 +40,29 @@ int main() {
 	
 	for(i = 0; i < 10; i++){
 		
-		if(*(bram_ptr + i) == (i+1)){ //Blink the led when we read
-			
+		if(*(bram_ptr + i) == (i+1))
+		{ 			
 			cnt++;
-			/*
-			for (i=2000; i!=0; --i)
-				for (j=2000; j!=0; --j)
-					*led_ptr = 1;
-
-
-			for (i=2000; i!=0; --i)
-				for (j=2000; j!=0; --j)
-					*led_ptr = 0;
-		*/
 		}
-		
 	}
 	
-	if(cnt == 10){
-		
-		for(;;){
-		
-			for (i=2000; i!=0; --i)
-				for (j=2000; j!=0; --j)
+	if(cnt == 10)
+	{
+		for(;;)
+		{
+			for (i=LED_RUN_LENGTH; i!=0; --i)
+				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 1;
 
 
-			for (i=2000; i!=0; --i)
-				for (j=2000; j!=0; --j)
+			for (i=LED_RUN_LENGTH; i!=0; --i)
+				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;
-		}			
-			
-	}else {
-		
+		}		
+	} 
+
+	else 
+	{
 		return 0;
 	}
-		
-	
 }
