@@ -3,7 +3,6 @@
 -- Author: Luca Pezzarossa (lpez@dtu.dk)
 -- License: Simplified BSD License
 --
-
 --
 -- VHDL top level for Patmos on the Digilent/Xilinx Nexys4DDR board with off-chip memory
 --
@@ -18,10 +17,10 @@ entity patmos_top is
 		cpu_reset_btn        : in    std_logic;
 
 		green_leds           : out   std_logic_vector(15 downto 0); -- (15) -> LD15 ... LD0 <- (0)
-		rgb_leds             : out   std_logic_vector(5 downto 0); -- (5) -> LD17_R LD17_G LD17_B | LD16_R LD16_G LD16_B <- (0)
-		seven_segments       : out   std_logic_vector(7 downto 0); -- (7) -> DP CG CF CE CD CC CB CA <- (0)
-		seven_segments_drive : out   std_logic_vector(7 downto 0); -- (7) -> AN7 ... AN0 <- (0)
-		buttons              : in    std_logic_vector(4 downto 0); -- (4) -> BTNT BTNR BTND BTNL BTNC <- (0)
+		rgb_leds             : out   std_logic_vector(5 downto 0); 	-- (5) -> LD17_R LD17_G LD17_B | LD16_R LD16_G LD16_B <- (0)
+		seven_segments       : out   std_logic_vector(7 downto 0); 	-- (7) -> DP CG CF CE CD CC CB CA <- (0)
+		seven_segments_drive : out   std_logic_vector(7 downto 0); 	-- (7) -> AN7 ... AN0 <- (0)
+		buttons              : in    std_logic_vector(4 downto 0); 	-- (4) -> BTNT BTNR BTND BTNL BTNC <- (0)
 		switches             : in    std_logic_vector(15 downto 0); -- (15) -> SW15 ... SW0 <- (0)
 
 		--TXD, RXD naming uses terminal-centric naming convention
@@ -119,12 +118,12 @@ architecture rtl of patmos_top is
 			SResp   : out std_logic_vector(1 downto 0);
 			SData 	: out std_logic_vector(31 downto 0);
 
-			green_leds           : out std_logic_vector(15 downto 0); -- (15) -> LD15 ... LD0 <- (0)
-			rgb_leds             : out std_logic_vector(5 downto 0); -- (5) -> LD17_R LD17_G LD17_B | LD16_R LD16_G LD16_B <- (0)
-			seven_segments       : out std_logic_vector(7 downto 0); -- (7) -> DP CG CF CE CD CC CB CA <- (0)
-			seven_segments_drive : out std_logic_vector(7 downto 0); -- (7) -> AN7 ... AN0 <- (0)
-			buttons              : in  std_logic_vector(4 downto 0); -- (4) -> BTNT BTNR BTND BTNL BTNC <- (0)
-			switches             : in  std_logic_vector(15 downto 0)); -- (15) -> SW15 ... SW0 <- (0)
+			green_leds           : out std_logic_vector(15 downto 0); 	-- (15) -> LD15 ... LD0 <- (0)
+			rgb_leds             : out std_logic_vector(5 downto 0); 	-- (5) -> LD17_R LD17_G LD17_B | LD16_R LD16_G LD16_B <- (0)
+			seven_segments       : out std_logic_vector(7 downto 0); 	-- (7) -> DP CG CF CE CD CC CB CA <- (0)
+			seven_segments_drive : out std_logic_vector(7 downto 0); 	-- (7) -> AN7 ... AN0 <- (0)
+			buttons              : in  std_logic_vector(4 downto 0); 	-- (4) -> BTNT BTNR BTND BTNL BTNC <- (0)
+			switches             : in  std_logic_vector(15 downto 0)); 	-- (15) -> SW15 ... SW0 <- (0)
 	end component;
 
 	component ddr2_ctrl is
@@ -203,17 +202,16 @@ architecture rtl of patmos_top is
 		);
 	end component;
 	
-	
 	component bram_tdp is
 		port (
-		-- Port A
+			-- Port A
 			a_clk   : in  std_logic;
 			a_wr    : in  std_logic;
 			a_addr  : in  std_logic_vector(15 downto 0);
 			a_din   : in  std_logic_vector(31 downto 0);
 			a_dout  : out std_logic_vector(31 downto 0);
 
-		-- Port B
+			-- Port B
 			b_clk   : in  std_logic;
 			b_wr    : in  std_logic;
 			b_addr  : in  std_logic_vector(15 downto 0);
@@ -224,19 +222,19 @@ architecture rtl of patmos_top is
 	
 	component matrixmul is
 	port (
-			ap_clk : in std_logic;
-			ap_rst : in std_logic;
-			ap_start : in std_logic;
-			ap_done : out std_logic;
-			ap_idle : out std_logic;
-			ap_ready : out std_logic;
-			a_Addr_A : out std_logic_vector (31 downto 0);
-			a_EN_A : out std_logic;
-			a_WEN_A : out std_logic_vector (3 downto 0);
-			a_Din_A : out std_logic_vector (31 downto 0);
-			a_Dout_A : in std_logic_vector (31 downto 0);
-			a_Clk_A : out std_logic;
-			a_Rst_A : out std_logic );
+			ap_clk 		: in std_logic;
+			ap_rst 		: in std_logic;
+			ap_start 	: in std_logic;
+			ap_done 	: out std_logic;
+			ap_idle 	: out std_logic;
+			ap_ready 	: out std_logic;
+			a_Addr_A 	: out std_logic_vector (31 downto 0);
+			a_EN_A 		: out std_logic;
+			a_WEN_A 	: out std_logic_vector (3 downto 0);
+			a_Din_A 	: out std_logic_vector (31 downto 0);
+			a_Dout_A 	: in std_logic_vector (31 downto 0);
+			a_Clk_A 	: out std_logic;
+			a_Rst_A 	: out std_logic );
 end component; 	
 
 	component clk_manager is
@@ -253,6 +251,7 @@ end component;
 	signal clk_pwm : std_logic;
 
 	-- for generation of internal reset
+
 	signal reset_int, reset_ddr         : std_logic;
 	signal res_reg1, res_reg2, res_reg3, res_reg4 : std_logic;
 	signal locked                                 : std_logic;
@@ -261,6 +260,7 @@ end component;
     constant DEBOUNCE_TIME : integer := 8000;
 
 	-- signals for nexys4DDRIO
+
 	signal nexys4DDRIO_MCmd    : std_logic_vector(2 downto 0);
 	signal nexys4DDRIO_MAddr   : std_logic_vector(15 downto 0);
 	signal nexys4DDRIO_MData   : std_logic_vector(31 downto 0);
@@ -269,17 +269,12 @@ end component;
 	signal nexys4DDRIO_SData   : std_logic_vector(31 downto 0);
 
 	-- Signals for true dual port bram
+
 	signal bRamCtrl_Mcmd    : std_logic_vector(2 downto 0);
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
 	signal bRamCtrl_MData   : std_logic_vector(31 downto 0);
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
 	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
-
-	--signal bRamMcmd    : std_logic_vector(2 downto 0) := (others => '0');
-	--signal bRamMAddr   : std_logic_vector(15 downto 0) := (others => '0');
-	--signal bRamMData   : std_logic_vector(31 downto 0) := (others => '0');
-	--signal bRamMByteEn : std_logic_vector(3 downto 0) := (others => '0');
-	--signal bRamSData   : std_logic_vector(31 downto 0) := (others => '0');
 
 	-- Signals for hls accel
 
@@ -291,7 +286,7 @@ end component;
 
 	signal hlsWe   : std_logic_vector (3 downto 0);
 	signal hlsAddr   : std_logic_vector (31 downto 0);
-	signal hlsAddr_resized   : std_logic_vector (15 downto 0);
+	--signal hlsAddr_resized   : std_logic_vector (15 downto 0) := (others => '0');
 	signal hlsIn   : std_logic_vector(31 downto 0);
 	signal hlsOut : std_logic_vector(31 downto 0);
 	signal hlsReset : std_logic;	
@@ -307,57 +302,73 @@ end component;
 	signal SCmdAccept_bridge  : std_logic;
 	signal SDataAccept_bridge : std_logic;
 
-	signal app_addr_bridge          : std_logic_vector(26 downto 0); --
-	signal app_cmd_bridge           : std_logic_vector(2 downto 0); --
+	signal app_addr_bridge          : std_logic_vector(26 downto 0); 
+	signal app_cmd_bridge           : std_logic_vector(2 downto 0); 
 	signal app_en_bridge            : std_logic;
 	signal app_wdf_data_bridge      : std_logic_vector(127 downto 0);
 	signal app_wdf_end_bridge       : std_logic;
 	signal app_wdf_mask_bridge      : std_logic_vector(15 downto 0);
 	signal app_wdf_wren_bridge      : std_logic;
-	signal app_rd_data_bridge       : std_logic_vector(127 downto 0); --
-	signal app_rd_data_end_bridge   : std_logic; --
+	signal app_rd_data_bridge       : std_logic_vector(127 downto 0); 
+	signal app_rd_data_end_bridge   : std_logic; 
 	signal app_rd_data_valid_bridge : std_logic;
 	signal app_rdy_bridge           : std_logic;
 	signal app_wdf_rdy_bridge       : std_logic;
 
-    attribute mark_debug : string;
+	-- ATTRIBUTE FIELDS FOR SIGNALS 
+	-- If you want to declare an attribute for a signal, component or architecture, define it after
+	-- you define your signal, component etc.
+
+	-- Works on nexys4 ddr with dont_touch on hlsAddr and hlsAddr_resized with process.
+	-- can just index hlsAddr, without hlsAddr_resized, if we use dont_touch :)
+
+	attribute dont_touch : string;  
+
+	attribute dont_touch of hlsAddr         	: signal is "true";
+	--attribute dont_touch of hlsAddr_resized 	: signal is "true";			
+
+	-- SIGNALS TO KEEP DURING SYNTHESIS (STILL DOES NOT WORK :/ )
+
+	--attribute keep : string;  
+
+	--attribute keep of hlsAddr         	: signal is "true";
+	--attribute keep of hlsAddr_resized 	: signal is "true";		
+
+	-- SIGNALS FOR DEBUGGING
+	-- Uncomment these if you want to debug them using Vivado
+	-- For some reason, some of these are needed, or otherwise it wont work?
+
+    --attribute mark_debug : string;
+
+    -- WORKS WITH THIS COMMENTED OUT ON NEXYS4
   
-    attribute mark_debug of bRamCtrl_MCmd             : signal is "true";
-    attribute mark_debug of bRamCtrl_MAddr             : signal is "true";  
-    attribute mark_debug of bRamCtrl_MData             : signal is "true";  
-    attribute mark_debug of bramCtrl_SData             : signal is "true";  
+    --attribute mark_debug of bRamCtrl_MCmd 	: signal is "true";
+    --attribute mark_debug of bRamCtrl_MAddr  : signal is "true";
+    --attribute mark_debug of bRamCtrl_MData  : signal is "true";
+    --attribute mark_debug of bramCtrl_SData 	: signal is "true";
+
       
-    attribute mark_debug of hLSControlReg_ap_reset_out             : signal is "true";  
-    attribute mark_debug of hLSControlReg_ap_start_out             : signal is "true";  
-    attribute mark_debug of hLSControlReg_ap_done_in             : signal is "true";  
-    attribute mark_debug of hLSControlReg_ap_idle_in             : signal is "true";
-    attribute mark_debug of hLSControlReg_ap_ready_in             : signal is "true";          
+    --attribute mark_debug of hLSControlReg_ap_reset_out 	: signal is "true";
+    --attribute mark_debug of hLSControlReg_ap_start_out    : signal is "true";
+    --attribute mark_debug of hLSControlReg_ap_done_in      : signal is "true";
+    --attribute mark_debug of hLSControlReg_ap_idle_in      : signal is "true";
+    --attribute mark_debug of hLSControlReg_ap_ready_in     : signal is "true";
 
-	attribute mark_debug of hlsWe             : signal is "true";  
-	attribute mark_debug of hlsAddr             : signal is "true";  
-	attribute mark_debug of hlsAddr_resized             : signal is "true";  
-	attribute mark_debug of hlsIn             : signal is "true";
-	attribute mark_debug of hlsOut             : signal is "true";
-	attribute mark_debug of hlsReset             : signal is "true";          
+	--attribute mark_debug of hlsWe             	: signal is "true";
+	--attribute mark_debug of hlsIn             	: signal is "true";	
+	--attribute mark_debug of hlsOut            	: signal is "true";	
+	--attribute mark_debug of hlsReset          	: signal is "true";
 
-    attribute mark_debug of reset_int             : signal is "true";        
-  
+ 	--attribute mark_debug of reset_int : signal is "true";	
 
 
---  attribute mark_debug of app_addr_bridge             : signal is "true";
---  attribute mark_debug of app_cmd_bridge              : signal is "true";
---  attribute mark_debug of app_en_bridge               : signal is "true";
---  attribute mark_debug of app_wdf_data_bridge         : signal is "true";
---  attribute mark_debug of app_wdf_end_bridge          : signal is "true";
---  attribute mark_debug of app_wdf_mask_bridge         : signal is "true";
---  attribute mark_debug of app_wdf_wren_bridge         : signal is "true";
---  attribute mark_debug of app_rd_data_bridge          : signal is "true";
---  attribute mark_debug of app_rd_data_end_bridge      : signal is "true";
---  attribute mark_debug of app_rd_data_valid_bridge    : signal is "true";
---  attribute mark_debug of app_rdy_bridge              : signal is "true";
---  attribute mark_debug of app_wdf_rdy_bridge          : signal is "true";
+	-- DOES NOT WORKS WITH THIS COMMENTED OUT ON NEXYS4
+
+	--attribute mark_debug of hlsAddr         	: signal is "true";
+	--attribute mark_debug of hlsAddr_resized 	: signal is "true";	
 
 begin
+
 	clk_manager_inst_0 : clk_manager port map(
 			clk_in    => clk_in,
 			clk_out_1 => clk_200,
@@ -402,85 +413,74 @@ begin
 		end if;
 	end process;
 
-	--  internal reset generation
---	process(clk_int)
---	begin
---		if rising_edge(clk_int) then
---			res_reg3  <= ddr_rst;--int_res;
---			res_reg4  <= res_reg3;
---			int_res_n <= res_reg4;  --reset active high (when 0 patmos is running)
-		--int_res <= res_reg2;
---		end if;
---	end process;
-
 	ocp_burst_to_ddr2_ctrl_inst_0 : ocp_burst_to_ddr2_ctrl port map(
 			clk               => clk_int,
 			rst               => reset_int, -- --            : in std_logic; -- (=1 is reset)
 
 			-- OCPburst in (slave)
-			MCmd              => MCmd_bridge, --              : in  std_logic_vector(2 downto 0);
-			MAddr             => MAddr_bridge, --             : in  std_logic_vector(31 downto 0);
-			MData             => MData_bridge, --             : in  std_logic_vector(31 downto 0);
-			MDataValid        => MDataValid_bridge, --        : in  std_logic;
-			MDataByteEn       => MDataByteEn_bridge, --       : in  std_logic_vector(3 downto 0);
-			SResp             => SResp_bridge, --             : out std_logic_vector(1 downto 0);
-			SData             => SData_bridge, --             : out std_logic_vector(31 downto 0);
-			SCmdAccept        => SCmdAccept_bridge, --        : out std_logic;
-			SDataAccept       => SDataAccept_bridge, --       : out std_logic;
+			MCmd              => MCmd_bridge, 
+			MAddr             => MAddr_bridge, 
+			MData             => MData_bridge, 
+			MDataValid        => MDataValid_bridge, 
+			MDataByteEn       => MDataByteEn_bridge, 
+			SResp             => SResp_bridge, 
+			SData             => SData_bridge, 
+			SCmdAccept        => SCmdAccept_bridge, 
+			SDataAccept       => SDataAccept_bridge, 
 
 			-- Xilinx interface
-			app_addr          => app_addr_bridge, --             : out    std_logic_vector(26 downto 0); --
-			app_cmd           => app_cmd_bridge, --              : out    std_logic_vector(2 downto 0); --
-			app_en            => app_en_bridge, --               : out    std_logic;
-			app_wdf_data      => app_wdf_data_bridge, --         : out    std_logic_vector(127 downto 0);
-			app_wdf_end       => app_wdf_end_bridge, --          : out    std_logic;
-			app_wdf_mask      => app_wdf_mask_bridge, --         : out    std_logic_vector(15 downto 0);
-			app_wdf_wren      => app_wdf_wren_bridge, --         : out    std_logic;
-			app_rd_data       => app_rd_data_bridge, --          : in   std_logic_vector(127 downto 0);--
-			app_rd_data_end   => app_rd_data_end_bridge, --      : in   std_logic;--
-			app_rd_data_valid => app_rd_data_valid_bridge, --    : in   std_logic;
-			app_rdy           => app_rdy_bridge, --              : in   std_logic;
-			app_wdf_rdy       => app_wdf_rdy_bridge --         : in   std_logic
+			app_addr          => app_addr_bridge, 
+			app_cmd           => app_cmd_bridge, 
+			app_en            => app_en_bridge, 
+			app_wdf_data      => app_wdf_data_bridge, 
+			app_wdf_end       => app_wdf_end_bridge, 
+			app_wdf_mask      => app_wdf_mask_bridge, 
+			app_wdf_wren      => app_wdf_wren_bridge, 
+			app_rd_data       => app_rd_data_bridge, 
+			app_rd_data_end   => app_rd_data_end_bridge, 
+			app_rd_data_valid => app_rd_data_valid_bridge, 
+			app_rdy           => app_rdy_bridge, 
+			app_wdf_rdy       => app_wdf_rdy_bridge 
 		);
 
 	ddr2_ctrl_inst_0 : ddr2_ctrl port map(
-			ddr2_dq             => ddr2_dq, --: inout std_logic_vector ( 15 downto 0 );
-			ddr2_dqs_n          => ddr2_dqs_n, --: inout std_logic_vector ( 1 downto 0 );
-			ddr2_dqs_p          => ddr2_dqs_p, --: inout std_logic_vector ( 1 downto 0 );
-			ddr2_addr           => ddr2_addr, --: out std_logic_vector ( 12 downto 0 );
-			ddr2_ba             => ddr2_ba, --: out std_logic_vector ( 2 downto 0 );
-			ddr2_ras_n          => ddr2_ras_n, --: out std_logic;
-			ddr2_cas_n          => ddr2_cas_n, --: out std_logic;
-			ddr2_we_n           => ddr2_we_n, --: out std_logic;
-			ddr2_ck_p           => ddr2_ck_p, --: out std_logic_vector ( 0 to 0 );
-			ddr2_ck_n           => ddr2_ck_n, --: out std_logic_vector ( 0 to 0 );
-			ddr2_cke            => ddr2_cke, --: out std_logic_vector ( 0 to 0 );
-			ddr2_cs_n           => ddr2_cs_n, --: out std_logic_vector ( 0 to 0 );
-			ddr2_dm             => ddr2_dm, --: out std_logic_vector ( 1 downto 0 );
-			ddr2_odt            => ddr2_odt, --: out std_logic_vector ( 0 to 0 );
-			sys_clk_i           => clk_200, --: in std_logic;
-			app_addr            => app_addr_bridge, -- : in std_logic_vector ( 26 downto 0 );
-			app_cmd             => app_cmd_bridge, -- : in std_logic_vector ( 2 downto 0 );
-			app_en              => app_en_bridge, -- : in std_logic;
-			app_wdf_data        => app_wdf_data_bridge, -- : in std_logic_vector ( 127 downto 0 );
-			app_wdf_end         => app_wdf_end_bridge, -- : in std_logic;
-			app_wdf_mask        => app_wdf_mask_bridge, -- : in std_logic_vector ( 15 downto 0 );
-			app_wdf_wren        => app_wdf_wren_bridge, -- : in std_logic;
-			app_rd_data         => app_rd_data_bridge, -- : out std_logic_vector ( 127 downto 0 );
-			app_rd_data_end     => app_rd_data_end_bridge, -- : out std_logic;
-			app_rd_data_valid   => app_rd_data_valid_bridge, -- : out std_logic;
-			app_rdy             => app_rdy_bridge, -- : out std_logic;
-			app_wdf_rdy         => app_wdf_rdy_bridge, -- : out std_logic;
-			app_sr_req          => '0', -- : in std_logic;
-			app_ref_req         => '0', -- : in std_logic;
-			app_zq_req          => '0', -- : in std_logic;
-			app_sr_active       => open, -- : out std_logic;
-			app_ref_ack         => open, -- : out std_logic;
-			app_zq_ack          => open, -- : out std_logic;
-			ui_clk              => clk_int, -- : out std_logic;
-			ui_clk_sync_rst     => reset_int, -- : out std_logic;
-			init_calib_complete => open, -- : out std_logic;
-			sys_rst             => reset_ddr -- : in std_logic
+			ddr2_dq             => ddr2_dq, 
+			ddr2_dqs_n          => ddr2_dqs_n, 
+			ddr2_dqs_p          => ddr2_dqs_p, 
+			ddr2_addr           => ddr2_addr, 
+			ddr2_ba             => ddr2_ba, 
+			ddr2_ras_n          => ddr2_ras_n, 
+			ddr2_cas_n          => ddr2_cas_n, 
+			ddr2_we_n           => ddr2_we_n, 
+			ddr2_ck_p           => ddr2_ck_p, 
+			ddr2_ck_n           => ddr2_ck_n, 
+			ddr2_cke            => ddr2_cke, 
+			ddr2_cs_n           => ddr2_cs_n, 
+			ddr2_dm             => ddr2_dm, 
+			ddr2_odt            => ddr2_odt,
+			sys_clk_i           => clk_200, 
+			app_addr            => app_addr_bridge, 
+			app_cmd             => app_cmd_bridge, 
+			app_en              => app_en_bridge, 
+			app_wdf_data        => app_wdf_data_bridge, 
+			app_wdf_end         => app_wdf_end_bridge, 
+			app_wdf_mask        => app_wdf_mask_bridge,
+			app_wdf_wren        => app_wdf_wren_bridge, 
+			app_rd_data         => app_rd_data_bridge, 
+			app_rd_data_end     => app_rd_data_end_bridge,
+			app_rd_data_valid   => app_rd_data_valid_bridge,
+			app_rdy             => app_rdy_bridge,
+			app_wdf_rdy         => app_wdf_rdy_bridge,
+			app_sr_req          => '0',
+			app_ref_req         => '0',
+			app_zq_req          => '0',
+			app_sr_active       => open,
+			app_ref_ack         => open,
+			app_zq_ack          => open,
+			ui_clk              => clk_int,
+			ui_clk_sync_rst     => reset_int,
+			init_calib_complete => open,
+			sys_rst             => reset_ddr
 		);
 
 	-- The instance of the patmos processor            
@@ -561,19 +561,19 @@ begin
 		);
 		
 	bram_tdp_inst_0 : bram_tdp port map(
-		-- Port A
+			-- Port A
 			a_clk   => clk_int,
 			a_wr    => bRamCtrl_MCmd(0),
 			a_addr  => bRamCtrl_MAddr,
 			a_din   => bRamCtrl_MData,
 			a_dout  => bramCtrl_SData,
 			
-		-- Port B
+			-- Port B
 			b_clk   => clk_int,
 			b_wr    => hlsWe(0),
-			b_addr  => hlsAddr_resized,
+			b_addr  => hlsAddr(15 downto 0), --hlsAddr_resized
 			b_din   => hlsOut,
-			b_dout  => hlsIn --bRamSData
+			b_dout  => hlsIn
 		);
 		
 	matrixmul_inst_0 : matrixmul port map(
@@ -590,11 +590,15 @@ begin
 			a_Dout_A 	=> hlsIn,
 			a_Clk_A 	=> open,
 			a_Rst_A 	=> open
-		);			
-		
-					  
-	hlsAddr_resized <= std_logic_vector(resize(unsigned(hlsAddr),16));	
-	hlsReset 		<= hLSControlReg_ap_reset_out or reset_int;
-				
-		
+		);		
+
+	-- This works, if hlsAddr are marked for debug.
+	--process(hlsAddr)		
+	--begin
+	--	hlsAddr_resized <= std_logic_vector(resize(unsigned(hlsAddr),16));
+	--end process;
+
+	--hlsAddr_resized <= std_logic_vector(resize(unsigned(hlsAddr),16));	
+	hlsReset 		<= hLSControlReg_ap_reset_out or reset_int;		
+					  				
 end architecture rtl;

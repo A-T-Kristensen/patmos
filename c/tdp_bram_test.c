@@ -1,10 +1,10 @@
 /*
     This is a minimal C program executed on the FPGA version of Patmos.
-    An embedded Hello World program: a blinking LED.
+    An embedded test of a bram module: writing to the bram and if the values read back are correct, blink LED
 
     Additional to the blinking LED we write to the UART '0' and '1' (if available).
 
-    Author: Martin Schoeberl
+    Author: Andreas T. Kristensen 
     Copyright: DTU, BSD License
 */
 

@@ -62,7 +62,7 @@ class HLSControlReg(extAddrWidth : Int = 32,
   io.hLSControlRegPins.ap_start_out := Bits(0)
   io.hLSControlRegPins.ap_reset_out := Bits(0)
 
-  //States
+  //States for the controller
 
   val s_idle :: s_reset :: s_stall :: s_start :: s_wait_read :: Nil = Enum(UInt(), 5)
 
@@ -110,7 +110,6 @@ class HLSControlReg(extAddrWidth : Int = 32,
         rdDataReg := Bits(0)
       }
     }
-
   }
 
   when(state === s_stall) {
@@ -143,7 +142,6 @@ class HLSControlReg(extAddrWidth : Int = 32,
        rdDataReg := Bits(0)
       }
     }
-
   }
 
   when(state === s_wait_read) {
@@ -160,5 +158,4 @@ class HLSControlReg(extAddrWidth : Int = 32,
       state := s_wait_read
     }
   }
-
 }

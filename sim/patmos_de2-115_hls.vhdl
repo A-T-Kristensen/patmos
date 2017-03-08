@@ -91,14 +91,14 @@ architecture rtl of patmos_top is
 	
 	component bram_tdp is
 		port(
-		-- Port A
+			-- Port A
 			a_clk   : in  std_logic;
 			a_wr    : in  std_logic := '0';
 			a_addr  : in  std_logic_vector(15 downto 0) := (others => '0');
 			a_din   : in  std_logic_vector(31 downto 0) := (others => '0');
 			a_dout  : out std_logic_vector(31 downto 0) := (others => '0');
 
-		-- Port B
+			-- Port B
 			b_clk   : in  std_logic;
 			b_wr    : in  std_logic;
 			b_addr  : in  std_logic_vector(15 downto 0);
@@ -144,7 +144,7 @@ architecture rtl of patmos_top is
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
 	signal bRamCtrl_MData   : std_logic_vector(31 downto 0);
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
-	signal bRamCtrl_SData   : std_logic_vector(31 downto 0); -- := (others => '0');
+	signal bRamCtrl_SData   : std_logic_vector(31 downto 0); 
 
 	-- Signals for hls accel
 
@@ -247,14 +247,14 @@ begin
 	);		
 		
 	bram_tdp_inst_0 : bram_tdp port map(
-	-- Port A
+		-- Port A
 		a_clk   => clk_int,
 		a_wr    => bRamCtrl_MCmd(0),
 		a_addr  => bRamCtrl_MAddr,
 		a_din   => bRamCtrl_MData,
 		a_dout  => bramCtrl_SData,
 
-	-- Port B
+		-- Port B
 		b_clk   => clk_int,
 		b_wr    => hlsWe(0),
 		b_addr  => hlsAddr_resized,
@@ -265,7 +265,7 @@ begin
 		
 	matrixmul_inst_0 : matrixmul port map(
 		ap_clk 		=> clk_int,
-		ap_rst 		=> hlsReset,--hLSControlReg_ap_reset_out,
+		ap_rst 		=> hlsReset,
 		ap_start 	=> hLSControlReg_ap_start_out,
 		ap_done 	=> hLSControlReg_ap_done_in,
 		ap_idle 	=> hLSControlReg_ap_idle_in,

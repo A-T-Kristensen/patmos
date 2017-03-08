@@ -2,7 +2,7 @@
  * BRam interface for Patmos
  *
  * Authors: Luca Pezzarossa (lpez@dtu.dk)
- *
+ *          Andreas T. Kristensen (s144026@student.dtu.dk)
  */
 
 package io
@@ -26,13 +26,10 @@ object BRamCtrl extends DeviceObject {
 
   trait Pins {
     val bRamCtrlPins = new Bundle() {
-      val MCmd = UInt(OUTPUT,3)
+      val MCmd  = UInt(OUTPUT,3)
       val MAddr = UInt(OUTPUT,extAddrWidth)
       val MData = UInt(OUTPUT,dataWidth)
       val MByteEn = UInt(OUTPUT,4)
-      // The bram does not return anything, so SResp is controlled directly in the controller
-      // how do we handle this better?
-      //val SResp = UInt(INPUT,2) 
       val SData = UInt(INPUT,dataWidth)
     }
   }
@@ -42,9 +39,8 @@ class BRamCtrl(extAddrWidth : Int = 32,
                      dataWidth : Int = 32) extends CoreDevice() {
   override val io = new CoreDeviceIO() with BRamCtrl.Pins
 
-  //Assigments of inputs and outputs
-  // Wire directly through
-  io.bRamCtrlPins.MCmd := io.ocp.M.Cmd
+  // Assigments of inputs and outputs
+  io.bRamCtrlPins.MCmd  := io.ocp.M.Cmd
   io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth-1, 0)
   io.bRamCtrlPins.MData := io.ocp.M.Data
   io.bRamCtrlPins.MByteEn := io.ocp.M.ByteEn

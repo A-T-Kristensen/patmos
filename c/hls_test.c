@@ -1,10 +1,10 @@
 /*
     This is a minimal C program executed on the FPGA version of Patmos.
-    An embedded Hello World program: a blinking LED.
+    An embedded test of a vivado hls module: writing 1, 2, 3 to bram, and expecting 2, 4, 6 out.
 
     Additional to the blinking LED we write to the UART '0' and '1' (if available).
 
-    Author: Martin Schoeberl
+    Author: Andreas T. Kristensen 
     Copyright: DTU, BSD License
 */
 

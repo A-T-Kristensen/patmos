@@ -25,11 +25,8 @@ int main()
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
 	volatile _IODEV int *uart_ptr = (volatile _IODEV int *) 0xF0080004;
-	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 	
 	int i, j;
-	
-	bram_ptr = 0;
 
 	for (;;) 
 	{
