@@ -26,11 +26,11 @@ object BRamCtrl extends DeviceObject {
 
   trait Pins {
     val bRamCtrlPins = new Bundle() {
-      val MCmd  = UInt(OUTPUT,3)
-      val MAddr = UInt(OUTPUT,extAddrWidth)
-      val MData = UInt(OUTPUT,dataWidth)
+      val MCmd    = UInt(OUTPUT,3)
+      val MAddr   = UInt(OUTPUT,extAddrWidth)
+      val MData   = UInt(OUTPUT,dataWidth)
       val MByteEn = UInt(OUTPUT,4)
-      val SData = UInt(INPUT,dataWidth)
+      val SData   = UInt(INPUT,dataWidth)
     }
   }
 }

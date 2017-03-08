@@ -1,6 +1,7 @@
 --
 -- Copyright: 2013, Technical University of Denmark, DTU Compute
 -- Author: Luca Pezzarossa (lpez@dtu.dk)
+--		   Andreas T. Kristensen (s144026@student.dtu.dk)
 -- License: Simplified BSD License
 --
 --
@@ -286,12 +287,12 @@ end component;
 
 	signal hlsWe   : std_logic_vector (3 downto 0);
 	signal hlsAddr   : std_logic_vector (31 downto 0);
-	--signal hlsAddr_resized   : std_logic_vector (15 downto 0) := (others => '0');
 	signal hlsIn   : std_logic_vector(31 downto 0);
 	signal hlsOut : std_logic_vector(31 downto 0);
 	signal hlsReset : std_logic;	
 
 	-- signals for the bridge
+
 	signal MCmd_bridge        : std_logic_vector(2 downto 0);
 	signal MAddr_bridge       : std_logic_vector(31 downto 0);
 	signal MData_bridge       : std_logic_vector(31 downto 0);
@@ -315,32 +316,29 @@ end component;
 	signal app_rdy_bridge           : std_logic;
 	signal app_wdf_rdy_bridge       : std_logic;
 
-	-- ATTRIBUTE FIELDS FOR SIGNALS 
+	--------------------------------------
+	-- 	ATTRIBUTE FIELDS FOR SIGNALS 	--
+	--------------------------------------
+
 	-- If you want to declare an attribute for a signal, component or architecture, define it after
 	-- you define your signal, component etc.
 
 	-- Works on nexys4 ddr with dont_touch on hlsAddr and hlsAddr_resized with process.
 	-- can just index hlsAddr, without hlsAddr_resized, if we use dont_touch :)
 
+	-- SIGNALS THAT SHOULD NOT BE TOUCH
+
 	attribute dont_touch : string;  
 
-	attribute dont_touch of hlsAddr         	: signal is "true";
-	--attribute dont_touch of hlsAddr_resized 	: signal is "true";			
+	attribute dont_touch of hlsAddr 	: signal is "true";		
 
-	-- SIGNALS TO KEEP DURING SYNTHESIS (STILL DOES NOT WORK :/ )
+	------------------------------
+	-- 	SIGNALS FOR DEBUGGING	--
+	------------------------------
 
-	--attribute keep : string;  
-
-	--attribute keep of hlsAddr         	: signal is "true";
-	--attribute keep of hlsAddr_resized 	: signal is "true";		
-
-	-- SIGNALS FOR DEBUGGING
 	-- Uncomment these if you want to debug them using Vivado
-	-- For some reason, some of these are needed, or otherwise it wont work?
 
     --attribute mark_debug : string;
-
-    -- WORKS WITH THIS COMMENTED OUT ON NEXYS4
   
     --attribute mark_debug of bRamCtrl_MCmd 	: signal is "true";
     --attribute mark_debug of bRamCtrl_MAddr  : signal is "true";
@@ -355,17 +353,12 @@ end component;
     --attribute mark_debug of hLSControlReg_ap_ready_in     : signal is "true";
 
 	--attribute mark_debug of hlsWe             	: signal is "true";
+	--attribute mark_debug of hlsAddr         		: signal is "true";	
 	--attribute mark_debug of hlsIn             	: signal is "true";	
 	--attribute mark_debug of hlsOut            	: signal is "true";	
 	--attribute mark_debug of hlsReset          	: signal is "true";
 
  	--attribute mark_debug of reset_int : signal is "true";	
-
-
-	-- DOES NOT WORKS WITH THIS COMMENTED OUT ON NEXYS4
-
-	--attribute mark_debug of hlsAddr         	: signal is "true";
-	--attribute mark_debug of hlsAddr_resized 	: signal is "true";	
 
 begin
 
@@ -571,7 +564,7 @@ begin
 			-- Port B
 			b_clk   => clk_int,
 			b_wr    => hlsWe(0),
-			b_addr  => hlsAddr(15 downto 0), --hlsAddr_resized
+			b_addr  => hlsAddr(15 downto 0),
 			b_din   => hlsOut,
 			b_dout  => hlsIn
 		);
@@ -592,13 +585,6 @@ begin
 			a_Rst_A 	=> open
 		);		
 
-	-- This works, if hlsAddr are marked for debug.
-	--process(hlsAddr)		
-	--begin
-	--	hlsAddr_resized <= std_logic_vector(resize(unsigned(hlsAddr),16));
-	--end process;
-
-	--hlsAddr_resized <= std_logic_vector(resize(unsigned(hlsAddr),16));	
 	hlsReset 		<= hLSControlReg_ap_reset_out or reset_int;		
 					  				
 end architecture rtl;

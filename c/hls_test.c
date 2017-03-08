@@ -2,8 +2,6 @@
     This is a minimal C program executed on the FPGA version of Patmos.
     An embedded test of a vivado hls module: writing 1, 2, 3 to bram, and expecting 2, 4, 6 out.
 
-    Additional to the blinking LED we write to the UART '0' and '1' (if available).
-
     Author: Andreas T. Kristensen 
     Copyright: DTU, BSD License
 */
@@ -17,7 +15,6 @@
 
 #include <machine/spm.h> // Defines _SPM
 #include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
-
 
 #define LED_RUN_LENGTH 2000
 

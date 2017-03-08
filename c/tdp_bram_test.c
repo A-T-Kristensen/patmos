@@ -2,8 +2,6 @@
     This is a minimal C program executed on the FPGA version of Patmos.
     An embedded test of a bram module: writing to the bram and if the values read back are correct, blink LED
 
-    Additional to the blinking LED we write to the UART '0' and '1' (if available).
-
     Author: Andreas T. Kristensen 
     Copyright: DTU, BSD License
 */
@@ -63,6 +61,17 @@ int main()
 
 	else 
 	{
-		return 0;
+		// Flash 111 LEDS		
+		for (;;) 
+		{
+
+			for (i=LED_RUN_LENGTH; i!=0; --i)
+				for (j=LED_RUN_LENGTH; j!=0; --j)
+					*led_ptr = 0;
+			
+			for (i=LED_RUN_LENGTH; i!=0; --i)
+				for (j=LED_RUN_LENGTH; j!=0; --j)
+					*led_ptr = 7; 	
+	  	}
 	}
 }

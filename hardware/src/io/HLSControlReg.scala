@@ -26,11 +26,11 @@ object HLSControlReg extends DeviceObject {
 
   trait Pins {
     val hLSControlRegPins = new Bundle() {
-      val ap_start_out = UInt(OUTPUT,1)
-      val ap_reset_out = UInt(OUTPUT,1)
-      val ap_ready_in = UInt(INPUT,1)
-      val ap_idle_in = UInt(INPUT,1)
-      val ap_done_in = UInt(INPUT,1)
+      val ap_start_out  = UInt(OUTPUT,1)
+      val ap_reset_out  = UInt(OUTPUT,1)
+      val ap_ready_in   = UInt(INPUT,1)
+      val ap_idle_in    = UInt(INPUT,1)
+      val ap_done_in    = UInt(INPUT,1)
     }
   }
 }
