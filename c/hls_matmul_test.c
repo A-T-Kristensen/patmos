@@ -18,6 +18,8 @@
 
 #include <stdio.h>
 
+#define DIM 4
+
 #define LED_RUN_LENGTH 2000
 
 int main() 
@@ -27,17 +29,52 @@ int main()
 	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
 	
-	int i, j, err_cnt = 0;
-	
-	int bram_in[3] = {1, 2, 3};
-	int bram_out[3];
-	int gold[3] = {2, 4, 6};
+	int in_mat_a[DIM][DIM] = {0};
+	int in_mat_b[DIM][DIM] = {0};
+	int sw_result[DIM][DIM], hw_result[DIM][DIM];
+	int in_a[3*DIM][DIM] = {0};
 
-    for(i = 0; i < 3; i++)
+	int err_cnt = 0;
+	int i, j;
+
+	// Initialize matrices
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
+			in_mat_a[i][j] = i+j+1;
+			in_a[i][j]  = i+j+1;
+			in_a[i+DIM][j]  = i+j+1+DIM;
+			in_mat_b[i][j] = i+j+1+DIM;
+		}
+	}
+
+   // Generate the expected result
+   // Iterate over the rows of the A matrix
+   for(i = 0; i < DIM; i++) {
+      for(j = 0; j < DIM; j++) {
+         // Iterate over the columns of the B matrix
+         sw_result[i][j] = 0;
+         // Do the inner product of a row of A and col of B
+         for(int k = 0; k < DIM; k++) {
+            sw_result[i][j] += in_mat_a[i][k] * in_mat_b[k][j];
+         }
+      }
+   }	
+
+   // Write to bram
+
+   //We write linearly
+    for(i = 0; i < 3*DIM*DIM; i++)
     {
-        *(bram_ptr + i) = bram_in[i];
-        printf("%d \n", *(bram_ptr + i)); // Check written value
+        *(bram_ptr + i) = *((&in_a[0][0]) + i);
+        printf("%d ", *(bram_ptr + i)); // Check written value
+
+        if((i+1) % DIM == 0) {
+        	printf("\n");
+        }
     }
+
+    printf("\n");
 
     // START HLS MODULE
 	
@@ -46,15 +83,21 @@ int main()
 	// POLL STATUS OF HLS MODULE
     
     while((*hls_ptr) != 1);
+
+    puts("Checking results");
 	
 	// CHECK RESULTS
 	
-    for(i = 0; i < 3; i++)
+    for(i = 0; i < DIM*DIM; i++)
     {
-        bram_out[i] = *(bram_ptr + i);
-        printf("%d \n", bram_out[i]);
+        *((&hw_result[0][0]) + i)= *(bram_ptr + i + 2*DIM*DIM); // Increment by 2*DIM*DIM for result
+        printf("%d ", *((&hw_result[0][0]) +i) );
+
+        if((i+1) % DIM == 0) {
+        	printf("\n");
+        }        
 		
-		if(bram_out[i] != gold[i])
+		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
 		{
 			err_cnt++;	
 		}
@@ -71,7 +114,7 @@ int main()
 			// Result in out
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = bram_out[0] ==  gold[0] ? 3 : 1;
+					*led_ptr = 3;
 
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
@@ -79,7 +122,7 @@ int main()
 			
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = bram_out[1] ==  gold[1] ? 15 : 1;
+					*led_ptr = 15;
 
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
@@ -87,7 +130,7 @@ int main()
 			
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = bram_out[2] ==  gold[2] ? 63 : 1;
+					*led_ptr = 63;
 
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)

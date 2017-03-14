@@ -16,6 +16,8 @@
 #include <machine/spm.h> // Defines _SPM
 #include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
 
+#include <stdio.h>
+
 #define LED_RUN_LENGTH 2000
 
 int main() 
@@ -24,28 +26,34 @@ int main()
 	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 	
 	int i, j;
-	int temp = 0;
-	int cnt = 0;
+	int temp;
+	int err_cnt = 0;
 
-	// Now write to bram
+	// WRITE DATA TO BRAM
 	
 	for(i = 0; i < 10; i++)
 	{
 		*(bram_ptr + i) = i + 1;
 	}
 	
-	//Now get data from bram and show this by flashing led
+	// READ BACK DATA AND CHECK IF CORRECT
 	
-	for(i = 0; i < 10; i++){
-		
-		if(*(bram_ptr + i) == (i+1))
+	for(i = 0; i < 10; i++)
+	{
+		temp = *(bram_ptr + i);
+		printf("%d ", temp);
+
+		if(temp != (i+1))
 		{ 			
-			cnt++;
+			err_cnt++;
 		}
 	}
+	printf("\n\r");
 	
-	if(cnt == 10)
+	if(!err_cnt)
 	{
+		puts("Results correct"); // puts for strings!
+
 		for(;;)
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)
@@ -61,7 +69,8 @@ int main()
 
 	else 
 	{
-		// Flash 111 LEDS		
+		puts("Results wrong");
+	
 		for (;;) 
 		{
 
@@ -71,7 +80,7 @@ int main()
 			
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 7; 	
+					*led_ptr = 7; 	// Blinks 111
 	  	}
 	}
 }
