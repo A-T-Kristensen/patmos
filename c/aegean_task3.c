@@ -133,8 +133,6 @@ void slave2(void* param) {
 	// Do something
 
 	for(;;) {
-		// Receiving, reading and acknowledge reception of
-		// an unsigned integer value from the channel read buffer
 		mp_recv(chan1,0);
 		token = *(( volatile int _SPM * ) ( chan1->read_buf ));
 		mp_ack(chan1,0);
@@ -142,8 +140,6 @@ void slave2(void* param) {
 		blink(); // This only runs when core 1 writes, so it automatically stalls
 				 // this is due to us using mp_recv, since it reads in a loop.
 
-		// Writing an unsigned integer value to the channel
-		// write buffer and sending it.
 		*( volatile int _SPM * ) ( chan2->write_buf ) = token;
 		mp_send(chan2,0); // Calls mp_nbsend until returning success		
 	}
@@ -168,18 +164,14 @@ void slave3(void* param) {
 	// Do something
 
 	for(;;) {
-		// Receiving, reading and acknowledge reception of
-		// an unsigned integer value from the channel read buffer
 		mp_recv(chan2,0);
 		token = *(( volatile int _SPM * ) ( chan2->read_buf ));
 		mp_ack(chan2,0);	
 
 		blink();
 
-		// Writing an unsigned integer value to the channel
-		// write buffer and sending it.
 		*( volatile int _SPM * ) ( chan3->write_buf ) = token;
-		mp_send(chan3,0); // Calls mp_nbsend until returning success		
+		mp_send(chan3,0); 		
 	}	
 
 	return;

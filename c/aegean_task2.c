@@ -36,8 +36,6 @@ void loop(void* arg);
 int main() {
 
 	int num_tokens = 1;
-	//corethread_t worker_id1 = 1; // The Core ID
-	//corethread_t worker_id2 = 2; // The Core ID
 	corethread_t worker_id; // The Core ID
 
 	int* res;
