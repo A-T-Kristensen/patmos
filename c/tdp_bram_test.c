@@ -8,15 +8,15 @@
 
 //We need this if we want to make it a bootapp
 
-//#include "include/patio.h"
-//#include "include/bootable.h"
+#include "include/patio.h"
+#include "include/bootable.h"
 
 // These are used to write to SPM and IO devices
 
 #include <machine/spm.h> // Defines _SPM
 #include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
 
-#include <stdio.h>
+//#include <stdio.h>
 
 #define LED_RUN_LENGTH 2000
 
@@ -41,18 +41,18 @@ int main()
 	for(i = 0; i < 10; i++)
 	{
 		temp = *(bram_ptr + i);
-		printf("%d ", temp);
+		//printf("%d ", temp);
 
 		if(temp != (i+1))
 		{ 			
 			err_cnt++;
 		}
 	}
-	printf("\n\r");
+	//printf("\n\r");
 	
 	if(!err_cnt)
 	{
-		puts("Results correct"); // puts for strings!
+		//puts("Results correct"); // puts for strings!
 
 		for(;;)
 		{
@@ -69,7 +69,7 @@ int main()
 
 	else 
 	{
-		puts("Results wrong");
+		//puts("Results wrong");
 	
 		for (;;) 
 		{

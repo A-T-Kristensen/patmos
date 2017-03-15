@@ -51,7 +51,7 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
   io.ocp.S.Resp := respReg
 
-  when(io.bRamCtrlPins.MCmd === UInt(1) || io.bRamCtrlPins.MCmd === UInt(2)) {
+  when(io.bRamCtrlPins.MCmd === OcpCmd.WR || io.bRamCtrlPins.MCmd === OcpCmd.RD) {
       respReg :=  OcpResp.DVA
   }
 }
