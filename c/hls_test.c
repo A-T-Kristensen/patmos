@@ -8,15 +8,16 @@
 
 //We need this if we want to make it a bootapp
 
-//#include "include/patio.h"
-//#include "include/bootable.h"
+#include "include/patio.h"
+#include "include/bootable.h"
+
 
 // These are used to write to SPM and IO devices
 
 #include <machine/spm.h> // Defines _SPM
 #include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
 
-#include <stdio.h>
+//#include <stdio.h>
 
 #define LED_RUN_LENGTH 2000
 
@@ -36,7 +37,7 @@ int main()
     for(i = 0; i < 3; i++)
     {
         *(bram_ptr + i) = bram_in[i];
-        printf("%d \n", *(bram_ptr + i)); // Check written value
+        //printf("%d \n", *(bram_ptr + i)); // Check written value
     }
 
     // START HLS MODULE
@@ -52,7 +53,7 @@ int main()
     for(i = 0; i < 3; i++)
     {
         bram_out[i] = *(bram_ptr + i);
-        printf("%d \n", bram_out[i]);
+        //printf("%d \n", bram_out[i]);
 		
 		if(bram_out[i] != gold[i])
 		{
@@ -64,7 +65,7 @@ int main()
 	
 	if(!err_cnt) 
 	{
-		puts("Results correct"); // puts for strings!		
+		//puts("Results correct"); // puts for strings!		
 		//Print the output values using LEDS
 		for (;;) 
 		{
@@ -97,7 +98,7 @@ int main()
 
 	else 
 	{
-		puts("Results incorrect"); // puts for strings!		
+		//puts("Results incorrect"); // puts for strings!		
 		// Flash 111 LEDS		
 		for (;;) 
 		{

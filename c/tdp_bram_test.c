@@ -18,7 +18,7 @@
 
 //#include <stdio.h>
 
-#define LED_RUN_LENGTH 2000
+#define LED_RUN_LENGTH 2
 
 int main() 
 {

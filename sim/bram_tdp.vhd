@@ -43,7 +43,7 @@ entity bram_tdp is
 
 generic (
     DATA    : integer := 32;
-    ADDR    : integer := 16
+    ADDR    : integer := 15
 );
 
 port (
@@ -67,7 +67,7 @@ end bram_tdp;
 architecture rtl of bram_tdp is
     
 -- Shared memory
-    type mem_type is array ( (2**ADDR)-1 downto 0 ) of std_logic_vector( (DATA-1) downto 0);
+    type mem_type is array ( (2**ADDR)-1 downto 0 ) of std_logic_vector(DATA-1 downto 0);
     shared variable mem : mem_type := (others => (others => '0'));
 
 begin
@@ -80,10 +80,10 @@ begin
 
         if(a_wr='1') then
             mem(to_integer(unsigned(a_addr))) := a_din;
-			a_dout <= a_din;
-        else
+        end if;
+
         a_dout <= mem(to_integer(unsigned(a_addr)));
-		end if;
+        
     end if;
 
 end process;
@@ -97,10 +97,10 @@ begin
 
         if(b_wr='1') then
             mem(to_integer(unsigned(b_addr))) := b_din;
-	        b_dout <= b_din;	
-        else
-	        b_dout <= mem(to_integer(unsigned(b_addr)));
-		end if;
+        end if;
+
+        b_dout <= mem(to_integer(unsigned(b_addr)));
+
     end if;
 
 end process;

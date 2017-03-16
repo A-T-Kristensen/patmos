@@ -43,7 +43,7 @@ entity bram_tdp is
 
 generic (
     DATA    : integer := 32;
-    ADDR    : integer := 16
+    ADDR    : integer := 15
 );
 
 port (
@@ -83,6 +83,7 @@ begin
         end if;
 
         a_dout <= mem(to_integer(unsigned(a_addr)));
+        
     end if;
 
 end process;

@@ -29,10 +29,10 @@ int main()
 	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
 	
-	int in_mat_a[DIM][DIM] = {0};
-	int in_mat_b[DIM][DIM] = {0};
+	int in_mat_a[DIM][DIM];
+	int in_mat_b[DIM][DIM];
 	int sw_result[DIM][DIM], hw_result[DIM][DIM];
-	int in_a[3*DIM][DIM] = {0};
+	int in_a[3*DIM][DIM];
 
 	int err_cnt = 0;
 	int i, j;

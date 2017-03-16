@@ -156,7 +156,6 @@ architecture rtl of patmos_top is
 
 	signal hlsWe   	: std_logic_vector (3 downto 0);
 	signal hlsAddr  : std_logic_vector (31 downto 0);
-	signal hlsAddr_resized   : std_logic_vector (15 downto 0);
 	signal hlsIn   	: std_logic_vector(31 downto 0);
 	signal hlsOut 	: std_logic_vector(31 downto 0);
 	signal hlsReset : std_logic;
@@ -270,7 +269,7 @@ begin
 		-- Port B
 		b_clk   => clk_int,
 		b_wr    => hlsWe(0),
-		b_addr  => hlsAddr_resized,
+		b_addr  => hlsAddr(15 downto 0),
 		b_din   => hlsOut,
 		b_dout  => hlsIn
 	);
@@ -294,7 +293,6 @@ begin
 	);			
 		
 					  
-	hlsAddr_resized <= std_logic_vector(resize(unsigned(hlsAddr),16));			
-	hlsReset 		<= hLSControlReg_ap_reset_out or int_res;
+	hlsReset 		<= hLSControlReg_ap_reset_out or int_res;		
 
 end architecture rtl;
