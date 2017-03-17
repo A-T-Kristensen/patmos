@@ -71,10 +71,15 @@ int main()
     }
 
     // We write to bank 2
-    for(i = 3*DIM*DIM/2; i < 3*DIM*DIM; i++)
+/*    for(i = 3*DIM*DIM/2; i < 3*DIM*DIM; i++)
     {
-        *(bank2_ptr + i) = *((&in_a[0][0]) + i + 3*DIM*DIM/2); // Add offset for bank
-    }
+        *(bank2_ptr + i) = *((&in_a[0][0]) + i); 
+    }*/
+
+    for(i = 0; i < DIM*DIM/2; i++)
+    {
+        *(bank2_ptr + i) = *((&in_a[0][0]) + i + 3*DIM*DIM/2); 
+    }    
 
 
     // START HLS MODULE

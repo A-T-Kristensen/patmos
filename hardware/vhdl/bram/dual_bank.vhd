@@ -96,7 +96,7 @@ architecture rtl of dual_bank is
     -- Bank control signals
 
     signal p_b1_we, p_b2_we : std_logic;  -- Write enable from patmos to bank i    
-    signal p_bank_sel : std_logic := '0';  -- memory bank select signal
+    signal p_bank_sel, p_bank_sel_next : std_logic := '0';  -- memory bank select signal
     signal p_b1_data, p_b2_data : std_logic_vector(DATA-1 downto 0); -- output data from bank i to patmos
 
 begin 
@@ -137,11 +137,23 @@ begin
     -- use MSB bits
     p_bank_sel <= p_addr(ADDR - 1);
 
-    outputSelect : process(p_bank_sel, p_b1_data, p_b2_data) is
+    process (clk)
     begin
-        if(p_bank_sel = '0') then
+        if rising_edge(clk) then
+            p_bank_sel_next <= p_bank_sel;
+        else
+            p_bank_sel_next <= p_bank_sel_next;
+        end if;
+    end process;
+
+
+    -- Bank select for output has to be stalled a cycle
+
+    outputSelect : process(p_bank_sel_next, p_b1_data, p_b2_data) is
+    begin
+        if(p_bank_sel_next = '0') then
             p_din <= p_b1_data;
-        elsif (p_bank_sel = '1') then
+        elsif (p_bank_sel_next = '1') then
             p_din <= p_b2_data;
         else
             p_din <= (others => '0');
@@ -161,6 +173,9 @@ begin
             p_b2_we <= '0';
         end if;
     end process;
+
+
+
 
 end rtl;
 
