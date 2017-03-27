@@ -1,0 +1,291 @@
+/*
+
+Vivado v2016.4 (64-bit)
+SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+Process ID: 7172
+
+Current time: 	3/27/17 9:32:50 PM CEST
+Time zone: 	Central European Time (Europe/Copenhagen)
+
+OS: DISTRIB_ID=Ubuntu
+Version: 4.4.0-66-generic
+Architecture: amd64
+Available processors (cores): 2
+
+DISPLAY: :0
+Screen size: 3840x1080
+Screen resolution (DPI): 96
+Available screens: 2
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_66 64-bit
+Java home: 	/home/patmos/Xilinx/Vivado/2016.4/tps/lnx64/jre
+
+User name: 	patmos
+User home directory: /home/patmos
+User working directory: /home/patmos/t-crest/patmos
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI base root directory: /home/patmos/Xilinx/Vivado
+RDI data directory: /home/patmos/Xilinx/Vivado/2016.4/data
+RDI bin directory: /home/patmos/Xilinx/Vivado/2016.4/bin
+
+Vivado preferences path: /home/patmos/.Xilinx/Vivado/2016.4/vivado.ini
+Vivado layouts directory: /home/patmos/.Xilinx/Vivado/2016.4/layouts
+
+GUI allocated memory:	179 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 4,849 MB
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// [GUI Memory]: 29 MB (+27416kb) [00:00:05]
+// [Engine Memory]: 4,830 MB (+4913138kb) [00:00:05]
+selectList(PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, "/home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr", 0); // q:k (JViewport:JComponent, cd:JFrame)
+// bt:g (cd:JFrame):  Open Project : addNotify
+// Opening Vivado Project: /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. Version: Vivado v2016.4 
+// Tcl Message: open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_FAILED
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 35 MB (+5629kb) [00:00:08]
+// [GUI Memory]: 51 MB (+14659kb) [00:00:09]
+// HMemoryUtils.trashcanNow. Engine heap size: 4,972 MB. GUI used memory: 27 MB. Current time: 3/27/17 9:32:53 PM CEST
+// Tcl Message: open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/patmos/Xilinx/Vivado/2016.4/data/ip'. 
+// Project name: nexys4ddr; location: /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr; part: xc7a100tcsg324-1
+// [GUI Memory]: 57 MB (+3438kb) [00:00:11]
+dismissDialog("Open Project"); // bt:g (cd:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// a:a (cd:JFrame): Critical Messages: addNotify
+// [GUI Memory]: 60 MB (+372kb) [00:00:13]
+selectList(PAResourceAtoD.CmdMsgDialog_MESSAGES, "[Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.", 0); // b:a (D:JPanel, a:a)
+selectButton(PAResourceAtoD.CmdMsgDialog_OPEN_MESSAGES_VIEW, "Open Messages View"); // a:JButton (JPanel:JComponent, a:a)
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Critical Messages"); // a:a (cd:JFrame)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true); // ah:i (JViewport:JComponent, cd:JFrame) - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true, false, false, false, false, true); // ah:i (JViewport:JComponent, cd:JFrame) - Double Click - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true, false, false, false, true, false); // ah:i (JViewport:JComponent, cd:JFrame) - Popup Trigger - Node
+selectMenu(PAResourceItoN.MsgTreePanel_MESSAGE_SEVERITY, "Message Severity"); // Y:JMenu (K:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceItoN.MsgTreePanel_MESSAGE_SEVERITY, "Message Severity"); // Y:JMenu (K:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceItoN.MsgTreePanel_MESSAGE_SEVERITY, "Message Severity"); // Y:JMenu (K:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceItoN.MsgTreePanel_MESSAGE_SEVERITY, "Message Severity"); // Y:JMenu (K:JPopupMenu, cd:JFrame)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul_mul_32scud.vhd'.. ]", 3, false); // ah:i (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true, false, false, false, true, false); // ah:i (JViewport:JComponent, cd:JFrame) - Popup Trigger - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul_mul_32scud.vhd'.. ]", 3, false); // ah:i (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true); // ah:i (JViewport:JComponent, cd:JFrame) - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 2); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files]", 1, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 2, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "IP Sources", 1); // g:JideTabbedPane (L:aE, cd:JFrame)
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Libraries", 2); // g:JideTabbedPane (L:aE, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, matrixmul.vhd]", 10, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, matrixmul_mux_42_bkb.vhd]", 12, false, true, false, false, false, false); // y:i (D:JPanel, cd:JFrame) - Shift Key
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+// ar:g (cd:JFrame): Remove Sources: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, ar:g)
+// TclEventType: DG_GRAPH_STALE
+dismissDialog("Remove Sources"); // ar:g (cd:JFrame)
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  {/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd /home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul_mul_32scud.vhd /home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul_mux_42_bkb.vhd} 
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// Elapsed time: 24 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, matrixmul.vhd]", 10, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, ocp_burst_to_ddr2_ctrl.vhd]", 7, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul_mux_42_bkb.vhd'.. ]", 4, false); // ah:i (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib]", 5, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Hierarchy", 0); // g:JideTabbedPane (L:aE, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true, false, false, false, true, false); // y:i (D:JPanel, cd:JFrame) - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenuItem(PAResourceQtoS.SrcMenu_REFRESH_HIERARCHY, "Refresh Hierarchy"); // ab:JMenuItem (ah:JPopupMenu, cd:JFrame)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true); // ah:i (JViewport:JComponent, cd:JFrame) - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul_mul_32scud.vhd'.. ]", 3, false); // ah:i (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true); // ah:i (JViewport:JComponent, cd:JFrame) - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Vivado Commands, open_project /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.xpr. , [Project 1-19] Could not find the file '/home/patmos/t-crest/patmos/hardware/vhdl/hls/matrixmul.vhd'.. ]", 2, true, false, false, false, false, true); // ah:i (JViewport:JComponent, cd:JFrame) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl), nexys4ddr_io_inst_0 - nexys4ddr_io - Behavioral (nexys4ddr_io.vhd)]", 6, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl), matrixmul_inst_0 - matrixmul - behav (matrixmul.vhd)]", 8, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl), matrixmul_inst_0 - matrixmul - behav (matrixmul.vhd)]", 8, true, false, false, false, false, true); // y:i (D:JPanel, cd:JFrame) - Double Click - Node
+// [GUI Memory]: 64 MB (+1072kb) [00:01:27]
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "IP Sources", 1); // g:JideTabbedPane (L:aE, cd:JFrame)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, IP, ddr2_ctrl]", 2); // y:i (D:JPanel, cd:JFrame)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, IP, clk_manager]", 1); // y:i (D:JPanel, cd:JFrame)
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Libraries", 2); // g:JideTabbedPane (L:aE, cd:JFrame)
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Compile Order", 3); // g:JideTabbedPane (L:aE, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Patmos.v]", 1, false); // y:i (D:JPanel, cd:JFrame)
+// [GUI Memory]: 67 MB (+2kb) [00:01:39]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_nexys4ddr.vhdl]", 2, false); // y:i (D:JPanel, cd:JFrame)
+// [GUI Memory]: 72 MB (+1379kb) [00:01:40]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, matrixmul.vhd]", 8, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mig_a.prj]", 6, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, bram_tdp.vhd]", 7, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, matrixmul.vhd]", 8, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, matrixmul_mux_42_bkb.vhd]", 10, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, matrixmul_mul_32scud.vhd]", 9, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, matrixmul.vhd]", 8, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, bram_tdp.vhd]", 7, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mig_a.prj]", 6, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, nexys4ddr_io.vhd]", 5, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, ocp_burst_to_ddr2_ctrl.vhd]", 4, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mig_b.prj]", 3, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_nexys4ddr.vhdl]", 2, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Patmos.v]", 1, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Patmos.v]", 1, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 25, false); // u:K (t:D, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// f:q (cd:JFrame): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a:JButton (JPanel:JComponent, f:q)
+// 'cn' command handler elapsed time: 3 seconds
+dismissDialog("Launch Runs"); // f:q (cd:JFrame)
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "IP Sources", 1); // g:JideTabbedPane (L:aE, cd:JFrame)
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Hierarchy", 0); // g:JideTabbedPane (L:aE, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true, false, false, false, true, false); // y:i (D:JPanel, cd:JFrame) - Popup Trigger - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true, false, false, false, true, false); // y:i (D:JPanel, cd:JFrame) - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenuItem(PAResourceQtoS.SrcMenu_REFRESH_HIERARCHY, "Refresh Hierarchy"); // ab:JMenuItem (ah:JPopupMenu, cd:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, null, -1, false, false, false, true, false); // y:i (D:JPanel, cd:JFrame) - Popup Trigger
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenuItem(PAResourceCommand.PACommandNames_REPORT_IP_STATUS, "Report IP Status"); // ab:JMenuItem (ah:JPopupMenu, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_REPORT_IP_STATUS
+// Tcl Command: 'report_ip_status -name ip_status '
+// TclEventType: IP_SUMMARY_RESULTS
+// bt:g (cd:JFrame):  Report IP Status : addNotify
+// [GUI Memory]: 77 MB (+730kb) [00:02:15]
+// Tcl Message: report_ip_status -name ip_status  
+dismissDialog("Report IP Status"); // bt:g (cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true, false, false, false, true, false); // y:i (D:JPanel, cd:JFrame) - Popup Trigger - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true, false, false, false, true, false); // y:i (D:JPanel, cd:JFrame) - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true, false, false, false, true, false); // y:i (D:JPanel, cd:JFrame) - Popup Trigger - Node
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // Y:JMenu (ah:JPopupMenu, cd:JFrame)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 25, false); // u:K (t:D, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// f:q (cd:JFrame): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a:JButton (JPanel:JComponent, f:q)
+// 'cn' command handler elapsed time: 4 seconds
+dismissDialog("Launch Runs"); // f:q (cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl), nexys4ddr_io_inst_0 - nexys4ddr_io - Behavioral (nexys4ddr_io.vhd)]", 6, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 25, false); // u:K (t:D, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// f:q (cd:JFrame): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, f:q)
+// y:aO (cd:JFrame): No Implementation Results Available: addNotify
+dismissDialog("Launch Runs"); // f:q (cd:JFrame)
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a:JButton (JPanel:JComponent, y:aO)
+// bt:g (cd:JFrame):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("No Implementation Results Available"); // y:aO (cd:JFrame)
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+dismissDialog("Resetting Runs"); // bt:g (cd:JFrame)
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_LAUNCH
+// bt:g (cd:JFrame):  Generate Bitstream : addNotify
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 2 
+// Elapsed time: 60 seconds
+selectButton(RDIResource.ProgressDialog_BACKGROUND, "Background"); // a:JButton (JPanel:JComponent, bt:g)
+selectTab((HResource) null, (HResource) null, "Design Runs", 4); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 5,015 MB. GUI used memory: 31 MB. Current time: 3/27/17 9:36:27 PM CEST
+selectTreeTable(PAResourceEtoH.ExpRunTreePanel_EXP_RUN_TREE_TABLE, "impl_1 ; constrs_1 ; Queued... ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ; 00:00:00 ; Vivado Implementation Defaults (Vivado Implementation 2016) ; xc7a100tcsg324-1 ;  ; Default settings for Implementation.", 1, "impl_1", 0, false); // T:ab (JViewport:JComponent, cd:JFrame)
+// PAPropertyPanels.initPanels (impl_1) elapsed time: 0.2s
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Log", 2); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Tcl Console", 0); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Log", 2); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTree(PAResourceItoN.LogPanel_LOG_NAVIGATOR, "[Out-of-Context Module Runs]", 2, false); // i:JTree (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.LogPanel_LOG_NAVIGATOR, "[, Out-of-Context Module Runs]", 1, true); // i:JTree (JViewport:JComponent, cd:JFrame) - Node
+selectTree(PAResourceItoN.LogPanel_LOG_NAVIGATOR, "[Out-of-Context Module Runs]", 3, false); // i:JTree (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.LogPanel_LOG_NAVIGATOR, "[]", 0, false); // i:JTree (JViewport:JComponent, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Design Runs", 4); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "IP Status", 5); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Design Runs", 4); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectCodeEditor("matrixmul.vhd", 344, 215); // bF:I (JPanel:JComponent, cd:JFrame)
+selectCodeEditor("matrixmul.vhd", 456, 406); // bF:I (JPanel:JComponent, cd:JFrame)
+// Elapsed time: 40 seconds
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Log", 2); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Tcl Console", 0); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "IP Status", 5); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Design Runs", 4); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+// Elapsed time: 12 seconds
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "Properties", 1); // g:JideTabbedPane (JPanel:JComponent, cd:JFrame)
+selectTreeTable(PAResourceTtoZ.TclObjectTreeTable_TREETABLE, "IS_IMPLEMENTATION ; true", 7, "IS_IMPLEMENTATION", 0, false); // l:ab (JViewport:JComponent, cd:JFrame)
+// [GUI Memory]: 81 MB (+1067kb) [00:05:46]
+selectTreeTable(PAResourceTtoZ.TclObjectTreeTable_TREETABLE, "IS_SYNTHESIS ; false", 8, "IS_SYNTHESIS", 0, false); // l:ab (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl), matrixmul_inst_0 - matrixmul - behav (matrixmul.vhd)]", 8, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "Properties", 1); // g:JideTabbedPane (JPanel:JComponent, cd:JFrame)
+// Elapsed time: 113 seconds
+selectTreeTable(PAResourceEtoH.ExpRunTreePanel_EXP_RUN_TREE_TABLE, "impl_1 ; constrs_1 ; Queued... ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ; 00:00:00 ; Vivado Implementation Defaults (Vivado Implementation 2016) ; xc7a100tcsg324-1 ;  ; Default settings for Implementation.", 1, "impl_1", 0, false); // T:ab (JViewport:JComponent, cd:JFrame)
+selectTreeTable(PAResourceEtoH.ExpRunTreePanel_EXP_RUN_TREE_TABLE, "impl_1 ; constrs_1 ; Queued... ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ; 00:00:00 ; Vivado Implementation Defaults (Vivado Implementation 2016) ; xc7a100tcsg324-1 ;  ; Default settings for Implementation.", 1, "impl_1", 0, false, false, false, false, true, false); // T:ab (JViewport:JComponent, cd:JFrame) - Popup Trigger
+selectTab((HResource) null, (HResource) null, "IP Status", 5); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Log", 2); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 272, 128); // D:bF (JPanel:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.LogPanel_LOG_NAVIGATOR, "[Out-of-Context Module Runs]", 2, false); // i:JTree (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.LogPanel_LOG_NAVIGATOR, "[]", 0, false); // i:JTree (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceItoN.LogPanel_LOG_NAVIGATOR, "[]", 0, false, false, false, false, true, false); // i:JTree (JViewport:JComponent, cd:JFrame) - Popup Trigger
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTab((HResource) null, (HResource) null, "Tcl Console", 0); // aA:FrameContainer (ContainerContainer:JideSplitPane, cd:JFrame)
+selectTreeTable(PAResourceTtoZ.TclObjectTreeTable_TREETABLE, "STATUS ; Queued...", 16, "Queued...", 1, false); // l:ab (JViewport:JComponent, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl), ocp_burst_to_ddr2_ctrl_inst_0 - ocp_burst_to_ddr2_ctrl - Behavioral (ocp_burst_to_ddr2_ctrl.vhd)]", 3, false); // y:i (D:JPanel, cd:JFrame)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true); // y:i (D:JPanel, cd:JFrame) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, patmos_top - rtl (patmos_nexys4ddr.vhdl)]", 1, true, false, false, false, false, true); // y:i (D:JPanel, cd:JFrame) - Double Click - Node
+selectCodeEditor("patmos_nexys4ddr.vhdl", 263, 342); // bF:I (JPanel:JComponent, cd:JFrame)

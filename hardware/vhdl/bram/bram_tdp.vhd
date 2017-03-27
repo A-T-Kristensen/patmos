@@ -43,7 +43,7 @@ entity bram_tdp is
 
 generic (
     DATA    : integer := 32;
-    ADDR    : integer := 15
+    ADDR    : integer := 16
 );
 
 port (
