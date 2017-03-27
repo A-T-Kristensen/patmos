@@ -8,10 +8,17 @@
     Copyright: DTU, BSD License
 */
 
+//We need this if we want to make it a bootapp
+
+#include "include/patio.h"
+#include "include/bootable.h"
+
+// These are used to write to SPM and IO devices
+
 #include <machine/spm.h> // Defines _SPM
 #include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
 
-#define LED_RUN_LENGTH 2000
+#define LED_RUN_LENGTH 2 // We use a significantly smaller loop iteration limit for simulation
 
 int main() 
 {

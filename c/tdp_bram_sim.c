@@ -16,8 +16,6 @@
 #include <machine/spm.h> // Defines _SPM
 #include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
 
-//#include <stdio.h>
-
 #define LED_RUN_LENGTH 2
 
 int main() 
@@ -41,19 +39,15 @@ int main()
 	for(i = 0; i < 10; i++)
 	{
 		temp = *(bram_ptr + i);
-		//printf("%d ", temp);
 
 		if(temp != (i+1))
 		{ 			
 			err_cnt++;
 		}
 	}
-	//printf("\n\r");
 	
 	if(!err_cnt)
 	{
-		//puts("Results correct"); // puts for strings!
-
 		for(;;)
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)
@@ -68,9 +62,7 @@ int main()
 	} 
 
 	else 
-	{
-		//puts("Results wrong");
-	
+	{	
 		for (;;) 
 		{
 
