@@ -47,6 +47,7 @@ int main()
    // Generate the expected result
    for(i = 0; i < DIM; i++) {
       for(j = 0; j < DIM; j++) {
+      	 sw_result[i][j] = 0;      	
          for(int k = 0; k < DIM; k++) {
             sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
          }
@@ -56,7 +57,7 @@ int main()
    // Write to bram
 
    //We write linearly
-    for(i = 0; i < 3*DIM*DIM; i++)
+    for(i = 0; i < 2*DIM*DIM; i++)
     {
         *(bram_ptr + i) = *((&in_bram[0][0]) + i);
         printf("%d ", *(bram_ptr + i)); // Check written value
