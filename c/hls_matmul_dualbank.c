@@ -12,9 +12,14 @@
 #include <machine/spm.h> // Defines _SPM
 #include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
 
+#include <stdio.h>
+
+
 #define DIM 4
 
 #define LED_RUN_LENGTH 2000
+
+typedef int mat_type;
 
 int main() 
 {
@@ -25,10 +30,10 @@ int main()
 
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
 
-	int mat_a[DIM][DIM];
-	int mat_b[DIM][DIM];
-	int sw_result[DIM][DIM], hw_result[DIM][DIM];
-	int in_bram[3*DIM][DIM]; // Data to be written to the bram.
+	mat_type mat_a[DIM][DIM];
+	mat_type mat_b[DIM][DIM];
+	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
+	mat_type in_bram[3*DIM][DIM]; // Data to be written to the bram.
 
 	int err_cnt = 0;
 	int i, j;
@@ -84,6 +89,8 @@ int main()
         *((&hw_result[0][0]) + i)= *(bank2_ptr + i + 8); // Increment by 8 in memory bank 2
 
         printf("%d ", *((&hw_result[0][0]) +i) );
+        //printf("%f ", *((&hw_result[0][0]) +i) );
+
 
         if((i+1) % DIM == 0) {
         	printf("\n");

@@ -21,6 +21,8 @@
 
 #define LED_RUN_LENGTH 1
 
+typedef int mat_type;
+
 int main() 
 {
 
@@ -30,10 +32,10 @@ int main()
 
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
 
-	int mat_a[DIM][DIM];
-	int mat_b[DIM][DIM];
-	int sw_result[DIM][DIM], hw_result[DIM][DIM];
-	int in_bram[3*DIM][DIM]; // Data to be written to the bram.
+	mat_type mat_a[DIM][DIM];
+	mat_type mat_b[DIM][DIM];
+	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
+	mat_type in_bram[3*DIM][DIM]; // Data to be written to the bram.
 
 	int err_cnt = 0;
 	int i, j;
