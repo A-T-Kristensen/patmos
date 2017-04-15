@@ -149,7 +149,7 @@ synth_quartus: verilog
 synth_ise: verilog
 	echo "project open ise/$(BOARD)/patmos.xise; process run \"Generate Programming File\" -force rerun_all" | xtclsh -
 
-# synthesize with Viviado
+# synthesize with Vivado
 synth_vivado: verilog
 	vivado -mode batch -source vivado/$(BOARD)/synth.tcl
 
