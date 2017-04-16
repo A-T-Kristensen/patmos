@@ -1,5 +1,5 @@
 /*
- * Control register for HLS
+ * Controller for HwA
  *
  * Authors: Andreas Toftegaard (s144026@student.dtu.dk)
  *
@@ -11,7 +11,7 @@ import Chisel._
 import Node._
 import ocp._
 
-object HLSControlReg extends DeviceObject {
+object HwACtrl extends DeviceObject {
   var extAddrWidth = 32
   var dataWidth = 32
 
@@ -20,12 +20,12 @@ object HLSControlReg extends DeviceObject {
     dataWidth = getPosIntParam(params, "dataWidth")
   }
 
-  def create(params: Map[String, String]) : HLSControlReg = {
-    Module(new HLSControlReg(extAddrWidth=extAddrWidth, dataWidth=dataWidth))
+  def create(params: Map[String, String]) : HwACtrl = {
+    Module(new HwACtrl(extAddrWidth=extAddrWidth, dataWidth=dataWidth))
   }
 
   trait Pins {
-    val hLSControlRegPins = new Bundle() {
+    val hwACtrlPins = new Bundle() {
       val ap_start_out  = UInt(OUTPUT,1)
       val ap_reset_out  = UInt(OUTPUT,1)
       val ap_ready_in   = UInt(INPUT,1)
@@ -35,9 +35,9 @@ object HLSControlReg extends DeviceObject {
   }
 }
 
-class HLSControlReg(extAddrWidth : Int = 32,
+class HwACtrl(extAddrWidth : Int = 32,
                      dataWidth : Int = 32) extends CoreDevice() {
-  override val io = new CoreDeviceIO() with HLSControlReg.Pins
+  override val io = new CoreDeviceIO() with HwACtrl.Pins
 
   // Default response and data
   val respReg = Reg(init = OcpResp.NULL)
@@ -59,8 +59,8 @@ class HLSControlReg(extAddrWidth : Int = 32,
 
   // Default values out
 
-  io.hLSControlRegPins.ap_start_out := Bits(0)
-  io.hLSControlRegPins.ap_reset_out := Bits(0)
+  io.hwACtrlPins.ap_start_out := Bits(0)
+  io.hwACtrlPins.ap_reset_out := Bits(0)
 
   //States for the controller
 
@@ -75,7 +75,7 @@ class HLSControlReg(extAddrWidth : Int = 32,
       // On next cycle, give data valid, for a single cycle
       respReg := OcpResp.DVA
       state := s_reset
-      io.hLSControlRegPins.ap_reset_out := UInt(1)
+      io.hwACtrlPins.ap_reset_out := UInt(1)
 
     }.elsewhen(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
       respReg := OcpResp.DVA
@@ -89,7 +89,7 @@ class HLSControlReg(extAddrWidth : Int = 32,
 
   when(state === s_reset) {
 
-    io.hLSControlRegPins.ap_reset_out := UInt(1)
+    io.hwACtrlPins.ap_reset_out := UInt(1)
 
     when(cntReg === CNT_MAX) {
       cntReg := UInt(0)
@@ -124,9 +124,9 @@ class HLSControlReg(extAddrWidth : Int = 32,
 
   when(state === s_start) {
 
-    io.hLSControlRegPins.ap_start_out := UInt(1)
+    io.hwACtrlPins.ap_start_out := UInt(1)
 
-    when(io.hLSControlRegPins.ap_done_in === UInt(1)) {
+    when(io.hwACtrlPins.ap_done_in === UInt(1)) {
       state := s_wait_read
 
       when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {

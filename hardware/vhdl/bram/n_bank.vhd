@@ -23,8 +23,8 @@ entity n_bank is
 	    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);    -- Input to patmos
 
 	    -- HwA HLS Side, this is parametized
-        hwa_out : in bank_master_a;
-        hwa_in : out bank_slave_a       
+        bram_m : in bank_master_a;
+        bram_s : out bank_slave_a       
 	);
 end n_bank;
 
@@ -39,14 +39,14 @@ architecture rtl of n_bank is
             -- Port A (Patmos side)
             a_clk   : in  std_logic;
             a_wr    : in  std_logic;
-            a_addr  : in  std_logic_vector(ADDR_INDEX downto 0); -- The MSB will be used to select bram block
+            a_addr  : in  std_logic_vector(ADDR_BITS - 1 downto 0); -- The MSB will be used to select bram block
             a_din   : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
             a_dout  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
 
             -- Port B (HwA side)
             b_clk   : in  std_logic;
             b_wr    : in  std_logic;
-            b_addr  : in  std_logic_vector(ADDR_INDEX downto 0);
+            b_addr  : in  std_logic_vector(ADDR_BITS - 1 downto 0);
             b_din   : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
             b_dout  : out std_logic_vector(DATA_WIDTH - 1 downto 0)
         );
@@ -60,7 +60,7 @@ architecture rtl of n_bank is
     								 
      -- memory bank select signal
      -- index as std_logic
-    signal p_bank_sel, p_bank_sel_next : std_logic_vector(integer(ceil(log2(real(NBANKS)))) - 1 downto 0) := (others => '0'); 
+    signal p_bank_sel, p_bank_sel_next : std_logic_vector(ADDR_SELECT_BITS - 1 downto 0) := (others => '0'); 
     														
  	-- output data from bank i to patmos 
     signal p_b_data : bank_slave_a;
@@ -79,7 +79,7 @@ begin
 	        -- Port A
 	        a_clk   => clk,
 	        a_wr    => p_b_we(i),
-	        a_addr  => p_addr(ADDR_INDEX downto 0), 
+	        a_addr  => p_addr(ADDR_BITS - 1 downto 0), 
 	        a_din   => p_dout,
 	        a_dout  => p_b_data(i).dout,
 	        
@@ -94,7 +94,7 @@ begin
     
     -- Select data for output port on patmos side
     -- use MSB bits
-    p_bank_sel <= p_addr(ADDR_WIDTH - 1 downto BLOCK_ADDR_WIDTH);
+    p_bank_sel <= p_addr(ADDR_WIDTH - 1 downto ADDR_WIDTH - ADDR_SELECT_BITS);
 
     -- The bank select for output reads for patmos, these are delayed a cycle
     -- since it is for reads from the bram
@@ -128,8 +128,8 @@ begin
 	    		else '0';
 	    end generate;
 
-    hwa_out_i <=  hwa_out;
-    hwa_in <= hwa_in_i;        
+    hwa_out_i <=  bram_m;
+    bram_s <= hwa_in_i;        
 
 end rtl;
 

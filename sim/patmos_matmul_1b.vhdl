@@ -79,11 +79,11 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
 			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0);
 
-			io_hLSControlRegPins_ap_start_out 	: out std_logic;
-			io_hLSControlRegPins_ap_reset_out 	: out std_logic;
-			io_hLSControlRegPins_ap_ready_in 	: in std_logic;
-			io_hLSControlRegPins_ap_idle_in 	: in std_logic;
-			io_hLSControlRegPins_ap_done_in 	: in std_logic		
+			io_hwACtrlPins_ap_start_out 	: out std_logic;
+			io_hwACtrlPins_ap_reset_out 	: out std_logic;
+			io_hwACtrlPins_ap_ready_in 	: in std_logic;
+			io_hwACtrlPins_ap_idle_in 	: in std_logic;
+			io_hwACtrlPins_ap_done_in 	: in std_logic		
 
 		);
 	end component;
@@ -148,17 +148,17 @@ architecture rtl of patmos_top is
 
 	-- Signals for hls accel
 
-	signal hLSControlReg_ap_start_out 	: std_logic;
-	signal hLSControlReg_ap_reset_out 	: std_logic;
-	signal hLSControlReg_ap_ready_in 	: std_logic;
-	signal hLSControlReg_ap_idle_in 	: std_logic;
-	signal hLSControlReg_ap_done_in 	: std_logic;
+	signal hwACtrl_ap_start_out 	: std_logic;
+	signal hwACtrl_ap_reset_out 	: std_logic;
+	signal hwACtrl_ap_ready_in 	: std_logic;
+	signal hwACtrl_ap_idle_in 	: std_logic;
+	signal hwACtrl_ap_done_in 	: std_logic;
 
-	signal hlsWe   	: std_logic_vector (3 downto 0);
-	signal hlsAddr  : std_logic_vector (31 downto 0);
-	signal hlsIn   	: std_logic_vector(31 downto 0);
-	signal hlsOut 	: std_logic_vector(31 downto 0);
-	signal hlsReset : std_logic;
+	signal hwa_we   	: std_logic_vector (3 downto 0);
+	signal hwa_addr  : std_logic_vector (31 downto 0);
+	signal hwa_in   	: std_logic_vector(31 downto 0);
+	signal hwa_out 	: std_logic_vector(31 downto 0);
+	signal hwa_rst : std_logic;
 
 	attribute altera_attribute : string;
 	attribute altera_attribute of res_cnt : signal is "POWER_UP_LEVEL=LOW";
@@ -237,11 +237,11 @@ begin
 		io_bRamCtrlPins_MByteEn => bRamCtrl_MByteEn,
 		io_bRamCtrlPins_SData   => bRamCtrl_SData,
 			
-		io_hLSControlRegPins_ap_start_out	=> hLSControlReg_ap_start_out,
-		io_hLSControlRegPins_ap_reset_out 	=> hLSControlReg_ap_reset_out,
-		io_hLSControlRegPins_ap_ready_in 	=> hLSControlReg_ap_ready_in,
-		io_hLSControlRegPins_ap_idle_in 	=> hLSControlReg_ap_idle_in,
-		io_hLSControlRegPins_ap_done_in 	=> hLSControlReg_ap_done_in		
+		io_hwACtrlPins_ap_start_out	=> hwACtrl_ap_start_out,
+		io_hwACtrlPins_ap_reset_out 	=> hwACtrl_ap_reset_out,
+		io_hwACtrlPins_ap_ready_in 	=> hwACtrl_ap_ready_in,
+		io_hwACtrlPins_ap_idle_in 	=> hwACtrl_ap_idle_in,
+		io_hwACtrlPins_ap_done_in 	=> hwACtrl_ap_done_in		
 
 	);		
 		
@@ -255,31 +255,31 @@ begin
 
 		-- Port B
 		b_clk   => clk_int,
-		b_wr    => hlsWe(0),
-		b_addr  => hlsAddr(15 downto 0),
-		b_din   => hlsOut,
-		b_dout  => hlsIn
+		b_wr    => hwa_we(0),
+		b_addr  => hwa_addr(15 downto 0),
+		b_din   => hwa_out,
+		b_dout  => hwa_in
 	);
 
 		
 	matrixmul_inst_0 : matrixmul port map(
 		ap_clk 		=> clk_int,
-		ap_rst 		=> hlsReset,
-		ap_start 	=> hLSControlReg_ap_start_out,
-		ap_done 	=> hLSControlReg_ap_done_in,
-		ap_idle 	=> hLSControlReg_ap_idle_in,
-		ap_ready 	=> hLSControlReg_ap_ready_in,
+		ap_rst 		=> hwa_rst,
+		ap_start 	=> hwACtrl_ap_start_out,
+		ap_done 	=> hwACtrl_ap_done_in,
+		ap_idle 	=> hwACtrl_ap_idle_in,
+		ap_ready 	=> hwACtrl_ap_ready_in,
 
-		a_Addr_A 	=> hlsAddr,
+		a_Addr_A 	=> hwa_addr,
 		a_EN_A  	=> open,
-		a_WEN_A 	=> hlsWe,
-		a_Din_A  	=> hlsOut,
-		a_Dout_A 	=> hlsIn,
+		a_WEN_A 	=> hwa_we,
+		a_Din_A  	=> hwa_out,
+		a_Dout_A 	=> hwa_in,
 		a_Clk_A 	=> open,
 		a_Rst_A 	=> open
 	);			
 		
 					  
-	hlsReset <= hLSControlReg_ap_reset_out or int_res;		
+	hwa_rst <= hwACtrl_ap_reset_out or int_res;		
 
 end architecture rtl;

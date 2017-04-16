@@ -83,42 +83,14 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
 			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0);
 
-			io_hLSControlRegPins_ap_start_out 	: out std_logic;
-			io_hLSControlRegPins_ap_reset_out 	: out std_logic;
-			io_hLSControlRegPins_ap_ready_in 	: in std_logic;
-			io_hLSControlRegPins_ap_idle_in 	: in std_logic;
-			io_hLSControlRegPins_ap_done_in 	: in std_logic		
+			io_hwACtrlPins_ap_start_out 	: out std_logic;
+			io_hwACtrlPins_ap_reset_out 	: out std_logic;
+			io_hwACtrlPins_ap_ready_in 	: in std_logic;
+			io_hwACtrlPins_ap_idle_in 	: in std_logic;
+			io_hwACtrlPins_ap_done_in 	: in std_logic		
 
 		);
 	end component;
-
-	
-
-  --  component dual_bank is
-  --      port (
-		--    clk     : in  std_logic;
-		--    -- Patmos side
-
-		--    p_we    : in  std_logic;
-		--    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0); -- The upper bits are used to select bank.
-		--    p_dout  : in  std_logic_vector(DATA - 1 downto 0);
-		--    p_din   : out std_logic_vector(DATA - 1 downto 0);    -- Input to patmos
-
-		--    -- HLS Side
-
-		-- -- Bank 1
-		--    b1_wr    : in  std_logic;
-		--    b1_addr  : in  std_logic_vector(ADDR_WIDTH - ADDRSUB downto 0);
-		--    b1_din   : in  std_logic_vector(DATA - 1 downto 0);
-		--    b1_dout  : out std_logic_vector(DATA - 1 downto 0);
-
-		---- Bank 2
-		--    b2_wr    : in  std_logic;
-		--    b2_addr  : in  std_logic_vector(ADDR_WIDTH - ADDRSUB downto 0);
-		--    b2_din   : in  std_logic_vector(DATA - 1 downto 0);
-		--    b2_dout  : out std_logic_vector(DATA - 1 downto 0)  
-  --      );
-  --  end component; 
 
 	component n_bank is
 		port (
@@ -131,31 +103,12 @@ architecture rtl of patmos_top is
 		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);    -- Input to patmos
 
 		    -- HwA HLS Side, this is parametized
-	        hwa_out : in bank_master_a;
-	        hwa_in : out bank_slave_a       
+	        bram_m : in bank_master_a;
+	        bram_s : out bank_slave_a       
 		);
 	end component;  
-
-	--component matrixmul is
-	--	port (
-	--		ap_clk 		: in std_logic;
-	--		ap_rst 		: in std_logic;
-	--		ap_start 	: in std_logic;
-	--		ap_done 	: out std_logic;
-	--		ap_idle 	: out std_logic;
-	--		ap_ready 	: out std_logic;
-	--		a_Addr_A 	: out std_logic_vector(31 downto 0);
-	--		a_EN_A 		: out std_logic;
-	--		a_WEN_A 	: out std_logic_vector(3 downto 0);
-	--		a_Din_A 	: out std_logic_vector(31 downto 0);
-	--		a_Dout_A 	: in std_logic_vector(31 downto 0);
-	--		a_Clk_A 	: out std_logic;
-	--		a_Rst_A 	: out std_logic 
-	--	);
-	--end component; 
-
 	
-		component matrixmul is
+	component matrixmul is
 	port (
 	    ap_clk : IN STD_LOGIC;
 	    ap_rst : IN STD_LOGIC;
@@ -202,29 +155,15 @@ architecture rtl of patmos_top is
 
 	-- Signals for hls accel
 
-	signal hLSControlReg_ap_start_out 	: std_logic;
-	signal hLSControlReg_ap_reset_out 	: std_logic;
-	signal hLSControlReg_ap_ready_in 	: std_logic;
-	signal hLSControlReg_ap_idle_in 	: std_logic;
-	signal hLSControlReg_ap_done_in 	: std_logic;
+	signal hwACtrlPins_ap_start_out 	: std_logic;
+	signal hwACtrlPins_ap_reset_out 	: std_logic;
+	signal hwACtrlPins_ap_ready_in 	: std_logic;
+	signal hwACtrlPins_ap_idle_in 	: std_logic;
+	signal hwACtrlPins_ap_done_in 	: std_logic;
 
-	--signal hlsWe   	: std_logic_vector (3 downto 0);
-	--signal hlsAddr  : std_logic_vector (31 downto 0);
-	--signal hlsIn   	: std_logic_vector(31 downto 0);
-	--signal hlsOut 	: std_logic_vector(31 downto 0);
-
-	signal b1_hlsWe   	: std_logic_vector (3 downto 0);
-	signal b1_hlsAddr  : std_logic_vector (31 downto 0);
-	signal b1_hlsIn   	: std_logic_vector(31 downto 0);
-	signal b1_hlsOut 	: std_logic_vector(31 downto 0);
-
-	signal b2_hlsWe   	: std_logic_vector (3 downto 0);
-	signal b2_hlsAddr  : std_logic_vector (31 downto 0);
-	signal b2_hlsIn   	: std_logic_vector(31 downto 0);
-	signal b2_hlsOut 	: std_logic_vector(31 downto 0);	
-
-    signal hwa_out_i : bank_master_a;
-    signal hwa_in_i: bank_slave_a;	
+    signal bram_m_i : bank_master_a;
+    signal bram_s_i: bank_slave_a;	
+    signal hwa_addr_i : hwa_addr_a;
 
 	signal hlsReset : std_logic;
 
@@ -232,7 +171,7 @@ architecture rtl of patmos_top is
 	attribute altera_attribute of res_cnt : signal is "POWER_UP_LEVEL=LOW";
 
 begin
-	
+
 	clk_int <= clk;
 
 	process(clk_int)
@@ -305,11 +244,11 @@ begin
 		io_bRamCtrlPins_MByteEn => bRamCtrl_MByteEn,
 		io_bRamCtrlPins_SData   => bRamCtrl_SData,
 			
-		io_hLSControlRegPins_ap_start_out	=> hLSControlReg_ap_start_out,
-		io_hLSControlRegPins_ap_reset_out 	=> hLSControlReg_ap_reset_out,
-		io_hLSControlRegPins_ap_ready_in 	=> hLSControlReg_ap_ready_in,
-		io_hLSControlRegPins_ap_idle_in 	=> hLSControlReg_ap_idle_in,
-		io_hLSControlRegPins_ap_done_in 	=> hLSControlReg_ap_done_in		
+		io_hwACtrlPins_ap_start_out	=> hwACtrlPins_ap_start_out,
+		io_hwACtrlPins_ap_reset_out 	=> hwACtrlPins_ap_reset_out,
+		io_hwACtrlPins_ap_ready_in 	=> hwACtrlPins_ap_ready_in,
+		io_hwACtrlPins_ap_idle_in 	=> hwACtrlPins_ap_idle_in,
+		io_hwACtrlPins_ap_done_in 	=> hwACtrlPins_ap_done_in		
 
 	);		
 
@@ -318,60 +257,46 @@ begin
 	    clk     => clk_int,
 
 	    -- Patmos side
-
 	    p_we    => bRamCtrl_MCmd(0),
 	    p_addr  => bRamCtrl_MAddr,  -- The upper bits are used to select bank.
 	    p_dout  => bRamCtrl_MData,
 	    p_din   => bramCtrl_SData,-- Input to patmos
 
 	    -- HLS Side
-
-	 -- Bank 1
-	    --b1_wr    => hlsWe(0),
-	    --b1_addr  => hlsAddr(14 downto 0),
-	    --b1_din   => hlsOut,
-	    --b1_dout  => hlsIn,  
-
-        hwa_out => hwa_out_i,
-        hwa_in  => hwa_in_i
-
-	-- Bank 2
-
-	    --b2_wr    => '0',
-	    --b2_addr  => (others => '0'),
-	    --b2_din   => (others => '0'),
-	    --b2_dout  => open  
+        bram_m => bram_m_i,
+        bram_s  => bram_s_i
 	);
 		
 	matrixmul_inst_0 : matrixmul port map(
 		ap_clk 		=> clk_int,
 		ap_rst 		=> hlsReset,
-		ap_start 	=> hLSControlReg_ap_start_out,
-		ap_done 	=> hLSControlReg_ap_done_in,
-		ap_idle 	=> hLSControlReg_ap_idle_in,
-		ap_ready 	=> hLSControlReg_ap_ready_in,
+		ap_start 	=> hwACtrlPins_ap_start_out,
+		ap_done 	=> hwACtrlPins_ap_done_in,
+		ap_idle 	=> hwACtrlPins_ap_idle_in,
+		ap_ready 	=> hwACtrlPins_ap_ready_in,
 
-		a_0_Addr_A 	=> b1_hlsAddr,
+		a_0_Addr_A 	=> hwa_addr_i(0).addr,
 		a_0_EN_A  	=> open,
-		a_0_WEN_A => hwa_out_i(0).wr,
-		a_0_Din_A  	=> hwa_out_i(0).din,
-		a_0_Dout_A 	=> hwa_in_i(0).dout,
+		a_0_WEN_A	=> bram_m_i(0).wr,
+		a_0_Din_A  	=> bram_m_i(0).din,
+		a_0_Dout_A 	=> bram_s_i(0).dout,
 		a_0_Clk_A 	=> open,
 		a_0_Rst_A 	=> open,
 
-		a_1_Addr_A 	=> b2_hlsAddr,
+		a_1_Addr_A 	=> hwa_addr_i(1).addr,
 		a_1_EN_A  	=> open,
-		a_1_WEN_A 	=> hwa_out_i(1).wr,
-		a_1_Din_A  	=> hwa_out_i(1).din,
-		a_1_Dout_A 	=> hwa_in_i(1).dout,
+		a_1_WEN_A 	=> bram_m_i(1).wr,
+		a_1_Din_A  	=> bram_m_i(1).din,
+		a_1_Dout_A 	=> bram_s_i(1).dout,
 		a_1_Clk_A 	=> open,
 		a_1_Rst_A 	=> open
 	);			
-		
-					  
-	hlsReset <= hLSControlReg_ap_reset_out or int_res;		
+							  
+	hlsReset <= hwACtrlPins_ap_reset_out or int_res;		
 
-	hwa_out_i(0).addr <= b1_hlsAddr(8 downto 0);
-	hwa_out_i(1).addr <= b2_hlsAddr(8 downto 0);
+	addr_map:
+	for i in (NBANKS-1) downto 0 generate
+	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
+    end generate;
 
 end architecture rtl;

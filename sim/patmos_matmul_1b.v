@@ -11221,7 +11221,7 @@ module BRamCtrl(input clk, input reset,
   end
 endmodule
 
-module HLSControlReg(input clk, input reset,
+module HwACtrl(input clk, input reset,
     input  io_superMode,
     input [2:0] io_ocp_M_Cmd,
     input [31:0] io_ocp_M_Addr,
@@ -11229,11 +11229,11 @@ module HLSControlReg(input clk, input reset,
     input [3:0] io_ocp_M_ByteEn,
     output[1:0] io_ocp_S_Resp,
     output[31:0] io_ocp_S_Data,
-    output io_hLSControlRegPins_ap_start_out,
-    output io_hLSControlRegPins_ap_reset_out,
-    input  io_hLSControlRegPins_ap_ready_in,
-    input  io_hLSControlRegPins_ap_idle_in,
-    input  io_hLSControlRegPins_ap_done_in
+    output io_hwACtrlPins_ap_start_out,
+    output io_hwACtrlPins_ap_reset_out,
+    input  io_hwACtrlPins_ap_ready_in,
+    input  io_hwACtrlPins_ap_idle_in,
+    input  io_hwACtrlPins_ap_done_in
 );
 
   wire T0;
@@ -11339,7 +11339,7 @@ module HLSControlReg(input clk, input reset,
 // synthesis translate_on
 `endif
 
-  assign io_hLSControlRegPins_ap_reset_out = T0;
+  assign io_hwACtrlPins_ap_reset_out = T0;
   assign T0 = T38 ? 1'h1 : T1;
   assign T1 = T5 & T2;
   assign T2 = T4 & T3;
@@ -11366,7 +11366,7 @@ module HLSControlReg(input clk, input reset,
   assign T21 = T16 ^ 1'h1;
   assign T22 = state == 3'h2;
   assign T23 = T25 & T24;
-  assign T24 = io_hLSControlRegPins_ap_done_in == 1'h1;
+  assign T24 = io_hwACtrlPins_ap_done_in == 1'h1;
   assign T25 = state == 3'h3;
   assign T26 = T25 & T27;
   assign T27 = T24 ^ 1'h1;
@@ -11381,7 +11381,7 @@ module HLSControlReg(input clk, input reset,
   assign T36 = T37 ^ 1'h1;
   assign T37 = T29 | T33;
   assign T38 = state == 3'h1;
-  assign io_hLSControlRegPins_ap_start_out = T25;
+  assign io_hwACtrlPins_ap_start_out = T25;
   assign io_ocp_S_Data = rdDataReg;
   assign T83 = reset ? 32'h0 : T39;
   assign T39 = T28 ? 32'h1 : T40;
@@ -11921,11 +11921,11 @@ module InOut(input clk, input reset,
     output[31:0] io_bRamCtrlPins_MData,
     output[3:0] io_bRamCtrlPins_MByteEn,
     input [31:0] io_bRamCtrlPins_SData,
-    output io_hLSControlRegPins_ap_start_out,
-    output io_hLSControlRegPins_ap_reset_out,
-    input  io_hLSControlRegPins_ap_ready_in,
-    input  io_hLSControlRegPins_ap_idle_in,
-    input  io_hLSControlRegPins_ap_done_in,
+    output io_hwACtrlPins_ap_start_out,
+    output io_hwACtrlPins_ap_reset_out,
+    input  io_hwACtrlPins_ap_ready_in,
+    input  io_hwACtrlPins_ap_idle_in,
+    input  io_hwACtrlPins_ap_done_in,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -12240,10 +12240,10 @@ module InOut(input clk, input reset,
   wire[15:0] BRamCtrl_io_bRamCtrlPins_MAddr;
   wire[31:0] BRamCtrl_io_bRamCtrlPins_MData;
   wire[3:0] BRamCtrl_io_bRamCtrlPins_MByteEn;
-  wire[1:0] HLSControlReg_io_ocp_S_Resp;
-  wire[31:0] HLSControlReg_io_ocp_S_Data;
-  wire HLSControlReg_io_hLSControlRegPins_ap_start_out;
-  wire HLSControlReg_io_hLSControlRegPins_ap_reset_out;
+  wire[1:0] HwACtrl_io_ocp_S_Resp;
+  wire[31:0] HwACtrl_io_ocp_S_Data;
+  wire HwACtrl_io_hwACtrlPins_ap_start_out;
+  wire HwACtrl_io_hwACtrlPins_ap_reset_out;
   wire[1:0] CpuInfo_io_ocp_S_Resp;
   wire[31:0] CpuInfo_io_ocp_S_Data;
   wire[1:0] Timer_io_ocp_S_Resp;
@@ -12360,8 +12360,8 @@ module InOut(input clk, input reset,
   assign T48 = T50 & T49;
   assign T49 = selNI ^ 1'h1;
   assign T50 = selIO ^ 1'h1;
-  assign io_hLSControlRegPins_ap_reset_out = HLSControlReg_io_hLSControlRegPins_ap_reset_out;
-  assign io_hLSControlRegPins_ap_start_out = HLSControlReg_io_hLSControlRegPins_ap_start_out;
+  assign io_hwACtrlPins_ap_reset_out = HwACtrl_io_hwACtrlPins_ap_reset_out;
+  assign io_hwACtrlPins_ap_start_out = HwACtrl_io_hwACtrlPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = BRamCtrl_io_bRamCtrlPins_MByteEn;
   assign io_bRamCtrlPins_MData = BRamCtrl_io_bRamCtrlPins_MData;
   assign io_bRamCtrlPins_MAddr = BRamCtrl_io_bRamCtrlPins_MAddr;
@@ -12474,7 +12474,7 @@ module InOut(input clk, input reset,
   assign T106 = T79 ? selDeviceVec_10 : selDeviceReg_10;
   assign deviceSVec_11_Data = BRamCtrl_io_ocp_S_Data;
   assign T107 = T79 ? selDeviceVec_11 : selDeviceReg_11;
-  assign deviceSVec_12_Data = HLSControlReg_io_ocp_S_Data;
+  assign deviceSVec_12_Data = HwACtrl_io_ocp_S_Data;
   assign T108 = T79 ? selDeviceVec_12 : selDeviceReg_12;
   assign deviceSVec_13_Data = 32'h0;
   assign T109 = T79 ? selDeviceVec_13 : selDeviceReg_13;
@@ -12503,7 +12503,7 @@ module InOut(input clk, input reset,
   assign T124 = T125 | deviceSVec_13_Resp;
   assign deviceSVec_13_Resp = 2'h0;
   assign T125 = T126 | deviceSVec_12_Resp;
-  assign deviceSVec_12_Resp = HLSControlReg_io_ocp_S_Resp;
+  assign deviceSVec_12_Resp = HwACtrl_io_ocp_S_Resp;
   assign T126 = T127 | deviceSVec_11_Resp;
   assign deviceSVec_11_Resp = BRamCtrl_io_ocp_S_Resp;
   assign T127 = T128 | deviceSVec_10_Resp;
@@ -12684,19 +12684,19 @@ module InOut(input clk, input reset,
        .io_bRamCtrlPins_MByteEn( BRamCtrl_io_bRamCtrlPins_MByteEn ),
        .io_bRamCtrlPins_SData( io_bRamCtrlPins_SData )
   );
-  HLSControlReg HLSControlReg(.clk(clk), .reset(reset),
+  HwACtrl HwACtrl(.clk(clk), .reset(reset),
        .io_superMode( io_superMode ),
        .io_ocp_M_Cmd( T10 ),
        .io_ocp_M_Addr( io_memInOut_M_Addr ),
        .io_ocp_M_Data( io_memInOut_M_Data ),
        .io_ocp_M_ByteEn( io_memInOut_M_ByteEn ),
-       .io_ocp_S_Resp( HLSControlReg_io_ocp_S_Resp ),
-       .io_ocp_S_Data( HLSControlReg_io_ocp_S_Data ),
-       .io_hLSControlRegPins_ap_start_out( HLSControlReg_io_hLSControlRegPins_ap_start_out ),
-       .io_hLSControlRegPins_ap_reset_out( HLSControlReg_io_hLSControlRegPins_ap_reset_out ),
-       .io_hLSControlRegPins_ap_ready_in( io_hLSControlRegPins_ap_ready_in ),
-       .io_hLSControlRegPins_ap_idle_in( io_hLSControlRegPins_ap_idle_in ),
-       .io_hLSControlRegPins_ap_done_in( io_hLSControlRegPins_ap_done_in )
+       .io_ocp_S_Resp( HwACtrl_io_ocp_S_Resp ),
+       .io_ocp_S_Data( HwACtrl_io_ocp_S_Data ),
+       .io_hwACtrlPins_ap_start_out( HwACtrl_io_hwACtrlPins_ap_start_out ),
+       .io_hwACtrlPins_ap_reset_out( HwACtrl_io_hwACtrlPins_ap_reset_out ),
+       .io_hwACtrlPins_ap_ready_in( io_hwACtrlPins_ap_ready_in ),
+       .io_hwACtrlPins_ap_idle_in( io_hwACtrlPins_ap_idle_in ),
+       .io_hwACtrlPins_ap_done_in( io_hwACtrlPins_ap_done_in )
   );
   CpuInfo CpuInfo(.clk(clk),
        .io_superMode( io_superMode ),
@@ -18631,11 +18631,11 @@ module PatmosCore(input clk, input reset,
     output[31:0] io_bRamCtrlPins_MData,
     output[3:0] io_bRamCtrlPins_MByteEn,
     input [31:0] io_bRamCtrlPins_SData,
-    output io_hLSControlRegPins_ap_start_out,
-    output io_hLSControlRegPins_ap_reset_out,
-    input  io_hLSControlRegPins_ap_ready_in,
-    input  io_hLSControlRegPins_ap_idle_in,
-    input  io_hLSControlRegPins_ap_done_in,
+    output io_hwACtrlPins_ap_start_out,
+    output io_hwACtrlPins_ap_reset_out,
+    input  io_hwACtrlPins_ap_ready_in,
+    input  io_hwACtrlPins_ap_idle_in,
+    input  io_hwACtrlPins_ap_done_in,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -18911,8 +18911,8 @@ module PatmosCore(input clk, input reset,
   wire[15:0] iocomp_io_bRamCtrlPins_MAddr;
   wire[31:0] iocomp_io_bRamCtrlPins_MData;
   wire[3:0] iocomp_io_bRamCtrlPins_MByteEn;
-  wire iocomp_io_hLSControlRegPins_ap_start_out;
-  wire iocomp_io_hLSControlRegPins_ap_reset_out;
+  wire iocomp_io_hwACtrlPins_ap_start_out;
+  wire iocomp_io_hwACtrlPins_ap_reset_out;
   wire[1:0] dcache_io_master_S_Resp;
   wire[31:0] dcache_io_master_S_Data;
   wire[2:0] dcache_io_slave_M_Cmd;
@@ -18971,8 +18971,8 @@ module PatmosCore(input clk, input reset,
   assign T25 = R5 ? 2'h0 : burstBus_io_slave_S_Resp;
   assign T26 = memory_io_ena_out & T27;
   assign T27 = dcache_io_scIO_stall ^ 1'h1;
-  assign io_hLSControlRegPins_ap_reset_out = iocomp_io_hLSControlRegPins_ap_reset_out;
-  assign io_hLSControlRegPins_ap_start_out = iocomp_io_hLSControlRegPins_ap_start_out;
+  assign io_hwACtrlPins_ap_reset_out = iocomp_io_hwACtrlPins_ap_reset_out;
+  assign io_hwACtrlPins_ap_start_out = iocomp_io_hwACtrlPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = iocomp_io_bRamCtrlPins_MByteEn;
   assign io_bRamCtrlPins_MData = iocomp_io_bRamCtrlPins_MData;
   assign io_bRamCtrlPins_MAddr = iocomp_io_bRamCtrlPins_MAddr;
@@ -19462,11 +19462,11 @@ module PatmosCore(input clk, input reset,
        .io_bRamCtrlPins_MData( iocomp_io_bRamCtrlPins_MData ),
        .io_bRamCtrlPins_MByteEn( iocomp_io_bRamCtrlPins_MByteEn ),
        .io_bRamCtrlPins_SData( io_bRamCtrlPins_SData ),
-       .io_hLSControlRegPins_ap_start_out( iocomp_io_hLSControlRegPins_ap_start_out ),
-       .io_hLSControlRegPins_ap_reset_out( iocomp_io_hLSControlRegPins_ap_reset_out ),
-       .io_hLSControlRegPins_ap_ready_in( io_hLSControlRegPins_ap_ready_in ),
-       .io_hLSControlRegPins_ap_idle_in( io_hLSControlRegPins_ap_idle_in ),
-       .io_hLSControlRegPins_ap_done_in( io_hLSControlRegPins_ap_done_in ),
+       .io_hwACtrlPins_ap_start_out( iocomp_io_hwACtrlPins_ap_start_out ),
+       .io_hwACtrlPins_ap_reset_out( iocomp_io_hwACtrlPins_ap_reset_out ),
+       .io_hwACtrlPins_ap_ready_in( io_hwACtrlPins_ap_ready_in ),
+       .io_hwACtrlPins_ap_idle_in( io_hwACtrlPins_ap_idle_in ),
+       .io_hwACtrlPins_ap_done_in( io_hwACtrlPins_ap_done_in ),
        .io_cpuInfoPins_id( io_cpuInfoPins_id ),
        .io_cpuInfoPins_cnt( io_cpuInfoPins_cnt )
   );
@@ -20702,11 +20702,11 @@ module Patmos(input clk, input reset,
     output[31:0] io_bRamCtrlPins_MData,
     output[3:0] io_bRamCtrlPins_MByteEn,
     input [31:0] io_bRamCtrlPins_SData,
-    output io_hLSControlRegPins_ap_start_out,
-    output io_hLSControlRegPins_ap_reset_out,
-    input  io_hLSControlRegPins_ap_ready_in,
-    input  io_hLSControlRegPins_ap_idle_in,
-    input  io_hLSControlRegPins_ap_done_in,
+    output io_hwACtrlPins_ap_start_out,
+    output io_hwACtrlPins_ap_reset_out,
+    input  io_hwACtrlPins_ap_ready_in,
+    input  io_hwACtrlPins_ap_idle_in,
+    input  io_hwACtrlPins_ap_done_in,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -20743,12 +20743,12 @@ module Patmos(input clk, input reset,
   wire[15:0] core_io_bRamCtrlPins_MAddr;
   wire[31:0] core_io_bRamCtrlPins_MData;
   wire[3:0] core_io_bRamCtrlPins_MByteEn;
-  wire core_io_hLSControlRegPins_ap_start_out;
-  wire core_io_hLSControlRegPins_ap_reset_out;
+  wire core_io_hwACtrlPins_ap_start_out;
+  wire core_io_hwACtrlPins_ap_reset_out;
 
 
-  assign io_hLSControlRegPins_ap_reset_out = core_io_hLSControlRegPins_ap_reset_out;
-  assign io_hLSControlRegPins_ap_start_out = core_io_hLSControlRegPins_ap_start_out;
+  assign io_hwACtrlPins_ap_reset_out = core_io_hwACtrlPins_ap_reset_out;
+  assign io_hwACtrlPins_ap_start_out = core_io_hwACtrlPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = core_io_bRamCtrlPins_MByteEn;
   assign io_bRamCtrlPins_MData = core_io_bRamCtrlPins_MData;
   assign io_bRamCtrlPins_MAddr = core_io_bRamCtrlPins_MAddr;
@@ -20808,11 +20808,11 @@ module Patmos(input clk, input reset,
        .io_bRamCtrlPins_MData( core_io_bRamCtrlPins_MData ),
        .io_bRamCtrlPins_MByteEn( core_io_bRamCtrlPins_MByteEn ),
        .io_bRamCtrlPins_SData( io_bRamCtrlPins_SData ),
-       .io_hLSControlRegPins_ap_start_out( core_io_hLSControlRegPins_ap_start_out ),
-       .io_hLSControlRegPins_ap_reset_out( core_io_hLSControlRegPins_ap_reset_out ),
-       .io_hLSControlRegPins_ap_ready_in( io_hLSControlRegPins_ap_ready_in ),
-       .io_hLSControlRegPins_ap_idle_in( io_hLSControlRegPins_ap_idle_in ),
-       .io_hLSControlRegPins_ap_done_in( io_hLSControlRegPins_ap_done_in ),
+       .io_hwACtrlPins_ap_start_out( core_io_hwACtrlPins_ap_start_out ),
+       .io_hwACtrlPins_ap_reset_out( core_io_hwACtrlPins_ap_reset_out ),
+       .io_hwACtrlPins_ap_ready_in( io_hwACtrlPins_ap_ready_in ),
+       .io_hwACtrlPins_ap_idle_in( io_hwACtrlPins_ap_idle_in ),
+       .io_hwACtrlPins_ap_done_in( io_hwACtrlPins_ap_done_in ),
        .io_cpuInfoPins_id( io_cpuInfoPins_id ),
        .io_cpuInfoPins_cnt( io_cpuInfoPins_cnt )
   );
