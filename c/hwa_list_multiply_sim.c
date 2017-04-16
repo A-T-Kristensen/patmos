@@ -37,15 +37,12 @@ int main()
     }
 
     // START HLS MODULE
-	
 	*hls_ptr = 1;
 
 	// POLL STATUS OF HLS MODULE
-    
     while((*hls_ptr) != 1);
 	
 	// CHECK RESULTS
-	
     for(i = 0; i < 3; i++)
     {
         bram_out[i] = *(bram_ptr + i);
@@ -93,7 +90,6 @@ int main()
 		// Flash 111 LEDS		
 		for (;;) 
 		{
-
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;

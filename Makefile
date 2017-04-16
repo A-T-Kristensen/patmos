@@ -38,14 +38,14 @@ VENDOR?=XilinxVivado
 BOARD?=nexys4ddr
 
 # My custom projects for HwAs built using HLS
-BOARD?=matmul_1b
-BOARD?=matmul_2b
-BOARD?=matmul_3b
-BOARD?=matmul_4b
-BOARD?=matmul_5b
-BOARD?=matmul_6b
+#BOARD?=matmul_1b
+#BOARD?=matmul_2b
+#BOARD?=matmul_3b
+#BOARD?=matmul_4b
+#BOARD?=matmul_5b
+#BOARD?=matmul_6b
 
-BOARD?=minver
+#BOARD?=minver
 
 # Where to put elf files and binaries
 BUILDDIR?=$(CURDIR)/tmp

@@ -135,7 +135,6 @@ int main()
 		// Flash 111 LEDS		
 		for (;;) 
 		{
-
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;

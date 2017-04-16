@@ -54,7 +54,6 @@ int main()
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 1;
 
-
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;
@@ -65,7 +64,6 @@ int main()
 	{	
 		for (;;) 
 		{
-
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;
