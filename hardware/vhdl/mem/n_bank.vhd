@@ -96,6 +96,7 @@ begin
     -- use MSB bits
     p_bank_sel_next <= p_addr(ADDR_WIDTH - 1 downto ADDR_WIDTH - ADDR_SELECT_BITS);
 
+
     -- The bank select for output reads for patmos, these are delayed a cycle
     -- since it is for reads from the bram
     process (clk)
@@ -107,28 +108,17 @@ begin
         end if;
     end process;
 
-    -- output select for memory to patmos.
-    --p_din <= p_b_data(to_integer(unsigned(p_bank_sel_next))).dout; -- Is this synthesisable?
-
-    --outputSelect : process(p_bank_sel, p_b_data)
-    --begin
-    --    for i in (NBANKS-1) downto 0 loop
-    --        if (to_integer(unsigned(p_bank_sel)) = i) then
-    --            p_din <= p_b_data(i).dout;
-    --        end if;
-    --    end loop;
-    --end process;    
-
     outputSelect : process(p_bank_sel, p_b_data)
     begin
-        if p_bank_sel = '0' then
+        if (to_integer(unsigned(p_bank_sel)) = 0) then
                 p_din <= p_b_data(0).dout;
-        elsif p_bank_sel = '1' then
+        elsif (to_integer(unsigned(p_bank_sel)) = 1) then
                 p_din <= p_b_data(1).dout;
         else 
                 p_din <= (others => '0');
         end if;
-    end process;     
+    end process;   
+
 
     -- Combinational logic for controlling the write enable on each memory bank
     -- from the Patmos CPU
