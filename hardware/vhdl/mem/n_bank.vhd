@@ -65,8 +65,8 @@ architecture rtl of n_bank is
  	-- output data from bank i to patmos 
     signal p_b_data : bank_slave_a;
 
-    signal hwa_out_i : bank_master_a;
-    signal hwa_in_i: bank_slave_a;
+    signal bram_m_i : bank_master_a;
+    signal bram_s_i: bank_slave_a;
     									
 begin 
 
@@ -85,35 +85,35 @@ begin
 	        
 	        -- Port B
 	        b_clk   => clk,
-            b_wr    => hwa_out_i(i).wr(0),
-            b_addr  => hwa_out_i(i).addr,
-            b_din   => hwa_out_i(i).din,
-            b_dout  => hwa_in_i(i).dout
+            b_wr    => bram_m_i(i).wr(0),
+            b_addr  => bram_m_i(i).addr,
+            b_din   => bram_m_i(i).din,
+            b_dout  => bram_s_i(i).dout
 	    );
 	end generate;
     
     -- Select data for output port on patmos side
     -- use MSB bits
-    p_bank_sel <= p_addr(ADDR_WIDTH - 1 downto ADDR_WIDTH - ADDR_SELECT_BITS);
+    p_bank_sel_next <= p_addr(ADDR_WIDTH - 1 downto ADDR_WIDTH - ADDR_SELECT_BITS);
 
     -- The bank select for output reads for patmos, these are delayed a cycle
     -- since it is for reads from the bram
     process (clk)
     begin
         if rising_edge(clk) then
-            p_bank_sel_next <= p_bank_sel;
+            p_bank_sel <= p_bank_sel_next;
         else
-            p_bank_sel_next <= p_bank_sel_next;
+            p_bank_sel <= p_bank_sel;
         end if;
     end process;
 
     -- output select for memory to patmos.
     --p_din <= p_b_data(to_integer(unsigned(p_bank_sel_next))).dout; -- Is this synthesisable?
 
-    outputSelect : process(p_bank_sel_next, p_b_data) is
+    outputSelect : process(p_bank_sel, p_b_data) is
     begin
         for i in (NBANKS-1) downto 0 loop
-            if (to_integer(unsigned(p_bank_sel_next)) = i) then
+            if (to_integer(unsigned(p_bank_sel)) = i) then
                 p_din <= p_b_data(i).dout;
             end if;
         end loop;
@@ -124,12 +124,12 @@ begin
     we_gen:
 	for i in (NBANKS-1) downto 0 generate
 	    	p_b_we(i) <= '1' when 
-	    		(p_we = '1' and to_integer(unsigned(p_bank_sel)) = i) 
+	    		(p_we = '1' and to_integer(unsigned(p_bank_sel_next)) = i) 
 	    		else '0';
 	    end generate;
 
-    hwa_out_i <=  bram_m;
-    bram_s <= hwa_in_i;        
+    bram_m_i <=  bram_m;
+    bram_s <= bram_s_i;        
 
 end rtl;
 

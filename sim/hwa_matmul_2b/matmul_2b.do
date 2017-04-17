@@ -30,6 +30,9 @@ add wave hwACtrl_ap_done_in
 add wave bram_m_i
 add wave bram_s_i
 
+add wave n_bank_inst_0/p_b_we
+add wave n_bank_inst_0/p_bank_sel
+
 # Set clock, period = 10 ns
 
 force -freeze clk 0 0, 1 {5 ns} -r 10
