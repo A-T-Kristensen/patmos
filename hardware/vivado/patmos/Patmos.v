@@ -9901,24 +9901,22 @@ module HwACtrl(input clk, input reset,
   wire T3;
   wire T4;
   wire T5;
-  reg [2:0] state;
-  wire[2:0] T81;
-  wire[2:0] T6;
-  wire[2:0] T7;
-  wire[2:0] T8;
-  wire[2:0] T9;
-  wire[2:0] T10;
-  wire[2:0] T11;
-  wire[2:0] T12;
-  wire[2:0] T13;
-  wire[2:0] T14;
+  wire T6;
+  reg [1:0] state;
+  wire[1:0] T52;
+  wire[1:0] T7;
+  wire[1:0] T8;
+  wire[1:0] T9;
+  wire[1:0] T10;
+  wire[1:0] T11;
+  wire[1:0] T12;
+  wire T13;
+  wire T14;
   wire T15;
   wire T16;
-  reg [4:0] cntReg;
-  wire[4:0] T82;
-  wire[4:0] T17;
-  wire[4:0] T18;
-  wire[4:0] T19;
+  wire T17;
+  wire T18;
+  wire T19;
   wire T20;
   wire T21;
   wire T22;
@@ -9931,59 +9929,30 @@ module HwACtrl(input clk, input reset,
   wire T29;
   wire T30;
   wire T31;
-  wire T32;
-  wire T33;
-  wire T34;
-  wire T35;
+  reg [31:0] rdDataReg;
+  wire[31:0] T53;
+  wire[31:0] T32;
+  wire[31:0] T33;
+  wire[31:0] T34;
+  wire[31:0] T35;
   wire T36;
   wire T37;
   wire T38;
-  reg [31:0] rdDataReg;
-  wire[31:0] T83;
-  wire[31:0] T39;
-  wire[31:0] T40;
-  wire[31:0] T41;
-  wire[31:0] T42;
-  wire[31:0] T43;
-  wire[31:0] T44;
-  wire[31:0] T45;
-  wire T46;
-  wire T47;
-  wire T48;
-  wire T49;
-  wire T50;
-  wire T51;
-  wire T52;
-  wire T53;
-  wire T54;
-  wire T55;
-  wire T56;
-  wire T57;
-  wire T58;
-  wire T59;
-  wire T60;
-  wire T61;
-  wire T62;
-  wire T63;
-  wire T64;
-  wire T65;
-  wire T66;
-  wire T67;
-  wire T68;
-  wire T69;
-  wire T70;
-  wire T71;
+  wire T39;
+  wire T40;
+  wire T41;
+  wire T42;
+  wire T43;
+  wire T44;
+  wire T45;
   reg [1:0] respReg;
-  wire[1:0] T84;
-  wire[1:0] T72;
-  wire[1:0] T73;
-  wire[1:0] T74;
-  wire[1:0] T75;
-  wire[1:0] T76;
-  wire[1:0] T77;
-  wire[1:0] T78;
-  wire[1:0] T79;
-  wire[1:0] T80;
+  wire[1:0] T54;
+  wire[1:0] T46;
+  wire[1:0] T47;
+  wire[1:0] T48;
+  wire[1:0] T49;
+  wire[1:0] T50;
+  wire[1:0] T51;
 
 `ifndef SYNTHESIS
 // synthesis translate_off
@@ -9991,168 +9960,112 @@ module HwACtrl(input clk, input reset,
   initial begin
     #0.002;
     state = {1{$random}};
-    cntReg = {1{$random}};
     rdDataReg = {1{$random}};
     respReg = {1{$random}};
   end
 // synthesis translate_on
 `endif
 
-  assign io_hwACtrlPins_ap_reset_out = T0;
-  assign T0 = T38 ? 1'h1 : T1;
-  assign T1 = T5 & T2;
-  assign T2 = T4 & T3;
-  assign T3 = io_ocp_M_Data == 32'h1;
-  assign T4 = io_ocp_M_Cmd == 3'h1;
-  assign T5 = state == 3'h0;
-  assign T81 = reset ? 3'h0 : T6;
-  assign T6 = T35 ? 3'h4 : T7;
-  assign T7 = T31 ? 3'h4 : T8;
-  assign T8 = T28 ? 3'h4 : T9;
-  assign T9 = T26 ? 3'h3 : T10;
-  assign T10 = T23 ? 3'h4 : T11;
-  assign T11 = T22 ? 3'h3 : T12;
-  assign T12 = T20 ? 3'h1 : T13;
-  assign T13 = T15 ? 3'h2 : T14;
-  assign T14 = T1 ? 3'h1 : state;
-  assign T15 = T38 & T16;
-  assign T16 = cntReg == 5'h3;
-  assign T82 = reset ? 5'h0 : T17;
-  assign T17 = T20 ? T19 : T18;
-  assign T18 = T15 ? 5'h0 : cntReg;
-  assign T19 = cntReg + 5'h1;
-  assign T20 = T38 & T21;
-  assign T21 = T16 ^ 1'h1;
-  assign T22 = state == 3'h2;
-  assign T23 = T25 & T24;
-  assign T24 = io_hwACtrlPins_ap_done_in == 1'h1;
-  assign T25 = state == 3'h3;
-  assign T26 = T25 & T27;
-  assign T27 = T24 ^ 1'h1;
-  assign T28 = T30 & T29;
+  assign io_hwACtrlPins_ap_reset_out = 1'h0;
+  assign io_hwACtrlPins_ap_start_out = T0;
+  assign T0 = T30 ? 1'h1 : T1;
+  assign T1 = T26 ? 1'h0 : T2;
+  assign T2 = T6 & T3;
+  assign T3 = T5 & T4;
+  assign T4 = io_ocp_M_Data == 32'h1;
+  assign T5 = io_ocp_M_Cmd == 3'h1;
+  assign T6 = state == 2'h0;
+  assign T52 = reset ? 2'h0 : T7;
+  assign T7 = T23 ? 2'h2 : T8;
+  assign T8 = T19 ? 2'h2 : T9;
+  assign T9 = T16 ? 2'h2 : T10;
+  assign T10 = T30 ? 2'h1 : T11;
+  assign T11 = T13 ? 2'h2 : T12;
+  assign T12 = T2 ? 2'h1 : state;
+  assign T13 = T15 & T14;
+  assign T14 = io_hwACtrlPins_ap_done_in == 1'h1;
+  assign T15 = state == 2'h1;
+  assign T16 = T18 & T17;
+  assign T17 = io_ocp_M_Cmd == 3'h2;
+  assign T18 = state == 2'h2;
+  assign T19 = T18 & T20;
+  assign T20 = T22 & T21;
+  assign T21 = io_ocp_M_Cmd == 3'h1;
+  assign T22 = T17 ^ 1'h1;
+  assign T23 = T18 & T24;
+  assign T24 = T25 ^ 1'h1;
+  assign T25 = T17 | T21;
+  assign T26 = T13 & T27;
+  assign T27 = T29 | T28;
+  assign T28 = io_ocp_M_Cmd == 3'h1;
   assign T29 = io_ocp_M_Cmd == 3'h2;
-  assign T30 = state == 3'h4;
-  assign T31 = T30 & T32;
-  assign T32 = T34 & T33;
-  assign T33 = io_ocp_M_Cmd == 3'h1;
-  assign T34 = T29 ^ 1'h1;
-  assign T35 = T30 & T36;
-  assign T36 = T37 ^ 1'h1;
-  assign T37 = T29 | T33;
-  assign T38 = state == 3'h1;
-  assign io_hwACtrlPins_ap_start_out = T25;
+  assign T30 = T15 & T31;
+  assign T31 = T14 ^ 1'h1;
   assign io_ocp_S_Data = rdDataReg;
-  assign T83 = reset ? 32'h0 : T39;
-  assign T39 = T28 ? 32'h1 : T40;
-  assign T40 = T68 ? 32'h0 : T41;
-  assign T41 = T64 ? 32'h0 : T42;
-  assign T42 = T60 ? 32'h0 : T43;
-  assign T43 = T56 ? 32'h0 : T44;
-  assign T44 = T52 ? 32'h0 : T45;
-  assign T45 = T46 ? 32'h0 : rdDataReg;
-  assign T46 = T5 & T47;
-  assign T47 = T51 & T48;
-  assign T48 = T50 | T49;
-  assign T49 = io_ocp_M_Cmd == 3'h1;
-  assign T50 = io_ocp_M_Cmd == 3'h2;
-  assign T51 = T2 ^ 1'h1;
-  assign T52 = T15 & T53;
-  assign T53 = T55 | T54;
-  assign T54 = io_ocp_M_Cmd == 3'h1;
-  assign T55 = io_ocp_M_Cmd == 3'h2;
-  assign T56 = T20 & T57;
-  assign T57 = T59 | T58;
-  assign T58 = io_ocp_M_Cmd == 3'h1;
-  assign T59 = io_ocp_M_Cmd == 3'h2;
-  assign T60 = T22 & T61;
-  assign T61 = T63 | T62;
-  assign T62 = io_ocp_M_Cmd == 3'h1;
-  assign T63 = io_ocp_M_Cmd == 3'h2;
-  assign T64 = T23 & T65;
-  assign T65 = T67 | T66;
-  assign T66 = io_ocp_M_Cmd == 3'h1;
-  assign T67 = io_ocp_M_Cmd == 3'h2;
-  assign T68 = T26 & T69;
-  assign T69 = T71 | T70;
-  assign T70 = io_ocp_M_Cmd == 3'h1;
-  assign T71 = io_ocp_M_Cmd == 3'h2;
+  assign T53 = reset ? 32'h0 : T32;
+  assign T32 = T16 ? 32'h1 : T33;
+  assign T33 = T42 ? 32'h0 : T34;
+  assign T34 = T26 ? 32'h0 : T35;
+  assign T35 = T36 ? 32'h0 : rdDataReg;
+  assign T36 = T6 & T37;
+  assign T37 = T41 & T38;
+  assign T38 = T40 | T39;
+  assign T39 = io_ocp_M_Cmd == 3'h1;
+  assign T40 = io_ocp_M_Cmd == 3'h2;
+  assign T41 = T3 ^ 1'h1;
+  assign T42 = T30 & T43;
+  assign T43 = T45 | T44;
+  assign T44 = io_ocp_M_Cmd == 3'h1;
+  assign T45 = io_ocp_M_Cmd == 3'h2;
   assign io_ocp_S_Resp = respReg;
-  assign T84 = reset ? 2'h0 : T72;
-  assign T72 = T31 ? 2'h1 : T73;
-  assign T73 = T28 ? 2'h1 : T74;
-  assign T74 = T68 ? 2'h1 : T75;
-  assign T75 = T64 ? 2'h1 : T76;
-  assign T76 = T60 ? 2'h1 : T77;
-  assign T77 = T56 ? 2'h1 : T78;
-  assign T78 = T52 ? 2'h1 : T79;
-  assign T79 = T46 ? 2'h1 : T80;
-  assign T80 = T1 ? 2'h1 : 2'h0;
+  assign T54 = reset ? 2'h0 : T46;
+  assign T46 = T19 ? 2'h1 : T47;
+  assign T47 = T16 ? 2'h1 : T48;
+  assign T48 = T42 ? 2'h1 : T49;
+  assign T49 = T26 ? 2'h1 : T50;
+  assign T50 = T36 ? 2'h1 : T51;
+  assign T51 = T2 ? 2'h1 : 2'h0;
 
   always @(posedge clk) begin
     if(reset) begin
-      state <= 3'h0;
-    end else if(T35) begin
-      state <= 3'h4;
-    end else if(T31) begin
-      state <= 3'h4;
-    end else if(T28) begin
-      state <= 3'h4;
-    end else if(T26) begin
-      state <= 3'h3;
+      state <= 2'h0;
     end else if(T23) begin
-      state <= 3'h4;
-    end else if(T22) begin
-      state <= 3'h3;
-    end else if(T20) begin
-      state <= 3'h1;
-    end else if(T15) begin
-      state <= 3'h2;
-    end else if(T1) begin
-      state <= 3'h1;
-    end
-    if(reset) begin
-      cntReg <= 5'h0;
-    end else if(T20) begin
-      cntReg <= T19;
-    end else if(T15) begin
-      cntReg <= 5'h0;
+      state <= 2'h2;
+    end else if(T19) begin
+      state <= 2'h2;
+    end else if(T16) begin
+      state <= 2'h2;
+    end else if(T30) begin
+      state <= 2'h1;
+    end else if(T13) begin
+      state <= 2'h2;
+    end else if(T2) begin
+      state <= 2'h1;
     end
     if(reset) begin
       rdDataReg <= 32'h0;
-    end else if(T28) begin
+    end else if(T16) begin
       rdDataReg <= 32'h1;
-    end else if(T68) begin
+    end else if(T42) begin
       rdDataReg <= 32'h0;
-    end else if(T64) begin
+    end else if(T26) begin
       rdDataReg <= 32'h0;
-    end else if(T60) begin
-      rdDataReg <= 32'h0;
-    end else if(T56) begin
-      rdDataReg <= 32'h0;
-    end else if(T52) begin
-      rdDataReg <= 32'h0;
-    end else if(T46) begin
+    end else if(T36) begin
       rdDataReg <= 32'h0;
     end
     if(reset) begin
       respReg <= 2'h0;
-    end else if(T31) begin
+    end else if(T19) begin
       respReg <= 2'h1;
-    end else if(T28) begin
+    end else if(T16) begin
       respReg <= 2'h1;
-    end else if(T68) begin
+    end else if(T42) begin
       respReg <= 2'h1;
-    end else if(T64) begin
+    end else if(T26) begin
       respReg <= 2'h1;
-    end else if(T60) begin
+    end else if(T36) begin
       respReg <= 2'h1;
-    end else if(T56) begin
-      respReg <= 2'h1;
-    end else if(T52) begin
-      respReg <= 2'h1;
-    end else if(T46) begin
-      respReg <= 2'h1;
-    end else if(T1) begin
+    end else if(T2) begin
       respReg <= 2'h1;
     end else begin
       respReg <= 2'h0;

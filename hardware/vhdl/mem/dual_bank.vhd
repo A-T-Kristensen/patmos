@@ -47,7 +47,6 @@ generic (
     NBANKS  : integer := 2;
     ADDRSUB : integer := 2 -- log[2](NBANKS) + 1. 
     );
-
 port (
     clk     : in  std_logic;
     -- Patmos side
@@ -76,6 +75,10 @@ end dual_bank;
 architecture rtl of dual_bank is
     
     component bram_tdp is
+    --generic (
+    --    DATA    : integer := 32;
+    --    ADDR    : integer := 16 -- ADDR bit address space from Patmos side.
+    --    );    
         port (
             -- Port A
             a_clk   : in  std_logic;
@@ -101,7 +104,9 @@ architecture rtl of dual_bank is
 
 begin 
 
-    bram_tdp_inst_0 : bram_tdp port map(
+    bram_tdp_inst_0 : bram_tdp 
+    --generic map (DATA => DATA, ADDR => ADDR)
+    port map(
         -- Port A
         a_clk   => clk,
         a_wr    => p_b1_we,
@@ -117,7 +122,9 @@ begin
         b_dout  => b1_dout
     );
 
-    bram_tdp_inst_1 : bram_tdp port map(
+    bram_tdp_inst_1 : bram_tdp 
+    --generic map (DATA => DATA, ADDR => ADDR)    
+    port map(
         -- Port A
         a_clk   => clk,
         a_wr    => p_b2_we,
@@ -149,7 +156,7 @@ begin
 
     -- Bank select for output has to be stalled a cycle
 
-    outputSelect : process(p_bank_sel_next, p_b1_data, p_b2_data) is
+    outputSelect : process(p_bank_sel_next, p_b1_data, p_b2_data)
     begin
         if(p_bank_sel_next = '0') then
             p_din <= p_b1_data;
@@ -160,7 +167,7 @@ begin
         end if;
     end process;
 
-    writeSelect : process(p_bank_sel, p_we) is
+    writeSelect : process(p_bank_sel, p_we)
     begin
         if(p_bank_sel = '0' and p_we = '1') then
             p_b1_we <= '1';

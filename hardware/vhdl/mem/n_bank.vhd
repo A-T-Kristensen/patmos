@@ -32,7 +32,7 @@ architecture rtl of n_bank is
     
     component bram_tdp is
     	generic (
-    		DATA: integer :=DATA_WIDTH;
+    		DATA: integer := DATA_WIDTH;
     		ADDR: integer := ADDR_BITS
     		);
         port (
@@ -110,14 +110,25 @@ begin
     -- output select for memory to patmos.
     --p_din <= p_b_data(to_integer(unsigned(p_bank_sel_next))).dout; -- Is this synthesisable?
 
-    outputSelect : process(p_bank_sel, p_b_data) is
+    --outputSelect : process(p_bank_sel, p_b_data)
+    --begin
+    --    for i in (NBANKS-1) downto 0 loop
+    --        if (to_integer(unsigned(p_bank_sel)) = i) then
+    --            p_din <= p_b_data(i).dout;
+    --        end if;
+    --    end loop;
+    --end process;    
+
+    outputSelect : process(p_bank_sel, p_b_data)
     begin
-        for i in (NBANKS-1) downto 0 loop
-            if (to_integer(unsigned(p_bank_sel)) = i) then
-                p_din <= p_b_data(i).dout;
-            end if;
-        end loop;
-    end process;    
+        if p_bank_sel = '0' then
+                p_din <= p_b_data(0).dout;
+        elsif p_bank_sel = '1' then
+                p_din <= p_b_data(1).dout;
+        else 
+                p_din <= (others => '0');
+        end if;
+    end process;     
 
     -- Combinational logic for controlling the write enable on each memory bank
     -- from the Patmos CPU

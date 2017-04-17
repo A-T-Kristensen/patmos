@@ -66,29 +66,29 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../nexys4ddr_sources/nexys4ddr.srcs/sources_1/ip/ddr2_ctrl/mig_b.prj">
+      <File Path="$PSRCDIR/sources_1/ip/ddr2_ctrl/mig_b.prj">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../nexys4ddr_sources/nexys4ddr.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../nexys4ddr_sources/nexys4ddr.srcs/sources_1/new/nexys4ddr_io.vhd">
+      <File Path="$PSRCDIR/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../nexys4ddr_sources/nexys4ddr.srcs/sources_1/ip/ddr2_ctrl/mig_a.prj">
+      <File Path="$PSRCDIR/sources_1/new/nexys4ddr_io.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/ddr2_ctrl/mig_a.prj">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../vhdl/bram/bram_tdp.vhd">
+      <File Path="$PPRDIR/../../vhdl/mem/bram_tdp.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -142,7 +142,7 @@
       </Config>
     </FileSet>
     <FileSet Name="ddr2_ctrl" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ddr2_ctrl">
-      <File Path="$PPRDIR/../nexys4ddr_sources/nexys4ddr.srcs/sources_1/ip/ddr2_ctrl/ddr2_ctrl.xci">
+      <File Path="$PSRCDIR/sources_1/ip/ddr2_ctrl/ddr2_ctrl.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -155,7 +155,7 @@
       </Config>
     </FileSet>
     <FileSet Name="clk_manager" Type="BlockSrcs" RelSrcDir="$PSRCDIR/clk_manager">
-      <File Path="$PPRDIR/../nexys4ddr_sources/nexys4ddr.srcs/sources_1/ip/clk_manager/clk_manager.xci">
+      <File Path="$PSRCDIR/sources_1/ip/clk_manager/clk_manager.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>

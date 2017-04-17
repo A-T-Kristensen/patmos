@@ -60,12 +60,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../vhdl/patmos_nexys4ddr.vhdl">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/ip/ddr2_ctrl/mig_b.prj">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -88,25 +82,43 @@
           <Attr Name="UsedIn" Val="synthesis"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../vhdl/bram/bram_tdp.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_1b/syn/vhdl/matrixmul.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul_mul_32scud.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_1b/syn/vhdl/matrixmul_mul_32scud.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul_urem_4ndEe.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_1b/syn/vhdl/matrixmul_mux_42_bkb.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul_mux_42_bkb.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/dual_bank.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/bram_tdp.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/patmos_nexys4ddr.vhdl">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

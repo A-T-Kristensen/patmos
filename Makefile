@@ -34,8 +34,8 @@ VENDOR?=XilinxVivado
 #BOARD=ml605oc
 #BOARD=bemicro
 #BOARD?=altde2-70
-BOARD?=altde2-115
-#BOARD?=nexys4ddr
+#BOARD?=altde2-115
+BOARD?=nexys4ddr
 
 # My custom projects for HwAs built using HLS
 #BOARD?=matmul_1b

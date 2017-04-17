@@ -17,7 +17,7 @@ package HWA_PACKAGE is
     constant DATA_WIDTH : integer := 32; 
     constant ADDR_WIDTH    : integer := 16; -- Patmos has a 16-bit local address space
 
-    constant NBANKS  : integer := 4; -- Number of banks (should this not be placed somewhere else?)
+    constant NBANKS  : integer := 2; -- Number of banks (should this not be placed somewhere else?)
 
     constant ADDR_SELECT_BITS : integer := integer(ceil(log2(real(NBANKS)))); -- Number of bits used to select between banks from Patmos
 
