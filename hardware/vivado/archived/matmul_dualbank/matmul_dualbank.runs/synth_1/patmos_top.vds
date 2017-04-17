@@ -1,0 +1,159 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Mon Apr 17 20:37:36 2017
+# Process ID: 33557
+# Current directory: /home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1
+# Command line: vivado -log patmos_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source patmos_top.tcl
+# Log file: /home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/patmos_top.vds
+# Journal file: /home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source patmos_top.tcl -notrace
+Command: synth_design -top patmos_top -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 33563 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1074.062 ; gain = 142.086 ; free physical = 9809 ; free virtual = 13960
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'patmos_top' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:49]
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:289]
+INFO: [Synth 8-3491] module 'clk_manager' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/.Xil/Vivado-33557-ubuntu/realtime/clk_manager_stub.v:5' bound to instance 'clk_manager_inst_0' of component 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:365]
+INFO: [Synth 8-638] synthesizing module 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/.Xil/Vivado-33557-ubuntu/realtime/clk_manager_stub.v:5]
+INFO: [Synth 8-256] done synthesizing module 'clk_manager' (1#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/.Xil/Vivado-33557-ubuntu/realtime/clk_manager_stub.v:5]
+INFO: [Synth 8-3491] module 'ocp_burst_to_ddr2_ctrl' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:34' bound to instance 'ocp_burst_to_ddr2_ctrl_inst_0' of component 'ocp_burst_to_ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:409]
+INFO: [Synth 8-638] synthesizing module 'ocp_burst_to_ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:78]
+INFO: [Synth 8-256] done synthesizing module 'ocp_burst_to_ddr2_ctrl' (2#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:78]
+INFO: [Synth 8-3491] module 'ddr2_ctrl' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/.Xil/Vivado-33557-ubuntu/realtime/ddr2_ctrl_stub.v:5' bound to instance 'ddr2_ctrl_inst_0' of component 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:439]
+INFO: [Synth 8-638] synthesizing module 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/.Xil/Vivado-33557-ubuntu/realtime/ddr2_ctrl_stub.v:5]
+INFO: [Synth 8-256] done synthesizing module 'ddr2_ctrl' (3#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.runs/synth_1/.Xil/Vivado-33557-ubuntu/realtime/ddr2_ctrl_stub.v:5]
+INFO: [Synth 8-3491] module 'Patmos' declared at '/home/patmos/t-crest/patmos/hardware/build/Patmos.v:18081' bound to instance 'patmos_inst_0' of component 'Patmos' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:480]
+INFO: [Synth 8-638] synthesizing module 'Patmos' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:18081]
+INFO: [Synth 8-638] synthesizing module 'PatmosCore' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:17170]
+INFO: [Synth 8-638] synthesizing module 'MCache' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2383]
+INFO: [Synth 8-638] synthesizing module 'MCacheCtrl' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:1]
+INFO: [Synth 8-256] done synthesizing module 'MCacheCtrl' (4#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:1]
+INFO: [Synth 8-638] synthesizing module 'MCacheReplFifo' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:447]
+INFO: [Synth 8-256] done synthesizing module 'MCacheReplFifo' (5#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:447]
+INFO: [Synth 8-638] synthesizing module 'MCacheMem' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2350]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_1' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2296]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_1' (6#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2296]
+INFO: [Synth 8-256] done synthesizing module 'MCacheMem' (7#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2350]
+INFO: [Synth 8-256] done synthesizing module 'MCache' (8#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2383]
+INFO: [Synth 8-638] synthesizing module 'Fetch' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2581]
+INFO: [Synth 8-226] default block is never used [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2765]
+INFO: [Synth 8-226] default block is never used [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:3032]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_0' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2544]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_0' (9#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2544]
+INFO: [Synth 8-256] done synthesizing module 'Fetch' (10#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:2581]
+INFO: [Synth 8-638] synthesizing module 'Decode' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:3532]
+INFO: [Synth 8-638] synthesizing module 'RegisterFile' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:3437]
+INFO: [Synth 8-256] done synthesizing module 'RegisterFile' (11#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:3437]
+INFO: [Synth 8-256] done synthesizing module 'Decode' (12#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:3532]
+INFO: [Synth 8-638] synthesizing module 'Execute' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:4401]
+INFO: [Synth 8-256] done synthesizing module 'Execute' (13#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:4401]
+INFO: [Synth 8-638] synthesizing module 'Memory' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:5951]
+INFO: [Synth 8-256] done synthesizing module 'Memory' (14#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:5951]
+INFO: [Synth 8-638] synthesizing module 'WriteBack' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:6624]
+INFO: [Synth 8-256] done synthesizing module 'WriteBack' (15#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:6624]
+INFO: [Synth 8-638] synthesizing module 'Exceptions' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:6648]
+WARNING: [Synth 8-3936] Found unconnected internal register 'masterReg_Addr_reg' and it is trimmed from '32' to '8' bits. [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:7785]
+INFO: [Synth 8-256] done synthesizing module 'Exceptions' (16#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:6648]
+INFO: [Synth 8-638] synthesizing module 'InOut' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10430]
+INFO: [Synth 8-638] synthesizing module 'Spm' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9073]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_2' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9036]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_2' (17#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9036]
+INFO: [Synth 8-256] done synthesizing module 'Spm' (18#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9073]
+INFO: [Synth 8-638] synthesizing module 'OcpCoreBus' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9184]
+INFO: [Synth 8-256] done synthesizing module 'OcpCoreBus' (19#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9184]
+INFO: [Synth 8-638] synthesizing module 'OcpIOBus' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9209]
+INFO: [Synth 8-256] done synthesizing module 'OcpIOBus' (20#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9209]
+INFO: [Synth 8-638] synthesizing module 'Uart' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9338]
+INFO: [Synth 8-638] synthesizing module 'Queue' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9240]
+INFO: [Synth 8-256] done synthesizing module 'Queue' (21#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9240]
+WARNING: [Synth 8-350] instance 'txQueue' of module 'Queue' requires 9 connections, but only 8 given [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9646]
+WARNING: [Synth 8-350] instance 'rxQueue' of module 'Queue' requires 9 connections, but only 7 given [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9655]
+INFO: [Synth 8-256] done synthesizing module 'Uart' (22#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9338]
+INFO: [Synth 8-638] synthesizing module 'Nexys4DDRIO' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9798]
+INFO: [Synth 8-256] done synthesizing module 'Nexys4DDRIO' (23#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9798]
+INFO: [Synth 8-638] synthesizing module 'BRamCtrl' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9826]
+INFO: [Synth 8-256] done synthesizing module 'BRamCtrl' (24#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9826]
+INFO: [Synth 8-638] synthesizing module 'HwACtrl' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9883]
+INFO: [Synth 8-256] done synthesizing module 'HwACtrl' (25#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:9883]
+INFO: [Synth 8-638] synthesizing module 'CpuInfo' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10076]
+WARNING: [Synth 8-3936] Found unconnected internal register 'masterReg_Addr_reg' and it is trimmed from '32' to '16' bits. [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10160]
+INFO: [Synth 8-256] done synthesizing module 'CpuInfo' (26#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10076]
+INFO: [Synth 8-638] synthesizing module 'Timer' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10209]
+WARNING: [Synth 8-3936] Found unconnected internal register 'masterReg_Addr_reg' and it is trimmed from '32' to '4' bits. [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10325]
+INFO: [Synth 8-256] done synthesizing module 'Timer' (27#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10209]
+INFO: [Synth 8-256] done synthesizing module 'InOut' (28#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:10430]
+INFO: [Synth 8-638] synthesizing module 'DataCache' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16747]
+INFO: [Synth 8-638] synthesizing module 'DirectMappedCache' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:11503]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_3' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:11395]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_3' (29#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:11395]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_4' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:11449]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_4' (30#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:11449]
+INFO: [Synth 8-256] done synthesizing module 'DirectMappedCache' (31#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:11503]
+INFO: [Synth 8-638] synthesizing module 'StackCache' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:15840]
+INFO: [Synth 8-256] done synthesizing module 'StackCache' (32#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:15840]
+INFO: [Synth 8-638] synthesizing module 'NullCache' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16394]
+INFO: [Synth 8-256] done synthesizing module 'NullCache' (33#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16394]
+WARNING: [Synth 8-350] instance 'bp' of module 'NullCache' requires 19 connections, but only 17 given [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:17010]
+INFO: [Synth 8-638] synthesizing module 'OcpBurstBus' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16550]
+INFO: [Synth 8-256] done synthesizing module 'OcpBurstBus' (34#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16550]
+INFO: [Synth 8-638] synthesizing module 'WriteNoBuffer' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16584]
+INFO: [Synth 8-256] done synthesizing module 'WriteNoBuffer' (35#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16584]
+WARNING: [Synth 8-350] instance 'wc' of module 'WriteNoBuffer' requires 29 connections, but only 28 given [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:17070]
+INFO: [Synth 8-256] done synthesizing module 'DataCache' (36#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:16747]
+INFO: [Synth 8-638] synthesizing module 'NoMemoryManagement' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:17120]
+INFO: [Synth 8-256] done synthesizing module 'NoMemoryManagement' (37#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:17120]
+INFO: [Synth 8-256] done synthesizing module 'PatmosCore' (38#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:17170]
+WARNING: [Synth 8-350] instance 'core' of module 'PatmosCore' requires 48 connections, but only 47 given [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:18192]
+INFO: [Synth 8-638] synthesizing module 'MemBridge' [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:18046]
+INFO: [Synth 8-256] done synthesizing module 'MemBridge' (39#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:18046]
+INFO: [Synth 8-256] done synthesizing module 'Patmos' (40#1) [/home/patmos/t-crest/patmos/hardware/build/Patmos.v:18081]
+INFO: [Synth 8-3491] module 'nexys4ddr_io' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.srcs/sources_1/new/nexys4ddr_io.vhd:5' bound to instance 'nexys4ddr_io_inst_0' of component 'nexys4ddr_io' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:536]
+INFO: [Synth 8-638] synthesizing module 'nexys4ddr_io' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.srcs/sources_1/new/nexys4ddr_io.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'nexys4ddr_io' (41#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/matmul_dualbank.srcs/sources_1/new/nexys4ddr_io.vhd:27]
+INFO: [Synth 8-3491] module 'bram_tdp' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/bram_tdp.vhd:42' bound to instance 'bram_tdp_inst_0' of component 'bram_tdp' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:556]
+INFO: [Synth 8-638] synthesizing module 'bram_tdp' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/bram_tdp.vhd:67]
+	Parameter DATA bound to: 32 - type: integer 
+	Parameter ADDR bound to: 8 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'bram_tdp' (42#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/bram_tdp.vhd:67]
+ERROR: [Synth 8-549] port width mismatch for port 'a_addr': port width = 8, actual width = 16 [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:556]
+ERROR: [Synth 8-549] port width mismatch for port 'b_addr': port width = 8, actual width = 16 [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:556]
+WARNING: [Synth 8-5640] Port 'a_0_addr_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_0_en_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_0_wen_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_0_din_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_0_dout_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_0_clk_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_0_rst_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_1_addr_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_1_en_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_1_wen_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_1_din_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_1_dout_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_1_clk_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+WARNING: [Synth 8-5640] Port 'a_1_rst_a' is missing in component declaration [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:224]
+INFO: [Synth 8-3491] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' bound to instance 'matrixmul_inst_0' of component 'matrixmul' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-3493] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' does not have matching formal port for component port 'a_addr_a' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-3493] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' does not have matching formal port for component port 'a_en_a' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-3493] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' does not have matching formal port for component port 'a_wen_a' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-3493] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' does not have matching formal port for component port 'a_din_a' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-3493] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' does not have matching formal port for component port 'a_dout_a' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-3493] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' does not have matching formal port for component port 'a_clk_a' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-3493] module 'matrixmul' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_2b/syn/vhdl/matrixmul.vhd:12' does not have matching formal port for component port 'a_rst_a' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:572]
+ERROR: [Synth 8-285] failed synthesizing module 'patmos_top' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_dualbank/patmos_nexys4ddr.vhdl:49]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1167.531 ; gain = 235.555 ; free physical = 9716 ; free virtual = 13866
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+107 Infos, 22 Warnings, 0 Critical Warnings and 11 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 17 20:37:49 2017...

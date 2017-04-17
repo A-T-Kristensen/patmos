@@ -337,8 +337,8 @@ architecture rtl of patmos_top is
 	attribute dont_touch : string;  
 
 	attribute dont_touch of hwa_addr_i 	: signal is "true";		
-	attribute dont_touch of bram_m_i 	: signal is "true";		
-	attribute dont_touch of bram_s_i 	: signal is "true";		
+	--attribute dont_touch of bram_m_i	: signal is "true";		
+	--attribute dont_touch of bram_s_i 	: signal is "true";		
 
 	------------------------------
 	-- 	SIGNALS FOR DEBUGGING	--

@@ -60,7 +60,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../vhdl/patmos_nexys4ddr.vhdl">
+      <File Path="$PPRDIR/patmos_nexys4ddr.vhdl">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

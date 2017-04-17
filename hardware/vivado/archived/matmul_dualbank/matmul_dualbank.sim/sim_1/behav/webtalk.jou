@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Wed Mar  8 09:42:13 2017
+# Process ID: 55990
+# Current directory: /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.sim/sim_1/behav
+# Command line: wbtcv -mode batch -source /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.sim/sim_1/behav/xsim.dir/patmos_top_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.sim/sim_1/behav/webtalk.log
+# Journal file: /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.sim/sim_1/behav/webtalk.jou
+#-----------------------------------------------------------
+source /home/patmos/t-crest/patmos/hardware/vivado/nexys4ddr/nexys4ddr.sim/sim_1/behav/xsim.dir/patmos_top_behav/webtalk/xsim_webtalk.tcl -notrace
