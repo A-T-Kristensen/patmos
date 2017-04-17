@@ -14,7 +14,6 @@
 
 #include <stdio.h>
 
-
 #define DIM 4
 
 #define LED_RUN_LENGTH 2000
@@ -36,7 +35,7 @@ int main()
 	mat_type in_bram[3*DIM][DIM]; // Data to be written to the bram.
 
 	int err_cnt = 0;
-	int i, j;
+	int i, j, k;
 
 	// Initialize matrices
 
@@ -54,43 +53,50 @@ int main()
    for(i = 0; i < DIM; i++) {
       for(j = 0; j < DIM; j++) {
       	sw_result[i][j] = 0;      	
-         for(int k = 0; k < DIM; k++) {
+         for(k = 0; k < DIM; k++) {
             sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
          }
       }
    }	
 
-   // Write to bram
+   // Write to BRAM
 
-   //We write linearly, first to bank 1
+   // Bank 1
+
     for(i = 0; i < 3*DIM*DIM/2; i++)
     {
         *(bank1_ptr + i) = *((&in_bram[0][0]) + i);
     }
+
+    // Bank 2
 
     for(i = 0; i < DIM*DIM/2; i++)
     {
         *(bank2_ptr + i) = *((&in_bram[0][0]) + i + 3*DIM*DIM/2); 
     }    
 
-
-    // START HLS MODULE
+    // Start HLS module
 	
 	*hls_ptr = 1;
 
-	// POLL STATUS OF HLS MODULE
+	// Poll status of HLS module
     
     while((*hls_ptr) != 1);
-	
-	// CHECK RESULTS
-	
+
+    // Read back the data    
+
     for(i = 0; i < DIM*DIM; i++)
     {
         *((&hw_result[0][0]) + i)= *(bank2_ptr + i + 8); // Increment by 8 in memory bank 2
+    }    
+	
+	// Check results
 
-        printf("%d ", *((&hw_result[0][0]) +i) );
-        //printf("%f ", *((&hw_result[0][0]) +i) );
-
+    puts("Checking results");	
+	
+    for(i = 0; i < DIM*DIM; i++)
+    {
+        printf("%d ", *((&hw_result[0][0]) + i) );
 
         if((i+1) % DIM == 0) {
         	printf("\n");
@@ -138,10 +144,8 @@ int main()
 	else 
 	{
 		puts("Results incorrect");			
-		// Flash 111 LEDS		
 		for (;;) 
 		{
-
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;

@@ -155,11 +155,11 @@ architecture rtl of patmos_top is
 
 	-- Signals for hls accel
 
-	signal hwACtrlPins_ap_start_out 	: std_logic;
-	signal hwACtrlPins_ap_reset_out 	: std_logic;
-	signal hwACtrlPins_ap_ready_in 	: std_logic;
-	signal hwACtrlPins_ap_idle_in 	: std_logic;
-	signal hwACtrlPins_ap_done_in 	: std_logic;
+	signal hwACtrl_ap_start_out 	: std_logic;
+	signal hwACtrl_ap_reset_out 	: std_logic;
+	signal hwACtrl_ap_ready_in 	: std_logic;
+	signal hwACtrl_ap_idle_in 	: std_logic;
+	signal hwACtrl_ap_done_in 	: std_logic;
 
     signal bram_m_i : bank_master_a;
     signal bram_s_i: bank_slave_a;	
@@ -244,11 +244,11 @@ begin
 		io_bRamCtrlPins_MByteEn => bRamCtrl_MByteEn,
 		io_bRamCtrlPins_SData   => bRamCtrl_SData,
 			
-		io_hwACtrlPins_ap_start_out	=> hwACtrlPins_ap_start_out,
-		io_hwACtrlPins_ap_reset_out 	=> hwACtrlPins_ap_reset_out,
-		io_hwACtrlPins_ap_ready_in 	=> hwACtrlPins_ap_ready_in,
-		io_hwACtrlPins_ap_idle_in 	=> hwACtrlPins_ap_idle_in,
-		io_hwACtrlPins_ap_done_in 	=> hwACtrlPins_ap_done_in		
+		io_hwACtrlPins_ap_start_out	=> hwACtrl_ap_start_out,
+		io_hwACtrlPins_ap_reset_out 	=> hwACtrl_ap_reset_out,
+		io_hwACtrlPins_ap_ready_in 	=> hwACtrl_ap_ready_in,
+		io_hwACtrlPins_ap_idle_in 	=> hwACtrl_ap_idle_in,
+		io_hwACtrlPins_ap_done_in 	=> hwACtrl_ap_done_in		
 
 	);		
 
@@ -270,10 +270,10 @@ begin
 	matrixmul_inst_0 : matrixmul port map(
 		ap_clk 		=> clk_int,
 		ap_rst 		=> hlsReset,
-		ap_start 	=> hwACtrlPins_ap_start_out,
-		ap_done 	=> hwACtrlPins_ap_done_in,
-		ap_idle 	=> hwACtrlPins_ap_idle_in,
-		ap_ready 	=> hwACtrlPins_ap_ready_in,
+		ap_start 	=> hwACtrl_ap_start_out,
+		ap_done 	=> hwACtrl_ap_done_in,
+		ap_idle 	=> hwACtrl_ap_idle_in,
+		ap_ready 	=> hwACtrl_ap_ready_in,
 
 		a_0_Addr_A 	=> hwa_addr_i(0).addr,
 		a_0_EN_A  	=> open,
@@ -292,7 +292,7 @@ begin
 		a_1_Rst_A 	=> open
 	);			
 							  
-	hlsReset <= hwACtrlPins_ap_reset_out or int_res;		
+	hlsReset <= hwACtrl_ap_reset_out or int_res;		
 
 	addr_map:
 	for i in (NBANKS-1) downto 0 generate

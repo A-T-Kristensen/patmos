@@ -6,15 +6,15 @@
     Copyright: DTU, BSD License
 */
 
-//We need this if we want to make it a bootapp
+// Required to make bootapp
 
 #include "include/patio.h"
 #include "include/bootable.h"
 
-// These are used to write to SPM and IO devices
+// Files required for memory mapped IO devices
+// patmos.h defines _IODEV, used to access memory mapped IO devices.
 
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+#include <machine/patmos.h> 
 
 #define DIM 4
 
@@ -33,7 +33,7 @@ int main()
 	int in_bram[3*DIM][DIM]; // Data to be written to the bram.
 
 	int err_cnt = 0;
-	int i, j;
+	int i, j, k;
 
 	// Initialize matrices
 
@@ -51,34 +51,38 @@ int main()
    for(i = 0; i < DIM; i++) {
       for(j = 0; j < DIM; j++) {
       	sw_result[i][j] = 0;
-         for(int k = 0; k < DIM; k++) {
+         for(k = 0; k < DIM; k++) {
             sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
          }
       }
    }	
 
-   // Write to bram
+   // Write to BRAM
 
-   //We write linearly
     for(i = 0; i < 2*DIM*DIM; i++)
     {
         *(bram_ptr + i) = *((&in_bram[0][0]) + i);
     }
 
-    // START HLS MODULE
+    // Start HLS module
 	
 	*hls_ptr = 1;
 
-	// POLL STATUS OF HLS MODULE
+	// Poll status of HLS module
     
     while((*hls_ptr) != 1);
-	
-	// CHECK RESULTS
-	
+
+    // Read back the data
+
     for(i = 0; i < DIM*DIM; i++)
     {
-        *((&hw_result[0][0]) + i)= *(bram_ptr + i + 2*DIM*DIM); // Increment by 2*DIM*DIM for result
-
+        *((&hw_result[0][0]) + i) = *(bram_ptr + i + 2*DIM*DIM); // Increment by 2*DIM*DIM for result
+    }    
+	
+	// Check results
+	
+    for(i = 0; i < DIM*DIM; i++)
+    {		
 		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
 		{
 			err_cnt++;	
@@ -119,7 +123,6 @@ int main()
 
 	else 
 	{
-		// Flash 111 LEDS		
 		for (;;) 
 		{
 

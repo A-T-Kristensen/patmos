@@ -2636,10 +2636,10 @@ module Fetch(input clk, input reset,
   wire[31:0] instr_a_rom;
   reg [31:0] data_odd;
   reg [31:0] T18;
-  wire[6:0] T20;
+  wire[5:0] T20;
   reg [31:0] data_even;
   reg [31:0] T21;
-  wire[6:0] T23;
+  wire[5:0] T23;
   wire[29:0] addrEven;
   wire[29:0] T24;
   reg [29:0] addrEvenReg;
@@ -2773,124 +2773,60 @@ module Fetch(input clk, input reset,
     7: T18 = 32'hcfc20000;
     8: T18 = 32'h4ac22085;
     9: T18 = 32'h400000;
-    10: T18 = 32'h27c;
-    11: T18 = 32'h7ff180;
-    12: T18 = 32'h25a0030;
-    13: T18 = 32'h100;
-    14: T18 = 32'he3000;
-    15: T18 = 32'ha2000;
-    16: T18 = 32'h2124400;
-    17: T18 = 32'h567040;
-    18: T18 = 32'h2c4b500;
-    19: T18 = 32'h2c46480;
-    20: T18 = 32'ha5004;
-    21: T18 = 32'h2028261;
-    22: T18 = 32'hc6004;
-    23: T18 = 32'h42010;
-    24: T18 = 32'h2024261;
-    25: T18 = 32'h21010;
-    26: T18 = 32'h3f080;
-    27: T18 = 32'hc62004;
-    28: T18 = 32'h20e4180;
-    29: T18 = 32'h101000;
-    30: T18 = 32'h28c7101;
-    31: T18 = 32'h60004;
-    32: T18 = 32'h15f040;
-    33: T18 = 32'h2949110;
-    34: T18 = 32'h200a220;
-    35: T18 = 32'h2540032;
-    36: T18 = 32'h2989104;
-    37: T18 = 32'h200c3a0;
-    38: T18 = 32'h2580032;
-    39: T18 = 32'h2023031;
-    40: T18 = 32'h212c480;
-    41: T18 = 32'h2129500;
-    42: T18 = 32'h2c48480;
-    43: T18 = 32'h42001;
-    44: T18 = 32'hcffffde;
-    45: T18 = 32'h60000;
-    46: T18 = 32'h202308d;
-    47: T18 = 32'h87c4300d;
-    48: T18 = 32'h2c22080;
-    49: T18 = 32'h20020;
-    50: T18 = 32'hcbffff7;
-    51: T18 = 32'h87c40000;
-    52: T18 = 32'h2c22080;
-    53: T18 = 32'h87c20000;
-    54: T18 = 32'h2821080;
-    55: T18 = 32'h20210e1;
-    56: T18 = 32'hcbffffa;
-    57: T18 = 32'h87c8100d;
-    58: T18 = 32'h206118d;
-    59: T18 = 32'h2863100;
-    60: T18 = 32'h20241b1;
-    61: T18 = 32'h2043100;
-    62: T18 = 32'h2021861;
-    63: T18 = 32'h20002;
-    64: T18 = 32'h4c800010;
-    65: T18 = 32'h8421001;
-    66: T18 = 32'hf0090000;
-    67: T18 = 32'hac22000;
-    68: T18 = 32'hcfc40000;
-    69: T18 = 32'h4ac22080;
-    70: T18 = 32'h4ac22080;
-    71: T18 = 32'h4ac22080;
-    72: T18 = 32'h4c00008;
-    73: T18 = 32'h87c60000;
-    74: T18 = 32'h40003;
-    75: T18 = 32'h421001;
-    76: T18 = 32'h2021031;
-    77: T18 = 32'h87c20000;
-    78: T18 = 32'h2c21000;
-    79: T18 = 32'h2c21000;
-    80: T18 = 32'h2c21000;
-    81: T18 = 32'h2c21100;
-    82: T18 = 32'h2c21100;
-    83: T18 = 32'h2c21000;
-    84: T18 = 32'h2c21000;
-    85: T18 = 32'h2c21100;
-    86: T18 = 32'h2c21100;
-    87: T18 = 32'h2c21000;
-    88: T18 = 32'h2c21000;
-    89: T18 = 32'h2c21000;
-    90: T18 = 32'h0;
-    91: T18 = 32'h0;
-    92: T18 = 32'h0;
-    93: T18 = 32'h0;
-    94: T18 = 32'h0;
-    95: T18 = 32'h0;
-    96: T18 = 32'h0;
-    97: T18 = 32'h0;
-    98: T18 = 32'h0;
-    99: T18 = 32'h0;
-    100: T18 = 32'h0;
-    101: T18 = 32'h0;
-    102: T18 = 32'h0;
-    103: T18 = 32'h0;
-    104: T18 = 32'h0;
-    105: T18 = 32'h0;
-    106: T18 = 32'h0;
-    107: T18 = 32'h0;
-    108: T18 = 32'h0;
-    109: T18 = 32'h0;
-    110: T18 = 32'h0;
-    111: T18 = 32'h0;
-    112: T18 = 32'h0;
-    113: T18 = 32'h0;
-    114: T18 = 32'h0;
-    115: T18 = 32'h0;
-    116: T18 = 32'h0;
-    117: T18 = 32'h0;
-    118: T18 = 32'h0;
-    119: T18 = 32'h0;
-    120: T18 = 32'h0;
-    121: T18 = 32'h0;
-    122: T18 = 32'h0;
-    123: T18 = 32'h0;
-    124: T18 = 32'h0;
-    125: T18 = 32'h0;
-    126: T18 = 32'h0;
-    127: T18 = 32'h0;
+    10: T18 = 32'h150;
+    11: T18 = 32'hf00b0000;
+    12: T18 = 32'h2c22080;
+    13: T18 = 32'h87c80000;
+    14: T18 = 32'h24a0030;
+    15: T18 = 32'h2c22081;
+    16: T18 = 32'h2c22082;
+    17: T18 = 32'h2c22083;
+    18: T18 = 32'h2c22084;
+    19: T18 = 32'h2c22085;
+    20: T18 = 32'h2c22086;
+    21: T18 = 32'h2c22087;
+    22: T18 = 32'h2c22088;
+    23: T18 = 32'h2c22089;
+    24: T18 = 32'hc41002;
+    25: T18 = 32'h2063101;
+    26: T18 = 32'h2842080;
+    27: T18 = 32'h2c43100;
+    28: T18 = 32'h44000a;
+    29: T18 = 32'hcbffff6;
+    30: T18 = 32'h40000;
+    31: T18 = 32'h206118d;
+    32: T18 = 32'h2863100;
+    33: T18 = 32'h20211b1;
+    34: T18 = 32'h2043100;
+    35: T18 = 32'h20215e1;
+    36: T18 = 32'h20002;
+    37: T18 = 32'h4c800010;
+    38: T18 = 32'h8421001;
+    39: T18 = 32'hf0090000;
+    40: T18 = 32'hac22000;
+    41: T18 = 32'hcfc40000;
+    42: T18 = 32'h4ac22080;
+    43: T18 = 32'h4ac22080;
+    44: T18 = 32'h4ac22080;
+    45: T18 = 32'h40001;
+    46: T18 = 32'hf0090000;
+    47: T18 = 32'hac23100;
+    48: T18 = 32'hac23100;
+    49: T18 = 32'hf0090000;
+    50: T18 = 32'h4ac21000;
+    51: T18 = 32'h4fffff7;
+    52: T18 = 32'h48020002;
+    53: T18 = 32'h0;
+    54: T18 = 32'h0;
+    55: T18 = 32'h0;
+    56: T18 = 32'h0;
+    57: T18 = 32'h0;
+    58: T18 = 32'h0;
+    59: T18 = 32'h0;
+    60: T18 = 32'h0;
+    61: T18 = 32'h0;
+    62: T18 = 32'h0;
+    63: T18 = 32'h0;
     default: begin
       T18 = 32'bx;
 `ifndef SYNTHESIS
@@ -2900,7 +2836,7 @@ module Fetch(input clk, input reset,
 `endif
     end
   endcase
-  assign T20 = addrOdd[3'h7:1'h1];
+  assign T20 = addrOdd[3'h6:1'h1];
   always @(*) case (T23)
     0: T21 = 32'h50;
     1: T21 = 32'h20700;
@@ -2913,123 +2849,59 @@ module Fetch(input clk, input reset,
     8: T21 = 32'h80000000;
     9: T21 = 32'h400000;
     10: T21 = 32'h4000016;
-    11: T21 = 32'h80000;
-    12: T21 = 32'h3f040;
-    13: T21 = 32'h87c7f000;
-    14: T21 = 32'h5f000;
-    15: T21 = 32'hc1000;
-    16: T21 = 32'h100000;
-    17: T21 = 32'h149001;
-    18: T21 = 32'h2c45500;
-    19: T21 = 32'h129005;
-    20: T21 = 32'h2c47480;
-    21: T21 = 32'h108001;
-    22: T21 = 32'hcfffff5;
-    23: T21 = 32'he7004;
-    24: T21 = 32'h84001;
-    25: T21 = 32'hcffffeb;
-    26: T21 = 32'h63010;
-    27: T21 = 32'h40000;
-    28: T21 = 32'h9f000;
-    29: T21 = 32'h2887103;
-    30: T21 = 32'h28a7102;
-    31: T21 = 32'h28e7100;
-    32: T21 = 32'hd23002;
-    33: T21 = 32'h212a481;
-    34: T21 = 32'h463001;
-    35: T21 = 32'h296910c;
-    36: T21 = 32'h200b2a0;
-    37: T21 = 32'h2560032;
-    38: T21 = 32'h2929108;
-    39: T21 = 32'h2009320;
-    40: T21 = 32'h2520032;
-    41: T21 = 32'h2129580;
-    42: T21 = 32'hcffffec;
-    43: T21 = 32'h108004;
-    44: T21 = 32'h2022261;
-    45: T21 = 32'h21010;
-    46: T21 = 32'h3f0c0;
-    47: T21 = 32'h2821100;
-    48: T21 = 32'hf00b0000;
-    49: T21 = 32'h63001;
-    50: T21 = 32'h20230b1;
-    51: T21 = 32'h20001;
-    52: T21 = 32'hf00c0000;
-    53: T21 = 32'h40000;
-    54: T21 = 32'hf00c0000;
-    55: T21 = 32'h400000;
-    56: T21 = 32'h20000;
-    57: T21 = 32'h7f080;
-    58: T21 = 32'hf00b0080;
-    59: T21 = 32'h2884080;
-    60: T21 = 32'h400000;
-    61: T21 = 32'h2060051;
-    62: T21 = 32'h21001;
-    63: T21 = 32'hcbffff4;
-    64: T21 = 32'h2022031;
-    65: T21 = 32'h2021031;
-    66: T21 = 32'h8fc40000;
-    67: T21 = 32'hac22000;
-    68: T21 = 32'h48020007;
-    69: T21 = 32'hf0090000;
-    70: T21 = 32'h4ac22080;
-    71: T21 = 32'h4fffff4;
-    72: T21 = 32'h48020002;
-    73: T21 = 32'h400000;
-    74: T21 = 32'hf0090000;
-    75: T21 = 32'h2c23100;
-    76: T21 = 32'h2c23100;
-    77: T21 = 32'hcbffffb;
-    78: T21 = 32'hf0090000;
-    79: T21 = 32'h4000f;
-    80: T21 = 32'h2c21000;
-    81: T21 = 32'h2c21100;
-    82: T21 = 32'h2c21100;
-    83: T21 = 32'h2c21000;
-    84: T21 = 32'h2c21000;
-    85: T21 = 32'h4003f;
-    86: T21 = 32'h2c21100;
-    87: T21 = 32'h2c21100;
-    88: T21 = 32'h2c21000;
-    89: T21 = 32'h4ffffe7;
-    90: T21 = 32'h20002;
-    91: T21 = 32'h0;
-    92: T21 = 32'h0;
-    93: T21 = 32'h0;
-    94: T21 = 32'h0;
-    95: T21 = 32'h0;
-    96: T21 = 32'h0;
-    97: T21 = 32'h0;
-    98: T21 = 32'h0;
-    99: T21 = 32'h0;
-    100: T21 = 32'h0;
-    101: T21 = 32'h0;
-    102: T21 = 32'h0;
-    103: T21 = 32'h0;
-    104: T21 = 32'h0;
-    105: T21 = 32'h0;
-    106: T21 = 32'h0;
-    107: T21 = 32'h0;
-    108: T21 = 32'h0;
-    109: T21 = 32'h0;
-    110: T21 = 32'h0;
-    111: T21 = 32'h0;
-    112: T21 = 32'h0;
-    113: T21 = 32'h0;
-    114: T21 = 32'h0;
-    115: T21 = 32'h0;
-    116: T21 = 32'h0;
-    117: T21 = 32'h0;
-    118: T21 = 32'h0;
-    119: T21 = 32'h0;
-    120: T21 = 32'h0;
-    121: T21 = 32'h0;
-    122: T21 = 32'h0;
-    123: T21 = 32'h0;
-    124: T21 = 32'h0;
-    125: T21 = 32'h0;
-    126: T21 = 32'h0;
-    127: T21 = 32'h0;
+    11: T21 = 32'h87c40000;
+    12: T21 = 32'h20001;
+    13: T21 = 32'h7ff028;
+    14: T21 = 32'hf00b0000;
+    15: T21 = 32'h20002;
+    16: T21 = 32'h20003;
+    17: T21 = 32'h20004;
+    18: T21 = 32'h20005;
+    19: T21 = 32'h20006;
+    20: T21 = 32'h20007;
+    21: T21 = 32'h20008;
+    22: T21 = 32'h20009;
+    23: T21 = 32'h2000a;
+    24: T21 = 32'h20000;
+    25: T21 = 32'h7f000;
+    26: T21 = 32'h2044101;
+    27: T21 = 32'h400000;
+    28: T21 = 32'h421001;
+    29: T21 = 32'h2021131;
+    30: T21 = 32'h20001;
+    31: T21 = 32'h7f000;
+    32: T21 = 32'h463004;
+    33: T21 = 32'h400000;
+    34: T21 = 32'h2060051;
+    35: T21 = 32'h21001;
+    36: T21 = 32'hcbffff6;
+    37: T21 = 32'h2022031;
+    38: T21 = 32'h2021031;
+    39: T21 = 32'h8fc40000;
+    40: T21 = 32'hac22000;
+    41: T21 = 32'h48020007;
+    42: T21 = 32'hf0090000;
+    43: T21 = 32'h4ac22080;
+    44: T21 = 32'h4fffff4;
+    45: T21 = 32'h48020002;
+    46: T21 = 32'h87c60000;
+    47: T21 = 32'h2021031;
+    48: T21 = 32'h8421001;
+    49: T21 = 32'hcfc20000;
+    50: T21 = 32'h4ac21000;
+    51: T21 = 32'h4ac21000;
+    52: T21 = 32'h4ac21000;
+    53: T21 = 32'h0;
+    54: T21 = 32'h0;
+    55: T21 = 32'h0;
+    56: T21 = 32'h0;
+    57: T21 = 32'h0;
+    58: T21 = 32'h0;
+    59: T21 = 32'h0;
+    60: T21 = 32'h0;
+    61: T21 = 32'h0;
+    62: T21 = 32'h0;
+    63: T21 = 32'h0;
     default: begin
       T21 = 32'bx;
 `ifndef SYNTHESIS
@@ -3039,7 +2911,7 @@ module Fetch(input clk, input reset,
 `endif
     end
   endcase
-  assign T23 = addrEven[3'h7:1'h1];
+  assign T23 = addrEven[3'h6:1'h1];
   assign addrEven = T24;
   assign T24 = T47 ? T25 : addrEvenReg;
   assign T71 = reset ? 30'h2 : addrEven;
@@ -11221,286 +11093,6 @@ module BRamCtrl(input clk, input reset,
   end
 endmodule
 
-module HwACtrl(input clk, input reset,
-    input  io_superMode,
-    input [2:0] io_ocp_M_Cmd,
-    input [31:0] io_ocp_M_Addr,
-    input [31:0] io_ocp_M_Data,
-    input [3:0] io_ocp_M_ByteEn,
-    output[1:0] io_ocp_S_Resp,
-    output[31:0] io_ocp_S_Data,
-    output io_hwACtrlPins_ap_start_out,
-    output io_hwACtrlPins_ap_reset_out,
-    input  io_hwACtrlPins_ap_ready_in,
-    input  io_hwACtrlPins_ap_idle_in,
-    input  io_hwACtrlPins_ap_done_in
-);
-
-  wire T0;
-  wire T1;
-  wire T2;
-  wire T3;
-  wire T4;
-  wire T5;
-  reg [2:0] state;
-  wire[2:0] T81;
-  wire[2:0] T6;
-  wire[2:0] T7;
-  wire[2:0] T8;
-  wire[2:0] T9;
-  wire[2:0] T10;
-  wire[2:0] T11;
-  wire[2:0] T12;
-  wire[2:0] T13;
-  wire[2:0] T14;
-  wire T15;
-  wire T16;
-  reg [4:0] cntReg;
-  wire[4:0] T82;
-  wire[4:0] T17;
-  wire[4:0] T18;
-  wire[4:0] T19;
-  wire T20;
-  wire T21;
-  wire T22;
-  wire T23;
-  wire T24;
-  wire T25;
-  wire T26;
-  wire T27;
-  wire T28;
-  wire T29;
-  wire T30;
-  wire T31;
-  wire T32;
-  wire T33;
-  wire T34;
-  wire T35;
-  wire T36;
-  wire T37;
-  wire T38;
-  reg [31:0] rdDataReg;
-  wire[31:0] T83;
-  wire[31:0] T39;
-  wire[31:0] T40;
-  wire[31:0] T41;
-  wire[31:0] T42;
-  wire[31:0] T43;
-  wire[31:0] T44;
-  wire[31:0] T45;
-  wire T46;
-  wire T47;
-  wire T48;
-  wire T49;
-  wire T50;
-  wire T51;
-  wire T52;
-  wire T53;
-  wire T54;
-  wire T55;
-  wire T56;
-  wire T57;
-  wire T58;
-  wire T59;
-  wire T60;
-  wire T61;
-  wire T62;
-  wire T63;
-  wire T64;
-  wire T65;
-  wire T66;
-  wire T67;
-  wire T68;
-  wire T69;
-  wire T70;
-  wire T71;
-  reg [1:0] respReg;
-  wire[1:0] T84;
-  wire[1:0] T72;
-  wire[1:0] T73;
-  wire[1:0] T74;
-  wire[1:0] T75;
-  wire[1:0] T76;
-  wire[1:0] T77;
-  wire[1:0] T78;
-  wire[1:0] T79;
-  wire[1:0] T80;
-
-`ifndef SYNTHESIS
-// synthesis translate_off
-  integer initvar;
-  initial begin
-    #0.002;
-    state = {1{$random}};
-    cntReg = {1{$random}};
-    rdDataReg = {1{$random}};
-    respReg = {1{$random}};
-  end
-// synthesis translate_on
-`endif
-
-  assign io_hwACtrlPins_ap_reset_out = T0;
-  assign T0 = T38 ? 1'h1 : T1;
-  assign T1 = T5 & T2;
-  assign T2 = T4 & T3;
-  assign T3 = io_ocp_M_Data == 32'h1;
-  assign T4 = io_ocp_M_Cmd == 3'h1;
-  assign T5 = state == 3'h0;
-  assign T81 = reset ? 3'h0 : T6;
-  assign T6 = T35 ? 3'h4 : T7;
-  assign T7 = T31 ? 3'h4 : T8;
-  assign T8 = T28 ? 3'h4 : T9;
-  assign T9 = T26 ? 3'h3 : T10;
-  assign T10 = T23 ? 3'h4 : T11;
-  assign T11 = T22 ? 3'h3 : T12;
-  assign T12 = T20 ? 3'h1 : T13;
-  assign T13 = T15 ? 3'h2 : T14;
-  assign T14 = T1 ? 3'h1 : state;
-  assign T15 = T38 & T16;
-  assign T16 = cntReg == 5'h3;
-  assign T82 = reset ? 5'h0 : T17;
-  assign T17 = T20 ? T19 : T18;
-  assign T18 = T15 ? 5'h0 : cntReg;
-  assign T19 = cntReg + 5'h1;
-  assign T20 = T38 & T21;
-  assign T21 = T16 ^ 1'h1;
-  assign T22 = state == 3'h2;
-  assign T23 = T25 & T24;
-  assign T24 = io_hwACtrlPins_ap_done_in == 1'h1;
-  assign T25 = state == 3'h3;
-  assign T26 = T25 & T27;
-  assign T27 = T24 ^ 1'h1;
-  assign T28 = T30 & T29;
-  assign T29 = io_ocp_M_Cmd == 3'h2;
-  assign T30 = state == 3'h4;
-  assign T31 = T30 & T32;
-  assign T32 = T34 & T33;
-  assign T33 = io_ocp_M_Cmd == 3'h1;
-  assign T34 = T29 ^ 1'h1;
-  assign T35 = T30 & T36;
-  assign T36 = T37 ^ 1'h1;
-  assign T37 = T29 | T33;
-  assign T38 = state == 3'h1;
-  assign io_hwACtrlPins_ap_start_out = T25;
-  assign io_ocp_S_Data = rdDataReg;
-  assign T83 = reset ? 32'h0 : T39;
-  assign T39 = T28 ? 32'h1 : T40;
-  assign T40 = T68 ? 32'h0 : T41;
-  assign T41 = T64 ? 32'h0 : T42;
-  assign T42 = T60 ? 32'h0 : T43;
-  assign T43 = T56 ? 32'h0 : T44;
-  assign T44 = T52 ? 32'h0 : T45;
-  assign T45 = T46 ? 32'h0 : rdDataReg;
-  assign T46 = T5 & T47;
-  assign T47 = T51 & T48;
-  assign T48 = T50 | T49;
-  assign T49 = io_ocp_M_Cmd == 3'h1;
-  assign T50 = io_ocp_M_Cmd == 3'h2;
-  assign T51 = T2 ^ 1'h1;
-  assign T52 = T15 & T53;
-  assign T53 = T55 | T54;
-  assign T54 = io_ocp_M_Cmd == 3'h1;
-  assign T55 = io_ocp_M_Cmd == 3'h2;
-  assign T56 = T20 & T57;
-  assign T57 = T59 | T58;
-  assign T58 = io_ocp_M_Cmd == 3'h1;
-  assign T59 = io_ocp_M_Cmd == 3'h2;
-  assign T60 = T22 & T61;
-  assign T61 = T63 | T62;
-  assign T62 = io_ocp_M_Cmd == 3'h1;
-  assign T63 = io_ocp_M_Cmd == 3'h2;
-  assign T64 = T23 & T65;
-  assign T65 = T67 | T66;
-  assign T66 = io_ocp_M_Cmd == 3'h1;
-  assign T67 = io_ocp_M_Cmd == 3'h2;
-  assign T68 = T26 & T69;
-  assign T69 = T71 | T70;
-  assign T70 = io_ocp_M_Cmd == 3'h1;
-  assign T71 = io_ocp_M_Cmd == 3'h2;
-  assign io_ocp_S_Resp = respReg;
-  assign T84 = reset ? 2'h0 : T72;
-  assign T72 = T31 ? 2'h1 : T73;
-  assign T73 = T28 ? 2'h1 : T74;
-  assign T74 = T68 ? 2'h1 : T75;
-  assign T75 = T64 ? 2'h1 : T76;
-  assign T76 = T60 ? 2'h1 : T77;
-  assign T77 = T56 ? 2'h1 : T78;
-  assign T78 = T52 ? 2'h1 : T79;
-  assign T79 = T46 ? 2'h1 : T80;
-  assign T80 = T1 ? 2'h1 : 2'h0;
-
-  always @(posedge clk) begin
-    if(reset) begin
-      state <= 3'h0;
-    end else if(T35) begin
-      state <= 3'h4;
-    end else if(T31) begin
-      state <= 3'h4;
-    end else if(T28) begin
-      state <= 3'h4;
-    end else if(T26) begin
-      state <= 3'h3;
-    end else if(T23) begin
-      state <= 3'h4;
-    end else if(T22) begin
-      state <= 3'h3;
-    end else if(T20) begin
-      state <= 3'h1;
-    end else if(T15) begin
-      state <= 3'h2;
-    end else if(T1) begin
-      state <= 3'h1;
-    end
-    if(reset) begin
-      cntReg <= 5'h0;
-    end else if(T20) begin
-      cntReg <= T19;
-    end else if(T15) begin
-      cntReg <= 5'h0;
-    end
-    if(reset) begin
-      rdDataReg <= 32'h0;
-    end else if(T28) begin
-      rdDataReg <= 32'h1;
-    end else if(T68) begin
-      rdDataReg <= 32'h0;
-    end else if(T64) begin
-      rdDataReg <= 32'h0;
-    end else if(T60) begin
-      rdDataReg <= 32'h0;
-    end else if(T56) begin
-      rdDataReg <= 32'h0;
-    end else if(T52) begin
-      rdDataReg <= 32'h0;
-    end else if(T46) begin
-      rdDataReg <= 32'h0;
-    end
-    if(reset) begin
-      respReg <= 2'h0;
-    end else if(T31) begin
-      respReg <= 2'h1;
-    end else if(T28) begin
-      respReg <= 2'h1;
-    end else if(T68) begin
-      respReg <= 2'h1;
-    end else if(T64) begin
-      respReg <= 2'h1;
-    end else if(T60) begin
-      respReg <= 2'h1;
-    end else if(T56) begin
-      respReg <= 2'h1;
-    end else if(T52) begin
-      respReg <= 2'h1;
-    end else if(T46) begin
-      respReg <= 2'h1;
-    end else if(T1) begin
-      respReg <= 2'h1;
-    end else begin
-      respReg <= 2'h0;
-    end
-  end
-endmodule
-
 module CpuInfo(input clk,
     input  io_superMode,
     input [2:0] io_ocp_M_Cmd,
@@ -11921,11 +11513,6 @@ module InOut(input clk, input reset,
     output[31:0] io_bRamCtrlPins_MData,
     output[3:0] io_bRamCtrlPins_MByteEn,
     input [31:0] io_bRamCtrlPins_SData,
-    output io_hwACtrlPins_ap_start_out,
-    output io_hwACtrlPins_ap_reset_out,
-    input  io_hwACtrlPins_ap_ready_in,
-    input  io_hwACtrlPins_ap_idle_in,
-    input  io_hwACtrlPins_ap_done_in,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -11944,70 +11531,69 @@ module InOut(input clk, input reset,
   wire T8;
   wire[3:0] T9;
   wire[2:0] T10;
-  wire selDeviceVec_12;
+  wire selDeviceVec_11;
   wire T11;
   wire T12;
   wire[3:0] T13;
   wire[2:0] T14;
-  wire selDeviceVec_11;
+  wire selDeviceVec_10;
   wire T15;
   wire T16;
   wire[3:0] T17;
   wire[2:0] T18;
-  wire selDeviceVec_10;
+  wire selDeviceVec_9;
   wire T19;
   wire T20;
   wire[3:0] T21;
   wire[2:0] T22;
-  wire selDeviceVec_9;
+  wire selDeviceVec_8;
   wire T23;
   wire T24;
   wire[3:0] T25;
-  wire[2:0] T26;
-  wire selDeviceVec_8;
-  wire T27;
+  reg [3:0] R26;
+  wire[3:0] T168;
+  wire[3:0] T27;
   wire T28;
-  wire[3:0] T29;
-  reg [3:0] R30;
-  wire[3:0] T169;
-  wire[3:0] T31;
-  wire T32;
-  wire T33;
-  wire T34;
-  reg [2:0] R35;
-  wire[2:0] T170;
-  wire[2:0] T36;
-  reg [31:0] R37;
+  wire T29;
+  wire T30;
+  reg [2:0] R31;
+  wire[2:0] T169;
+  wire[2:0] T32;
+  reg [31:0] R33;
+  wire[31:0] T170;
+  wire[31:0] T34;
+  reg [31:0] R35;
   wire[31:0] T171;
-  wire[31:0] T38;
-  reg [31:0] R39;
-  wire[31:0] T172;
-  wire[31:0] T40;
-  wire[2:0] T41;
+  wire[31:0] T36;
+  wire[2:0] T37;
   wire selComConf;
+  wire T38;
+  wire T39;
+  wire selNI;
+  wire[3:0] T40;
+  wire[10:0] T172;
+  wire[2:0] T41;
+  wire selSpm;
   wire T42;
   wire T43;
-  wire selNI;
-  wire[3:0] T44;
-  wire[10:0] T173;
-  wire[2:0] T45;
-  wire selSpm;
+  wire T44;
+  wire T45;
   wire T46;
   wire T47;
   wire T48;
-  wire T49;
+  wire[2:0] T49;
+  wire selDeviceVec_1;
   wire T50;
   wire T51;
-  wire T52;
+  wire[3:0] T52;
   wire[2:0] T53;
-  wire selDeviceVec_1;
+  wire selComSpm;
   wire T54;
   wire T55;
-  wire[3:0] T56;
-  wire[2:0] T57;
-  wire selComSpm;
-  wire T58;
-  wire T59;
+  wire[31:0] T56;
+  wire[31:0] T57;
+  wire[31:0] T58;
+  wire[31:0] T59;
   wire[31:0] T60;
   wire[31:0] T61;
   wire[31:0] T62;
@@ -12022,197 +11608,197 @@ module InOut(input clk, input reset,
   wire[31:0] T71;
   wire[31:0] T72;
   wire[31:0] T73;
-  wire[31:0] T74;
-  wire[31:0] T75;
-  wire[31:0] T76;
-  wire[31:0] T77;
   reg  selComConfReg;
-  wire T78;
-  wire T79;
+  wire T74;
+  wire T75;
   reg  selComSpmReg;
-  wire T80;
+  wire T76;
   wire[31:0] deviceSVec_0_Data;
   reg  selDeviceReg_0;
-  wire T81;
+  wire T77;
   wire[31:0] deviceSVec_1_Data;
   reg  selDeviceReg_1;
-  wire T82;
+  wire T78;
   wire[31:0] deviceSVec_2_Data;
   reg  selDeviceReg_2;
-  wire T83;
+  wire T79;
   wire[31:0] deviceSVec_3_Data;
   reg  selDeviceReg_3;
-  wire T84;
+  wire T80;
   wire selDeviceVec_3;
+  wire T81;
+  wire T82;
+  wire[3:0] T83;
+  wire[31:0] deviceSVec_4_Data;
+  reg  selDeviceReg_4;
+  wire T84;
+  wire selDeviceVec_4;
   wire T85;
   wire T86;
   wire[3:0] T87;
-  wire[31:0] deviceSVec_4_Data;
-  reg  selDeviceReg_4;
+  wire[31:0] deviceSVec_5_Data;
+  reg  selDeviceReg_5;
   wire T88;
-  wire selDeviceVec_4;
+  wire selDeviceVec_5;
   wire T89;
   wire T90;
   wire[3:0] T91;
-  wire[31:0] deviceSVec_5_Data;
-  reg  selDeviceReg_5;
+  wire[31:0] deviceSVec_6_Data;
+  reg  selDeviceReg_6;
   wire T92;
-  wire selDeviceVec_5;
+  wire selDeviceVec_6;
   wire T93;
   wire T94;
   wire[3:0] T95;
-  wire[31:0] deviceSVec_6_Data;
-  reg  selDeviceReg_6;
+  wire[31:0] deviceSVec_7_Data;
+  reg  selDeviceReg_7;
   wire T96;
-  wire selDeviceVec_6;
+  wire selDeviceVec_7;
   wire T97;
   wire T98;
   wire[3:0] T99;
-  wire[31:0] deviceSVec_7_Data;
-  reg  selDeviceReg_7;
-  wire T100;
-  wire selDeviceVec_7;
-  wire T101;
-  wire T102;
-  wire[3:0] T103;
   wire[31:0] deviceSVec_8_Data;
   reg  selDeviceReg_8;
-  wire T104;
+  wire T100;
   wire[31:0] deviceSVec_9_Data;
   reg  selDeviceReg_9;
-  wire T105;
+  wire T101;
   wire[31:0] deviceSVec_10_Data;
   reg  selDeviceReg_10;
-  wire T106;
+  wire T102;
   wire[31:0] deviceSVec_11_Data;
   reg  selDeviceReg_11;
-  wire T107;
+  wire T103;
   wire[31:0] deviceSVec_12_Data;
   reg  selDeviceReg_12;
-  wire T108;
+  wire T104;
+  wire selDeviceVec_12;
+  wire T105;
+  wire T106;
+  wire[3:0] T107;
   wire[31:0] deviceSVec_13_Data;
   reg  selDeviceReg_13;
-  wire T109;
+  wire T108;
   wire selDeviceVec_13;
+  wire T109;
   wire T110;
-  wire T111;
-  wire[3:0] T112;
+  wire[3:0] T111;
   wire[31:0] deviceSVec_14_Data;
   reg  selDeviceReg_14;
-  wire T113;
+  wire T112;
   wire selDeviceVec_14;
+  wire T113;
   wire T114;
-  wire T115;
-  wire[3:0] T116;
+  wire[3:0] T115;
   wire[31:0] deviceSVec_15_Data;
   reg  selDeviceReg_15;
-  wire T117;
+  wire T116;
   wire selDeviceVec_15;
+  wire T117;
   wire T118;
-  wire T119;
-  wire[3:0] T120;
+  wire[3:0] T119;
+  wire[1:0] T120;
   wire[1:0] T121;
-  wire[1:0] T122;
   wire[1:0] deviceSVec_15_Resp;
-  wire[1:0] T123;
+  wire[1:0] T122;
   wire[1:0] deviceSVec_14_Resp;
-  wire[1:0] T124;
+  wire[1:0] T123;
   wire[1:0] deviceSVec_13_Resp;
-  wire[1:0] T125;
+  wire[1:0] T124;
   wire[1:0] deviceSVec_12_Resp;
-  wire[1:0] T126;
+  wire[1:0] T125;
   wire[1:0] deviceSVec_11_Resp;
-  wire[1:0] T127;
+  wire[1:0] T126;
   wire[1:0] deviceSVec_10_Resp;
-  wire[1:0] T128;
+  wire[1:0] T127;
   wire[1:0] deviceSVec_9_Resp;
-  wire[1:0] T129;
+  wire[1:0] T128;
   wire[1:0] deviceSVec_8_Resp;
-  wire[1:0] T130;
+  wire[1:0] T129;
   wire[1:0] deviceSVec_7_Resp;
-  wire[1:0] T131;
+  wire[1:0] T130;
   wire[1:0] deviceSVec_6_Resp;
-  wire[1:0] T132;
+  wire[1:0] T131;
   wire[1:0] deviceSVec_5_Resp;
-  wire[1:0] T133;
+  wire[1:0] T132;
   wire[1:0] deviceSVec_4_Resp;
-  wire[1:0] T134;
+  wire[1:0] T133;
   wire[1:0] deviceSVec_3_Resp;
-  wire[1:0] T135;
+  wire[1:0] T134;
   wire[1:0] deviceSVec_2_Resp;
-  wire[1:0] T136;
+  wire[1:0] T135;
   wire[1:0] deviceSVec_1_Resp;
-  wire[1:0] T137;
+  wire[1:0] T136;
   wire[1:0] deviceSVec_0_Resp;
+  wire[1:0] T137;
   wire[1:0] T138;
   wire[1:0] T139;
   wire[1:0] T140;
-  wire[1:0] T141;
   wire[1:0] ispmResp;
-  wire T142;
+  wire T141;
   reg [2:0] ispmCmdReg;
-  wire[2:0] T143;
+  wire[2:0] T142;
   wire selISpm;
+  wire T143;
   wire T144;
   wire T145;
   wire T146;
   wire T147;
-  wire T148;
   reg [1:0] errResp;
-  wire[1:0] T174;
-  wire[1:0] T149;
+  wire[1:0] T173;
+  wire[1:0] T148;
+  wire T149;
   wire T150;
-  wire T151;
   wire validSel;
   wire validSelVec_15;
   wire validDeviceVec_15;
-  wire T152;
+  wire T151;
   wire validSelVec_14;
   wire validDeviceVec_14;
-  wire T153;
+  wire T152;
   wire validSelVec_13;
   wire validDeviceVec_13;
-  wire T154;
+  wire T153;
   wire validSelVec_12;
   wire validDeviceVec_12;
-  wire T155;
+  wire T154;
   wire validSelVec_11;
   wire validDeviceVec_11;
-  wire T156;
+  wire T155;
   wire validSelVec_10;
   wire validDeviceVec_10;
-  wire T157;
+  wire T156;
   wire validSelVec_9;
   wire validDeviceVec_9;
-  wire T158;
+  wire T157;
   wire validSelVec_8;
   wire validDeviceVec_8;
-  wire T159;
+  wire T158;
   wire validSelVec_7;
   wire validDeviceVec_7;
-  wire T160;
+  wire T159;
   wire validSelVec_6;
   wire validDeviceVec_6;
-  wire T161;
+  wire T160;
   wire validSelVec_5;
   wire validDeviceVec_5;
-  wire T162;
+  wire T161;
   wire validSelVec_4;
   wire validDeviceVec_4;
-  wire T163;
+  wire T162;
   wire validSelVec_3;
   wire validDeviceVec_3;
-  wire T164;
+  wire T163;
   wire validSelVec_2;
   wire validDeviceVec_2;
-  wire T165;
+  wire T164;
   wire validSelVec_1;
   wire validDeviceVec_1;
-  wire T166;
+  wire T165;
   wire validSelVec_0;
   wire validDeviceVec_0;
+  wire T166;
   wire T167;
-  wire T168;
   wire[1:0] comConf_io_slave_S_Resp;
   wire[31:0] comConf_io_slave_S_Data;
   wire[2:0] comConf_io_master_M_Cmd;
@@ -12240,10 +11826,6 @@ module InOut(input clk, input reset,
   wire[15:0] BRamCtrl_io_bRamCtrlPins_MAddr;
   wire[31:0] BRamCtrl_io_bRamCtrlPins_MData;
   wire[3:0] BRamCtrl_io_bRamCtrlPins_MByteEn;
-  wire[1:0] HwACtrl_io_ocp_S_Resp;
-  wire[31:0] HwACtrl_io_ocp_S_Data;
-  wire HwACtrl_io_hwACtrlPins_ap_start_out;
-  wire HwACtrl_io_hwACtrlPins_ap_reset_out;
   wire[1:0] CpuInfo_io_ocp_S_Resp;
   wire[31:0] CpuInfo_io_ocp_S_Data;
   wire[1:0] Timer_io_ocp_S_Resp;
@@ -12262,10 +11844,10 @@ module InOut(input clk, input reset,
   initial begin
     #0.002;
     T0 = 1'b0;
-    R30 = {1{$random}};
+    R26 = {1{$random}};
+    R31 = {1{$random}};
+    R33 = {1{$random}};
     R35 = {1{$random}};
-    R37 = {1{$random}};
-    R39 = {1{$random}};
     selComConfReg = {1{$random}};
     selComSpmReg = {1{$random}};
     selDeviceReg_0 = {1{$random}};
@@ -12310,58 +11892,51 @@ module InOut(input clk, input reset,
   assign T7 = selIO & T8;
   assign T8 = T9 == 4'h0;
   assign T9 = io_memInOut_M_Addr[5'h13:5'h10];
-  assign T10 = selDeviceVec_12 ? io_memInOut_M_Cmd : 3'h0;
-  assign selDeviceVec_12 = T11;
+  assign T10 = selDeviceVec_11 ? io_memInOut_M_Cmd : 3'h0;
+  assign selDeviceVec_11 = T11;
   assign T11 = selIO & T12;
-  assign T12 = T13 == 4'hc;
+  assign T12 = T13 == 4'hb;
   assign T13 = io_memInOut_M_Addr[5'h13:5'h10];
-  assign T14 = selDeviceVec_11 ? io_memInOut_M_Cmd : 3'h0;
-  assign selDeviceVec_11 = T15;
+  assign T14 = selDeviceVec_10 ? io_memInOut_M_Cmd : 3'h0;
+  assign selDeviceVec_10 = T15;
   assign T15 = selIO & T16;
-  assign T16 = T17 == 4'hb;
+  assign T16 = T17 == 4'ha;
   assign T17 = io_memInOut_M_Addr[5'h13:5'h10];
-  assign T18 = selDeviceVec_10 ? io_memInOut_M_Cmd : 3'h0;
-  assign selDeviceVec_10 = T19;
+  assign T18 = selDeviceVec_9 ? io_memInOut_M_Cmd : 3'h0;
+  assign selDeviceVec_9 = T19;
   assign T19 = selIO & T20;
-  assign T20 = T21 == 4'ha;
+  assign T20 = T21 == 4'h9;
   assign T21 = io_memInOut_M_Addr[5'h13:5'h10];
-  assign T22 = selDeviceVec_9 ? io_memInOut_M_Cmd : 3'h0;
-  assign selDeviceVec_9 = T23;
+  assign T22 = selDeviceVec_8 ? io_memInOut_M_Cmd : 3'h0;
+  assign selDeviceVec_8 = T23;
   assign T23 = selIO & T24;
-  assign T24 = T25 == 4'h9;
+  assign T24 = T25 == 4'h8;
   assign T25 = io_memInOut_M_Addr[5'h13:5'h10];
-  assign T26 = selDeviceVec_8 ? io_memInOut_M_Cmd : 3'h0;
-  assign selDeviceVec_8 = T27;
-  assign T27 = selIO & T28;
-  assign T28 = T29 == 4'h8;
-  assign T29 = io_memInOut_M_Addr[5'h13:5'h10];
-  assign T169 = reset ? comConf_io_master_M_ByteEn : T31;
-  assign T31 = T32 ? comConf_io_master_M_ByteEn : R30;
-  assign T32 = T34 | T33;
-  assign T33 = comConfIO_io_slave_S_CmdAccept == 1'h1;
-  assign T34 = R35 == 3'h0;
-  assign T170 = reset ? comConf_io_master_M_Cmd : T36;
-  assign T36 = T32 ? comConf_io_master_M_Cmd : R35;
-  assign T171 = reset ? comConf_io_master_M_Data : T38;
-  assign T38 = T32 ? comConf_io_master_M_Data : R37;
-  assign T172 = reset ? comConf_io_master_M_Addr : T40;
-  assign T40 = T32 ? comConf_io_master_M_Addr : R39;
-  assign T41 = selComConf ? io_memInOut_M_Cmd : 3'h0;
-  assign selComConf = selNI & T42;
+  assign T168 = reset ? comConf_io_master_M_ByteEn : T27;
+  assign T27 = T28 ? comConf_io_master_M_ByteEn : R26;
+  assign T28 = T30 | T29;
+  assign T29 = comConfIO_io_slave_S_CmdAccept == 1'h1;
+  assign T30 = R31 == 3'h0;
+  assign T169 = reset ? comConf_io_master_M_Cmd : T32;
+  assign T32 = T28 ? comConf_io_master_M_Cmd : R31;
+  assign T170 = reset ? comConf_io_master_M_Data : T34;
+  assign T34 = T28 ? comConf_io_master_M_Data : R33;
+  assign T171 = reset ? comConf_io_master_M_Addr : T36;
+  assign T36 = T28 ? comConf_io_master_M_Addr : R35;
+  assign T37 = selComConf ? io_memInOut_M_Cmd : 3'h0;
+  assign selComConf = selNI & T38;
+  assign T38 = T39 == 1'h0;
+  assign T39 = io_memInOut_M_Addr[5'h1b:5'h1b];
+  assign selNI = T40 == 4'he;
+  assign T40 = io_memInOut_M_Addr[5'h1f:5'h1c];
+  assign T172 = io_memInOut_M_Addr[4'ha:1'h0];
+  assign T41 = selSpm ? io_memInOut_M_Cmd : 3'h0;
+  assign selSpm = T44 & T42;
   assign T42 = T43 == 1'h0;
-  assign T43 = io_memInOut_M_Addr[5'h1b:5'h1b];
-  assign selNI = T44 == 4'he;
-  assign T44 = io_memInOut_M_Addr[5'h1f:5'h1c];
-  assign T173 = io_memInOut_M_Addr[4'ha:1'h0];
-  assign T45 = selSpm ? io_memInOut_M_Cmd : 3'h0;
-  assign selSpm = T48 & T46;
-  assign T46 = T47 == 1'h0;
-  assign T47 = io_memInOut_M_Addr[5'h10:5'h10];
-  assign T48 = T50 & T49;
-  assign T49 = selNI ^ 1'h1;
-  assign T50 = selIO ^ 1'h1;
-  assign io_hwACtrlPins_ap_reset_out = HwACtrl_io_hwACtrlPins_ap_reset_out;
-  assign io_hwACtrlPins_ap_start_out = HwACtrl_io_hwACtrlPins_ap_start_out;
+  assign T43 = io_memInOut_M_Addr[5'h10:5'h10];
+  assign T44 = T46 & T45;
+  assign T45 = selNI ^ 1'h1;
+  assign T46 = selIO ^ 1'h1;
   assign io_bRamCtrlPins_MByteEn = BRamCtrl_io_bRamCtrlPins_MByteEn;
   assign io_bRamCtrlPins_MData = BRamCtrl_io_bRamCtrlPins_MData;
   assign io_bRamCtrlPins_MAddr = BRamCtrl_io_bRamCtrlPins_MAddr;
@@ -12370,10 +11945,10 @@ module InOut(input clk, input reset,
   assign io_uartPins_tx = Uart_io_uartPins_tx;
   assign io_intrs_0 = Timer_io_timerIntrs_0;
   assign io_intrs_1 = Timer_io_timerIntrs_1;
-  assign io_intrs_2 = T51;
-  assign T51 = io_comConf_S_Flag[1'h0:1'h0];
-  assign io_intrs_3 = T52;
-  assign T52 = io_comConf_S_Flag[1'h1:1'h1];
+  assign io_intrs_2 = T47;
+  assign T47 = io_comConf_S_Flag[1'h0:1'h0];
+  assign io_intrs_3 = T48;
+  assign T48 = io_comConf_S_Flag[1'h1:1'h1];
   assign io_intrs_4 = Keys_io_keysIntrs_2;
   assign io_intrs_5 = Keys_io_keysIntrs_3;
   assign io_intrs_6 = 1'h0;
@@ -12389,222 +11964,226 @@ module InOut(input clk, input reset,
   assign io_excInOut_M_ByteEn = io_memInOut_M_ByteEn;
   assign io_excInOut_M_Data = io_memInOut_M_Data;
   assign io_excInOut_M_Addr = io_memInOut_M_Addr;
-  assign io_excInOut_M_Cmd = T53;
-  assign T53 = selDeviceVec_1 ? io_memInOut_M_Cmd : 3'h0;
-  assign selDeviceVec_1 = T54;
-  assign T54 = selIO & T55;
-  assign T55 = T56 == 4'h1;
-  assign T56 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign io_excInOut_M_Cmd = T49;
+  assign T49 = selDeviceVec_1 ? io_memInOut_M_Cmd : 3'h0;
+  assign selDeviceVec_1 = T50;
+  assign T50 = selIO & T51;
+  assign T51 = T52 == 4'h1;
+  assign T52 = io_memInOut_M_Addr[5'h13:5'h10];
   assign io_comSpm_M_ByteEn = io_memInOut_M_ByteEn;
   assign io_comSpm_M_Data = io_memInOut_M_Data;
   assign io_comSpm_M_Addr = io_memInOut_M_Addr;
-  assign io_comSpm_M_Cmd = T57;
-  assign T57 = selComSpm ? io_memInOut_M_Cmd : 3'h0;
-  assign selComSpm = selNI & T58;
-  assign T58 = T59 == 1'h1;
-  assign T59 = io_memInOut_M_Addr[5'h1b:5'h1b];
+  assign io_comSpm_M_Cmd = T53;
+  assign T53 = selComSpm ? io_memInOut_M_Cmd : 3'h0;
+  assign selComSpm = selNI & T54;
+  assign T54 = T55 == 1'h1;
+  assign T55 = io_memInOut_M_Addr[5'h1b:5'h1b];
   assign io_comConf_M_RespAccept = comConfIO_io_master_M_RespAccept;
   assign io_comConf_M_ByteEn = comConfIO_io_master_M_ByteEn;
   assign io_comConf_M_Data = comConfIO_io_master_M_Data;
   assign io_comConf_M_Addr = comConfIO_io_master_M_Addr;
   assign io_comConf_M_Cmd = comConfIO_io_master_M_Cmd;
-  assign io_memInOut_S_Data = T60;
-  assign T60 = selDeviceReg_15 ? deviceSVec_15_Data : T61;
-  assign T61 = selDeviceReg_14 ? deviceSVec_14_Data : T62;
-  assign T62 = selDeviceReg_13 ? deviceSVec_13_Data : T63;
-  assign T63 = selDeviceReg_12 ? deviceSVec_12_Data : T64;
-  assign T64 = selDeviceReg_11 ? deviceSVec_11_Data : T65;
-  assign T65 = selDeviceReg_10 ? deviceSVec_10_Data : T66;
-  assign T66 = selDeviceReg_9 ? deviceSVec_9_Data : T67;
-  assign T67 = selDeviceReg_8 ? deviceSVec_8_Data : T68;
-  assign T68 = selDeviceReg_7 ? deviceSVec_7_Data : T69;
-  assign T69 = selDeviceReg_6 ? deviceSVec_6_Data : T70;
-  assign T70 = selDeviceReg_5 ? deviceSVec_5_Data : T71;
-  assign T71 = selDeviceReg_4 ? deviceSVec_4_Data : T72;
-  assign T72 = selDeviceReg_3 ? deviceSVec_3_Data : T73;
-  assign T73 = selDeviceReg_2 ? deviceSVec_2_Data : T74;
-  assign T74 = selDeviceReg_1 ? deviceSVec_1_Data : T75;
-  assign T75 = selDeviceReg_0 ? deviceSVec_0_Data : T76;
-  assign T76 = selComSpmReg ? io_comSpm_S_Data : T77;
-  assign T77 = selComConfReg ? comConf_io_slave_S_Data : spm_io_S_Data;
-  assign T78 = T79 ? selComConf : selComConfReg;
-  assign T79 = io_memInOut_M_Cmd != 3'h0;
-  assign T80 = T79 ? selComSpm : selComSpmReg;
+  assign io_memInOut_S_Data = T56;
+  assign T56 = selDeviceReg_15 ? deviceSVec_15_Data : T57;
+  assign T57 = selDeviceReg_14 ? deviceSVec_14_Data : T58;
+  assign T58 = selDeviceReg_13 ? deviceSVec_13_Data : T59;
+  assign T59 = selDeviceReg_12 ? deviceSVec_12_Data : T60;
+  assign T60 = selDeviceReg_11 ? deviceSVec_11_Data : T61;
+  assign T61 = selDeviceReg_10 ? deviceSVec_10_Data : T62;
+  assign T62 = selDeviceReg_9 ? deviceSVec_9_Data : T63;
+  assign T63 = selDeviceReg_8 ? deviceSVec_8_Data : T64;
+  assign T64 = selDeviceReg_7 ? deviceSVec_7_Data : T65;
+  assign T65 = selDeviceReg_6 ? deviceSVec_6_Data : T66;
+  assign T66 = selDeviceReg_5 ? deviceSVec_5_Data : T67;
+  assign T67 = selDeviceReg_4 ? deviceSVec_4_Data : T68;
+  assign T68 = selDeviceReg_3 ? deviceSVec_3_Data : T69;
+  assign T69 = selDeviceReg_2 ? deviceSVec_2_Data : T70;
+  assign T70 = selDeviceReg_1 ? deviceSVec_1_Data : T71;
+  assign T71 = selDeviceReg_0 ? deviceSVec_0_Data : T72;
+  assign T72 = selComSpmReg ? io_comSpm_S_Data : T73;
+  assign T73 = selComConfReg ? comConf_io_slave_S_Data : spm_io_S_Data;
+  assign T74 = T75 ? selComConf : selComConfReg;
+  assign T75 = io_memInOut_M_Cmd != 3'h0;
+  assign T76 = T75 ? selComSpm : selComSpmReg;
   assign deviceSVec_0_Data = CpuInfo_io_ocp_S_Data;
-  assign T81 = T79 ? selDeviceVec_0 : selDeviceReg_0;
+  assign T77 = T75 ? selDeviceVec_0 : selDeviceReg_0;
   assign deviceSVec_1_Data = io_excInOut_S_Data;
-  assign T82 = T79 ? selDeviceVec_1 : selDeviceReg_1;
+  assign T78 = T75 ? selDeviceVec_1 : selDeviceReg_1;
   assign deviceSVec_2_Data = Timer_io_ocp_S_Data;
-  assign T83 = T79 ? selDeviceVec_2 : selDeviceReg_2;
+  assign T79 = T75 ? selDeviceVec_2 : selDeviceReg_2;
   assign deviceSVec_3_Data = 32'h0;
-  assign T84 = T79 ? selDeviceVec_3 : selDeviceReg_3;
-  assign selDeviceVec_3 = T85;
-  assign T85 = selIO & T86;
-  assign T86 = T87 == 4'h3;
-  assign T87 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign T80 = T75 ? selDeviceVec_3 : selDeviceReg_3;
+  assign selDeviceVec_3 = T81;
+  assign T81 = selIO & T82;
+  assign T82 = T83 == 4'h3;
+  assign T83 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_4_Data = 32'h0;
-  assign T88 = T79 ? selDeviceVec_4 : selDeviceReg_4;
-  assign selDeviceVec_4 = T89;
-  assign T89 = selIO & T90;
-  assign T90 = T91 == 4'h4;
-  assign T91 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign T84 = T75 ? selDeviceVec_4 : selDeviceReg_4;
+  assign selDeviceVec_4 = T85;
+  assign T85 = selIO & T86;
+  assign T86 = T87 == 4'h4;
+  assign T87 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_5_Data = 32'h0;
-  assign T92 = T79 ? selDeviceVec_5 : selDeviceReg_5;
-  assign selDeviceVec_5 = T93;
-  assign T93 = selIO & T94;
-  assign T94 = T95 == 4'h5;
-  assign T95 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign T88 = T75 ? selDeviceVec_5 : selDeviceReg_5;
+  assign selDeviceVec_5 = T89;
+  assign T89 = selIO & T90;
+  assign T90 = T91 == 4'h5;
+  assign T91 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_6_Data = 32'h0;
-  assign T96 = T79 ? selDeviceVec_6 : selDeviceReg_6;
-  assign selDeviceVec_6 = T97;
-  assign T97 = selIO & T98;
-  assign T98 = T99 == 4'h6;
-  assign T99 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign T92 = T75 ? selDeviceVec_6 : selDeviceReg_6;
+  assign selDeviceVec_6 = T93;
+  assign T93 = selIO & T94;
+  assign T94 = T95 == 4'h6;
+  assign T95 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_7_Data = 32'h0;
-  assign T100 = T79 ? selDeviceVec_7 : selDeviceReg_7;
-  assign selDeviceVec_7 = T101;
-  assign T101 = selIO & T102;
-  assign T102 = T103 == 4'h7;
-  assign T103 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign T96 = T75 ? selDeviceVec_7 : selDeviceReg_7;
+  assign selDeviceVec_7 = T97;
+  assign T97 = selIO & T98;
+  assign T98 = T99 == 4'h7;
+  assign T99 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_8_Data = Uart_io_ocp_S_Data;
-  assign T104 = T79 ? selDeviceVec_8 : selDeviceReg_8;
+  assign T100 = T75 ? selDeviceVec_8 : selDeviceReg_8;
   assign deviceSVec_9_Data = Leds_io_ocp_S_Data;
-  assign T105 = T79 ? selDeviceVec_9 : selDeviceReg_9;
+  assign T101 = T75 ? selDeviceVec_9 : selDeviceReg_9;
   assign deviceSVec_10_Data = Keys_io_ocp_S_Data;
-  assign T106 = T79 ? selDeviceVec_10 : selDeviceReg_10;
+  assign T102 = T75 ? selDeviceVec_10 : selDeviceReg_10;
   assign deviceSVec_11_Data = BRamCtrl_io_ocp_S_Data;
-  assign T107 = T79 ? selDeviceVec_11 : selDeviceReg_11;
-  assign deviceSVec_12_Data = HwACtrl_io_ocp_S_Data;
-  assign T108 = T79 ? selDeviceVec_12 : selDeviceReg_12;
+  assign T103 = T75 ? selDeviceVec_11 : selDeviceReg_11;
+  assign deviceSVec_12_Data = 32'h0;
+  assign T104 = T75 ? selDeviceVec_12 : selDeviceReg_12;
+  assign selDeviceVec_12 = T105;
+  assign T105 = selIO & T106;
+  assign T106 = T107 == 4'hc;
+  assign T107 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_13_Data = 32'h0;
-  assign T109 = T79 ? selDeviceVec_13 : selDeviceReg_13;
-  assign selDeviceVec_13 = T110;
-  assign T110 = selIO & T111;
-  assign T111 = T112 == 4'hd;
-  assign T112 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign T108 = T75 ? selDeviceVec_13 : selDeviceReg_13;
+  assign selDeviceVec_13 = T109;
+  assign T109 = selIO & T110;
+  assign T110 = T111 == 4'hd;
+  assign T111 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_14_Data = 32'h0;
-  assign T113 = T79 ? selDeviceVec_14 : selDeviceReg_14;
-  assign selDeviceVec_14 = T114;
-  assign T114 = selIO & T115;
-  assign T115 = T116 == 4'he;
-  assign T116 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign T112 = T75 ? selDeviceVec_14 : selDeviceReg_14;
+  assign selDeviceVec_14 = T113;
+  assign T113 = selIO & T114;
+  assign T114 = T115 == 4'he;
+  assign T115 = io_memInOut_M_Addr[5'h13:5'h10];
   assign deviceSVec_15_Data = 32'h0;
-  assign T117 = T79 ? selDeviceVec_15 : selDeviceReg_15;
-  assign selDeviceVec_15 = T118;
-  assign T118 = selIO & T119;
-  assign T119 = T120 == 4'hf;
-  assign T120 = io_memInOut_M_Addr[5'h13:5'h10];
-  assign io_memInOut_S_Resp = T121;
-  assign T121 = T138 | T122;
-  assign T122 = T123 | deviceSVec_15_Resp;
+  assign T116 = T75 ? selDeviceVec_15 : selDeviceReg_15;
+  assign selDeviceVec_15 = T117;
+  assign T117 = selIO & T118;
+  assign T118 = T119 == 4'hf;
+  assign T119 = io_memInOut_M_Addr[5'h13:5'h10];
+  assign io_memInOut_S_Resp = T120;
+  assign T120 = T137 | T121;
+  assign T121 = T122 | deviceSVec_15_Resp;
   assign deviceSVec_15_Resp = 2'h0;
-  assign T123 = T124 | deviceSVec_14_Resp;
+  assign T122 = T123 | deviceSVec_14_Resp;
   assign deviceSVec_14_Resp = 2'h0;
-  assign T124 = T125 | deviceSVec_13_Resp;
+  assign T123 = T124 | deviceSVec_13_Resp;
   assign deviceSVec_13_Resp = 2'h0;
-  assign T125 = T126 | deviceSVec_12_Resp;
-  assign deviceSVec_12_Resp = HwACtrl_io_ocp_S_Resp;
-  assign T126 = T127 | deviceSVec_11_Resp;
+  assign T124 = T125 | deviceSVec_12_Resp;
+  assign deviceSVec_12_Resp = 2'h0;
+  assign T125 = T126 | deviceSVec_11_Resp;
   assign deviceSVec_11_Resp = BRamCtrl_io_ocp_S_Resp;
-  assign T127 = T128 | deviceSVec_10_Resp;
+  assign T126 = T127 | deviceSVec_10_Resp;
   assign deviceSVec_10_Resp = Keys_io_ocp_S_Resp;
-  assign T128 = T129 | deviceSVec_9_Resp;
+  assign T127 = T128 | deviceSVec_9_Resp;
   assign deviceSVec_9_Resp = Leds_io_ocp_S_Resp;
-  assign T129 = T130 | deviceSVec_8_Resp;
+  assign T128 = T129 | deviceSVec_8_Resp;
   assign deviceSVec_8_Resp = Uart_io_ocp_S_Resp;
-  assign T130 = T131 | deviceSVec_7_Resp;
+  assign T129 = T130 | deviceSVec_7_Resp;
   assign deviceSVec_7_Resp = 2'h0;
-  assign T131 = T132 | deviceSVec_6_Resp;
+  assign T130 = T131 | deviceSVec_6_Resp;
   assign deviceSVec_6_Resp = 2'h0;
-  assign T132 = T133 | deviceSVec_5_Resp;
+  assign T131 = T132 | deviceSVec_5_Resp;
   assign deviceSVec_5_Resp = 2'h0;
-  assign T133 = T134 | deviceSVec_4_Resp;
+  assign T132 = T133 | deviceSVec_4_Resp;
   assign deviceSVec_4_Resp = 2'h0;
-  assign T134 = T135 | deviceSVec_3_Resp;
+  assign T133 = T134 | deviceSVec_3_Resp;
   assign deviceSVec_3_Resp = 2'h0;
-  assign T135 = T136 | deviceSVec_2_Resp;
+  assign T134 = T135 | deviceSVec_2_Resp;
   assign deviceSVec_2_Resp = Timer_io_ocp_S_Resp;
-  assign T136 = T137 | deviceSVec_1_Resp;
+  assign T135 = T136 | deviceSVec_1_Resp;
   assign deviceSVec_1_Resp = io_excInOut_S_Resp;
-  assign T137 = 2'h0 | deviceSVec_0_Resp;
+  assign T136 = 2'h0 | deviceSVec_0_Resp;
   assign deviceSVec_0_Resp = CpuInfo_io_ocp_S_Resp;
-  assign T138 = T139 | io_comSpm_S_Resp;
-  assign T139 = T140 | comConf_io_slave_S_Resp;
-  assign T140 = T141 | spm_io_S_Resp;
-  assign T141 = errResp | ispmResp;
-  assign ispmResp = T142 ? 2'h0 : 2'h1;
-  assign T142 = ispmCmdReg == 3'h0;
-  assign T143 = selISpm ? io_memInOut_M_Cmd : 3'h0;
-  assign selISpm = T146 & T144;
-  assign T144 = T145 == 1'h1;
-  assign T145 = io_memInOut_M_Addr[5'h10:5'h10];
-  assign T146 = T148 & T147;
-  assign T147 = selNI ^ 1'h1;
-  assign T148 = selIO ^ 1'h1;
-  assign T174 = reset ? 2'h0 : T149;
-  assign T149 = T150 ? 2'h3 : 2'h0;
-  assign T150 = T167 & T151;
-  assign T151 = validSel ^ 1'h1;
-  assign validSel = T152 | validSelVec_15;
+  assign T137 = T138 | io_comSpm_S_Resp;
+  assign T138 = T139 | comConf_io_slave_S_Resp;
+  assign T139 = T140 | spm_io_S_Resp;
+  assign T140 = errResp | ispmResp;
+  assign ispmResp = T141 ? 2'h0 : 2'h1;
+  assign T141 = ispmCmdReg == 3'h0;
+  assign T142 = selISpm ? io_memInOut_M_Cmd : 3'h0;
+  assign selISpm = T145 & T143;
+  assign T143 = T144 == 1'h1;
+  assign T144 = io_memInOut_M_Addr[5'h10:5'h10];
+  assign T145 = T147 & T146;
+  assign T146 = selNI ^ 1'h1;
+  assign T147 = selIO ^ 1'h1;
+  assign T173 = reset ? 2'h0 : T148;
+  assign T148 = T149 ? 2'h3 : 2'h0;
+  assign T149 = T166 & T150;
+  assign T150 = validSel ^ 1'h1;
+  assign validSel = T151 | validSelVec_15;
   assign validSelVec_15 = selDeviceVec_15 & validDeviceVec_15;
   assign validDeviceVec_15 = 1'h0;
-  assign T152 = T153 | validSelVec_14;
+  assign T151 = T152 | validSelVec_14;
   assign validSelVec_14 = selDeviceVec_14 & validDeviceVec_14;
   assign validDeviceVec_14 = 1'h0;
-  assign T153 = T154 | validSelVec_13;
+  assign T152 = T153 | validSelVec_13;
   assign validSelVec_13 = selDeviceVec_13 & validDeviceVec_13;
   assign validDeviceVec_13 = 1'h0;
-  assign T154 = T155 | validSelVec_12;
+  assign T153 = T154 | validSelVec_12;
   assign validSelVec_12 = selDeviceVec_12 & validDeviceVec_12;
-  assign validDeviceVec_12 = 1'h1;
-  assign T155 = T156 | validSelVec_11;
+  assign validDeviceVec_12 = 1'h0;
+  assign T154 = T155 | validSelVec_11;
   assign validSelVec_11 = selDeviceVec_11 & validDeviceVec_11;
   assign validDeviceVec_11 = 1'h1;
-  assign T156 = T157 | validSelVec_10;
+  assign T155 = T156 | validSelVec_10;
   assign validSelVec_10 = selDeviceVec_10 & validDeviceVec_10;
   assign validDeviceVec_10 = 1'h1;
-  assign T157 = T158 | validSelVec_9;
+  assign T156 = T157 | validSelVec_9;
   assign validSelVec_9 = selDeviceVec_9 & validDeviceVec_9;
   assign validDeviceVec_9 = 1'h1;
-  assign T158 = T159 | validSelVec_8;
+  assign T157 = T158 | validSelVec_8;
   assign validSelVec_8 = selDeviceVec_8 & validDeviceVec_8;
   assign validDeviceVec_8 = 1'h1;
-  assign T159 = T160 | validSelVec_7;
+  assign T158 = T159 | validSelVec_7;
   assign validSelVec_7 = selDeviceVec_7 & validDeviceVec_7;
   assign validDeviceVec_7 = 1'h0;
-  assign T160 = T161 | validSelVec_6;
+  assign T159 = T160 | validSelVec_6;
   assign validSelVec_6 = selDeviceVec_6 & validDeviceVec_6;
   assign validDeviceVec_6 = 1'h0;
-  assign T161 = T162 | validSelVec_5;
+  assign T160 = T161 | validSelVec_5;
   assign validSelVec_5 = selDeviceVec_5 & validDeviceVec_5;
   assign validDeviceVec_5 = 1'h0;
-  assign T162 = T163 | validSelVec_4;
+  assign T161 = T162 | validSelVec_4;
   assign validSelVec_4 = selDeviceVec_4 & validDeviceVec_4;
   assign validDeviceVec_4 = 1'h0;
-  assign T163 = T164 | validSelVec_3;
+  assign T162 = T163 | validSelVec_3;
   assign validSelVec_3 = selDeviceVec_3 & validDeviceVec_3;
   assign validDeviceVec_3 = 1'h0;
-  assign T164 = T165 | validSelVec_2;
+  assign T163 = T164 | validSelVec_2;
   assign validSelVec_2 = selDeviceVec_2 & validDeviceVec_2;
   assign validDeviceVec_2 = 1'h1;
-  assign T165 = T166 | validSelVec_1;
+  assign T164 = T165 | validSelVec_1;
   assign validSelVec_1 = selDeviceVec_1 & validDeviceVec_1;
   assign validDeviceVec_1 = 1'h1;
-  assign T166 = 1'h0 | validSelVec_0;
+  assign T165 = 1'h0 | validSelVec_0;
   assign validSelVec_0 = selDeviceVec_0 & validDeviceVec_0;
   assign validDeviceVec_0 = 1'h1;
-  assign T167 = T168 & selIO;
-  assign T168 = io_memInOut_M_Cmd != 3'h0;
+  assign T166 = T167 & selIO;
+  assign T167 = io_memInOut_M_Cmd != 3'h0;
   Spm spm(.clk(clk),
-       .io_M_Cmd( T45 ),
-       .io_M_Addr( T173 ),
+       .io_M_Cmd( T41 ),
+       .io_M_Addr( T172 ),
        .io_M_Data( io_memInOut_M_Data ),
        .io_M_ByteEn( io_memInOut_M_ByteEn ),
        .io_S_Resp( spm_io_S_Resp ),
        .io_S_Data( spm_io_S_Data )
   );
   OcpCoreBus comConf(
-       .io_slave_M_Cmd( T41 ),
+       .io_slave_M_Cmd( T37 ),
        .io_slave_M_Addr( io_memInOut_M_Addr ),
        .io_slave_M_Data( io_memInOut_M_Data ),
        .io_slave_M_ByteEn( io_memInOut_M_ByteEn ),
@@ -12618,10 +12197,10 @@ module InOut(input clk, input reset,
        .io_master_S_Data( comConfIO_io_slave_S_Data )
   );
   OcpIOBus comConfIO(
-       .io_slave_M_Cmd( R35 ),
-       .io_slave_M_Addr( R39 ),
-       .io_slave_M_Data( R37 ),
-       .io_slave_M_ByteEn( R30 ),
+       .io_slave_M_Cmd( R31 ),
+       .io_slave_M_Addr( R35 ),
+       .io_slave_M_Data( R33 ),
+       .io_slave_M_ByteEn( R26 ),
        .io_slave_M_RespAccept( 1'h1 ),
        .io_slave_S_Resp( comConfIO_io_slave_S_Resp ),
        .io_slave_S_Data( comConfIO_io_slave_S_Data ),
@@ -12637,7 +12216,7 @@ module InOut(input clk, input reset,
   );
   Uart Uart(.clk(clk), .reset(reset),
        .io_superMode( io_superMode ),
-       .io_ocp_M_Cmd( T26 ),
+       .io_ocp_M_Cmd( T22 ),
        .io_ocp_M_Addr( io_memInOut_M_Addr ),
        .io_ocp_M_Data( io_memInOut_M_Data ),
        .io_ocp_M_ByteEn( io_memInOut_M_ByteEn ),
@@ -12648,7 +12227,7 @@ module InOut(input clk, input reset,
   );
   Leds Leds(.clk(clk), .reset(reset),
        .io_superMode( io_superMode ),
-       .io_ocp_M_Cmd( T22 ),
+       .io_ocp_M_Cmd( T18 ),
        .io_ocp_M_Addr( io_memInOut_M_Addr ),
        .io_ocp_M_Data( io_memInOut_M_Data ),
        .io_ocp_M_ByteEn( io_memInOut_M_ByteEn ),
@@ -12658,7 +12237,7 @@ module InOut(input clk, input reset,
   );
   Keys Keys(.clk(clk), .reset(reset),
        .io_superMode( io_superMode ),
-       .io_ocp_M_Cmd( T18 ),
+       .io_ocp_M_Cmd( T14 ),
        .io_ocp_M_Addr( io_memInOut_M_Addr ),
        .io_ocp_M_Data( io_memInOut_M_Data ),
        .io_ocp_M_ByteEn( io_memInOut_M_ByteEn ),
@@ -12672,7 +12251,7 @@ module InOut(input clk, input reset,
   );
   BRamCtrl BRamCtrl(.clk(clk), .reset(reset),
        .io_superMode( io_superMode ),
-       .io_ocp_M_Cmd( T14 ),
+       .io_ocp_M_Cmd( T10 ),
        .io_ocp_M_Addr( io_memInOut_M_Addr ),
        .io_ocp_M_Data( io_memInOut_M_Data ),
        .io_ocp_M_ByteEn( io_memInOut_M_ByteEn ),
@@ -12683,20 +12262,6 @@ module InOut(input clk, input reset,
        .io_bRamCtrlPins_MData( BRamCtrl_io_bRamCtrlPins_MData ),
        .io_bRamCtrlPins_MByteEn( BRamCtrl_io_bRamCtrlPins_MByteEn ),
        .io_bRamCtrlPins_SData( io_bRamCtrlPins_SData )
-  );
-  HwACtrl HwACtrl(.clk(clk), .reset(reset),
-       .io_superMode( io_superMode ),
-       .io_ocp_M_Cmd( T10 ),
-       .io_ocp_M_Addr( io_memInOut_M_Addr ),
-       .io_ocp_M_Data( io_memInOut_M_Data ),
-       .io_ocp_M_ByteEn( io_memInOut_M_ByteEn ),
-       .io_ocp_S_Resp( HwACtrl_io_ocp_S_Resp ),
-       .io_ocp_S_Data( HwACtrl_io_ocp_S_Data ),
-       .io_hwACtrlPins_ap_start_out( HwACtrl_io_hwACtrlPins_ap_start_out ),
-       .io_hwACtrlPins_ap_reset_out( HwACtrl_io_hwACtrlPins_ap_reset_out ),
-       .io_hwACtrlPins_ap_ready_in( io_hwACtrlPins_ap_ready_in ),
-       .io_hwACtrlPins_ap_idle_in( io_hwACtrlPins_ap_idle_in ),
-       .io_hwACtrlPins_ap_done_in( io_hwACtrlPins_ap_done_in )
   );
   CpuInfo CpuInfo(.clk(clk),
        .io_superMode( io_superMode ),
@@ -12732,77 +12297,77 @@ module InOut(input clk, input reset,
 // synthesis translate_on
 `endif
     if(reset) begin
-      R30 <= comConf_io_master_M_ByteEn;
-    end else if(T32) begin
-      R30 <= comConf_io_master_M_ByteEn;
+      R26 <= comConf_io_master_M_ByteEn;
+    end else if(T28) begin
+      R26 <= comConf_io_master_M_ByteEn;
     end
     if(reset) begin
-      R35 <= comConf_io_master_M_Cmd;
-    end else if(T32) begin
-      R35 <= comConf_io_master_M_Cmd;
+      R31 <= comConf_io_master_M_Cmd;
+    end else if(T28) begin
+      R31 <= comConf_io_master_M_Cmd;
     end
     if(reset) begin
-      R37 <= comConf_io_master_M_Data;
-    end else if(T32) begin
-      R37 <= comConf_io_master_M_Data;
+      R33 <= comConf_io_master_M_Data;
+    end else if(T28) begin
+      R33 <= comConf_io_master_M_Data;
     end
     if(reset) begin
-      R39 <= comConf_io_master_M_Addr;
-    end else if(T32) begin
-      R39 <= comConf_io_master_M_Addr;
+      R35 <= comConf_io_master_M_Addr;
+    end else if(T28) begin
+      R35 <= comConf_io_master_M_Addr;
     end
-    if(T79) begin
+    if(T75) begin
       selComConfReg <= selComConf;
     end
-    if(T79) begin
+    if(T75) begin
       selComSpmReg <= selComSpm;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_0 <= selDeviceVec_0;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_1 <= selDeviceVec_1;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_2 <= selDeviceVec_2;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_3 <= selDeviceVec_3;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_4 <= selDeviceVec_4;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_5 <= selDeviceVec_5;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_6 <= selDeviceVec_6;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_7 <= selDeviceVec_7;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_8 <= selDeviceVec_8;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_9 <= selDeviceVec_9;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_10 <= selDeviceVec_10;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_11 <= selDeviceVec_11;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_12 <= selDeviceVec_12;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_13 <= selDeviceVec_13;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_14 <= selDeviceVec_14;
     end
-    if(T79) begin
+    if(T75) begin
       selDeviceReg_15 <= selDeviceVec_15;
     end
     if(selISpm) begin
@@ -12812,7 +12377,7 @@ module InOut(input clk, input reset,
     end
     if(reset) begin
       errResp <= 2'h0;
-    end else if(T150) begin
+    end else if(T149) begin
       errResp <= 2'h3;
     end else begin
       errResp <= 2'h0;
@@ -18631,11 +18196,6 @@ module PatmosCore(input clk, input reset,
     output[31:0] io_bRamCtrlPins_MData,
     output[3:0] io_bRamCtrlPins_MByteEn,
     input [31:0] io_bRamCtrlPins_SData,
-    output io_hwACtrlPins_ap_start_out,
-    output io_hwACtrlPins_ap_reset_out,
-    input  io_hwACtrlPins_ap_ready_in,
-    input  io_hwACtrlPins_ap_idle_in,
-    input  io_hwACtrlPins_ap_done_in,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -18911,8 +18471,6 @@ module PatmosCore(input clk, input reset,
   wire[15:0] iocomp_io_bRamCtrlPins_MAddr;
   wire[31:0] iocomp_io_bRamCtrlPins_MData;
   wire[3:0] iocomp_io_bRamCtrlPins_MByteEn;
-  wire iocomp_io_hwACtrlPins_ap_start_out;
-  wire iocomp_io_hwACtrlPins_ap_reset_out;
   wire[1:0] dcache_io_master_S_Resp;
   wire[31:0] dcache_io_master_S_Data;
   wire[2:0] dcache_io_slave_M_Cmd;
@@ -18971,8 +18529,6 @@ module PatmosCore(input clk, input reset,
   assign T25 = R5 ? 2'h0 : burstBus_io_slave_S_Resp;
   assign T26 = memory_io_ena_out & T27;
   assign T27 = dcache_io_scIO_stall ^ 1'h1;
-  assign io_hwACtrlPins_ap_reset_out = iocomp_io_hwACtrlPins_ap_reset_out;
-  assign io_hwACtrlPins_ap_start_out = iocomp_io_hwACtrlPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = iocomp_io_bRamCtrlPins_MByteEn;
   assign io_bRamCtrlPins_MData = iocomp_io_bRamCtrlPins_MData;
   assign io_bRamCtrlPins_MAddr = iocomp_io_bRamCtrlPins_MAddr;
@@ -19462,11 +19018,6 @@ module PatmosCore(input clk, input reset,
        .io_bRamCtrlPins_MData( iocomp_io_bRamCtrlPins_MData ),
        .io_bRamCtrlPins_MByteEn( iocomp_io_bRamCtrlPins_MByteEn ),
        .io_bRamCtrlPins_SData( io_bRamCtrlPins_SData ),
-       .io_hwACtrlPins_ap_start_out( iocomp_io_hwACtrlPins_ap_start_out ),
-       .io_hwACtrlPins_ap_reset_out( iocomp_io_hwACtrlPins_ap_reset_out ),
-       .io_hwACtrlPins_ap_ready_in( io_hwACtrlPins_ap_ready_in ),
-       .io_hwACtrlPins_ap_idle_in( io_hwACtrlPins_ap_idle_in ),
-       .io_hwACtrlPins_ap_done_in( io_hwACtrlPins_ap_done_in ),
        .io_cpuInfoPins_id( io_cpuInfoPins_id ),
        .io_cpuInfoPins_cnt( io_cpuInfoPins_cnt )
   );
@@ -20702,11 +20253,6 @@ module Patmos(input clk, input reset,
     output[31:0] io_bRamCtrlPins_MData,
     output[3:0] io_bRamCtrlPins_MByteEn,
     input [31:0] io_bRamCtrlPins_SData,
-    output io_hwACtrlPins_ap_start_out,
-    output io_hwACtrlPins_ap_reset_out,
-    input  io_hwACtrlPins_ap_ready_in,
-    input  io_hwACtrlPins_ap_idle_in,
-    input  io_hwACtrlPins_ap_done_in,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -20743,12 +20289,8 @@ module Patmos(input clk, input reset,
   wire[15:0] core_io_bRamCtrlPins_MAddr;
   wire[31:0] core_io_bRamCtrlPins_MData;
   wire[3:0] core_io_bRamCtrlPins_MByteEn;
-  wire core_io_hwACtrlPins_ap_start_out;
-  wire core_io_hwACtrlPins_ap_reset_out;
 
 
-  assign io_hwACtrlPins_ap_reset_out = core_io_hwACtrlPins_ap_reset_out;
-  assign io_hwACtrlPins_ap_start_out = core_io_hwACtrlPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = core_io_bRamCtrlPins_MByteEn;
   assign io_bRamCtrlPins_MData = core_io_bRamCtrlPins_MData;
   assign io_bRamCtrlPins_MAddr = core_io_bRamCtrlPins_MAddr;
@@ -20808,11 +20350,6 @@ module Patmos(input clk, input reset,
        .io_bRamCtrlPins_MData( core_io_bRamCtrlPins_MData ),
        .io_bRamCtrlPins_MByteEn( core_io_bRamCtrlPins_MByteEn ),
        .io_bRamCtrlPins_SData( io_bRamCtrlPins_SData ),
-       .io_hwACtrlPins_ap_start_out( core_io_hwACtrlPins_ap_start_out ),
-       .io_hwACtrlPins_ap_reset_out( core_io_hwACtrlPins_ap_reset_out ),
-       .io_hwACtrlPins_ap_ready_in( io_hwACtrlPins_ap_ready_in ),
-       .io_hwACtrlPins_ap_idle_in( io_hwACtrlPins_ap_idle_in ),
-       .io_hwACtrlPins_ap_done_in( io_hwACtrlPins_ap_done_in ),
        .io_cpuInfoPins_id( io_cpuInfoPins_id ),
        .io_cpuInfoPins_cnt( io_cpuInfoPins_cnt )
   );

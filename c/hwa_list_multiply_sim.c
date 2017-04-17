@@ -6,15 +6,15 @@
     Copyright: DTU, BSD License
 */
 
-//We need this if we want to make it a bootapp
+// Required to make bootapp
 
 #include "include/patio.h"
 #include "include/bootable.h"
 
-// These are used to write to SPM and IO devices
+// Files required for memory mapped IO devices
+// patmos.h defines _IODEV, used to access memory mapped IO devices.
 
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+#include <machine/patmos.h> 
 
 #define LED_RUN_LENGTH 2
 
@@ -36,22 +36,30 @@ int main()
         *(bram_ptr + i) = bram_in[i];
     }
 
-    // START HLS MODULE
+    // Start HLS module
+
 	*hls_ptr = 1;
 
-	// POLL STATUS OF HLS MODULE
+	// Poll status of HLS module
+
     while((*hls_ptr) != 1);
 	
-	// CHECK RESULTS
+	// Read back data from BRAM
+
     for(i = 0; i < 3; i++)
     {
         bram_out[i] = *(bram_ptr + i);
-		
+    }
+
+    // Check results
+
+    for(i = 0; i < 3; i++)
+    {		
 		if(bram_out[i] != gold[i])
 		{
 			err_cnt++;	
 		}
-    }
+    }   
 
     // We now continously loop, showing a pattern on the LEDS
 	
@@ -87,7 +95,6 @@ int main()
 
 	else 
 	{
-		// Flash 111 LEDS		
 		for (;;) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)

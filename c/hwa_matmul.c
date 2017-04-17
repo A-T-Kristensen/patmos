@@ -6,10 +6,10 @@
     Copyright: DTU, BSD License
 */
 
-// These are used to write to SPM and IO devices
+// Files required for memory mapped IO devices
+// patmos.h defines _IODEV, used to access memory mapped IO devices.
 
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+#include <machine/patmos.h> 
 
 #include <stdio.h>
 
@@ -27,10 +27,10 @@ int main()
 	int mat_a[DIM][DIM];
 	int mat_b[DIM][DIM];
 	int sw_result[DIM][DIM], hw_result[DIM][DIM];
-	int in_bram[3*DIM][DIM]; // Data to be written to the bram.
+	int in_bram[3*DIM][DIM]; // Data to be written to the BRAM.
 
 	int err_cnt = 0;
-	int i, j;
+	int i, j, k;
 
 	// Initialize matrices
 
@@ -45,45 +45,44 @@ int main()
 	}
 
    // Generate the expected result
+
    for(i = 0; i < DIM; i++) {
       for(j = 0; j < DIM; j++) {
       	 sw_result[i][j] = 0;      	
-         for(int k = 0; k < DIM; k++) {
+         for(k = 0; k < DIM; k++) {
             sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
          }
       }
    }	
 
-   // Write to bram
+   // Write to BRAM
 
-   //We write linearly
     for(i = 0; i < 2*DIM*DIM; i++)
     {
         *(bram_ptr + i) = *((&in_bram[0][0]) + i);
-        printf("%d ", *(bram_ptr + i)); // Check written value
-
-        if((i+1) % DIM == 0) {
-        	printf("\n");
-        }
     }
 
-    printf("\n");
-
-    // START HLS MODULE
+    // Start HLS module
 	
 	*hls_ptr = 1;
 
-	// POLL STATUS OF HLS MODULE
+	// Poll status of HLS module
     
     while((*hls_ptr) != 1);
 
-    puts("Checking results");
-	
-	// CHECK RESULTS
-	
+    // Read back the data
+
     for(i = 0; i < DIM*DIM; i++)
     {
         *((&hw_result[0][0]) + i) = *(bram_ptr + i + 2*DIM*DIM); // Increment by 2*DIM*DIM for result
+    }    
+	
+	// Check results
+
+    puts("Checking results");	
+	
+    for(i = 0; i < DIM*DIM; i++)
+    {
         printf("%d ", *((&hw_result[0][0]) +i) );
 
         if((i+1) % DIM == 0) {
@@ -100,7 +99,8 @@ int main()
 	
 	if(!err_cnt) 
 	{
-		puts("Results correct"); // puts for strings!		
+		puts("Results correct");	
+
 		for (;;) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)
@@ -131,8 +131,8 @@ int main()
 
 	else 
 	{
-		puts("Results incorrect"); // puts for strings!		
-		// Flash 111 LEDS		
+		puts("Results incorrect"); 
+
 		for (;;) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)

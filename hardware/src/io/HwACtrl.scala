@@ -64,7 +64,7 @@ class HwACtrl(extAddrWidth : Int = 32,
 
   //States for the controller
 
-  val s_idle :: s_reset :: s_stall :: s_start :: s_wait_read :: Nil = Enum(UInt(), 5)
+  val s_idle :: s_start :: s_wait_read :: Nil = Enum(UInt(), 3)
 
   val state = Reg(init = s_idle)
 
@@ -74,8 +74,8 @@ class HwACtrl(extAddrWidth : Int = 32,
     when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Data === SInt(1)) {
       // On next cycle, give data valid, for a single cycle
       respReg := OcpResp.DVA
-      state := s_reset
-      io.hwACtrlPins.ap_reset_out := UInt(1)
+      state := s_start
+      io.hwACtrlPins.ap_start_out := UInt(1)
 
     }.elsewhen(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
       respReg := OcpResp.DVA
@@ -87,55 +87,20 @@ class HwACtrl(extAddrWidth : Int = 32,
     }
   }
 
-  when(state === s_reset) {
-
-    io.hwACtrlPins.ap_reset_out := UInt(1)
-
-    when(cntReg === CNT_MAX) {
-      cntReg := UInt(0)
-      state := s_stall
-
-      when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
-          respReg := OcpResp.DVA
-          rdDataReg := Bits(0)
-        }
-
-    }.otherwise {
-      cntReg := cntReg + UInt(1)
-      
-      state := s_reset
-
-      when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
-        respReg := OcpResp.DVA
-        rdDataReg := Bits(0)
-      }
-    }
-  }
-
-  when(state === s_stall) {
-
-    state := s_start
-
-    when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
-     respReg := OcpResp.DVA
-     rdDataReg := Bits(0)
-    }
-  }
-
   when(state === s_start) {
-
-    io.hwACtrlPins.ap_start_out := UInt(1)
 
     when(io.hwACtrlPins.ap_done_in === UInt(1)) {
       state := s_wait_read
 
       when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
-       respReg := OcpResp.DVA
-       rdDataReg := Bits(0)
+        io.hwACtrlPins.ap_start_out := UInt(0)        
+        respReg := OcpResp.DVA
+        rdDataReg := Bits(0)
       }
 
     }.otherwise {
       state := s_start
+      io.hwACtrlPins.ap_start_out := UInt(1)
 
       when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
        respReg := OcpResp.DVA

@@ -1,7 +1,11 @@
 
+# Do file for dual_bank.vhd
+
 # Restart simulation and remove waves
 
 restart -f -nowave
+
+config wave -signalnamewidth 1
 
 # Add inputs
 

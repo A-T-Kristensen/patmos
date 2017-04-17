@@ -2636,10 +2636,10 @@ module Fetch(input clk, input reset,
   wire[31:0] instr_a_rom;
   reg [31:0] data_odd;
   reg [31:0] T18;
-  wire[5:0] T20;
+  wire[6:0] T20;
   reg [31:0] data_even;
   reg [31:0] T21;
-  wire[5:0] T23;
+  wire[6:0] T23;
   wire[29:0] addrEven;
   wire[29:0] T24;
   reg [29:0] addrEvenReg;
@@ -2773,60 +2773,124 @@ module Fetch(input clk, input reset,
     7: T18 = 32'hcfc20000;
     8: T18 = 32'h4ac22085;
     9: T18 = 32'h400000;
-    10: T18 = 32'h19c;
-    11: T18 = 32'h87c40000;
-    12: T18 = 32'h2c22080;
-    13: T18 = 32'h2c22181;
-    14: T18 = 32'h7ff00c;
-    15: T18 = 32'h2c22182;
-    16: T18 = 32'hf00c0000;
-    17: T18 = 32'h87c20000;
-    18: T18 = 32'h2821080;
-    19: T18 = 32'h20210e1;
-    20: T18 = 32'h87c20000;
-    21: T18 = 32'h2841080;
-    22: T18 = 32'h2c5f100;
-    23: T18 = 32'h400000;
-    24: T18 = 32'h2022161;
-    25: T18 = 32'h2023261;
-    26: T18 = 32'h2043100;
-    27: T18 = 32'h2841082;
-    28: T18 = 32'h2022361;
-    29: T18 = 32'h20211b1;
-    30: T18 = 32'h2c5f102;
-    31: T18 = 32'h2022360;
-    32: T18 = 32'h40001;
-    33: T18 = 32'h287f101;
-    34: T18 = 32'h2023260;
-    35: T18 = 32'h8064000;
-    36: T18 = 32'hf0090000;
-    37: T18 = 32'h20001;
-    38: T18 = 32'h80003;
-    39: T18 = 32'h8024000;
-    40: T18 = 32'h2021031;
-    41: T18 = 32'h8fc40000;
-    42: T18 = 32'hac22000;
-    43: T18 = 32'h48020007;
-    44: T18 = 32'hf0090000;
-    45: T18 = 32'h4ac22080;
-    46: T18 = 32'h4fffff4;
-    47: T18 = 32'h48020002;
-    48: T18 = 32'h484001;
-    49: T18 = 32'h2024031;
-    50: T18 = 32'h87c80000;
-    51: T18 = 32'h2c24000;
-    52: T18 = 32'h2c24000;
-    53: T18 = 32'h2c24180;
-    54: T18 = 32'h2c24180;
-    55: T18 = 32'h2c24000;
-    56: T18 = 32'h2c24000;
-    57: T18 = 32'h2c24100;
-    58: T18 = 32'h2c24100;
-    59: T18 = 32'h2c24000;
-    60: T18 = 32'h2c24000;
-    61: T18 = 32'h2c24000;
-    62: T18 = 32'h0;
-    63: T18 = 32'h0;
+    10: T18 = 32'h2a4;
+    11: T18 = 32'h7ff1c0;
+    12: T18 = 32'h25a0030;
+    13: T18 = 32'h140;
+    14: T18 = 32'he3000;
+    15: T18 = 32'ha2000;
+    16: T18 = 32'h2124400;
+    17: T18 = 32'h567040;
+    18: T18 = 32'h2c4b500;
+    19: T18 = 32'h2c46480;
+    20: T18 = 32'ha5004;
+    21: T18 = 32'h2028261;
+    22: T18 = 32'hc6004;
+    23: T18 = 32'h42010;
+    24: T18 = 32'h2024261;
+    25: T18 = 32'h21010;
+    26: T18 = 32'h3f080;
+    27: T18 = 32'hc62004;
+    28: T18 = 32'h20e4180;
+    29: T18 = 32'h101000;
+    30: T18 = 32'h28c7101;
+    31: T18 = 32'h60004;
+    32: T18 = 32'h15f040;
+    33: T18 = 32'h2949110;
+    34: T18 = 32'h200a220;
+    35: T18 = 32'h2540032;
+    36: T18 = 32'h2989104;
+    37: T18 = 32'h200c3a0;
+    38: T18 = 32'h2580032;
+    39: T18 = 32'h2023031;
+    40: T18 = 32'h212c480;
+    41: T18 = 32'h2129500;
+    42: T18 = 32'h2c48480;
+    43: T18 = 32'h42001;
+    44: T18 = 32'hcffffde;
+    45: T18 = 32'h60000;
+    46: T18 = 32'h202308d;
+    47: T18 = 32'h87c4300d;
+    48: T18 = 32'h2c22080;
+    49: T18 = 32'h20020;
+    50: T18 = 32'hcbffff7;
+    51: T18 = 32'h87c40000;
+    52: T18 = 32'h2c22080;
+    53: T18 = 32'h87c20000;
+    54: T18 = 32'h2821080;
+    55: T18 = 32'h20210e1;
+    56: T18 = 32'h87c4300d;
+    57: T18 = 32'h3f0c0;
+    58: T18 = 32'h202308d;
+    59: T18 = 32'h63001;
+    60: T18 = 32'hcfffff8;
+    61: T18 = 32'h40000;
+    62: T18 = 32'h9f0c0;
+    63: T18 = 32'h208120d;
+    64: T18 = 32'h2884100;
+    65: T18 = 32'h20241b1;
+    66: T18 = 32'h2043100;
+    67: T18 = 32'h2021861;
+    68: T18 = 32'h20002;
+    69: T18 = 32'h4c800010;
+    70: T18 = 32'h8421001;
+    71: T18 = 32'hf0090000;
+    72: T18 = 32'hac22000;
+    73: T18 = 32'hcfc40000;
+    74: T18 = 32'h4ac22080;
+    75: T18 = 32'h4ac22080;
+    76: T18 = 32'h4ac22080;
+    77: T18 = 32'h4c00008;
+    78: T18 = 32'h87c60000;
+    79: T18 = 32'h40003;
+    80: T18 = 32'h421001;
+    81: T18 = 32'h2021031;
+    82: T18 = 32'h87c20000;
+    83: T18 = 32'h2c21000;
+    84: T18 = 32'h2c21000;
+    85: T18 = 32'h2c21000;
+    86: T18 = 32'h2c21100;
+    87: T18 = 32'h2c21100;
+    88: T18 = 32'h2c21000;
+    89: T18 = 32'h2c21000;
+    90: T18 = 32'h2c21100;
+    91: T18 = 32'h2c21100;
+    92: T18 = 32'h2c21000;
+    93: T18 = 32'h2c21000;
+    94: T18 = 32'h2c21000;
+    95: T18 = 32'h0;
+    96: T18 = 32'h0;
+    97: T18 = 32'h0;
+    98: T18 = 32'h0;
+    99: T18 = 32'h0;
+    100: T18 = 32'h0;
+    101: T18 = 32'h0;
+    102: T18 = 32'h0;
+    103: T18 = 32'h0;
+    104: T18 = 32'h0;
+    105: T18 = 32'h0;
+    106: T18 = 32'h0;
+    107: T18 = 32'h0;
+    108: T18 = 32'h0;
+    109: T18 = 32'h0;
+    110: T18 = 32'h0;
+    111: T18 = 32'h0;
+    112: T18 = 32'h0;
+    113: T18 = 32'h0;
+    114: T18 = 32'h0;
+    115: T18 = 32'h0;
+    116: T18 = 32'h0;
+    117: T18 = 32'h0;
+    118: T18 = 32'h0;
+    119: T18 = 32'h0;
+    120: T18 = 32'h0;
+    121: T18 = 32'h0;
+    122: T18 = 32'h0;
+    123: T18 = 32'h0;
+    124: T18 = 32'h0;
+    125: T18 = 32'h0;
+    126: T18 = 32'h0;
+    127: T18 = 32'h0;
     default: begin
       T18 = 32'bx;
 `ifndef SYNTHESIS
@@ -2836,7 +2900,7 @@ module Fetch(input clk, input reset,
 `endif
     end
   endcase
-  assign T20 = addrOdd[3'h6:1'h1];
+  assign T20 = addrOdd[3'h7:1'h1];
   always @(*) case (T23)
     0: T21 = 32'h50;
     1: T21 = 32'h20700;
@@ -2849,59 +2913,123 @@ module Fetch(input clk, input reset,
     8: T21 = 32'h80000000;
     9: T21 = 32'h400000;
     10: T21 = 32'h4000016;
-    11: T21 = 32'h20001;
-    12: T21 = 32'hf00b0000;
-    13: T21 = 32'h60002;
-    14: T21 = 32'h24c0030;
-    15: T21 = 32'h60003;
-    16: T21 = 32'h87c40000;
-    17: T21 = 32'h2c22080;
-    18: T21 = 32'hf00c0000;
-    19: T21 = 32'h400000;
-    20: T21 = 32'hcbffffb;
-    21: T21 = 32'hf00b0000;
-    22: T21 = 32'h400000;
-    23: T21 = 32'h2861081;
-    24: T21 = 32'h2c5f181;
-    25: T21 = 32'h2040051;
-    26: T21 = 32'h2060051;
-    27: T21 = 32'h2060101;
-    28: T21 = 32'h400000;
-    29: T21 = 32'h2020051;
-    30: T21 = 32'hcc00015;
-    31: T21 = 32'h20002;
-    32: T21 = 32'h6003f;
-    33: T21 = 32'h8043000;
-    34: T21 = 32'h8000f;
-    35: T21 = 32'h60001;
-    36: T21 = 32'h87ca0000;
-    37: T21 = 32'h289f100;
-    38: T21 = 32'h2024160;
-    39: T21 = 32'h4c00015;
-    40: T21 = 32'h80002;
-    41: T21 = 32'h8421001;
-    42: T21 = 32'hf0090000;
-    43: T21 = 32'hac22000;
-    44: T21 = 32'hcfc40000;
-    45: T21 = 32'h4ac22080;
-    46: T21 = 32'h4ac22080;
-    47: T21 = 32'h4ac22080;
-    48: T21 = 32'h2c25080;
-    49: T21 = 32'h2c25080;
-    50: T21 = 32'hcbffffc;
-    51: T21 = 32'hf0090000;
-    52: T21 = 32'h2c24000;
-    53: T21 = 32'h2c24000;
-    54: T21 = 32'h2c24180;
-    55: T21 = 32'h2c24180;
-    56: T21 = 32'h2c24000;
-    57: T21 = 32'h2c24000;
-    58: T21 = 32'h2c24100;
-    59: T21 = 32'h2c24100;
-    60: T21 = 32'h2c24000;
-    61: T21 = 32'h4ffffe9;
-    62: T21 = 32'h80002;
-    63: T21 = 32'h0;
+    11: T21 = 32'h80000;
+    12: T21 = 32'h3f040;
+    13: T21 = 32'h87c7f000;
+    14: T21 = 32'h5f000;
+    15: T21 = 32'hc1000;
+    16: T21 = 32'h100000;
+    17: T21 = 32'h149001;
+    18: T21 = 32'h2c45500;
+    19: T21 = 32'h129005;
+    20: T21 = 32'h2c47480;
+    21: T21 = 32'h108001;
+    22: T21 = 32'hcfffff5;
+    23: T21 = 32'he7004;
+    24: T21 = 32'h84001;
+    25: T21 = 32'hcffffeb;
+    26: T21 = 32'h63010;
+    27: T21 = 32'h40000;
+    28: T21 = 32'h9f000;
+    29: T21 = 32'h2887103;
+    30: T21 = 32'h28a7102;
+    31: T21 = 32'h28e7100;
+    32: T21 = 32'hd23002;
+    33: T21 = 32'h212a481;
+    34: T21 = 32'h463001;
+    35: T21 = 32'h296910c;
+    36: T21 = 32'h200b2a0;
+    37: T21 = 32'h2560032;
+    38: T21 = 32'h2929108;
+    39: T21 = 32'h2009320;
+    40: T21 = 32'h2520032;
+    41: T21 = 32'h2129580;
+    42: T21 = 32'hcffffec;
+    43: T21 = 32'h108004;
+    44: T21 = 32'h2022261;
+    45: T21 = 32'h21010;
+    46: T21 = 32'h3f100;
+    47: T21 = 32'h2821100;
+    48: T21 = 32'hf00b0000;
+    49: T21 = 32'h63001;
+    50: T21 = 32'h20230b1;
+    51: T21 = 32'h20001;
+    52: T21 = 32'hf00c0000;
+    53: T21 = 32'h60000;
+    54: T21 = 32'hf00c0000;
+    55: T21 = 32'h400000;
+    56: T21 = 32'hcbffffb;
+    57: T21 = 32'hf00b0080;
+    58: T21 = 32'h2842080;
+    59: T21 = 32'h2c41100;
+    60: T21 = 32'h2023861;
+    61: T21 = 32'h20000;
+    62: T21 = 32'h7f080;
+    63: T21 = 32'h206118d;
+    64: T21 = 32'h2863100;
+    65: T21 = 32'h400000;
+    66: T21 = 32'h2060051;
+    67: T21 = 32'h21001;
+    68: T21 = 32'hcbffff4;
+    69: T21 = 32'h2022031;
+    70: T21 = 32'h2021031;
+    71: T21 = 32'h8fc40000;
+    72: T21 = 32'hac22000;
+    73: T21 = 32'h48020007;
+    74: T21 = 32'hf0090000;
+    75: T21 = 32'h4ac22080;
+    76: T21 = 32'h4fffff4;
+    77: T21 = 32'h48020002;
+    78: T21 = 32'h400000;
+    79: T21 = 32'hf0090000;
+    80: T21 = 32'h2c23100;
+    81: T21 = 32'h2c23100;
+    82: T21 = 32'hcbffffb;
+    83: T21 = 32'hf0090000;
+    84: T21 = 32'h4000f;
+    85: T21 = 32'h2c21000;
+    86: T21 = 32'h2c21100;
+    87: T21 = 32'h2c21100;
+    88: T21 = 32'h2c21000;
+    89: T21 = 32'h2c21000;
+    90: T21 = 32'h4003f;
+    91: T21 = 32'h2c21100;
+    92: T21 = 32'h2c21100;
+    93: T21 = 32'h2c21000;
+    94: T21 = 32'h4ffffe7;
+    95: T21 = 32'h20002;
+    96: T21 = 32'h0;
+    97: T21 = 32'h0;
+    98: T21 = 32'h0;
+    99: T21 = 32'h0;
+    100: T21 = 32'h0;
+    101: T21 = 32'h0;
+    102: T21 = 32'h0;
+    103: T21 = 32'h0;
+    104: T21 = 32'h0;
+    105: T21 = 32'h0;
+    106: T21 = 32'h0;
+    107: T21 = 32'h0;
+    108: T21 = 32'h0;
+    109: T21 = 32'h0;
+    110: T21 = 32'h0;
+    111: T21 = 32'h0;
+    112: T21 = 32'h0;
+    113: T21 = 32'h0;
+    114: T21 = 32'h0;
+    115: T21 = 32'h0;
+    116: T21 = 32'h0;
+    117: T21 = 32'h0;
+    118: T21 = 32'h0;
+    119: T21 = 32'h0;
+    120: T21 = 32'h0;
+    121: T21 = 32'h0;
+    122: T21 = 32'h0;
+    123: T21 = 32'h0;
+    124: T21 = 32'h0;
+    125: T21 = 32'h0;
+    126: T21 = 32'h0;
+    127: T21 = 32'h0;
     default: begin
       T21 = 32'bx;
 `ifndef SYNTHESIS
@@ -2911,7 +3039,7 @@ module Fetch(input clk, input reset,
 `endif
     end
   endcase
-  assign T23 = addrEven[3'h6:1'h1];
+  assign T23 = addrEven[3'h7:1'h1];
   assign addrEven = T24;
   assign T24 = T47 ? T25 : addrEvenReg;
   assign T71 = reset ? 30'h2 : addrEven;
@@ -11114,24 +11242,22 @@ module HwACtrl(input clk, input reset,
   wire T3;
   wire T4;
   wire T5;
-  reg [2:0] state;
-  wire[2:0] T81;
-  wire[2:0] T6;
-  wire[2:0] T7;
-  wire[2:0] T8;
-  wire[2:0] T9;
-  wire[2:0] T10;
-  wire[2:0] T11;
-  wire[2:0] T12;
-  wire[2:0] T13;
-  wire[2:0] T14;
+  wire T6;
+  reg [1:0] state;
+  wire[1:0] T52;
+  wire[1:0] T7;
+  wire[1:0] T8;
+  wire[1:0] T9;
+  wire[1:0] T10;
+  wire[1:0] T11;
+  wire[1:0] T12;
+  wire T13;
+  wire T14;
   wire T15;
   wire T16;
-  reg [4:0] cntReg;
-  wire[4:0] T82;
-  wire[4:0] T17;
-  wire[4:0] T18;
-  wire[4:0] T19;
+  wire T17;
+  wire T18;
+  wire T19;
   wire T20;
   wire T21;
   wire T22;
@@ -11144,59 +11270,30 @@ module HwACtrl(input clk, input reset,
   wire T29;
   wire T30;
   wire T31;
-  wire T32;
-  wire T33;
-  wire T34;
-  wire T35;
+  reg [31:0] rdDataReg;
+  wire[31:0] T53;
+  wire[31:0] T32;
+  wire[31:0] T33;
+  wire[31:0] T34;
+  wire[31:0] T35;
   wire T36;
   wire T37;
   wire T38;
-  reg [31:0] rdDataReg;
-  wire[31:0] T83;
-  wire[31:0] T39;
-  wire[31:0] T40;
-  wire[31:0] T41;
-  wire[31:0] T42;
-  wire[31:0] T43;
-  wire[31:0] T44;
-  wire[31:0] T45;
-  wire T46;
-  wire T47;
-  wire T48;
-  wire T49;
-  wire T50;
-  wire T51;
-  wire T52;
-  wire T53;
-  wire T54;
-  wire T55;
-  wire T56;
-  wire T57;
-  wire T58;
-  wire T59;
-  wire T60;
-  wire T61;
-  wire T62;
-  wire T63;
-  wire T64;
-  wire T65;
-  wire T66;
-  wire T67;
-  wire T68;
-  wire T69;
-  wire T70;
-  wire T71;
+  wire T39;
+  wire T40;
+  wire T41;
+  wire T42;
+  wire T43;
+  wire T44;
+  wire T45;
   reg [1:0] respReg;
-  wire[1:0] T84;
-  wire[1:0] T72;
-  wire[1:0] T73;
-  wire[1:0] T74;
-  wire[1:0] T75;
-  wire[1:0] T76;
-  wire[1:0] T77;
-  wire[1:0] T78;
-  wire[1:0] T79;
-  wire[1:0] T80;
+  wire[1:0] T54;
+  wire[1:0] T46;
+  wire[1:0] T47;
+  wire[1:0] T48;
+  wire[1:0] T49;
+  wire[1:0] T50;
+  wire[1:0] T51;
 
 `ifndef SYNTHESIS
 // synthesis translate_off
@@ -11204,168 +11301,112 @@ module HwACtrl(input clk, input reset,
   initial begin
     #0.002;
     state = {1{$random}};
-    cntReg = {1{$random}};
     rdDataReg = {1{$random}};
     respReg = {1{$random}};
   end
 // synthesis translate_on
 `endif
 
-  assign io_hwACtrlPins_ap_reset_out = T0;
-  assign T0 = T38 ? 1'h1 : T1;
-  assign T1 = T5 & T2;
-  assign T2 = T4 & T3;
-  assign T3 = io_ocp_M_Data == 32'h1;
-  assign T4 = io_ocp_M_Cmd == 3'h1;
-  assign T5 = state == 3'h0;
-  assign T81 = reset ? 3'h0 : T6;
-  assign T6 = T35 ? 3'h4 : T7;
-  assign T7 = T31 ? 3'h4 : T8;
-  assign T8 = T28 ? 3'h4 : T9;
-  assign T9 = T26 ? 3'h3 : T10;
-  assign T10 = T23 ? 3'h4 : T11;
-  assign T11 = T22 ? 3'h3 : T12;
-  assign T12 = T20 ? 3'h1 : T13;
-  assign T13 = T15 ? 3'h2 : T14;
-  assign T14 = T1 ? 3'h1 : state;
-  assign T15 = T38 & T16;
-  assign T16 = cntReg == 5'h3;
-  assign T82 = reset ? 5'h0 : T17;
-  assign T17 = T20 ? T19 : T18;
-  assign T18 = T15 ? 5'h0 : cntReg;
-  assign T19 = cntReg + 5'h1;
-  assign T20 = T38 & T21;
-  assign T21 = T16 ^ 1'h1;
-  assign T22 = state == 3'h2;
-  assign T23 = T25 & T24;
-  assign T24 = io_hwACtrlPins_ap_done_in == 1'h1;
-  assign T25 = state == 3'h3;
-  assign T26 = T25 & T27;
-  assign T27 = T24 ^ 1'h1;
-  assign T28 = T30 & T29;
+  assign io_hwACtrlPins_ap_reset_out = 1'h0;
+  assign io_hwACtrlPins_ap_start_out = T0;
+  assign T0 = T30 ? 1'h1 : T1;
+  assign T1 = T26 ? 1'h0 : T2;
+  assign T2 = T6 & T3;
+  assign T3 = T5 & T4;
+  assign T4 = io_ocp_M_Data == 32'h1;
+  assign T5 = io_ocp_M_Cmd == 3'h1;
+  assign T6 = state == 2'h0;
+  assign T52 = reset ? 2'h0 : T7;
+  assign T7 = T23 ? 2'h2 : T8;
+  assign T8 = T19 ? 2'h2 : T9;
+  assign T9 = T16 ? 2'h2 : T10;
+  assign T10 = T30 ? 2'h1 : T11;
+  assign T11 = T13 ? 2'h2 : T12;
+  assign T12 = T2 ? 2'h1 : state;
+  assign T13 = T15 & T14;
+  assign T14 = io_hwACtrlPins_ap_done_in == 1'h1;
+  assign T15 = state == 2'h1;
+  assign T16 = T18 & T17;
+  assign T17 = io_ocp_M_Cmd == 3'h2;
+  assign T18 = state == 2'h2;
+  assign T19 = T18 & T20;
+  assign T20 = T22 & T21;
+  assign T21 = io_ocp_M_Cmd == 3'h1;
+  assign T22 = T17 ^ 1'h1;
+  assign T23 = T18 & T24;
+  assign T24 = T25 ^ 1'h1;
+  assign T25 = T17 | T21;
+  assign T26 = T13 & T27;
+  assign T27 = T29 | T28;
+  assign T28 = io_ocp_M_Cmd == 3'h1;
   assign T29 = io_ocp_M_Cmd == 3'h2;
-  assign T30 = state == 3'h4;
-  assign T31 = T30 & T32;
-  assign T32 = T34 & T33;
-  assign T33 = io_ocp_M_Cmd == 3'h1;
-  assign T34 = T29 ^ 1'h1;
-  assign T35 = T30 & T36;
-  assign T36 = T37 ^ 1'h1;
-  assign T37 = T29 | T33;
-  assign T38 = state == 3'h1;
-  assign io_hwACtrlPins_ap_start_out = T25;
+  assign T30 = T15 & T31;
+  assign T31 = T14 ^ 1'h1;
   assign io_ocp_S_Data = rdDataReg;
-  assign T83 = reset ? 32'h0 : T39;
-  assign T39 = T28 ? 32'h1 : T40;
-  assign T40 = T68 ? 32'h0 : T41;
-  assign T41 = T64 ? 32'h0 : T42;
-  assign T42 = T60 ? 32'h0 : T43;
-  assign T43 = T56 ? 32'h0 : T44;
-  assign T44 = T52 ? 32'h0 : T45;
-  assign T45 = T46 ? 32'h0 : rdDataReg;
-  assign T46 = T5 & T47;
-  assign T47 = T51 & T48;
-  assign T48 = T50 | T49;
-  assign T49 = io_ocp_M_Cmd == 3'h1;
-  assign T50 = io_ocp_M_Cmd == 3'h2;
-  assign T51 = T2 ^ 1'h1;
-  assign T52 = T15 & T53;
-  assign T53 = T55 | T54;
-  assign T54 = io_ocp_M_Cmd == 3'h1;
-  assign T55 = io_ocp_M_Cmd == 3'h2;
-  assign T56 = T20 & T57;
-  assign T57 = T59 | T58;
-  assign T58 = io_ocp_M_Cmd == 3'h1;
-  assign T59 = io_ocp_M_Cmd == 3'h2;
-  assign T60 = T22 & T61;
-  assign T61 = T63 | T62;
-  assign T62 = io_ocp_M_Cmd == 3'h1;
-  assign T63 = io_ocp_M_Cmd == 3'h2;
-  assign T64 = T23 & T65;
-  assign T65 = T67 | T66;
-  assign T66 = io_ocp_M_Cmd == 3'h1;
-  assign T67 = io_ocp_M_Cmd == 3'h2;
-  assign T68 = T26 & T69;
-  assign T69 = T71 | T70;
-  assign T70 = io_ocp_M_Cmd == 3'h1;
-  assign T71 = io_ocp_M_Cmd == 3'h2;
+  assign T53 = reset ? 32'h0 : T32;
+  assign T32 = T16 ? 32'h1 : T33;
+  assign T33 = T42 ? 32'h0 : T34;
+  assign T34 = T26 ? 32'h0 : T35;
+  assign T35 = T36 ? 32'h0 : rdDataReg;
+  assign T36 = T6 & T37;
+  assign T37 = T41 & T38;
+  assign T38 = T40 | T39;
+  assign T39 = io_ocp_M_Cmd == 3'h1;
+  assign T40 = io_ocp_M_Cmd == 3'h2;
+  assign T41 = T3 ^ 1'h1;
+  assign T42 = T30 & T43;
+  assign T43 = T45 | T44;
+  assign T44 = io_ocp_M_Cmd == 3'h1;
+  assign T45 = io_ocp_M_Cmd == 3'h2;
   assign io_ocp_S_Resp = respReg;
-  assign T84 = reset ? 2'h0 : T72;
-  assign T72 = T31 ? 2'h1 : T73;
-  assign T73 = T28 ? 2'h1 : T74;
-  assign T74 = T68 ? 2'h1 : T75;
-  assign T75 = T64 ? 2'h1 : T76;
-  assign T76 = T60 ? 2'h1 : T77;
-  assign T77 = T56 ? 2'h1 : T78;
-  assign T78 = T52 ? 2'h1 : T79;
-  assign T79 = T46 ? 2'h1 : T80;
-  assign T80 = T1 ? 2'h1 : 2'h0;
+  assign T54 = reset ? 2'h0 : T46;
+  assign T46 = T19 ? 2'h1 : T47;
+  assign T47 = T16 ? 2'h1 : T48;
+  assign T48 = T42 ? 2'h1 : T49;
+  assign T49 = T26 ? 2'h1 : T50;
+  assign T50 = T36 ? 2'h1 : T51;
+  assign T51 = T2 ? 2'h1 : 2'h0;
 
   always @(posedge clk) begin
     if(reset) begin
-      state <= 3'h0;
-    end else if(T35) begin
-      state <= 3'h4;
-    end else if(T31) begin
-      state <= 3'h4;
-    end else if(T28) begin
-      state <= 3'h4;
-    end else if(T26) begin
-      state <= 3'h3;
+      state <= 2'h0;
     end else if(T23) begin
-      state <= 3'h4;
-    end else if(T22) begin
-      state <= 3'h3;
-    end else if(T20) begin
-      state <= 3'h1;
-    end else if(T15) begin
-      state <= 3'h2;
-    end else if(T1) begin
-      state <= 3'h1;
-    end
-    if(reset) begin
-      cntReg <= 5'h0;
-    end else if(T20) begin
-      cntReg <= T19;
-    end else if(T15) begin
-      cntReg <= 5'h0;
+      state <= 2'h2;
+    end else if(T19) begin
+      state <= 2'h2;
+    end else if(T16) begin
+      state <= 2'h2;
+    end else if(T30) begin
+      state <= 2'h1;
+    end else if(T13) begin
+      state <= 2'h2;
+    end else if(T2) begin
+      state <= 2'h1;
     end
     if(reset) begin
       rdDataReg <= 32'h0;
-    end else if(T28) begin
+    end else if(T16) begin
       rdDataReg <= 32'h1;
-    end else if(T68) begin
+    end else if(T42) begin
       rdDataReg <= 32'h0;
-    end else if(T64) begin
+    end else if(T26) begin
       rdDataReg <= 32'h0;
-    end else if(T60) begin
-      rdDataReg <= 32'h0;
-    end else if(T56) begin
-      rdDataReg <= 32'h0;
-    end else if(T52) begin
-      rdDataReg <= 32'h0;
-    end else if(T46) begin
+    end else if(T36) begin
       rdDataReg <= 32'h0;
     end
     if(reset) begin
       respReg <= 2'h0;
-    end else if(T31) begin
+    end else if(T19) begin
       respReg <= 2'h1;
-    end else if(T28) begin
+    end else if(T16) begin
       respReg <= 2'h1;
-    end else if(T68) begin
+    end else if(T42) begin
       respReg <= 2'h1;
-    end else if(T64) begin
+    end else if(T26) begin
       respReg <= 2'h1;
-    end else if(T60) begin
+    end else if(T36) begin
       respReg <= 2'h1;
-    end else if(T56) begin
-      respReg <= 2'h1;
-    end else if(T52) begin
-      respReg <= 2'h1;
-    end else if(T46) begin
-      respReg <= 2'h1;
-    end else if(T1) begin
+    end else if(T2) begin
       respReg <= 2'h1;
     end else begin
       respReg <= 2'h0;

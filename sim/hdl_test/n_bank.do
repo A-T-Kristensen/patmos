@@ -1,4 +1,6 @@
 
+# Do file for n_bank.vhd
+
 # Restart simulation and remove waves
 
 restart -f -nowave

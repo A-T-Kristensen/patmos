@@ -12,7 +12,12 @@ simulator/build
 install/
 doc/c_doc
 hardware/modelsim/work/
-sim/modelsim/work
+sim/bram/work
+sim/hdl_test/work
+sim/list_multiply/work
+sim/matmul_1b/work
+sim/matmul_2b/work
+sim/spm/work
 
 hardware/quartus/altde2-115/db
 hardware/quartus/altde2-115/incremental_db

@@ -7,19 +7,19 @@
     Copyright: DTU, BSD License
 */
 
-//We need this if we want to make it a bootapp
+// Required to make bootapp
 
 #include "include/patio.h"
 #include "include/bootable.h"
 
-// These are used to write to SPM and IO devices
+// Files required for memory mapped IO devices
+// patmos.h defines _IODEV, used to access memory mapped IO devices.
 
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+#include <machine/patmos.h> 
 
 #define DIM 4
 
-#define LED_RUN_LENGTH 1
+#define LED_RUN_LENGTH 2
 
 typedef int mat_type;
 
@@ -38,7 +38,7 @@ int main()
 	mat_type in_bram[3*DIM][DIM]; // Data to be written to the bram.
 
 	int err_cnt = 0;
-	int i, j;
+	int i, j, k;
 
 	// Initialize matrices
 
@@ -55,40 +55,48 @@ int main()
    // Generate the expected result
    for(i = 0; i < DIM; i++) {
       for(j = 0; j < DIM; j++) {
-      	 sw_result[i][j] = 0;      	      	
-         for(int k = 0; k < DIM; k++) {
+      	sw_result[i][j] = 0;      	
+         for(k = 0; k < DIM; k++) {
             sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
          }
       }
    }	
 
-   // Write to bram
+   // Write to BRAM
 
-   //We write linearly, first to bank 1
+   // Bank 1
+
     for(i = 0; i < 3*DIM*DIM/2; i++)
     {
         *(bank1_ptr + i) = *((&in_bram[0][0]) + i);
     }
-    
+
+    // Bank 2
+
     for(i = 0; i < DIM*DIM/2; i++)
     {
         *(bank2_ptr + i) = *((&in_bram[0][0]) + i + 3*DIM*DIM/2); 
     }    
 
-    // START HLS MODULE
+    // Start HLS module
 	
 	*hls_ptr = 1;
 
-	// POLL STATUS OF HLS MODULE
+	// Poll status of HLS module
     
     while((*hls_ptr) != 1);
-	
-	// CHECK RESULTS
-	
+
+    // Read back the data    
+
     for(i = 0; i < DIM*DIM; i++)
     {
         *((&hw_result[0][0]) + i)= *(bank2_ptr + i + 8); // Increment by 8 in memory bank 2
-
+    }    
+	
+	// Check results
+	
+    for(i = 0; i < DIM*DIM; i++)
+    {
 		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
 		{
 			err_cnt++;	
@@ -129,10 +137,8 @@ int main()
 
 	else 
 	{
-		// Flash 111 LEDS		
 		for (;;) 
 		{
-
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;

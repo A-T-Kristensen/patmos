@@ -1,15 +1,15 @@
 /*
     This is a minimal C program executed on the FPGA version of Patmos.
-    An embedded test of a vivado hls module: writing 1, 2, 3 to bram, and expecting 2, 4, 6 out.
+    An embedded test of a vivado hls module: writing 1, 2, 3 to BRAM, and expecting 2, 4, 6 out.
 
     Author: Andreas T. Kristensen 
     Copyright: DTU, BSD License
 */
 
-// These are used to write to SPM and IO devices
+// Files required for memory mapped IO devices
+// patmos.h defines _IODEV, used to access memory mapped IO devices.
 
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+#include <machine/patmos.h>
 
 #include <stdio.h>
 
@@ -31,33 +31,41 @@ int main()
     for(i = 0; i < 3; i++)
     {
         *(bram_ptr + i) = bram_in[i];
-        printf("%d \n", *(bram_ptr + i)); // Check written value
     }
 
-    // START HLS MODULE
+    // Start HLS module
+
 	*hls_ptr = 1;
 
-	// POLL STATUS OF HLS MODULE
+	// Poll status of HLS module
     
     while((*hls_ptr) != 1);
 	
-	// CHECK RESULTS
+	// Read back data from BRAM
+
     for(i = 0; i < 3; i++)
     {
         bram_out[i] = *(bram_ptr + i);
+    }
+
+    // Check results
+
+    for(i = 0; i < 3; i++)
+    {
         printf("%d \n", bram_out[i]);
 		
 		if(bram_out[i] != gold[i])
 		{
 			err_cnt++;	
 		}
-    }
+    }    
 
     // We now continously loop, showing a pattern on the LEDS
 	
 	if(!err_cnt) 
 	{
-		puts("Results correct"); // puts for strings!		
+		puts("Results correct"); 	
+
 		for (;;) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)
@@ -89,7 +97,7 @@ int main()
 	else 
 	{
 		puts("Results incorrect");
-		// Flash 111 LEDS		
+
 		for (;;) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)
