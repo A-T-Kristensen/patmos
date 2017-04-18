@@ -35,17 +35,17 @@ VENDOR?=XilinxVivado
 #BOARD=bemicro
 #BOARD?=altde2-70
 #BOARD?=altde2-115
-#BOARD?=nexys4ddr
+BOARD?=nexys4ddr
 
 # My custom projects for HwAs built using HLS
-BOARD?=matmul_1b
-#BOARD?=matmul_2b
-#BOARD?=matmul_3b
-#BOARD?=matmul_4b
-#BOARD?=matmul_5b
-#BOARD?=matmul_6b
+#HWA_PROJECT?=matmul_1b
+HWA_PROJECT?=matmul_2b
+#HWA_PROJECT?=matmul_3b
+#HWA_PROJECT?=matmul_4b
+#HWA_PROJECT?=matmul_5b
+#HWA_PROJECT?=matmul_6b
 
-#BOARD?=minver
+#HWA_PROJECT?=minver
 
 # Where to put elf files and binaries
 BUILDDIR?=$(CURDIR)/tmp
@@ -216,6 +216,17 @@ ifeq ($(VENDOR),XilinxVivado)
 endif
 ifeq ($(VENDOR),Altera)
 	$(MAKE) -C hardware synth_quartus BOOTAPP=$(BOOTAPP) BOARD=$(BOARD)
+endif
+
+# hwa_synth and hwa_config are additions for my HLS HwA project
+hwa_synth:
+ifeq ($(VENDOR),XilinxVivado)
+	vivado -mode batch -source hardware/vivado/$(HWA_PROJECT)/synth.tcl
+endif
+
+hwa_config:
+ifeq ($(VENDOR),XilinxVivado)
+	vivado -mode batch -source hardware/vivado/$(HWA_PROJECT)/config.tcl
 endif
 
 download: $(BUILDDIR)/$(APP).elf

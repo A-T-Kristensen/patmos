@@ -21,7 +21,7 @@ package HWA_PACKAGE is
     constant ADDR_WIDTH    : integer := 16; 
 
     -- Number of banks used by the currently active design.
-    constant NBANKS  : integer := 1; 
+    constant NBANKS  : integer := 2; 
 
 	-- Number of bits used to select between banks from Patmos
     constant ADDR_SELECT_BITS : integer := integer(ceil(log2(real(NBANKS)))); 
