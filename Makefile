@@ -219,6 +219,7 @@ ifeq ($(VENDOR),Altera)
 endif
 
 # hwa_synth and hwa_config are additions for my HLS HwA project
+# use e.g. "make COM_PORT?=/dev/ttyUSB1 APP=hwa_matmul_2b comp hwa_synth hwa_config download"
 hwa_synth:
 ifeq ($(VENDOR),XilinxVivado)
 	vivado -mode batch -source hardware/vivado/$(HWA_PROJECT)/synth.tcl

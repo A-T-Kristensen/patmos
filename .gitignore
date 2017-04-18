@@ -33,7 +33,6 @@ hardware/quartus/altde2-115-mc
 *.sld
 *.fls
 *.mti
-*.mpf
 *.bld
 *.cmd_log
 *.ncd

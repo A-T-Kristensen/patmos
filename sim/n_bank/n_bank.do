@@ -1,5 +1,6 @@
 
 # Do file for testing n_bank.vhd, an n memory bank
+# this test assumes n = 4
 
 vsim work.n_bank
 
