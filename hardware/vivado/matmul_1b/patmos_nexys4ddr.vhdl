@@ -11,6 +11,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.HWA_PACKAGE.all;
 
 entity patmos_top is
 	port(
@@ -203,23 +204,21 @@ architecture rtl of patmos_top is
 		);
 	end component;
 	
-	component bram_tdp is
+	component n_bank is
 		port (
-			-- Port A
-			a_clk   : in  std_logic;
-			a_wr    : in  std_logic;
-			a_addr  : in  std_logic_vector(15 downto 0);
-			a_din   : in  std_logic_vector(31 downto 0);
-			a_dout  : out std_logic_vector(31 downto 0);
+		    clk     : in  std_logic;
 
-			-- Port B
-			b_clk   : in  std_logic;
-			b_wr    : in  std_logic;
-			b_addr  : in  std_logic_vector(15 downto 0);
-			b_din   : in  std_logic_vector(31 downto 0);
-			b_dout  : out std_logic_vector(31 downto 0)
+		    -- Patmos side this is always the same
+		    p_we    : in  std_logic;
+		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0); -- The upper bits are used to select bank.
+		    p_dout  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
+		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);    -- Input to patmos
+
+		    -- HwA HLS Side, this is parametized
+	        bram_m : in bank_master_a;
+	        bram_s : out bank_slave_a       
 		);
-	end component;	
+	end component;  
 	
 	component matrixmul is
 	port (
@@ -285,11 +284,11 @@ end component;
 	signal hwACtrl_ap_idle_in 	: std_logic;
 	signal hwACtrl_ap_done_in 	: std_logic;
 
-	signal hwa_we   	: std_logic_vector (3 downto 0);
-	signal hwa_addr  : std_logic_vector (31 downto 0);
-	signal hwa_in   	: std_logic_vector(31 downto 0);
-	signal hwa_out 	: std_logic_vector(31 downto 0);
-	signal hwa_rst : std_logic;	
+    signal bram_m_i : bank_master_a;
+    signal bram_s_i: bank_slave_a;	
+    signal hwa_addr_i : hwa_addr_a;	
+    
+	signal hwa_rst : std_logic;    
 
 	-- signals for the bridge
 
@@ -330,7 +329,7 @@ end component;
 
 	attribute dont_touch : string;  
 
-	attribute dont_touch of hwa_addr 	: signal is "true";		
+	attribute dont_touch of hwa_addr_i 	: signal is "true";		
 
 	------------------------------
 	-- 	SIGNALS FOR DEBUGGING	--
@@ -553,21 +552,20 @@ begin
 			switches             => switches
 		);
 		
-	bram_tdp_inst_0 : bram_tdp port map(
-			-- Port A
-			a_clk   => clk_int,
-			a_wr    => bRamCtrl_MCmd(0),
-			a_addr  => bRamCtrl_MAddr,
-			a_din   => bRamCtrl_MData,
-			a_dout  => bramCtrl_SData,
-			
-			-- Port B
-			b_clk   => clk_int,
-			b_wr    => hwa_we(0),
-			b_addr  => hwa_addr(15 downto 0),
-			b_din   => hwa_out,
-			b_dout  => hwa_in
-		);
+	n_bank_inst_0 : n_bank port map (
+
+	    clk     => clk_int,
+
+	    -- Patmos side
+	    p_we    => bRamCtrl_MCmd(0),
+	    p_addr  => bRamCtrl_MAddr,  -- The upper bits are used to select bank.
+	    p_dout  => bRamCtrl_MData,
+	    p_din   => bramCtrl_SData,-- Input to patmos
+
+	    -- HLS Side
+        bram_m => bram_m_i,
+        bram_s  => bram_s_i
+	);
 		
 	matrixmul_inst_0 : matrixmul port map(
 			ap_clk 		=> clk_int,
@@ -576,15 +574,20 @@ begin
 			ap_done 	=> hwACtrl_ap_done_in,
 			ap_idle 	=> hwACtrl_ap_idle_in,
 			ap_ready 	=> hwACtrl_ap_ready_in,
-			a_Addr_A 	=> hwa_addr,
+			a_Addr_A 	=> hwa_addr_i(0).addr,
 			a_EN_A  	=> open,
-			a_WEN_A 	=> hwa_we,
-			a_Din_A  	=> hwa_out,
-			a_Dout_A 	=> hwa_in,
+			a_WEN_A	=> bram_m_i(0).wr,
+			a_Din_A  	=> bram_m_i(0).din,
+			a_Dout_A 	=> bram_s_i(0).dout,
 			a_Clk_A 	=> open,
 			a_Rst_A 	=> open
 		);		
 
 	hwa_rst <= hwACtrl_ap_reset_out or reset_int;		
+
+	addr_map:
+	for i in (NBANKS-1) downto 0 generate
+	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
+    end generate;		
 					  				
 end architecture rtl;

@@ -53,6 +53,13 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PPRDIR/../../vhdl/mem/HWA_PACKAGE.vhd">
+        <FileInfo>
+          <Attr Name="IsGlobalInclude" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../patmos/Patmos.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -107,6 +114,12 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul/hls_matmul/matrixmul_1b/syn/vhdl/matrixmul_mux_42_bkb.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../vhdl/mem/n_bank.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

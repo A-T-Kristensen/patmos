@@ -295,7 +295,7 @@ architecture rtl of patmos_top is
     signal bram_s_i: bank_slave_a;	
     signal hwa_addr_i : hwa_addr_a;	
     
-	signal hlsReset : std_logic;    
+	signal hwa_rst : std_logic;    
 
 	-- signals for the bridge
 
@@ -364,7 +364,7 @@ architecture rtl of patmos_top is
 	--attribute mark_debug of hlsAddr         		: signal is "true";	
 	--attribute mark_debug of hlsIn             	: signal is "true";	
 	--attribute mark_debug of hlsOut            	: signal is "true";	
-	--attribute mark_debug of hlsReset          	: signal is "true";
+	--attribute mark_debug of hwa_rst          	: signal is "true";
 
  	--attribute mark_debug of reset_int : signal is "true";	
 
@@ -578,7 +578,7 @@ begin
 		
 	matrixmul_inst_0 : matrixmul port map(
 		ap_clk 		=> clk_int,
-		ap_rst 		=> hlsReset,
+		ap_rst 		=> hwa_rst,
 		ap_start 	=> hwACtrl_ap_start_out,
 		ap_done 	=> hwACtrl_ap_done_in,
 		ap_idle 	=> hwACtrl_ap_idle_in,
@@ -601,14 +601,14 @@ begin
 		a_1_Rst_A 	=> open
 	);			
 							  
-	hlsReset <= hwACtrl_ap_reset_out or reset_int;		
+	hwa_rst <= hwACtrl_ap_reset_out or reset_int;		
 
-	--addr_map:
-	--for i in (NBANKS-1) downto 0 generate
-	--    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
- --   end generate;	
+	addr_map:
+	for i in (NBANKS-1) downto 0 generate
+	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
+    end generate;	
 
-   	bram_m_i(0).addr <= hwa_addr_i(0).addr(ADDR_BITS - 1 downto 0);
-   	bram_m_i(1).addr <= hwa_addr_i(1).addr(ADDR_BITS - 1 downto 0);
+   	--bram_m_i(0).addr <= hwa_addr_i(0).addr(ADDR_BITS - 1 downto 0);
+   	--bram_m_i(1).addr <= hwa_addr_i(1).addr(ADDR_BITS - 1 downto 0);
 
 end architecture rtl;
