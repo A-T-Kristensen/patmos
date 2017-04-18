@@ -108,16 +108,26 @@ begin
         end if;
     end process;
 
+    --outputSelect : process(p_bank_sel, p_b_data)
+    --begin
+    --    if (to_integer(unsigned(p_bank_sel)) = 0) then
+    --            p_din <= p_b_data(0).dout;
+    --    elsif (to_integer(unsigned(p_bank_sel)) = 1) then
+    --            p_din <= p_b_data(1).dout;
+    --    else 
+    --            p_din <= (others => '0');
+    --    end if;
+    --end process;   
+
     outputSelect : process(p_bank_sel, p_b_data)
     begin
-        if (to_integer(unsigned(p_bank_sel)) = 0) then
-                p_din <= p_b_data(0).dout;
-        elsif (to_integer(unsigned(p_bank_sel)) = 1) then
-                p_din <= p_b_data(1).dout;
-        else 
-                p_din <= (others => '0');
-        end if;
-    end process;   
+    	p_din <= (others => '0');
+    	for i in 0 to (NBANKS-1) loop
+    		if (to_integer(unsigned(p_bank_sel)) = i) then
+    			p_din <= p_b_data(i).dout;
+        	end if;
+        end loop;
+    end process;      
 
     -- Combinational logic for controlling the write enable on each memory bank
     -- from the Patmos CPU
