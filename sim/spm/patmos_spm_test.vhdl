@@ -6,8 +6,7 @@
 --
 
 -- VHDL top level for Patmos in Chisel on Altera de2-115 board
---
--- Includes some 'magic' VHDL code to generate a reset after FPGA configuration.
+-- used to test writes and reads to the local spm of patmos
 --
 
 library ieee;
@@ -45,8 +44,8 @@ architecture rtl of patmos_top is
 			io_comConf_S_Resp       : in std_logic_vector(1 downto 0);
 			io_comConf_S_Data       : in std_logic_vector(31 downto 0);
 			io_comConf_S_CmdAccept  : in std_logic;
-			io_comConf_S_Reset_n : in std_logic;
-	      	io_comConf_S_Flag : in std_logic_vector(1 downto 0);			
+			io_comConf_S_Reset_n 	: in std_logic;
+	      	io_comConf_S_Flag		: in std_logic_vector(1 downto 0);			
 
 			io_comSpm_M_Cmd         : out std_logic_vector(2 downto 0);
 			io_comSpm_M_Addr        : out std_logic_vector(31 downto 0);
@@ -129,39 +128,39 @@ begin
 
 
     comp : Patmos port map(
-	clk => clk_int, 
-	reset => int_res,
-	io_comConf_M_Cmd => open, 
-	io_comConf_M_Addr => open, 
-	io_comConf_M_Data => open, 
-	io_comConf_M_ByteEn => open, 
-	io_comConf_M_RespAccept => open,           
-	io_comConf_S_Resp => (others => '0'), 
-	io_comConf_S_Data => (others => '0'), 
-	io_comConf_S_CmdAccept => '0',
-	io_comConf_S_Reset_n => '0', 
-	io_comConf_S_Flag => (others => '0'), 
-	io_comSpm_M_Cmd => open, 
-	io_comSpm_M_Addr => open, 
-	io_comSpm_M_Data => open, 
-	io_comSpm_M_ByteEn => open,      
-	io_comSpm_S_Resp => (others => '0'), 
-	io_comSpm_S_Data => (others => '0'),
-	io_cpuInfoPins_id => X"00000000", 
-	io_cpuInfoPins_cnt => X"00000001",
-	io_ledsPins_led => oLedsPins_led,
-	io_keysPins_key => iKeysPins_key,    
-	io_uartPins_tx => oUartPins_txd, 
-	io_uartPins_rx => iUartPins_rxd,
-	io_sramCtrlPins_ramOut_addr => oSRAM_A, 
-	io_sramCtrlPins_ramOut_doutEna => sram_out_dout_ena, 
-	io_sramCtrlPins_ramIn_din => SRAM_DQ, 
-	io_sramCtrlPins_ramOut_dout => sram_out_dout, 
-	io_sramCtrlPins_ramOut_nce => oSRAM_CE_N, 
-	io_sramCtrlPins_ramOut_noe => oSRAM_OE_N, 
-	io_sramCtrlPins_ramOut_nwe => oSRAM_WE_N, 
-	io_sramCtrlPins_ramOut_nlb => oSRAM_LB_N, 
-	io_sramCtrlPins_ramOut_nub => oSRAM_UB_N
+		clk => clk_int, 
+		reset => int_res,
+		io_comConf_M_Cmd => open, 
+		io_comConf_M_Addr => open, 
+		io_comConf_M_Data => open, 
+		io_comConf_M_ByteEn => open, 
+		io_comConf_M_RespAccept => open,           
+		io_comConf_S_Resp => (others => '0'), 
+		io_comConf_S_Data => (others => '0'), 
+		io_comConf_S_CmdAccept => '0',
+		io_comConf_S_Reset_n => '0', 
+		io_comConf_S_Flag => (others => '0'), 
+		io_comSpm_M_Cmd => open, 
+		io_comSpm_M_Addr => open, 
+		io_comSpm_M_Data => open, 
+		io_comSpm_M_ByteEn => open,      
+		io_comSpm_S_Resp => (others => '0'), 
+		io_comSpm_S_Data => (others => '0'),
+		io_cpuInfoPins_id => X"00000000", 
+		io_cpuInfoPins_cnt => X"00000001",
+		io_ledsPins_led => oLedsPins_led,
+		io_keysPins_key => iKeysPins_key,    
+		io_uartPins_tx => oUartPins_txd, 
+		io_uartPins_rx => iUartPins_rxd,
+		io_sramCtrlPins_ramOut_addr => oSRAM_A, 
+		io_sramCtrlPins_ramOut_doutEna => sram_out_dout_ena, 
+		io_sramCtrlPins_ramIn_din => SRAM_DQ, 
+		io_sramCtrlPins_ramOut_dout => sram_out_dout, 
+		io_sramCtrlPins_ramOut_nce => oSRAM_CE_N, 
+		io_sramCtrlPins_ramOut_noe => oSRAM_OE_N, 
+		io_sramCtrlPins_ramOut_nwe => oSRAM_WE_N, 
+		io_sramCtrlPins_ramOut_nlb => oSRAM_LB_N, 
+		io_sramCtrlPins_ramOut_nub => oSRAM_UB_N
 	);		
 		
 end architecture rtl;

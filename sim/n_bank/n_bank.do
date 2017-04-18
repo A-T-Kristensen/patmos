@@ -1,5 +1,5 @@
 
-# Do file for n_bank.vhd
+# Do file for testing n_bank.vhd, an n memory bank
 
 vsim work.n_bank
 
@@ -28,7 +28,7 @@ add wave p_b_we
 add wave p_bank_sel
 add wave p_bank_sel_next
 
-# These require the no optimisation options
+# These require the no optimisation option
 
 #add wave n_bank/bram_gen(0)/bram_array/mem(0)
 #add wave n_bank/bram_gen(1)/bram_array/mem(0)

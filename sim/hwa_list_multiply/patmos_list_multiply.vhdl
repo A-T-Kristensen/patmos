@@ -2,12 +2,13 @@
 -- Copyright: 2013, Technical University of Denmark, DTU Compute
 -- Author: Martin Schoeberl (martin@jopdesign.com)
 --         Rasmus Bo Soerensen (rasmus@rbscloud.dk)
+--		   Andreas T. Kristensen (s144026@student.dtu.dk)
 -- License: Simplified BSD License
 --
 
 -- VHDL top level for Patmos in Chisel on Altera de2-115 board
---
--- Includes some 'magic' VHDL code to generate a reset after FPGA configuration.
+-- used as the top level file for modelsim simulation to test patmos
+-- using a HwA made with Vivado HLS
 --
 
 library ieee;
@@ -79,8 +80,8 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
 			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0);
 
-			io_hwACtrlPins_ap_start_out 	: out std_logic;
-			io_hwACtrlPins_ap_reset_out 	: out std_logic;
+			io_hwACtrlPins_ap_start_out : out std_logic;
+			io_hwACtrlPins_ap_reset_out : out std_logic;
 			io_hwACtrlPins_ap_ready_in 	: in std_logic;
 			io_hwACtrlPins_ap_idle_in 	: in std_logic;
 			io_hwACtrlPins_ap_done_in 	: in std_logic		
@@ -93,10 +94,10 @@ architecture rtl of patmos_top is
 		port(
 			-- Port A
 			a_clk   : in  std_logic;
-			a_wr    : in  std_logic := '0';
-			a_addr  : in  std_logic_vector(15 downto 0) := (others => '0');
-			a_din   : in  std_logic_vector(31 downto 0) := (others => '0');
-			a_dout  : out std_logic_vector(31 downto 0) := (others => '0');
+			a_wr    : in  std_logic;
+			a_addr  : in  std_logic_vector(15 downto 0);
+			a_din   : in  std_logic_vector(31 downto 0);
+			a_dout  : out std_logic_vector(31 downto 0);
 
 			-- Port B
 			b_clk   : in  std_logic;
@@ -146,19 +147,19 @@ architecture rtl of patmos_top is
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
 	signal bRamCtrl_SData   : std_logic_vector(31 downto 0); 
 
-	-- Signals for hls accel
+	-- Signals for HwA
 
-	signal hwACtrl_ap_start_out 	: std_logic;
-	signal hwACtrl_ap_reset_out 	: std_logic;
+	signal hwACtrl_ap_start_out : std_logic;
+	signal hwACtrl_ap_reset_out : std_logic;
 	signal hwACtrl_ap_ready_in 	: std_logic;
 	signal hwACtrl_ap_idle_in 	: std_logic;
 	signal hwACtrl_ap_done_in 	: std_logic;
 
-	signal hwa_we   	: std_logic_vector (3 downto 0);
-	signal hwa_addr  : std_logic_vector (31 downto 0);
-	signal hwa_in   	: std_logic_vector(31 downto 0);
+	signal hwa_we   : std_logic_vector (3 downto 0);
+	signal hwa_addr	: std_logic_vector (31 downto 0);
+	signal hwa_in  	: std_logic_vector(31 downto 0);
 	signal hwa_out 	: std_logic_vector(31 downto 0);
-	signal hwa_rst : std_logic;
+	signal hwa_rst 	: std_logic;
 
 	attribute altera_attribute : string;
 	attribute altera_attribute of res_cnt : signal is "POWER_UP_LEVEL=LOW";
@@ -238,7 +239,7 @@ begin
 		io_bRamCtrlPins_SData   => bRamCtrl_SData,
 			
 		io_hwACtrlPins_ap_start_out	=> hwACtrl_ap_start_out,
-		io_hwACtrlPins_ap_reset_out 	=> hwACtrl_ap_reset_out,
+		io_hwACtrlPins_ap_reset_out => hwACtrl_ap_reset_out,
 		io_hwACtrlPins_ap_ready_in 	=> hwACtrl_ap_ready_in,
 		io_hwACtrlPins_ap_idle_in 	=> hwACtrl_ap_idle_in,
 		io_hwACtrlPins_ap_done_in 	=> hwACtrl_ap_done_in		

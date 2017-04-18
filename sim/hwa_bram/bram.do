@@ -1,5 +1,5 @@
 
-# Do file for test of BRAM for patmos
+# Do file for test of communication between patmos and a BRAM.
 
 vsim work.patmos_top
 
@@ -25,6 +25,6 @@ add wave bramCtrl_SData
 
 force -freeze clk 0 0, 1 {5 ns} -r 10
 
-# Run until we start seeing the outpus
+# Run until we start seeing the outputs
 
 run 4000

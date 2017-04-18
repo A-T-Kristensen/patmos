@@ -6,8 +6,8 @@
 --
 
 -- VHDL top level for Patmos in Chisel on Altera de2-115 board
---
--- Includes some 'magic' VHDL code to generate a reset after FPGA configuration.
+-- used as top level for modelsim simulation with Patmos
+-- using a matrix multiplier and 2 memory banks.
 --
 
 library ieee;
@@ -83,8 +83,8 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
 			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0);
 
-			io_hwACtrlPins_ap_start_out 	: out std_logic;
-			io_hwACtrlPins_ap_reset_out 	: out std_logic;
+			io_hwACtrlPins_ap_start_out : out std_logic;
+			io_hwACtrlPins_ap_reset_out : out std_logic;
 			io_hwACtrlPins_ap_ready_in 	: in std_logic;
 			io_hwACtrlPins_ap_idle_in 	: in std_logic;
 			io_hwACtrlPins_ap_done_in 	: in std_logic		
@@ -96,13 +96,13 @@ architecture rtl of patmos_top is
 		port (
 		    clk     : in  std_logic;
 
-		    -- Patmos side this is always the same
+		    -- Patmos sid
 		    p_we    : in  std_logic;
-		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0); -- The upper bits are used to select bank.
+		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0);
 		    p_dout  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
-		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);    -- Input to patmos
+		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);
 
-		    -- HwA HLS Side, this is parametized
+		    -- HwA side
 	        bram_m : in bank_master_a;
 	        bram_s : out bank_slave_a       
 		);
@@ -110,26 +110,27 @@ architecture rtl of patmos_top is
 	
 	component matrixmul is
 	port (
-	    ap_clk : IN STD_LOGIC;
-	    ap_rst : IN STD_LOGIC;
-	    ap_start : IN STD_LOGIC;
-	    ap_done : OUT STD_LOGIC;
-	    ap_idle : OUT STD_LOGIC;
-	    ap_ready : OUT STD_LOGIC;
-	    a_0_Addr_A : OUT STD_LOGIC_VECTOR (31 downto 0);
-	    a_0_EN_A : OUT STD_LOGIC;
-	    a_0_WEN_A : OUT STD_LOGIC_VECTOR (3 downto 0);
-	    a_0_Din_A : OUT STD_LOGIC_VECTOR (31 downto 0);
-	    a_0_Dout_A : IN STD_LOGIC_VECTOR (31 downto 0);
-	    a_0_Clk_A : OUT STD_LOGIC;
-	    a_0_Rst_A : OUT STD_LOGIC;
-	    a_1_Addr_A : OUT STD_LOGIC_VECTOR (31 downto 0);
-	    a_1_EN_A : OUT STD_LOGIC;
-	    a_1_WEN_A : OUT STD_LOGIC_VECTOR (3 downto 0);
-	    a_1_Din_A : OUT STD_LOGIC_VECTOR (31 downto 0);
-	    a_1_Dout_A : IN STD_LOGIC_VECTOR (31 downto 0);
-	    a_1_Clk_A : OUT STD_LOGIC;
-	    a_1_Rst_A : OUT STD_LOGIC );
+		    ap_clk 		: in std_logic;
+		    ap_rst 		: in std_logic;
+		    ap_start 	: in std_logic;
+		    ap_done 	: out std_logic;
+		    ap_idle 	: out std_logic;
+		    ap_ready 	: out std_logic;
+		    a_0_Addr_A 	: out std_logic_vector (31 downto 0);
+		    a_0_EN_A 	: out std_logic;
+		    a_0_WEN_A 	: out std_logic_vector (3 downto 0);
+		    a_0_Din_A 	: out std_logic_vector (31 downto 0);
+		    a_0_Dout_A 	: in std_logic_vector (31 downto 0);
+		    a_0_Clk_A 	: out std_logic;
+		    a_0_Rst_A 	: out std_logic;
+		    a_1_Addr_A 	: out std_logic_vector (31 downto 0);
+		    a_1_EN_A 	: out std_logic;
+		    a_1_WEN_A	: out std_logic_vector (3 downto 0);
+		    a_1_Din_A 	: out std_logic_vector (31 downto 0);
+		    a_1_Dout_A 	: in std_logic_vector (31 downto 0);
+		    a_1_Clk_A 	: out std_logic;
+		    a_1_Rst_A 	: out std_logic 
+	    );
 	end component;
 
 	signal clk_int : std_logic;
@@ -145,7 +146,7 @@ architecture rtl of patmos_top is
     signal sram_out_dout_ena : std_logic;
     signal sram_out_dout : std_logic_vector(15 downto 0);
 
-	-- Signals for true dual port bram
+	-- Signals for true dual port BRAM
 
 	signal bRamCtrl_Mcmd    : std_logic_vector(2 downto 0);
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
@@ -153,10 +154,10 @@ architecture rtl of patmos_top is
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
 	signal bRamCtrl_SData   : std_logic_vector(31 downto 0); 
 
-	-- Signals for hls accel
+	-- Signals for HwA
 
-	signal hwACtrl_ap_start_out 	: std_logic;
-	signal hwACtrl_ap_reset_out 	: std_logic;
+	signal hwACtrl_ap_start_out : std_logic;
+	signal hwACtrl_ap_reset_out : std_logic;
 	signal hwACtrl_ap_ready_in 	: std_logic;
 	signal hwACtrl_ap_idle_in 	: std_logic;
 	signal hwACtrl_ap_done_in 	: std_logic;
@@ -165,7 +166,7 @@ architecture rtl of patmos_top is
     signal bram_s_i: bank_slave_a;	
     signal hwa_addr_i : hwa_addr_a;
 
-	signal hlsReset : std_logic;
+	signal hwa_rst : std_logic;
 
 	attribute altera_attribute : string;
 	attribute altera_attribute of res_cnt : signal is "POWER_UP_LEVEL=LOW";
@@ -253,7 +254,6 @@ begin
 	);		
 
 	n_bank_inst_0 : n_bank port map (
-
 	    clk     => clk_int,
 
 	    -- Patmos side
@@ -269,7 +269,7 @@ begin
 		
 	matrixmul_inst_0 : matrixmul port map(
 		ap_clk 		=> clk_int,
-		ap_rst 		=> hlsReset,
+		ap_rst 		=> hwa_rst,
 		ap_start 	=> hwACtrl_ap_start_out,
 		ap_done 	=> hwACtrl_ap_done_in,
 		ap_idle 	=> hwACtrl_ap_idle_in,
@@ -292,10 +292,9 @@ begin
 		a_1_Rst_A 	=> open
 	);			
 							  
-	hlsReset <= hwACtrl_ap_reset_out or int_res;		
+	hwa_rst <= hwACtrl_ap_reset_out or int_res;		
 
-	addr_map:
-	for i in (NBANKS-1) downto 0 generate
+	addr_map: for i in (NBANKS-1) downto 0 generate
 	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
     end generate;
 

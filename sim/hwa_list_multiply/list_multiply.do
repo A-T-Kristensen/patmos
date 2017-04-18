@@ -1,5 +1,6 @@
 
-# Do file for list_multiply c program
+# Do file for list_multiply c program testing a minimal working example
+# of a HwA built using Vivado HLS for patmos.
 
 vsim work.patmos_top
 

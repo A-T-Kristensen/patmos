@@ -6,7 +6,8 @@
 --
 --
 -- VHDL top level for Patmos on the Digilent/Xilinx Nexys4DDR board with off-chip memory
---
+-- this file is used to test the matrix multiplier HwA with 1 memory bank.
+
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -18,12 +19,12 @@ entity patmos_top is
 		clk_in               : in    std_logic;
 		cpu_reset_btn        : in    std_logic;
 
-		green_leds           : out   std_logic_vector(15 downto 0); -- (15) -> LD15 ... LD0 <- (0)
-		rgb_leds             : out   std_logic_vector(5 downto 0); 	-- (5) -> LD17_R LD17_G LD17_B | LD16_R LD16_G LD16_B <- (0)
-		seven_segments       : out   std_logic_vector(7 downto 0); 	-- (7) -> DP CG CF CE CD CC CB CA <- (0)
-		seven_segments_drive : out   std_logic_vector(7 downto 0); 	-- (7) -> AN7 ... AN0 <- (0)
-		buttons              : in    std_logic_vector(4 downto 0); 	-- (4) -> BTNT BTNR BTND BTNL BTNC <- (0)
-		switches             : in    std_logic_vector(15 downto 0); -- (15) -> SW15 ... SW0 <- (0)
+		green_leds           : out   std_logic_vector(15 downto 0);
+		rgb_leds             : out   std_logic_vector(5 downto 0); 	
+		seven_segments       : out   std_logic_vector(7 downto 0); 
+		seven_segments_drive : out   std_logic_vector(7 downto 0); 
+		buttons              : in    std_logic_vector(4 downto 0); 	
+		switches             : in    std_logic_vector(15 downto 0); 
 
 		--TXD, RXD naming uses terminal-centric naming convention
 		uart_txd    : in    std_logic;
@@ -99,8 +100,8 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
 			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0);
 			
-			io_hwACtrlPins_ap_start_out 	: out std_logic;
-			io_hwACtrlPins_ap_reset_out 	: out std_logic;
+			io_hwACtrlPins_ap_start_out : out std_logic;
+			io_hwACtrlPins_ap_reset_out : out std_logic;
 			io_hwACtrlPins_ap_ready_in 	: in std_logic;
 			io_hwACtrlPins_ap_idle_in 	: in std_logic;
 			io_hwACtrlPins_ap_done_in 	: in std_logic	
@@ -120,12 +121,12 @@ architecture rtl of patmos_top is
 			SResp   : out std_logic_vector(1 downto 0);
 			SData 	: out std_logic_vector(31 downto 0);
 
-			green_leds           : out std_logic_vector(15 downto 0); 	-- (15) -> LD15 ... LD0 <- (0)
-			rgb_leds             : out std_logic_vector(5 downto 0); 	-- (5) -> LD17_R LD17_G LD17_B | LD16_R LD16_G LD16_B <- (0)
-			seven_segments       : out std_logic_vector(7 downto 0); 	-- (7) -> DP CG CF CE CD CC CB CA <- (0)
-			seven_segments_drive : out std_logic_vector(7 downto 0); 	-- (7) -> AN7 ... AN0 <- (0)
-			buttons              : in  std_logic_vector(4 downto 0); 	-- (4) -> BTNT BTNR BTND BTNL BTNC <- (0)
-			switches             : in  std_logic_vector(15 downto 0)); 	-- (15) -> SW15 ... SW0 <- (0)
+			green_leds           : out std_logic_vector(15 downto 0); 
+			rgb_leds             : out std_logic_vector(5 downto 0); 
+			seven_segments       : out std_logic_vector(7 downto 0); 	
+			seven_segments_drive : out std_logic_vector(7 downto 0); 	
+			buttons              : in  std_logic_vector(4 downto 0); 	
+			switches             : in  std_logic_vector(15 downto 0)); 	
 	end component;
 
 	component ddr2_ctrl is
@@ -208,20 +209,20 @@ architecture rtl of patmos_top is
 		port (
 		    clk     : in  std_logic;
 
-		    -- Patmos side this is always the same
+		    -- Patmos side
 		    p_we    : in  std_logic;
-		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0); -- The upper bits are used to select bank.
+		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0); 
 		    p_dout  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
-		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);    -- Input to patmos
+		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);  
 
-		    -- HwA HLS Side, this is parametized
+		    -- HwA side
 	        bram_m : in bank_master_a;
 	        bram_s : out bank_slave_a       
 		);
 	end component;  
 	
 	component matrixmul is
-	port (
+		port (
 			ap_clk 		: in std_logic;
 			ap_rst 		: in std_logic;
 			ap_start 	: in std_logic;
@@ -234,8 +235,9 @@ architecture rtl of patmos_top is
 			a_Din_A 	: out std_logic_vector (31 downto 0);
 			a_Dout_A 	: in std_logic_vector (31 downto 0);
 			a_Clk_A 	: out std_logic;
-			a_Rst_A 	: out std_logic );
-end component; 	
+			a_Rst_A 	: out std_logic 
+		);
+	end component; 	
 
 	component clk_manager is
 		port(
@@ -276,17 +278,17 @@ end component;
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
 	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
 
-	-- Signals for hls accel
+	-- Signals for HwA
 
-	signal hwACtrl_ap_start_out 	: std_logic;
-	signal hwACtrl_ap_reset_out 	: std_logic;
+	signal hwACtrl_ap_start_out : std_logic;
+	signal hwACtrl_ap_reset_out : std_logic;
 	signal hwACtrl_ap_ready_in 	: std_logic;
 	signal hwACtrl_ap_idle_in 	: std_logic;
 	signal hwACtrl_ap_done_in 	: std_logic;
 
-    signal bram_m_i : bank_master_a;
-    signal bram_s_i: bank_slave_a;	
-    signal hwa_addr_i : hwa_addr_a;	
+    signal bram_m_i 	: bank_master_a;
+    signal bram_s_i		: bank_slave_a;	
+    signal hwa_addr_i 	: hwa_addr_a;	
     
 	signal hwa_rst : std_logic;    
 
@@ -319,45 +321,11 @@ end component;
 	-- 	ATTRIBUTE FIELDS FOR SIGNALS 	--
 	--------------------------------------
 
-	-- If you want to declare an attribute for a signal, component or architecture, define it after
-	-- you define your signal, component etc.
-
-	-- Works on nexys4 ddr with dont_touch on hlsAddr and hlsAddr_resized with process.
-	-- can just index hlsAddr, without hlsAddr_resized, if we use dont_touch :)
-
-	-- SIGNALS THAT SHOULD NOT BE TOUCH
+	-- SIGNALS THAT SHOULD NOT BE TOUCHED
 
 	attribute dont_touch : string;  
 
 	attribute dont_touch of hwa_addr_i 	: signal is "true";		
-
-	------------------------------
-	-- 	SIGNALS FOR DEBUGGING	--
-	------------------------------
-
-	-- Uncomment these if you want to debug them using Vivado
-
-    --attribute mark_debug : string;
-  
-    --attribute mark_debug of bRamCtrl_MCmd 	: signal is "true";
-    --attribute mark_debug of bRamCtrl_MAddr  : signal is "true";
-    --attribute mark_debug of bRamCtrl_MData  : signal is "true";
-    --attribute mark_debug of bramCtrl_SData 	: signal is "true";
-
-      
-    --attribute mark_debug of hLSControlReg_ap_reset_out 	: signal is "true";
-    --attribute mark_debug of hLSControlReg_ap_start_out    : signal is "true";
-    --attribute mark_debug of hLSControlReg_ap_done_in      : signal is "true";
-    --attribute mark_debug of hLSControlReg_ap_idle_in      : signal is "true";
-    --attribute mark_debug of hLSControlReg_ap_ready_in     : signal is "true";
-
-	--attribute mark_debug of hlsWe             	: signal is "true";
-	--attribute mark_debug of hlsAddr         		: signal is "true";	
-	--attribute mark_debug of hlsIn             	: signal is "true";	
-	--attribute mark_debug of hlsOut            	: signal is "true";	
-	--attribute mark_debug of hlsReset          	: signal is "true";
-
- 	--attribute mark_debug of reset_int : signal is "true";	
 
 begin
 
@@ -406,187 +374,185 @@ begin
 	end process;
 
 	ocp_burst_to_ddr2_ctrl_inst_0 : ocp_burst_to_ddr2_ctrl port map(
-			clk               => clk_int,
-			rst               => reset_int, -- --            : in std_logic; -- (=1 is reset)
+		clk               => clk_int,
+		rst               => reset_int, -- --            : in std_logic; -- (=1 is reset)
 
-			-- OCPburst in (slave)
-			MCmd              => MCmd_bridge, 
-			MAddr             => MAddr_bridge, 
-			MData             => MData_bridge, 
-			MDataValid        => MDataValid_bridge, 
-			MDataByteEn       => MDataByteEn_bridge, 
-			SResp             => SResp_bridge, 
-			SData             => SData_bridge, 
-			SCmdAccept        => SCmdAccept_bridge, 
-			SDataAccept       => SDataAccept_bridge, 
+		-- OCPburst in (slave)
+		MCmd              => MCmd_bridge, 
+		MAddr             => MAddr_bridge, 
+		MData             => MData_bridge, 
+		MDataValid        => MDataValid_bridge, 
+		MDataByteEn       => MDataByteEn_bridge, 
+		SResp             => SResp_bridge, 
+		SData             => SData_bridge, 
+		SCmdAccept        => SCmdAccept_bridge, 
+		SDataAccept       => SDataAccept_bridge, 
 
-			-- Xilinx interface
-			app_addr          => app_addr_bridge, 
-			app_cmd           => app_cmd_bridge, 
-			app_en            => app_en_bridge, 
-			app_wdf_data      => app_wdf_data_bridge, 
-			app_wdf_end       => app_wdf_end_bridge, 
-			app_wdf_mask      => app_wdf_mask_bridge, 
-			app_wdf_wren      => app_wdf_wren_bridge, 
-			app_rd_data       => app_rd_data_bridge, 
-			app_rd_data_end   => app_rd_data_end_bridge, 
-			app_rd_data_valid => app_rd_data_valid_bridge, 
-			app_rdy           => app_rdy_bridge, 
-			app_wdf_rdy       => app_wdf_rdy_bridge 
+		-- Xilinx interface
+		app_addr          => app_addr_bridge, 
+		app_cmd           => app_cmd_bridge, 
+		app_en            => app_en_bridge, 
+		app_wdf_data      => app_wdf_data_bridge, 
+		app_wdf_end       => app_wdf_end_bridge, 
+		app_wdf_mask      => app_wdf_mask_bridge, 
+		app_wdf_wren      => app_wdf_wren_bridge, 
+		app_rd_data       => app_rd_data_bridge, 
+		app_rd_data_end   => app_rd_data_end_bridge, 
+		app_rd_data_valid => app_rd_data_valid_bridge, 
+		app_rdy           => app_rdy_bridge, 
+		app_wdf_rdy       => app_wdf_rdy_bridge 
 		);
 
 	ddr2_ctrl_inst_0 : ddr2_ctrl port map(
-			ddr2_dq             => ddr2_dq, 
-			ddr2_dqs_n          => ddr2_dqs_n, 
-			ddr2_dqs_p          => ddr2_dqs_p, 
-			ddr2_addr           => ddr2_addr, 
-			ddr2_ba             => ddr2_ba, 
-			ddr2_ras_n          => ddr2_ras_n, 
-			ddr2_cas_n          => ddr2_cas_n, 
-			ddr2_we_n           => ddr2_we_n, 
-			ddr2_ck_p           => ddr2_ck_p, 
-			ddr2_ck_n           => ddr2_ck_n, 
-			ddr2_cke            => ddr2_cke, 
-			ddr2_cs_n           => ddr2_cs_n, 
-			ddr2_dm             => ddr2_dm, 
-			ddr2_odt            => ddr2_odt,
-			sys_clk_i           => clk_200, 
-			app_addr            => app_addr_bridge, 
-			app_cmd             => app_cmd_bridge, 
-			app_en              => app_en_bridge, 
-			app_wdf_data        => app_wdf_data_bridge, 
-			app_wdf_end         => app_wdf_end_bridge, 
-			app_wdf_mask        => app_wdf_mask_bridge,
-			app_wdf_wren        => app_wdf_wren_bridge, 
-			app_rd_data         => app_rd_data_bridge, 
-			app_rd_data_end     => app_rd_data_end_bridge,
-			app_rd_data_valid   => app_rd_data_valid_bridge,
-			app_rdy             => app_rdy_bridge,
-			app_wdf_rdy         => app_wdf_rdy_bridge,
-			app_sr_req          => '0',
-			app_ref_req         => '0',
-			app_zq_req          => '0',
-			app_sr_active       => open,
-			app_ref_ack         => open,
-			app_zq_ack          => open,
-			ui_clk              => clk_int,
-			ui_clk_sync_rst     => reset_int,
-			init_calib_complete => open,
-			sys_rst             => reset_ddr
-		);
+		ddr2_dq             => ddr2_dq, 
+		ddr2_dqs_n          => ddr2_dqs_n, 
+		ddr2_dqs_p          => ddr2_dqs_p, 
+		ddr2_addr           => ddr2_addr, 
+		ddr2_ba             => ddr2_ba, 
+		ddr2_ras_n          => ddr2_ras_n, 
+		ddr2_cas_n          => ddr2_cas_n, 
+		ddr2_we_n           => ddr2_we_n, 
+		ddr2_ck_p           => ddr2_ck_p, 
+		ddr2_ck_n           => ddr2_ck_n, 
+		ddr2_cke            => ddr2_cke, 
+		ddr2_cs_n           => ddr2_cs_n, 
+		ddr2_dm             => ddr2_dm, 
+		ddr2_odt            => ddr2_odt,
+		sys_clk_i           => clk_200, 
+		app_addr            => app_addr_bridge, 
+		app_cmd             => app_cmd_bridge, 
+		app_en              => app_en_bridge, 
+		app_wdf_data        => app_wdf_data_bridge, 
+		app_wdf_end         => app_wdf_end_bridge, 
+		app_wdf_mask        => app_wdf_mask_bridge,
+		app_wdf_wren        => app_wdf_wren_bridge, 
+		app_rd_data         => app_rd_data_bridge, 
+		app_rd_data_end     => app_rd_data_end_bridge,
+		app_rd_data_valid   => app_rd_data_valid_bridge,
+		app_rdy             => app_rdy_bridge,
+		app_wdf_rdy         => app_wdf_rdy_bridge,
+		app_sr_req          => '0',
+		app_ref_req         => '0',
+		app_zq_req          => '0',
+		app_sr_active       => open,
+		app_ref_ack         => open,
+		app_zq_ack          => open,
+		ui_clk              => clk_int,
+		ui_clk_sync_rst     => reset_int,
+		init_calib_complete => open,
+		sys_rst             => reset_ddr
+	);	
 
 	-- The instance of the patmos processor            
 	patmos_inst_0 : Patmos port map(
-			clk                           => clk_int,
-			reset                         => reset_int,
-			io_comConf_M_Cmd              => open,
-			io_comConf_M_Addr             => open,
-			io_comConf_M_Data             => open,
-			io_comConf_M_ByteEn           => open,
-			io_comConf_M_RespAccept       => open,
-			io_comConf_S_Resp             => (others => '0'),
-			io_comConf_S_Data             => (others => '0'),
-			io_comConf_S_CmdAccept        => '0',
-			io_comConf_S_Reset_n          => '0',
-            io_comConf_S_Flag             => (others => '0'),
-			io_comSpm_M_Cmd               => open,
-			io_comSpm_M_Addr              => open,
-			io_comSpm_M_Data              => open,
-			io_comSpm_M_ByteEn            => open,
-			io_comSpm_S_Resp              => (others => '0'),
-			io_comSpm_S_Data              => (others => '0'),
-			io_memBridgePins_M_Cmd        => MCmd_bridge,
-			io_memBridgePins_M_Addr       => MAddr_bridge,
-			io_memBridgePins_M_Data       => MData_bridge,
-			io_memBridgePins_M_DataValid  => MDataValid_bridge,
-			io_memBridgePins_M_DataByteEn => MDataByteEn_bridge,
-			io_memBridgePins_S_Resp       => SResp_bridge,
-			io_memBridgePins_S_Data       => SData_bridge,
-			io_memBridgePins_S_CmdAccept  => SCmdAccept_bridge,
-			io_memBridgePins_S_DataAccept => SDataAccept_bridge,
+		clk                           => clk_int,
+		reset                         => reset_int,
+		io_comConf_M_Cmd              => open,
+		io_comConf_M_Addr             => open,
+		io_comConf_M_Data             => open,
+		io_comConf_M_ByteEn           => open,
+		io_comConf_M_RespAccept       => open,
+		io_comConf_S_Resp             => (others => '0'),
+		io_comConf_S_Data             => (others => '0'),
+		io_comConf_S_CmdAccept        => '0',
+		io_comConf_S_Reset_n          => '0',
+        io_comConf_S_Flag             => (others => '0'),
+		io_comSpm_M_Cmd               => open,
+		io_comSpm_M_Addr              => open,
+		io_comSpm_M_Data              => open,
+		io_comSpm_M_ByteEn            => open,
+		io_comSpm_S_Resp              => (others => '0'),
+		io_comSpm_S_Data              => (others => '0'),
+		io_memBridgePins_M_Cmd        => MCmd_bridge,
+		io_memBridgePins_M_Addr       => MAddr_bridge,
+		io_memBridgePins_M_Data       => MData_bridge,
+		io_memBridgePins_M_DataValid  => MDataValid_bridge,
+		io_memBridgePins_M_DataByteEn => MDataByteEn_bridge,
+		io_memBridgePins_S_Resp       => SResp_bridge,
+		io_memBridgePins_S_Data       => SData_bridge,
+		io_memBridgePins_S_CmdAccept  => SCmdAccept_bridge,
+		io_memBridgePins_S_DataAccept => SDataAccept_bridge,
 
-			io_cpuInfoPins_id             => X"00000000",
-			io_cpuInfoPins_cnt            => X"00000000",
-			
-			-- TXD, RXD naming uses terminal-centric naming convention
-			io_uartPins_tx                => uart_rxd,
-			io_uartPins_rx                => uart_txd,
+		io_cpuInfoPins_id             => X"00000000",
+		io_cpuInfoPins_cnt            => X"00000000",
+		
+		-- TXD, RXD naming uses terminal-centric naming convention
+		io_uartPins_tx                => uart_rxd,
+		io_uartPins_rx                => uart_txd,
 
-			io_nexys4DDRIOPins_MCmd       => nexys4DDRIO_MCmd,
-			io_nexys4DDRIOPins_MAddr      => nexys4DDRIO_MAddr,
-			io_nexys4DDRIOPins_MData      => nexys4DDRIO_MData,
-			io_nexys4DDRIOPins_MByteEn    => nexys4DDRIO_MByteEn,
-			io_nexys4DDRIOPins_SResp      => nexys4DDRIO_SResp,
-			io_nexys4DDRIOPins_SData      => nexys4DDRIO_SData,
-		
-			io_bRamCtrlPins_MCmd       => bRamCtrl_Mcmd,
-			io_bRamCtrlPins_MAddr      => bRamCtrl_MAddr,
-			io_bRamCtrlPins_MData      => bRamCtrl_MData,
-			io_bRamCtrlPins_MByteEn    => bRamCtrl_MByteEn,
-			io_bRamCtrlPins_SData      => bRamCtrl_SData,
-		
-			io_hwACtrlPins_ap_start_out	=> hwACtrl_ap_start_out,
-			io_hwACtrlPins_ap_reset_out => hwACtrl_ap_reset_out,
-			io_hwACtrlPins_ap_ready_in 	=> hwACtrl_ap_ready_in,
-			io_hwACtrlPins_ap_idle_in 	=> hwACtrl_ap_idle_in,
-			io_hwACtrlPins_ap_done_in 	=> hwACtrl_ap_done_in
-		);
+		io_nexys4DDRIOPins_MCmd       => nexys4DDRIO_MCmd,
+		io_nexys4DDRIOPins_MAddr      => nexys4DDRIO_MAddr,
+		io_nexys4DDRIOPins_MData      => nexys4DDRIO_MData,
+		io_nexys4DDRIOPins_MByteEn    => nexys4DDRIO_MByteEn,
+		io_nexys4DDRIOPins_SResp      => nexys4DDRIO_SResp,
+		io_nexys4DDRIOPins_SData      => nexys4DDRIO_SData,
+	
+		io_bRamCtrlPins_MCmd       => bRamCtrl_Mcmd,
+		io_bRamCtrlPins_MAddr      => bRamCtrl_MAddr,
+		io_bRamCtrlPins_MData      => bRamCtrl_MData,
+		io_bRamCtrlPins_MByteEn    => bRamCtrl_MByteEn,
+		io_bRamCtrlPins_SData      => bRamCtrl_SData,
+	
+		io_hwACtrlPins_ap_start_out	=> hwACtrl_ap_start_out,
+		io_hwACtrlPins_ap_reset_out => hwACtrl_ap_reset_out,
+		io_hwACtrlPins_ap_ready_in 	=> hwACtrl_ap_ready_in,
+		io_hwACtrlPins_ap_idle_in 	=> hwACtrl_ap_idle_in,
+		io_hwACtrlPins_ap_done_in 	=> hwACtrl_ap_done_in
+	);
 
 	nexys4ddr_io_inst_0 : nexys4ddr_io port map(
-			clk                  => clk_int,
-			clk_pwm              => clk_pwm,
-			reset                => reset_int,
+		clk                  => clk_int,
+		clk_pwm              => clk_pwm,
+		reset                => reset_int,
 
-			MCmd                 => nexys4DDRIO_MCmd,
-			MAddr                => nexys4DDRIO_MAddr,
-			MData                => nexys4DDRIO_MData,
-			MByteEn              => nexys4DDRIO_MByteEn,
-			SResp                => nexys4DDRIO_SResp,
-			SData                => nexys4DDRIO_SData,
+		MCmd                 => nexys4DDRIO_MCmd,
+		MAddr                => nexys4DDRIO_MAddr,
+		MData                => nexys4DDRIO_MData,
+		MByteEn              => nexys4DDRIO_MByteEn,
+		SResp                => nexys4DDRIO_SResp,
+		SData                => nexys4DDRIO_SData,
 
-			green_leds           => green_leds,
-			rgb_leds             => rgb_leds,
-			seven_segments       => seven_segments,
-			seven_segments_drive => seven_segments_drive,
-			buttons              => buttons,
-			switches             => switches
-		);
+		green_leds           => green_leds,
+		rgb_leds             => rgb_leds,
+		seven_segments       => seven_segments,
+		seven_segments_drive => seven_segments_drive,
+		buttons              => buttons,
+		switches             => switches
+	);
 		
-	n_bank_inst_0 : n_bank port map (
-
+	n_bank_inst_0 : n_bank port map(
 	    clk     => clk_int,
 
 	    -- Patmos side
 	    p_we    => bRamCtrl_MCmd(0),
-	    p_addr  => bRamCtrl_MAddr,  -- The upper bits are used to select bank.
+	    p_addr  => bRamCtrl_MAddr, 
 	    p_dout  => bRamCtrl_MData,
-	    p_din   => bramCtrl_SData,-- Input to patmos
+	    p_din   => bramCtrl_SData,
 
-	    -- HLS Side
-        bram_m => bram_m_i,
+	    -- HwA Side
+        bram_m 	=> bram_m_i,
         bram_s  => bram_s_i
 	);
 		
 	matrixmul_inst_0 : matrixmul port map(
-			ap_clk 		=> clk_int,
-			ap_rst 		=> hwa_rst,
-			ap_start 	=> hwACtrl_ap_start_out,
-			ap_done 	=> hwACtrl_ap_done_in,
-			ap_idle 	=> hwACtrl_ap_idle_in,
-			ap_ready 	=> hwACtrl_ap_ready_in,
-			a_Addr_A 	=> hwa_addr_i(0).addr,
-			a_EN_A  	=> open,
-			a_WEN_A	=> bram_m_i(0).wr,
-			a_Din_A  	=> bram_m_i(0).din,
-			a_Dout_A 	=> bram_s_i(0).dout,
-			a_Clk_A 	=> open,
-			a_Rst_A 	=> open
-		);		
+		ap_clk 		=> clk_int,
+		ap_rst 		=> hwa_rst,
+		ap_start 	=> hwACtrl_ap_start_out,
+		ap_done 	=> hwACtrl_ap_done_in,
+		ap_idle 	=> hwACtrl_ap_idle_in,
+		ap_ready 	=> hwACtrl_ap_ready_in,
+		a_Addr_A 	=> hwa_addr_i(0).addr,
+		a_EN_A  	=> open,
+		a_WEN_A	=> bram_m_i(0).wr,
+		a_Din_A  	=> bram_m_i(0).din,
+		a_Dout_A 	=> bram_s_i(0).dout,
+		a_Clk_A 	=> open,
+		a_Rst_A 	=> open
+	);		
 
 	hwa_rst <= hwACtrl_ap_reset_out or reset_int;		
 
-	addr_map:
-	for i in (NBANKS-1) downto 0 generate
+	addr_map: for i in (NBANKS-1) downto 0 generate
 	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
     end generate;		
 					  				

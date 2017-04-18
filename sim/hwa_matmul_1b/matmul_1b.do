@@ -1,5 +1,6 @@
 
-# Do file for list_multiply c program
+# Do file for matrix multiplier c program
+# using 1 memory bank
 
 vsim work.patmos_top
 

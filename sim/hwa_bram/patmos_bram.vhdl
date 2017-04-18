@@ -2,12 +2,12 @@
 -- Copyright: 2013, Technical University of Denmark, DTU Compute
 -- Author: Martin Schoeberl (martin@jopdesign.com)
 --         Rasmus Bo Soerensen (rasmus@rbscloud.dk)
+--		   Andreas T. Kristensen (s144026@student.dtu.dk)
 -- License: Simplified BSD License
 --
 
 -- VHDL top level for Patmos in Chisel on Altera de2-115 board
---
--- Includes some 'magic' VHDL code to generate a reset after FPGA configuration.
+-- used as top level file for simulating the communication between patmos and a BRAM.
 --
 
 library ieee;
@@ -76,16 +76,7 @@ architecture rtl of patmos_top is
 			io_bRamCtrlPins_MAddr      : out std_logic_vector(15 downto 0);
 			io_bRamCtrlPins_MData      : out std_logic_vector(31 downto 0);
 			io_bRamCtrlPins_MByteEn    : out std_logic_vector(3 downto 0);
-			--io_bRamCtrlPins_SResp      : in  std_logic_vector(1 downto 0) := (others => '0');
-			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0) -- := (others => '0')	
-
-			--io_bRamCtrlPins_MCmd       => open,
-			--io_bRamCtrlPins_MAddr      => open,
-			--io_bRamCtrlPins_MData      => open,
-			--io_bRamCtrlPins_MByteEn    => open,
-			--io_bRamCtrlPins_SResp      => (others => '0'),
-			--io_bRamCtrlPins_SData      => (others => '0')			
-
+			io_bRamCtrlPins_SData      : in  std_logic_vector(31 downto 0)		
 		);
 	end component;
 
@@ -94,10 +85,10 @@ architecture rtl of patmos_top is
 		port (
 		-- Port A
 			a_clk   : in  std_logic;
-			a_wr    : in  std_logic := '0';
-			a_addr  : in  std_logic_vector(15 downto 0) := (others => '0');
-			a_din   : in  std_logic_vector(31 downto 0) := (others => '0');
-			a_dout  : out std_logic_vector(31 downto 0) := (others => '0');
+			a_wr    : in  std_logic;
+			a_addr  : in  std_logic_vector(15 downto 0);
+			a_din   : in  std_logic_vector(31 downto 0);
+			a_dout  : out std_logic_vector(31 downto 0);
 
 		-- Port B
 			b_clk   : in  std_logic;
@@ -125,20 +116,18 @@ architecture rtl of patmos_top is
     signal sram_out_dout_ena : std_logic;
     signal sram_out_dout : std_logic_vector(15 downto 0);
 
-	-- Signals for true dual port bram
+	-- Signals for true dual port BRAM
 	signal bRamCtrl_Mcmd    : std_logic_vector(2 downto 0);
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
 	signal bRamCtrl_MData   : std_logic_vector(31 downto 0);
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
-	--signal bRamCtrl_SResp   : std_logic_vector(1 downto 0) := (others => '0');
-	signal bRamCtrl_SData   : std_logic_vector(31 downto 0); -- := (others => '0');
+	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
 
+	-- The other sided of the BRAM block is unused.
 	signal bRamMcmd    : std_logic_vector(2 downto 0) := (others => '0');
 	signal bRamMAddr   : std_logic_vector(15 downto 0) := (others => '0');
 	signal bRamMData   : std_logic_vector(31 downto 0) := (others => '0');
 	signal bRamMByteEn : std_logic_vector(3 downto 0) := (others => '0');
-	signal bRamResp   : std_logic_vector(1 downto 0); -- := (others => '0');
-	signal bRamSData   : std_logic_vector(31 downto 0) := (others => '0');
 
 	attribute altera_attribute : string;
 	attribute altera_attribute of res_cnt : signal is "POWER_UP_LEVEL=LOW";
@@ -214,29 +203,24 @@ begin
 	io_bRamCtrlPins_MAddr      => bRamCtrl_MAddr,
 	io_bRamCtrlPins_MData      => bRamCtrl_MData,
 	io_bRamCtrlPins_MByteEn    => bRamCtrl_MByteEn,
-	--io_bRamCtrlPins_SResp      => bRamCtrl_SResp ,
 	io_bRamCtrlPins_SData      => bRamCtrl_SData
 
 	);		
 		
 	bram_tdp_inst_0 : bram_tdp port map(
-		-- Port A
-			a_clk   => clk_int,
-			a_wr    => bRamCtrl_MCmd(0),
-			a_addr  => bRamCtrl_MAddr,
-			a_din   => bRamCtrl_MData,
-			a_dout  => bramCtrl_SData,
-			--a_wr    => bRamMcmd(0),
-			--a_addr  => bRamMAddr,
-			--a_din   => bRamMData,
-			--a_dout => open,
+	-- Port A
+		a_clk   => clk_int,
+		a_wr    => bRamCtrl_MCmd(0),
+		a_addr  => bRamCtrl_MAddr,
+		a_din   => bRamCtrl_MData,
+		a_dout  => bramCtrl_SData,
 
-		-- Port B
-			b_clk   => clk_int,
-			b_wr    => bRamMcmd(0),
-			b_addr  => bRamMAddr,
-			b_din   => bRamMData,
-			b_dout  => open --bRamSData
-		);
+	-- Port B
+		b_clk   => clk_int,
+		b_wr    => bRamMcmd(0),
+		b_addr  => bRamMAddr,
+		b_din   => bRamMData,
+		b_dout  => open
+	);
 
 end architecture rtl;
