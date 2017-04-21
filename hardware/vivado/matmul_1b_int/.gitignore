@@ -1,0 +1,5 @@
+matmul_1b_int.cache/
+matmul_1b_int.hw/
+matmul_1b_int.runs/
+matmul_1b_int.sim/
+*.str

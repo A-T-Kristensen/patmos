@@ -18,14 +18,14 @@
 
 #define LED_RUN_LENGTH 2000
 
-typedef int mat_type;
+typedef float mat_type;
 
 int main() 
 {
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
-	volatile _IODEV int *bank1_ptr = (volatile _IODEV int *) 0xF00B0000; // Pointer to bank 1: 
-	volatile _IODEV int *bank2_ptr = (volatile _IODEV int *) 0xF00B8000; // Pointer to bank 2: 1000000000000000
+	volatile _IODEV mat_type *bank1_ptr = (volatile _IODEV mat_type *) 0xF00B0000; // Pointer to bank 1: 
+	volatile _IODEV mat_type *bank2_ptr = (volatile _IODEV mat_type *) 0xF00B8000; // Pointer to bank 2: 1000000000000000
 
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
 
@@ -68,12 +68,35 @@ int main()
         *(bank1_ptr + i) = *((&in_bram[0][0]) + i);
     }
 
+    for(i = 0; i < DIM; i++) {
+    	for(j = 0; j < DIM; j++) {
+	        printf("%f ", mat_a[i][j]);        
+    	}
+	    printf("\n");
+    }    
+
+    printf("\n");    
+
+    for(i = 0; i < DIM; i++) {
+    	for(j = 0; j < DIM; j++) {
+	        printf("%f ", mat_b[i][j]);        
+    	}
+	    printf("\n");
+    }    
+       
+
     // Bank 2
 
     for(i = 0; i < DIM*DIM/2; i++)
     {
         *(bank2_ptr + i) = *((&in_bram[0][0]) + i + 3*DIM*DIM/2); 
-    }    
+    }   
+
+    for(i = 0; i < DIM; i++) {
+	    printf("%f ", *(bank2_ptr + i));        
+    }        
+
+    printf("\n");
 
     // Start HLS module
 	
@@ -96,7 +119,7 @@ int main()
 	
     for(i = 0; i < DIM*DIM; i++)
     {
-        printf("%d ", *((&hw_result[0][0]) + i) );
+        printf("%f ", *((&hw_result[0][0]) + i) );        
 
         if((i+1) % DIM == 0) {
         	printf("\n");
@@ -105,8 +128,10 @@ int main()
 		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
 		{
 			err_cnt++;	
-		}
+		}	
     }
+
+	printf("\n");    
 
     // We now continously loop, showing a pattern on the LEDS
 	

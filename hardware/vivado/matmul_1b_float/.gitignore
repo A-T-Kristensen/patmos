@@ -1,0 +1,5 @@
+matmul_1b_float.cache/
+matmul_1b_float.hw/
+matmul_1b_float.runs/
+matmul_1b_float.sim/
+*.str
