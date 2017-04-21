@@ -23,7 +23,7 @@ int main()
 {
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
-	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
+	volatile _IODEV mat_type *bram_ptr = (volatile _IODEV mat_type *) 0xF00B0000;
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
 	
 	mat_type mat_a[DIM][DIM];
