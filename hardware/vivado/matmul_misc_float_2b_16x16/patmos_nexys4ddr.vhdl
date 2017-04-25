@@ -6,7 +6,8 @@
 --
 --
 -- VHDL top level for Patmos on the Digilent/Xilinx Nexys4DDR board with off-chip memory
--- this file is used to test the matrix multiplier HwA with 2 memory banks.
+-- this file is used to test the matrix multiplier HwA with 1 memory bank.
+
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -19,11 +20,11 @@ entity patmos_top is
 		cpu_reset_btn        : in    std_logic;
 
 		green_leds           : out   std_logic_vector(15 downto 0);
-		rgb_leds             : out   std_logic_vector(5 downto 0); 
-		seven_segments       : out   std_logic_vector(7 downto 0);
+		rgb_leds             : out   std_logic_vector(5 downto 0); 	
+		seven_segments       : out   std_logic_vector(7 downto 0); 
 		seven_segments_drive : out   std_logic_vector(7 downto 0); 
-		buttons              : in    std_logic_vector(4 downto 0); 
-		switches             : in    std_logic_vector(15 downto 0);
+		buttons              : in    std_logic_vector(4 downto 0); 	
+		switches             : in    std_logic_vector(15 downto 0); 
 
 		--TXD, RXD naming uses terminal-centric naming convention
 		uart_txd    : in    std_logic;
@@ -120,12 +121,12 @@ architecture rtl of patmos_top is
 			SResp   : out std_logic_vector(1 downto 0);
 			SData 	: out std_logic_vector(31 downto 0);
 
-			green_leds           : out std_logic_vector(15 downto 0);
+			green_leds           : out std_logic_vector(15 downto 0); 
 			rgb_leds             : out std_logic_vector(5 downto 0); 
-			seven_segments       : out std_logic_vector(7 downto 0);
-			seven_segments_drive : out std_logic_vector(7 downto 0); 
-			buttons              : in  std_logic_vector(4 downto 0);
-			switches             : in  std_logic_vector(15 downto 0));
+			seven_segments       : out std_logic_vector(7 downto 0); 	
+			seven_segments_drive : out std_logic_vector(7 downto 0); 	
+			buttons              : in  std_logic_vector(4 downto 0); 	
+			switches             : in  std_logic_vector(15 downto 0)); 	
 	end component;
 
 	component ddr2_ctrl is
@@ -210,9 +211,9 @@ architecture rtl of patmos_top is
 
 		    -- Patmos side
 		    p_we    : in  std_logic;
-		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0);
+		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0); 
 		    p_dout  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
-		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);
+		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);  
 
 		    -- HwA side
 	        bram_m : in bank_master_a;
@@ -222,12 +223,12 @@ architecture rtl of patmos_top is
 	
 	component matmul_hw is
 		port (
-		    ap_clk 		: in std_logic;
-		    ap_rst 		: in std_logic;
-		    ap_start 	: in std_logic;
-		    ap_done 	: out std_logic;
-		    ap_idle 	: out std_logic;
-		    ap_ready 	: out std_logic;
+			ap_clk 		: in std_logic;
+			ap_rst 		: in std_logic;
+			ap_start 	: in std_logic;
+			ap_done 	: out std_logic;
+			ap_idle 	: out std_logic;
+			ap_ready 	: out std_logic;
 		    a_0_Addr_A 	: out std_logic_vector (31 downto 0);
 		    a_0_EN_A 	: out std_logic;
 		    a_0_WEN_A 	: out std_logic_vector (3 downto 0);
@@ -241,9 +242,16 @@ architecture rtl of patmos_top is
 		    a_1_Din_A 	: out std_logic_vector (31 downto 0);
 		    a_1_Dout_A 	: in std_logic_vector (31 downto 0);
 		    a_1_Clk_A 	: out std_logic;
-		    a_1_Rst_A 	: out std_logic 
-	    );
-	end component;
+		    a_2_Rst_A 	: out std_logic 
+		    a_2_Addr_A 	: out std_logic_vector (31 downto 0);
+		    a_2_EN_A 	: out std_logic;
+		    a_2_WEN_A 	: out std_logic_vector (3 downto 0);
+		    a_2_Din_A 	: out std_logic_vector (31 downto 0);
+		    a_2_Dout_A 	: in std_logic_vector (31 downto 0);
+		    a_2_Clk_A 	: out std_logic;
+		    a_2_Rst_A 	: out std_logic 		    
+		);
+	end component; 	
 
 	component clk_manager is
 		port(
@@ -276,7 +284,7 @@ architecture rtl of patmos_top is
 	signal nexys4DDRIO_SResp   : std_logic_vector(1 downto 0);
 	signal nexys4DDRIO_SData   : std_logic_vector(31 downto 0);
 
-	-- Signals for true dual port BRAM
+	-- Signals for true dual port bram
 
 	signal bRamCtrl_Mcmd    : std_logic_vector(2 downto 0);
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
@@ -284,7 +292,7 @@ architecture rtl of patmos_top is
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
 	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
 
-	-- Signals for HWA
+	-- Signals for HwA
 
 	signal hwACtrl_ap_start_out : std_logic;
 	signal hwACtrl_ap_reset_out : std_logic;
@@ -329,8 +337,7 @@ architecture rtl of patmos_top is
 
 	-- SIGNALS THAT SHOULD NOT BE TOUCHED
 
-	attribute dont_touch : string;
-	attribute mark_debug : string;  
+	attribute dont_touch : string;  
 
 	attribute dont_touch of hwa_addr_i 	: signal is "true";		
 
@@ -408,7 +415,7 @@ begin
 		app_rd_data_valid => app_rd_data_valid_bridge, 
 		app_rdy           => app_rdy_bridge, 
 		app_wdf_rdy       => app_wdf_rdy_bridge 
-	);
+		);
 
 	ddr2_ctrl_inst_0 : ddr2_ctrl port map(
 		ddr2_dq             => ddr2_dq, 
@@ -448,7 +455,7 @@ begin
 		ui_clk_sync_rst     => reset_int,
 		init_calib_complete => open,
 		sys_rst             => reset_ddr
-	);
+	);	
 
 	-- The instance of the patmos processor            
 	patmos_inst_0 : Patmos port map(
@@ -527,12 +534,12 @@ begin
 		switches             => switches
 	);
 		
-	n_bank_inst_0 : n_bank port map (
+	n_bank_inst_0 : n_bank port map(
 	    clk     => clk_int,
 
 	    -- Patmos side
 	    p_we    => bRamCtrl_MCmd(0),
-	    p_addr  => bRamCtrl_MAddr,
+	    p_addr  => bRamCtrl_MAddr, 
 	    p_dout  => bRamCtrl_MData,
 	    p_din   => bramCtrl_SData,
 
@@ -563,13 +570,21 @@ begin
 		a_1_Din_A  	=> bram_m_i(1).din,
 		a_1_Dout_A 	=> bram_s_i(1).dout,
 		a_1_Clk_A 	=> open,
-		a_1_Rst_A 	=> open
-	);			
-							  
+		a_1_Rst_A 	=> open,
+
+		a_2_Addr_A 	=> hwa_addr_i(2).addr,
+		a_2_EN_A  	=> open,
+		a_2_WEN_A 	=> bram_m_i(2).wr,
+		a_2_Din_A  	=> bram_m_i(2).din,
+		a_2_Dout_A 	=> bram_s_i(2).dout,
+		a_2_Clk_A 	=> open,
+		a_2_Rst_A 	=> open		
+	);		
+
 	hwa_rst <= hwACtrl_ap_reset_out or reset_int;		
 
 	addr_map: for i in (NBANKS-1) downto 0 generate
 	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
-    end generate;	
-
+    end generate;		
+					  				
 end architecture rtl;

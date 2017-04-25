@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.xpr">
+<Project Version="7" Minor="17" Path="/home/patmos/t-crest/patmos/hardware/vivado/matmul_int_2b_4x4/matmul_int.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="44437113ce5a4f4fa39914f3cfeb84af"/>
@@ -138,14 +138,14 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PPRDIR/matmul_2b_int.xdc">
+      <File Path="$PPRDIR/matmul_int.xdc">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
       <Config>
-        <Option Name="TargetConstrsFile" Val="$PPRDIR/matmul_2b_int.xdc"/>
+        <Option Name="TargetConstrsFile" Val="$PPRDIR/matmul_int.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>
