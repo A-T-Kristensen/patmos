@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Tue Apr 25 07:54:48 2017
+# Process ID: 21055
+# Current directory: /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_3b_4x4/matmul_float.runs/clk_manager_synth_1
+# Command line: vivado -log clk_manager.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clk_manager.tcl
+# Log file: /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_3b_4x4/matmul_float.runs/clk_manager_synth_1/clk_manager.vds
+# Journal file: /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_3b_4x4/matmul_float.runs/clk_manager_synth_1/vivado.jou
+#-----------------------------------------------------------
+source clk_manager.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP clk_manager, cache-ID = 55264e8c075cc86d.

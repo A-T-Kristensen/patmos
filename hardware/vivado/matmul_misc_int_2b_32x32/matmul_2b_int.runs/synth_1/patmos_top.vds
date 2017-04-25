@@ -1,0 +1,2176 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Thu Apr 20 20:30:49 2017
+# Process ID: 81355
+# Current directory: /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1
+# Command line: vivado -log patmos_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source patmos_top.tcl
+# Log file: /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/patmos_top.vds
+# Journal file: /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source patmos_top.tcl -notrace
+Command: synth_design -top patmos_top -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 81359 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1074.062 ; gain = 142.086 ; free physical = 7982 ; free virtual = 13870
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'patmos_top' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:50]
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:297]
+INFO: [Synth 8-3491] module 'clk_manager' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/realtime/clk_manager_stub.v:5' bound to instance 'clk_manager_inst_0' of component 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:338]
+INFO: [Synth 8-638] synthesizing module 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/realtime/clk_manager_stub.v:5]
+INFO: [Synth 8-256] done synthesizing module 'clk_manager' (1#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/realtime/clk_manager_stub.v:5]
+INFO: [Synth 8-3491] module 'ocp_burst_to_ddr2_ctrl' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:34' bound to instance 'ocp_burst_to_ddr2_ctrl_inst_0' of component 'ocp_burst_to_ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:382]
+INFO: [Synth 8-638] synthesizing module 'ocp_burst_to_ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:78]
+INFO: [Synth 8-256] done synthesizing module 'ocp_burst_to_ddr2_ctrl' (2#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:78]
+INFO: [Synth 8-3491] module 'ddr2_ctrl' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/realtime/ddr2_ctrl_stub.v:5' bound to instance 'ddr2_ctrl_inst_0' of component 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:412]
+INFO: [Synth 8-638] synthesizing module 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/realtime/ddr2_ctrl_stub.v:5]
+INFO: [Synth 8-256] done synthesizing module 'ddr2_ctrl' (3#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/realtime/ddr2_ctrl_stub.v:5]
+INFO: [Synth 8-3491] module 'Patmos' declared at '/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:18081' bound to instance 'patmos_inst_0' of component 'Patmos' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:453]
+INFO: [Synth 8-638] synthesizing module 'Patmos' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:18081]
+INFO: [Synth 8-638] synthesizing module 'PatmosCore' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:17170]
+INFO: [Synth 8-638] synthesizing module 'MCache' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2383]
+INFO: [Synth 8-638] synthesizing module 'MCacheCtrl' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:1]
+INFO: [Synth 8-256] done synthesizing module 'MCacheCtrl' (4#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:1]
+INFO: [Synth 8-638] synthesizing module 'MCacheReplFifo' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:447]
+INFO: [Synth 8-256] done synthesizing module 'MCacheReplFifo' (5#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:447]
+INFO: [Synth 8-638] synthesizing module 'MCacheMem' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2350]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_1' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2296]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_1' (6#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2296]
+INFO: [Synth 8-256] done synthesizing module 'MCacheMem' (7#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2350]
+INFO: [Synth 8-256] done synthesizing module 'MCache' (8#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2383]
+INFO: [Synth 8-638] synthesizing module 'Fetch' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2581]
+INFO: [Synth 8-226] default block is never used [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2765]
+INFO: [Synth 8-226] default block is never used [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:3032]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_0' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2544]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_0' (9#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2544]
+INFO: [Synth 8-256] done synthesizing module 'Fetch' (10#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2581]
+INFO: [Synth 8-638] synthesizing module 'Decode' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:3532]
+INFO: [Synth 8-638] synthesizing module 'RegisterFile' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:3437]
+INFO: [Synth 8-256] done synthesizing module 'RegisterFile' (11#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:3437]
+INFO: [Synth 8-256] done synthesizing module 'Decode' (12#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:3532]
+INFO: [Synth 8-638] synthesizing module 'Execute' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:4401]
+INFO: [Synth 8-256] done synthesizing module 'Execute' (13#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:4401]
+INFO: [Synth 8-638] synthesizing module 'Memory' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:5951]
+INFO: [Synth 8-256] done synthesizing module 'Memory' (14#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:5951]
+INFO: [Synth 8-638] synthesizing module 'WriteBack' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:6624]
+INFO: [Synth 8-256] done synthesizing module 'WriteBack' (15#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:6624]
+INFO: [Synth 8-638] synthesizing module 'Exceptions' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:6648]
+WARNING: [Synth 8-3936] Found unconnected internal register 'masterReg_Addr_reg' and it is trimmed from '32' to '8' bits. [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:7785]
+INFO: [Synth 8-256] done synthesizing module 'Exceptions' (16#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:6648]
+INFO: [Synth 8-638] synthesizing module 'InOut' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10430]
+INFO: [Synth 8-638] synthesizing module 'Spm' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9073]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_2' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9036]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_2' (17#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9036]
+INFO: [Synth 8-256] done synthesizing module 'Spm' (18#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9073]
+INFO: [Synth 8-638] synthesizing module 'OcpCoreBus' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9184]
+INFO: [Synth 8-256] done synthesizing module 'OcpCoreBus' (19#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9184]
+INFO: [Synth 8-638] synthesizing module 'OcpIOBus' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9209]
+INFO: [Synth 8-256] done synthesizing module 'OcpIOBus' (20#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9209]
+INFO: [Synth 8-638] synthesizing module 'Uart' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9338]
+INFO: [Synth 8-638] synthesizing module 'Queue' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9240]
+INFO: [Synth 8-256] done synthesizing module 'Queue' (21#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9240]
+WARNING: [Synth 8-350] instance 'txQueue' of module 'Queue' requires 9 connections, but only 8 given [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9646]
+WARNING: [Synth 8-350] instance 'rxQueue' of module 'Queue' requires 9 connections, but only 7 given [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9655]
+INFO: [Synth 8-256] done synthesizing module 'Uart' (22#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9338]
+INFO: [Synth 8-638] synthesizing module 'Nexys4DDRIO' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9798]
+INFO: [Synth 8-256] done synthesizing module 'Nexys4DDRIO' (23#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9798]
+INFO: [Synth 8-638] synthesizing module 'BRamCtrl' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9826]
+INFO: [Synth 8-256] done synthesizing module 'BRamCtrl' (24#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9826]
+INFO: [Synth 8-638] synthesizing module 'HwACtrl' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9883]
+INFO: [Synth 8-256] done synthesizing module 'HwACtrl' (25#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:9883]
+INFO: [Synth 8-638] synthesizing module 'CpuInfo' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10076]
+WARNING: [Synth 8-3936] Found unconnected internal register 'masterReg_Addr_reg' and it is trimmed from '32' to '16' bits. [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10160]
+INFO: [Synth 8-256] done synthesizing module 'CpuInfo' (26#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10076]
+INFO: [Synth 8-638] synthesizing module 'Timer' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10209]
+WARNING: [Synth 8-3936] Found unconnected internal register 'masterReg_Addr_reg' and it is trimmed from '32' to '4' bits. [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10325]
+INFO: [Synth 8-256] done synthesizing module 'Timer' (27#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10209]
+INFO: [Synth 8-256] done synthesizing module 'InOut' (28#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:10430]
+INFO: [Synth 8-638] synthesizing module 'DataCache' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16747]
+INFO: [Synth 8-638] synthesizing module 'DirectMappedCache' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11503]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_3' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11395]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_3' (29#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11395]
+INFO: [Synth 8-638] synthesizing module 'MemBlock_4' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11449]
+INFO: [Synth 8-256] done synthesizing module 'MemBlock_4' (30#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11449]
+INFO: [Synth 8-256] done synthesizing module 'DirectMappedCache' (31#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11503]
+INFO: [Synth 8-638] synthesizing module 'StackCache' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:15840]
+INFO: [Synth 8-256] done synthesizing module 'StackCache' (32#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:15840]
+INFO: [Synth 8-638] synthesizing module 'NullCache' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16394]
+INFO: [Synth 8-256] done synthesizing module 'NullCache' (33#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16394]
+WARNING: [Synth 8-350] instance 'bp' of module 'NullCache' requires 19 connections, but only 17 given [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:17010]
+INFO: [Synth 8-638] synthesizing module 'OcpBurstBus' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16550]
+INFO: [Synth 8-256] done synthesizing module 'OcpBurstBus' (34#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16550]
+INFO: [Synth 8-638] synthesizing module 'WriteNoBuffer' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16584]
+INFO: [Synth 8-256] done synthesizing module 'WriteNoBuffer' (35#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16584]
+WARNING: [Synth 8-350] instance 'wc' of module 'WriteNoBuffer' requires 29 connections, but only 28 given [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:17070]
+INFO: [Synth 8-256] done synthesizing module 'DataCache' (36#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:16747]
+INFO: [Synth 8-638] synthesizing module 'NoMemoryManagement' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:17120]
+INFO: [Synth 8-256] done synthesizing module 'NoMemoryManagement' (37#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:17120]
+INFO: [Synth 8-256] done synthesizing module 'PatmosCore' (38#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:17170]
+WARNING: [Synth 8-350] instance 'core' of module 'PatmosCore' requires 48 connections, but only 47 given [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:18192]
+INFO: [Synth 8-638] synthesizing module 'MemBridge' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:18046]
+INFO: [Synth 8-256] done synthesizing module 'MemBridge' (39#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:18046]
+INFO: [Synth 8-256] done synthesizing module 'Patmos' (40#1) [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:18081]
+INFO: [Synth 8-3491] module 'nexys4ddr_io' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.srcs/sources_1/new/nexys4ddr_io.vhd:5' bound to instance 'nexys4ddr_io_inst_0' of component 'nexys4ddr_io' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:509]
+INFO: [Synth 8-638] synthesizing module 'nexys4ddr_io' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.srcs/sources_1/new/nexys4ddr_io.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'nexys4ddr_io' (41#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.srcs/sources_1/new/nexys4ddr_io.vhd:27]
+INFO: [Synth 8-3491] module 'n_bank' declared at '/home/patmos/t-crest/patmos/hardware/vhdl/mem/n_bank.vhd:17' bound to instance 'n_bank_inst_0' of component 'n_bank' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:529]
+INFO: [Synth 8-638] synthesizing module 'n_bank' [/home/patmos/t-crest/patmos/hardware/vhdl/mem/n_bank.vhd:33]
+	Parameter DATA bound to: 32 - type: integer 
+	Parameter ADDR bound to: 9 - type: integer 
+INFO: [Synth 8-3491] module 'bram_tdp' declared at '/home/patmos/t-crest/patmos/hardware/vhdl/mem/bram_tdp.vhd:41' bound to instance 'bram_array' of component 'bram_tdp' [/home/patmos/t-crest/patmos/hardware/vhdl/mem/n_bank.vhd:74]
+INFO: [Synth 8-638] synthesizing module 'bram_tdp' [/home/patmos/t-crest/patmos/hardware/vhdl/mem/bram_tdp.vhd:64]
+	Parameter DATA bound to: 32 - type: integer 
+	Parameter ADDR bound to: 9 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'bram_tdp' (42#1) [/home/patmos/t-crest/patmos/hardware/vhdl/mem/bram_tdp.vhd:64]
+	Parameter DATA bound to: 32 - type: integer 
+	Parameter ADDR bound to: 9 - type: integer 
+INFO: [Synth 8-3491] module 'bram_tdp' declared at '/home/patmos/t-crest/patmos/hardware/vhdl/mem/bram_tdp.vhd:41' bound to instance 'bram_array' of component 'bram_tdp' [/home/patmos/t-crest/patmos/hardware/vhdl/mem/n_bank.vhd:74]
+INFO: [Synth 8-256] done synthesizing module 'n_bank' (43#1) [/home/patmos/t-crest/patmos/hardware/vhdl/mem/n_bank.vhd:33]
+INFO: [Synth 8-3491] module 'matmul_hw' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:12' bound to instance 'matrixmul_inst_0' of component 'matmul_hw' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:543]
+INFO: [Synth 8-638] synthesizing module 'matmul_hw' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:37]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:80]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:83]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:90]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:110]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:114]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:118]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:133]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:142]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:283]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter din2_WIDTH bound to: 32 - type: integer 
+	Parameter din3_WIDTH bound to: 32 - type: integer 
+	Parameter din4_WIDTH bound to: 32 - type: integer 
+	Parameter din5_WIDTH bound to: 2 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mux_42_bkb' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mux_42_bkb.vhd:13' bound to instance 'matmul_hw_mux_42_bkb_U1' of component 'matmul_hw_mux_42_bkb' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:343]
+INFO: [Synth 8-638] synthesizing module 'matmul_hw_mux_42_bkb' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mux_42_bkb.vhd:32]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter din2_WIDTH bound to: 32 - type: integer 
+	Parameter din3_WIDTH bound to: 32 - type: integer 
+	Parameter din4_WIDTH bound to: 32 - type: integer 
+	Parameter din5_WIDTH bound to: 2 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'matmul_hw_mux_42_bkb' (44#1) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mux_42_bkb.vhd:32]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 6 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mul_32scud' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:63' bound to instance 'matmul_hw_mul_32scud_U2' of component 'matmul_hw_mul_32scud' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:361]
+INFO: [Synth 8-638] synthesizing module 'matmul_hw_mul_32scud' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:79]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 6 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mul_32scud_MulnS_0' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:12' bound to instance 'matmul_hw_mul_32scud_MulnS_0_U' of component 'matmul_hw_mul_32scud_MulnS_0' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:92]
+INFO: [Synth 8-638] synthesizing module 'matmul_hw_mul_32scud_MulnS_0' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:21]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:23]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:24]
+INFO: [Synth 8-256] done synthesizing module 'matmul_hw_mul_32scud_MulnS_0' (45#1) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'matmul_hw_mul_32scud' (46#1) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:79]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter din2_WIDTH bound to: 32 - type: integer 
+	Parameter din3_WIDTH bound to: 32 - type: integer 
+	Parameter din4_WIDTH bound to: 32 - type: integer 
+	Parameter din5_WIDTH bound to: 2 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mux_42_bkb' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mux_42_bkb.vhd:13' bound to instance 'matmul_hw_mux_42_bkb_U3' of component 'matmul_hw_mux_42_bkb' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:376]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter din2_WIDTH bound to: 32 - type: integer 
+	Parameter din3_WIDTH bound to: 32 - type: integer 
+	Parameter din4_WIDTH bound to: 32 - type: integer 
+	Parameter din5_WIDTH bound to: 2 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mux_42_bkb' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mux_42_bkb.vhd:13' bound to instance 'matmul_hw_mux_42_bkb_U4' of component 'matmul_hw_mux_42_bkb' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:394]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 6 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mul_32scud' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:63' bound to instance 'matmul_hw_mul_32scud_U5' of component 'matmul_hw_mul_32scud' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:412]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 6 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mul_32scud' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:63' bound to instance 'matmul_hw_mul_32scud_U6' of component 'matmul_hw_mul_32scud' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:427]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter din2_WIDTH bound to: 32 - type: integer 
+	Parameter din3_WIDTH bound to: 32 - type: integer 
+	Parameter din4_WIDTH bound to: 32 - type: integer 
+	Parameter din5_WIDTH bound to: 2 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mux_42_bkb' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mux_42_bkb.vhd:13' bound to instance 'matmul_hw_mux_42_bkb_U7' of component 'matmul_hw_mux_42_bkb' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:442]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 8 - type: integer 
+	Parameter din0_WIDTH bound to: 4 - type: integer 
+	Parameter din1_WIDTH bound to: 4 - type: integer 
+	Parameter dout_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_urem_4ndEe' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:170' bound to instance 'matmul_hw_urem_4ndEe_U8' of component 'matmul_hw_urem_4ndEe' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:460]
+INFO: [Synth 8-638] synthesizing module 'matmul_hw_urem_4ndEe' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:186]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 8 - type: integer 
+	Parameter din0_WIDTH bound to: 4 - type: integer 
+	Parameter din1_WIDTH bound to: 4 - type: integer 
+	Parameter dout_WIDTH bound to: 4 - type: integer 
+	Parameter in0_WIDTH bound to: 4 - type: integer 
+	Parameter in1_WIDTH bound to: 4 - type: integer 
+	Parameter out_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_urem_4ndEe_div' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:88' bound to instance 'matmul_hw_urem_4ndEe_div_U' of component 'matmul_hw_urem_4ndEe_div' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:207]
+INFO: [Synth 8-638] synthesizing module 'matmul_hw_urem_4ndEe_div' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:103]
+	Parameter in0_WIDTH bound to: 4 - type: integer 
+	Parameter in1_WIDTH bound to: 4 - type: integer 
+	Parameter out_WIDTH bound to: 4 - type: integer 
+	Parameter in0_WIDTH bound to: 4 - type: integer 
+	Parameter in1_WIDTH bound to: 4 - type: integer 
+	Parameter out_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_urem_4ndEe_div_u' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:12' bound to instance 'matmul_hw_urem_4ndEe_div_u_0' of component 'matmul_hw_urem_4ndEe_div_u' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:126]
+INFO: [Synth 8-638] synthesizing module 'matmul_hw_urem_4ndEe_div_u' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:35]
+	Parameter in0_WIDTH bound to: 4 - type: integer 
+	Parameter in1_WIDTH bound to: 4 - type: integer 
+	Parameter out_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'matmul_hw_urem_4ndEe_div_u' (47#1) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:35]
+INFO: [Synth 8-256] done synthesizing module 'matmul_hw_urem_4ndEe_div' (48#1) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:103]
+INFO: [Synth 8-256] done synthesizing module 'matmul_hw_urem_4ndEe' (49#1) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:186]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 6 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'matmul_hw_mul_32scud' declared at '/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd:63' bound to instance 'matmul_hw_mul_32scud_U9' of component 'matmul_hw_mul_32scud' [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:475]
+INFO: [Synth 8-256] done synthesizing module 'matmul_hw' (50#1) [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd:37]
+INFO: [Synth 8-256] done synthesizing module 'patmos_top' (51#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:50]
+WARNING: [Synth 8-3331] design matmul_hw_mul_32scud has unconnected port reset
+WARNING: [Synth 8-3331] design matmul_hw_urem_4ndEe_div_u has unconnected port reset
+WARNING: [Synth 8-3331] design n_bank has unconnected port p_addr[14]
+WARNING: [Synth 8-3331] design n_bank has unconnected port p_addr[13]
+WARNING: [Synth 8-3331] design n_bank has unconnected port p_addr[12]
+WARNING: [Synth 8-3331] design n_bank has unconnected port p_addr[11]
+WARNING: [Synth 8-3331] design n_bank has unconnected port p_addr[10]
+WARNING: [Synth 8-3331] design n_bank has unconnected port p_addr[9]
+WARNING: [Synth 8-3331] design n_bank has unconnected port bram_m[1][wr][3]
+WARNING: [Synth 8-3331] design n_bank has unconnected port bram_m[1][wr][2]
+WARNING: [Synth 8-3331] design n_bank has unconnected port bram_m[1][wr][1]
+WARNING: [Synth 8-3331] design n_bank has unconnected port bram_m[0][wr][3]
+WARNING: [Synth 8-3331] design n_bank has unconnected port bram_m[0][wr][2]
+WARNING: [Synth 8-3331] design n_bank has unconnected port bram_m[0][wr][1]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MAddr[1]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MAddr[0]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[31]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[30]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[29]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[28]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[27]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[26]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[25]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MData[24]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MByteEn[3]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MByteEn[2]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MByteEn[1]
+WARNING: [Synth 8-3331] design nexys4ddr_io has unconnected port MByteEn[0]
+WARNING: [Synth 8-3331] design NoMemoryManagement has unconnected port io_superMode
+WARNING: [Synth 8-3331] design NoMemoryManagement has unconnected port io_exec
+WARNING: [Synth 8-3331] design NoMemoryManagement has unconnected port io_virt_M_Addr[31]
+WARNING: [Synth 8-3331] design NoMemoryManagement has unconnected port io_virt_M_Addr[30]
+WARNING: [Synth 8-3331] design NoMemoryManagement has unconnected port io_virt_M_Addr[29]
+WARNING: [Synth 8-3331] design NoMemoryManagement has unconnected port io_virt_M_Addr[28]
+WARNING: [Synth 8-3331] design NoMemoryManagement has unconnected port io_virt_M_Addr[27]
+WARNING: [Synth 8-3331] design WriteNoBuffer has unconnected port io_writeMaster_M_AddrSpace[1]
+WARNING: [Synth 8-3331] design WriteNoBuffer has unconnected port io_writeMaster_M_AddrSpace[0]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[31]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[30]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[29]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[28]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[27]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[26]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[25]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[24]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[23]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[22]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[21]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[20]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[19]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[18]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[17]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[16]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[15]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[14]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[13]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[12]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[11]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[10]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[9]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[8]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[7]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[6]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[5]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[4]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[3]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[2]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[1]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_Data[0]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_ByteEn[3]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_ByteEn[2]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_ByteEn[1]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_master_M_ByteEn[0]
+WARNING: [Synth 8-3331] design NullCache has unconnected port io_slave_S_DataAccept
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[31]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[30]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[29]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[28]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[27]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[26]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[25]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[24]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[23]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[22]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[21]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[20]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[19]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[18]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[17]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[16]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[15]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[14]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[13]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[12]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_fromCPU_M_Addr[11]
+WARNING: [Synth 8-3331] design StackCache has unconnected port io_toMemory_S_DataAccept
+WARNING: [Synth 8-3331] design DirectMappedCache has unconnected port io_slave_S_DataAccept
+WARNING: [Synth 8-3331] design Timer has unconnected port io_superMode
+WARNING: [Synth 8-3331] design Timer has unconnected port io_ocp_M_Addr[31]
+WARNING: [Synth 8-3331] design Timer has unconnected port io_ocp_M_Addr[30]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1173.531 ; gain = 241.555 ; free physical = 7877 ; free virtual = 13767
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1173.531 ; gain = 241.555 ; free physical = 7877 ; free virtual = 13767
+---------------------------------------------------------------------------------
+WARNING: [Project 1-486] Could not resolve non-primitive black box cell 'clk_manager' instantiated as 'clk_manager_inst_0' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:338]
+WARNING: [Project 1-486] Could not resolve non-primitive black box cell 'ddr2_ctrl' instantiated as 'ddr2_ctrl_inst_0' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/patmos_nexys4ddr.vhdl:412]
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc] for cell 'ddr2_ctrl_inst_0'
+Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc] for cell 'ddr2_ctrl_inst_0'
+Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp_2/clk_manager_in_context.xdc] for cell 'clk_manager_inst_0'
+Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp_2/clk_manager_in_context.xdc] for cell 'clk_manager_inst_0'
+Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.xdc]
+Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/patmos_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/patmos_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1503.398 ; gain = 0.000 ; free physical = 7606 ; free virtual = 13496
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1503.398 ; gain = 571.422 ; free physical = 7607 ; free virtual = 13497
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1503.398 ; gain = 571.422 ; free physical = 7607 ; free virtual = 13497
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 2).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 3).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 5).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 6).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 7).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 8).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 9).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 10).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 11).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 12).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 13).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 14).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 15).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 16).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 17).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 18).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 19).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 20).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 21).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 22).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 23).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 24).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 25).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 26).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 27).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 28).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 29).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 30).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 31).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 32).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 33).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cas_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 34).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cas_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 35).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cke[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 36).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cke[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 37).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 38).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 39).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dm[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 40).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dm[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 41).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dm[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 42).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dm[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 43).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 44).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 45).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 46).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 47).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 48).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 49).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 50).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 51).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[13]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 52).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[13]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 53).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[14]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 54).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[14]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 55).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[15]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 56).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[15]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 57).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 58).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 59).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 60).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 61).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 62).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 63).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 64).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 65).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 66).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 67).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 68).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 69).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 70).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 71).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 72).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 73).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 74).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 75).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 76).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 77).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_n[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 78).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_n[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 79).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_p[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 80).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_p[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 81).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_p[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 82).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_p[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 83).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_odt[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 84).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_odt[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 85).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ras_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 86).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ras_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 87).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_we_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 88).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_we_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 89).
+Applied set_property IO_BUFFER_TYPE = NONE for clk_in. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp_2/clk_manager_in_context.xdc, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for clk_in. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/.Xil/Vivado-81355-ubuntu/dcp_2/clk_manager_in_context.xdc, line 5).
+Applied set_property MARK_DEBUG = true for \bram_m_i[1][din] [0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.xdc, line 248).
+Applied set_property MARK_DEBUG = true for \hwa_addr_i[1][addr] [2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.xdc, line 280).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1503.398 ; gain = 571.422 ; free physical = 7607 ; free virtual = 13497
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'ocp_burst_to_ddr2_ctrl'
+INFO: [Synth 8-5544] ROM "SCmdAccept" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "count_last_item" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+WARNING: [Synth 8-3936] Found unconnected internal register 'addrEvenReg_reg' and it is trimmed from '32' to '10' bits. [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:342]
+WARNING: [Synth 8-3936] Found unconnected internal register 'addrOddReg_reg' and it is trimmed from '32' to '10' bits. [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:334]
+INFO: [Synth 8-5544] ROM "stateReg" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ocpAddrReg" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:1897]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:3345]
+INFO: [Synth 8-5544] ROM "T110" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+WARNING: [Synth 8-3936] Found unconnected internal register 'exReg_jmpOp_reloc_reg' and it is trimmed from '32' to '30' bits. [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:5356]
+WARNING: [Synth 8-3936] Found unconnected internal register 'memReg_mem_addr_reg' and it is trimmed from '32' to '2' bits. [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:6473]
+INFO: [Synth 8-5544] ROM "T60" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T4" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T35" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rx_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T66" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rdDataReg" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T54" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ispmResp" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T1239" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T1228" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T47" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T147" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T56" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T52" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T50" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T45" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T42" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T31" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "T60" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "SResp_next" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "green_leds_wr_en" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "rgb_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "buttons_press_reg_clear" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "seven_segments_drive" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "debounce_count[0]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "debounce_count[1]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "debounce_count[2]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "debounce_count[3]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "debounce_count[4]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3936] Found unconnected internal register 'run_proc[2].remd_tmp_reg[3]' and it is trimmed from '4' to '3' bits. [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:63]
+WARNING: [Synth 8-3936] Found unconnected internal register 'run_proc[1].remd_tmp_reg[2]' and it is trimmed from '4' to '3' bits. [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:63]
+WARNING: [Synth 8-3936] Found unconnected internal register 'run_proc[0].remd_tmp_reg[1]' and it is trimmed from '4' to '3' bits. [/home/patmos/github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd:63]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-5544] ROM "exitcond_fu_303_p2" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "exitcond_flatten_fu_285_p2" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "sel_tmp4_fu_450_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "sel_tmp2_fu_445_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "sel_tmp_fu_440_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "tmp1_fu_323_p2" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "tmp_5_fu_435_p2" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "exitcond_fu_303_p2" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "exitcond_flatten_fu_285_p2" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "sel_tmp4_fu_450_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "sel_tmp2_fu_445_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "sel_tmp_fu_440_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "tmp1_fu_323_p2" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "tmp_5_fu_435_p2" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "debounce_count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "cpu_reset_btn_debounced" won't be mapped to RAM because it is too sparse
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                              000 |                              000
+            write_buffer |                              001 |                              001
+           write_command |                              010 |                              010
+              write_data |                              011 |                              011
+            read_command |                              100 |                              100
+               read_wait |                              101 |                              101
+             read_buffer |                              110 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'ocp_burst_to_ddr2_ctrl'
+INFO: [Synth 8-3971] The signal mem_reg was recognized as a true dual port RAM template.
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1503.398 ; gain = 571.422 ; free physical = 7604 ; free virtual = 13494
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+----------------+------------+----------+
+|      |RTL Partition   |Replication |Instances |
++------+----------------+------------+----------+
+|1     |PatmosCore__GB0 |           1|     32175|
+|2     |PatmosCore__GB1 |           1|     11726|
+|3     |patmos_top__GC0 |           1|     11133|
++------+----------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     64 Bit       Adders := 1     
+	   2 Input     64 Bit       Adders := 2     
+	   2 Input     33 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 5     
+	   3 Input     32 Bit       Adders := 8     
+	   4 Input     32 Bit       Adders := 1     
+	   3 Input     30 Bit       Adders := 4     
+	   2 Input     30 Bit       Adders := 5     
+	   2 Input     24 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 1     
+	   4 Input     12 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 4     
+	   2 Input     10 Bit       Adders := 4     
+	   2 Input      9 Bit       Adders := 2     
+	   2 Input      8 Bit       Adders := 5     
+	   2 Input      6 Bit       Adders := 2     
+	   3 Input      5 Bit       Adders := 4     
+	   2 Input      5 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 11    
+	   3 Input      4 Bit       Adders := 2     
+	   2 Input      3 Bit       Adders := 3     
+	   2 Input      2 Bit       Adders := 6     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 50    
++---Registers : 
+	              128 Bit    Registers := 2     
+	               64 Bit    Registers := 2     
+	               33 Bit    Registers := 1     
+	               32 Bit    Registers := 137   
+	               30 Bit    Registers := 16    
+	               24 Bit    Registers := 2     
+	               21 Bit    Registers := 1     
+	               16 Bit    Registers := 4     
+	               12 Bit    Registers := 1     
+	               11 Bit    Registers := 16    
+	               10 Bit    Registers := 25    
+	                9 Bit    Registers := 30    
+	                8 Bit    Registers := 37    
+	                7 Bit    Registers := 5     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 17    
+	                4 Bit    Registers := 30    
+	                3 Bit    Registers := 26    
+	                2 Bit    Registers := 27    
+	                1 Bit    Registers := 346   
++---Multipliers : 
+	                32x32  Multipliers := 4     
++---RAMs : 
+	              16K Bit         RAMs := 4     
+	               4K Bit         RAMs := 14    
+	               2K Bit         RAMs := 1     
+	             1024 Bit         RAMs := 3     
+	              128 Bit         RAMs := 2     
++---Muxes : 
+	  10 Input     33 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 198   
+	   3 Input     32 Bit        Muxes := 3     
+	   6 Input     32 Bit        Muxes := 1     
+	   5 Input     32 Bit        Muxes := 1     
+	  11 Input     32 Bit        Muxes := 1     
+	   4 Input     32 Bit        Muxes := 16    
+	   2 Input     30 Bit        Muxes := 23    
+	   2 Input     24 Bit        Muxes := 2     
+	   2 Input     21 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 3     
+	   3 Input     16 Bit        Muxes := 1     
+	   2 Input     15 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 3     
+	   2 Input     11 Bit        Muxes := 33    
+	   2 Input     10 Bit        Muxes := 26    
+	   2 Input      9 Bit        Muxes := 20    
+	   5 Input      9 Bit        Muxes := 1     
+	   4 Input      9 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 47    
+	   4 Input      8 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 12    
+	   9 Input      8 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 9     
+	  17 Input      5 Bit        Muxes := 1     
+	   3 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 20    
+	   7 Input      4 Bit        Muxes := 1     
+	   6 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 40    
+	   8 Input      3 Bit        Muxes := 3     
+	   7 Input      3 Bit        Muxes := 2     
+	   5 Input      3 Bit        Muxes := 4     
+	   4 Input      3 Bit        Muxes := 1     
+	  11 Input      3 Bit        Muxes := 1     
+	   3 Input      3 Bit        Muxes := 2     
+	  10 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 36    
+	   6 Input      2 Bit        Muxes := 3     
+	   3 Input      2 Bit        Muxes := 8     
+	  12 Input      2 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 2     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 785   
+	   5 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 2     
+	   6 Input      1 Bit        Muxes := 1     
+	  12 Input      1 Bit        Muxes := 1     
+	  26 Input      1 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 8     
+	   3 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module patmos_top 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 7     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module MCacheCtrl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   3 Input     32 Bit       Adders := 1     
+	   3 Input     30 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 2     
+	   2 Input      2 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	               32 Bit    Registers := 3     
+	               10 Bit    Registers := 4     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 8     
+	   2 Input     11 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 6     
+	   2 Input      3 Bit        Muxes := 2     
+	   8 Input      3 Bit        Muxes := 2     
+	   7 Input      3 Bit        Muxes := 1     
+	   5 Input      3 Bit        Muxes := 2     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 8     
+	   5 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+Module MCacheReplFifo 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 1     
+	   4 Input     12 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 2     
++---XORs : 
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               32 Bit    Registers := 20    
+	               12 Bit    Registers := 1     
+	               11 Bit    Registers := 16    
+	               10 Bit    Registers := 19    
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 19    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 5     
+	   2 Input     15 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 1     
+	   2 Input     11 Bit        Muxes := 32    
+	   2 Input     10 Bit        Muxes := 17    
+	   2 Input      4 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 52    
+Module MemBlock_1__1 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                9 Bit    Registers := 3     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	              16K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+Module MemBlock_1 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                9 Bit    Registers := 3     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	              16K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+Module MemBlock_0__1 
+Detailed RTL Component Info : 
++---Registers : 
+	                7 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module MemBlock_0 
+Detailed RTL Component Info : 
++---Registers : 
+	                7 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module Fetch 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     30 Bit       Adders := 3     
+	   3 Input     30 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 4     
+	               30 Bit    Registers := 3     
+	               10 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 10    
+	   2 Input     30 Bit        Muxes := 15    
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+Module RegisterFile 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                5 Bit    Registers := 4     
+	                1 Bit    Registers := 2     
++---RAMs : 
+	             1024 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 4     
+Module Decode 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     30 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 3     
+	               30 Bit    Registers := 3     
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 9     
+	   2 Input     30 Bit        Muxes := 6     
+	   2 Input     24 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+	   2 Input      9 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 4     
+	   2 Input      4 Bit        Muxes := 6     
+	   2 Input      3 Bit        Muxes := 1     
+	   8 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 8     
+	   6 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 19    
+	   6 Input      1 Bit        Muxes := 1     
+	  12 Input      1 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+	  26 Input      1 Bit        Muxes := 1     
+Module Execute 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     64 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 2     
+	   3 Input     32 Bit       Adders := 1     
+	   3 Input     30 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 8     
++---Registers : 
+	               32 Bit    Registers := 13    
+	               30 Bit    Registers := 5     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 4     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 33    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 38    
+	   2 Input     30 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 4     
+	   3 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 62    
+Module Memory 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     30 Bit       Adders := 1     
+	   2 Input     24 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	               32 Bit    Registers := 3     
+	               30 Bit    Registers := 3     
+	                5 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 15    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 4     
+	   2 Input     24 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 2     
+	   4 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 5     
+	   2 Input      5 Bit        Muxes := 2     
+	   7 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+Module Exceptions 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               32 Bit    Registers := 3     
+	               30 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 84    
++---RAMs : 
+	             1024 Bit         RAMs := 2     
++---Muxes : 
+	   3 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 5     
+	  17 Input      5 Bit        Muxes := 1     
+	  12 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 82    
+Module MemBlock_3 
+Detailed RTL Component Info : 
++---Registers : 
+	               21 Bit    Registers := 1     
+	                7 Bit    Registers := 3     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	               2K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     21 Bit        Muxes := 1     
+Module MemBlock_4__1 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+Module MemBlock_4__2 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+Module MemBlock_4__3 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+Module MemBlock_4 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+Module DirectMappedCache 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               32 Bit    Registers := 3     
+	                9 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 130   
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   2 Input      9 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 385   
+	   5 Input      1 Bit        Muxes := 1     
+Module MemBlock_2__5 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module MemBlock_2__6 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module MemBlock_2__7 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module MemBlock_2 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module StackCache 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     33 Bit       Adders := 1     
+	   3 Input     32 Bit       Adders := 5     
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	               33 Bit    Registers := 1     
+	               32 Bit    Registers := 3     
+	                9 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	  10 Input     33 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 8     
+	   2 Input      9 Bit        Muxes := 15    
+	   2 Input      4 Bit        Muxes := 2     
+	   5 Input      3 Bit        Muxes := 2     
+	   2 Input      3 Bit        Muxes := 8     
+	  11 Input      3 Bit        Muxes := 1     
+	   3 Input      3 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 4     
+	   3 Input      2 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 12    
+Module NullCache 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 3     
+Module WriteNoBuffer 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 2     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 4     
+Module DataCache 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 4     
++---Registers : 
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 6     
+	   2 Input      4 Bit        Muxes := 2     
+	   2 Input      3 Bit        Muxes := 4     
+	   2 Input      2 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 4     
+Module MemBlock_2__1 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module MemBlock_2__2 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module MemBlock_2__3 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module MemBlock_2__4 
+Detailed RTL Component Info : 
++---Registers : 
+	                9 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module Spm 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
+Module Queue__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 3     
+	   3 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	              128 Bit         RAMs := 1     
+Module Queue 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 3     
+	   3 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	              128 Bit         RAMs := 1     
+Module Uart 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      9 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 5     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                9 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 3     
+	   5 Input      9 Bit        Muxes := 1     
+	   4 Input      9 Bit        Muxes := 1     
+	   2 Input      9 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   6 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 3     
+	   3 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 16    
+Module BRamCtrl 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+Module HwACtrl 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 4     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
++---Muxes : 
+	   6 Input     32 Bit        Muxes := 1     
+	   5 Input     32 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module CpuInfo 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 14    
+	  11 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module Timer 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 2     
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	               64 Bit    Registers := 2     
+	               32 Bit    Registers := 5     
+	                6 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module InOut 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 19    
++---Muxes : 
+	   2 Input      3 Bit        Muxes := 11    
+	   2 Input      1 Bit        Muxes := 2     
+Module PatmosCore 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 2     
+Module ocp_burst_to_ddr2_ctrl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 1     
++---Registers : 
+	              128 Bit    Registers := 2     
+	               32 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   7 Input      3 Bit        Muxes := 1     
+	  10 Input      3 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 7     
+	   7 Input      1 Bit        Muxes := 8     
+Module nexys4ddr_io 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 5     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               24 Bit    Registers := 2     
+	               16 Bit    Registers := 2     
+	                8 Bit    Registers := 29    
+	                5 Bit    Registers := 5     
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   3 Input     32 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   3 Input     16 Bit        Muxes := 1     
+	   2 Input      9 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 11    
+	   2 Input      8 Bit        Muxes := 33    
+	   2 Input      5 Bit        Muxes := 1     
+	   3 Input      5 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 5     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 88    
+	   3 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+Module bram_tdp__1 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
++---RAMs : 
+	              16K Bit         RAMs := 1     
+Module bram_tdp 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
++---RAMs : 
+	              16K Bit         RAMs := 1     
+Module n_bank 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   3 Input     32 Bit        Muxes := 1     
+Module matmul_hw_mux_42_bkb__1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+Module matmul_hw_mul_32scud_MulnS_0__1 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 6     
++---Multipliers : 
+	                32x32  Multipliers := 1     
+Module matmul_hw_mux_42_bkb__2 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+Module matmul_hw_mux_42_bkb__3 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+Module matmul_hw_mul_32scud_MulnS_0__2 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 6     
++---Multipliers : 
+	                32x32  Multipliers := 1     
+Module matmul_hw_mul_32scud_MulnS_0__3 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 6     
++---Multipliers : 
+	                32x32  Multipliers := 1     
+Module matmul_hw_mux_42_bkb 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+Module matmul_hw_urem_4ndEe_div_u 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input      5 Bit       Adders := 4     
++---Registers : 
+	                4 Bit    Registers := 11    
+	                3 Bit    Registers := 3     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
+Module matmul_hw_urem_4ndEe_div 
+Detailed RTL Component Info : 
++---Registers : 
+	                4 Bit    Registers := 4     
+Module matmul_hw_mul_32scud_MulnS_0 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 6     
++---Multipliers : 
+	                32x32  Multipliers := 1     
+Module matmul_hw 
+Detailed RTL Component Info : 
++---Adders : 
+	   4 Input     32 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 37    
+	                8 Bit    Registers := 1     
+	                5 Bit    Registers := 3     
+	                3 Bit    Registers := 8     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 11    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 64    
+	   4 Input     32 Bit        Muxes := 16    
+	   2 Input      8 Bit        Muxes := 2     
+	   9 Input      8 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 4     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 26    
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4471] merging register 'mem/mcacheOdd/R7_reg[8:0]' into 'mem/mcacheEven/R7_reg[8:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2337]
+INFO: [Synth 8-4471] merging register 'mem/mcacheOdd/R4_reg[31:0]' into 'mem/mcacheEven/R4_reg[31:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:2333]
+DSP Report: Generating DSP mulLLReg_reg, operation Mode is: (A*B)'.
+DSP Report: register mulLLReg_reg is absorbed into DSP mulLLReg_reg.
+DSP Report: operator T428 is absorbed into DSP mulLLReg_reg.
+DSP Report: Generating DSP T431, operation Mode is: A*B.
+DSP Report: operator T431 is absorbed into DSP T431.
+DSP Report: Generating DSP mulLHReg_reg, operation Mode is: (A*B)'.
+DSP Report: register mulLHReg_reg is absorbed into DSP mulLHReg_reg.
+DSP Report: operator T413 is absorbed into DSP mulLHReg_reg.
+DSP Report: Generating DSP mulHLReg_reg, operation Mode is: (A*B)'.
+DSP Report: register mulHLReg_reg is absorbed into DSP mulHLReg_reg.
+DSP Report: operator T440 is absorbed into DSP mulHLReg_reg.
+INFO: [Synth 8-4471] merging register 'dcache/dm/MemBlock_1/rdAddrReg_reg[8:0]' into 'dcache/dm/MemBlock/rdAddrReg_reg[8:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11487]
+INFO: [Synth 8-4471] merging register 'dcache/dm/MemBlock_1/R7_reg[8:0]' into 'dcache/dm/MemBlock/R7_reg[8:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11490]
+INFO: [Synth 8-4471] merging register 'dcache/dm/MemBlock_2/rdAddrReg_reg[8:0]' into 'dcache/dm/MemBlock/rdAddrReg_reg[8:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11487]
+INFO: [Synth 8-4471] merging register 'dcache/dm/MemBlock_2/R7_reg[8:0]' into 'dcache/dm/MemBlock/R7_reg[8:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11490]
+INFO: [Synth 8-4471] merging register 'dcache/dm/MemBlock_3/rdAddrReg_reg[8:0]' into 'dcache/dm/MemBlock/rdAddrReg_reg[8:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11487]
+INFO: [Synth 8-4471] merging register 'dcache/dm/MemBlock_3/R7_reg[8:0]' into 'dcache/dm/MemBlock/R7_reg[8:0]' [/home/patmos/t-crest/patmos/hardware/vivado/patmos/Patmos.v:11490]
+INFO: [Synth 8-5544] ROM "sel_tmp2_fu_445_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "sel_tmp4_fu_450_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "sel_tmp_fu_440_p2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+DSP Report: Generating DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg, operation Mode is: (A2*B2)'.
+DSP Report: register B is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg, operation Mode is: (PCIN>>17)+(A2*B)'.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg, operation Mode is: (PCIN+(A''*B2)')'.
+DSP Report: register matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg, operation Mode is: (A2*B2)'.
+DSP Report: register B is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg, operation Mode is: (PCIN>>17)+(A2*B)'.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg, operation Mode is: (PCIN+(A''*B2)')'.
+DSP Report: register matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg, operation Mode is: (A2*B2)'.
+DSP Report: register B is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg, operation Mode is: (PCIN>>17)+(A2*B)'.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg, operation Mode is: (PCIN+(A''*B2)')'.
+DSP Report: register matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg, operation Mode is: (A2*B2)'.
+DSP Report: register B is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: register matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: operator matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg, operation Mode is: (PCIN>>17)+(A2*B)'.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: register matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: operator matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg.
+DSP Report: Generating DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg, operation Mode is: (PCIN+(A''*B2)')'.
+DSP Report: register matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register A is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: register matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff1_reg is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+DSP Report: operator matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/tmp_product is absorbed into DSP matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff2_reg.
+INFO: [Synth 8-5544] ROM "nexys4ddr_io_inst_0/seven_segments_drive" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_press_reg_clear" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_press_reg_clear" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_press_reg_clear" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_press_reg_clear" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/debounce_count[0]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/debounce_count[1]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/debounce_count[2]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/debounce_count[3]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/debounce_count[4]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/buttons_debounced_prev" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/green_leds_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nexys4ddr_io_inst_0/seven_segments_wr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "debounce_count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "cpu_reset_btn_debounced" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM dcache/dm/MemBlock/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM dcache/dm/MemBlock_1/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM dcache/dm/MemBlock_2/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM dcache/dm/MemBlock_3/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM MemBlock/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM MemBlock_1/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM MemBlock_2/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM MemBlock_3/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM spm/MemBlock/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM spm/MemBlock_1/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM spm/MemBlock_2/mem_reg to conserve power
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM spm/MemBlock_3/mem_reg to conserve power
+INFO: [Synth 8-3971] The signal bram_gen[1].bram_array/mem_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/srcReg_reg[4]' (FDR) to 'corei_2_0/exc/srcReg_reg_rep[4]'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/srcReg_reg[3]' (FDR) to 'corei_2_0/exc/srcReg_reg_rep[3]'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/srcReg_reg[2]' (FDR) to 'corei_2_0/exc/srcReg_reg_rep[2]'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/srcReg_reg[1]' (FDR) to 'corei_2_0/exc/srcReg_reg_rep[1]'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/srcReg_reg[0]' (FDR) to 'corei_2_0/exc/srcReg_reg_rep[0]'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/ctrl/callRetBaseReg_reg[30]' (FDE) to 'corei_2_0/icache/ctrl/callRetBaseReg_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\ctrl/callRetBaseReg_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/execute/fwReg_1_reg[2]' (FDE) to 'corei_2_0/execute/exReg_immOp_0_reg'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (corei_2_0/execute/predReg_0_reg)
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/ctrl/ocpCmdReg_reg[0]' (FDRE) to 'corei_2_0/icache/ctrl/ocpCmdReg_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\ctrl/ocpCmdReg_reg[2] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_2_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_2_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_2_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_1_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_1_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_1_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_3_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_3_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_3_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_4_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_4_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_4_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_5_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_5_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_5_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_6_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_6_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_6_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_7_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_7_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_7_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_8_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_8_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_8_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_9_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_9_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_9_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_10_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_10_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_10_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_11_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_11_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_11_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_12_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_12_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_12_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_13_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_13_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_13_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_14_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_14_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_14_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_15_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_15_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_15_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/icache/repl/addrVec_0_reg[30]' (FDE) to 'corei_2_0/icache/repl/addrVec_0_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\repl/addrVec_0_reg[31] )
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_1_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_2_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_3_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_4_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_5_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_6_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_7_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_8_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_9_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_10_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_11_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_12_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_13_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_14_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_15_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/addrVec_0_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callRetBaseReg_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callRetBaseReg_reg[30]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[30]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[29]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[28]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[27]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[26]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[25]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[24]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[23]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[22]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[21]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[20]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[19]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[18]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[17]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[16]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[15]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[14]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[13]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[12]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (repl/callAddrReg_reg[11]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (ctrl/callRetBaseReg_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (ctrl/addrEvenReg_reg[0]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (ctrl/addrOddReg_reg[0]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (ctrl/ocpCmdReg_reg[2]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (ctrl/ocpAddrReg_reg[31]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (ctrl/ocpAddrReg_reg[30]) is unused and will be removed from module MCache.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[29]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[28]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[27]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[26]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[25]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[24]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[23]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[22]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[21]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[20]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[19]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[18]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[17]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[16]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[15]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[14]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[13]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[12]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[11]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[10]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrOddReg_reg[0]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[29]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[28]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[27]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[26]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[25]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[24]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[23]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[22]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[21]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[20]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[19]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[18]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[17]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[16]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[15]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[14]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[13]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[12]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[11]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[10]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (addrEvenReg_reg[0]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (baseReg_reg[31]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (baseReg_reg[30]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (relocReg_reg[31]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (relocReg_reg[30]) is unused and will be removed from module Fetch.
+WARNING: [Synth 8-3332] Sequential element (decReg_instr_a_reg[31]) is unused and will be removed from module Decode.
+WARNING: [Synth 8-3332] Sequential element (decReg_reloc_reg[31]) is unused and will be removed from module Decode.
+WARNING: [Synth 8-3332] Sequential element (decReg_reloc_reg[30]) is unused and will be removed from module Decode.
+WARNING: [Synth 8-3332] Sequential element (predReg_0_reg) is unused and will be removed from module Execute.
+WARNING: [Synth 8-3332] Sequential element (exReg_callAddr_reg[1]) is unused and will be removed from module Execute.
+WARNING: [Synth 8-3332] Sequential element (exReg_callAddr_reg[0]) is unused and will be removed from module Execute.
+WARNING: [Synth 8-3332] Sequential element (exReg_pc_reg[29]) is unused and will be removed from module Execute.
+WARNING: [Synth 8-3332] Sequential element (exReg_pc_reg[28]) is unused and will be removed from module Execute.
+WARNING: [Synth 8-3332] Sequential element (exReg_pc_reg[27]) is unused and will be removed from module Execute.
+INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3886] merging instance 'corei_2_1/dcache/dm/MemBlock/rdAddrReg_reg[2]' (FD) to 'corei_2_1/dcache/dm/tagMem/rdAddrReg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[1]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[2]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[3]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[4]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[5]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[6]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[6]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[7]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[7]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[8]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[8]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[9]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[9]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[10]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[10]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[11]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[11]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[12]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[12]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[13]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[13]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[14]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[14]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[15]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[15]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[16]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[16]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[17]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[17]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[18]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[18]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[19]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[19]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[20]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[20]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[21]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[21]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[22]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[22]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[23]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[23]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[24]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[24]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[25]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[25]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[26]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[26]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[27]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[27]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[28]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[28]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[29]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[29]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[30]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[30]' (FDRE) to 'corei_2_1/iocomp/HwACtrl/rdDataReg_reg[31]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/CpuInfo/masterReg_Addr_reg[3]' (FD) to 'corei_2_1/iocomp/Timer/masterReg_Addr_reg[3]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/CpuInfo/masterReg_Addr_reg[2]' (FD) to 'corei_2_1/iocomp/Timer/masterReg_Addr_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/iocomp/\HwACtrl/rdDataReg_reg[31] )
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/Uart/respReg_reg[1]' (FDR) to 'corei_2_1/iocomp/HwACtrl/respReg_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/iocomp/\BRamCtrl/respReg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/iocomp/\HwACtrl/respReg_reg[1] )
+INFO: [Synth 8-3886] merging instance 'corei_2_1/dcache/dm/MemBlock/rdAddrReg_reg[3]' (FD) to 'corei_2_1/dcache/dm/tagMem/rdAddrReg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/dcache/dm/MemBlock/rdAddrReg_reg[4]' (FD) to 'corei_2_1/dcache/dm/tagMem/rdAddrReg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/dcache/dm/MemBlock/rdAddrReg_reg[5]' (FD) to 'corei_2_1/dcache/dm/tagMem/rdAddrReg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/dcache/dm/MemBlock/rdAddrReg_reg[6]' (FD) to 'corei_2_1/dcache/dm/tagMem/rdAddrReg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/dcache/dm/MemBlock/rdAddrReg_reg[7]' (FD) to 'corei_2_1/dcache/dm/tagMem/rdAddrReg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/dcache/dm/MemBlock/rdAddrReg_reg[8]' (FD) to 'corei_2_1/dcache/dm/tagMem/rdAddrReg_reg[6]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/\dcache/sc /\responseToCPUReg_reg[1] )
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[16]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[17]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[18]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[19]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[20]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[21]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[22]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[23]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[24]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[25]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[26]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[27]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[28]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[29]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[30]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/nexys4ddr_io_inst_0/SData_reg[31]' (FDR) to 'i_2_2/nexys4ddr_io_inst_0/SResp_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/\nexys4ddr_io_inst_0/SResp_reg[1] )
+INFO: [Synth 8-3886] merging instance 'i_2_2/matrixmul_inst_0/tmp_reg_1320_reg[1]' (FDE) to 'i_2_2/matrixmul_inst_0/j_mid2_reg_1267_reg[1]'
+INFO: [Synth 8-3886] merging instance 'i_2_2/matrixmul_inst_0/tmp_reg_1320_reg[0]' (FDE) to 'i_2_2/matrixmul_inst_0/j_mid2_reg_1267_reg[0]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/dividend0_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/divisor0_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/divisor0_reg[1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/divisor0_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/divisor0_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/remd_tmp_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/remd_tmp_reg[0][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/remd_tmp_reg[0][2] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/dividend_tmp_reg[0][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/divisor_tmp_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/divisor_tmp_reg[0][1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/divisor_tmp_reg[0][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/divisor_tmp_reg[0][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[0].divisor_tmp_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[0].divisor_tmp_reg[1][1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[0].remd_tmp_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[0].divisor_tmp_reg[1][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[0].remd_tmp_reg[1][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[0].divisor_tmp_reg[1][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[0].remd_tmp_reg[1][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[1].divisor_tmp_reg[2][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[1].divisor_tmp_reg[2][1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[1].divisor_tmp_reg[2][2] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[1].remd_tmp_reg[2][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[1].divisor_tmp_reg[2][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[1].remd_tmp_reg[2][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[2].divisor_tmp_reg[3][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[2].divisor_tmp_reg[3][1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[2].divisor_tmp_reg[3][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[2].remd_tmp_reg[3][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[2].divisor_tmp_reg[3][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[3].remd_tmp_reg[4][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2_2/matrixmul_inst_0/\matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/remd_reg[3] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/fetch/data_even_reg[28]' (FD) to 'corei_2_0/fetch/data_even_reg[29]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/Timer/masterReg_Cmd_reg[2]' (FD) to 'corei_2_1/iocomp/spm/cmdReg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/ispmCmdReg_reg[2]' (FD) to 'corei_2_1/iocomp/spm/cmdReg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'corei_2_1/iocomp/spm/cmdReg_reg[2]' (FD) to 'corei_2_1/iocomp/CpuInfo/masterReg_Cmd_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/iocomp/\CpuInfo/masterReg_Cmd_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/\dcache/bp/slaveReg_Resp_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/\dcache/dm/slaveReg_Resp_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/\dcache/bp/masterReg_Cmd_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_1/\dcache/dm/masterReg_Cmd_reg[2] )
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R107_reg' (FD) to 'corei_2_0/exc/R118_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R118_reg' (FD) to 'corei_2_0/exc/R140_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R140_reg' (FD) to 'corei_2_0/exc/R162_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R129_reg' (FD) to 'corei_2_0/exc/R162_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R184_reg' (FD) to 'corei_2_0/exc/R162_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R173_reg' (FD) to 'corei_2_0/exc/R162_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R162_reg' (FD) to 'corei_2_0/exc/R206_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R151_reg' (FD) to 'corei_2_0/exc/R206_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R250_reg' (FD) to 'corei_2_0/exc/R206_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R239_reg' (FD) to 'corei_2_0/exc/R206_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R206_reg' (FD) to 'corei_2_0/exc/R228_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R195_reg' (FD) to 'corei_2_0/exc/R228_reg'
+INFO: [Synth 8-3886] merging instance 'corei_2_0/exc/R228_reg' (FD) to 'corei_2_0/exc/R217_reg'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/exc/R217_reg)
+INFO: [Synth 8-3886] merging instance 'corei_2_0/execute/exReg_predOp_0_dest_reg[2]' (FDE) to 'corei_2_0/execute/exReg_rdAddr_0_reg[2]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/exc/\masterReg_Cmd_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\ctrl/ocpSlaveReg_Resp_reg[1] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:35 ; elapsed = 00:01:37 . Memory (MB): peak = 1703.305 ; gain = 771.328 ; free physical = 7394 ; free virtual = 13285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping  Report (see note below)
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|MemBlock_1  | mem_reg    | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_1  | mem_reg    | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_0  | mem_reg    | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_0  | mem_reg    | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_3  | mem_reg    | 128 x 21(READ_FIRST)   | W |   | 128 x 21(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_4  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_4  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_4  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_4  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|MemBlock_2  | mem_reg    | 512 x 8(READ_FIRST)    | W |   | 512 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|bram_tdp    | mem_reg    | 512 x 32(WRITE_FIRST)  | W | R | 512 x 32(WRITE_FIRST)  | W | R | Port A and B     | 0      | 1      | 
+|bram_tdp    | mem_reg    | 512 x 32(WRITE_FIRST)  | W | R | 512 x 32(WRITE_FIRST)  | W | R | Port A and B     | 0      | 1      | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++------------+----------------------+-----------+----------------------+-----------------+
+|Module Name | RTL Object           | Inference | Size (Depth x Width) | Primitives      | 
++------------+----------------------+-----------+----------------------+-----------------+
+|Decode      | rf/rf_reg            | Implied   | 32 x 32              | RAM32M x 12     | 
+|Exceptions  | vec_reg              | Implied   | 32 x 32              | RAM32X1S x 32   | 
+|Exceptions  | vecDup_reg           | Implied   | 32 x 32              | RAM32M x 6      | 
+|InOut       | Uart/txQueue/ram_reg | Implied   | 16 x 8               | RAM32M x 2      | 
+|InOut       | Uart/rxQueue/ram_reg | Implied   | 16 x 8               | RAM32M x 2      | 
++------------+----------------------+-----------+----------------------+-----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping  Report (see note below)
++------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Execute     | (A*B)'             | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|Execute     | A*B                | 17     | 17     | -      | -      | 34     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Execute     | (A*B)'             | 17     | 17     | -      | -      | 34     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|Execute     | (A*B)'             | 17     | 17     | -      | -      | 34     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|matmul_hw   | (A2*B2)'           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|matmul_hw   | (PCIN>>17)+(A2*B)' | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 1    | 1    | 
+|matmul_hw   | (PCIN+(A''*B2)')'  | 18     | 15     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 1    | 1    | 
+|matmul_hw   | (A2*B2)'           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|matmul_hw   | (PCIN>>17)+(A2*B)' | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 1    | 1    | 
+|matmul_hw   | (PCIN+(A''*B2)')'  | 18     | 15     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 1    | 1    | 
+|matmul_hw   | (A2*B2)'           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|matmul_hw   | (PCIN>>17)+(A2*B)' | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 1    | 1    | 
+|matmul_hw   | (PCIN+(A''*B2)')'  | 18     | 15     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 1    | 1    | 
+|matmul_hw   | (A2*B2)'           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|matmul_hw   | (PCIN>>17)+(A2*B)' | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 1    | 1    | 
+|matmul_hw   | (PCIN+(A''*B2)')'  | 18     | 15     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 1    | 1    | 
++------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+----------------+------------+----------+
+|      |RTL Partition   |Replication |Instances |
++------+----------------+------------+----------+
+|1     |PatmosCore__GB0 |           1|     14332|
+|2     |PatmosCore__GB1 |           1|      7142|
+|3     |patmos_top__GC0 |           1|      7803|
++------+----------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'ddr2_ctrl_inst_0/ui_clk' to pin 'ddr2_ctrl_inst_0/bbstub_ui_clk/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'clk_manager_inst_0/clk_out_1' to pin 'clk_manager_inst_0/bbstub_clk_out_1/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'clk_manager_inst_0/clk_out_2' to pin 'clk_manager_inst_0/bbstub_clk_out_2/O'
+INFO: [Synth 8-5819] Moved 3 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1830.594 ; gain = 898.617 ; free physical = 7267 ; free virtual = 13157
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:56 ; elapsed = 00:01:58 . Memory (MB): peak = 1866.625 ; gain = 934.648 ; free physical = 7230 ; free virtual = 13121
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+---------------+------------+----------+
+|      |RTL Partition  |Replication |Instances |
++------+---------------+------------+----------+
+|1     |patmos_top_GT0 |           1|     29110|
++------+---------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/icache/mem/mcacheEven/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/fetch/MemBlock/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/fetch/MemBlock_1/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/tagMem/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_1/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_2/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_3/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_1/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_2/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_3/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_1/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_2/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_3/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:02:04 ; elapsed = 00:02:06 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:02:05 ; elapsed = 00:02:07 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:05 ; elapsed = 00:02:07 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:07 ; elapsed = 00:02:08 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:07 ; elapsed = 00:02:09 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:07 ; elapsed = 00:02:09 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:07 ; elapsed = 00:02:09 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------+----------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name | RTL Name                                                                                                       | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------+----------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|matmul_hw   | matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[2].remd_tmp_reg[3][0] | 5      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|matmul_hw   | matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/remd_reg[0]                                                 | 7      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|matmul_hw   | matmul_hw_urem_4ndEe_U8/matmul_hw_urem_4ndEe_div_U/matmul_hw_urem_4ndEe_div_u_0/run_proc[1].remd_tmp_reg[2][0] | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|matmul_hw   | matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff3_reg[16]                                           | 3      | 17    | NO           | NO                 | NO                | 17     | 0       | 
+|matmul_hw   | matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff3_reg[16]                                           | 3      | 17    | NO           | NO                 | NO                | 17     | 0       | 
+|matmul_hw   | matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff3_reg[16]                                           | 3      | 17    | NO           | NO                 | NO                | 17     | 0       | 
+|matmul_hw   | matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff3_reg[16]                                           | 3      | 17    | NO           | NO                 | NO                | 17     | 0       | 
+|patmos_top  | reset_ddr_reg                                                                                                  | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
++------------+----------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_manager   |         1|
+|2     |ddr2_ctrl     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+------------+------+
+|      |Cell        |Count |
++------+------------+------+
+|1     |clk_manager |     1|
+|2     |ddr2_ctrl   |     1|
+|3     |CARRY4      |   422|
+|4     |DSP48E1     |     3|
+|5     |DSP48E1_2   |     4|
+|6     |DSP48E1_4   |     4|
+|7     |DSP48E1_5   |     4|
+|8     |DSP48E1_6   |     1|
+|9     |LUT1        |   594|
+|10    |LUT2        |   485|
+|11    |LUT3        |  1241|
+|12    |LUT4        |  1089|
+|13    |LUT5        |  1118|
+|14    |LUT6        |  3154|
+|15    |MUXF7       |    98|
+|16    |MUXF8       |    21|
+|17    |RAM32M      |    22|
+|18    |RAM32X1S    |    32|
+|19    |RAMB18E1    |     5|
+|20    |RAMB18E1_1  |    12|
+|21    |RAMB36E1    |     2|
+|22    |SRL16E      |    72|
+|23    |FDRE        |  5624|
+|24    |FDSE        |   120|
+|25    |IBUF        |    23|
+|26    |OBUF        |    41|
++------+------------+------+
+
+Report Instance Areas: 
++------+-------------------------------------+--------------------------------+------+
+|      |Instance                             |Module                          |Cells |
++------+-------------------------------------+--------------------------------+------+
+|1     |top                                  |                                | 14358|
+|2     |  matrixmul_inst_0                   |matmul_hw                       |  2566|
+|3     |    matmul_hw_mul_32scud_U2          |matmul_hw_mul_32scud            |    82|
+|4     |      matmul_hw_mul_32scud_MulnS_0_U |matmul_hw_mul_32scud_MulnS_0_19 |    82|
+|5     |    matmul_hw_mul_32scud_U5          |matmul_hw_mul_32scud_14         |    50|
+|6     |      matmul_hw_mul_32scud_MulnS_0_U |matmul_hw_mul_32scud_MulnS_0_18 |    50|
+|7     |    matmul_hw_mul_32scud_U6          |matmul_hw_mul_32scud_15         |    50|
+|8     |      matmul_hw_mul_32scud_MulnS_0_U |matmul_hw_mul_32scud_MulnS_0_17 |    50|
+|9     |    matmul_hw_mul_32scud_U9          |matmul_hw_mul_32scud_16         |    50|
+|10    |      matmul_hw_mul_32scud_MulnS_0_U |matmul_hw_mul_32scud_MulnS_0    |    50|
+|11    |    matmul_hw_urem_4ndEe_U8          |matmul_hw_urem_4ndEe            |    19|
+|12    |      matmul_hw_urem_4ndEe_div_U     |matmul_hw_urem_4ndEe_div        |    19|
+|13    |        matmul_hw_urem_4ndEe_div_u_0 |matmul_hw_urem_4ndEe_div_u      |    11|
+|14    |  n_bank_inst_0                      |n_bank                          |    37|
+|15    |    \bram_gen[0].bram_array          |bram_tdp                        |     2|
+|16    |    \bram_gen[1].bram_array          |bram_tdp_13                     |    34|
+|17    |  nexys4ddr_io_inst_0                |nexys4ddr_io                    |   905|
+|18    |  ocp_burst_to_ddr2_ctrl_inst_0      |ocp_burst_to_ddr2_ctrl          |   357|
+|19    |  patmos_inst_0                      |Patmos                          | 10218|
+|20    |    core                             |PatmosCore                      | 10218|
+|21    |      dcache                         |DataCache                       |  1715|
+|22    |        bp                           |NullCache                       |   118|
+|23    |        dm                           |DirectMappedCache               |   638|
+|24    |          MemBlock                   |MemBlock_4                      |    33|
+|25    |          MemBlock_1                 |MemBlock_4_10                   |    20|
+|26    |          MemBlock_2                 |MemBlock_4_11                   |    20|
+|27    |          MemBlock_3                 |MemBlock_4_12                   |    20|
+|28    |          tagMem                     |MemBlock_3                      |    58|
+|29    |        sc                           |StackCache                      |   785|
+|30    |          MemBlock                   |MemBlock_2_6                    |    10|
+|31    |          MemBlock_1                 |MemBlock_2_7                    |    10|
+|32    |          MemBlock_2                 |MemBlock_2_8                    |    86|
+|33    |          MemBlock_3                 |MemBlock_2_9                    |    92|
+|34    |        wc                           |WriteNoBuffer                   |   170|
+|35    |      decode                         |Decode                          |   463|
+|36    |        rf                           |RegisterFile                    |   102|
+|37    |      exc                            |Exceptions                      |   508|
+|38    |      execute                        |Execute                         |  2522|
+|39    |      fetch                          |Fetch                           |   878|
+|40    |        MemBlock                     |MemBlock_0                      |    34|
+|41    |        MemBlock_1                   |MemBlock_0_5                    |    68|
+|42    |      icache                         |MCache                          |  2500|
+|43    |        ctrl                         |MCacheCtrl                      |   452|
+|44    |        mem                          |MCacheMem                       |   135|
+|45    |          mcacheEven                 |MemBlock_1                      |   122|
+|46    |          mcacheOdd                  |MemBlock_1_4                    |    13|
+|47    |        repl                         |MCacheReplFifo                  |  1913|
+|48    |      iocomp                         |InOut                           |  1249|
+|49    |        BRamCtrl                     |BRamCtrl                        |     1|
+|50    |        CpuInfo                      |CpuInfo                         |    14|
+|51    |        HwACtrl                      |HwACtrl                         |    15|
+|52    |        Timer                        |Timer                           |   865|
+|53    |        Uart                         |Uart                            |   194|
+|54    |          rxQueue                    |Queue                           |    32|
+|55    |          txQueue                    |Queue_3                         |    43|
+|56    |        spm                          |Spm                             |    80|
+|57    |          MemBlock                   |MemBlock_2                      |    19|
+|58    |          MemBlock_1                 |MemBlock_2_0                    |    19|
+|59    |          MemBlock_2                 |MemBlock_2_1                    |    20|
+|60    |          MemBlock_3                 |MemBlock_2_2                    |    18|
+|61    |      memory                         |Memory                          |   367|
++------+-------------------------------------+--------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:07 ; elapsed = 00:02:09 . Memory (MB): peak = 1874.633 ; gain = 942.656 ; free physical = 7222 ; free virtual = 13113
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1040 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:00 ; elapsed = 00:02:01 . Memory (MB): peak = 1874.633 ; gain = 532.699 ; free physical = 7222 ; free virtual = 13113
+Synthesis Optimization Complete : Time (s): cpu = 00:02:08 ; elapsed = 00:02:09 . Memory (MB): peak = 1874.641 ; gain = 942.664 ; free physical = 7224 ; free virtual = 13114
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 534 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 54 instances were transformed.
+  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 22 instances
+  RAM32X1S => RAM32X1S (RAMS32): 32 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+485 Infos, 217 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:09 ; elapsed = 00:02:11 . Memory (MB): peak = 1874.641 ; gain = 875.160 ; free physical = 7224 ; free virtual = 13114
+INFO: [Common 17-1381] The checkpoint '/home/patmos/t-crest/patmos/hardware/vivado/matmul_2b_int/matmul_2b_int.runs/synth_1/patmos_top.dcp' has been generated.
+report_utilization: Time (s): cpu = 00:00:00.14 ; elapsed = 00:00:00.17 . Memory (MB): peak = 1898.645 ; gain = 0.000 ; free physical = 7221 ; free virtual = 13114
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 20 20:33:10 2017...

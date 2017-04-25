@@ -1,3 +1,62 @@
+# Folder Description
+
+## Matmul (Ports for each array)
+
+### Float
+
+- [x] matmul_float_3b_4x4
+- [] matmul_float_3b_16x16
+- [] matmul_float_3b_32x32
+- [] matmul_float_5b_4x4
+- [] matmul_float_5b_16x16
+- [] matmul_float_5b_32x32
+- [] matmul_float_7b_4x4
+- [] matmul_float_7b_16x16
+- [] matmul_float_7b_32x32
+
+### Int
+
+- [] matmul_int_3b_4x4
+- [] matmul_int_3b_16x16
+- [] matmul_int_3b_32x32
+- [] matmul_int_5b_4x4
+- [] matmul_int_5b_16x16
+- [] matmul_int_5b_32x32
+- [] matmul_int_7b_4x4
+- [] matmul_int_7b_16x16
+- [] matmul_int_7b_32x32
+
+## Matmul (Elements in same array)
+
+### Float
+
+- [] matmul_misc_float_1b_4x4
+- [] matmul_misc_float_1b_16x16
+- [] matmul_misc_float_1b_32x32
+- [] matmul_misc_float_2b_4x4
+- [] matmul_misc_float_2b_16x16
+- [] matmul_misc_float_2b_32x32
+- [] matmul_misc_float_3b_4x4
+- [] matmul_misc_float_3b_16x16
+- [] matmul_misc_float_3b_32x32
+
+### Int
+
+- [] matmul_misc_int_1b_4x4
+- [] matmul_misc_int_1b_16x16
+- [] matmul_misc_int_1b_32x32
+- [] matmul_misc_int_2b_4x4
+- [] matmul_misc_int_2b_16x16
+- [] matmul_misc_int_2b_32x32
+- [] matmul_misc_int_3b_4x4
+- [] matmul_misc_int_3b_16x16
+- [] matmul_misc_int_3b_32x32
+
+## Filterbank
+
+### Float
+
+
 # Using Vivado
 
 There does occur some bugs from time to time, here are some ways of fixing them.

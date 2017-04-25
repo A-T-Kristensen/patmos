@@ -24,7 +24,7 @@ int main()
 {
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
-	volatile _SPM int *spm_ptr  = (volatile _SPM int *) 0x00010000;
+	volatile _SPM int *spm_ptr  = (volatile _SPM int *) SPM_BASE;
 	
 	int hw_result[DIM][DIM];
 	int in_spm[DIM][DIM]; // Data to be written to the bram.
