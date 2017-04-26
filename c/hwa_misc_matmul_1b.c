@@ -1,30 +1,20 @@
 /*
-    This is a minimal C program executed on the FPGA version of Patmos.
-    An embedded test of a vivado hls module: Matrix multiplication on an array of dimension DIM
+ *	This is a minimal C program executed on the FPGA version of Patmos.
+ *	An embedded test of a vivado hls module: Matrix multiplication 
+ *  on an array of dimension DIM.
+ *
+ *	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+ *	Copyright: DTU, BSD License
+ */
 
-    Author: Andreas T. Kristensen 
-    Copyright: DTU, BSD License
-*/
-
-// Files required for memory mapped IO devices
-// patmos.h defines _IODEV, used to access memory mapped IO devices.
-
-#include <machine/patmos.h> 
-
-#include <stdio.h>
-
-#define DIM 4
-
-#define LED_RUN_LENGTH 2000
-
-typedef int mat_type;
+#include "hwa_lib.h"
 
 int main() 
 {
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
-	volatile _IODEV mat_type *bram_ptr = (volatile _IODEV mat_type *) 0xF00B0000;
-	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
+	volatile _IODEV mat_type *bram_ptr = (volatile _IODEV mat_type *) BRAM_BASE;
+	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;    
 	
 	mat_type mat_a[DIM][DIM];
 	mat_type mat_b[DIM][DIM];
@@ -98,52 +88,8 @@ int main()
     }
 
     // We now continously loop, showing a pattern on the LEDS
-	
-	if(!err_cnt) 
-	{
-		puts("Results correct");	
+	led_blink(err_cnt);
 
-		for (;;) 
-		{
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 3;
+	return 0;	
 
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 15;
-
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 63;
-
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;			
-		}		
-	} 
-
-	else 
-	{
-		puts("Results incorrect"); 
-
-		for (;;) 
-		{
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 7; 	
-	  	}
-	}
 }

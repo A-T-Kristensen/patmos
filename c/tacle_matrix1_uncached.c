@@ -60,59 +60,54 @@
   Macro definitions
 */
 
-#define X 4 /* first dimension of array A */
-#define Y 4 /* second dimension of array A, first dimension of array B */
-#define Z 4 /* second dimension of array B */
+#include "hwa_lib.h"
+
+#define X DIM /* first dimension of array A */
+#define Y DIM /* second dimension of array A, first dimension of array B */
+#define Z DIM /* second dimension of array B */
 
 /*
   Forward declaration of functions
 */
 
-void matrix1_pin_down( float A[], float B[], float C[] );
-void matrix1_init( void );
+void matrix1_pin_down(void);
 void matrix1_main( void );
 int main( void );
-
 
 /*
   Declaration of global variables
 */
 
-float matrix1_A[X * Y];
-float matrix1_B[Y * Z];
-float matrix1_C[X * Z];
+struct matrix {
+    mat_type matrix1_A[X * Y];
+    mat_type matrix1_B[Y * Z];
+    mat_type matrix1_C[X * Z]; 
+};
 
-#include <machine/rtc.h> // Gives us get_cpu_cycles
-
-#include <stdio.h>
+volatile _UNCACHED struct matrix *spm_matrix;
 
 /*
   Initialization functions
 */
 
-void matrix1_pin_down( float A[], float B[], float C[] )
+void matrix1_pin_down(void)
 {
   int i;
-  volatile float x = 1;
+  volatile mat_type x = 1;
 
   _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < X * Y; i++ )
-    A[i] = x ;
+    spm_matrix->matrix1_A[i] = x ;
 
   _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < Y * Z ; i++ )
-    B[i] = x ;
+    spm_matrix->matrix1_B[i] = x ;
 
   _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < X * Z ; i++ )
-    C[i] = 0 ;
+    spm_matrix->matrix1_C[i] = 0 ;
 }
 
-
-void matrix1_init( void )
-{
-  matrix1_pin_down( &matrix1_A[0], &matrix1_B[0], &matrix1_C[0] );
-}
 
 /*
   Return function
@@ -125,7 +120,7 @@ int matrix1_return( void )
 
 	  _Pragma( "loopbound min 100 max 100" )
 	  for ( i = 0; i <= X*Z; i++ )
-		  checksum += matrix1_C[i];
+		  checksum += spm_matrix->matrix1_C[i];
 
 	  return ( checksum ==  1000 ? 0 : -1 );
 }
@@ -137,19 +132,19 @@ int matrix1_return( void )
 
 void _Pragma ( "entrypoint" ) matrix1_main( void )
 {
-  register float *p_a = &matrix1_A[0];
-  register float *p_b = &matrix1_B[0];
-  register float *p_c = &matrix1_C[0];
+  volatile _UNCACHED mat_type *p_a = &(spm_matrix->matrix1_A[0]);
+  volatile _UNCACHED mat_type *p_b = &(spm_matrix->matrix1_B[0]);
+  volatile _UNCACHED mat_type *p_c = &(spm_matrix->matrix1_C[0]);
 
-  register int f, i, k;
+  int f, i, k;
 
   _Pragma( "loopbound min 10 max 10" )
   for ( k = 0; k < Z; k++ ) {
-    p_a = &matrix1_A[0];                /* point to the beginning of array A */
+    p_a = &(spm_matrix->matrix1_A[0]);                /* point to the beginning of array A */
 
     _Pragma( "loopbound min 10 max 10" )
     for ( i = 0; i < X; i++ ) {
-      p_b = &matrix1_B[k * Y];          /* take next column */
+      p_b = &(spm_matrix->matrix1_B[k * Y]);          /* take next column */
 
       *p_c = 0;
       _Pragma( "loopbound min 10 max 10" )
@@ -173,7 +168,7 @@ int main( void )
 
   printf("%llu \n", calibration);
 
-  matrix1_init();
+  matrix1_pin_down();
 
   start_cycle = get_cpu_cycles();
 
@@ -183,7 +178,7 @@ int main( void )
   return_cycles = stop_cycle-start_cycle-calibration;
   printf("%llu \n", return_cycles);   
 
-  
+
 
 
   return matrix1_return();

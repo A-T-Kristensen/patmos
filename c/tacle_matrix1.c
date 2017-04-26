@@ -1,11 +1,13 @@
 /*
 
-  This program is part of the TACLeBench benchmark suite.
-  Version V 1.x
+  This is a modified version of the matrix1.c program from 
+  the TACLeBench benchmark suite Version V 1.x.
+
 
   Name: matrix1
 
-  Author: Juan Martinez Velarde
+  Author: Juan Martinez Velarde (original author)
+          Andreas T. Kristensen (s144026@student.dtu.dk)
 
   Function: Generic matrix - multiply benchmarking
 
@@ -55,25 +57,23 @@
 
 */
 
+#include "hwa_lib.h"
+
 
 /*
   Macro definitions
 */
 
-#include <machine/rtc.h> // Gives us get_cpu_cycles
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
-#include <stdio.h>
-
-#define X 4 /* first dimension of array A */
-#define Y 4 /* second dimension of array A, first dimension of array B */
-#define Z 4 /* second dimension of array B */
+#define X DIM /* first dimension of array A */
+#define Y DIM /* second dimension of array A, first dimension of array B */
+#define Z DIM /* second dimension of array B */
 
 /*
   Forward declaration of functions
 */
 
-void matrix1_pin_down(void);
+void matrix1_pin_down( float A[], float B[], float C[] );
+void matrix1_init( void );
 void matrix1_main( void );
 int main( void );
 
@@ -82,36 +82,41 @@ int main( void );
   Declaration of global variables
 */
 
-struct matrix {
-    float matrix1_A[X * Y];
-    float matrix1_B[Y * Z];
-    float matrix1_C[X * Z]; 
-};
+mat_type matrix1_A[X * Y];
+mat_type matrix1_B[Y * Z];
+mat_type matrix1_C[X * Z];
 
-volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BASE;
+#include <machine/rtc.h> // Gives us get_cpu_cycles
+
+#include <stdio.h>
 
 /*
   Initialization functions
 */
 
-void matrix1_pin_down(void)
+void matrix1_pin_down( mat_type A[], mat_type B[], mat_type C[] )
 {
   int i;
-  volatile float x = 1;
+  volatile mat_type x = 1;
 
   _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < X * Y; i++ )
-    spm_matrix->matrix1_A[i] = x ;
+    A[i] = x ;
 
   _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < Y * Z ; i++ )
-    spm_matrix->matrix1_B[i] = x ;
+    B[i] = x ;
 
   _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < X * Z ; i++ )
-    spm_matrix->matrix1_C[i] = 0 ;
+    C[i] = 0 ;
 }
 
+
+void matrix1_init( void )
+{
+  matrix1_pin_down( &matrix1_A[0], &matrix1_B[0], &matrix1_C[0] );
+}
 
 /*
   Return function
@@ -124,7 +129,7 @@ int matrix1_return( void )
 
 	  _Pragma( "loopbound min 100 max 100" )
 	  for ( i = 0; i <= X*Z; i++ )
-		  checksum += spm_matrix->matrix1_C[i];
+		  checksum += matrix1_C[i];
 
 	  return ( checksum ==  1000 ? 0 : -1 );
 }
@@ -136,19 +141,19 @@ int matrix1_return( void )
 
 void _Pragma ( "entrypoint" ) matrix1_main( void )
 {
-  volatile _SPM float *p_a = &(spm_matrix->matrix1_A[0]);
-  volatile _SPM float *p_b = &(spm_matrix->matrix1_B[0]);
-  volatile _SPM float *p_c = &(spm_matrix->matrix1_C[0]);
+  register mat_type *p_a = &matrix1_A[0];
+  register mat_type *p_b = &matrix1_B[0];
+  register mat_type *p_c = &matrix1_C[0];
 
-  int f, i, k;
+  register int f, i, k;
 
   _Pragma( "loopbound min 10 max 10" )
   for ( k = 0; k < Z; k++ ) {
-    p_a = &(spm_matrix->matrix1_A[0]);                /* point to the beginning of array A */
+    p_a = &matrix1_A[0];                /* point to the beginning of array A */
 
     _Pragma( "loopbound min 10 max 10" )
     for ( i = 0; i < X; i++ ) {
-      p_b = &(spm_matrix->matrix1_B[k * Y]);          /* take next column */
+      p_b = &matrix1_B[k * Y];          /* take next column */
 
       *p_c = 0;
       _Pragma( "loopbound min 10 max 10" )
@@ -172,7 +177,7 @@ int main( void )
 
   printf("%llu \n", calibration);
 
-  matrix1_pin_down();
+  matrix1_init();
 
   start_cycle = get_cpu_cycles();
 
@@ -182,7 +187,7 @@ int main( void )
   return_cycles = stop_cycle-start_cycle-calibration;
   printf("%llu \n", return_cycles);   
 
-
+  
 
 
   return matrix1_return();

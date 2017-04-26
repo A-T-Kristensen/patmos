@@ -1,13 +1,11 @@
 /*
-    This is a minimal C program executed on the FPGA version of Patmos.
-    An embedded test of a vivado hls module: Matrix multiplication on an array of dimension DIM partitioned
-    into NBANKS memory banks
-
-    Author: Andreas T. Kristensen 
-    Copyright: DTU, BSD License
-*/
-
-// These are used to write to SPM and IO devices
+ *	This is a minimal C program executed on the FPGA version of Patmos.
+ *	An embedded test of a vivado HLS HwA module: Matrix multiplication on 
+ *	an array of dimension DIM partitionen into NBANKS memory banks.
+ *
+ *	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+ *	Copyright: DTU, BSD License
+ */
 
 #include "hwa_lib.h"
 
@@ -19,16 +17,14 @@ int main()
 	//unsigned long long start_cycle, stop_cycle, calibration;	
 
 	volatile _IODEV mat_type** bank_ptr_array = (volatile _IODEV mat_type**) bank_ptrs(NBANKS);
-
-	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
-	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) 0xF00C0000;    
+	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;    
 
 	mat_type mat_a[DIM][DIM];
 	mat_type mat_b[DIM][DIM];
 	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
 
-	static unsigned long long start_cycle, stop_cycle, calibration;	
-	static unsigned long long return_cycles = 0;		
+	unsigned long long start_cycle, stop_cycle, calibration;	
+	unsigned long long return_cycles = 0;		
 
 	start_cycle = get_cpu_cycles();
 	stop_cycle = get_cpu_cycles();
@@ -98,7 +94,6 @@ int main()
         *((&hw_result[0][0]) + i)= *(bank_ptr_array[2] + i);
     }    
 	
-
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-calibration;
 
@@ -120,51 +115,7 @@ int main()
 
     // We now continously loop, showing a pattern on the LEDS
 	
-	if(!err_cnt) 
-	{
-		puts("Results correct");				
-		for (;;) 
-		{
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 3;
+	led_blink(err_cnt);
 
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 15;
-
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 63;
-
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;			
-		}		
-	} 
-
-	else 
-	{
-		puts("Results incorrect\n");	
-		printf("Errors %d \n", err_cnt);
-
-		for (;;) 
-		{
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 7; 	
-	  	}
-	}
+	return 0;
 }

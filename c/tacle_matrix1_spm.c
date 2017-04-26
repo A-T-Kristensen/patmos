@@ -60,14 +60,12 @@
   Macro definitions
 */
 
-#include <machine/rtc.h> // Gives us get_cpu_cycles
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
-#include <stdio.h>
+#include "hwa_lib.h"
 
-#define X 4 /* first dimension of array A */
-#define Y 4 /* second dimension of array A, first dimension of array B */
-#define Z 4 /* second dimension of array B */
+
+#define X DIM /* first dimension of array A */
+#define Y DIM /* second dimension of array A, first dimension of array B */
+#define Z DIM /* second dimension of array B */
 
 /*
   Forward declaration of functions
@@ -83,12 +81,12 @@ int main( void );
 */
 
 struct matrix {
-    float matrix1_A[X * Y];
-    float matrix1_B[Y * Z];
-    float matrix1_C[X * Z]; 
+    mat_type matrix1_A[X * Y];
+    mat_type matrix1_B[Y * Z];
+    mat_type matrix1_C[X * Z]; 
 };
 
-volatile _UNCACHED struct matrix *spm_matrix;
+volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BASE;
 
 /*
   Initialization functions
@@ -97,7 +95,7 @@ volatile _UNCACHED struct matrix *spm_matrix;
 void matrix1_pin_down(void)
 {
   int i;
-  volatile float x = 1;
+  volatile mat_type x = 1;
 
   _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < X * Y; i++ )
@@ -136,9 +134,9 @@ int matrix1_return( void )
 
 void _Pragma ( "entrypoint" ) matrix1_main( void )
 {
-  volatile _UNCACHED float *p_a = &(spm_matrix->matrix1_A[0]);
-  volatile _UNCACHED float *p_b = &(spm_matrix->matrix1_B[0]);
-  volatile _UNCACHED float *p_c = &(spm_matrix->matrix1_C[0]);
+  volatile _SPM mat_type *p_a = &(spm_matrix->matrix1_A[0]);
+  volatile _SPM mat_type *p_b = &(spm_matrix->matrix1_B[0]);
+  volatile _SPM mat_type *p_c = &(spm_matrix->matrix1_C[0]);
 
   int f, i, k;
 
