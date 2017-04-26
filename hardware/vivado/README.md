@@ -1,12 +1,18 @@
 # Folder Description
 
+# Status
+
+The status is whether it has been synthesised and tested on the FPGA board.
+Please remember to ensure that the number of banks and the memory size is properly set in HWA_PACKAGE.vhd
+and that the dimensions are correct in the hwa_lib.h file
+
 ## Matmul (Ports for each array)
 
 ### Float
 
 - [x] matmul_float_3b_4x4
-- [] matmul_float_3b_16x16
-- [] matmul_float_3b_32x32
+- [x] matmul_float_3b_16x16
+- [x] matmul_float_3b_32x32
 - [] matmul_float_5b_4x4
 - [] matmul_float_5b_16x16
 - [] matmul_float_5b_32x32

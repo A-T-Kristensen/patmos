@@ -8,7 +8,6 @@
 -- VHDL top level for Patmos on the Digilent/Xilinx Nexys4DDR board with off-chip memory
 -- this file is used to test the matrix multiplier HwA with 1 memory bank.
 
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -229,28 +228,47 @@ architecture rtl of patmos_top is
 			ap_done 	: out std_logic;
 			ap_idle 	: out std_logic;
 			ap_ready 	: out std_logic;
+			
 		    a_0_Addr_A 	: out std_logic_vector (31 downto 0);
-		    a_0_EN_A 	: out std_logic;
+		    a_0_EN_A 		: out std_logic;
 		    a_0_WEN_A 	: out std_logic_vector (3 downto 0);
 		    a_0_Din_A 	: out std_logic_vector (31 downto 0);
 		    a_0_Dout_A 	: in std_logic_vector (31 downto 0);
 		    a_0_Clk_A 	: out std_logic;
 		    a_0_Rst_A 	: out std_logic;
+		    
 		    a_1_Addr_A 	: out std_logic_vector (31 downto 0);
-		    a_1_EN_A 	: out std_logic;
-		    a_1_WEN_A 	: out std_logic_vector (3 downto 0);
-		    a_1_Din_A 	: out std_logic_vector (31 downto 0);
-		    a_1_Dout_A 	: in std_logic_vector (31 downto 0);
-		    a_1_Clk_A 	: out std_logic;
-		    a_2_Rst_A 	: out std_logic 
-		    a_2_Addr_A 	: out std_logic_vector (31 downto 0);
-		    a_2_EN_A 	: out std_logic;
-		    a_2_WEN_A 	: out std_logic_vector (3 downto 0);
-		    a_2_Din_A 	: out std_logic_vector (31 downto 0);
-		    a_2_Dout_A 	: in std_logic_vector (31 downto 0);
-		    a_2_Clk_A 	: out std_logic;
-		    a_2_Rst_A 	: out std_logic 		    
-		);
+            a_1_EN_A         : out std_logic;
+            a_1_WEN_A     : out std_logic_vector (3 downto 0);
+            a_1_Din_A     : out std_logic_vector (31 downto 0);
+            a_1_Dout_A     : in std_logic_vector (31 downto 0);
+            a_1_Clk_A     : out std_logic;
+            a_1_Rst_A     : out std_logic;		    
+		    
+		    b_0_Addr_A 	: out std_logic_vector (31 downto 0);
+		    b_0_EN_A 		: out std_logic;
+		    b_0_WEN_A 	: out std_logic_vector (3 downto 0);
+		    b_0_Din_A 	: out std_logic_vector (31 downto 0);
+		    b_0_Dout_A 	: in std_logic_vector (31 downto 0);
+		    b_0_Clk_A 	: out std_logic;
+		    b_0_Rst_A 	: out std_logic;
+		    
+		    b_1_Addr_A 	: out std_logic_vector (31 downto 0);
+            b_1_EN_A         : out std_logic;
+            b_1_WEN_A     : out std_logic_vector (3 downto 0);
+            b_1_Din_A     : out std_logic_vector (31 downto 0);
+            b_1_Dout_A     : in std_logic_vector (31 downto 0);
+            b_1_Clk_A     : out std_logic;
+            b_1_Rst_A     : out std_logic;		    
+		    
+		    c_Addr_A 	: out std_logic_vector (31 downto 0);
+			c_EN_A 		: out std_logic;
+		    c_WEN_A 	: out std_logic_vector (3 downto 0);
+		    c_Din_A 	: out std_logic_vector (31 downto 0);
+		    c_Dout_A 	: in std_logic_vector (31 downto 0);
+		    c_Clk_A 	: out std_logic;
+		    c_Rst_A 	: out std_logic
+		    );
 	end component; 	
 
 	component clk_manager is
@@ -558,27 +576,43 @@ begin
 
 		a_0_Addr_A 	=> hwa_addr_i(0).addr,
 		a_0_EN_A  	=> open,
-		a_0_WEN_A	=> bram_m_i(0).wr,
+		a_0_WEN_A	    => bram_m_i(0).wr,
 		a_0_Din_A  	=> bram_m_i(0).din,
 		a_0_Dout_A 	=> bram_s_i(0).dout,
 		a_0_Clk_A 	=> open,
 		a_0_Rst_A 	=> open,
-
+		
 		a_1_Addr_A 	=> hwa_addr_i(1).addr,
-		a_1_EN_A  	=> open,
-		a_1_WEN_A 	=> bram_m_i(1).wr,
-		a_1_Din_A  	=> bram_m_i(1).din,
-		a_1_Dout_A 	=> bram_s_i(1).dout,
-		a_1_Clk_A 	=> open,
-		a_1_Rst_A 	=> open,
+        a_1_EN_A      => open,
+        a_1_WEN_A        => bram_m_i(1).wr,
+        a_1_Din_A      => bram_m_i(1).din,
+        a_1_Dout_A     => bram_s_i(1).dout,
+        a_1_Clk_A     => open,
+        a_1_Rst_A     => open,		
 
-		a_2_Addr_A 	=> hwa_addr_i(2).addr,
-		a_2_EN_A  	=> open,
-		a_2_WEN_A 	=> bram_m_i(2).wr,
-		a_2_Din_A  	=> bram_m_i(2).din,
-		a_2_Dout_A 	=> bram_s_i(2).dout,
-		a_2_Clk_A 	=> open,
-		a_2_Rst_A 	=> open		
+		b_0_Addr_A 	=> hwa_addr_i(2).addr,
+		b_0_EN_A  	=> open,
+		b_0_WEN_A 	=> bram_m_i(2).wr,
+		b_0_Din_A  	=> bram_m_i(2).din,
+		b_0_Dout_A 	=> bram_s_i(2).dout,
+		b_0_Clk_A 	=> open,
+		b_0_Rst_A 	=> open,
+		
+		b_1_Addr_A 	=> hwa_addr_i(3).addr,
+        b_1_EN_A      => open,
+        b_1_WEN_A     => bram_m_i(3).wr,
+        b_1_Din_A      => bram_m_i(3).din,
+        b_1_Dout_A     => bram_s_i(3).dout,
+        b_1_Clk_A     => open,
+        b_1_Rst_A     => open,		
+
+		c_Addr_A 	=> hwa_addr_i(4).addr,
+		c_EN_A  	=> open,
+		c_WEN_A 	=> bram_m_i(4).wr,
+		c_Din_A  	=> bram_m_i(4).din,
+		c_Dout_A 	=> bram_s_i(4).dout,
+		c_Clk_A 	=> open,
+		c_Rst_A 	=> open		
 	);		
 
 	hwa_rst <= hwACtrl_ap_reset_out or reset_int;		

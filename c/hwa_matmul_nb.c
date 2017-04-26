@@ -11,13 +11,6 @@
 
 #include "hwa_lib.h"
 
-#define DIM 4
-#define NBANKS 3
-
-#define LED_RUN_LENGTH 2000
-
-typedef float mat_type;
-
 int main() 
 {
 
@@ -109,7 +102,6 @@ int main()
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-calibration;
 
-
 	printf("%llu \n", return_cycles);
 
 	// Check results
@@ -118,13 +110,7 @@ int main()
 	
     for(i = 0; i < DIM*DIM; i++)
     {
-        printf("%f ", *((&hw_result[0][0]) + i) );        
-
-        if((i+1) % DIM == 0) {
-        	printf("\n");
-        }            
-
-		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
+		if(  abs(*((&hw_result[0][0])+i) - *((&sw_result[0][0])+i)) > 0.001)
 		{
 			err_cnt++;	
 		}	
@@ -167,7 +153,9 @@ int main()
 
 	else 
 	{
-		puts("Results incorrect");			
+		puts("Results incorrect\n");	
+		printf("Errors %d \n", err_cnt);
+
 		for (;;) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)

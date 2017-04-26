@@ -11,13 +11,6 @@
 
 #include "hwa_lib.h"
 
-#define DIM 4
-#define NBANKS 3
-
-#define LED_RUN_LENGTH 2000
-
-typedef float mat_type;
-
 struct matrix {
     mat_type mat_a[DIM][DIM];
     mat_type mat_b[DIM][DIM];

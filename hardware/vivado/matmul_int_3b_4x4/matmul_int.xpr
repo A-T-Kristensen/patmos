@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="/home/patmos/t-crest/patmos/hardware/vivado/matmul_int_2b_4x4/matmul_int.xpr">
+<Project Version="7" Minor="17" Path="/home/patmos/t-crest/patmos/hardware/vivado/matmul_int_3b_4x4/matmul_int.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="44437113ce5a4f4fa39914f3cfeb84af"/>
@@ -107,25 +107,19 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_int/hls_matmul_int/matmul_3b_4x4/impl/vhdl/matmul_hw.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_urem_4ndEe.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_int/hls_matmul_int/matmul_3b_4x4/impl/vhdl/matmul_hw_mux_42_bkb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mux_42_bkb.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/misc/matmul_int/hls_matmul_int/matmul_2b/syn/vhdl/matmul_hw_mul_32scud.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_int/hls_matmul_int/matmul_3b_4x4/impl/vhdl/matmul_hw_mul_32scud.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

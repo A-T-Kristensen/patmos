@@ -23,11 +23,14 @@ package HWA_PACKAGE is
     -- Number of banks used by the currently active design.
     constant NBANKS  : integer := 3; 
 
-	-- Number of bits used to select between banks from Patmos
-    constant ADDR_SELECT_BITS : integer := integer(ceil(log2(real(NBANKS)))); 
-
     -- The number of entries for each the memory banks 
-    constant MEM_SIZE : integer := 1024; 
+    --constant MEM_SIZE : integer := 1024; 
+    constant MEM_SIZE : integer := 2048; 
+    --constant MEM_SIZE : integer := 4096; 
+    --constant MEM_SIZE : integer := 8192; 
+
+    -- Number of bits used to select between banks from Patmos
+    constant ADDR_SELECT_BITS : integer := integer(ceil(log2(real(NBANKS)))); 
 
 	-- The actual number of address bits used by each of the BRAMs
     constant ADDR_BITS: integer := integer(ceil(log2(real(MEM_SIZE)))); 

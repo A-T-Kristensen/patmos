@@ -13,6 +13,14 @@
 #define BASE_ADDRESS 0xF00B0000
 #define ADDR_BITS 16
 
+#define DIM 32
+#define NBANKS 3
+
+typedef float mat_type;
+
+#define LED_RUN_LENGTH 2000
+
+
 // bank_ptrs generates an array of pointers to the bram blocks
 
 volatile _IODEV unsigned long** bank_ptrs(unsigned long nbanks) {
