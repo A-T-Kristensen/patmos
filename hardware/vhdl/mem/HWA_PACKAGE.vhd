@@ -24,9 +24,9 @@ package HWA_PACKAGE is
     constant NBANKS  : integer := 3; 
 
     -- The number of entries for each the memory banks 
-    --constant MEM_SIZE : integer := 1024; 
-    constant MEM_SIZE : integer := 2048; 
-    --constant MEM_SIZE : integer := 4096; 
+    --constant MEM_SIZE : integer := 1024; -- float/int: 4x4, 16x16
+    --constant MEM_SIZE : integer := 2048; 
+    constant MEM_SIZE : integer := 4096; -- float/int: 32x32
     --constant MEM_SIZE : integer := 8192; 
 
     -- Number of bits used to select between banks from Patmos

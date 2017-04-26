@@ -16,10 +16,9 @@
 #define DIM 32
 #define NBANKS 3
 
-typedef float mat_type;
+typedef int mat_type;
 
 #define LED_RUN_LENGTH 2000
-
 
 // bank_ptrs generates an array of pointers to the bram blocks
 

@@ -62,6 +62,14 @@ LDFLAGS-VM?= \
 .PHONY: compile
 compile: $(BUILDDIR)/$(APP).elf
 
+# HwA project addition, this forces a recompile of required files
+
+$(BUILDDIR)/$(APP).elf: FORCE
+
+FORCE:	
+
+# Énd of addition
+
 VPATH = .:bootable:bootloader:cmp:dhry:include:audio_apps
 
 $(BUILDDIR)/%.o: %.c Makefile
