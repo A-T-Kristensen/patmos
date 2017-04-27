@@ -178,8 +178,5 @@ int main( void )
   return_cycles = stop_cycle-start_cycle-calibration;
   printf("%llu \n", return_cycles);   
 
-
-
-
   return matrix1_return();
 }

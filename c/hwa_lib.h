@@ -56,10 +56,10 @@
  *	updated according to the current benchmark   
  */
 
-#define DIM 				32
-#define NBANKS 				3
+#define DIM 				4
+#define NBANKS 				5
 
-typedef float mat_type;
+typedef int mat_type;
 
 /*
  *	FORWARD DECLARATIONS
@@ -71,7 +71,6 @@ void led_blink(int err_cnt);
 /*
  *	FUNCTIONS
  */
-
 
 /*
  *	NAME: bank_ptrs
