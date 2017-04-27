@@ -12,6 +12,8 @@ use ieee.numeric_std.all;
 use IEEE.math_real."ceil";
 use IEEE.math_real."log2";
 
+use work.MEM_PACKAGE.all;
+
 package HWA_PACKAGE is
 
 	-- Constants used for the memory (BRAM) between Patmos and the HwA
@@ -21,10 +23,10 @@ package HWA_PACKAGE is
     constant ADDR_WIDTH    : integer := 16; 
 
     -- Number of banks used by the currently active design.
-    constant NBANKS  : integer := 5; 
+    --constant NBANKS  : integer := 9; 
 
     -- The number of entries for each the memory banks 
-    constant MEM_SIZE : integer := 1024; -- float/int: 4x4, 16x16
+    --constant MEM_SIZE : integer := 1024; -- float/int: 4x4, 16x16
     --constant MEM_SIZE : integer := 2048; 
     --constant MEM_SIZE : integer := 4096; -- float/int: 32x32
     --constant MEM_SIZE : integer := 8192; 

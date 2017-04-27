@@ -64,30 +64,6 @@ int main()
 
 	start_cycle = get_cpu_cycles();
 
-	printf("A: \n");
-
-
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
-			printf("%d ", mat_a[i][j]);
-		}
-		printf("\n");
-	}
-
-	printf("\n");	
-
-	printf("B: \n");
-
-
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
-			printf("%d ", mat_b[i][j]);
-		}
-		printf("\n");
-	}	
-
-	printf("\n");		
-
    // Bank 1
 	// divide factor
 	int factor = 2;
@@ -98,36 +74,26 @@ int main()
 	int a_banks = 2;
 	int b_banks = 2;
 
-	// Write A
-
-	printf("Writing A: \n");
+	// Write A, dim = 2
 
 	for(i = 0; i < a_banks; i++ ) {
 		for(j = 0; j < m; j++){
 			for(k = 0; k < n/factor; k++){
 				*(bank_ptr_array[i+a_bank0] + k + m*j/factor) = mat_a[j][k+i*n/factor];
-				printf("%d ", mat_a[j][k+i*n/factor]);
-
 			}
-			printf("\n");
 		}
-		printf("\n");		
 	}
 
     // Bank 2
-  	// Write B
-
-	printf("Writing B: \n");
+    
+  	// Write B, dim = 1
 
 	for(i = 0; i < b_banks; i++ ) {
 		for(j = 0; j < m/factor; j++){
 			for(k = 0; k < n; k++){
 				*(bank_ptr_array[i+b_bank0] + k + n*j) = mat_b[j+i*m/factor][k];
-				printf("%d ", mat_b[j+i*m/factor][k]);
 			}
-			printf("\n");
 		}
-		printf("\n");	
 	}    
 
     // Start HLS module
@@ -144,30 +110,6 @@ int main()
     {
         *((&hw_result[0][0]) + i)= *(bank_ptr_array[NBANKS-1] + i);
     }    
-
-	printf("\n");	
-
-	printf("Hardware Result: \n");
-
-
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
-			printf("%d ", hw_result[i][j]);
-		}
-		printf("\n");
-	}	   
-
-	 	printf("\n");	
-
-	printf("Software Result: \n");
-
-
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
-			printf("%d ", sw_result[i][j]);
-		}
-		printf("\n");
-	}	
 	
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-calibration;

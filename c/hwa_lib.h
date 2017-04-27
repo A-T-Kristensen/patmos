@@ -56,8 +56,8 @@
  *	updated according to the current benchmark   
  */
 
-#define DIM 				4
-#define NBANKS 				5
+#define DIM 				32
+#define NBANKS 				9
 
 typedef int mat_type;
 
