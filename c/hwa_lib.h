@@ -56,10 +56,10 @@
  *	updated according to the current benchmark   
  */
 
-#define DIM 				32
-#define NBANKS 				9
+#define DIM 				16
+#define NBANKS 				3
 
-typedef int mat_type;
+typedef float mat_type;
 
 /*
  *	FORWARD DECLARATIONS

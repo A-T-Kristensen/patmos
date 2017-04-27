@@ -3,8 +3,7 @@
 # Status
 
 The status is whether it has been synthesised and tested on the FPGA board.
-Please remember to ensure that the number of banks and the memory size is properly set in HWA_PACKAGE.vhd
-and that the dimensions are correct in the hwa_lib.h file
+Please remember to ensure that the dimensions are correct in the hwa_lib.h file.
 
 ## Matmul (Ports for each array)
 
@@ -13,24 +12,24 @@ and that the dimensions are correct in the hwa_lib.h file
 - [x] matmul_float_3b_4x4
 - [x] matmul_float_3b_16x16
 - [x] matmul_float_3b_32x32
-- [] matmul_float_5b_4x4
-- [] matmul_float_5b_16x16
-- [] matmul_float_5b_32x32
-- [] matmul_float_7b_4x4
-- [] matmul_float_7b_16x16
-- [] matmul_float_7b_32x32
+- [x] matmul_float_5b_4x4
+- [x] matmul_float_5b_16x16
+- [x] matmul_float_5b_32x32
+- [x] matmul_float_9b_4x4
+- [x] matmul_float_9b_16x16
+- [x] matmul_float_9b_32x32
 
 ### Int
 
-- [] matmul_int_3b_4x4
-- [] matmul_int_3b_16x16
-- [] matmul_int_3b_32x32
-- [] matmul_int_5b_4x4
-- [] matmul_int_5b_16x16
-- [] matmul_int_5b_32x32
-- [] matmul_int_7b_4x4
-- [] matmul_int_7b_16x16
-- [] matmul_int_7b_32x32
+- [x] matmul_int_3b_4x4
+- [x] matmul_int_3b_16x16
+- [x] matmul_int_3b_32x32
+- [x] matmul_int_5b_4x4
+- [x] matmul_int_5b_16x16
+- [x] matmul_int_5b_32x32
+- [x] matmul_int_9b_4x4
+- [x] matmul_int_9b_16x16
+- [x] matmul_int_9b_32x32
 
 ## Matmul (Elements in same array)
 

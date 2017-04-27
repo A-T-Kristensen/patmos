@@ -2,7 +2,7 @@
 # The runs run with 8 jobs, reduce it for old machines.
 # Author: Luca Pezzarossa (lpez@dtu.dk)
 #open_project matmul_float.xpr
-open_project ./hardware/vivado/matmul_float_3b_4x4/matmul_float.xpr
+open_project ./hardware/vivado/matmul_float_5b_16x16/matmul_float.xpr
 reset_project
 launch_runs impl_1 -to_step write_bitstream -jobs 2
 wait_on_run impl_1

@@ -12,6 +12,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use IEEE.math_real."ceil";
 use IEEE.math_real."log2";
+use work.MEM_PACKAGE.all;
 use work.HWA_PACKAGE.all;
 
 entity n_bank is

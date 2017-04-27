@@ -53,6 +53,13 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PPRDIR/MEM_PACKAGE.vhd">
+        <FileInfo>
+          <Attr Name="IsGlobalInclude" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>      
       <File Path="$PPRDIR/../../vhdl/mem/HWA_PACKAGE.vhd">
         <FileInfo>
           <Attr Name="IsGlobalInclude" Val="1"/>

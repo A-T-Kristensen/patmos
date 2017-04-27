@@ -11,6 +11,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.MEM_PACKAGE.all;
 use work.HWA_PACKAGE.all;
 
 entity patmos_top is
