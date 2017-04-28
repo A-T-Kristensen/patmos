@@ -212,9 +212,9 @@ architecture rtl of patmos_top is
 
 		    -- Patmos side
 		    p_we    : in  std_logic;
-		    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0); 
-		    p_dout  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
-		    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);  
+		    p_addr  : in  std_logic_vector(15 downto 0); 
+		    p_dout  : in  std_logic_vector(31 downto 0);
+		    p_din   : out std_logic_vector(31 downto 0);  
 
 		    -- HwA side
 	        bram_m : in bank_master_a;
@@ -233,8 +233,8 @@ architecture rtl of patmos_top is
 			a_Addr_A 	: out std_logic_vector (31 downto 0);
 			a_EN_A 		: out std_logic;
 			a_WEN_A 	: out std_logic_vector (3 downto 0);
-			a_Din_A 	: out std_logic_vector (31 downto 0);
-			a_Dout_A 	: in std_logic_vector (31 downto 0);
+			a_Din_A 	: out std_logic_vector (63 downto 0);
+			a_Dout_A 	: in std_logic_vector (63 downto 0);
 			a_Clk_A 	: out std_logic;
 			a_Rst_A 	: out std_logic 
 		);
@@ -275,9 +275,9 @@ architecture rtl of patmos_top is
 
 	signal bRamCtrl_Mcmd    : std_logic_vector(2 downto 0);
 	signal bRamCtrl_MAddr   : std_logic_vector(15 downto 0);
-	signal bRamCtrl_MData   : std_logic_vector(31 downto 0);
+	signal bRamCtrl_MData   : std_logic_vector(63 downto 0);
 	signal bRamCtrl_MByteEn : std_logic_vector(3 downto 0);
-	signal bRamCtrl_SData   : std_logic_vector(31 downto 0);
+	signal bRamCtrl_SData   : std_logic_vector(63 downto 0);
 
 	-- Signals for HwA
 
@@ -527,8 +527,8 @@ begin
 	    -- Patmos side
 	    p_we    => bRamCtrl_MCmd(0),
 	    p_addr  => bRamCtrl_MAddr, 
-	    p_dout  => bRamCtrl_MData,
-	    p_din   => bramCtrl_SData,
+	    p_dout  => bRamCtrl_MData(31 downto 0),
+	    p_din   => bramCtrl_SData(31 downto 0),
 
 	    -- HwA Side
         bram_m 	=> bram_m_i,
