@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="/home/patmos/t-crest/patmos/hardware/vivado/minver_float_1b_4x4/minver_float.xpr">
+<Project Version="7" Minor="17" Path="/home/andreas/t-crest/patmos/hardware/vivado/minver_float_1b_4x4/minver_float.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="44437113ce5a4f4fa39914f3cfeb84af"/>
@@ -114,57 +114,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver/hls_minver/solution1/impl/vhdl/minver_hwa_dsub_6bkb.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver/hls_minver/solution1/impl/vhdl/minver_hwa_work.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver/hls_minver/solution1/impl/vhdl/minver_hwa_dmul_6cud.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver/hls_minver/solution1/impl/vhdl/minver_hwa_ddiv_6dEe.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver/hls_minver/solution1/impl/vhdl/minver_hwa.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver/hls_minver/solution1/impl/vhdl/minver_hwa_dcmp_6eOg.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_dsub_4_full_dsp_64/minver_hwa_ap_dsub_4_full_dsp_64.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_ddiv_29_no_dsp_64/minver_hwa_ap_ddiv_29_no_dsp_64.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_dmul_4_max_dsp_64/minver_hwa_ap_dmul_4_max_dsp_64.xci">
+      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_fmul_2_max_dsp_32/minver_hwa_ap_fmul_2_max_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -175,6 +125,82 @@
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_fpext_0_no_dsp_32/minver_hwa_ap_fpext_0_no_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_fdiv_14_no_dsp_32/minver_hwa_ap_fdiv_14_no_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_fsub_3_full_dsp_32/minver_hwa_ap_fsub_3_full_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/minver_hwa_ap_fcmp_0_no_dsp_32/minver_hwa_ap_fcmp_0_no_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa_dcmp_6g8j.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa_fpext_eOg.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa_fmul_3cud.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa_fcmp_3fYi.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa_fdiv_3dEe.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa_work.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/minver_float/hls_minver/solution1/impl/vhdl/minver_hwa_fsub_3bkb.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -192,6 +218,7 @@
         </FileInfo>
       </File>
       <Config>
+        <Option Name="TargetConstrsFile" Val="$PPRDIR/minver_float.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>

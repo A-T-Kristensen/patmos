@@ -19,13 +19,13 @@ package HWA_PACKAGE is
 	-- Constants used for the memory (BRAM) between Patmos and the HwA
 
     -- 32-bit
-    --constant DATA_WIDTH : integer := 32; 
-    --constant WEN_LENGTH : integer := 4;
+    constant DATA_WIDTH : integer := 32; 
+    constant WEN_LENGTH : integer := 4;
     
     -- 64-bit (minver, we need a rewrite of the local files, and we 
     -- need to add data_width only for HwA side, since Patmos is always 32-bit.
-    constant DATA_WIDTH : integer := 64; 
-    constant WEN_LENGTH : integer := 8;    
+    --constant DATA_WIDTH : integer := 64; 
+    --constant WEN_LENGTH : integer := 8;    
 	-- Patmos has a 16-bit local address space    
     constant ADDR_WIDTH    : integer := 16; 
 

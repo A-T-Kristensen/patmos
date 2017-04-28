@@ -1,8 +1,8 @@
 -makelib ies/xil_defaultlib -sv \
-  "/home/patmos/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+  "/opt/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
 -endlib
 -makelib ies/xpm \
-  "/home/patmos/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_VCOMP.vhd" \
+  "/opt/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_VCOMP.vhd" \
 -endlib
 -makelib ies/xbip_utils_v3_0_7 \
   "../../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \

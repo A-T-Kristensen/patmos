@@ -26,10 +26,10 @@ vmap mult_gen_v12_0_12 riviera/mult_gen_v12_0_12
 vmap floating_point_v7_1_3 riviera/floating_point_v7_1_3
 
 vlog -work xil_defaultlib  -sv2k12 \
-"/home/patmos/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+"/opt/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
 
 vcom -work xpm -93 \
-"/home/patmos/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_VCOMP.vhd" \
+"/opt/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_VCOMP.vhd" \
 
 vcom -work xbip_utils_v3_0_7 -93 \
 "../../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \

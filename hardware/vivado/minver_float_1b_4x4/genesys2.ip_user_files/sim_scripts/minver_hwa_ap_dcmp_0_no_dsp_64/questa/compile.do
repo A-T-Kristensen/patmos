@@ -26,10 +26,10 @@ vmap mult_gen_v12_0_12 msim/mult_gen_v12_0_12
 vmap floating_point_v7_1_3 msim/floating_point_v7_1_3
 
 vlog -work xil_defaultlib -64 -sv \
-"/home/patmos/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+"/opt/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
 
 vcom -work xpm -64 -93 \
-"/home/patmos/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_VCOMP.vhd" \
+"/opt/Xilinx/Vivado/2016.4/data/ip/xpm/xpm_VCOMP.vhd" \
 
 vcom -work xbip_utils_v3_0_7 -64 -93 \
 "../../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \
