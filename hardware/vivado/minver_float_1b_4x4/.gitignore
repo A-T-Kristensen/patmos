@@ -1,0 +1,5 @@
+minver_float.cache/
+minver_float.hw/
+minver_float.runs/
+minver_float.sim/
+*.str

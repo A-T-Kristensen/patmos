@@ -113,6 +113,15 @@ void filterbank_main( void )
 
   int i, j;
 
+  unsigned long long start_cycle, stop_cycle, calibration;  
+  unsigned long long return_cycles = 0;   
+
+  start_cycle = get_cpu_cycles();
+  stop_cycle = get_cpu_cycles();
+  calibration = stop_cycle-start_cycle;
+
+  printf("%llu \n", calibration);  
+
   // Initialize
 
   for ( i = 0; i < 256; i++ ){
@@ -129,9 +138,16 @@ void filterbank_main( void )
   // Test software
   filterbank_init();
 
+  start_cycle = get_cpu_cycles();
+
+
   while ( filterbank_numiters-- > 0 ){
     filterbank_core_test( r, y_sw, H, F );    
   }
+
+  stop_cycle = get_cpu_cycles();
+  return_cycles = stop_cycle-start_cycle-calibration;
+  printf("%llu \n", return_cycles);  
 
   filterbank_init();
 
@@ -140,6 +156,8 @@ void filterbank_main( void )
   // Move data into hardware
 
   // r
+
+  start_cycle = get_cpu_cycles();  
 
     for(i = 0; i < 256; i++)
     {
@@ -185,6 +203,10 @@ void filterbank_main( void )
     {
         *((&y_hw[0]) + i)= *(bank_ptr_array[1] + i); 
     }   
+
+  stop_cycle = get_cpu_cycles();
+  return_cycles = stop_cycle-start_cycle-calibration;
+  printf("%llu \n", return_cycles);      
 
   // Compare results
 

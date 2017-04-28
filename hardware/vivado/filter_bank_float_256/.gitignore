@@ -1,0 +1,5 @@
+filter_bank.cache/
+filter_bank.hw/
+filter_bank.runs/
+filter_bank.sim/
+*.str
