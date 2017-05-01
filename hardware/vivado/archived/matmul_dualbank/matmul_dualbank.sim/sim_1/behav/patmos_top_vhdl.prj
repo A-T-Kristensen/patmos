@@ -1,0 +1,10 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  "../../../../../vhdl/patmos_nexys4ddr.vhdl"
+vhdl xil_defaultlib  "../../../nexys4ddr.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd"
+vhdl xil_defaultlib  "../../../nexys4ddr.srcs/sources_1/new/nexys4ddr_io.vhd"
+vhdl xil_defaultlib  "../../../../../vhdl/bram/bram_tdp.vhd"
+vhdl xil_defaultlib  "../../../../../vhdl/hls/matrixmul_mux_32_bkb.vhd"
+vhdl xil_defaultlib  "../../../../../vhdl/hls/matrixmul.vhd"
+
+# Do not sort compile order
+nosort
