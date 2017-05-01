@@ -24,13 +24,10 @@ int main()
 	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
 
 	unsigned long long start_cycle, stop_cycle, calibration;	
-	unsigned long long return_cycles = 0;		
+	unsigned long long return_cycles = 0;	
+	calibration = 3;
 
-	start_cycle = get_cpu_cycles();
-	stop_cycle = get_cpu_cycles();
-	calibration = stop_cycle-start_cycle;
-
-	printf("%llu \n", calibration);
+	printf("HWA Running \n");
 
 	//printf("%d \n", get_cpu_freq()); // is this accurate?
 

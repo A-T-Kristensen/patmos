@@ -34,6 +34,8 @@
 
 #include <math.h>
 
+#include <benchmark.h>
+
 /*
  *	DEFINITIONS
  */
@@ -41,7 +43,7 @@
 #define ADDR_BITS 			16
 
 #define LED_RUN_LENGTH 		2000
-#define LED_ROUNDS			10
+#define LED_ROUNDS			1
 
 #define CYCLE_CALIBRATION 	3
 
@@ -56,10 +58,10 @@
  *	updated according to the current benchmark   
  */
 
-#define DIM 				256
-#define NBANKS 				4
+/*#define DIM 				32
+#define NBANKS 				3
 
-typedef float mat_type;
+typedef float mat_type;*/
 
 /*
  *	FORWARD DECLARATIONS
