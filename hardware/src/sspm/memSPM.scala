@@ -284,8 +284,8 @@ class memSPMTester(dut: memSPM) extends Tester(dut) {
   // Test limit (expects size 1024)
 
   // We now test at 10 bits (minus 2 LSB), so we expect aliasing
-  wr(Bits("b010000000000").litValue(), 1, Bits("b1111").litValue())
-  wr(Bits("b110000000000").litValue(), 2, Bits("b1111").litValue())
+  wr(Bits("b0000010000000000").litValue(), 1, Bits("b1111").litValue()) // 0x0400
+  wr(Bits("b0000110000000000").litValue(), 2, Bits("b1111").litValue()) // 0x0c00
 
   poke(dut.io.M.Addr, Bits("b010000000000").litValue())
   poke(dut.io.M.We, 0)
@@ -294,8 +294,8 @@ class memSPMTester(dut: memSPM) extends Tester(dut) {
   wr_test(2)
 
   // We now test at 9 bits (minus 2 LSB), so we expect aliasing
-  wr(Bits("b01000000000").litValue(), 3, Bits("b1111").litValue())
-  wr(Bits("b11000000000").litValue(), 4, Bits("b1111").litValue())
+  wr(Bits("b0000001000000000").litValue(), 3, Bits("b1111").litValue())
+  wr(Bits("b0000011000000000").litValue(), 4, Bits("b1111").litValue())
 
   poke(dut.io.M.Addr, Bits("b01000000000").litValue())
   poke(dut.io.M.We, 0)
@@ -304,8 +304,8 @@ class memSPMTester(dut: memSPM) extends Tester(dut) {
   wr_test(4)
 
   // We now test at 9 bits (minus 2 LSB), so we expect aliasing
-  wr(Bits("b01000100000").litValue(), 11, Bits("b1111").litValue())
-  wr(Bits("b11000100000").litValue(), 12, Bits("b1111").litValue())
+  wr(Bits("b0000001000100000").litValue(), 11, Bits("b1111").litValue())
+  wr(Bits("b0000011000100000").litValue(), 12, Bits("b1111").litValue())
 
   poke(dut.io.M.Addr, Bits("b01000100000").litValue())
   poke(dut.io.M.We, 0)
@@ -314,8 +314,8 @@ class memSPMTester(dut: memSPM) extends Tester(dut) {
   wr_test(12)
 
   // We now test at 8 bits, since log[2](1024)=10, we expect no aliasing
-  wr(Bits("b0100000000").litValue(), 5, Bits("b1111").litValue())
-  wr(Bits("b1100000000").litValue(), 6, Bits("b1111").litValue())
+  wr(Bits("b0000000100000000").litValue(), 5, Bits("b1111").litValue()) // 0x0100
+  wr(Bits("b0000001100000000").litValue(), 6, Bits("b1111").litValue()) // 0x0300
 
   poke(dut.io.M.Addr, Bits("b0100000000").litValue())
   poke(dut.io.M.We, 0)
@@ -323,9 +323,29 @@ class memSPMTester(dut: memSPM) extends Tester(dut) {
   step(1)
   wr_test(5)
 
+  // We now test at 8 bits, since log[2](1024)=10, we expect no aliasing
+  wr(Bits("b0000000111111111").litValue(), 5, Bits("b1111").litValue()) // 0x01ff
+  wr(Bits("b0000001111111111").litValue(), 6, Bits("b1111").litValue()) // 0x03ff
+
+  poke(dut.io.M.Addr, Bits("b0000000111111111").litValue())
+  poke(dut.io.M.We, 0)
+
+  step(1)
+  wr_test(5)  
+
+  // We now test at 8 bits, since log[2](1024)=10, we expect no aliasing
+  wr(Bits("b0000000100000000").litValue(), 42, Bits("b1111").litValue()) // 0x0100
+  wr(Bits("b0000000100000100").litValue(), 43, Bits("b1111").litValue()) // 0x0104
+
+  poke(dut.io.M.Addr, Bits("b0000000100000000").litValue())
+  poke(dut.io.M.We, 0)
+
+  step(1)
+  wr_test(42)   
+
   // We now test at 7 bits
-  wr(Bits("b010000000").litValue(), 7, Bits("b1111").litValue())
-  wr(Bits("b110000000").litValue(), 8, Bits("b1111").litValue())
+  wr(Bits("b0000000010000000").litValue(), 7, Bits("b1111").litValue())
+  wr(Bits("b0000000110000000").litValue(), 8, Bits("b1111").litValue())
 
   poke(dut.io.M.Addr, Bits("b010000000").litValue())
   poke(dut.io.M.We, 0)
@@ -334,8 +354,8 @@ class memSPMTester(dut: memSPM) extends Tester(dut) {
   wr_test(7)
 
   // We now test at 8 bits
-  wr(Bits("b1011111100").litValue(), 42, Bits("b1111").litValue())
-  wr(Bits("b0011111100").litValue(), 43, Bits("b1111").litValue())
+  wr(Bits("b000001011111100").litValue(), 42, Bits("b1111").litValue())
+  wr(Bits("b000000011111100").litValue(), 43, Bits("b1111").litValue())
 
   poke(dut.io.M.Addr, Bits("b1011111100").litValue())
   poke(dut.io.M.We, 0)
@@ -344,7 +364,6 @@ class memSPMTester(dut: memSPM) extends Tester(dut) {
   wr_test(42)
 
 }
-
 
 object memSPMTester {
   def main(args: Array[String]): Unit = {
