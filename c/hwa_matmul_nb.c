@@ -73,11 +73,5 @@ int main()
 
 	err_cnt = check_matmul(hw_result, sw_result);
 
-	printf("\n");    
-
-    // We now continously loop, showing a pattern on the LEDS
-	
-	//led_blink(err_cnt);
-
 	return 0;
 }

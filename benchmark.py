@@ -49,45 +49,51 @@ def matmul(synth = 0):
     NBANKS = [3, 5, 9]
     DIM = [4, 16, 32]
     valsType = ["float", "int"]
+    APPS = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached"]
 
     for i in range(0, len(valsType)):       # Iterate over float/int
         for j in range(0, len(NBANKS)):     # Iterate over NBanks
             for k in range(0, len(DIM)):    # Iterate over DIM
+                for g in range(0, len(DIM)):    # Iterate over apps            
 
-                print("\n*******************************************")
-                print("\nMatmul: type = %s, NBANKS = %d, DIM = %d\n" % (valsType[i], NBANKS[j], DIM[k]))
-                print("*******************************************\n")                
+                    app = APPS[g]
 
-                valsDefine=[DIM[k],NBANKS[j]]    # Make a set of vals depending on test
+                    print("\n*******************************************")
+                    print("Matmul: type = %s, NBANKS = %d, DIM = %d\n" % (valsType[i], NBANKS[j], DIM[k]))
+                    print("APP: %s" % (app))                    
+                    print("*******************************************\n")                
 
-                # Update the benchmark.h file
+                    valsDefine=[DIM[k],NBANKS[j]]    # Make a set of vals depending on test
 
-                update_header(keywordsDefine, valsDefine, keywordsTypes[0], valsType[i])
+                    # Update the benchmark.h file
 
-                app = "hwa_matmul_nb"                
+                    update_header(keywordsDefine, valsDefine, keywordsTypes[0], valsType[i])
 
-                # Project name string
-                project = ('matmul_{type}_{nbank}b_{dim}x{dim}').format(type = valsType[i], nbank=NBANKS[j], dim=DIM[k])
+                    #app = "hwa_matmul_nb_spm"             
+                    #app = "hwa_matmul_nb"     
 
-                if synth == 1:
-                    cmd = ('make COM_PORT?=/dev/ttyUSB1 '
-                		'HWA_PROJECT={prj} '
-                		'APP={app} '
-                		'comp hwa_synth hwa_config download').format(prj=project, app = app)
-                else:                   
-                    cmd = ('make COM_PORT?=/dev/ttyUSB1 '
-                        'HWA_PROJECT={prj} '
-                        'APP={app} '
-                        'comp hwa_config download').format(prj=project, app = app)                
+                    # Project name string
+                    project = ('matmul_{type}_{nbank}b_{dim}x{dim}').format(type = valsType[i], nbank=NBANKS[j], dim=DIM[k])
 
-                #os.system(cmd)
-                result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)	
+                    if synth == 1:
+                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                    		'HWA_PROJECT={prj} '
+                    		'APP={app} '
+                    		'comp hwa_synth hwa_config download').format(prj=project, app = app)
+                    else:                   
+                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                            'HWA_PROJECT={prj} '
+                            'APP={app} '
+                            'comp hwa_config download').format(prj=project, app = app)                
 
-                print("\nTest result:\n")
+                    #os.system(cmd)
+                    result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)	
 
-                test = result.stdout.decode('utf-8')
+                    print("\nTest result:\n")
 
-                print(test.partition("HWA Running")[2]) # Print everything after HWA Running
+                    test = result.stdout.decode('utf-8')
+
+                    print(test.partition("HWA Running")[2]) # Print everything after HWA Running
 
 
 def main():	

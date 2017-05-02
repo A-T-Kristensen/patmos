@@ -140,6 +140,61 @@ void write_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_b
    	
 }
 
+void write_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n, 
+					 int m, int factor, int array_bank0, 
+				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+
+	int i, j, k;	
+
+	if (wr_dim == 2) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m; j++){
+				for(k = 0; k < n/factor; k++){
+					*(bank_ptr_array[i+array_bank0] + k + m*j/factor) = (*array)[j][k+i*n/factor];
+				}
+			}
+		}		
+	} 
+
+	else if (wr_dim == 1) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m/factor; j++){
+				for(k = 0; k < n; k++){
+					*(bank_ptr_array[i+array_bank0] + k + n*j) = (*array)[j+i*m/factor][k];
+				}
+			}
+		}		
+	}
+   	
+}
+
+void write_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n, 
+					 int m, int factor, int array_bank0, 
+				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+
+	int i, j, k;	
+
+	if (wr_dim == 2) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m; j++){
+				for(k = 0; k < n/factor; k++){
+					*(bank_ptr_array[i+array_bank0] + k + m*j/factor) = (*array)[j][k+i*n/factor];
+				}
+			}
+		}		
+	} 
+
+	else if (wr_dim == 1) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m/factor; j++){
+				for(k = 0; k < n; k++){
+					*(bank_ptr_array[i+array_bank0] + k + n*j) = (*array)[j+i*m/factor][k];
+				}
+			}
+		}		
+	}
+}
+
 /*
  *	NAME: led_blink
  *
@@ -162,7 +217,34 @@ void matmul_init(mat_type mat_a[DIM][DIM], mat_type mat_b[DIM][DIM], mat_type sw
 	      	sw_result[i][j] = 0;      				
 		}
 	}	
+}
 
+void matmul_init_spm(volatile _SPM mat_type (*mat_a)[DIM][DIM], 
+					 volatile _SPM mat_type (*mat_b)[DIM][DIM], 
+				 	 volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
+	int i, j;
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
+			(*mat_a)[i][j] = i+j+1;
+			(*mat_b)[i][j] = i+j+1+DIM;
+	      	(*sw_result)[i][j] = 0;      				
+		}
+	}	
+}
+
+void matmul_init_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM], 
+					 volatile _UNCACHED mat_type (*mat_b)[DIM][DIM], 
+				 	 volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]) {
+	int i, j;
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
+			(*mat_a)[i][j] = i+j+1;
+			(*mat_b)[i][j] = i+j+1+DIM;
+	      	(*sw_result)[i][j] = 0;      				
+		}
+	}	
 }
 
 /*
@@ -189,6 +271,35 @@ void matmul_expected(mat_type mat_a[DIM][DIM], mat_type mat_b[DIM][DIM], mat_typ
    }		
 }
 
+void matmul_expected_spm(volatile _SPM mat_type (*mat_a)[DIM][DIM], 
+					 	 volatile _SPM mat_type (*mat_b)[DIM][DIM], 
+				 		 volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
+	int i, j, k;
+
+   for(i = 0; i < DIM; i++) {
+      for(j = 0; j < DIM; j++) {
+         for(k = 0; k < DIM; k++) {
+            (*sw_result)[i][j] += (*mat_a)[i][k] * (*mat_b)[k][j];
+         }
+      }
+   }		
+}
+
+void matmul_expected_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM], 
+					 	 volatile _UNCACHED mat_type (*mat_b)[DIM][DIM], 
+				 		 volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]) {
+	int i, j, k;
+
+   for(i = 0; i < DIM; i++) {
+      for(j = 0; j < DIM; j++) {
+         for(k = 0; k < DIM; k++) {
+            (*sw_result)[i][j] += (*mat_a)[i][k] * (*mat_b)[k][j];
+         }
+      }
+   }		
+}
+
+
 /*
  *	NAME: led_blink
  *
@@ -202,25 +313,66 @@ void matmul_expected(mat_type mat_a[DIM][DIM], mat_type mat_b[DIM][DIM], mat_typ
  */
 
 int check_matmul(mat_type hw_result[DIM][DIM], mat_type sw_result[DIM][DIM]) {
-	int i, err_cnt = 0;
+	int i, j, err_cnt = 0;
 
-    for(i = 0; i < DIM*DIM; i++)
-    {
-		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
-		{
-			err_cnt++;	
-		}	
-    }
+	for(i = 0; i < DIM; i++){
+		for(j = 0; j < DIM; j++){
+			if(hw_result[i][j] != sw_result[i][j]) {
+				err_cnt++;	
+			}
+		}
+	}
 
-	if(!err_cnt) 
-	{
+	if(!err_cnt) {
 		puts("Results correct");			
 	} 
-	else 
-	{
+	else {
 		puts("Results incorrect"); 
 	}
 
+    return err_cnt;
+}
+
+int check_matmul_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
+					  volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
+	int i, j, err_cnt = 0;
+
+	for(i = 0; i < DIM; i++){
+		for(j = 0; j < DIM; j++){
+			if((*hw_result)[i][j] != (*sw_result)[i][j]) {
+				err_cnt++;	
+			}
+		}
+	}
+
+	if(!err_cnt) {
+		puts("Results correct");			
+	} 
+	else {
+		puts("Results incorrect"); 
+	}
+
+    return err_cnt;
+}
+
+int check_matmul_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM], 
+					  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]) {
+	int i, j, err_cnt = 0;
+
+	for(i = 0; i < DIM; i++){
+		for(j = 0; j < DIM; j++){
+			if((*hw_result)[i][j] != (*sw_result)[i][j]) {
+				err_cnt++;	
+			}
+		}
+	}
+
+	if(!err_cnt) {
+		puts("Results correct");			
+	} 
+	else {
+		puts("Results incorrect"); 
+	}
 
     return err_cnt;
 }

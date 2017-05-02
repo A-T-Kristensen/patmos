@@ -20,53 +20,25 @@ volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BA
 
 int main() 
 {
-	int i, j, k;
-	int err_cnt = 0;
-	//unsigned long long start_cycle, stop_cycle, calibration;	
-
-    for (int i = 0; i < sizeof(struct matrix); i++) {
-        ((volatile _SPM char *)spm_matrix)[i] = 0.0f;
-    }	
+	int i, j, k, err_cnt = 0;
 
 	volatile _IODEV mat_type** bank_ptr_array = (volatile _IODEV mat_type**) bank_ptrs(NBANKS);
-
-	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;    
 
-	unsigned long long start_cycle, stop_cycle, calibration;	
-	unsigned long long return_cycles = 0;		
+	unsigned long long start_cycle, stop_cycle, return_cycles;	
 
-	start_cycle = get_cpu_cycles();
-	stop_cycle = get_cpu_cycles();
-	calibration = stop_cycle-start_cycle;
+	int factor = (int) floor(NBANKS/2); // Division factor, a and b shares most banks
+	int n = DIM; // the # columns
+	int m = DIM; // the # rows
+	int a_bank0 = 0; // Start bank
+	int b_bank0 = factor;		
 
-	printf("%llu \n", calibration);
+	printf("HWA Running \n");	
 
 	// Initialize matrices
 
-	for(i = 0; i < DIM; i++) {
-		for(j = 0; j < DIM; j++) {
-			spm_matrix->mat_a[i][j] = i+j+1;
-			spm_matrix->mat_b[i][j] = i+j+1+DIM;
-	      	spm_matrix->sw_result[i][j] = 0;      				
-		}
-	}
-
-	start_cycle = get_cpu_cycles();
-
-   // Generate the expected result
-
-   for(i = 0; i < DIM; i++) {
-      for(j = 0; j < DIM; j++) {
-         for(k = 0; k < DIM; k++) {
-            spm_matrix->sw_result[i][j] += spm_matrix->mat_a[i][k] * spm_matrix->mat_b[k][j];
-         }
-      }
-   }	
-
-	stop_cycle = get_cpu_cycles();
-	return_cycles = stop_cycle-start_cycle-calibration;
-	printf("%llu \n", return_cycles);
+	matmul_init_spm(&spm_matrix->mat_a, &spm_matrix->mat_b, &spm_matrix->sw_result);
+	matmul_expected_spm(&spm_matrix->mat_a, &spm_matrix->mat_b, &spm_matrix->sw_result);
 
    // Write to BRAM
 
@@ -74,17 +46,14 @@ int main()
 
    // Bank 1
 
-    for(i = 0; i < DIM*DIM; i++)
-    {
-        *(bank_ptr_array[0] + i) = *((&(spm_matrix->mat_a[0][0])) + i);
-    }
+	if(NBANKS == 3) {
+		write_array_spm(&spm_matrix->mat_a, n, m, factor, a_bank0, bank_ptr_array, 1);
+	}
+	else {
+		write_array_spm(&spm_matrix->mat_a, n, m, factor, a_bank0, bank_ptr_array, 2);		
+	}
 
-    // Bank 2
-
-    for(i = 0; i < DIM*DIM; i++)
-    {
-        *(bank_ptr_array[1] + i) = *((&(spm_matrix->mat_b[0][0])) + i);
-    }
+	write_array_spm(&spm_matrix->mat_b, n, m, factor, b_bank0, bank_ptr_array, 1);	
 
     // Start HLS module
 	
@@ -98,37 +67,18 @@ int main()
 
     for(i = 0; i < DIM*DIM; i++)
     {
-        *((&(spm_matrix->hw_result[0][0])) + i)= *(bank_ptr_array[2] + i);
+        *((&(spm_matrix->hw_result[0][0])) + i) = *(bank_ptr_array[NBANKS-1] + i);
     }    
 	
 	stop_cycle = get_cpu_cycles();
-	return_cycles = stop_cycle-start_cycle-calibration;
-	printf("%llu \n", return_cycles);   
-
+	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+	printf("#Cycles = %llu \n", return_cycles);
 
 	// Check results
 
     puts("Checking results");	
+
+	check_matmul_spm(&spm_matrix->hw_result, &spm_matrix->sw_result);
 	
-    for(i = 0; i < DIM*DIM; i++)
-    {
-        printf("%f ", *((&(spm_matrix->hw_result[0][0])) + i) );        
-
-        if((i+1) % DIM == 0) {
-        	printf("\n");
-        }            
-
-		if(*((&(spm_matrix->hw_result[0][0]))+i) != *((&(spm_matrix->sw_result[0][0]))+i))
-		{
-			err_cnt++;	
-		}	
-    }
-
-	printf("\n");    
-
-    // We now continously loop, showing a pattern on the LEDS
-	
-	led_blink(err_cnt);
-
 	return 0;
 }
