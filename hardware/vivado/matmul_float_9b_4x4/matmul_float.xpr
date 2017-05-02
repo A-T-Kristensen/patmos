@@ -59,7 +59,7 @@
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-      </File>      
+      </File>
       <File Path="$PPRDIR/../../vhdl/mem/HWA_PACKAGE.vhd">
         <FileInfo>
           <Attr Name="IsGlobalInclude" Val="1"/>
@@ -134,19 +134,19 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_float/hls_matmul_float/matmul_9b_4x4/impl/vhdl/matmul_hw_fadd_32bkb.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_float/hls_matmul_float/matmul_9b_4x4/impl/vhdl/matmul_hw_mux_42_jbC.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_float/hls_matmul_float/matmul_9b_4x4/impl/vhdl/matmul_hw_fmul_32cud.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_float/hls_matmul_float/matmul_9b_4x4/impl/vhdl/matmul_hw_fmul_32ibs.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_float/hls_matmul_float/matmul_9b_4x4/impl/vhdl/matmul_hw_mux_42_dEe.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/matrix1_float/hls_matmul_float/matmul_9b_4x4/impl/vhdl/matmul_hw_fadd_32hbi.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

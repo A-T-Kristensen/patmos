@@ -59,7 +59,7 @@
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-      </File>      
+      </File>
       <File Path="$PPRDIR/../../vhdl/mem/HWA_PACKAGE.vhd">
         <FileInfo>
           <Attr Name="IsGlobalInclude" Val="1"/>

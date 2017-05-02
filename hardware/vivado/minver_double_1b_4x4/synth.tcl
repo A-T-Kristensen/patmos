@@ -4,6 +4,6 @@
 #open_project minver_double.xpr
 open_project ./hardware/vivado/minver_double_1b_4x4/minver_double.xpr
 reset_project
-launch_runs impl_1 -to_step write_bitstream -jobs 2
+launch_runs impl_1 -to_step write_bitstream -jobs 4
 wait_on_run impl_1
 close_project

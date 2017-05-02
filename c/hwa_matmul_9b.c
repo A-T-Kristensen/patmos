@@ -30,7 +30,8 @@ int main()
 	stop_cycle = get_cpu_cycles();
 	calibration = stop_cycle-start_cycle;
 
-	printf("%llu \n", calibration);
+	printf("HWA Running \n");
+
 
 	//printf("%d \n", get_cpu_freq()); // is this accurate?
 
