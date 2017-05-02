@@ -75,9 +75,6 @@ int main()
 	printf("#Cycles = %llu \n", return_cycles);
 
 	// Check results
-
-    puts("Checking results");	
-
 	check_matmul_spm(&spm_matrix->hw_result, &spm_matrix->sw_result);
 	
 	return 0;

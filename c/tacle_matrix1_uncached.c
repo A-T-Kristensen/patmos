@@ -176,7 +176,7 @@ int main( void )
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-calibration;
-  printf("%llu \n", return_cycles);   
+  printf("#Cycles = %llu \n", return_cycles);
 
-  return matrix1_return();
+  return 0;
 }

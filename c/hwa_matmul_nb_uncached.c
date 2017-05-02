@@ -75,12 +75,9 @@ int main()
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-
-	printf("%llu \n", return_cycles);   
+	printf("#Cycles = %llu \n", return_cycles);
 
 	// Check results
-
-    puts("Checking results");	
 	
 	check_matmul_uncached(&spm_matrix->hw_result, &spm_matrix->sw_result);
 

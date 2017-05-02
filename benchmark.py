@@ -6,6 +6,7 @@ import re
 import os
 import sys
 import subprocess
+import numpy as np
 
 # TODO:
 # Add function to write benchmarks to file
@@ -39,38 +40,46 @@ def update_header(keywordsDefine, valsDefine, keywordsTypes, valsType):
 
 # Benchmarking of matrix multiplication, allows for enabling of synthesis
 
-def matmul(synth = 0):
+def matmul(synth = 0, hw_test = 0):
 
     keywordsDefine=["DIM","NBANKS"]
     keywordsTypes = ["mat_type;","vec_type;"]    
 
     # These values define the parameter space to explore
 
-    NBANKS = [3, 5, 9]
-    DIM = [4, 16, 32]
-    valsType = ["float", "int"]
-    APPS = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached"]
+    # NBANKS = [3, 5, 9]
+    # DIM = [4, 16, 32]
+    # valsType = ["float", "int"]
+    # APPS = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", "tacle_matrix1", "tacle_matrix1_spm", "tacle_matrix1_uncached"]
+    
+    NBANKS = [3]
+    DIM = [4, 16]
+    valsType = ["float"]
+
+    APPS = ["hwa_matmul_nb", "hwa_matmul_nb_spm"]
+
+    data = np.zeros([len(valsType)*len(DIM)*len(NBANKS) ,len(APPS)])
+
+    csv_rows = np.zeros([len(valsType)*len(DIM)*len(NBANKS) + 1, 2], dtype="S10") # Add 1 since it will be horizontally stacked later
+                                                                                  # max string length of 10
 
     for i in range(0, len(valsType)):       # Iterate over float/int
         for j in range(0, len(NBANKS)):     # Iterate over NBanks
             for k in range(0, len(DIM)):    # Iterate over DIM
-                for g in range(0, len(DIM)):    # Iterate over apps            
+                for g in range(0, len(APPS)):    # Iterate over apps            
 
                     app = APPS[g]
+                    valsDefine=[DIM[k],NBANKS[j]]    # Make a set of vals depending on test
 
                     print("\n*******************************************")
                     print("Matmul: type = %s, NBANKS = %d, DIM = %d\n" % (valsType[i], NBANKS[j], DIM[k]))
                     print("APP: %s" % (app))                    
                     print("*******************************************\n")                
 
-                    valsDefine=[DIM[k],NBANKS[j]]    # Make a set of vals depending on test
 
                     # Update the benchmark.h file
 
-                    update_header(keywordsDefine, valsDefine, keywordsTypes[0], valsType[i])
-
-                    #app = "hwa_matmul_nb_spm"             
-                    #app = "hwa_matmul_nb"     
+                    update_header(keywordsDefine, valsDefine, keywordsTypes[0], valsType[i])    
 
                     # Project name string
                     project = ('matmul_{type}_{nbank}b_{dim}x{dim}').format(type = valsType[i], nbank=NBANKS[j], dim=DIM[k])
@@ -86,18 +95,40 @@ def matmul(synth = 0):
                             'APP={app} '
                             'comp hwa_config download').format(prj=project, app = app)                
 
-                    #os.system(cmd)
-                    result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)	
+                    result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)	# Use subprocess to execute cmd in terminal
 
-                    print("\nTest result:\n")
+                    test_out = result.stdout.decode('utf-8') # Grab stdout
+                    test_out = (test_out.partition("#Cycles = ")[2]) # Grab everything after "#Cycles ="
 
-                    test = result.stdout.decode('utf-8')
+                    correct_str = "Results correct";
 
-                    print(test.partition("HWA Running")[2]) # Print everything after HWA Running
+                    if hw_test:
+                        if not correct_str.find(test_out):
+                            print("Error:")
+                        else:
+                            print("Correct")
 
+                    num_cycles = int((test_out.splitlines())[0]) #Get the number of cycles
+
+                    print("The number of cycles is: %d" % (num_cycles))
+
+                    data[k+j*len(NBANKS) + i*len(NBANKS)*len(DIM)][g] = num_cycles
+
+                    csv_rows[k+j*len(NBANKS) + i*len(NBANKS)*len(DIM) + 1][1] = ('{dim}x{dim}').format(dim=DIM[k])
+
+        csv_rows[k+j*len(NBANKS) + i*len(NBANKS)*len(DIM)][0] = ('NBANKS={nbank}').format(nbank = NBANKS[j])
+
+
+    # Print the data
+    print(data)
+
+    out = np.vstack((APPS, data))
+    out = np.hstack((csv_rows, out))
+
+    np.savetxt('test.out', out, delimiter=',', fmt='%s') 
 
 def main():	
-	matmul(synth = 0)
+	matmul(synth = 0, hw_test = 0)
 
 if __name__ == "__main__":
     sys.exit(main())	
