@@ -69,6 +69,8 @@ typedef float mat_type;*/
 
 volatile _IODEV unsigned long** bank_ptrs(unsigned long nbanks);
 void led_blink(int err_cnt);
+void write_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_bank0, 
+				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 /*
  *	FUNCTIONS
@@ -111,6 +113,130 @@ volatile _IODEV unsigned long** bank_ptrs(unsigned long nbanks) {
  *
  */
 
+void write_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_bank0, 
+				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+
+	int i, j, k;	
+
+	if (wr_dim == 2) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m; j++){
+				for(k = 0; k < n/factor; k++){
+					*(bank_ptr_array[i+array_bank0] + k + m*j/factor) = array[j][k+i*n/factor];
+				}
+			}
+		}		
+	} 
+
+	else if (wr_dim == 1) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m/factor; j++){
+				for(k = 0; k < n; k++){
+					*(bank_ptr_array[i+array_bank0] + k + n*j) = array[j+i*m/factor][k];
+				}
+			}
+		}		
+	}
+   	
+}
+
+/*
+ *	NAME: led_blink
+ *
+ *	PARAMETERS:
+ *		* err_cnt: The number of errors in the calculations between
+ *				   the HwA and the software.
+ * 
+ *	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
+ *				 different patterns depending on whether the result is correct..
+ *
+ */
+
+void matmul_init(mat_type mat_a[DIM][DIM], mat_type mat_b[DIM][DIM], mat_type sw_result[DIM][DIM]) {
+	int i, j;
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
+			mat_a[i][j] = i+j+1;
+			mat_b[i][j] = i+j+1+DIM;
+	      	sw_result[i][j] = 0;      				
+		}
+	}	
+
+}
+
+/*
+ *	NAME: led_blink
+ *
+ *	PARAMETERS:
+ *		* err_cnt: The number of errors in the calculations between
+ *				   the HwA and the software.
+ * 
+ *	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
+ *				 different patterns depending on whether the result is correct..
+ *
+ */
+
+void matmul_expected(mat_type mat_a[DIM][DIM], mat_type mat_b[DIM][DIM], mat_type sw_result[DIM][DIM]) {
+	int i, j, k;
+
+   for(i = 0; i < DIM; i++) {
+      for(j = 0; j < DIM; j++) {
+         for(k = 0; k < DIM; k++) {
+            sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
+         }
+      }
+   }		
+}
+
+/*
+ *	NAME: led_blink
+ *
+ *	PARAMETERS:
+ *		* err_cnt: The number of errors in the calculations between
+ *				   the HwA and the software.
+ * 
+ *	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
+ *				 different patterns depending on whether the result is correct..
+ *
+ */
+
+int check_matmul(mat_type hw_result[DIM][DIM], mat_type sw_result[DIM][DIM]) {
+	int i, err_cnt = 0;
+
+    for(i = 0; i < DIM*DIM; i++)
+    {
+		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
+		{
+			err_cnt++;	
+		}	
+    }
+
+	if(!err_cnt) 
+	{
+		puts("Results correct");			
+	} 
+	else 
+	{
+		puts("Results incorrect"); 
+	}
+
+
+    return err_cnt;
+}
+
+/*
+ *	NAME: led_blink
+ *
+ *	PARAMETERS:
+ *		* err_cnt: The number of errors in the calculations between
+ *				   the HwA and the software.
+ * 
+ *	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
+ *				 different patterns depending on whether the result is correct..
+ *
+ */
+
 void led_blink(int err_cnt) {
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) LED_BASE;
@@ -118,8 +244,6 @@ void led_blink(int err_cnt) {
 
 	if(!err_cnt) 
 	{
-		puts("Results correct");	
-
 		for (i = 0; i < LED_ROUNDS; i++) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)
@@ -150,8 +274,6 @@ void led_blink(int err_cnt) {
 
 	else 
 	{
-		puts("Results incorrect"); 
-
 		for (i = 0; i < LED_ROUNDS; i++) 
 		{
 			for (i=LED_RUN_LENGTH; i!=0; --i)
