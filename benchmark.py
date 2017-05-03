@@ -62,16 +62,11 @@ def matmul(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
-    # nbanksList  = [3, 5, 9]
-    # dimList     = [4, 16, 32]
-    # valsType    = ["float", "int"]
-    # appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
-    #                "tacle_matrix1_spm", "tacle_matrix1_uncached"]
-
-    nbanksList  = [5]
-    dimList     = [4]
-    valsType    = ["float"]
-    appList     = ["hwa_matmul_nb"]                   
+    nbanksList  = [3, 5, 9]
+    dimList     = [4, 16, 32]
+    valsType    = ["float", "int"]
+    appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
+                   "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
 
     # Measurements will be stored in the dataArray
 
@@ -202,7 +197,7 @@ def matmul(synth = 0, hw_test = 0):
 
 def main(): 
 
-    matmul(synth = 1, hw_test = 0)
+    matmul(synth = 0, hw_test = 0)
 
 if __name__ == "__main__":
     sys.exit(main())    
