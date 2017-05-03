@@ -39,6 +39,8 @@ int main()
 	matmul_init_uncached(&spm_matrix->mat_a, &spm_matrix->mat_b, &spm_matrix->sw_result);
 	matmul_expected_uncached(&spm_matrix->mat_a, &spm_matrix->mat_b, &spm_matrix->sw_result);
 
+	printf("Benchmarking \n");	
+
    // Write to BRAM
 
 	start_cycle = get_cpu_cycles();
@@ -75,11 +77,11 @@ int main()
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-	printf("#Cycles = %llu \n", return_cycles);
-
 	// Check results
 	
 	check_matmul_uncached(&spm_matrix->hw_result, &spm_matrix->sw_result);
+
+	printf("#Cycles = %llu \n", return_cycles);	
 
 	return 0;
 }

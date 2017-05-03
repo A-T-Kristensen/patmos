@@ -160,7 +160,9 @@ void _Pragma ( "entrypoint" ) matrix1_main( void )
 int main( void )
 {
   static unsigned long long start_cycle, stop_cycle, calibration; 
-  static unsigned long long return_cycles = 0;    
+  static unsigned long long return_cycles = 0;   
+
+  printf("Benchmarking \n");   
 
   start_cycle = get_cpu_cycles();
   stop_cycle = get_cpu_cycles();
@@ -176,7 +178,7 @@ int main( void )
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-calibration;
-  printf("#Cycles = %llu \n", return_cycles);
+  printf("#Cycles = %llu \n", return_cycles); 
 
   return 0;
 }

@@ -29,7 +29,7 @@ int main()
 	int a_bank0 = 0; // Start bank
 	int b_bank0 = factor;	
 
-	printf("HWA Running \n");
+	printf("Benchmarking \n");
 
 	// Initialize matrices
 
@@ -67,11 +67,11 @@ int main()
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-	printf("#Cycles = %llu \n", return_cycles);
-
 	// Check results
 
 	err_cnt = check_matmul(hw_result, sw_result);
+
+	printf("#Cycles = %llu \n", return_cycles);	
 
 	return 0;
 }

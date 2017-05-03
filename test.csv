@@ -1,0 +1,9 @@
+,NBANKS=3,,hwa_matmul_nb
+,,4x4,1041.0
+Type=float,NBANKS=5,16x16,11653.0
+,,4x4,1006.0
+,NBANKS=3,16x16,10752.0
+,,4x4,996.0
+Type=int,NBANKS=5,16x16,12099.0
+,,4x4,1014.0
+,,16x16,10682.0

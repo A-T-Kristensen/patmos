@@ -1,13 +1,11 @@
 /*
 
-  This is a modified version of the matrix1.c program from 
-  the TACLeBench benchmark suite Version V 1.x.
-
+  This program is part of the TACLeBench benchmark suite.
+  Version V 1.x
 
   Name: matrix1
 
-  Author: Juan Martinez Velarde (original author)
-          Andreas T. Kristensen (s144026@student.dtu.dk)
+  Author: Juan Martinez Velarde
 
   Function: Generic matrix - multiply benchmarking
 
@@ -57,50 +55,53 @@
 
 */
 
-#include "hwa_lib.h"
-
 
 /*
   Macro definitions
 */
 
-#define X DIM /* first dimension of array A */
-#define Y DIM /* second dimension of array A, first dimension of array B */
-#define Z DIM /* second dimension of array B */
+#define X 11 /* first dimension of array A */
+#define Y 11 /* second dimension of array A, first dimension of array B */
+#define Z 11 /* second dimension of array B */
+
 
 /*
   Forward declaration of functions
 */
 
-void matrix1_pin_down( mat_type A[], mat_type B[], mat_type C[] );
+void matrix1_pin_down( int A[], int B[], int C[] );
 void matrix1_init( void );
 void matrix1_main( void );
 int main( void );
+
 
 /*
   Declaration of global variables
 */
 
-mat_type matrix1_A[X * Y];
-mat_type matrix1_B[Y * Z];
-mat_type matrix1_C[X * Z];
+int matrix1_A[X * Y];
+int matrix1_B[Y * Z];
+int matrix1_C[X * Z];
 
 
 /*
   Initialization functions
 */
 
-void matrix1_pin_down( mat_type A[], mat_type B[], mat_type C[] )
+void matrix1_pin_down( int A[], int B[], int C[] )
 {
   int i;
-  volatile mat_type x = 1;
+  volatile int x = 1;
 
+  _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < X * Y; i++ )
     A[i] = x ;
 
+  _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < Y * Z ; i++ )
     B[i] = x ;
 
+  _Pragma( "loopbound min 100 max 100" )
   for ( i = 0 ; i < X * Z ; i++ )
     C[i] = 0 ;
 }
@@ -120,6 +121,7 @@ int matrix1_return( void )
   int i;
   int checksum = 0;
 
+    _Pragma( "loopbound min 100 max 100" )
     for ( i = 0; i <= X*Z; i++ )
       checksum += matrix1_C[i];
 
@@ -131,21 +133,24 @@ int matrix1_return( void )
   Main functions
 */
 
-void matrix1_main( void )
+void _Pragma ( "entrypoint" ) matrix1_main( void )
 {
-  register mat_type *p_a = &matrix1_A[0]; // It also fails without register
-  register mat_type *p_b = &matrix1_B[0];
-  register mat_type *p_c = &matrix1_C[0];
+  register int *p_a = &matrix1_A[0];
+  register int *p_b = &matrix1_B[0];
+  register int *p_c = &matrix1_C[0];
 
-  int f, i, k;
+  register int f, i, k;
 
+  _Pragma( "loopbound min 10 max 10" )
   for ( k = 0; k < Z; k++ ) {
     p_a = &matrix1_A[0];                /* point to the beginning of array A */
 
+    _Pragma( "loopbound min 10 max 10" )
     for ( i = 0; i < X; i++ ) {
       p_b = &matrix1_B[k * Y];          /* take next column */
 
       *p_c = 0;
+      _Pragma( "loopbound min 10 max 10" )
       for ( f = 0; f < Y; f++ ) /* do multiply */
         *p_c += *p_a++ * *p_b++;
 
@@ -157,25 +162,8 @@ void matrix1_main( void )
 
 int main( void )
 {
-  static unsigned long long start_cycle, stop_cycle, calibration; 
-  static unsigned long long return_cycles = 0;    
-
-  printf("Benchmarking \n");  
-
-  start_cycle = get_cpu_cycles();
-  stop_cycle = get_cpu_cycles();
-  calibration = stop_cycle-start_cycle;
-
   matrix1_init();
-
-  start_cycle = get_cpu_cycles();
-
   matrix1_main();
 
-  stop_cycle = get_cpu_cycles();
-  return_cycles = stop_cycle-start_cycle-calibration;
-
-  printf("#Cycles = %llu \n", return_cycles); 
-
-  return 0;
+  return matrix1_return();
 }

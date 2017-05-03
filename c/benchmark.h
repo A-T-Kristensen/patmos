@@ -1,3 +1,3 @@
 #define DIM 	16
-#define NBANKS 	3
-typedef float mat_type;
+#define NBANKS 	5
+typedef int mat_type;
