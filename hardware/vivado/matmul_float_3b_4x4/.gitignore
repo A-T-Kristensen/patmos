@@ -5,17 +5,17 @@ matmul_float.runs/ddr2_ctrl_synth_1
 matmul_float.runs/impl_1
 matmul_float.runs/.jobs
 
-matmul_float.runs/*.bat
-matmul_float.runs/*.js
-matmul_float.runs/*.log
-matmul_float.runs/*.rst
-matmul_float.runs/*.os
-matmul_float.runs/*.sh
-matmul_float.runs/*.tcl
-matmul_float.runs/*.txt
-matmul_float.runs/*.vds
-matmul_float.runs/*.xdc
-matmul_float.runs/*.xml
+matmul_float.runs/synth_1/*.bat
+matmul_float.runs/synth_1/*.js
+matmul_float.runs/synth_1/*.log
+matmul_float.runs/synth_1/*.rst
+matmul_float.runs/synth_1/*.os
+matmul_float.runs/synth_1/*.sh
+matmul_float.runs/synth_1/*.tcl
+matmul_float.runs/synth_1/*.txt
+matmul_float.runs/synth_1/*.vds
+matmul_float.runs/synth_1/*.xdc
+matmul_float.runs/synth_1/*.xml
 
 matmul_float.sim/
 *.str
