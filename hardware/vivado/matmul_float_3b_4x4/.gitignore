@@ -6,14 +6,18 @@ matmul_float.runs/synth_1
 matmul_float.runs/.jobs
 
 matmul_float.runs/impl_1/*.bat
+matmul_float.runs/impl_1/*.dcp
 matmul_float.runs/impl_1/*.js
 matmul_float.runs/impl_1/*.log
 matmul_float.runs/impl_1/*.html
 matmul_float.runs/impl_1/*.rst
 matmul_float.runs/impl_1/*.os
+matmul_float.runs/impl_1/*.pb
 matmul_float.runs/impl_1/*.sh
+matmul_float.runs/impl_1/*.rpx
 matmul_float.runs/impl_1/*.tcl
 matmul_float.runs/impl_1/*.txt
+matmul_float.runs/impl_1/*.vdi
 matmul_float.runs/impl_1/*.vds
 matmul_float.runs/impl_1/*.xdc
 matmul_float.runs/impl_1/*.xml
