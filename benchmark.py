@@ -68,7 +68,7 @@ def matmul(synth = 0, hw_test = 0):
     # appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
     #                "tacle_matrix1_spm", "tacle_matrix1_uncached"]
 
-    nbanksList  = [3]
+    nbanksList  = [5]
     dimList     = [4]
     valsType    = ["float"]
     appList     = ["hwa_matmul_nb"]                   
