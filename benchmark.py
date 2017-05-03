@@ -122,6 +122,7 @@ def matmul(synth = 0, hw_test = 0):
                     # We now try to do the benchmarking
 
                     retries = 2          
+                    num_cycles = i
 
                     while retries > 0:
 
@@ -157,27 +158,24 @@ def matmul(synth = 0, hw_test = 0):
 
 	                    print("The number of cycles is: %d" % (num_cycles))
 
-	                    dataArray[k+j*len(nbanksList) + i \
-	                               * len(nbanksList) * len(dimList)][g] = num_cycles
+	                    dataArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = num_cycles
 
 	                    # Add {dim}x{dim} (e.g. 4x4)
+                        # add 1 is for alignment                       
 
-	                    csv_rows[k + j * len(nbanksList) + i \
-	                               * len(nbanksList) * len(dimList) + 1][2] \
+	                    csv_rows[k + j * len(dimList) + i * len(nbanksList) * len(dimList) + 1][2] \
 	                               = ('{dim}x{dim}').format(dim=dimList[k])   
 
             # Add NBANKS={nbank} (e.g. NBANKS=5)                                   
-            # subtract 1 is for alignment
+            # add 2 is for alignment
 
-            csv_rows[k + j * len(nbanksList) + i \
-                       * len(nbanksList) * len(dimList) - 1][1] \
+            csv_rows[k + j * len(dimList) + i * len(nbanksList) * len(dimList) - len(dimList) + 2][1] \
                        = ('NBANKS={nbank}').format(nbank = nbanksList[j])
 
         # Add Type={type} (e.g. Type=int)                                   
-        # subtract ? is for alignment                       
+        # add 1 is for alignment                       
 
-        csv_rows[k + j * len(nbanksList) + i \
-                   * len(nbanksList) * len(dimList)][0] \
+        csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
                    = ('Type={type}').format(type = valsType[i])                       
 
     # Print the dataArray
@@ -192,7 +190,7 @@ def matmul(synth = 0, hw_test = 0):
 
     dataOut = np.hstack((csv_rows, dataOut))
 
-    np.savetxt('test.out', dataOut, delimiter=',', fmt='%s') 
+    np.savetxt('test.csv', dataOut, delimiter=',', fmt='%s') 
 
 
 def main(): 
