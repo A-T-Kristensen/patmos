@@ -9,6 +9,7 @@ LIBMP=$(BUILDDIR)/libmp.a
 LIBCORETHREAD=$(BUILDDIR)/libcorethread.a
 LIBETH=$(BUILDDIR)/libeth.a
 LIBAUDIO=$(BUILDDIR)/libaudio.a
+LIBSHA=$(BUILDDIR)/libsha.a
 LIBELF=$(BUILDDIR)/libelf.a
 
 NOCINIT?=cmp/nocinit.c
@@ -77,9 +78,9 @@ $(BUILDDIR)/%.o: %.c Makefile
 	$(CC) $(CFLAGS) -c -o $@ $(filter %.c,$^)
 
 # A target for regular applications
-$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBELF) Makefile
+$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBSHA) $(LIBELF) Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lsha
 
 $(BUILDDIR)/%.s: %.c Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
@@ -166,6 +167,24 @@ $(BUILDDIR)/libaudio/dsp_algorithms.o: libaudio/dsp_algorithms.h
 $(BUILDDIR)/libaudio/audio.o: libaudio/audio.h libaudio/audioinit.h libaudio/latencyinit.h
 $(LIBAUDIO): $(BUILDDIR)/libaudio/dsp_algorithms.o $(BUILDDIR)/libaudio/audio.o
 	patmos-ar r $@ $^
+
+#library for sha
+.PHONY: libsha 
+libsha: $(LIBSHA) # Add for all
+$(LIBSHA): $(patsubst libsha/%.c,$(BUILDDIR)/libsha/%.o,$(wildcard libsha/*.c))
+	patmos-ar r $@ $^	
+
+# #library for sha
+# .PHONY: libsha 
+# libsha: $(LIBSHA) # Add for all
+# $(BUILDDIR)/libsha/
+# $(BUILDDIR)/libsha/
+# $(BUILDDIR)/libsha/
+# $(BUILDDIR)/libsha/
+# $(BUILDDIR)/libsha/
+
+# $(LIBSHA): $(patsubst libsha/%.c,$(BUILDDIR)/libsha/%.o,$(wildcard libsha/*.c))
+# 	patmos-ar r $@ $^
 
 # library for parsing ELF files
 .PHONY: libelf
