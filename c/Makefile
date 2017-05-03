@@ -78,6 +78,7 @@ $(BUILDDIR)/%.o: %.c Makefile
 	$(CC) $(CFLAGS) -c -o $@ $(filter %.c,$^)
 
 # A target for regular applications
+# Add you application here
 $(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBSHA) $(LIBELF) Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lsha
