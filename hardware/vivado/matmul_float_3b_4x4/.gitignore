@@ -19,6 +19,7 @@ matmul_float.runs/impl_1/*.tcl
 matmul_float.runs/impl_1/*.txt
 matmul_float.runs/impl_1/*.vdi
 matmul_float.runs/impl_1/*.vds
+matmul_float.runs/impl_1/*.wdf
 matmul_float.runs/impl_1/*.xdc
 matmul_float.runs/impl_1/*.xml
 
