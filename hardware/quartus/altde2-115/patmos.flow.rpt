@@ -1,0 +1,130 @@
+Flow report for patmos
+Wed Mar  8 11:02:16 2017
+Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2016  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++------------------------------------+---------------------------------------------+
+; Flow Status                        ; Successful - Wed Mar  8 11:02:04 2017       ;
+; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
+; Revision Name                      ; patmos                                      ;
+; Top-level Entity Name              ; patmos_top                                  ;
+; Family                             ; Cyclone IV E                                ;
+; Device                             ; EP4CE115F29C7                               ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 15,931 / 114,480 ( 14 % )                   ;
+;     Total combinational functions  ; 14,834 / 114,480 ( 13 % )                   ;
+;     Dedicated logic registers      ; 5,804 / 114,480 ( 5 % )                     ;
+; Total registers                    ; 5880                                        ;
+; Total pins                         ; 57 / 529 ( 11 % )                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 2,208,576 / 3,981,312 ( 55 % )              ;
+; Embedded Multiplier 9-bit elements ; 8 / 532 ( 2 % )                             ;
+; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
++------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 03/08/2017 10:57:01 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; patmos              ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 52231630650.148896702161749            ; --            ; --          ; --         ;
+; CYCLONEII_OPTIMIZATION_TECHNIQUE    ; Speed                                  ; Balanced      ; --          ; --         ;
+; FITTER_EFFORT                       ; Standard Fit                           ; Auto Fit      ; --          ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; patmos_top  ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; patmos_top  ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; patmos_top  ; Top        ;
+; PHYSICAL_SYNTHESIS_COMBO_LOGIC      ; On                                     ; Off           ; --          ; --         ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --         ;
+; SEED                                ; 6                                      ; 1             ; --          ; --         ;
+; TOP_LEVEL_ENTITY                    ; patmos_top                             ; patmos        ; --          ; --         ;
+; VERILOG_MACRO                       ; SYNTHESIS=<None>                       ; --            ; --          ; --         ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:01:15     ; 1.0                     ; 1277 MB             ; 00:01:18                           ;
+; Fitter                    ; 00:03:32     ; 1.0                     ; 1578 MB             ; 00:04:44                           ;
+; Assembler                 ; 00:00:12     ; 1.0                     ; 899 MB              ; 00:00:06                           ;
+; TimeQuest Timing Analyzer ; 00:00:12     ; 1.4                     ; 1113 MB             ; 00:00:12                           ;
+; Total                     ; 00:05:11     ; --                      ; --                  ; 00:06:20                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++---------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                             ;
++---------------------------+------------------+----------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name        ; OS Version ; Processor type ;
++---------------------------+------------------+----------------+------------+----------------+
+; Analysis & Synthesis      ; ubuntu           ; Ubuntu 16.04.2 ; 16         ; x86_64         ;
+; Fitter                    ; ubuntu           ; Ubuntu 16.04.2 ; 16         ; x86_64         ;
+; Assembler                 ; ubuntu           ; Ubuntu 16.04.2 ; 16         ; x86_64         ;
+; TimeQuest Timing Analyzer ; ubuntu           ; Ubuntu 16.04.2 ; 16         ; x86_64         ;
++---------------------------+------------------+----------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map quartus/altde2-115/patmos
+quartus_fit quartus/altde2-115/patmos
+quartus_asm quartus/altde2-115/patmos
+quartus_sta quartus/altde2-115/patmos
+
+
+
