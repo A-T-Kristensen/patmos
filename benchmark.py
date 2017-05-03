@@ -68,9 +68,9 @@ def matmul(synth = 0, hw_test = 0):
     # appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
     #                "tacle_matrix1_spm", "tacle_matrix1_uncached"]
 
-    nbanksList  = [3, 5]
-    dimList     = [4, 16]
-    valsType    = ["float", "int"]
+    nbanksList  = [3]
+    dimList     = [4]
+    valsType    = ["float"]
     appList     = ["hwa_matmul_nb"]                   
 
     # Measurements will be stored in the dataArray
@@ -156,18 +156,20 @@ def matmul(synth = 0, hw_test = 0):
                             print(result)
                             continue
 
-                    # Success
+                    if retries > 0:
 
-                    print("The number of cycles is: %d" % (num_cycles))
+	                    # Success
 
-                    dataArray[k+j*len(nbanksList) + i \
-                               * len(nbanksList) * len(dimList)][g] = num_cycles
+	                    print("The number of cycles is: %d" % (num_cycles))
 
-                    # Add {dim}x{dim} (e.g. 4x4)
+	                    dataArray[k+j*len(nbanksList) + i \
+	                               * len(nbanksList) * len(dimList)][g] = num_cycles
 
-                    csv_rows[k + j * len(nbanksList) + i \
-                               * len(nbanksList) * len(dimList) + 1][2] \
-                               = ('{dim}x{dim}').format(dim=dimList[k])   
+	                    # Add {dim}x{dim} (e.g. 4x4)
+
+	                    csv_rows[k + j * len(nbanksList) + i \
+	                               * len(nbanksList) * len(dimList) + 1][2] \
+	                               = ('{dim}x{dim}').format(dim=dimList[k])   
 
             # Add NBANKS={nbank} (e.g. NBANKS=5)                                   
             # subtract 1 is for alignment
@@ -200,7 +202,7 @@ def matmul(synth = 0, hw_test = 0):
 
 def main(): 
 
-    matmul(synth = 0, hw_test = 0)
+    matmul(synth = 1, hw_test = 0)
 
 if __name__ == "__main__":
     sys.exit(main())    
