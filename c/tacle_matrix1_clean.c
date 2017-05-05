@@ -83,9 +83,9 @@ make: *** [download] Error 255
 
 */
 
-#define X 12 /* first dimension of array A */
-#define Y 12 /* second dimension of array A, first dimension of array B */
-#define Z 12 /* second dimension of array B */
+#define X 10 /* first dimension of array A */
+#define Y 10 /* second dimension of array A, first dimension of array B */
+#define Z 10 /* second dimension of array B */
 
 
 /*
@@ -104,7 +104,6 @@ int main( void );
 int matrix1_A[X * Y];
 int matrix1_B[Y * Z];
 int matrix1_C[X * Z];
-
 
 /*
   Initialization functions
