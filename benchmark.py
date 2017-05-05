@@ -150,7 +150,10 @@ def matmul(synth = 0, hw_test = 0):
                             retries = retries - 1
                             print("Error when getting the number of cycles")
                             print(result)
-                            continue
+                            if synth == 0:
+                                continue
+                            else:
+                                break
 
                     if retries > 0:
 
@@ -190,12 +193,160 @@ def matmul(synth = 0, hw_test = 0):
 
     dataOut = np.hstack((csv_rows, dataOut))
 
-    np.savetxt('test.csv', dataOut, delimiter=',', fmt='%s') 
+    np.savetxt('matmul.csv', dataOut, delimiter=',', fmt='%s') 
+
+def minver(synth = 0, hw_test = 0):
+
+    # This string is printed if HwA is correct
+
+    correct_str = "Results correct";
+
+    # These lists holds the definitions for the
+    # defines and typedefs to be changed
+
+    keywordsDefine  = ["DIM","NBANKS"]
+    keywordsTypes   = ["mat_type;","vec_type;"]    
+
+    # These values define the parameter space to explore for matrix multiplication
+
+    nbanksList  = [1]
+    dimList     = [16]
+    valsType    = ["float"]
+    appList     = ["minver"]               
+
+    # Measurements will be stored in the dataArray
+
+    dataArray = np.zeros([len(valsType) * len(dimList) * len(nbanksList), len(appList)])
+
+    # Add 1 since it will be horizontally stacked later
+    # max string length of 10
+
+    csv_rows = np.zeros([len(valsType) * len(dimList) * len(nbanksList) + 1, 3], dtype = "S10") 
+
+    for i in range(0, len(valsType)):               # Iterate over data type (float/int)
+        for j in range(0, len(nbanksList)):         # Iterate over number of banks
+            for k in range(0, len(dimList)):        # Iterate over matrix dimensions
+                for g in range(0, len(appList)):    # Iterate over apps      
+
+                    # Get the current iteration options      
+
+                    app = appList[g]
+
+                    valsDefine = [dimList[k], nbanksList[j]]
+
+                    # Update the benchmark.h file
+
+                    update_header(keywordsDefine, valsDefine, keywordsTypes[0], valsType[i])   
+
+                    # Project name string
+                    
+                    project = ('minver_{type}_{nbank}b_{dim}x{dim}') \
+                              .format(type = valsType[i], nbank=nbanksList[j], dim=dimList[k])
+
+                    # cmd based on function options
+
+                    if synth == 1:
+                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                               'HWA_PROJECT={prj} '
+                               'APP={app} '
+                               'comp hwa_synth hwa_config download') \
+                                .format(prj=project, app = app)
+                    else:                   
+                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                               'HWA_PROJECT={prj} '
+                               'APP={app} '
+                               'comp hwa_config download') \
+                                .format(prj=project, app = app)          
+
+
+                    print("\n*******************************************")
+                    print("Minver: type = %s, NBANKS = %d, DIM = %d\n" \
+                          % (valsType[i], nbanksList[j], dimList[k]))
+                    print("APP: %s" % (app))                    
+                    print("*******************************************\n")                
+
+                    # We now try to do the benchmarking
+
+                    retries = 2          
+                    num_cycles = i
+
+                    while retries > 0:
+
+                        result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)
+                        result = result.stdout.decode('utf-8') # Grab stdout
+
+                        if hw_test:
+                            if not correct_str.find(result):
+                                print("Error:")
+                            else:
+                                print("Correct")
+
+                        # Grab everything after "#Cycles ="
+                        test_out = (result.partition("#Cycles = ")[2])
+
+                        # Try to see if we got a result
+
+                        try:
+
+                            num_cycles = int(test_out)
+                            break
+
+                        except:
+
+                            retries = retries - 1
+                            print("Error when getting the number of cycles")
+                            print(result)
+
+                            if synth == 0:
+                                continue
+                            else:
+                                break
+
+                    if retries > 0:
+
+                        # Success
+
+                        print("The number of cycles is: %d" % (num_cycles))
+
+                        dataArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = num_cycles
+
+                        # Add {dim}x{dim} (e.g. 4x4)
+                        # add 1 is for alignment                       
+
+                        csv_rows[k + j * len(dimList) + i * len(nbanksList) * len(dimList) + 1][2] \
+                                   = ('{dim}x{dim}').format(dim=dimList[k])   
+
+            # Add NBANKS={nbank} (e.g. NBANKS=5)                                   
+            # add 2 is for alignment
+
+            csv_rows[k + j * len(dimList) + i * len(nbanksList) * len(dimList) - len(dimList) + 2][1] \
+                       = ('NBANKS={nbank}').format(nbank = nbanksList[j])
+
+        # Add Type={type} (e.g. Type=int)                                   
+        # add 1 is for alignment                       
+
+        csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
+                   = ('Type={type}').format(type = valsType[i])                       
+
+    # Print the dataArray
+
+    print(dataArray)
+
+    # We now vertically stack the appList first and then the dataArray
+
+    dataOut = np.vstack((appList, dataArray))
+
+    # We now horizontally stack the data with csv_rows.
+
+    dataOut = np.hstack((csv_rows, dataOut))
+
+    np.savetxt('minver.csv', dataOut, delimiter=',', fmt='%s')     
 
 
 def main(): 
 
-    matmul(synth = 0, hw_test = 0)
+    #matmul(synth = 0, hw_test = 0)
+    minver(synth = 0, hw_test = 0)
 
 if __name__ == "__main__":
     sys.exit(main())    

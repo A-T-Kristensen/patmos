@@ -542,6 +542,7 @@ begin
 		ap_done 	=> hwACtrl_ap_done_in,
 		ap_idle 	=> hwACtrl_ap_idle_in,
 		ap_ready 	=> hwACtrl_ap_ready_in,
+		
 		a_Addr_A 	=> hwa_addr_i(0).addr,
 		a_EN_A  	=> open,
 		a_WEN_A		=> bram_m_i(0).wr,

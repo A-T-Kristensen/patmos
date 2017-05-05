@@ -175,17 +175,6 @@ libsha: $(LIBSHA) # Add for all
 $(LIBSHA): $(patsubst libsha/%.c,$(BUILDDIR)/libsha/%.o,$(wildcard libsha/*.c))
 	patmos-ar r $@ $^	
 
-# #library for sha
-# .PHONY: libsha 
-# libsha: $(LIBSHA) # Add for all
-# $(BUILDDIR)/libsha/
-# $(BUILDDIR)/libsha/
-# $(BUILDDIR)/libsha/
-# $(BUILDDIR)/libsha/
-# $(BUILDDIR)/libsha/
-
-# $(LIBSHA): $(patsubst libsha/%.c,$(BUILDDIR)/libsha/%.o,$(wildcard libsha/*.c))
-# 	patmos-ar r $@ $^
 
 # library for parsing ELF files
 .PHONY: libelf
