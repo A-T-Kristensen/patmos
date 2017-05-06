@@ -57,8 +57,7 @@
 
 */
 
-#include "hwa_lib.h"
-
+#include "libhwa/hwa_lib.h"
 
 /*
   Macro definitions
@@ -174,6 +173,7 @@ int main( void )
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-calibration;
+
 
   printf("#Cycles = %llu \n", return_cycles); 
 

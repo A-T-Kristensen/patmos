@@ -7,7 +7,10 @@
  *	Copyright: DTU, BSD License
  */
 
-#include "hwa_lib.h"
+#include "libhwa/hwa_lib.h"
+#include "libmatmul/matmul_hwa.h"
+#include "libhwa/hwa_bram.h"
+#include "libhwa/hwa_test.h"
 
 struct matrix {
     mat_type mat_a[DIM][DIM];

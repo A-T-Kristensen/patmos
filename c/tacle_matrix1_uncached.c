@@ -60,7 +60,7 @@
   Macro definitions
 */
 
-#include "hwa_lib.h"
+#include "libhwa/hwa_lib.h"
 
 #define X DIM /* first dimension of array A */
 #define Y DIM /* second dimension of array A, first dimension of array B */

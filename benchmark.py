@@ -16,7 +16,7 @@ import numpy as np
 
 def update_header(keywordsDefine, valsDefine, keywordsTypes, valsType):
 
-    with open('c/benchmark.h','r') as f1, open('c/benchmark.xh','w') as f2:
+    with open('c/libhwa/benchmark.h','r') as f1, open('c/libhwa/benchmark.xh','w') as f2:
 
         for line in f1:
 
@@ -43,8 +43,8 @@ def update_header(keywordsDefine, valsDefine, keywordsTypes, valsType):
     f1.close()
     f2.close()
 
-    os.remove('c/benchmark.h')
-    os.rename('c/benchmark.xh', 'c/benchmark.h')    
+    os.remove('c/libhwa/benchmark.h')
+    os.rename('c/libhwa/benchmark.xh', 'c/libhwa/benchmark.h')    
 
 # Benchmarking of matrix multiplication, allows for enabling of synthesis
 

@@ -10,6 +10,8 @@ LIBCORETHREAD=$(BUILDDIR)/libcorethread.a
 LIBETH=$(BUILDDIR)/libeth.a
 LIBAUDIO=$(BUILDDIR)/libaudio.a
 LIBSHA=$(BUILDDIR)/libsha.a
+LIBHWA=$(BUILDDIR)/libhwa.a
+LIBMATMUL=$(BUILDDIR)/libmatmul.a
 LIBELF=$(BUILDDIR)/libelf.a
 
 NOCINIT?=cmp/nocinit.c
@@ -79,9 +81,11 @@ $(BUILDDIR)/%.o: %.c Makefile
 
 # A target for regular applications
 # Add you application here
-$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBSHA) $(LIBELF) Makefile
+# added -lm ad the end due to issues with math library
+# -lhwa should be compiled before everything else that you run on the FPGA
+$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBHWA) $(LIBSHA) $(LIBMATMUL) $(LIBELF) Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lsha
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lhwa -lsha -lmatmul -lm
 
 $(BUILDDIR)/%.s: %.c Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
@@ -173,6 +177,18 @@ $(LIBAUDIO): $(BUILDDIR)/libaudio/dsp_algorithms.o $(BUILDDIR)/libaudio/audio.o
 .PHONY: libsha 
 libsha: $(LIBSHA) # Add for all
 $(LIBSHA): $(patsubst libsha/%.c,$(BUILDDIR)/libsha/%.o,$(wildcard libsha/*.c))
+	patmos-ar r $@ $^	
+
+#library for hwa
+.PHONY: libhwa 
+libhwa: $(LIBHWA) # Add for all
+$(LIBHWA): $(patsubst libhwa/%.c,$(BUILDDIR)/libhwa/%.o,$(wildcard libhwa/*.c))
+	patmos-ar r $@ $^	
+
+#library for matmul
+.PHONY: libmatmul 
+libmatmul: $(LIBMATMUL) # Add for all
+$(LIBMATMUL): $(patsubst libmatmul/%.c,$(BUILDDIR)/libmatmul/%.o,$(wildcard libmatmul/*.c))
 	patmos-ar r $@ $^	
 
 

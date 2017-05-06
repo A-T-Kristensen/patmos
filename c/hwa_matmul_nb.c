@@ -7,7 +7,10 @@
  *	Copyright: DTU, BSD License
  */
 
-#include "hwa_lib.h"
+#include "libhwa/hwa_lib.h"
+#include "libmatmul/matmul_hwa.h"
+#include "libhwa/hwa_bram.h"
+#include "libhwa/hwa_test.h"
 
 int main() 
 {
@@ -63,7 +66,8 @@ int main()
     {
         *((&hw_result[0][0]) + i) = *(bank_ptr_array[NBANKS-1] + i);
     }    
-	
+
+
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
