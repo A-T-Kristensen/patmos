@@ -212,7 +212,7 @@ def minver(synth = 0, hw_test = 0):
     nbanksList  = [1, 2, 4]
     dimList     = [4, 16, 32]
     valsType    = ["float"]
-    appList     = ["hwa_minver"]               
+    appList     = ["hwa_minver", "tacle_minver"]               
 
     # Measurements will be stored in the dataArray
 

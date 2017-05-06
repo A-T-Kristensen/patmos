@@ -70,7 +70,7 @@ void minver_main()
     }
   }
 
-  printf("Benchmarking \n", DIM);
+  printf("Benchmarking \n");
 
   //start_cycle = get_cpu_cycles();
 
@@ -103,7 +103,7 @@ void minver_main()
   check_minver(minver_hw_i, minver_sw_i);
 
   printf("#Cycles = %llu \n", return_cycles);  
-  
+
 
 }
 

@@ -31,6 +31,7 @@
 */
 
 #include "libhwa/hwa_lib.h"
+#include "libhwa/hwa_lib.h"
 #include "libminver/minver_init.h"
 
 int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps );
@@ -163,6 +164,7 @@ void minver_main()
 {
   int i, j;
   mat_type eps;
+  unsigned long long start_cycle, stop_cycle, return_cycles;  
 
   mat_type minver_a[ DIM ][ DIM ];
   mat_type minver_b[ DIM ][ DIM ];
@@ -172,12 +174,6 @@ void minver_main()
 
   set_minver(minver_a, DIM);
 
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      printf("%f ", minver_a[i][j]);
-    }
-    printf("\n");    
-  }   
   
 
   eps = 1.0e-6;
@@ -186,18 +182,21 @@ void minver_main()
       minver_aa[ i ][ j ] = minver_a[ i ][ j ];
   }
 
+  start_cycle = get_cpu_cycles();
+  
+
   minver_minver(minver_a, DIM, eps );
+
+  stop_cycle = get_cpu_cycles();
+  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ )
       minver_a_i[ i ][ j ] = minver_a[ i ][ j ];
   }
 
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      printf("%f ", minver_a_i[i][j]);
-    }
-    printf("\n");    
-  }  
+  printf("#Cycles = %llu \n", return_cycles);  
+
 
 }
 
