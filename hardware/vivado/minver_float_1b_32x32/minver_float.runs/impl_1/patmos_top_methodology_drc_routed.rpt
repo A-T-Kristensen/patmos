@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Sat May  6 16:13:06 2017
+| Date         : Sat May  6 18:25:47 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_methodology -file patmos_top_methodology_drc_routed.rpt -rpx patmos_top_methodology_drc_routed.rpx
 | Design       : patmos_top
@@ -23,12 +23,12 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 155
+             Violations found: 158
 +-----------+----------+-------------------------------------------------+------------+
 | Rule      | Severity | Description                                     | Violations |
 +-----------+----------+-------------------------------------------------+------------+
 | PDRC-190  | Warning  | Suboptimally placed synchronized register chain | 12         |
-| SYNTH-6   | Warning  | Timing of a block RAM might be sub-optimal      | 19         |
+| SYNTH-6   | Warning  | Timing of a block RAM might be sub-optimal      | 22         |
 | SYNTH-12  | Warning  | DSP input not registered                        | 4          |
 | SYNTH-16  | Warning  | Address collision                               | 17         |
 | TIMING-6  | Warning  | No common primary clock between related clocks  | 40         |
@@ -40,62 +40,62 @@ Table of Contents
 -----------------
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[0] in site SLICE_X53Y110 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[0] in site SLICE_X48Y97 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#2 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[10] in site SLICE_X55Y108 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[10] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[10] in site SLICE_X49Y99 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[10] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#3 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[11] in site SLICE_X55Y110 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[11] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[11] in site SLICE_X51Y99 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[11] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#4 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[1] in site SLICE_X57Y108 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[1] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[1] in site SLICE_X48Y95 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[1] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#5 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[2] in site SLICE_X54Y111 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[2] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[2] in site SLICE_X49Y97 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[2] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#6 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[3] in site SLICE_X54Y109 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[3] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[3] in site SLICE_X47Y101 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[3] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#7 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[4] in site SLICE_X56Y108 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[4] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[4] in site SLICE_X47Y97 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[4] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#8 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[5] in site SLICE_X52Y108 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[5] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[5] in site SLICE_X46Y99 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[5] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#9 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[6] in site SLICE_X56Y110 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[6] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[6] in site SLICE_X50Y99 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[6] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#10 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[7] in site SLICE_X55Y106 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[7] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[7] in site SLICE_X47Y99 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[7] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#11 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[8] in site SLICE_X54Y106 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[8] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[8] in site SLICE_X49Y101 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[8] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#12 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[9] in site SLICE_X53Y107 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[9] is not placed in the same (SLICE) site.
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[9] in site SLICE_X48Y100 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[9] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 SYNTH-6#1 Warning
@@ -105,90 +105,105 @@ Related violations: <none>
 
 SYNTH-6#2 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#3 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#4 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#5 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#6 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#7 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/dm/tagMem/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#8 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#9 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#10 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/dm/tagMem/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#11 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#12 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/fetch/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#13 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/fetch/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#14 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/icache/mem/mcacheEven/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#15 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/fetch/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#16 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/fetch/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#17 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/icache/mem/mcacheEven/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#18 Warning
 Timing of a block RAM might be sub-optimal  
-The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+The timing for the instance patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>
 
 SYNTH-6#19 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#20 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#21 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#22 Warning
 Timing of a block RAM might be sub-optimal  
 The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
 Related violations: <none>

@@ -61,12 +61,12 @@ int minver_main()
 
   set_minver(minver_hw, DIM);
 
-  for ( i = 0; i < DIM; i++ ) {
+/*  for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
       printf("%f ", minver_hw[i][j]);
     }
     printf("\n");    
-  }     
+  }    */ 
 
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
@@ -96,7 +96,6 @@ int minver_main()
       *(bank_ptr_array[NBANKS-1] + i) = *((&minver_hw_i[0][0]) + i);
   } 
 
-
   *hls_ptr = 1;
 
   // Poll status of HLS module
@@ -106,10 +105,10 @@ int minver_main()
     // Read back the data  
     // For minver, it is distributed just as the written array  
 
-    for(i = 0; i < DIM*DIM; i++)
-    {
-        *((&minver_hw_i[0][0]) + i) = *(bank_ptr_array[NBANKS-1] + i);
-    } 
+  for(i = 0; i < DIM*DIM; i++)
+  {
+      *((&minver_hw_i[0][0]) + i) = *(bank_ptr_array[NBANKS-1] + i);
+  } 
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
@@ -122,13 +121,21 @@ int minver_main()
     	}
     }
   }
-
+/*
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
       printf("%f ", minver_hw_i[i][j]);
     }
     printf("\n");    
   }   
+
+
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+      printf("%f ", minver_sw_i[i][j]);
+    }
+    printf("\n");    
+  }  */ 
 
   if (err_cnt)
     printf("ERROR: %d\n", err_cnt);

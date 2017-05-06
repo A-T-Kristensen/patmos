@@ -209,7 +209,7 @@ def minver(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
-    nbanksList  = [1, 2, 4]
+    nbanksList  = [2, 4]
     dimList     = [4, 16, 32]
     valsType    = ["float"]
     appList     = ["hwa_minver"]               
@@ -246,13 +246,13 @@ def minver(synth = 0, hw_test = 0):
                     # cmd based on function options
 
                     if synth == 1:
-                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                        cmd = ('make -B COM_PORT?=/dev/ttyUSB1 '
                                'HWA_PROJECT={prj} '
                                'APP={app} '
                                'comp hwa_synth hwa_config download') \
                                 .format(prj=project, app = app)
                     else:                   
-                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                        cmd = ('make -B COM_PORT?=/dev/ttyUSB1 '
                                'HWA_PROJECT={prj} '
                                'APP={app} '
                                'comp hwa_config download') \
@@ -271,8 +271,6 @@ def minver(synth = 0, hw_test = 0):
                     result = result.stdout.decode('utf-8') # Grab stdout
 
                     print(result)
-
-
 
 def main(): 
 
