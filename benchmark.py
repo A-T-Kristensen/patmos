@@ -209,7 +209,7 @@ def minver(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
-    nbanksList  = [2, 4]
+    nbanksList  = [1, 2, 4]
     dimList     = [4, 16, 32]
     valsType    = ["float"]
     appList     = ["hwa_minver"]               
@@ -267,15 +267,84 @@ def minver(synth = 0, hw_test = 0):
 
                     # We now try to do the benchmarking
 
-                    result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)
-                    result = result.stdout.decode('utf-8') # Grab stdout
+                    retries = 2          
+                    num_cycles = i
 
-                    print(result)
+                    while retries > 0:
+
+                        result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)
+                        result = result.stdout.decode('utf-8') # Grab stdout
+
+                        if hw_test:
+                            if not correct_str.find(result):
+                                print("Error:")
+                            else:
+                                print("Correct")
+
+                        # Grab everything after "#Cycles ="
+                        test_out = (result.partition("#Cycles = ")[2])
+
+                        # Try to see if we got a result
+
+                        try:
+
+                            num_cycles = int(test_out)
+                            break
+
+                        except:
+
+                            retries = retries - 1
+                            print("Error when getting the number of cycles")
+                            print(result)
+                            if synth == 0:
+                                continue
+                            else:
+                                break
+
+                    if retries > 0:
+
+                        # Success
+
+                        print("The number of cycles is: %d" % (num_cycles))
+
+                        dataArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = num_cycles
+
+                        # Add {dim}x{dim} (e.g. 4x4)
+                        # add 1 is for alignment                       
+
+                        csv_rows[k + j * len(dimList) + i * len(nbanksList) * len(dimList) + 1][2] \
+                                   = ('{dim}x{dim}').format(dim=dimList[k])   
+
+            # Add NBANKS={nbank} (e.g. NBANKS=5)                                   
+            # add 2 is for alignment
+
+            csv_rows[k + j * len(dimList) + i * len(nbanksList) * len(dimList) - len(dimList) + 2][1] \
+                       = ('NBANKS={nbank}').format(nbank = nbanksList[j])
+
+        # Add Type={type} (e.g. Type=int)                                   
+        # add 1 is for alignment                       
+
+        csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
+                   = ('Type={type}').format(type = valsType[i])                       
+
+    # Print the dataArray
+
+    print(dataArray)
+
+    # We now vertically stack the appList first and then the dataArray
+
+    dataOut = np.vstack((appList, dataArray))
+
+    # We now horizontally stack the data with csv_rows.
+
+    dataOut = np.hstack((csv_rows, dataOut))
+
+    np.savetxt('minver.csv', dataOut, delimiter=',', fmt='%s') 
 
 def main(): 
 
     #matmul(synth = 0, hw_test = 0)
-    minver(synth = 1, hw_test = 0)
+    minver(synth = 0, hw_test = 0)
 
 if __name__ == "__main__":
     sys.exit(main())    

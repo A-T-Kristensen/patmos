@@ -2,6 +2,30 @@
 
 #include "minver.h"
 
+int check_minver(mat_type hw_result[DIM][DIM], 
+                 mat_type sw_result[DIM][DIM]) {
+
+  int i, j, err_cnt = 0;
+
+  for(i = 0; i < DIM; i++){
+    for(j = 0; j < DIM; j++){
+      if(hw_result[i][j] != sw_result[i][j]) {
+        err_cnt++;  
+      }
+    }
+  }
+
+  if(!err_cnt) {
+    puts("Results correct");      
+  } 
+  else {
+    puts("Results incorrect"); 
+  }
+
+    return err_cnt;
+}
+
+
 mat_type minver_fabs(mat_type n) {
   mat_type f;
 

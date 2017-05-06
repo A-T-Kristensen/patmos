@@ -61,17 +61,34 @@ void write_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n,
 				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 /*
-	NAME: read_array()
+	NAME: write_array()
 
 	PARAMETERS:
-		*
-		*
+		* array: the array to be written into the BRAM.
+		* n: the # columns
+		* m: the # rows
+		* factor: Partition factor (partinioned if factor > 1)
+		* array_bank0: First index into bank_ptr_array
+		* bank_ptr_array: Array of pointers to the bram blocks
+		* wr_dim: Dimension of array partitioning (partinioned if factor > 1)
 
-	RETURNS:
+	RETURNS: void
 
-	DESCRIPTION:
+	DESCRIPTION: write_array() writes an array to BRAM blocks.
+				 If factor > 1, array is partitioned.
 	
  */
+
+void read_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_bank0, 
+				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+
+void read_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n, 
+					 int m, int factor, int array_bank0, 
+				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+
+void read_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n, 
+					 int m, int factor, int array_bank0, 
+				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 
 #endif /* __HWA_BRAM_H__ */

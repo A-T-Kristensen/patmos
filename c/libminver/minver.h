@@ -5,6 +5,9 @@
 
 #include "../libhwa/hwa_lib.h"
 
+int check_minver(mat_type hw_result[DIM][DIM], 
+                 mat_type sw_result[DIM][DIM]);
+
 /*
 	NAME: read_array()
 

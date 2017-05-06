@@ -23,7 +23,6 @@ volatile _IODEV unsigned long** bank_ptrs(unsigned long nbanks) {
 	return bank_ptr_array;
 }
 
-
 void write_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_bank0, 
 				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
 
@@ -100,6 +99,87 @@ void write_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n,
 			for(j = 0; j < m/factor; j++){
 				for(k = 0; k < n; k++){
 					*(bank_ptr_array[i + array_bank0] + k + n * j) = (*array)[j + i * m / factor][k];
+				}
+			}
+		}		
+	}
+}
+
+void read_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_bank0, 
+				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+
+	int i, j, k;	
+
+	if (wr_dim == 2) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m; j++){
+				for(k = 0; k < n/factor; k++){
+					array[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor);
+				}
+			}
+		}		
+	} 
+
+	else if (wr_dim == 1) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m/factor; j++){
+				for(k = 0; k < n; k++){
+					array[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j);
+				}
+			}
+		}		
+	}
+}
+
+void read_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n, 
+					 int m, int factor, int array_bank0, 
+				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+
+	int i, j, k;	
+
+	if (wr_dim == 2) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m; j++){
+				for(k = 0; k < n/factor; k++){
+					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor);
+				}
+			}
+		}		
+	} 
+
+	else if (wr_dim == 1) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m/factor; j++){
+				for(k = 0; k < n; k++){
+					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n*j) ;
+				}
+			}
+		}		
+	}
+   	
+}
+
+void read_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n, 
+					 int m, int factor, int array_bank0, 
+				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+
+	int i, j, k;	
+
+	if (wr_dim == 2) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m; j++){
+				for(k = 0; k < n/factor; k++){
+					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i+array_bank0] + k + m * j / factor);
+				}
+			}
+		}		
+	} 
+
+	else if (wr_dim == 1) {
+		for(i = 0; i < factor; i++ ) {
+			for(j = 0; j < m/factor; j++){
+				for(k = 0; k < n; k++){
+					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j);
 				}
 			}
 		}		

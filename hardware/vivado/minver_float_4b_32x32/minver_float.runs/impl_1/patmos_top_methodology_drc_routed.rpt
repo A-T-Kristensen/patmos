@@ -1,0 +1,891 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
+| Date         : Sat May  6 19:42:40 2017
+| Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
+| Command      : report_methodology -file patmos_top_methodology_drc_routed.rpt -rpx patmos_top_methodology_drc_routed.rpx
+| Design       : patmos_top
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 170
++-----------+----------+-------------------------------------------------+------------+
+| Rule      | Severity | Description                                     | Violations |
++-----------+----------+-------------------------------------------------+------------+
+| PDRC-190  | Warning  | Suboptimally placed synchronized register chain | 12         |
+| SYNTH-6   | Warning  | Timing of a block RAM might be sub-optimal      | 34         |
+| SYNTH-12  | Warning  | DSP input not registered                        | 4          |
+| SYNTH-16  | Warning  | Address collision                               | 17         |
+| TIMING-6  | Warning  | No common primary clock between related clocks  | 40         |
+| TIMING-10 | Warning  | Missing property on synchronizer                | 1          |
+| TIMING-18 | Warning  | Missing input or output delay                   | 62         |
++-----------+----------+-------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+PDRC-190#1 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[0] in site SLICE_X57Y97 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#2 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[10] in site SLICE_X56Y94 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[10] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#3 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[11] in site SLICE_X59Y100 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[11] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#4 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[1] in site SLICE_X58Y98 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[1] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#5 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[2] in site SLICE_X58Y95 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[2] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#6 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[3] in site SLICE_X55Y97 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[3] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#7 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[4] in site SLICE_X61Y97 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[4] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#8 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[5] in site SLICE_X56Y96 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[5] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#9 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[6] in site SLICE_X60Y98 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[6] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#10 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[7] in site SLICE_X58Y100 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[7] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#11 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[8] in site SLICE_X59Y98 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[8] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#12 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_sync_r5_reg[9] in site SLICE_X59Y96 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/temp_mon_enabled.u_tempmon/device_temp_r_reg[9] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+SYNTH-6#1 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance minver_hwa_inst_0/work_U/minver_hwa_work_ram_U/ram_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#3 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#4 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#5 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#6 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#7 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#8 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#9 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#10 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#11 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#12 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#13 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#14 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[3].bram_array/mem_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#15 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[3].bram_array/mem_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#16 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[3].bram_array/mem_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#17 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance n_bank_inst_0/bram_gen[3].bram_array/mem_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#18 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#19 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#20 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#21 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#22 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/dm/tagMem/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#23 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#24 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#25 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#26 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/dcache/sc/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#27 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/fetch/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#28 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/fetch/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#29 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/icache/mem/mcacheEven/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#30 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#31 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#32 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_1/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#33 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_2/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#34 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_3/mem_reg, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-12#1 Warning
+DSP input not registered  
+DSP instance patmos_inst_0/core/execute/T431 is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+SYNTH-12#2 Warning
+DSP input not registered  
+DSP instance patmos_inst_0/core/execute/mulHLReg_reg is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+SYNTH-12#3 Warning
+DSP input not registered  
+DSP instance patmos_inst_0/core/execute/mulLHReg_reg is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+SYNTH-12#4 Warning
+DSP input not registered  
+DSP instance patmos_inst_0/core/execute/mulLLReg_reg is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+SYNTH-16#1 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/dm/MemBlock/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#2 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/dm/MemBlock_1/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#3 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/dm/MemBlock_2/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#4 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/dm/MemBlock_3/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#5 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/dm/tagMem/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#6 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/sc/MemBlock/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#7 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/sc/MemBlock_1/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#8 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/sc/MemBlock_2/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#9 Warning
+Address collision  
+Block RAM patmos_inst_0/core/dcache/sc/MemBlock_3/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#10 Warning
+Address collision  
+Block RAM patmos_inst_0/core/fetch/MemBlock/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#11 Warning
+Address collision  
+Block RAM patmos_inst_0/core/fetch/MemBlock_1/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#12 Warning
+Address collision  
+Block RAM patmos_inst_0/core/icache/mem/mcacheEven/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#13 Warning
+Address collision  
+Block RAM patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#14 Warning
+Address collision  
+Block RAM patmos_inst_0/core/iocomp/spm/MemBlock/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#15 Warning
+Address collision  
+Block RAM patmos_inst_0/core/iocomp/spm/MemBlock_1/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#16 Warning
+Address collision  
+Block RAM patmos_inst_0/core/iocomp/spm/MemBlock_2/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#17 Warning
+Address collision  
+Block RAM patmos_inst_0/core/iocomp/spm/MemBlock_3/mem_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+TIMING-6#1 Warning
+No common primary clock between related clocks  
+The clocks clk_out_1_clk_manager and clk_out_1_clk_manager_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out_1_clk_manager] -to [get_clocks clk_out_1_clk_manager_1]
+Related violations: <none>
+
+TIMING-6#2 Warning
+No common primary clock between related clocks  
+The clocks clk_out_1_clk_manager_1 and clk_out_1_clk_manager are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out_1_clk_manager_1] -to [get_clocks clk_out_1_clk_manager]
+Related violations: <none>
+
+TIMING-6#3 Warning
+No common primary clock between related clocks  
+The clocks clk_out_2_clk_manager and clk_out_2_clk_manager_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out_2_clk_manager] -to [get_clocks clk_out_2_clk_manager_1]
+Related violations: <none>
+
+TIMING-6#4 Warning
+No common primary clock between related clocks  
+The clocks clk_out_2_clk_manager_1 and clk_out_2_clk_manager are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out_2_clk_manager_1] -to [get_clocks clk_out_2_clk_manager]
+Related violations: <none>
+
+TIMING-6#5 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i and clk_out_2_clk_manager_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i] -to [get_clocks clk_out_2_clk_manager_1]
+Related violations: <none>
+
+TIMING-6#6 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i and clk_pll_i_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i] -to [get_clocks clk_pll_i_1]
+Related violations: <none>
+
+TIMING-6#7 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i and u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i] -to [get_clocks u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk_1]
+Related violations: <none>
+
+TIMING-6#8 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i and u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clk_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i] -to [get_clocks u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clk_1]
+Related violations: <none>
+
+TIMING-6#9 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i_1 and clk_out_2_clk_manager are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i_1] -to [get_clocks clk_out_2_clk_manager]
+Related violations: <none>
+
+TIMING-6#10 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i_1 and clk_pll_i are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i_1] -to [get_clocks clk_pll_i]
+Related violations: <none>
+
+TIMING-6#11 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i_1 and u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i_1] -to [get_clocks u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk]
+Related violations: <none>
+
+TIMING-6#12 Warning
+No common primary clock between related clocks  
+The clocks clk_pll_i_1 and u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clk are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_pll_i_1] -to [get_clocks u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clk]
+Related violations: <none>
+
+TIMING-6#13 Warning
+No common primary clock between related clocks  
+The clocks iserdes_clkdiv and iserdes_clkdiv_2 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks iserdes_clkdiv] -to [get_clocks iserdes_clkdiv_2]
+Related violations: <none>
+
+TIMING-6#14 Warning
+No common primary clock between related clocks  
+The clocks iserdes_clkdiv_1 and iserdes_clkdiv_3 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks iserdes_clkdiv_1] -to [get_clocks iserdes_clkdiv_3]
+Related violations: <none>
+
+TIMING-6#15 Warning
+No common primary clock between related clocks  
+The clocks iserdes_clkdiv_2 and iserdes_clkdiv are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks iserdes_clkdiv_2] -to [get_clocks iserdes_clkdiv]
+Related violations: <none>
+
+TIMING-6#16 Warning
+No common primary clock between related clocks  
+The clocks iserdes_clkdiv_3 and iserdes_clkdiv_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks iserdes_clkdiv_3] -to [get_clocks iserdes_clkdiv_1]
+Related violations: <none>
+
+TIMING-6#17 Warning
+No common primary clock between related clocks  
+The clocks mem_refclk and mem_refclk_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks mem_refclk] -to [get_clocks mem_refclk_1]
+Related violations: <none>
+
+TIMING-6#18 Warning
+No common primary clock between related clocks  
+The clocks mem_refclk_1 and mem_refclk are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks mem_refclk_1] -to [get_clocks mem_refclk]
+Related violations: <none>
+
+TIMING-6#19 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk and oserdes_clk_4 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk] -to [get_clocks oserdes_clk_4]
+Related violations: <none>
+
+TIMING-6#20 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk and oserdes_clkdiv_4 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk] -to [get_clocks oserdes_clkdiv_4]
+Related violations: <none>
+
+TIMING-6#21 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_1 and oserdes_clkdiv_5 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_1] -to [get_clocks oserdes_clkdiv_5]
+Related violations: <none>
+
+TIMING-6#22 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_2 and oserdes_clk_6 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_2] -to [get_clocks oserdes_clk_6]
+Related violations: <none>
+
+TIMING-6#23 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_2 and oserdes_clkdiv_6 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_2] -to [get_clocks oserdes_clkdiv_6]
+Related violations: <none>
+
+TIMING-6#24 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_3 and oserdes_clkdiv_7 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_3] -to [get_clocks oserdes_clkdiv_7]
+Related violations: <none>
+
+TIMING-6#25 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_4 and oserdes_clk are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_4] -to [get_clocks oserdes_clk]
+Related violations: <none>
+
+TIMING-6#26 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_4 and oserdes_clkdiv are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_4] -to [get_clocks oserdes_clkdiv]
+Related violations: <none>
+
+TIMING-6#27 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_5 and oserdes_clkdiv_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_5] -to [get_clocks oserdes_clkdiv_1]
+Related violations: <none>
+
+TIMING-6#28 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_6 and oserdes_clk_2 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_6] -to [get_clocks oserdes_clk_2]
+Related violations: <none>
+
+TIMING-6#29 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_6 and oserdes_clkdiv_2 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_6] -to [get_clocks oserdes_clkdiv_2]
+Related violations: <none>
+
+TIMING-6#30 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clk_7 and oserdes_clkdiv_3 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clk_7] -to [get_clocks oserdes_clkdiv_3]
+Related violations: <none>
+
+TIMING-6#31 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv and oserdes_clkdiv_4 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv] -to [get_clocks oserdes_clkdiv_4]
+Related violations: <none>
+
+TIMING-6#32 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv_1 and oserdes_clkdiv_5 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv_1] -to [get_clocks oserdes_clkdiv_5]
+Related violations: <none>
+
+TIMING-6#33 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv_2 and oserdes_clkdiv_6 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv_2] -to [get_clocks oserdes_clkdiv_6]
+Related violations: <none>
+
+TIMING-6#34 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv_3 and oserdes_clkdiv_7 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv_3] -to [get_clocks oserdes_clkdiv_7]
+Related violations: <none>
+
+TIMING-6#35 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv_4 and oserdes_clkdiv are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv_4] -to [get_clocks oserdes_clkdiv]
+Related violations: <none>
+
+TIMING-6#36 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv_5 and oserdes_clkdiv_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv_5] -to [get_clocks oserdes_clkdiv_1]
+Related violations: <none>
+
+TIMING-6#37 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv_6 and oserdes_clkdiv_2 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv_6] -to [get_clocks oserdes_clkdiv_2]
+Related violations: <none>
+
+TIMING-6#38 Warning
+No common primary clock between related clocks  
+The clocks oserdes_clkdiv_7 and oserdes_clkdiv_3 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks oserdes_clkdiv_7] -to [get_clocks oserdes_clkdiv_3]
+Related violations: <none>
+
+TIMING-6#39 Warning
+No common primary clock between related clocks  
+The clocks sync_pulse and mem_refclk_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks sync_pulse] -to [get_clocks mem_refclk_1]
+Related violations: <none>
+
+TIMING-6#40 Warning
+No common primary clock between related clocks  
+The clocks sync_pulse_1 and mem_refclk are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks sync_pulse_1] -to [get_clocks mem_refclk]
+Related violations: <none>
+
+TIMING-10#1 Warning
+Missing property on synchronizer  
+One or more logic synchronizer has been detected between 2 clock domains but the synchronizer does not have the property ASYNC_REG defined on one or both registers. It is recommended to run report_cdc for a complete and detailed CDC coverage
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on buttons[0] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on buttons[1] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on buttons[2] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An input delay is missing on buttons[3] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An input delay is missing on buttons[4] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An input delay is missing on cpu_reset_btn relative to clock(s) VIRTUAL_clk_out_1_clk_manager 
+Related violations: <none>
+
+TIMING-18#7 Warning
+Missing input or output delay  
+An input delay is missing on switches[0] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#8 Warning
+Missing input or output delay  
+An input delay is missing on switches[10] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#9 Warning
+Missing input or output delay  
+An input delay is missing on switches[11] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#10 Warning
+Missing input or output delay  
+An input delay is missing on switches[12] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#11 Warning
+Missing input or output delay  
+An input delay is missing on switches[13] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#12 Warning
+Missing input or output delay  
+An input delay is missing on switches[14] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#13 Warning
+Missing input or output delay  
+An input delay is missing on switches[15] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#14 Warning
+Missing input or output delay  
+An input delay is missing on switches[1] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#15 Warning
+Missing input or output delay  
+An input delay is missing on switches[2] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#16 Warning
+Missing input or output delay  
+An input delay is missing on switches[3] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#17 Warning
+Missing input or output delay  
+An input delay is missing on switches[4] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#18 Warning
+Missing input or output delay  
+An input delay is missing on switches[5] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#19 Warning
+Missing input or output delay  
+An input delay is missing on switches[6] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#20 Warning
+Missing input or output delay  
+An input delay is missing on switches[7] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#21 Warning
+Missing input or output delay  
+An input delay is missing on switches[8] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#22 Warning
+Missing input or output delay  
+An input delay is missing on switches[9] relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#23 Warning
+Missing input or output delay  
+An input delay is missing on uart_txd relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#24 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[0] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#25 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[10] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#26 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[11] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#27 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[12] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#28 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[13] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#29 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[14] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#30 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[15] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#31 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[1] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#32 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[2] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#33 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[3] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#34 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[4] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#35 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[5] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#36 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[6] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#37 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[7] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#38 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[8] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#39 Warning
+Missing input or output delay  
+An output delay is missing on green_leds[9] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#40 Warning
+Missing input or output delay  
+An output delay is missing on rgb_leds[0] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#41 Warning
+Missing input or output delay  
+An output delay is missing on rgb_leds[1] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#42 Warning
+Missing input or output delay  
+An output delay is missing on rgb_leds[2] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#43 Warning
+Missing input or output delay  
+An output delay is missing on rgb_leds[3] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#44 Warning
+Missing input or output delay  
+An output delay is missing on rgb_leds[4] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#45 Warning
+Missing input or output delay  
+An output delay is missing on rgb_leds[5] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#46 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[0] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#47 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[1] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#48 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[2] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#49 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[3] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#50 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[4] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#51 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[5] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#52 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[6] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#53 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments[7] relative to clock(s) VIRTUAL_clk_out_2_clk_manager VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+TIMING-18#54 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[0] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#55 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[1] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#56 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[2] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#57 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[3] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#58 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[4] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#59 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[5] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#60 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[6] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#61 Warning
+Missing input or output delay  
+An output delay is missing on seven_segments_drive[7] relative to clock(s) VIRTUAL_clk_out_2_clk_manager 
+Related violations: <none>
+
+TIMING-18#62 Warning
+Missing input or output delay  
+An output delay is missing on uart_rxd relative to clock(s) VIRTUAL_clk_pll_i 
+Related violations: <none>
+
+

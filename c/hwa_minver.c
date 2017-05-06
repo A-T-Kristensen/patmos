@@ -31,14 +31,14 @@
 #include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
-int minver_main();
+void minver_main();
 int main(void);
 
 /*
     Test the hwa
 */
 
-int minver_main()
+void minver_main()
 {
   int i, j, k, err_cnt = 0;
   mat_type eps = 1.0e-6;
@@ -61,13 +61,6 @@ int minver_main()
 
   set_minver(minver_hw, DIM);
 
-/*  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      printf("%f ", minver_hw[i][j]);
-    }
-    printf("\n");    
-  }    */ 
-
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
     	minver_sw[i][j] = minver_hw[i][j];
@@ -77,24 +70,21 @@ int minver_main()
     }
   }
 
-  printf("Benchmarking with DIM=%d \n", DIM);
+  printf("Benchmarking \n", DIM);
 
-  start_cycle = get_cpu_cycles();
+  //start_cycle = get_cpu_cycles();
 
   minver_minver(minver_sw_i, DIM, eps);
 
-  stop_cycle = get_cpu_cycles();
+/*  stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
-  printf("#Cycles = %llu \n", return_cycles);   
+  printf("#Cycles = %llu \n", return_cycles);   */
 
 
   // Run accelerator
   start_cycle = get_cpu_cycles();
 
-  for(i = 0; i < DIM*DIM; i++)
-  {
-      *(bank_ptr_array[NBANKS-1] + i) = *((&minver_hw_i[0][0]) + i);
-  } 
+  write_array(minver_hw_i, n, m, factor, a_bank0, bank_ptr_array, 2);
 
   *hls_ptr = 1;
 
@@ -102,56 +92,25 @@ int minver_main()
     
   while((*hls_ptr) != 1);
 
+  read_array(minver_hw_i, n, m, factor, a_bank0, bank_ptr_array, 2);
+
     // Read back the data  
     // For minver, it is distributed just as the written array  
 
-  for(i = 0; i < DIM*DIM; i++)
-  {
-      *((&minver_hw_i[0][0]) + i) = *(bank_ptr_array[NBANKS-1] + i);
-  } 
-
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+
+  check_minver(minver_hw_i, minver_sw_i);
+
   printf("#Cycles = %llu \n", return_cycles);  
+  
 
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-    	if(minver_hw_i[i][j] != minver_sw_i[i][j]) {
-    		err_cnt++;
-    	}
-    }
-  }
-/*
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      printf("%f ", minver_hw_i[i][j]);
-    }
-    printf("\n");    
-  }   
-
-
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      printf("%f ", minver_sw_i[i][j]);
-    }
-    printf("\n");    
-  }  */ 
-
-  if (err_cnt)
-    printf("ERROR: %d\n", err_cnt);
-  else
-    printf("Test Passes:\n");  
-
-
-
-  return err_cnt;
 }
 
 int main( void )
 {
-  int err_cnt = 0;
 
-  err_cnt = minver_main();
+  minver_main();
 
 
   return 0;  

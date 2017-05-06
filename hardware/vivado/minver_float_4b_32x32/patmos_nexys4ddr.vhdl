@@ -230,13 +230,34 @@ architecture rtl of patmos_top is
 			ap_done 	: out std_logic;
 			ap_idle 	: out std_logic;
 			ap_ready 	: out std_logic;
-			a_Addr_A 	: out std_logic_vector (31 downto 0);
-			a_EN_A 		: out std_logic;
-			a_WEN_A 	: out std_logic_vector (3 downto 0);
-			a_Din_A 	: out std_logic_vector (31 downto 0);
-			a_Dout_A 	: in std_logic_vector (31 downto 0);
-			a_Clk_A 	: out std_logic;
-			a_Rst_A 	: out std_logic 
+            a_0_Addr_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_0_EN_A : out STD_LOGIC;
+            a_0_WEN_A : out STD_LOGIC_VECTOR (3 downto 0);
+            a_0_Din_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_0_Dout_A : in STD_LOGIC_VECTOR (31 downto 0);
+            a_0_Clk_A : out STD_LOGIC;
+            a_0_Rst_A : out STD_LOGIC;
+            a_1_Addr_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_1_EN_A : out STD_LOGIC;
+            a_1_WEN_A : out STD_LOGIC_VECTOR (3 downto 0);
+            a_1_Din_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_1_Dout_A : in STD_LOGIC_VECTOR (31 downto 0);
+            a_1_Clk_A : out STD_LOGIC;
+            a_1_Rst_A : out STD_LOGIC;
+            a_2_Addr_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_2_EN_A : out STD_LOGIC;
+            a_2_WEN_A : out STD_LOGIC_VECTOR (3 downto 0);
+            a_2_Din_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_2_Dout_A : in STD_LOGIC_VECTOR (31 downto 0);
+            a_2_Clk_A : out STD_LOGIC;
+            a_2_Rst_A : out STD_LOGIC;
+            a_3_Addr_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_3_EN_A : out STD_LOGIC;
+            a_3_WEN_A : out STD_LOGIC_VECTOR (3 downto 0);
+            a_3_Din_A : out STD_LOGIC_VECTOR (31 downto 0);
+            a_3_Dout_A : in STD_LOGIC_VECTOR (31 downto 0);
+            a_3_Clk_A : out STD_LOGIC;
+            a_3_Rst_A : out STD_LOGIC            
 		);
 	end component; 	
 
@@ -542,13 +563,37 @@ begin
 		ap_done 	=> hwACtrl_ap_done_in,
 		ap_idle 	=> hwACtrl_ap_idle_in,
 		ap_ready 	=> hwACtrl_ap_ready_in,
-		a_Addr_A 	=> hwa_addr_i(0).addr,
-		a_EN_A  	=> open,
-		a_WEN_A		=> bram_m_i(0).wr,
-		a_Din_A  	=> bram_m_i(0).din,
-		a_Dout_A 	=> bram_s_i(0).dout,
-		a_Clk_A 	=> open,
-		a_Rst_A 	=> open
+		a_0_Addr_A 	=> hwa_addr_i(0).addr,
+		a_0_EN_A  	=> open,
+		a_0_WEN_A		=> bram_m_i(0).wr,
+		a_0_Din_A  	=> bram_m_i(0).din,
+		a_0_Dout_A 	=> bram_s_i(0).dout,
+		a_0_Clk_A 	=> open,
+		a_0_Rst_A 	=> open,
+		
+		a_1_Addr_A 	=> hwa_addr_i(1).addr,
+        a_1_EN_A      => open,
+        a_1_WEN_A        => bram_m_i(1).wr,
+        a_1_Din_A      => bram_m_i(1).din,
+        a_1_Dout_A     => bram_s_i(1).dout,
+        a_1_Clk_A     => open,
+        a_1_Rst_A     => open,	
+
+        a_2_Addr_A 	=> hwa_addr_i(2).addr,
+		a_2_EN_A  	=> open,
+		a_2_WEN_A		=> bram_m_i(2).wr,
+		a_2_Din_A  	=> bram_m_i(2).din,
+		a_2_Dout_A 	=> bram_s_i(2).dout,
+		a_2_Clk_A 	=> open,
+		a_2_Rst_A 	=> open,
+		
+		a_3_Addr_A 	=> hwa_addr_i(3).addr,
+        a_3_EN_A      => open,
+        a_3_WEN_A        => bram_m_i(3).wr,
+        a_3_Din_A      => bram_m_i(3).din,
+        a_3_Dout_A     => bram_s_i(3).dout,
+        a_3_Clk_A     => open,
+        a_3_Rst_A     => open	
 	);		
 
 	hwa_rst <= hwACtrl_ap_reset_out or reset_int;		
