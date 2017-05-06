@@ -60,9 +60,12 @@
   Macro definitions
 */
 
-#define X 10 /* first dimension of array A */
-#define Y 10 /* second dimension of array A, first dimension of array B */
-#define Z 10 /* second dimension of array B */
+#define DIM 10
+#define SIZE 100
+
+#define X DIM /* first dimension of array A */
+#define Y DIM /* second dimension of array A, first dimension of array B */
+#define Z DIM /* second dimension of array B */
 
 
 /*
@@ -93,15 +96,15 @@ void matrix1_pin_down( int A[], int B[], int C[] )
   int i;
   volatile int x = 1;
 
-  _Pragma( "loopbound min 100 max 100" )
+  _Pragma( "loopbound min SIZE max SIZE" )
   for ( i = 0 ; i < X * Y; i++ )
     A[i] = x ;
 
-  _Pragma( "loopbound min 100 max 100" )
+  _Pragma( "loopbound min SIZE max SIZE" )
   for ( i = 0 ; i < Y * Z ; i++ )
     B[i] = x ;
 
-  _Pragma( "loopbound min 100 max 100" )
+  _Pragma( "loopbound min SIZE max SIZE" )
   for ( i = 0 ; i < X * Z ; i++ )
     C[i] = 0 ;
 }
@@ -121,7 +124,7 @@ int matrix1_return( void )
 	int i;
 	int checksum = 0;
 
-	  _Pragma( "loopbound min 100 max 100" )
+	  _Pragma( "loopbound min SIZE max SIZE" )
 	  for ( i = 0; i <= X*Z; i++ )
 		  checksum += matrix1_C[i];
 
@@ -141,16 +144,16 @@ void _Pragma ( "entrypoint" ) matrix1_main( void )
 
   register int f, i, k;
 
-  _Pragma( "loopbound min 10 max 10" )
+  _Pragma( "loopbound min DIM max DIM" )
   for ( k = 0; k < Z; k++ ) {
     p_a = &matrix1_A[0];                /* point to the beginning of array A */
 
-    _Pragma( "loopbound min 10 max 10" )
+    _Pragma( "loopbound min DIM max DIM" )
     for ( i = 0; i < X; i++ ) {
       p_b = &matrix1_B[k * Y];          /* take next column */
 
       *p_c = 0;
-      _Pragma( "loopbound min 10 max 10" )
+      _Pragma( "loopbound min DIM max DIM" )
       for ( f = 0; f < Y; f++ ) /* do multiply */
         *p_c += *p_a++ * *p_b++;
 

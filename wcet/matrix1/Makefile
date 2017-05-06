@@ -1,8 +1,8 @@
-# A simple Hello World WCET analysis example
+# A simple matrix1 benchmark WCET analysis example
 
 all:
 	patmos-clang -O2 -mserialize=matrix1.pml matrix1.c
-	platin wcet -i matrix1.pml -b a.out -e matrix1_main --report
+	platin wcet -i matrix1.pml -b a.out -e matrix1_main --report report.txt
 
 
 clean:
@@ -24,5 +24,3 @@ dump:
 
 gen_pml:
 	platin pml-config --target patmos-unknown-unknown-elf -o de2-115.pml
-
-

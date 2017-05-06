@@ -2,8 +2,8 @@
 
 # Status
 
-The status is whether it has been synthesised and tested on the FPGA board.
-Please remember to ensure that the dimensions are correct in the hwa_lib.h file.
+The status is whether it has been synthesised and tested on the FPGA board (with the C code).
+Please remember to ensure that the dimensions are correct in the hwa_lib.h file (done automatically when using benchmark.py).
 
 ## Matmul (Ports for each array)
 
@@ -57,10 +57,32 @@ Please remember to ensure that the dimensions are correct in the hwa_lib.h file.
 - [] matmul_misc_int_3b_16x16
 - [] matmul_misc_int_3b_32x32
 
+## Minver
+
+### Float
+
+- [] minver_float_1b_4x4
+- [] minver_float_1b_16x16
+- [] minver_float_1b_32x32
+- [] minver_float_2b_4x4
+- [] minver_float_2b_16x16
+- [] minver_float_2b_32x32
+- [] minver_float_4b_4x4
+- [] minver_float_4b_16x16
+- [] minver_float_4b_32x32
+
 ## Filterbank
 
 ### Float
 
+
+## Fir2Dim
+
+### Float
+
+## SHA
+
+## Md5
 
 # Using Vivado
 

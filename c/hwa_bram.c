@@ -37,7 +37,7 @@ int main()
 	
 	for(i = 0; i < n; i++)
 	{
-		temp = *(bram_ptr + i);
+		temp[i] = *(bram_ptr + i);
 	}
 
 	// Check data
