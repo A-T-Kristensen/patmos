@@ -5,7 +5,7 @@
 # Include user makefile for local configurations
 -include config.mk
 # COM port for downloader
-COM_PORT?=/dev/ttyUSB0
+COM_PORT?=/dev/ttyUSB1
 
 # Application to be stored in boot ROM
 BOOTAPP?=bootable-bootloader
@@ -38,13 +38,13 @@ VENDOR?=XilinxVivado
 BOARD?=nexys4ddr
 
 # My custom projects for HwAs built using HLS
-HWA_PROJECT?=matmul_float_3b_4x4
+#HWA_PROJECT?=matmul_float_3b_4x4
 #HWA_PROJECT?=matmul_float_3b_16x16
 #HWA_PROJECT?=matmul_float_3b_32x32
 #HWA_PROJECT?=matmul_float_5b_4x4
 
 
-#HWA_PROJECT?=minver
+HWA_PROJECT?=minver_float_1b_4x4
 
 # Where to put elf files and binaries
 BUILDDIR?=$(CURDIR)/tmp

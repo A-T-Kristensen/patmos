@@ -10,8 +10,9 @@ LIBCORETHREAD=$(BUILDDIR)/libcorethread.a
 LIBETH=$(BUILDDIR)/libeth.a
 LIBAUDIO=$(BUILDDIR)/libaudio.a
 LIBSHA=$(BUILDDIR)/libsha.a
-LIBHWA=$(BUILDDIR)/libhwa.a
 LIBMATMUL=$(BUILDDIR)/libmatmul.a
+LIBMINVER=$(BUILDDIR)/libminver.a
+LIBHWA=$(BUILDDIR)/libhwa.a
 LIBELF=$(BUILDDIR)/libelf.a
 
 NOCINIT?=cmp/nocinit.c
@@ -83,9 +84,9 @@ $(BUILDDIR)/%.o: %.c Makefile
 # Add you application here
 # added -lm ad the end due to issues with math library
 # -lhwa should be compiled before everything else that you run on the FPGA
-$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBHWA) $(LIBSHA) $(LIBMATMUL) $(LIBELF) Makefile
+$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBHWA) $(LIBSHA) $(LIBMATMUL) $(LIBMINVER) $(LIBELF) Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lhwa -lsha -lmatmul -lm
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lhwa -lsha -lmatmul -lminver -lm
 
 $(BUILDDIR)/%.s: %.c Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
@@ -190,6 +191,12 @@ $(LIBHWA): $(patsubst libhwa/%.c,$(BUILDDIR)/libhwa/%.o,$(wildcard libhwa/*.c))
 libmatmul: $(LIBMATMUL) # Add for all
 $(LIBMATMUL): $(patsubst libmatmul/%.c,$(BUILDDIR)/libmatmul/%.o,$(wildcard libmatmul/*.c))
 	patmos-ar r $@ $^	
+
+#library for minver
+.PHONY: libminver 
+libminver: $(LIBMINVER) # Add for all
+$(LIBMINVER): $(patsubst libminver/%.c,$(BUILDDIR)/libminver/%.o,$(wildcard libminver/*.c))
+	patmos-ar r $@ $^		
 
 
 # library for parsing ELF files
