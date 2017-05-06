@@ -28,7 +28,7 @@
 
 #include "libhwa/hwa_lib.h"
 #include "libhwa/hwa_bram.h"
-//#include "libminver/minver_init.h"
+#include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
 int minver_main();
@@ -59,7 +59,14 @@ int minver_main()
   mat_type minver_hw_i[DIM][DIM];
   mat_type minver_sw_i[DIM][DIM];
 
-  set_minver_hwa(minver_hw);
+  set_minver(minver_hw, DIM);
+
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+      printf("%f ", minver_hw[i][j]);
+    }
+    printf("\n");    
+  }     
 
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
@@ -70,15 +77,7 @@ int minver_main()
     }
   }
 
-
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      printf("%f ", minver_hw[i][j]);
-    }
-    printf("\n");    
-  }  
-
-  printf("Benchmarking \n");
+  printf("Benchmarking with DIM=%d \n", DIM);
 
   start_cycle = get_cpu_cycles();
 
@@ -114,25 +113,7 @@ int minver_main()
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
-  printf("#Cycles = %llu \n", return_cycles); 
-
-
-
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      printf("%f ", minver_hw_i[i][j]);
-    }
-    printf("\n");    
-  }
-
-    printf("\n");  
-
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-        printf("%f ", minver_sw_i[i][j]);
-    }
-    printf("\n");
-  }  
+  printf("#Cycles = %llu \n", return_cycles);  
 
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
@@ -141,6 +122,13 @@ int minver_main()
     	}
     }
   }
+
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+      printf("%f ", minver_hw_i[i][j]);
+    }
+    printf("\n");    
+  }   
 
   if (err_cnt)
     printf("ERROR: %d\n", err_cnt);
@@ -159,6 +147,6 @@ int main( void )
   err_cnt = minver_main();
 
 
-  return err_cnt;  
+  return 0;  
 
 }

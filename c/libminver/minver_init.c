@@ -13,23 +13,11 @@
     Initialization- and return-value-related functions
 */
 
-void minver_init(mat_type minver_a[DIM][DIM])
-{
-  int i,j;
-  volatile int x = 0;
-
-  for ( i = 0; i < 3; i++ ) {
-    for ( j = 0; j < 3; j++ )
-      minver_a[ i ][ j ] += x;
-  }
-}
-
-
-void set_minver(mat_type minver_hw[DIM][DIM]) {
+void set_minver(mat_type minver_hw[DIM][DIM], int dim) {
 
   // Matrices
 
-  #if(DIM == 3)
+  if(dim == 3){
 
   minver_hw[0][0] = 1;
   minver_hw[0][1] = 3;
@@ -40,8 +28,9 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
   minver_hw[2][0] = 1;
   minver_hw[2][1] = 3;
   minver_hw[2][2] = 1;
+}
 
-  #elif(DIM == 4)
+  else if(dim == 4){
 
   minver_hw[0][0] = 1;
   minver_hw[0][1] = 2;
@@ -59,8 +48,9 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
   minver_hw[3][1] = 1;
   minver_hw[3][2] = 4;
   minver_hw[3][3] = 3;
+}
 
-  #elif(DIM == 16)
+  else if(dim == 16) {
 
   minver_hw[0][0] = 6;
   minver_hw[0][1] = 16;
@@ -318,9 +308,9 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
   minver_hw[15][13] = 1;
   minver_hw[15][14] = 15;
   minver_hw[15][15] = 9;
+}
 
-
-  #elif(DIM == 32)
+  else if (dim == 32){
 
   minver_hw[0][0] = 21;
   minver_hw[0][1] = 27;
@@ -1347,6 +1337,5 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
   minver_hw[31][30] = 18;
   minver_hw[31][31] = 15;
 
-  #endif
-
+}
 }

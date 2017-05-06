@@ -170,7 +170,14 @@ void minver_main()
   mat_type minver_aa[ DIM ][ DIM ];
   mat_type minver_a_i[ DIM ][ DIM ];
 
-  set_minver(minver_a);
+  set_minver(minver_a, DIM);
+
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+      printf("%f ", minver_a[i][j]);
+    }
+    printf("\n");    
+  }   
   
 
   eps = 1.0e-6;
