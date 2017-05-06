@@ -28,7 +28,7 @@
 
 #include "libhwa/hwa_lib.h"
 #include "libhwa/hwa_bram.h"
-#include "libminver/minver_init.h"
+//#include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
 int minver_main();
@@ -43,29 +43,23 @@ int minver_main()
   int i, j, k, err_cnt = 0;
   mat_type eps = 1.0e-6;
 
-  puts("In minver main\n");
-
   volatile _IODEV mat_type** bank_ptr_array = (volatile _IODEV mat_type**) bank_ptrs(NBANKS);
   volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
   // divide factor
-  int factor = 1; // Division factor, a and b shares most banks // only use this if we have more than 1 bank
+  int factor = NBANKS; // Division factor, a and b shares most banks // only use this if we have more than 1 bank
   int n = DIM; // the # columns
   int m = DIM; // the # rows
   int a_bank0 = 0; // Start bank
-
-  puts("Running set minver");
 
   mat_type minver_hw[DIM][DIM];
   mat_type minver_sw[DIM][DIM];
   mat_type minver_hw_i[DIM][DIM];
   mat_type minver_sw_i[DIM][DIM];
 
-  set_minver(minver_hw);
-
-  puts("Setting matrices\n");
+  set_minver_hwa(minver_hw);
 
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
@@ -76,26 +70,39 @@ int minver_main()
     }
   }
 
+
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+      printf("%f ", minver_hw[i][j]);
+    }
+    printf("\n");    
+  }  
+
+  printf("Benchmarking \n");
+
+  start_cycle = get_cpu_cycles();
+
+  minver_minver(minver_sw_i, DIM, eps);
+
+  stop_cycle = get_cpu_cycles();
+  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+  printf("#Cycles = %llu \n", return_cycles);   
+
+
   // Run accelerator
   start_cycle = get_cpu_cycles();
 
+  for(i = 0; i < DIM*DIM; i++)
+  {
+      *(bank_ptr_array[NBANKS-1] + i) = *((&minver_hw_i[0][0]) + i);
+  } 
 
-  if(NBANKS == 1) {
-    write_array(minver_hw_i, n, m, factor, a_bank0, bank_ptr_array, 1);
-  }
-  else {
-    write_array(minver_hw_i, n, m, factor, a_bank0, bank_ptr_array, 2);   
-  }  
 
   *hls_ptr = 1;
-
-  puts("starting");
 
   // Poll status of HLS module
     
   while((*hls_ptr) != 1);
-
-  puts("Finished");
 
     // Read back the data  
     // For minver, it is distributed just as the written array  
@@ -109,13 +116,23 @@ int minver_main()
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
   printf("#Cycles = %llu \n", return_cycles); 
 
-  start_cycle = get_cpu_cycles();
 
-  minver_minver(minver_sw_i, DIM, eps);
 
-  stop_cycle = get_cpu_cycles();
-  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
-  printf("#Cycles = %llu \n", return_cycles);   
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+      printf("%f ", minver_hw_i[i][j]);
+    }
+    printf("\n");    
+  }
+
+    printf("\n");  
+
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+        printf("%f ", minver_sw_i[i][j]);
+    }
+    printf("\n");
+  }  
 
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
@@ -125,6 +142,13 @@ int minver_main()
     }
   }
 
+  if (err_cnt)
+    printf("ERROR: %d\n", err_cnt);
+  else
+    printf("Test Passes:\n");  
+
+
+
   return err_cnt;
 }
 
@@ -132,14 +156,9 @@ int main( void )
 {
   int err_cnt = 0;
 
-  puts("In main\n");
-
   err_cnt = minver_main();
 
-  if (err_cnt)
-    printf("ERROR: %d\n", err_cnt);
-  else
-    printf("Test Passes:\n");
+
   return err_cnt;  
 
 }

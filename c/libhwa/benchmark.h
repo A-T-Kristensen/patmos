@@ -1,3 +1,8 @@
-#define DIM 	4
-#define NBANKS 	4
+#ifndef BENCHMARK_H_
+#define BENCHMARK_H_
+
+#define DIM 	16
+#define NBANKS 	1
 typedef float mat_type;
+
+#endif

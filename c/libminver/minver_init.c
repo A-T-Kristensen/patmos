@@ -29,7 +29,7 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
 
   // Matrices
 
-  #if DIM == 3
+  #if(DIM == 3)
 
   minver_hw[0][0] = 1;
   minver_hw[0][1] = 3;
@@ -41,7 +41,7 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
   minver_hw[2][1] = 3;
   minver_hw[2][2] = 1;
 
-  #elif DIM == 4
+  #elif(DIM == 4)
 
   minver_hw[0][0] = 1;
   minver_hw[0][1] = 2;
@@ -60,7 +60,7 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
   minver_hw[3][2] = 4;
   minver_hw[3][3] = 3;
 
-  #elif DIM == 16
+  #elif(DIM == 16)
 
   minver_hw[0][0] = 6;
   minver_hw[0][1] = 16;
@@ -320,7 +320,7 @@ void set_minver(mat_type minver_hw[DIM][DIM]) {
   minver_hw[15][15] = 9;
 
 
-  #elif DIM == 32
+  #elif(DIM == 32)
 
   minver_hw[0][0] = 21;
   minver_hw[0][1] = 27;

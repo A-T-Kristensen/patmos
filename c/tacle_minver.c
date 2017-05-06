@@ -30,11 +30,11 @@
     Forward declaration of functions
 */
 
-int minver_minver( int side, double eps );
-int minver_mmul( int row_a, int col_a, int row_b, int col_b );
-double minver_fabs( double n );
-void minver_init();
-int minver_return();
+#include "libhwa/hwa_lib.h"
+#include "libminver/minver_init.h"
+
+int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps );
+mat_type minver_fabs( mat_type n );
 void minver_main();
 int main( void );
 
@@ -42,25 +42,16 @@ int main( void );
     Declaration of global variables
 */
 
-double  minver_a[ 3 ][ 3 ] = {
-  {3.0, -6.0,  7.0},
-  {9.0,  0.0, -5.0},
-  {5.0, -8.0,  6.0},
-};
-double minver_b[ 3 ][ 3 ];
-double minver_c[ 3 ][ 3 ];
-double minver_aa[ 3 ][ 3 ];
-double minver_a_i[ 3 ][ 3 ];
-double minver_det;
+
 
 /*
     Arithmetic math functions
 */
 
 
-double minver_fabs( double n )
+mat_type minver_fabs( mat_type n )
 {
-  double f;
+  mat_type f;
 
   if ( n >= 0 )
     f = n;
@@ -69,42 +60,14 @@ double minver_fabs( double n )
   return f;
 }
 
-
-int  minver_mmul( int row_a, int col_a, int row_b, int col_b )
-{
-  int i, j, k, row_c, col_c;
-  double w;
-
-  row_c = row_a;
-  col_c = col_b;
-
-  if ( row_c < 1 || row_b < 1 || col_c < 1 || col_a != row_b )
-    return ( 999 );
-
-  _Pragma( "loopbound min 3 max 3" )
-  for ( i = 0; i < row_c; i++ ) {
-    _Pragma( "loopbound min 3 max 3" )
-    for ( j = 0; j < col_c; j++ ) {
-      w = 0.0;
-      _Pragma( "loopbound min 3 max 3" )
-      for ( k = 0; k < row_b; k++ )
-        w += minver_a[ i ][ k ] * minver_b[ k ][ j ];
-
-      minver_c[ i ][ j ] = w;
-
-    }
-  }
-  return ( 0 );
-
-}
-
-
-int minver_minver( int side, double eps )
+int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
 {
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
-  double w, wmax, pivot, api, w1;
+  mat_type w, wmax, pivot, api, w1;
+  mat_type minver_det;
+
 
   if ( side < 2 || side > 500 || eps <= 0.0 )
     return ( 999 );
@@ -161,21 +124,18 @@ int minver_minver( int side, double eps )
     }
     minver_a[ k ][ k ] = 1.0 / pivot;
   }
-  _Pragma( "loopbound min 3 max 3" )
   for ( i = 0; i < side; ) {
     /*  The following redundant statement is inserted due to limitations of
         WCC's flow fact manager. It is required in order to have the flow
         fact pragma below uniquely attached to the while(1) loop.
     */
     i = i;
-    _Pragma( "loopbound min 1 max 3" )
     while ( 1 ) {
       k = work[ i ];
       if ( k == i ) break;
       iw = work[ k ];
       work[ k ] = work[ i ];
       work[ i ] = iw;
-      _Pragma( "loopbound min 3 max 3" )
       for ( j = 0; j < side; j++ ) {
         w = minver_a [k ][ i ];
         minver_a[ k ][ i ] = minver_a[ k ][ k ];
@@ -193,71 +153,54 @@ int minver_minver( int side, double eps )
     Initialization- and return-value-related functions
 */
 
-void minver_init()
-{
-  int i,j;
-  volatile int x = 0;
-
-  _Pragma( "loopbound min 3 max 3" )
-  for ( i = 0; i < 3; i++ ) {
-    _Pragma( "loopbound min 3 max 3" )
-    for ( j = 0; j < 3; j++ )
-      minver_a[ i ][ j ] += x;
-  }
-}
-
-
-int minver_return()
-{
-  int i,j;
-  double check_sum = 0;
-
-  _Pragma( "loopbound min 3 max 3" )
-  for ( i = 0; i < 3; i++ ) {
-    _Pragma( "loopbound min 3 max 3" )
-    for ( j = 0; j < 3; j++ )
-      check_sum += minver_a_i[ i ][ j ];
-  }
-  /* Avoid double comparison */
-  return (int)(check_sum*100) != 48;
-}
-
 
 /*
     Main functions
 */
 
 
-void _Pragma( "entrypoint" ) minver_main()
+void minver_main()
 {
   int i, j;
-  double eps;
+  mat_type eps;
+
+  mat_type minver_a[ DIM ][ DIM ];
+  mat_type minver_b[ DIM ][ DIM ];
+  mat_type minver_c[ DIM ][ DIM ];
+  mat_type minver_aa[ DIM ][ DIM ];
+  mat_type minver_a_i[ DIM ][ DIM ];
+
+  set_minver(minver_a);
+  
+
   eps = 1.0e-6;
-  _Pragma( "loopbound min 3 max 3" )
-  for ( i = 0; i < 3; i++ ) {
-    _Pragma( "loopbound min 3 max 3" )
-    for ( j = 0; j < 3; j++ )
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ )
       minver_aa[ i ][ j ] = minver_a[ i ][ j ];
   }
 
-  minver_minver( 3, eps );
-  _Pragma( "loopbound min 3 max 3" )
-  for ( i = 0; i < 3; i++ ) {
-    _Pragma( "loopbound min 3 max 3" )
-    for ( j = 0; j < 3; j++ )
+  minver_minver(minver_a, DIM, eps );
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ )
       minver_a_i[ i ][ j ] = minver_a[ i ][ j ];
   }
 
-  minver_mmul( 3, 3, 3, 3 );
+  for ( i = 0; i < DIM; i++ ) {
+    for ( j = 0; j < DIM; j++ ) {
+      printf("%f ", minver_a_i[i][j]);
+    }
+    printf("\n");    
+  }  
+
 }
 
 
 int main( void )
 {
-  minver_init();
+
   minver_main();
 
-  return ( minver_return() );
+  return 0;
 }
 
 
