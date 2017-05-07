@@ -30,6 +30,28 @@
 void led_blink(int err_cnt);
 
 /*
+	NAME: compare_arrays()
+
+	PARAMETERS:
+		* hw_result
+		* sw_result
+
+	RETURNS: The error count.
+
+	DESCRIPTION: Determines if the result from the HwA differs from that of the software.
+
+ */
+
+int compare_arrays(mat_type hw_result[DIM][DIM], 
+				 mat_type sw_result[DIM][DIM]);
+
+int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
+					 volatile _SPM mat_type (*sw_result)[DIM][DIM]); 
+
+int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM], 
+						  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]);
+
+/*
 	NAME: 
 
 	PARAMETERS:
@@ -54,6 +76,8 @@ void led_blink(int err_cnt);
 	DESCRIPTION:
 	
  */
+
+
 
 
 #endif /* __HWA_TEST_H__ */

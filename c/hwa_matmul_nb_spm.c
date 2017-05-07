@@ -77,7 +77,7 @@ int main()
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
 	// Check results
-	check_matmul_spm(&spm_matrix->hw_result, &spm_matrix->sw_result);
+	compare_arrays_spm(&spm_matrix->hw_result, &spm_matrix->sw_result);
 
 	printf("#Cycles = %llu \n", return_cycles);
 	

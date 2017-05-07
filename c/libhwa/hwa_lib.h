@@ -20,7 +20,18 @@
 #include <stdio.h>
 #include <stdlib.h> 
 
-#include "hwa_def.h"
 #include "benchmark.h"	// Contains parameters for benchmarks
+
+#define ADDR_BITS 			16
+
+#define LED_RUN_LENGTH 		2000
+#define LED_ROUNDS			1
+
+#define CYCLE_CALIBRATION 	3
+
+#define BRAM_BASE 			0xF00B0000
+#define HWA_CTRL_BASE 		0xF00C0000
+#define LED_BASE 			0xF0090000
+
 
 #endif /* __HWA_LIB_H__ */

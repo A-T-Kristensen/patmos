@@ -82,7 +82,7 @@ int main()
 
 	// Check results
 	
-	check_matmul_uncached(&spm_matrix->hw_result, &spm_matrix->sw_result);
+	compare_arrays_uncached(&spm_matrix->hw_result, &spm_matrix->sw_result);
 
 	printf("#Cycles = %llu \n", return_cycles);	
 

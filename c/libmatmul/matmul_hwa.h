@@ -69,26 +69,5 @@ void matmul_expected_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM],
 					 	 volatile _UNCACHED mat_type (*mat_b)[DIM][DIM], 
 				 		 volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]);
 
-/*
-	NAME: check_matmul()
-
-	PARAMETERS:
-		* hw_result
-		* sw_result
-
-	RETURNS: The error count.
-
-	DESCRIPTION: Determines if the result from the HwA differs from that of the software.
-
- */
-
-int check_matmul(mat_type hw_result[DIM][DIM], 
-				 mat_type sw_result[DIM][DIM]);
-
-int check_matmul_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
-					 volatile _SPM mat_type (*sw_result)[DIM][DIM]); 
-
-int check_matmul_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM], 
-						  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]);
 
 #endif /* __MATMUL_HWA_H__ */

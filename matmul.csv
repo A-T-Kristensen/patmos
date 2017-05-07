@@ -1,0 +1,4 @@
+,,,hwa_matmul_nb,tacle_matrix1_uncached
+Type=float,NBANKS=3,4x4,1047.0,18828.0
+,NBANKS=5,4x4,1010.0,18828.0
+,NBANKS=9,4x4,1030.0,18813.0

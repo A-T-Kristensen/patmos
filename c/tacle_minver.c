@@ -31,7 +31,6 @@
 */
 
 #include "libhwa/hwa_lib.h"
-#include "libhwa/hwa_lib.h"
 #include "libminver/minver_init.h"
 
 int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps );
@@ -172,7 +171,7 @@ void minver_main()
   mat_type minver_aa[ DIM ][ DIM ];
   mat_type minver_a_i[ DIM ][ DIM ];
 
-  set_minver(minver_a, DIM);
+  set_minver(minver_a);
 
   
 

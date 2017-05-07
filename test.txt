@@ -1,0 +1,153 @@
+
+*******************************************
+Minver: type = float, NBANKS = 1, DIM = 4
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 1649
+
+*******************************************
+Minver: type = float, NBANKS = 1, DIM = 4
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 76159
+
+*******************************************
+Minver: type = float, NBANKS = 1, DIM = 16
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 21938
+
+*******************************************
+Minver: type = float, NBANKS = 1, DIM = 16
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 1964785
+
+*******************************************
+Minver: type = float, NBANKS = 1, DIM = 32
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 138318
+
+*******************************************
+Minver: type = float, NBANKS = 1, DIM = 32
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 11515240
+
+*******************************************
+Minver: type = float, NBANKS = 2, DIM = 4
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 1738
+
+*******************************************
+Minver: type = float, NBANKS = 2, DIM = 4
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 76207
+
+*******************************************
+Minver: type = float, NBANKS = 2, DIM = 16
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 16573
+
+*******************************************
+Minver: type = float, NBANKS = 2, DIM = 16
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 1964617
+
+*******************************************
+Minver: type = float, NBANKS = 2, DIM = 32
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 81747
+
+*******************************************
+Minver: type = float, NBANKS = 2, DIM = 32
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 11515450
+
+*******************************************
+Minver: type = float, NBANKS = 4, DIM = 4
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 1993
+
+*******************************************
+Minver: type = float, NBANKS = 4, DIM = 4
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 76147
+
+*******************************************
+Minver: type = float, NBANKS = 4, DIM = 16
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 19464
+
+*******************************************
+Minver: type = float, NBANKS = 4, DIM = 16
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 1964811
+
+*******************************************
+Minver: type = float, NBANKS = 4, DIM = 32
+
+APP: hwa_minver
+*******************************************
+
+The number of cycles is: 77038
+
+*******************************************
+Minver: type = float, NBANKS = 4, DIM = 32
+
+APP: tacle_minver
+*******************************************
+
+The number of cycles is: 11515283
+[[  1.64900000e+03   7.61590000e+04]
+ [  2.19380000e+04   1.96478500e+06]
+ [  1.38318000e+05   1.15152400e+07]
+ [  1.73800000e+03   7.62070000e+04]
+ [  1.65730000e+04   1.96461700e+06]
+ [  8.17470000e+04   1.15154500e+07]
+ [  1.99300000e+03   7.61470000e+04]
+ [  1.94640000e+04   1.96481100e+06]
+ [  7.70380000e+04   1.15152830e+07]]

@@ -130,6 +130,12 @@ $(BUILDDIR)/bootable-hello_sum_reduced.elf: bootable.h
 
 $(BUILDDIR)/bootable-mp_test.elf: bootable.h
 
+$(BUILDDIR)/hwa_minver.elf: libminver/minver.c libminver/minver.h libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/tacle_minver.elf: libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
+
+#This seems to work without additions for _spm and _uncached versions, so maybe it is not needed
+$(BUILDDIR)/hwa_matmul_nb.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+
 # touch the nocinit file
 $(NOCINIT):
 	touch $@
@@ -187,16 +193,23 @@ $(LIBHWA): $(patsubst libhwa/%.c,$(BUILDDIR)/libhwa/%.o,$(wildcard libhwa/*.c))
 	patmos-ar r $@ $^	
 
 #library for matmul
+# .PHONY: libmatmul 
+# libmatmul: $(LIBMATMUL) # Add for all
+# $(LIBMATMUL): $(patsubst libmatmul/%.c,$(BUILDDIR)/libmatmul/%.o,$(wildcard libmatmul/*.c))
+# 	patmos-ar r $@ $^	
 .PHONY: libmatmul 
-libmatmul: $(LIBMATMUL) # Add for all
-$(LIBMATMUL): $(patsubst libmatmul/%.c,$(BUILDDIR)/libmatmul/%.o,$(wildcard libmatmul/*.c))
+libmatmul: $(LIBMATMUL)
+$(BUILDDIR)/libmatmul/matmul_hwa.o: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_lib.h libhwa/benchmark.h
+$(LIBMATMUL): $(BUILDDIR)/libmatmul/matmul_hwa.o
 	patmos-ar r $@ $^	
 
-#library for minver
+#library for minver including additional dependencies
 .PHONY: libminver 
-libminver: $(LIBMINVER) # Add for all
-$(LIBMINVER): $(patsubst libminver/%.c,$(BUILDDIR)/libminver/%.o,$(wildcard libminver/*.c))
-	patmos-ar r $@ $^		
+libminver: $(LIBMINVER)
+$(BUILDDIR)/libminver/minver.o: libminver/minver.c libminver/minver.h libhwa/hwa_lib.h libhwa/benchmark.h
+$(BUILDDIR)/libminver/minver_init.o: libminver/minver_init.c libminver/minver_init.h libhwa/hwa_lib.h libhwa/benchmark.h
+$(LIBMINVER): $(BUILDDIR)/libminver/minver.o $(BUILDDIR)/libminver/minver_init.o
+	patmos-ar r $@ $^	
 
 
 # library for parsing ELF files

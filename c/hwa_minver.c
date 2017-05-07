@@ -31,14 +31,14 @@
 #include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
-void minver_main();
+int minver_main();
 int main(void);
 
 /*
     Test the hwa
 */
 
-void minver_main()
+int minver_main()
 {
   int i, j, k, err_cnt = 0;
   mat_type eps = 1.0e-6;
@@ -59,7 +59,7 @@ void minver_main()
   mat_type minver_hw_i[DIM][DIM];
   mat_type minver_sw_i[DIM][DIM];
 
-  set_minver(minver_hw, DIM);
+  set_minver(minver_hw);
 
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ ) {
@@ -100,19 +100,16 @@ void minver_main()
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-  check_minver(minver_hw_i, minver_sw_i);
+  err_cnt = check_minver(minver_hw_i, minver_sw_i);
 
   printf("#Cycles = %llu \n", return_cycles);  
 
-
+  return err_cnt;
 }
 
 int main( void )
 {
 
-  minver_main();
-
-
-  return 0;  
+  return (minver_main());  
 
 }

@@ -62,11 +62,18 @@ def matmul(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
+    # nbanksList  = [3, 5, 9]
+    # dimList     = [4, 16, 32]
+    # valsType    = ["float", "int"]
+    # appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
+    #                "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
+
+
+
     nbanksList  = [3, 5, 9]
-    dimList     = [4, 16, 32]
-    valsType    = ["float", "int"]
-    appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
-                   "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
+    dimList     = [4]
+    valsType    = ["float"]
+    appList     = ["hwa_matmul_nb", "tacle_matrix1_uncached"]   
 
     # Measurements will be stored in the dataArray
 
@@ -246,13 +253,13 @@ def minver(synth = 0, hw_test = 0):
                     # cmd based on function options
 
                     if synth == 1:
-                        cmd = ('make -B COM_PORT?=/dev/ttyUSB1 '
+                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
                                'HWA_PROJECT={prj} '
                                'APP={app} '
                                'comp hwa_synth hwa_config download') \
                                 .format(prj=project, app = app)
                     else:                   
-                        cmd = ('make -B COM_PORT?=/dev/ttyUSB1 '
+                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
                                'HWA_PROJECT={prj} '
                                'APP={app} '
                                'comp hwa_config download') \
@@ -295,7 +302,8 @@ def minver(synth = 0, hw_test = 0):
 
                             retries = retries - 1
                             print("Error when getting the number of cycles")
-                            print(result)
+                            print(result.partition("Benchmarking")[2])
+                            #print(result)
                             if synth == 0:
                                 continue
                             else:
@@ -343,8 +351,8 @@ def minver(synth = 0, hw_test = 0):
 
 def main(): 
 
-    #matmul(synth = 0, hw_test = 0)
-    minver(synth = 0, hw_test = 0)
+    matmul(synth = 0, hw_test = 0)
+    #minver(synth = 0, hw_test = 0)
 
 if __name__ == "__main__":
     sys.exit(main())    

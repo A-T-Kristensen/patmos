@@ -73,7 +73,7 @@ int main()
 
 	// Check results
 
-	err_cnt = check_matmul(hw_result, sw_result);
+	err_cnt = compare_arrays(hw_result, sw_result);
 
 	printf("#Cycles = %llu \n", return_cycles);	
 
