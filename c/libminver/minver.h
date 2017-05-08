@@ -1,86 +1,47 @@
+/*
+	This header file contains the functions used to generate
+	the correct results to check with that produced by the
+	HwA.
 
+	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+	Copyright: BSD License
+	
+ */
 
 #ifndef MINVER_H_
 #define MINVER_H_
 
 #include "../libhwa/hwa_lib.h"
 
-int check_minver(mat_type hw_result[DIM][DIM], 
-                 mat_type sw_result[DIM][DIM]);
-
 /*
-	NAME: read_array()
+	NAME: minver_fabs()
 
 	PARAMETERS:
-		*
-		*
-
-	RETURNS:
-
-	DESCRIPTION:
-	
- */
-
-int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps);
-
-/*
-	NAME: read_array()
-
-	PARAMETERS:
-		*
+		* n: The input value.
 		*
 
-	RETURNS:
+	RETURNS:  The absolute value of n.
 
-	DESCRIPTION:
-	
- */
-
-int  minver_mmul(mat_type minver_a[DIM][DIM], mat_type minver_b[DIM][DIM],
-        mat_type minver_c[DIM][DIM]);
-
-/*
-	NAME: read_array()
-
-	PARAMETERS:
-		*
-		*
-
-	RETURNS:
-
-	DESCRIPTION:
+	DESCRIPTION: minver_fabs() computes the absolute value of the input n.
 	
  */
 
 mat_type minver_fabs(mat_type n);
 
 /*
-	NAME: read_array()
+	NAME: minver_minver()
 
 	PARAMETERS:
-		*
-		*
+		* minver_a: The input matrix to compute the inverted matrix.
+		* side: The size of the matrix (side X side)
+		* eps: Floating-point relative accuracy
 
 	RETURNS:
 
-	DESCRIPTION:
+	DESCRIPTION: Returns the inverted matrix of minver_a.
 	
  */
 
-
-/*
-	NAME: read_array()
-
-	PARAMETERS:
-		*
-		*
-
-	RETURNS:
-
-	DESCRIPTION:
-	
- */
-
-void set_minver_hwa(mat_type minver_hw[DIM][DIM]);
+int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps);
 
 #endif

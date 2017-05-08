@@ -77,7 +77,8 @@ def matmul(synth = 0, hw_test = 0):
 
     # Measurements will be stored in the dataArray
 
-    dataArray = np.zeros([len(valsType) * len(dimList) * len(nbanksList), len(appList)])
+    computeArray = np.zeros([len(valsType) * len(dimList) * len(nbanksList), len(appList)])
+    transferArray = np.zeros([len(valsType) * len(dimList) * len(nbanksList), len(appList)])    
 
     # Add 1 since it will be horizontally stacked later
     # max string length of 10
@@ -143,13 +144,16 @@ def matmul(synth = 0, hw_test = 0):
                                 print("Correct")
 
                         # Grab everything after "#Cycles ="
-                        test_out = (result.partition("#Cycles = ")[2])
+                        test_out = (result.partition("Benchmarking")[2])
+
+                        compute_time = re.search('<compute>(.*)</compute>', test_out)
+                        transfer_time =  re.search('<transfer>(.*)</transfer>', test_out)
 
                         # Try to see if we got a result
 
                         try:
 
-                            num_cycles = int(test_out)
+                            num_cycles = int(compute_time)
                             break
 
                         except:
@@ -169,6 +173,7 @@ def matmul(synth = 0, hw_test = 0):
 	                    print("The number of cycles is: %d" % (num_cycles))
 
 	                    dataArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = num_cycles
+
 
 	                    # Add {dim}x{dim} (e.g. 4x4)
                         # add 1 is for alignment                       
@@ -216,14 +221,22 @@ def minver(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
-    nbanksList  = [1, 2, 4]
-    dimList     = [4, 16, 32]
+    # nbanksList  = [1, 2, 4]
+    # dimList     = [4, 16, 32]
+    # valsType    = ["float"]
+    # appList     = ["hwa_minver", "tacle_minver"] 
+
+    nbanksList  = [1, 2]
+    dimList     = [4, 16]
     valsType    = ["float"]
-    appList     = ["hwa_minver", "tacle_minver"]               
+    appList     = ["hwa_minver"]                
 
     # Measurements will be stored in the dataArray
 
-    dataArray = np.zeros([len(valsType) * len(dimList) * len(nbanksList), len(appList)])
+    size = int(len(valsType) * len(dimList) * len(nbanksList))
+    computeArray = np.zeros([size, len(appList)])
+    transferArray = np.zeros([size, len(appList)]) 
+    totalArray = np.zeros([size, len(appList)]) 
 
     # Add 1 since it will be horizontally stacked later
     # max string length of 10
@@ -253,13 +266,13 @@ def minver(synth = 0, hw_test = 0):
                     # cmd based on function options
 
                     if synth == 1:
-                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                        cmd = ('make -B COM_PORT?=/dev/ttyUSB1 '
                                'HWA_PROJECT={prj} '
                                'APP={app} '
                                'comp hwa_synth hwa_config download') \
                                 .format(prj=project, app = app)
                     else:                   
-                        cmd = ('make COM_PORT?=/dev/ttyUSB1 '
+                        cmd = ('make -B COM_PORT?=/dev/ttyUSB1 '
                                'HWA_PROJECT={prj} '
                                'APP={app} '
                                'comp hwa_config download') \
@@ -275,11 +288,10 @@ def minver(synth = 0, hw_test = 0):
                     # We now try to do the benchmarking
 
                     retries = 2          
-                    num_cycles = i
 
                     while retries > 0:
-
-                        result = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)
+                        # Redirect stderr to PIPE, hides the warnings when compiling
+                        result = subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                         result = result.stdout.decode('utf-8') # Grab stdout
 
                         if hw_test:
@@ -289,20 +301,21 @@ def minver(synth = 0, hw_test = 0):
                                 print("Correct")
 
                         # Grab everything after "#Cycles ="
-                        test_out = (result.partition("#Cycles = ")[2])
+                        test_out = (result.partition("Benchmarking")[2])
 
                         # Try to see if we got a result
 
                         try:
 
-                            num_cycles = int(test_out)
+                            compute_time = int((re.search('<compute>(.*)</compute>', test_out)).group(1))
+                            transfer_time = int((re.search('<transfer>(.*)</transfer>', test_out)).group(1))
                             break
 
                         except:
 
                             retries = retries - 1
                             print("Error when getting the number of cycles")
-                            print(result.partition("Benchmarking")[2])
+                            print(test_out)
                             #print(result)
                             if synth == 0:
                                 continue
@@ -313,9 +326,14 @@ def minver(synth = 0, hw_test = 0):
 
                         # Success
 
-                        print("The number of cycles is: %d" % (num_cycles))
+                        print("The number of cycles for computation is: %d" % (compute_time))
+                        print("The number of cycles for transfer is: %d" % (transfer_time))
 
-                        dataArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = num_cycles
+
+                        computeArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = compute_time
+                        transferArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = transfer_time
+                        totalArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = transfer_time + compute_time
+
 
                         # Add {dim}x{dim} (e.g. 4x4)
                         # add 1 is for alignment                       
@@ -337,22 +355,31 @@ def minver(synth = 0, hw_test = 0):
 
     # Print the dataArray
 
-    print(dataArray)
+    print(computeArray)
 
     # We now vertically stack the appList first and then the dataArray
 
-    dataOut = np.vstack((appList, dataArray))
+    computeOut = np.vstack((appList, computeArray))
+    computeOut = np.hstack((csv_rows, computeOut))
 
-    # We now horizontally stack the data with csv_rows.
+    transferOut = np.vstack((appList, transferArray))
+    transferOut = np.hstack((csv_rows, transferOut))
 
-    dataOut = np.hstack((csv_rows, dataOut))
+    totalOut = np.vstack((appList, totalArray))
+    totalOut = np.hstack((csv_rows, totalOut))    
 
+    dataOut = np.vstack((computeOut, transferOut, totalOut))
+
+    np.savetxt('minver_compute.csv', computeOut, delimiter=',', fmt='%s') 
+    np.savetxt('minver_transfer.csv', transferOut, delimiter=',', fmt='%s') 
     np.savetxt('minver.csv', dataOut, delimiter=',', fmt='%s') 
+
+
 
 def main(): 
 
-    matmul(synth = 0, hw_test = 0)
-    #minver(synth = 0, hw_test = 0)
+    #matmul(synth = 0, hw_test = 0)
+    minver(synth = 0, hw_test = 0)
 
 if __name__ == "__main__":
     sys.exit(main())    

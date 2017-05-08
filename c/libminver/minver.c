@@ -1,30 +1,24 @@
+/*
+  This c file contains the functions used to generate
+  the correct results to check with that produced by the
+  HwA.
 
+  It is based on the "minver" benchmark from the TACLeBench 
+  benchmark suite (author Sung-Soo Lim.
+
+  Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+  Copyright: BSD License
+  
+ */
+
+/*
+    This program is derived from the SNU-RT Benchmark Suite for Worst
+    Case Timing Analysis by Sung-Soo Lim
+
+    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn
+ */
 
 #include "minver.h"
-
-int check_minver(mat_type hw_result[DIM][DIM], 
-                 mat_type sw_result[DIM][DIM]) {
-
-  int i, j, err_cnt = 0;
-
-  for(i = 0; i < DIM; i++){
-    for(j = 0; j < DIM; j++){
-      if(hw_result[i][j] != sw_result[i][j]) {
-        err_cnt++;  
-      }
-    }
-  }
-
-  if(!err_cnt) {
-    puts("Results correct");      
-  } 
-  else {
-    puts("Results incorrect"); 
-  }
-
-    return err_cnt;
-}
-
 
 mat_type minver_fabs(mat_type n) {
   mat_type f;
@@ -34,30 +28,6 @@ mat_type minver_fabs(mat_type n) {
   else
     f = -n;
   return f;
-}
-
-int  minver_mmul(mat_type minver_a[DIM][DIM], mat_type minver_b[DIM][DIM],
-        mat_type minver_c[DIM][DIM])
-{
-  int i, j, k;
-  mat_type w;
-
-
-  if (DIM < 1)
-    return ( 999 );
-
-  for ( i = 0; i < DIM; i++ ) {
-    for ( j = 0; j < DIM; j++ ) {
-      w = 0.0;
-      for ( k = 0; k < DIM; k++ )
-        w += minver_a[ i ][ k ] * minver_b[ k ][ j ];
-
-      minver_c[ i ][ j ] = w;
-
-    }
-  }
-  return ( 0 );
-
 }
 
 int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps)

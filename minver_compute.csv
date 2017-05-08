@@ -3,8 +3,3 @@ Type=float,NBANKS=1,4x4,1560.0
 ,,16x16,16067.0
 ,NBANKS=2,4x4,1597.0
 ,,16x16,10163.0
-,,,hwa_minver
-Type=float,NBANKS=1,4x4,268.0
-,,16x16,4994.0
-,NBANKS=2,4x4,273.0
-,,16x16,5525.0

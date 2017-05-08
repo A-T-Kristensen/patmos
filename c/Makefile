@@ -16,6 +16,7 @@ LIBHWA=$(BUILDDIR)/libhwa.a
 LIBELF=$(BUILDDIR)/libelf.a
 
 NOCINIT?=cmp/nocinit.c
+MINVERINIT?=libminver/minver_init.c
 
 SHELL=/bin/bash
 #BOOTSPM data is by default in data SPM
@@ -210,7 +211,6 @@ $(BUILDDIR)/libminver/minver.o: libminver/minver.c libminver/minver.h libhwa/hwa
 $(BUILDDIR)/libminver/minver_init.o: libminver/minver_init.c libminver/minver_init.h libhwa/hwa_lib.h libhwa/benchmark.h
 $(LIBMINVER): $(BUILDDIR)/libminver/minver.o $(BUILDDIR)/libminver/minver_init.o
 	patmos-ar r $@ $^	
-
 
 # library for parsing ELF files
 .PHONY: libelf
