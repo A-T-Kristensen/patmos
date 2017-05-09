@@ -61,6 +61,7 @@
 */
 
 #include "libhwa/hwa_lib.h"
+#include "libhwa/hwa_test.h"
 
 #define X DIM /* first dimension of array A */
 #define Y DIM /* second dimension of array A, first dimension of array B */
@@ -159,16 +160,10 @@ void _Pragma ( "entrypoint" ) matrix1_main( void )
 
 int main( void )
 {
-  static unsigned long long start_cycle, stop_cycle, calibration; 
+  static unsigned long long start_cycle, stop_cycle; 
   static unsigned long long return_cycles = 0;   
 
   printf("Benchmarking \n");   
-
-  start_cycle = get_cpu_cycles();
-  stop_cycle = get_cpu_cycles();
-  calibration = stop_cycle-start_cycle;
-
-  printf("%llu \n", calibration);
 
   matrix1_pin_down();
 
@@ -177,8 +172,9 @@ int main( void )
   matrix1_main();
 
   stop_cycle = get_cpu_cycles();
-  return_cycles = stop_cycle-start_cycle-calibration;
-  printf("#Cycles = %llu \n", return_cycles); 
+  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+
+  print_benchmark(return_cycles, 0);
 
   return 0;
 }

@@ -31,11 +31,11 @@ int minver_main() {
     int i, j, k, err_cnt = 0;
     mat_type eps = 1.0e-6;
 
+    unsigned long long start_compute, stop_compute, return_compute;  
+    unsigned long long start_transfer, stop_transfer, return_transfer;     
+
     volatile _IODEV mat_type** bank_ptr_array = (volatile _IODEV mat_type**) bank_ptrs(NBANKS);
     volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-
-    unsigned long long start_compute, stop_compute, return_compute;  
-    unsigned long long start_transfer, stop_transfer, return_transfer;      
 
     mat_type minver_hw_i[DIM][DIM];
     mat_type minver_sw_i[DIM][DIM];
@@ -49,6 +49,8 @@ int minver_main() {
     }
 
     printf("Benchmarking \n");
+
+    // Compute expected results
 
     minver_minver(minver_sw_i, DIM, eps);
 
@@ -97,9 +99,7 @@ int minver_main() {
 
     err_cnt = compare_arrays(minver_hw_i, minver_sw_i);
 
-    //printf("#Cycles = %llu \n", return_cycles);  
-    printf("<compute>%llu</compute>\n", return_compute);  
-    printf("<transfer>%llu</transfer>\n", return_transfer);  
+    print_benchmark(return_compute, return_transfer);
 
     return err_cnt;
 }

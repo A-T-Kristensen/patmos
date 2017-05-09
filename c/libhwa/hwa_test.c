@@ -126,3 +126,9 @@ void led_blink(int err_cnt) {
 	  	}
 	}
 }
+
+void print_benchmark(long long unsigned return_compute, long long unsigned return_transfer) {
+
+	printf("<compute>%llu</compute>\n", return_compute);  
+    printf("<transfer>%llu</transfer>\n", return_transfer);  
+}

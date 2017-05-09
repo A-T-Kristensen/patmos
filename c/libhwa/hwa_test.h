@@ -77,7 +77,7 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM],
 	
  */
 
-
+void print_benchmark(long long unsigned return_compute, long long unsigned return_transfer);
 
 
 #endif /* __HWA_TEST_H__ */

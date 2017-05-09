@@ -1,5 +1,5 @@
-,,,hwa_minver
-Type=float,NBANKS=1,4x4,268.0
-,,16x16,4994.0
-,NBANKS=2,4x4,273.0
-,,16x16,5525.0
+,,,hwa_matmul_nb,tacle_matrix1_uncached
+Type=float,NBANKS=3,4x4,234.0,0.0
+,,16x16,6640.0,0.0
+,NBANKS=5,4x4,239.0,0.0
+,,16x16,7736.0,0.0

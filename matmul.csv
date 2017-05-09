@@ -1,4 +1,6 @@
-,,,hwa_matmul_nb,tacle_matrix1_uncached
-Type=float,NBANKS=3,4x4,1047.0,18828.0
-,NBANKS=5,4x4,1010.0,18828.0
-,NBANKS=9,4x4,1030.0,18813.0
+,,,hwa_matmul_nb,hwa_matmul_nb_spm,hwa_matmul_nb_uncached
+Type=float,NBANKS=3,4x4,1036.0,1098.0,1099.0
+,,,hwa_matmul_nb,hwa_matmul_nb_spm,hwa_matmul_nb_uncached
+Type=float,NBANKS=3,4x4,237.0,169.0,1091.0
+,,,hwa_matmul_nb,hwa_matmul_nb_spm,hwa_matmul_nb_uncached
+Type=float,NBANKS=3,4x4,1273.0,1267.0,2190.0
