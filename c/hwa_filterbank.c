@@ -3,10 +3,6 @@
 #include "libhwa/hwa_bram.h"
 #include "libhwa/hwa_test.h"
 
-//#define mat_type int
-//typedef float mat_type;
-//#define mat_type float
-
 void filterbank_init( void );
 int filterbank_main( void );
 int filterbank_return( void );

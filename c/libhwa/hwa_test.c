@@ -33,7 +33,7 @@ int compare_arrays(mat_type hw_result[DIM][DIM],
 }
 
 int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
-					 volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
+					   volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
 
 	int i, j, err_cnt = 0;
 

@@ -33,13 +33,20 @@
   Forward declaration of functions
 */
 
+struct filter_data {
+    mat_type r[ 256 ];
+    mat_type y[ 256 ];
+    mat_type H[ 8 ][ 32 ];
+    mat_type F[ 8 ][ 32 ];
+};
+
 void filterbank_init( void );
 void filterbank_main( void );
 int filterbank_return( void );
-void filterbank_core( mat_type r[ 256 ],
-                      mat_type y[ 256 ],
-                      mat_type H[ 8 ][ 32 ],
-                      mat_type F[ 8 ][ 32 ] );
+void filterbank_core(volatile _UNCACHED mat_type (*r)[256],
+                     volatile _UNCACHED mat_type (*y)[256],
+                     volatile _UNCACHED mat_type (*H)[8][32],
+                     volatile _UNCACHED mat_type (*F)[8][32]);
 
 
 /*
@@ -48,6 +55,7 @@ void filterbank_core( mat_type r[ 256 ],
 
 static int filterbank_return_value;
 static int filterbank_numiters;
+volatile _UNCACHED struct filter_data *spm_filter;
 
 
 /*
@@ -72,86 +80,46 @@ int filterbank_return( void )
 
 void _Pragma( "entrypoint" ) filterbank_main( void )
 {
-  mat_type r[ 256 ];
-  mat_type y[ 256 ];
-  mat_type H[ 8 ][ 32 ];
-  mat_type F[ 8 ][ 32 ];
 
   int i, j;
 
   _Pragma( "loopbound min 256 max 256" )
-  for ( i = 0; i < 256; i++ )
-    r[ i ] = i + 1;
+  for ( i = 0; i < 256; i++ ){
+    spm_filter->r[i] = i + 1;
+  }
 
   _Pragma( "loopbound min 32 max 32" )
   for ( i = 0; i < 32; i++ ) {
 
     _Pragma( "loopbound min 8 max 8" )
     for ( j = 0; j < 8; j++ ) {
-      H[ j ][ i ] = i * 32 + j * 8 + j + i + j + 1;
-      F[ j ][ i ] = i * j + j * j + j + i;
+      spm_filter->H[j][i] = i * 32 + j * 8 + j + i + j + 1;
+      spm_filter->F[j][i] = i * j + j * j + j + i;
     }
   }
 
-  for(i = 0; i < 256; i++){
-    for(j = 0; j < 8; j++){
-      printf("%f ", H[j][i]);
-    }
-    printf("\n");
-  }
-
-  printf("\n");
-
-
-  for(i = 0; i < 256; i++){
-    for(j = 0; j < 8; j++){
-      printf("%f ", F[j][i]);
-    }
-    printf("\n");
-  }  
-
-  printf("\n");
-
-  for(i = 0; i < 256; i++){
-    printf("%f ", r[i]);
-
-    if(!(i % 8)){
-      printf("\n");
-    }
-  }   
-
-  printf("\n");
-  printf("\n");  
 
   _Pragma( "loopbound min 2 max 2" )
   while ( filterbank_numiters-- > 0 )
-    filterbank_core( r, y, H, F );
+    filterbank_core(&spm_filter->r, &spm_filter->y, &spm_filter->H, &spm_filter->F);
+ 
 
-  for(i = 0; i < 256; i++){
-    printf("%f ", y[i]);
-
-    if(!(i % 8)){
-      printf("\n");
-    }
-  }      
-
-  filterbank_return_value = ( int )( y[ 0 ] ) - 9408;
+  filterbank_return_value = ( int )( spm_filter->y[0] ) - 9408;
 }
 
 
 /* the FB core gets the input vector (r) , the filter responses H and F and */
 /* generates the output vector(y) */
-void filterbank_core( mat_type r[ 256 ],
-                      mat_type y[ 256 ],
-                      mat_type H[ 8 ][ 32 ],
-                      mat_type F[ 8 ][ 32 ] )
-{
+void filterbank_core(volatile _UNCACHED mat_type (*r)[256],
+                     volatile _UNCACHED mat_type (*y)[256],
+                     volatile _UNCACHED mat_type (*H)[8][32],
+                     volatile _UNCACHED mat_type (*F)[8][32]) {
   int i, j, k;
 
 
   _Pragma( "loopbound min 256 max 256" )
   for ( i = 0; i < 256; i++ )
-    y[ i ] = 0;
+    (*y)[ i ] = 0;
 
   _Pragma( "loopbound min 8 max 8" )
   for ( i = 0; i < 8; i++ ) {
@@ -166,7 +134,7 @@ void filterbank_core( mat_type r[ 256 ],
       Vect_H[ j ] = 0;
       _Pragma( "loopbound min 1 max 32" )
       for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ )
-        Vect_H[ j ] += H[ i ][ k ] * r[ j - k ];
+        Vect_H[ j ] += (*H)[ i ][ k ] * (*r)[ j - k ];
     }
 
     /* Down Sampling */
@@ -188,17 +156,16 @@ void filterbank_core( mat_type r[ 256 ],
       Vect_F[ j ] = 0;
       _Pragma( "loopbound min 1 max 32" )
       for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ )
-        Vect_F[ j ] += F[ i ][ k ] * Vect_Up[ j - k ];
+        Vect_F[ j ] += (*F)[ i ][ k ] * Vect_Up[ j - k ];
     }
 
     /* adding the results to the y matrix */
 
     _Pragma( "loopbound min 256 max 256" )
     for ( j = 0; j < 256; j++ )
-      y[ j ] += Vect_F[ j ];
-  }
+      (*y)[ j ] += Vect_F[ j ];
+  }     
 }
-
 
 /*
   Main function

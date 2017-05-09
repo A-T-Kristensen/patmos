@@ -40,13 +40,13 @@ struct filter_data {
     mat_type F[ 8 ][ 32 ];
 };
 
-
-
 void filterbank_init( void );
 void filterbank_main( void );
 int filterbank_return( void );
-void filterbank_core(volatile _SPM struct filter_data *spm_filter);
-
+void filterbank_core(volatile _SPM mat_type (*r)[256],
+                     volatile _SPM mat_type (*y)[256],
+                     volatile _SPM mat_type (*H)[8][32],
+                     volatile _SPM mat_type (*F)[8][32]);
 
 
 /*
@@ -55,6 +55,7 @@ void filterbank_core(volatile _SPM struct filter_data *spm_filter);
 
 static int filterbank_return_value;
 static int filterbank_numiters;
+volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data *) SPM_BASE;
 
 
 /*
@@ -79,27 +80,27 @@ int filterbank_return( void )
 
 void _Pragma( "entrypoint" ) filterbank_main( void )
 {
-  volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data *) SPM_BASE;
 
   int i, j;
 
   _Pragma( "loopbound min 256 max 256" )
-  for ( i = 0; i < 256; i++ )
+  for ( i = 0; i < 256; i++ ){
     spm_filter->r[i] = i + 1;
+  }
 
   _Pragma( "loopbound min 32 max 32" )
   for ( i = 0; i < 32; i++ ) {
 
     _Pragma( "loopbound min 8 max 8" )
     for ( j = 0; j < 8; j++ ) {
-      spm_filter->H[j][ i ] = i * 32 + j * 8 + j + i + j + 1;
-      spm_filter->F[j][ i ] = i * j + j * j + j + i;
+      spm_filter->H[j][i] = i * 32 + j * 8 + j + i + j + 1;
+      spm_filter->F[j][i] = i * j + j * j + j + i;
     }
   }
 
   _Pragma( "loopbound min 2 max 2" )
   while ( filterbank_numiters-- > 0 )
-    filterbank_core(spm_filter);
+    filterbank_core(&spm_filter->r, &spm_filter->y, &spm_filter->H, &spm_filter->F);
 
   filterbank_return_value = ( int )( spm_filter->y[0] ) - 9408;
 }
@@ -107,13 +108,15 @@ void _Pragma( "entrypoint" ) filterbank_main( void )
 
 /* the FB core gets the input vector (r) , the filter responses H and F and */
 /* generates the output vector(y) */
-void filterbank_core(volatile _SPM struct filter_data *spm_filter)
-{
+void filterbank_core(volatile _SPM mat_type (*r)[256],
+                     volatile _SPM mat_type (*y)[256],
+                     volatile _SPM mat_type (*H)[8][32],
+                     volatile _SPM mat_type (*F)[8][32]) {
   int i, j, k;
 
   _Pragma( "loopbound min 256 max 256" )
   for ( i = 0; i < 256; i++ )
-    spm_filter->y[ i ] = 0;
+    (*y)[ i ] = 0;
 
   _Pragma( "loopbound min 8 max 8" )
   for ( i = 0; i < 8; i++ ) {
@@ -128,7 +131,7 @@ void filterbank_core(volatile _SPM struct filter_data *spm_filter)
       Vect_H[ j ] = 0;
       _Pragma( "loopbound min 1 max 32" )
       for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ )
-        Vect_H[ j ] += spm_filter->H[ i ][ k ] * spm_filter->r[ j - k ];
+        Vect_H[ j ] += (*H)[ i ][ k ] * (*r)[ j - k ];
     }
 
     /* Down Sampling */
@@ -150,15 +153,15 @@ void filterbank_core(volatile _SPM struct filter_data *spm_filter)
       Vect_F[ j ] = 0;
       _Pragma( "loopbound min 1 max 32" )
       for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ )
-        Vect_F[ j ] += spm_filter->F[ i ][ k ] * Vect_Up[ j - k ];
+        Vect_F[ j ] += (*F)[ i ][ k ] * Vect_Up[ j - k ];
     }
 
     /* adding the results to the y matrix */
 
     _Pragma( "loopbound min 256 max 256" )
     for ( j = 0; j < 256; j++ )
-      spm_filter->y[ j ] += Vect_F[ j ];
-  }
+      (*y)[ j ] += Vect_F[ j ];
+  }     
 }
 
 /*
