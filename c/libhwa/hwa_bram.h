@@ -91,4 +91,11 @@ void read_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n,
 				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 
+void write_vector(mat_type vec[DIM], int length, int factor, int vec_bank0, 
+				  volatile _IODEV mat_type** bank_ptr_array);
+
+void read_vector(mat_type vec[DIM], int length, int factor, int vec_bank0, 
+				  volatile _IODEV mat_type** bank_ptr_array);
+
+
 #endif /* __HWA_BRAM_H__ */

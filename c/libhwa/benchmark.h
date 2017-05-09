@@ -1,3 +1,4 @@
-#define DIM 	4
-#define NBANKS 	3
-typedef float mat_type;
+#define DIM 	32
+#define NBANKS 	9
+typedef int mat_type;
+typedef float vec_type;

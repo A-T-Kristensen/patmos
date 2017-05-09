@@ -252,19 +252,21 @@ def run_benchmark(project, app, synth, hw_test):
 
             compute_time = int((re.search('<compute>(.*)</compute>', test_out)).group(1))
             transfer_time = int((re.search('<transfer>(.*)</transfer>', test_out)).group(1))
-            break
+
+            return [compute_time, transfer_time, retries]
 
         except:
 
             retries = retries - 1
             print("Error when getting the number of cycles")
-            print(test_out)
+            print(result)
+            
             if synth == 0:
                 continue
             else:
                 break
 
-    return [compute_time, transfer_time, retries]
+    return [0, 0, retries]
 
 def store_benchmark(bench_name, appList, computeArray, transferArray, totalArray, csv_rows):
 
@@ -297,12 +299,18 @@ def matmul(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
-    nbanksList  = [3, 5, 9]
-    dimList     = [4, 16, 32]
-    valsType    = ["float", "int"]
-    appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
-                   "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
+    # nbanksList  = [3, 5, 9]
+    # dimList     = [4, 16, 32]
+    # valsType    = ["float", "int"]
+    # appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
+    #                "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
                 
+
+    nbanksList  = [5, 9]
+    dimList     = [4, 16, 32]
+    valsType    = ["int"]
+    appList     = ["hwa_matmul_nb"]     
+
     # Measurements will be stored in the dataArray
 
     size = int(len(valsType) * len(dimList) * len(nbanksList))

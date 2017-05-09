@@ -47,7 +47,6 @@ void write_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_b
 			}
 		}		
 	}
-   	
 }
 
 void write_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n, 
@@ -184,4 +183,29 @@ void read_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n,
 			}
 		}		
 	}
+}
+
+void write_vector(mat_type vec[DIM], int length, int factor, int vec_bank0, 
+				  volatile _IODEV mat_type** bank_ptr_array) {
+
+	int i, j;
+
+	for(i = 0; i < factor; i++ ) {
+		for(j = 0; j < length/factor; j++){
+			*(bank_ptr_array[i + vec_bank0] + j) = vec[j + i * length / factor];
+		}
+	}		
+}
+
+
+void read_vector(mat_type vec[DIM], int length, int factor, int vec_bank0, 
+				  volatile _IODEV mat_type** bank_ptr_array) {
+
+	int i, j;
+
+	for(i = 0; i < factor; i++ ) {
+		for(j = 0; j < length/factor; j++){
+			vec[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j);
+		}
+	}		
 }

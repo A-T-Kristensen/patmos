@@ -1,2 +1,7 @@
-,,,hwa_matmul_nb,hwa_matmul_nb_spm,hwa_matmul_nb_uncached
-Type=float,NBANKS=3,4x4,237.0,169.0,1091.0
+,,,hwa_matmul_nb
+Type=int,NBANKS=5,4x4,397.0
+,,16x16,7825.0
+,,32x32,38987.0
+,NBANKS=9,4x4,583.0
+,,16x16,8356.0
+,,32x32,41156.0
