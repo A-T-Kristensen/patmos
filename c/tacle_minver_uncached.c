@@ -39,7 +39,6 @@ mat_type minver_fabs( mat_type n );
 void minver_main();
 int main( void );
 
-
 mat_type minver_fabs( mat_type n )
 {
   mat_type f;
@@ -51,8 +50,7 @@ mat_type minver_fabs( mat_type n )
   return f;
 }
 
-int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
-{
+int minver_minver_uncached(volatile _UNCACHED mat_type (*minver_a)[ DIM ][ DIM ], int side, mat_type eps ) {
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
@@ -71,13 +69,13 @@ int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
     wmax = 0.0;
     _Pragma( "loopbound min 1 max 3" )
     for ( i = k; i < side; i++ ) {
-      w = minver_fabs( minver_a[ i ][ k ] );
+      w = minver_fabs( (*minver_a)[ i ][ k ] );
       if ( w > wmax ) {
         wmax = w;
         r = i;
       }
     }
-    pivot = minver_a[ r ][ k ];
+    pivot = (*minver_a)[ r ][ k ];
     api = minver_fabs( pivot );
     if ( api <= eps ) {
       minver_det = w1;
@@ -91,29 +89,29 @@ int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
       work[ r ] = iw;
       _Pragma( "loopbound min 3 max 3" )
       for ( j = 0; j < side; j++ ) {
-        w = minver_a[ k ][ j ];
-        minver_a[ k ][ j ] = minver_a[ r ][ j ];
-        minver_a[ r ][ j ] = w;
+        w = (*minver_a)[ k ][ j ];
+        (*minver_a)[ k ][ j ] = (*minver_a)[ r ][ j ];
+        (*minver_a)[ r ][ j ] = w;
       }
     }
     _Pragma( "loopbound min 3 max 3" )
     for ( i = 0; i < side; i++ )
-      minver_a[ k ][ i ] /= pivot;
+      (*minver_a)[ k ][ i ] /= pivot;
     _Pragma( "loopbound min 3 max 3" )
     for ( i = 0; i < side; i++ ) {
       if ( i != k ) {
-        w = minver_a[ i ][ k ];
+        w = (*minver_a)[ i ][ k ];
         if ( w != 0.0 ) {
           _Pragma( "loopbound min 3 max 3" )
           for ( j = 0; j < side; j++ ) {
-            if ( j != k ) minver_a[ i ][ j ] -= w * minver_a[ k ][ j ];
+            if ( j != k ) (*minver_a)[ i ][ j ] -= w * (*minver_a)[ k ][ j ];
           }
-          minver_a[ i ][ k ] = -w / pivot;
+          (*minver_a)[ i ][ k ] = -w / pivot;
 
         }
       }
     }
-    minver_a[ k ][ k ] = 1.0 / pivot;
+    (*minver_a)[ k ][ k ] = 1.0 / pivot;
   }
   for ( i = 0; i < side; ) {
     /*  The following redundant statement is inserted due to limitations of
@@ -128,9 +126,9 @@ int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
       work[ k ] = work[ i ];
       work[ i ] = iw;
       for ( j = 0; j < side; j++ ) {
-        w = minver_a [k ][ i ];
-        minver_a[ k ][ i ] = minver_a[ k ][ k ];
-        minver_a[ k ][ k ] = w;
+        w = (*minver_a) [k ][ i ];
+        (*minver_a)[ k ][ i ] = (*minver_a)[ k ][ k ];
+        (*minver_a)[ k ][ k ] = w;
       }
     }
     i++;
@@ -140,10 +138,13 @@ int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
 
 }
 
-
 /*
     Main functions
 */
+
+struct matrix {
+    mat_type mat_a[DIM][DIM];
+};
 
 
 void minver_main() {
@@ -151,29 +152,29 @@ void minver_main() {
   mat_type eps;
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
-  mat_type minver_a[DIM][DIM];
+  volatile _UNCACHED struct matrix *test_matrix;
+
   mat_type minver_aa[DIM][DIM];
   mat_type minver_a_i[DIM][DIM];
 
-  set_minver(minver_a);
+  set_minver_uncached(&test_matrix->mat_a);
 
   eps = 1.0e-6;
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ )
-      minver_aa[ i ][ j ] = minver_a[ i ][ j ];
+      minver_aa[ i ][ j ] = test_matrix->mat_a[ i ][ j ];
   }
 
   start_cycle = get_cpu_cycles();
-  
 
-  minver_minver(minver_a, DIM, eps );
+  minver_minver_uncached(&test_matrix->mat_a, DIM, eps );
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ )
-      minver_a_i[ i ][ j ] = minver_a[ i ][ j ];
+      minver_a_i[ i ][ j ] = test_matrix->mat_a[ i ][ j ];
   }
 
   print_benchmark(return_cycles, 0);

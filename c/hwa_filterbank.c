@@ -118,8 +118,7 @@ void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32]) {
 
 }
 
-int filterbank_main( void )
-{
+int filterbank_main( void ) {
     mat_type r[ 256 ] = {0};
     mat_type y_sw[ 256 ] = {0};
     mat_type y_hw[ 256 ] = {0};

@@ -19,4 +19,9 @@
 
 void set_minver(mat_type minver_a[DIM][DIM]);
 
+void set_minver_spm(volatile _SPM mat_type (*minver_a)[DIM][DIM]);
+
+void set_minver_uncached(volatile _UNCACHED mat_type (*minver_a)[DIM][DIM]);
+
+
 #endif

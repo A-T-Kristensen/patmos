@@ -19,7 +19,7 @@ struct matrix {
     mat_type sw_result[DIM][DIM]; 
 };
 
-volatile _UNCACHED struct matrix *spm_matrix;
+volatile _UNCACHED struct matrix *test_matrix;
 
 int main() 
 {
@@ -36,11 +36,11 @@ int main()
 
 	// Initialize matrices
 
-	matmul_init_uncached(&spm_matrix->mat_a, &spm_matrix->mat_b, &spm_matrix->sw_result);
+	matmul_init_uncached(&test_matrix->mat_a, &test_matrix->mat_b, &test_matrix->sw_result);
 
 	// Compute expected results
 
-	matmul_expected_uncached(&spm_matrix->mat_a, &spm_matrix->mat_b, &spm_matrix->sw_result);
+	matmul_expected_uncached(&test_matrix->mat_a, &test_matrix->mat_b, &test_matrix->sw_result);
 
 	printf("Benchmarking \n");	
 
@@ -52,15 +52,15 @@ int main()
 
     #if(NBANKS==3)
 
-	write_array_uncached(&spm_matrix->mat_a, DIM, DIM, factor, 0, bank_ptr_array, 1);
+	write_array_uncached(&test_matrix->mat_a, DIM, DIM, factor, 0, bank_ptr_array, 1);
 
     #else
 
-	write_array_uncached(&spm_matrix->mat_a, DIM, DIM, factor, 0, bank_ptr_array, 2);		
+	write_array_uncached(&test_matrix->mat_a, DIM, DIM, factor, 0, bank_ptr_array, 2);		
 
     #endif	
 
-	write_array_uncached(&spm_matrix->mat_b, DIM, DIM, factor, factor, bank_ptr_array, 1);	
+	write_array_uncached(&test_matrix->mat_b, DIM, DIM, factor, factor, bank_ptr_array, 1);	
 
     stop_transfer = get_cpu_cycles();
     return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	  
@@ -85,17 +85,17 @@ int main()
 
     for(i = 0; i < DIM*DIM; i++)
     {
-        *((&(spm_matrix->hw_result[0][0])) + i)= *(bank_ptr_array[NBANKS-1]  + i);
+        *((&(test_matrix->hw_result[0][0])) + i)= *(bank_ptr_array[NBANKS-1]  + i);
     }    
 */
-    read_array_uncached(&spm_matrix->hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1);    
+    read_array_uncached(&test_matrix->hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1);    
 
     stop_transfer = get_cpu_cycles();
     return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
 	// Check results
 
-	err_cnt = compare_arrays_uncached(&spm_matrix->hw_result, &spm_matrix->sw_result);
+	err_cnt = compare_arrays_uncached(&test_matrix->hw_result, &test_matrix->sw_result);
 
     print_benchmark(return_compute, return_transfer);	
 

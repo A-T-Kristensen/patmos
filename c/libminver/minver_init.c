@@ -11,7 +11,6 @@
 
 void set_minver(mat_type minver_a[DIM][DIM]) {
 
-
   #if(DIM == 3)
 
   minver_a[0][0] = 1;
@@ -1333,3 +1332,4 @@ void set_minver(mat_type minver_a[DIM][DIM]) {
 #endif
 
 }
+

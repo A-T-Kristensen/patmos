@@ -24,6 +24,7 @@ int compare_arrays(mat_type hw_result[DIM][DIM],
 	if(!err_cnt) {
 		puts("Results correct");			
 	} 
+
 	else {
 		puts("Results incorrect"); 
 	}
@@ -64,6 +65,70 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM],
 			if((*hw_result)[i][j] != (*sw_result)[i][j]) {
 				err_cnt++;	
 			}
+		}
+	}
+
+	if(!err_cnt) {
+		puts("Results correct");			
+	} 
+	else {
+		puts("Results incorrect"); 
+	}
+
+    return err_cnt;
+}
+
+int compare_vectors(mat_type hw_result[DIM][DIM], 
+					mat_type sw_result[DIM][DIM]) {
+
+	int i, err_cnt = 0;
+
+	for(i = 0; i < DIM; i++){
+		if(hw_result[i] != sw_result[i]) {
+			err_cnt++;	
+		}
+	}
+
+	if(!err_cnt) {
+		puts("Results correct");			
+	} 
+	
+	else {
+		puts("Results incorrect"); 
+	}
+
+    return err_cnt;
+}
+
+int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
+						volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
+
+	int i, err_cnt = 0;
+
+	for(i = 0; i < DIM; i++){
+		if((*hw_result)[i] != (*sw_result)[i]) {
+			err_cnt++;	
+		}
+	}
+
+	if(!err_cnt) {
+		puts("Results correct");			
+	} 
+	else {
+		puts("Results incorrect"); 
+	}
+
+    return err_cnt;
+}
+
+int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM], 
+							 volatile _UNCACHED mat_type (*sw_result)[DIM]) {
+
+	int i, err_cnt = 0;
+
+	for(i = 0; i < DIM; i++){
+		if((*hw_result)[i] != (*sw_result)[i]) {
+			err_cnt++;	
 		}
 	}
 

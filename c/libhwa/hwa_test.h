@@ -14,22 +14,6 @@
 #include "hwa_lib.h"
 
 /*
-	NAME: led_blink()
-
-	PARAMETERS:
- 		* err_cnt: The number of errors in the calculations between
- 				   the HwA and the software.
-
-	RETURNS: void
-
-	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
- 				 different patterns depending on whether the result is correct
-	
- */
-
-void led_blink(int err_cnt);
-
-/*
 	NAME: compare_arrays()
 
 	PARAMETERS:
@@ -52,7 +36,7 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM],
 						  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]);
 
 /*
-	NAME: 
+	NAME: compare_vectors()
 
 	PARAMETERS:
 		*
@@ -64,8 +48,34 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM],
 	
  */
 
+
+int compare_vectors(mat_type hw_result[DIM][DIM], 
+					mat_type sw_result[DIM][DIM]);
+
+int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
+						volatile _SPM mat_type (*sw_result)[DIM][DIM]);
+
+int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM], 
+							 volatile _UNCACHED mat_type (*sw_result)[DIM]);
+
+/*
+	NAME: led_blink()
+
+	PARAMETERS:
+ 		* err_cnt: The number of errors in the calculations between
+ 				   the HwA and the software.
+
+	RETURNS: void
+
+	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
+ 				 different patterns depending on whether the result is correct
+	
+ */
+
+void led_blink(int err_cnt);
+
   /*
-	NAME: 
+	NAME: print_benchmark()
 
 	PARAMETERS:
 		*
@@ -79,5 +89,17 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM],
 
 void print_benchmark(long long unsigned return_compute, long long unsigned return_transfer);
 
+  /*
+	NAME: 
+
+	PARAMETERS:
+		*
+		*
+
+	RETURNS:
+
+	DESCRIPTION:
+	
+ */
 
 #endif /* __HWA_TEST_H__ */

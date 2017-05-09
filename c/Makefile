@@ -133,6 +133,9 @@ $(BUILDDIR)/bootable-mp_test.elf: bootable.h
 
 $(BUILDDIR)/hwa_minver.elf: libminver/minver.c libminver/minver.h libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/tacle_minver.elf: libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/tacle_minver_spm.elf: libminver/minver_init_spm.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/tacle_minver_uncached.elf: libminver/minver_init_uncached.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
+
 
 #This seems to work without additions for _spm and _uncached versions, so maybe it is not needed
 $(BUILDDIR)/hwa_matmul_nb.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
