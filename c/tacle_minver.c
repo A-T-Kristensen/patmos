@@ -155,6 +155,9 @@ void minver_main() {
   mat_type minver_aa[DIM][DIM];
   mat_type minver_a_i[DIM][DIM];
 
+  printf("Benchmarking \n");
+  
+
   set_minver(minver_a);
 
   eps = 1.0e-6;
@@ -162,15 +165,6 @@ void minver_main() {
     for ( j = 0; j < DIM; j++ )
       minver_aa[ i ][ j ] = minver_a[ i ][ j ];
   }
-
-
-  for ( i = 0; i < DIM; i++ ) {
-      for ( j = 0; j < DIM; j++ ) {
-          printf("%f ", minver_a[i][j]);
-      }
-      printf("\n");
-  }
-
 
   start_cycle = get_cpu_cycles();
   

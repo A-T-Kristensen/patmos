@@ -161,6 +161,9 @@ void minver_main() {
 
   set_minver_uncached(&test_matrix->mat_a);
 
+  printf("Benchmarking \n");
+  
+
   eps = 1.0e-6;
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ )

@@ -88,8 +88,8 @@ def run_benchmark(project, app, synth, hw_test):
 
         try:
 
-            compute_time = int((re.search('<compute>(.*)</compute>', test_out)).group(1))
-            transfer_time = int((re.search('<transfer>(.*)</transfer>', test_out)).group(1))
+            compute_time = int((re.search('<compute>(.*)</compute>', result)).group(1))
+            transfer_time = int((re.search('<transfer>(.*)</transfer>', result)).group(1))
 
             return [compute_time, transfer_time, retries]
 
@@ -137,16 +137,16 @@ def matmul(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
-    # nbanksList  = [3, 5, 9]
-    # dimList     = [4, 16, 32]
-    # valsType    = ["float", "int"]
-    # appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
-    #                "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
-                
     nbanksList  = [3, 5, 9]
-    dimList     = [16, 32]
-    valsType    = ["int"]
-    appList     = ["hwa_matmul_nb_spm"]     
+    dimList     = [4, 16, 32]
+    valsType    = ["float", "int"]
+    appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
+                   "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
+                
+    # nbanksList  = [3, 5, 9]
+    # dimList     = [16, 32]
+    # valsType    = ["int"]
+    # appList     = ["hwa_matmul_nb_spm"]     
 
     # Measurements will be stored in the dataArray
 
@@ -234,15 +234,11 @@ def minver(synth = 0, hw_test = 0):
 
     # These values define the parameter space to explore for matrix multiplication
 
-    # nbanksList  = [1, 2, 4]
-    # dimList     = [4, 16, 32]
-    # valsType    = ["float"]
-    # appList     = ["hwa_minver", "tacle_minver"] 
-
-    nbanksList  = [2, 4]
-    dimList     = [16, 32]
+    nbanksList  = [1, 2, 4]
+    dimList     = [4, 16, 32]
     valsType    = ["float"]
-    appList     = ["hwa_minver_spm"]                
+    appList     = ["hwa_minver", "hwa_minver_spm", "hwa_minver_uncached", 
+                    "tacle_minver", "tacle_minver_spm", "tacle_minver_uncached"] 
 
     # Measurements will be stored in the dataArray
 
@@ -319,8 +315,13 @@ def minver(synth = 0, hw_test = 0):
 def main(): 
 
     #matmul(synth = 0, hw_test = 0)
-    minver(synth = 1, hw_test = 0)
-    matmul(synth = 1, hw_test = 0)
+    #minver(synth = 0, hw_test = 0)
+
+    # Clean up
+
+    filelist = [ f for f in os.listdir(".") if (f.endswith(".log") or f.endswith(".jou")) ]
+    for f in filelist:
+        os.remove(f)    
 
 if __name__ == "__main__":
     sys.exit(main())    

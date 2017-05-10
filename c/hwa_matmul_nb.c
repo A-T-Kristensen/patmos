@@ -86,12 +86,5 @@ int main() {
 
     print_benchmark(return_compute, return_transfer);
 
-for ( i = 0; i < DIM; i++ ) {
-        for ( j = 0; j < DIM; j++ ) {
-            printf("%d ", hw_result[i][j]);
-        }
-        printf("\n");
-    }    
-
 	return err_cnt;
 }

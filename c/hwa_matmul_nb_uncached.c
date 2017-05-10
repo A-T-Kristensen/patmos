@@ -82,13 +82,7 @@ int main()
     // Read back the data    
 
     start_transfer = get_cpu_cycles();        
-/*
 
-    for(i = 0; i < DIM*DIM; i++)
-    {
-        *((&(test_matrix->hw_result[0][0])) + i)= *(bank_ptr_array[NBANKS-1]  + i);
-    }    
-*/
     read_array_uncached(&test_matrix->hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1);    
 
     stop_transfer = get_cpu_cycles();
@@ -99,14 +93,6 @@ int main()
 	err_cnt = compare_arrays_uncached(&test_matrix->hw_result, &test_matrix->sw_result);
 
     print_benchmark(return_compute, return_transfer);	
-
-for ( i = 0; i < DIM; i++ ) {
-        for ( j = 0; j < DIM; j++ ) {
-            printf("%f ", test_matrix->hw_result[i][j]);
-        }
-        printf("\n");
-    }    
     
-
 	return err_cnt;
 }

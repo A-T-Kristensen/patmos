@@ -171,6 +171,9 @@ void minver_main() {
 
   minver_minver_spm(&spm_matrix->mat_a, DIM, eps );
 
+  printf("Benchmarking \n");
+  
+
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 

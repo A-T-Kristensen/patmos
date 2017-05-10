@@ -194,25 +194,6 @@ int minver_main() {
 
     print_benchmark(return_compute, return_transfer);
 
-/*    printf("%d\n", err_cnt);
-
-        printf("\n");    
-
-    for ( i = 0; i < DIM; i++ ) {
-        for ( j = 0; j < DIM; j++ ) {
-            printf("%f ", spm_matrix->hw_result[i][j]);
-        }
-        printf("\n");
-    }        
-
-    for ( i = 0; i < DIM; i++ ) {
-        for ( j = 0; j < DIM; j++ ) {
-            printf("%f ", spm_matrix->sw_result[i][j]);
-        }
-        printf("\n");
-    }  
-
-*/
     return err_cnt;
 }
 

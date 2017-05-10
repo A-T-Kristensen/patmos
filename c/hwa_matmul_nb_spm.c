@@ -93,14 +93,6 @@ int main() {
 	err_cnt = compare_arrays_spm(&spm_matrix->hw_result, &spm_matrix->sw_result);
 
     print_benchmark(return_compute, return_transfer);
-
-    for ( i = 0; i < DIM; i++ ) {
-        for ( j = 0; j < DIM; j++ ) {
-            printf("%d ", spm_matrix->hw_result[i][j]);
-        }
-        printf("\n");
-    }    
-    
 	
 	return err_cnt;
 }
