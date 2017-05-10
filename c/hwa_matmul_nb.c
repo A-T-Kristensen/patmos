@@ -88,7 +88,7 @@ int main() {
 
 for ( i = 0; i < DIM; i++ ) {
         for ( j = 0; j < DIM; j++ ) {
-            printf("%f ", hw_result[i][j]);
+            printf("%d ", hw_result[i][j]);
         }
         printf("\n");
     }    

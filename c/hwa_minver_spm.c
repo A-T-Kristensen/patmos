@@ -141,11 +141,8 @@ int minver_main() {
     for ( i = 0; i < DIM; i++ ) {
         for ( j = 0; j < DIM; j++ ) {
           	spm_matrix->sw_result[i][j] = spm_matrix->hw_result[i][j];
-            printf("%f ", spm_matrix->sw_result[i][j]);
         }
-        printf("\n");
     }
-
     // Compute expected results
 
     minver_minver_spm(&spm_matrix->sw_result, DIM, eps );
@@ -156,11 +153,11 @@ int minver_main() {
 
     #if(NBANKS>1)
 
-    write_array(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+    write_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
     #else
 
-    write_array(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+    write_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
 
     #endif
 
@@ -182,11 +179,11 @@ int minver_main() {
 
     #if(NBANKS>1)
 
-    read_array(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+    read_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
     #else
 
-    read_array(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+    read_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
 
     #endif   
 
@@ -197,7 +194,9 @@ int minver_main() {
 
     print_benchmark(return_compute, return_transfer);
 
-    printf("%d", err_cnt);
+/*    printf("%d\n", err_cnt);
+
+        printf("\n");    
 
     for ( i = 0; i < DIM; i++ ) {
         for ( j = 0; j < DIM; j++ ) {
@@ -206,6 +205,14 @@ int minver_main() {
         printf("\n");
     }        
 
+    for ( i = 0; i < DIM; i++ ) {
+        for ( j = 0; j < DIM; j++ ) {
+            printf("%f ", spm_matrix->sw_result[i][j]);
+        }
+        printf("\n");
+    }  
+
+*/
     return err_cnt;
 }
 
@@ -214,4 +221,3 @@ int main( void ) {
     return (minver_main());  
 
 }
-s

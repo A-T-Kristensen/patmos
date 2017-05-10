@@ -38,7 +38,7 @@ VENDOR?=XilinxVivado
 BOARD?=nexys4ddr
 
 # My custom projects for HwAs built using HLS
-HWA_PROJECT?=minver_float_4b_4x4
+HWA_PROJECT?=minver_float_1b_16x16
 #HWA_PROJECT?=matmul_float_3b_16x16
 #HWA_PROJECT?=matmul_float_3b_32x32
 #HWA_PROJECT?=matmul_float_5b_4x4

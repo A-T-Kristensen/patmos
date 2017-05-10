@@ -49,14 +49,14 @@ int minver_main() {
           	minver_sw_i[i][j] = minver_hw_i[i][j];
         }
     }
-
+/*
     for(i = 0; i < DIM; i++){
         for(j = 0; j < DIM; j++){
             printf("%f ", minver_hw_i[i][j]);
         }
         printf("\n");
     }     
-
+*/
     printf("Benchmarking \n");
 
     // Compute expected results
@@ -109,6 +109,17 @@ int minver_main() {
     err_cnt = compare_arrays(minver_hw_i, minver_sw_i);
 
     print_benchmark(return_compute, return_transfer);
+/*
+    printf("%d\n", err_cnt);
+
+        printf("\n");    
+
+    for ( i = 0; i < DIM; i++ ) {
+        for ( j = 0; j < DIM; j++ ) {
+            printf("%f ", minver_hw_i[i][j]);
+        }
+        printf("\n");
+    }   */      
 
     return err_cnt;
 }

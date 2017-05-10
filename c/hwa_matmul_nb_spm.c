@@ -94,9 +94,9 @@ int main() {
 
     print_benchmark(return_compute, return_transfer);
 
-for ( i = 0; i < DIM; i++ ) {
+    for ( i = 0; i < DIM; i++ ) {
         for ( j = 0; j < DIM; j++ ) {
-            printf("%f ", spm_matrix->hw_result[i][j]);
+            printf("%d ", spm_matrix->hw_result[i][j]);
         }
         printf("\n");
     }    
