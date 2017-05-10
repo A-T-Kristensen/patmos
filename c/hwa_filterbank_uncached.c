@@ -218,7 +218,6 @@ int filterbank_main( void ) {
 
     print_benchmark(return_compute, return_transfer);
 
-
     printf("%d\n", err_cnt);
 
     return ( int )( spm_filter->y[0] ) - 9408;

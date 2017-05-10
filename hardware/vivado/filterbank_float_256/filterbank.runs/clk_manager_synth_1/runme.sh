@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/patmos/t-crest/patmos/hardware/vivado/filter_bank_float_256/filter_bank.runs/clk_manager_synth_1'
+HD_PWD='/home/patmos/t-crest/patmos/hardware/vivado/filterbank_float_256/filterbank.runs/clk_manager_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
