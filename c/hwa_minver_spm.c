@@ -1,20 +1,18 @@
 /*
-  This c file contains the main benchmark program
-  for matrix inversion.
+    This c file contains the main benchmark program
+    for matrix inversion.
 
-  It is based on the "minver" benchmark from the TACLeBench 
-  benchmark suite (author Sung-Soo Lim.
+    It is based on the "minver" benchmark from the TACLeBench 
+    benchmark suite (author Sung-Soo Lim).
 
-  Author: Andreas T. Kristensen (s144026@student.dtu.dk)
-  Copyright: BSD License
-  
- */
+    Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+    Copyright: BSD License
 
-/*
     This program is derived from the SNU-RT Benchmark Suite for Worst
     Case Timing Analysis by Sung-Soo Lim
 
-    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn
+    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn  
+  
  */
 
 #include "libhwa/hwa_lib.h"
@@ -23,17 +21,18 @@
 #include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
-int minver_main();
-int main(void);
-
-struct matrix {
+struct minver_matrix {
     mat_type hw_result[DIM][DIM]; 
     mat_type sw_result[DIM][DIM]; 
 };
-volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BASE;
 
+volatile _SPM struct minver_matrix *spm_matrix = (volatile _SPM struct minver_matrix *) SPM_BASE;
 
-int minver_minver_spm(volatile _SPM mat_type (*minver_a)[ DIM ][ DIM ], int side, mat_type eps ) {
+int minver_main();
+int main(void);
+
+int minver_minver_spm(volatile _SPM mat_type (*minver_a)[ DIM ][ DIM ], 
+                      int side, mat_type eps ) {
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
@@ -143,6 +142,7 @@ int minver_main() {
           	spm_matrix->sw_result[i][j] = spm_matrix->hw_result[i][j];
         }
     }
+
     // Compute expected results
 
     minver_minver_spm(&spm_matrix->sw_result, DIM, eps );
@@ -153,11 +153,13 @@ int minver_main() {
 
     #if(NBANKS>1)
 
-    write_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+    write_array_spm(&spm_matrix->hw_result, DIM, DIM, 
+                    NBANKS, 0, bank_ptr_array, 2);
 
     #else
 
-    write_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+    write_array_spm(&spm_matrix->hw_result, DIM, DIM, 
+                    1, 0, bank_ptr_array, 1);    
 
     #endif
 
@@ -166,9 +168,9 @@ int minver_main() {
 
     // Poll status of HLS module    
 
-    *hls_ptr = 1;
-
     start_compute = get_cpu_cycles();    
+
+    *hls_ptr = 1;
 
     while((*hls_ptr) != 1);
 
@@ -179,18 +181,21 @@ int minver_main() {
 
     #if(NBANKS>1)
 
-    read_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+    read_array_spm(&spm_matrix->hw_result, DIM, DIM, 
+                   NBANKS, 0, bank_ptr_array, 2);
 
     #else
 
-    read_array_spm(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+    read_array_spm(&spm_matrix->hw_result, DIM, DIM, 
+                   NBANKS, 0, bank_ptr_array, 1);    
 
     #endif   
 
     stop_transfer = get_cpu_cycles();
     return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
-    err_cnt = compare_arrays_spm(&spm_matrix->hw_result, &spm_matrix->sw_result);
+    err_cnt = compare_arrays_spm(&spm_matrix->hw_result, 
+                                 &spm_matrix->sw_result);
 
     print_benchmark(return_compute, return_transfer);
 

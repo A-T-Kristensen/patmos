@@ -1,18 +1,20 @@
 #!/usr/bin/python3
 
-# Run with python3
-
 import re
 import os
 import sys
 import subprocess
 import numpy as np
 
-# TODO:
-# Add function to write benchmarks to file
-# Add functions for other HwA
+# clean_up() removes the log and journal files made by vivado
 
-# update updates the header file
+def clean_up():
+
+    filelist = [ f for f in os.listdir(".") if (f.endswith(".log") or f.endswith(".jou")) ]
+    for f in filelist:
+        os.remove(f)        
+
+# update_header() update updates the header file
 
 def update_header(keywordsDefine, valsDefine, keywordsTypes, valsType):
 
@@ -46,9 +48,9 @@ def update_header(keywordsDefine, valsDefine, keywordsTypes, valsType):
     os.remove('c/libhwa/benchmark.h')
     os.rename('c/libhwa/benchmark.xh', 'c/libhwa/benchmark.h')    
 
-def run_benchmark(project, app, synth, hw_test):
+# run_benchmark() executes the cmd in the terminal
 
-    # cmd based on function options
+def run_benchmark(project, app, synth, hw_test):
 
     correct_str = "Results correct";    
 
@@ -73,6 +75,7 @@ def run_benchmark(project, app, synth, hw_test):
     while retries > 0:
 
         # Redirect stderr to PIPE, hides the warnings when compiling
+
         result = subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         result = result.stdout.decode('utf-8') 
 
@@ -84,6 +87,7 @@ def run_benchmark(project, app, synth, hw_test):
 
         test_out = (result.partition("Benchmarking")[2])
         print(test_out)
+
         # Try to see if we got a result
 
         try:
@@ -106,6 +110,8 @@ def run_benchmark(project, app, synth, hw_test):
 
     return [0, 0, retries]
 
+# store_benchmark() stores the benchmark data in .csv format    
+
 def store_benchmark(bench_name, appList, computeArray, transferArray, totalArray, csv_rows):
 
     computeOut = np.vstack((appList, computeArray))
@@ -123,11 +129,9 @@ def store_benchmark(bench_name, appList, computeArray, transferArray, totalArray
     np.savetxt(bench_name + '_transfer.csv', transferOut, delimiter=',', fmt='%s') 
     np.savetxt(bench_name + '.csv', dataOut, delimiter=',', fmt='%s') 
 
+# matmul() is used to run the benchmarks for matrix multiplication
 
 def matmul(synth = 0, hw_test = 0):
-
-    # This string is printed if HwA is correct
-
 
     # These lists holds the definitions for the
     # defines and typedefs to be changed
@@ -142,13 +146,8 @@ def matmul(synth = 0, hw_test = 0):
     valsType    = ["float", "int"]
     appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
                    "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
-                
-    # nbanksList  = [3, 5, 9]
-    # dimList     = [16, 32]
-    # valsType    = ["int"]
-    # appList     = ["hwa_matmul_nb_spm"]     
 
-    # Measurements will be stored in the dataArray
+    # Arrays for data storage
 
     size = int(len(valsType) * len(dimList) * len(nbanksList))
     computeArray = np.zeros([size, len(appList)])
@@ -191,12 +190,17 @@ def matmul(synth = 0, hw_test = 0):
 
                         # Success
 
-                        print("The number of cycles for computation is: %d" % (compute_time))
-                        print("The number of cycles for transfer is: %d" % (transfer_time))
+                        print("#cycles computation: %d" % (compute_time))
+                        print("#cycles transfer: %d" % (transfer_time))
 
-                        computeArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = compute_time
-                        transferArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = transfer_time
-                        totalArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = transfer_time + compute_time
+                        total_time = transfer_time + compute_time
+
+                        computeArray[k + j*len(dimList) + i * len(nbanksList) 
+                                       * len(dimList)][g] = compute_time
+                        transferArray[k + j*len(dimList) + i * len(nbanksList) 
+                                        * len(dimList)][g] = transfer_time
+                        totalArray[k + j*len(dimList) + i * len(nbanksList) 
+                                     * len(dimList)][g] = total_time
 
                         # Add {dim}x{dim} (e.g. 4x4)
                         # add 1 is for alignment                       
@@ -216,15 +220,11 @@ def matmul(synth = 0, hw_test = 0):
         csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
                    = ('Type={type}').format(type = valsType[i])                       
 
-    # We now vertically stack the appList first and then the dataArray
-
     store_benchmark("matmul", appList, computeArray, transferArray, totalArray, csv_rows)
 
+# minver() is used for benchmarking matrix inversion
 
 def minver(synth = 0, hw_test = 0):
-
-    # This string is printed if HwA is correct
-
 
     # These lists holds the definitions for the
     # defines and typedefs to be changed
@@ -237,10 +237,9 @@ def minver(synth = 0, hw_test = 0):
     nbanksList  = [1, 2, 4]
     dimList     = [4, 16, 32]
     valsType    = ["float"]
-    appList     = ["hwa_minver", "hwa_minver_spm", "hwa_minver_uncached", 
-                    "tacle_minver", "tacle_minver_spm", "tacle_minver_uncached"] 
+    appList     = ["tacle_minver_spm"] 
 
-    # Measurements will be stored in the dataArray
+    # Arrays for data storage
 
     size = int(len(valsType) * len(dimList) * len(nbanksList))
     computeArray = np.zeros([size, len(appList)])
@@ -283,12 +282,17 @@ def minver(synth = 0, hw_test = 0):
 
                         # Success
 
-                        print("The number of cycles for computation is: %d" % (compute_time))
-                        print("The number of cycles for transfer is: %d" % (transfer_time))
+                        print("#cycles computation: %d" % (compute_time))
+                        print("#cycles transfer: %d" % (transfer_time))
 
-                        computeArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = compute_time
-                        transferArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = transfer_time
-                        totalArray[k + j*len(dimList) + i * len(nbanksList) * len(dimList)][g] = transfer_time + compute_time
+                        total_time = transfer_time + compute_time
+
+                        computeArray[k + j*len(dimList) + i * len(nbanksList) 
+                                       * len(dimList)][g] = compute_time
+                        transferArray[k + j*len(dimList) + i * len(nbanksList) 
+                                        * len(dimList)][g] = transfer_time
+                        totalArray[k + j*len(dimList) + i * len(nbanksList) 
+                                     * len(dimList)][g] = total_time
 
                         # Add {dim}x{dim} (e.g. 4x4)
                         # add 1 is for alignment                       
@@ -308,8 +312,6 @@ def minver(synth = 0, hw_test = 0):
         csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
                    = ('Type={type}').format(type = valsType[i])                       
 
-    # We now vertically stack the appList first and then the dataArray
-
     store_benchmark("minver", appList, computeArray, transferArray, totalArray, csv_rows)
 
 def main(): 
@@ -317,11 +319,7 @@ def main():
     #matmul(synth = 0, hw_test = 0)
     #minver(synth = 0, hw_test = 0)
 
-    # Clean up
-
-    filelist = [ f for f in os.listdir(".") if (f.endswith(".log") or f.endswith(".jou")) ]
-    for f in filelist:
-        os.remove(f)    
+    clean_up()
 
 if __name__ == "__main__":
     sys.exit(main())    

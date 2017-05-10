@@ -6,9 +6,6 @@
     Copyright: DTU, BSD License
 */
 
-// Files required for memory mapped IO devices
-// patmos.h defines _IODEV, used to access memory mapped IO devices.
-
 #include <machine/patmos.h> 
 
 #define DIM 10
@@ -23,24 +20,25 @@ void _Pragma ( "entrypoint" ) bram_main(void){
 	int temp[DIM];
 
 	// Write data to BRAM
-	_Pragma( "loopbound min DIM max DIM" )
-	for(i = 0; i < DIM; i++)
-	{
+
+	_Pragma("loopbound min DIM max DIM")
+	for(i = 0; i < DIM; i++){
 		*(bram_ptr + i) = i + 1;
 	}
 	
 	// Read back data from BRAM
-	_Pragma( "loopbound min DIM max DIM" )
-	for(i = 0; i < DIM; i++)
-	{
+
+	_Pragma("loopbound min DIM max DIM")
+	for(i = 0; i < DIM; i++){
 		temp[i] = *(bram_ptr + i);
 	}
 }
 
 
-int main() 
-{
+int main(){
+
 	bram_main();
+
 	return 0;
 }
 

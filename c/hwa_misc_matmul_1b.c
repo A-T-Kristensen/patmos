@@ -1,16 +1,15 @@
 /*
- *	This is a minimal C program executed on the FPGA version of Patmos.
- *	An embedded test of a vivado hls module: Matrix multiplication 
- *  on an array of dimension DIM.
- *
- *	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
- *	Copyright: DTU, BSD License
+	This is a minimal C program executed on the FPGA version of Patmos.
+	An embedded test of a vivado hls module: Matrix multiplication 
+	on an array of dimension DIM.
+
+	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+	Copyright: BSD License
  */
 
 #include "hwa_lib.h"
 
-int main() 
-{
+int main() {
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
 	volatile _IODEV mat_type *bram_ptr = (volatile _IODEV mat_type *) BRAM_BASE;
@@ -38,19 +37,18 @@ int main()
 
    // Generate the expected result
 
-   for(i = 0; i < DIM; i++) {
-      for(j = 0; j < DIM; j++) {
-      	 sw_result[i][j] = 0;      	
-         for(k = 0; k < DIM; k++) {
-            sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
-         }
-      }
-   }	
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
+			 sw_result[i][j] = 0;      	
+			for(k = 0; k < DIM; k++) {
+				sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
+			}
+		}
+	}	
 
    // Write to BRAM
 
-    for(i = 0; i < 2*DIM*DIM; i++)
-    {
+    for(i = 0; i < 2*DIM*DIM; i++) {
         *(bram_ptr + i) = *((&in_bram[0][0]) + i);
     }
 
@@ -64,8 +62,7 @@ int main()
 
     // Read back the data
 
-    for(i = 0; i < DIM*DIM; i++)
-    {
+    for(i = 0; i < DIM*DIM; i++) {
         *((&hw_result[0][0]) + i) = *(bram_ptr + i + 2*DIM*DIM); // Increment by 2*DIM*DIM for result
     }    
 	
@@ -73,16 +70,14 @@ int main()
 
     puts("Checking results");	
 	
-    for(i = 0; i < DIM*DIM; i++)
-    {
+    for(i = 0; i < DIM*DIM; i++) {
         printf("%d ", *((&hw_result[0][0]) +i) );
 
         if((i+1) % DIM == 0) {
         	printf("\n");
         }        
 		
-		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i))
-		{
+		if(*((&hw_result[0][0])+i) != *((&sw_result[0][0])+i)) {
 			err_cnt++;	
 		}
     }

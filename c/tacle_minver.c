@@ -40,8 +40,7 @@ void minver_main();
 int main( void );
 
 
-mat_type minver_fabs( mat_type n )
-{
+mat_type minver_fabs( mat_type n ){
   mat_type f;
 
   if ( n >= 0 )
@@ -51,8 +50,7 @@ mat_type minver_fabs( mat_type n )
   return f;
 }
 
-int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
-{
+int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps ){
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
@@ -140,11 +138,9 @@ int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps )
 
 }
 
-
 /*
     Main functions
 */
-
 
 void minver_main() {
   int i, j;
@@ -155,8 +151,7 @@ void minver_main() {
   mat_type minver_aa[DIM][DIM];
   mat_type minver_a_i[DIM][DIM];
 
-  printf("Benchmarking \n");
-  
+  printf("Benchmarking \n");  
 
   set_minver(minver_a);
 
@@ -168,7 +163,6 @@ void minver_main() {
 
   start_cycle = get_cpu_cycles();
   
-
   minver_minver(minver_a, DIM, eps );
 
   stop_cycle = get_cpu_cycles();

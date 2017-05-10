@@ -44,9 +44,7 @@ struct matrix {
 };
 volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BASE;
 
-
-mat_type minver_fabs( mat_type n )
-{
+mat_type minver_fabs( mat_type n ){
   mat_type f;
 
   if ( n >= 0 )
@@ -56,7 +54,8 @@ mat_type minver_fabs( mat_type n )
   return f;
 }
 
-int minver_minver_spm(volatile _SPM mat_type (*minver_a)[ DIM ][ DIM ], int side, mat_type eps ) {
+int minver_minver_spm(volatile _SPM mat_type (*minver_a)[ DIM ][ DIM ], 
+                      int side, mat_type eps ) {
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
@@ -148,17 +147,16 @@ int minver_minver_spm(volatile _SPM mat_type (*minver_a)[ DIM ][ DIM ], int side
     Main functions
 */
 
-
-
 void minver_main() {
   int i, j;
   mat_type eps;
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
-
   mat_type minver_aa[DIM][DIM];
   mat_type minver_a_i[DIM][DIM];
 
+  printf("Benchmarking \n");
+  
   set_minver_spm(&spm_matrix->mat_a);
 
   eps = 1.0e-6;
@@ -170,9 +168,6 @@ void minver_main() {
   start_cycle = get_cpu_cycles();
 
   minver_minver_spm(&spm_matrix->mat_a, DIM, eps );
-
-  printf("Benchmarking \n");
-  
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
@@ -187,8 +182,7 @@ void minver_main() {
 }
 
 
-int main( void )
-{
+int main( void ){
 
   minver_main();
 

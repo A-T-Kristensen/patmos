@@ -39,8 +39,6 @@ struct matrix {
 };
 volatile _UNCACHED struct matrix *test_matrix;
 
-
-
 int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps );
 mat_type minver_fabs( mat_type n );
 void minver_main();
@@ -57,7 +55,8 @@ mat_type minver_fabs( mat_type n )
   return f;
 }
 
-int minver_minver_uncached(volatile _UNCACHED mat_type (*minver_a)[ DIM ][ DIM ], int side, mat_type eps ) {
+int minver_minver_uncached(volatile _UNCACHED mat_type (*minver_a)[DIM][DIM], 
+                           int side, mat_type eps ) {
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
@@ -155,7 +154,6 @@ void minver_main() {
   mat_type eps;
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
-
   mat_type minver_aa[DIM][DIM];
   mat_type minver_a_i[DIM][DIM];
 
@@ -163,7 +161,6 @@ void minver_main() {
 
   printf("Benchmarking \n");
   
-
   eps = 1.0e-6;
   for ( i = 0; i < DIM; i++ ) {
     for ( j = 0; j < DIM; j++ )
@@ -187,8 +184,7 @@ void minver_main() {
 }
 
 
-int main( void )
-{
+int main( void ){
 
   minver_main();
 

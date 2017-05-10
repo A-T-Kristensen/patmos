@@ -1,20 +1,18 @@
 /*
-  This c file contains the main benchmark program
-  for matrix inversion.
+    This c file contains the main benchmark program
+    for matrix inversion.
 
-  It is based on the "minver" benchmark from the TACLeBench 
-  benchmark suite (author Sung-Soo Lim.
+    It is based on the "minver" benchmark from the TACLeBench 
+    benchmark suite (author Sung-Soo Lim).
 
-  Author: Andreas T. Kristensen (s144026@student.dtu.dk)
-  Copyright: BSD License
-  
- */
+    Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+    Copyright: BSD License
 
-/*
     This program is derived from the SNU-RT Benchmark Suite for Worst
     Case Timing Analysis by Sung-Soo Lim
 
-    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn
+    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn  
+  
  */
 
 #include "libhwa/hwa_lib.h"
@@ -75,9 +73,9 @@ int minver_main() {
 
     // Poll status of HLS module    
 
-    *hls_ptr = 1;
-
     start_compute = get_cpu_cycles();    
+
+    *hls_ptr = 1;
 
     while((*hls_ptr) != 1);
 

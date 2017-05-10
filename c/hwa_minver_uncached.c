@@ -1,21 +1,20 @@
 /*
-  This c file contains the main benchmark program
-  for matrix inversion.
+    This c file contains the main benchmark program
+    for matrix inversion.
 
-  It is based on the "minver" benchmark from the TACLeBench 
-  benchmark suite (author Sung-Soo Lim.
+    It is based on the "minver" benchmark from the TACLeBench 
+    benchmark suite (author Sung-Soo Lim).
 
-  Author: Andreas T. Kristensen (s144026@student.dtu.dk)
-  Copyright: BSD License
-  
- */
+    Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+    Copyright: BSD License
 
-/*
     This program is derived from the SNU-RT Benchmark Suite for Worst
     Case Timing Analysis by Sung-Soo Lim
 
-    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn
+    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn  
+  
  */
+
 
 #include "libhwa/hwa_lib.h"
 #include "libhwa/hwa_bram.h"
@@ -23,17 +22,19 @@
 #include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
-int minver_main();
-int main(void);
-
-struct matrix {
+struct minver_matrix {
     mat_type hw_result[DIM][DIM]; 
     mat_type sw_result[DIM][DIM]; 
 };
-volatile _UNCACHED struct matrix *spm_matrix;
+
+volatile _UNCACHED struct minver_matrix *test_matrix;
+
+int minver_main();
+int main(void);
 
 
-int minver_minver_uncached(volatile _UNCACHED mat_type (*minver_a)[ DIM ][ DIM ], int side, mat_type eps ) {
+int minver_minver_uncached(volatile _UNCACHED mat_type (*minver_a)[DIM][DIM], 
+                           int side, mat_type eps ) {
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
@@ -134,19 +135,19 @@ int minver_main() {
 
     volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-    set_minver_uncached(&spm_matrix->hw_result);
+    set_minver_uncached(&test_matrix->hw_result);
 
-    printf("Benchmarking \n");
+		printf("Benchmarking \n");
 
     for ( i = 0; i < DIM; i++ ) {
         for ( j = 0; j < DIM; j++ ) {
-          	spm_matrix->sw_result[i][j] = spm_matrix->hw_result[i][j];
+          	test_matrix->sw_result[i][j] = test_matrix->hw_result[i][j];
         }
     }
 
     // Compute expected results
 
-    minver_minver_uncached(&spm_matrix->sw_result, DIM, eps );
+    minver_minver_uncached(&test_matrix->sw_result, DIM, eps );
 
     // Run accelerator
 
@@ -154,11 +155,11 @@ int minver_main() {
 
     #if(NBANKS>1)
 
-    write_array_uncached(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+    write_array_uncached(&test_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
     #else
 
-    write_array_uncached(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+    write_array_uncached(&test_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
 
     #endif
 
@@ -180,18 +181,18 @@ int minver_main() {
 
     #if(NBANKS>1)
 
-    read_array_uncached(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+    read_array_uncached(&test_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
     #else
 
-    read_array_uncached(&spm_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+    read_array_uncached(&test_matrix->hw_result, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
 
     #endif   
 
     stop_transfer = get_cpu_cycles();
     return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
-    err_cnt = compare_arrays_uncached(&spm_matrix->hw_result, &spm_matrix->sw_result);
+    err_cnt = compare_arrays_uncached(&test_matrix->hw_result, &test_matrix->sw_result);
 
     print_benchmark(return_compute, return_transfer);
 

@@ -43,22 +43,18 @@ int main()
    // Write to bram
 
    //We write linearly
-    for(i = 0; i < DIM*DIM; i++)
-    {
+    for(i = 0; i < DIM*DIM; i++){
         *(spm_ptr + i) = *((&in_spm[0][0]) + i);
     }
 	
-    for(i = 0; i < DIM*DIM; i++)
-    {
-        *((&hw_result[0][0]) + i) = *(spm_ptr + i); // Increment by 2*DIM*DIM for result
+    for(i = 0; i < DIM*DIM; i++){
+        *((&hw_result[0][0]) + i) = *(spm_ptr + i);
     }
 
     // We now continously loop, showing a pattern on the LEDS
 	
-	if(!err_cnt) 
-	{
-		for (;;) 
-		{
+	if(!err_cnt) {
+		for (;;) {
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 3;
@@ -85,11 +81,9 @@ int main()
 		}		
 	} 
 
-	else 
-	{
+	else {
 		// Flash 111 LEDS		
-		for (;;) 
-		{
+		for (;;) {
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;

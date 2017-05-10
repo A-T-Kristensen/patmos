@@ -84,7 +84,6 @@ mat_type matrix1_A[X * Y];
 mat_type matrix1_B[Y * Z];
 mat_type matrix1_C[X * Z];
 
-
 /*
   Initialization functions
 */

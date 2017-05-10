@@ -68,14 +68,6 @@
 #define Z DIM /* second dimension of array B */
 
 /*
-  Forward declaration of functions
-*/
-
-void matrix1_pin_down(void);
-void matrix1_main( void );
-int main( void );
-
-/*
   Declaration of global variables
 */
 
@@ -86,6 +78,16 @@ struct matrix {
 };
 
 volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BASE;
+
+
+/*
+  Forward declaration of functions
+*/
+
+void matrix1_pin_down(void);
+void matrix1_main( void );
+int main( void );
+
 
 /*
   Initialization functions
@@ -141,11 +143,11 @@ void _Pragma ( "entrypoint" ) matrix1_main( void )
 
   _Pragma( "loopbound min 10 max 10" )
   for ( k = 0; k < Z; k++ ) {
-    p_a = &(spm_matrix->matrix1_A[0]);                /* point to the beginning of array A */
+    p_a = &(spm_matrix->matrix1_A[0]);  /* point to the beginning of array A */
 
     _Pragma( "loopbound min 10 max 10" )
     for ( i = 0; i < X; i++ ) {
-      p_b = &(spm_matrix->matrix1_B[k * Y]);          /* take next column */
+      p_b = &(spm_matrix->matrix1_B[k * Y]); /* take next column */
 
       *p_c = 0;
       _Pragma( "loopbound min 10 max 10" )

@@ -1,10 +1,10 @@
 /*
- *	This is a minimal C program executed on the FPGA version of Patmos.
- *	An embedded test of a vivado HLS HwA module: Matrix multiplication on 
- *	an array of dimension DIM partitionen into NBANKS memory banks.
- *
- *	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
- *	Copyright: DTU, BSD License
+ 	This is a minimal C program executed on the FPGA version of Patmos.
+ 	An embedded test of a vivado HLS HwA module: Matrix multiplication on 
+ 	an array of dimension DIM partitionen into NBANKS memory banks.
+ 
+ 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+ 	Copyright: BSD License
  */
 
 #include "libhwa/hwa_lib.h"
@@ -29,7 +29,8 @@ int main() {
     unsigned long long start_compute, stop_compute, return_compute;  
     unsigned long long start_transfer, stop_transfer, return_transfer;    
 
-	int factor = (int) floor(NBANKS/2); // Division factor, a and b shares most banks	
+    // Division factor, a and b shares most banks   
+	int factor = (int) floor(NBANKS/2); 
 
 	printf("Benchmarking \n");
 
@@ -41,7 +42,7 @@ int main() {
 
 	matmul_expected(mat_a, mat_b, sw_result);
 
-   // Write to BRAM
+    // Write to BRAM
 
     start_transfer = get_cpu_cycles();
 
@@ -61,10 +62,10 @@ int main() {
     return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
 
     // Start HLS module
+
+    start_compute = get_cpu_cycles();       
 	
 	*hls_ptr = 1;
-
-    start_compute = get_cpu_cycles();    	
 
 	// Poll status of HLS module
     
