@@ -3,7 +3,6 @@
 #include "libhwa/hwa_bram.h"
 #include "libhwa/hwa_test.h"
 
-
 struct filter_data {
     mat_type r[ 256 ];
     mat_type y[256];    
@@ -12,7 +11,6 @@ struct filter_data {
 };
 
 volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data *) SPM_BASE;
-
 
 void filterbank_init( void );
 int filterbank_main( void );
@@ -23,10 +21,6 @@ void filterbank_core_test(volatile _SPM mat_type (*r)[256],
                           volatile _SPM mat_type (*H)[8][32],
                           volatile _SPM mat_type (*F)[8][32]);
 
-/*void filter_init(volatile _SPM mat_type (*r)[256],
-                 volatile _SPM mat_type (*H)[8][32],
-                 volatile _SPM mat_type (*F)[8][32]);
-*/
 /*
   Declaration of global variables
 */
@@ -34,14 +28,12 @@ void filterbank_core_test(volatile _SPM mat_type (*r)[256],
 static int filterbank_return_value;
 static int filterbank_numiters;
 
-void filterbank_init( void )
-{
+void filterbank_init( void ) {
   filterbank_numiters = 2;
 }
 
 
-int filterbank_return( void )
-{
+int filterbank_return( void ){
   return filterbank_return_value;
 }
 
@@ -105,37 +97,11 @@ void filterbank_core_test(volatile _SPM mat_type (*r)[256],
     }
 }
 
-
-/*void filter_init(volatile _SPM mat_type (*r)[256],
-                 volatile _SPM mat_type (*H)[8][32],
-                 volatile _SPM mat_type (*F)[8][32]) {
-
-    int i, j;
-
-    for ( i = 0; i < 256; i++ ){
-        (*r)[i] = i + 1;
-    }
-
-    for ( i = 0; i < 32; i++ ) {
-        for ( j = 0; j < 8; j++ ) {
-            (*H)[j][i] = i * 32 + j * 8 + j + i + j + 1;
-            (*F)[j][i] = i * j + j * j + j + i;
-        }
-    }
-
-}*/
-
 int filterbank_main( void ) {
-/*    mat_type r[ 256 ] = {0};
-    mat_type y_sw[ 256 ] = {0};
-    mat_type y_hw[ 256 ] = {0};
-    mat_type H[ 8 ][ 32 ] = {0};
-    mat_type F[ 8 ][ 32 ] = {0};*/
     int err_cnt = 0;
 
     volatile _IODEV mat_type *bank_ptr_array[NBANKS];
     bank_ptrs(bank_ptr_array, NBANKS);
-
 
     volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;     
 
@@ -145,8 +111,6 @@ int filterbank_main( void ) {
     unsigned long long start_transfer, stop_transfer, return_transfer;   
 
     // Initialize
-
-    //filter_init(&spm_filter->r, &spm_filter->H, &spm_filter->F);
 
     for ( i = 0; i < 256; i++ ){
         spm_filter->r[i] = i + 1;
@@ -159,24 +123,6 @@ int filterbank_main( void ) {
         }
     }    
 
-    for(i = 0; i < 256; i++){
-        printf("%f ", spm_filter->r[i]);
-
-        if(!(i % 8)){
-            printf("\n");
-        }
-    }  
-
-
-/*    // Initialize  
-    filterbank_init();
-
-    // Calculate software values
-    while ( filterbank_numiters-- > 0 ){
-        filterbank_core_test( r, y_sw, H, F );    
-    }
-*/
-    // Re initialize for HwA test
     filterbank_init();
 
     // Move data into hardware
@@ -218,11 +164,7 @@ int filterbank_main( void ) {
 
     print_benchmark(return_compute, return_transfer);
 
-
-    printf("%d\n", err_cnt);
-
     return ( int )( spm_filter->y[0] ) - 9408;
-
 }
 
 /*

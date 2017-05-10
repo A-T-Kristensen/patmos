@@ -1,12 +1,12 @@
 /*
 	This header file contains the required
-	libraries for general use on Patmos.
+	libraries for general use on Patmos as
+	well as some core definitions.
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: DTU, BSD License
 	
  */
-
 
 #ifndef HWA_LIB_H_
 #define HWA_LIB_H_

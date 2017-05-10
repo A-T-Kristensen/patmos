@@ -176,7 +176,6 @@ int main( void )
 
   start_cycle = get_cpu_cycles();
 
-
   filterbank_main();
 
   stop_cycle = get_cpu_cycles();

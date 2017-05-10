@@ -1,3 +1,15 @@
+/*
+	This header file contains the functions used in benchmarking
+	on hardware and their documentation.
+
+	The set_minver() functions are used to set the matrices
+	with the values of an invertible matrix.
+
+	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+	Copyright: BSD License
+	
+ */
+
 
 #ifndef MINVER_INIT_H_
 #define MINVER_INIT_H_

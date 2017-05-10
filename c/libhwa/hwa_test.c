@@ -1,5 +1,7 @@
 /*
-	This c file 
+	This c file contains the functions used in testing
+	whether the HwA result is correct.
+
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: DTU, BSD License
 	
@@ -7,16 +9,15 @@
 
 #include "hwa_test.h"
 
-
-int compare_arrays(mat_type hw_result[DIM][DIM], 
-				 mat_type sw_result[DIM][DIM]) {
+int compare_arrays(mat_type hw_result[ROWS][COLS], 
+				   mat_type sw_result[ROWS][COLS]) {
 
 	int i, j, err_cnt = 0;
 
 	for(i = 0; i < DIM; i++){
 		for(j = 0; j < DIM; j++){
 			if(hw_result[i][j] != sw_result[i][j]) {
-				err_cnt++;	
+				err_cnt++;
 			}
 		}
 	}
@@ -29,11 +30,11 @@ int compare_arrays(mat_type hw_result[DIM][DIM],
 		puts("Results incorrect"); 
 	}
 
-    return err_cnt;
+	return err_cnt;
 }
 
-int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
-					   volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
+int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[ROWS][COLS], 
+					   volatile _SPM mat_type (*sw_result)[ROWS][COLS]) {
 
 	int i, j, err_cnt = 0;
 
@@ -52,11 +53,11 @@ int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM],
 		puts("Results incorrect"); 
 	}
 
-    return err_cnt;
+	return err_cnt;
 }
 
-int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM], 
-						  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]) {
+int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[ROWS][COLS], 
+						  	volatile _UNCACHED mat_type (*sw_result)[ROWS][COLS]) {
 
 	int i, j, err_cnt = 0;
 
@@ -75,15 +76,16 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM],
 		puts("Results incorrect"); 
 	}
 
-    return err_cnt;
+	return err_cnt;
 }
 
-int compare_vectors(mat_type hw_result[DIM][DIM], 
-					mat_type sw_result[DIM][DIM]) {
+int compare_vectors(mat_type hw_result[], 
+					mat_type sw_result[],
+					int length) {
 
 	int i, err_cnt = 0;
 
-	for(i = 0; i < DIM; i++){
+	for(i = 0; i < length; i++){
 		if(hw_result[i] != sw_result[i]) {
 			err_cnt++;	
 		}
@@ -97,15 +99,16 @@ int compare_vectors(mat_type hw_result[DIM][DIM],
 		puts("Results incorrect"); 
 	}
 
-    return err_cnt;
+	return err_cnt;
 }
 
-int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
-						volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
+int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[], 
+						volatile _SPM mat_type (*sw_result)[],
+						int length) {
 
 	int i, err_cnt = 0;
 
-	for(i = 0; i < DIM; i++){
+	for(i = 0; i < length; i++){
 		if((*hw_result)[i] != (*sw_result)[i]) {
 			err_cnt++;	
 		}
@@ -118,15 +121,16 @@ int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM],
 		puts("Results incorrect"); 
 	}
 
-    return err_cnt;
+	return err_cnt;
 }
 
-int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM], 
-							 volatile _UNCACHED mat_type (*sw_result)[DIM]) {
+int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[], 
+							 volatile _UNCACHED mat_type (*sw_result)[],
+							 int length) {
 
 	int i, err_cnt = 0;
 
-	for(i = 0; i < DIM; i++){
+	for(i = 0; i < length; i++){
 		if((*hw_result)[i] != (*sw_result)[i]) {
 			err_cnt++;	
 		}
@@ -139,7 +143,7 @@ int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM],
 		puts("Results incorrect"); 
 	}
 
-    return err_cnt;
+	return err_cnt;
 }
 
 void led_blink(int err_cnt) {
@@ -147,10 +151,8 @@ void led_blink(int err_cnt) {
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) LED_BASE;
 	int i, j;
 
-	if(!err_cnt) 
-	{
-		for (i = 0; i < LED_ROUNDS; i++) 
-		{
+	if(!err_cnt) {
+		for (i = 0; i < LED_ROUNDS; i++) {
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 3;
@@ -177,10 +179,8 @@ void led_blink(int err_cnt) {
 		}		
 	} 
 
-	else 
-	{
-		for (i = 0; i < LED_ROUNDS; i++) 
-		{
+	else {
+		for (i = 0; i < LED_ROUNDS; i++) {
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;
@@ -188,12 +188,13 @@ void led_blink(int err_cnt) {
 			for (i=LED_RUN_LENGTH; i!=0; --i)
 				for (j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 7; 	
-	  	}
+		}
 	}
 }
 
-void print_benchmark(long long unsigned return_compute, long long unsigned return_transfer) {
+void print_benchmark(long long unsigned return_compute, 
+					 long long unsigned return_transfer) {
 
 	printf("<compute>%llu</compute>\n", return_compute);  
-    printf("<transfer>%llu</transfer>\n", return_transfer);  
+	printf("<transfer>%llu</transfer>\n", return_transfer);  
 }

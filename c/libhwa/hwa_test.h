@@ -4,7 +4,7 @@
 	HwAs.
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
-	Copyright: DTU, BSD License
+	Copyright: BSD License
 	
  */
 
@@ -17,46 +17,51 @@
 	NAME: compare_arrays()
 
 	PARAMETERS:
-		* hw_result
-		* sw_result
+		* hw_result: The hardware result.
+		* sw_result: The software result
 
 	RETURNS: The error count.
 
-	DESCRIPTION: Determines if the result from the HwA differs from that of the software.
+	DESCRIPTION: Determines if the result from the 
+				 HwA differs from that of the software.
 
  */
 
-int compare_arrays(mat_type hw_result[DIM][DIM], 
-				 mat_type sw_result[DIM][DIM]);
+int compare_arrays(mat_type hw_result[ROWS][COLS], 
+				   mat_type sw_result[ROWS][COLS]);
 
-int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
-					 volatile _SPM mat_type (*sw_result)[DIM][DIM]); 
+int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[ROWS][COLS], 
+					 volatile _SPM mat_type (*sw_result)[ROWS][COLS]); 
 
-int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM][DIM], 
-						  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]);
+int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[ROWS][COLS], 
+						    volatile _UNCACHED mat_type (*sw_result)[ROWS][COLS]);
 
 /*
 	NAME: compare_vectors()
 
 	PARAMETERS:
-		*
-		*
+		* hw_result: The hardware result.
+		* sw_result: The software result
+		* length: The length of the vector
 
-	RETURNS:
+	RETURNS: The error count.
 
-	DESCRIPTION:
+	DESCRIPTION: Determines if the result from the 
+				 HwA differs from that of the software.
 	
  */
 
+int compare_vectors(mat_type hw_result[], 
+					mat_type sw_result[],
+					int length);
 
-int compare_vectors(mat_type hw_result[DIM][DIM], 
-					mat_type sw_result[DIM][DIM]);
+int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[], 
+						volatile _SPM mat_type (*sw_result)[],
+						int length);
 
-int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[DIM][DIM], 
-						volatile _SPM mat_type (*sw_result)[DIM][DIM]);
-
-int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM], 
-							 volatile _UNCACHED mat_type (*sw_result)[DIM]);
+int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[], 
+							 volatile _UNCACHED mat_type (*sw_result)[],
+							 int length);
 
 /*
 	NAME: led_blink()
@@ -65,7 +70,7 @@ int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[DIM],
  		* err_cnt: The number of errors in the calculations between
  				   the HwA and the software.
 
-	RETURNS: void
+	RETURNS: None
 
 	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
  				 different patterns depending on whether the result is correct
@@ -78,28 +83,16 @@ void led_blink(int err_cnt);
 	NAME: print_benchmark()
 
 	PARAMETERS:
-		*
-		*
+		*return_compute: The clock cycles for computation.
+		*return_transfer: The clock cycles for data transfer
 
-	RETURNS:
+	RETURNS: None
 
-	DESCRIPTION:
+	DESCRIPTION: Prints the benchmark results properly
 	
  */
 
-void print_benchmark(long long unsigned return_compute, long long unsigned return_transfer);
-
-  /*
-	NAME: 
-
-	PARAMETERS:
-		*
-		*
-
-	RETURNS:
-
-	DESCRIPTION:
-	
- */
+void print_benchmark(long long unsigned return_compute, 
+					 long long unsigned return_transfer);
 
 #endif /* __HWA_TEST_H__ */

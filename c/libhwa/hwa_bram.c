@@ -3,55 +3,25 @@
 	and generate pointers to the BRAMs.
 	
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
-	Copyright: DTU, BSD License
+	Copyright: BSD License
 	
  */
 
 #include "hwa_bram.h"
 
-/*
-	NAME: bank_ptrs()
-
-	PARAMETERS:
-		* nbanks: The number of memory banks
-
-	RETURNS: An array of pointers to the BRAMs
-
-	DESCRIPTION: bank_ptrs() generates an array of pointers to the bram blocks.
-	
- */
-
-
-void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS], unsigned long nbanks) {
+void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS], 
+			   unsigned long nbanks) {
 
 	int i;
-    unsigned long bank_bits = (unsigned long) ceil(log2(NBANKS));
+	unsigned long bank_bits = (unsigned long) ceil(log2(NBANKS));
 
-    for(i = 0; i < NBANKS; i++) {
-        bank_ptr_array[i] = (volatile _IODEV mat_type *) ((i << (ADDR_BITS - bank_bits)) + BRAM_BASE);
-    }
+	for(i = 0; i < NBANKS; i++) {
+		bank_ptr_array[i] = (volatile _IODEV mat_type *) ((i << (ADDR_BITS - bank_bits)) + BRAM_BASE);
+	}
 }
 
-/*
-	NAME: write_array()
-
-	PARAMETERS:
-		* array: the array to be written into the BRAM.
-		* n: the # columns
-		* m: the # rows
-		* factor: Partition factor (partinioned if factor > 1)
-		* array_bank0: First index into bank_ptr_array
-		* bank_ptr_array: Array of pointers to the bram blocks
-		* wr_dim: Dimension of array partitioning (partinioned if factor > 1)
-
-	RETURNS: void
-
-	DESCRIPTION: write_array() writes an array to BRAM blocks.
-				 If factor > 1, array is partitioned.
-	
- */
-
-void write_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_bank0, 
+void write_array(mat_type array[ROWS][COLS], int n, int m, 
+				 int factor, int array_bank0, 
 				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
 
 	int i, j, k;	
@@ -77,9 +47,9 @@ void write_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_b
 	}
 }
 
-void write_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n, 
+void write_array_spm(volatile _SPM mat_type (*array)[ROWS][COLS], int n, 
 					 int m, int factor, int array_bank0, 
-				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+					 volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
 
 	int i, j, k;	
 
@@ -102,12 +72,12 @@ void write_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n,
 			}
 		}		
 	}
-   	
 }
 
-void write_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n, 
-					 int m, int factor, int array_bank0, 
-				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+void write_array_uncached(volatile _UNCACHED mat_type (*array)[ROWS][COLS], 
+						  int n, int m, int factor, int array_bank0, 
+					 	  volatile _IODEV mat_type** bank_ptr_array, 
+					 	  int wr_dim){
 
 	int i, j, k;	
 
@@ -132,8 +102,9 @@ void write_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n,
 	}
 }
 
-void read_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_bank0, 
-				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+void read_array(mat_type array[ROWS][COLS], int n, int m, int factor, 
+				int array_bank0, volatile _IODEV mat_type** bank_ptr_array, 
+				int wr_dim){
 
 	int i, j, k;	
 
@@ -158,9 +129,9 @@ void read_array(mat_type array[DIM][DIM], int n, int m, int factor, int array_ba
 	}
 }
 
-void read_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n, 
-					 int m, int factor, int array_bank0, 
-				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+void read_array_spm(volatile _SPM mat_type (*array)[ROWS][COLS], int n, 
+					int m, int factor, int array_bank0, 
+					volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
 
 	int i, j, k;	
 
@@ -183,12 +154,11 @@ void read_array_spm(volatile _SPM mat_type (*array)[DIM][DIM], int n,
 			}
 		}		
 	}
-   	
 }
 
-void read_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n, 
-					 int m, int factor, int array_bank0, 
-				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
+void read_array_uncached(volatile _UNCACHED mat_type (*array)[ROWS][COLS], 
+						 int n, int m, int factor, int array_bank0, 
+					 	 volatile _IODEV mat_type** bank_ptr_array, int wr_dim){
 
 	int i, j, k;	
 
@@ -213,7 +183,7 @@ void read_array_uncached(volatile _UNCACHED mat_type (*array)[DIM][DIM], int n,
 	}
 }
 
-void write_vector(mat_type vec[DIM], int length, int factor, int vec_bank0, 
+void write_vector(mat_type vec[], int length, int factor, int vec_bank0, 
 				  volatile _IODEV mat_type** bank_ptr_array) {
 
 	int i, j;
@@ -225,8 +195,8 @@ void write_vector(mat_type vec[DIM], int length, int factor, int vec_bank0,
 	}		
 }
 
-void write_vector_spm(volatile _SPM mat_type (*vec)[DIM], int length, int factor, int vec_bank0, 
-				  volatile _IODEV mat_type** bank_ptr_array) {
+void write_vector_spm(volatile _SPM mat_type (*vec)[], int length, int factor, 
+					  int vec_bank0, volatile _IODEV mat_type** bank_ptr_array){
 
 	int i, j;
 
@@ -237,8 +207,9 @@ void write_vector_spm(volatile _SPM mat_type (*vec)[DIM], int length, int factor
 	}		
 }
 
-void write_vector_uncached(volatile _UNCACHED mat_type (*vec)[DIM], int length, int factor, int vec_bank0, 
-				  volatile _IODEV mat_type** bank_ptr_array) {
+void write_vector_uncached(volatile _UNCACHED mat_type (*vec)[], int length, 
+						   int factor, int vec_bank0, 
+						   volatile _IODEV mat_type** bank_ptr_array) {
 
 	int i, j;
 
@@ -249,9 +220,8 @@ void write_vector_uncached(volatile _UNCACHED mat_type (*vec)[DIM], int length, 
 	}		
 }
 
-
-void read_vector(mat_type vec[DIM], int length, int factor, int vec_bank0, 
-				  volatile _IODEV mat_type** bank_ptr_array) {
+void read_vector(mat_type vec[], int length, int factor, int vec_bank0, 
+				 volatile _IODEV mat_type** bank_ptr_array) {
 
 	int i, j;
 
@@ -262,21 +232,22 @@ void read_vector(mat_type vec[DIM], int length, int factor, int vec_bank0,
 	}		
 }
 
-void read_vector_spm(volatile _SPM mat_type (*vec)[DIM], int length, int factor, int vec_bank0, 
-				  volatile _IODEV mat_type** bank_ptr_array) {
+void read_vector_spm(volatile _SPM mat_type (*vec)[], int length, 
+					 int factor, int vec_bank0, 
+				  	 volatile _IODEV mat_type** bank_ptr_array) {
 
 	int i, j;
 
-	for(i = 0; i < factor; i++ ) {
+	for(i = 0; i < factor; i++ ){
 		for(j = 0; j < length/factor; j++){
 			(*vec)[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j);
 		}
 	}		
 }
 
-
-void read_vector_uncached(volatile _UNCACHED  mat_type (*vec)[DIM], int length, int factor, int vec_bank0, 
-				  volatile _IODEV mat_type** bank_ptr_array) {
+void read_vector_uncached(volatile _UNCACHED  mat_type (*vec)[], int length, 
+						  int factor, int vec_bank0, 
+				  		  volatile _IODEV mat_type** bank_ptr_array) {
 
 	int i, j;
 

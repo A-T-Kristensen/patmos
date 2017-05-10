@@ -177,9 +177,7 @@ void minver_main() {
 
 }
 
-
-int main( void )
-{
+int main( void ){
 
   minver_main();
 

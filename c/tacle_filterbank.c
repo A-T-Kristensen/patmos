@@ -93,47 +93,9 @@ void _Pragma( "entrypoint" ) filterbank_main( void )
     }
   }
 
-  for(i = 0; i < 256; i++){
-    for(j = 0; j < 8; j++){
-      printf("%f ", H[j][i]);
-    }
-    printf("\n");
-  }
-
-  printf("\n");
-
-
-  for(i = 0; i < 256; i++){
-    for(j = 0; j < 8; j++){
-      printf("%f ", F[j][i]);
-    }
-    printf("\n");
-  }  
-
-  printf("\n");
-
-  for(i = 0; i < 256; i++){
-    printf("%f ", r[i]);
-
-    if(!(i % 8)){
-      printf("\n");
-    }
-  }   
-
-  printf("\n");
-  printf("\n");  
-
   _Pragma( "loopbound min 2 max 2" )
   while ( filterbank_numiters-- > 0 )
     filterbank_core( r, y, H, F );
-
-  for(i = 0; i < 256; i++){
-    printf("%f ", y[i]);
-
-    if(!(i % 8)){
-      printf("\n");
-    }
-  }      
 
   filterbank_return_value = ( int )( y[ 0 ] ) - 9408;
 }
@@ -147,7 +109,6 @@ void filterbank_core( mat_type r[ 256 ],
                       mat_type F[ 8 ][ 32 ] )
 {
   int i, j, k;
-
 
   _Pragma( "loopbound min 256 max 256" )
   for ( i = 0; i < 256; i++ )
@@ -204,14 +165,13 @@ void filterbank_core( mat_type r[ 256 ],
   Main function
 */
 
-int main( void )
-{
+int main( void ) {
+
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
   filterbank_init();
 
   start_cycle = get_cpu_cycles();
-
 
   filterbank_main();
 
