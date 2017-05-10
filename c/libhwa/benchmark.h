@@ -1,5 +1,5 @@
-#define ROWS 	16
-#define COLS	16
-#define DIM 	16
-#define NBANKS 	2
+#define ROWS 	8
+#define COLS	32
+#define DIM 	32
+#define NBANKS 	4
 typedef float mat_type;

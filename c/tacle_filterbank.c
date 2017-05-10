@@ -171,6 +171,8 @@ int main( void ) {
 
   filterbank_init();
 
+  printf("Benchmarking \n");    
+
   start_cycle = get_cpu_cycles();
 
   filterbank_main();

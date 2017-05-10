@@ -175,6 +175,8 @@ int main( void ){
 
     int err_cnt = 0;
 
+    printf("Benchmarking \n");      
+
     err_cnt = filterbank_main();
 
     return err_cnt;
