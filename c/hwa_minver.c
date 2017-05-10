@@ -50,6 +50,13 @@ int minver_main() {
         }
     }
 
+    for(i = 0; i < DIM; i++){
+        for(j = 0; j < DIM; j++){
+            printf("%f ", minver_hw_i[i][j]);
+        }
+        printf("\n");
+    }     
+
     printf("Benchmarking \n");
 
     // Compute expected results

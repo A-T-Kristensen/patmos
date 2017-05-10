@@ -34,6 +34,13 @@
 #include "libminver/minver_init.h"
 #include "libhwa/hwa_test.h"
 
+struct matrix {
+    mat_type mat_a[DIM][DIM];
+};
+volatile _UNCACHED struct matrix *test_matrix;
+
+
+
 int minver_minver(mat_type minver_a[ DIM ][ DIM ], int side, mat_type eps );
 mat_type minver_fabs( mat_type n );
 void minver_main();
@@ -142,17 +149,12 @@ int minver_minver_uncached(volatile _UNCACHED mat_type (*minver_a)[ DIM ][ DIM ]
     Main functions
 */
 
-struct matrix {
-    mat_type mat_a[DIM][DIM];
-};
-
 
 void minver_main() {
   int i, j;
   mat_type eps;
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
-  volatile _UNCACHED struct matrix *test_matrix;
 
   mat_type minver_aa[DIM][DIM];
   mat_type minver_a_i[DIM][DIM];

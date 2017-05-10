@@ -305,11 +305,10 @@ def matmul(synth = 0, hw_test = 0):
     # appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", "hwa_matmul_nb_uncached", 
     #                "tacle_matrix1_spm", "tacle_matrix1_uncached"]               
                 
-
     nbanksList  = [5, 9]
-    dimList     = [4, 16, 32]
-    valsType    = ["int"]
-    appList     = ["hwa_matmul_nb"]     
+    dimList     = [16, 32]
+    valsType    = ["float"]
+    appList     = ["hwa_matmul_nb_spm"]     
 
     # Measurements will be stored in the dataArray
 
@@ -402,8 +401,8 @@ def minver(synth = 0, hw_test = 0):
     # valsType    = ["float"]
     # appList     = ["hwa_minver", "tacle_minver"] 
 
-    nbanksList  = [1, 2]
-    dimList     = [4, 16]
+    nbanksList  = [1, 2, 4]
+    dimList     = [4, 16, 32]
     valsType    = ["float"]
     appList     = ["hwa_minver"]                
 
@@ -481,7 +480,7 @@ def minver(synth = 0, hw_test = 0):
 
 def main(): 
 
-    matmul(synth = 0, hw_test = 0)
+    matmul(synth = 1, hw_test = 0)
     #minver(synth = 0, hw_test = 0)
 
 if __name__ == "__main__":

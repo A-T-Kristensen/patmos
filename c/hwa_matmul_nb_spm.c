@@ -28,6 +28,7 @@ int main() {
 
     volatile _IODEV mat_type *bank_ptr_array[NBANKS];
     bank_ptrs(bank_ptr_array, NBANKS);
+
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;    
 
     unsigned long long start_compute, stop_compute, return_compute;  
@@ -92,6 +93,14 @@ int main() {
 	err_cnt = compare_arrays_spm(&spm_matrix->hw_result, &spm_matrix->sw_result);
 
     print_benchmark(return_compute, return_transfer);
+
+for ( i = 0; i < DIM; i++ ) {
+        for ( j = 0; j < DIM; j++ ) {
+            printf("%f ", spm_matrix->hw_result[i][j]);
+        }
+        printf("\n");
+    }    
+    
 	
 	return err_cnt;
 }

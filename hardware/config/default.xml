@@ -9,7 +9,7 @@
   <DCache size="2k" assoc="1" repl="" writeThrough="true" />
   <SCache size="2k" />
   <ISPM size="1k" />
-  <DSPM size="2k" />
+  <DSPM size="8k" />
 
   <ExtMem size="2M" />
 

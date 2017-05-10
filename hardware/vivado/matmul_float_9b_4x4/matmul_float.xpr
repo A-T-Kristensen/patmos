@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="/home/andreas/t-crest/patmos/hardware/vivado/matmul_float_9b_4x4/matmul_float.xpr">
+<Project Version="7" Minor="17" Path="/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_9b_4x4/matmul_float.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="44437113ce5a4f4fa39914f3cfeb84af"/>

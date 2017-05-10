@@ -9034,25 +9034,25 @@ module Exceptions(input clk, input reset,
 endmodule
 
 module MemBlock_2(input clk,
-    input [8:0] io_rdAddr,
+    input [11:0] io_rdAddr,
     output[7:0] io_rdData,
-    input [8:0] io_wrAddr,
+    input [11:0] io_wrAddr,
     input  io_wrEna,
     input [7:0] io_wrData
 );
 
   wire[7:0] T0;
-  reg [7:0] mem [511:0];
+  reg [7:0] mem [4095:0];
   wire[7:0] T1;
   wire T2;
-  reg [8:0] rdAddrReg;
+  reg [11:0] rdAddrReg;
 
 `ifndef SYNTHESIS
 // synthesis translate_off
   integer initvar;
   initial begin
     #0.002;
-    for (initvar = 0; initvar < 512; initvar = initvar+1)
+    for (initvar = 0; initvar < 4096; initvar = initvar+1)
       mem[initvar] = {1{$random}};
     rdAddrReg = {1{$random}};
   end
@@ -9072,7 +9072,7 @@ endmodule
 
 module Spm(input clk,
     input [2:0] io_M_Cmd,
-    input [10:0] io_M_Addr,
+    input [13:0] io_M_Addr,
     input [31:0] io_M_Data,
     input [3:0] io_M_ByteEn,
     output[1:0] io_S_Resp,
@@ -9083,20 +9083,20 @@ module Spm(input clk,
   wire T1;
   wire[3:0] T2;
   wire T3;
-  wire[8:0] T4;
-  wire[8:0] T5;
+  wire[11:0] T4;
+  wire[11:0] T5;
   wire[7:0] T6;
   wire T7;
-  wire[8:0] T8;
-  wire[8:0] T9;
+  wire[11:0] T8;
+  wire[11:0] T9;
   wire[7:0] T10;
   wire T11;
-  wire[8:0] T12;
-  wire[8:0] T13;
+  wire[11:0] T12;
+  wire[11:0] T13;
   wire[7:0] T14;
   wire T15;
-  wire[8:0] T16;
-  wire[8:0] T17;
+  wire[11:0] T16;
+  wire[11:0] T17;
   wire[31:0] T18;
   wire[23:0] T19;
   wire[15:0] T20;
@@ -9124,20 +9124,20 @@ module Spm(input clk,
   assign T1 = T2[2'h3:2'h3];
   assign T2 = T3 ? io_M_ByteEn : 4'h0;
   assign T3 = io_M_Cmd == 3'h1;
-  assign T4 = io_M_Addr[4'ha:2'h2];
-  assign T5 = io_M_Addr[4'ha:2'h2];
+  assign T4 = io_M_Addr[4'hd:2'h2];
+  assign T5 = io_M_Addr[4'hd:2'h2];
   assign T6 = io_M_Data[5'h17:5'h10];
   assign T7 = T2[2'h2:2'h2];
-  assign T8 = io_M_Addr[4'ha:2'h2];
-  assign T9 = io_M_Addr[4'ha:2'h2];
+  assign T8 = io_M_Addr[4'hd:2'h2];
+  assign T9 = io_M_Addr[4'hd:2'h2];
   assign T10 = io_M_Data[4'hf:4'h8];
   assign T11 = T2[1'h1:1'h1];
-  assign T12 = io_M_Addr[4'ha:2'h2];
-  assign T13 = io_M_Addr[4'ha:2'h2];
+  assign T12 = io_M_Addr[4'hd:2'h2];
+  assign T13 = io_M_Addr[4'hd:2'h2];
   assign T14 = io_M_Data[3'h7:1'h0];
   assign T15 = T2[1'h0:1'h0];
-  assign T16 = io_M_Addr[4'ha:2'h2];
-  assign T17 = io_M_Addr[4'ha:2'h2];
+  assign T16 = io_M_Addr[4'hd:2'h2];
+  assign T17 = io_M_Addr[4'hd:2'h2];
   assign io_S_Data = T18;
   assign T18 = {MemBlock_3_io_rdData, T19};
   assign T19 = {MemBlock_2_io_rdData, T20};
@@ -10142,7 +10142,7 @@ module CpuInfo(input clk,
   assign io_ocp_S_Data = data;
   assign data = T0;
   assign T0 = T32 ? romData : T1;
-  assign T1 = T29 ? 32'h800 : T2;
+  assign T1 = T29 ? 32'h4000 : T2;
   assign T2 = T28 ? 32'h400 : T3;
   assign T3 = T27 ? 32'h0 : T4;
   assign T4 = T26 ? 32'h800 : T5;
@@ -10565,7 +10565,7 @@ module InOut(input clk, input reset,
   wire T39;
   wire selNI;
   wire[3:0] T40;
-  wire[10:0] T172;
+  wire[13:0] T172;
   wire[2:0] T41;
   wire selSpm;
   wire T42;
@@ -10926,7 +10926,7 @@ module InOut(input clk, input reset,
   assign T39 = io_memInOut_M_Addr[5'h1b:5'h1b];
   assign selNI = T40 == 4'he;
   assign T40 = io_memInOut_M_Addr[5'h1f:5'h1c];
-  assign T172 = io_memInOut_M_Addr[4'ha:1'h0];
+  assign T172 = io_memInOut_M_Addr[4'hd:1'h0];
   assign T41 = selSpm ? io_memInOut_M_Cmd : 3'h0;
   assign selSpm = T44 & T42;
   assign T42 = T43 == 1'h0;
@@ -15837,6 +15837,43 @@ module DirectMappedCache(input clk, input reset,
   end
 endmodule
 
+module MemBlock_5(input clk,
+    input [8:0] io_rdAddr,
+    output[7:0] io_rdData,
+    input [8:0] io_wrAddr,
+    input  io_wrEna,
+    input [7:0] io_wrData
+);
+
+  wire[7:0] T0;
+  reg [7:0] mem [511:0];
+  wire[7:0] T1;
+  wire T2;
+  reg [8:0] rdAddrReg;
+
+`ifndef SYNTHESIS
+// synthesis translate_off
+  integer initvar;
+  initial begin
+    #0.002;
+    for (initvar = 0; initvar < 512; initvar = initvar+1)
+      mem[initvar] = {1{$random}};
+    rdAddrReg = {1{$random}};
+  end
+// synthesis translate_on
+`endif
+
+  assign io_rdData = T0;
+  assign T0 = mem[rdAddrReg];
+  assign T2 = io_wrEna == 1'h1;
+
+  always @(posedge clk) begin
+    if (T2)
+      mem[io_wrAddr] <= io_wrData;
+    rdAddrReg <= io_rdAddr;
+  end
+endmodule
+
 module StackCache(input clk, input reset,
     input  io_ena_in,
     input [2:0] io_exsc_op,
@@ -16272,28 +16309,28 @@ module StackCache(input clk, input reset,
   assign T156 = io_toMemory_S_Resp == 2'h3;
   assign io_scex_memTop = memTopReg;
   assign io_scex_stackTop = stackTopReg;
-  MemBlock_2 MemBlock(.clk(clk),
+  MemBlock_5 MemBlock(.clk(clk),
        .io_rdAddr( mb_rdAddr ),
        .io_rdData( MemBlock_io_rdData ),
        .io_wrAddr( mb_wrAddr ),
        .io_wrEna( T133 ),
        .io_wrData( T132 )
   );
-  MemBlock_2 MemBlock_1(.clk(clk),
+  MemBlock_5 MemBlock_1(.clk(clk),
        .io_rdAddr( mb_rdAddr ),
        .io_rdData( MemBlock_1_io_rdData ),
        .io_wrAddr( mb_wrAddr ),
        .io_wrEna( T131 ),
        .io_wrData( T130 )
   );
-  MemBlock_2 MemBlock_2(.clk(clk),
+  MemBlock_5 MemBlock_2(.clk(clk),
        .io_rdAddr( mb_rdAddr ),
        .io_rdData( MemBlock_2_io_rdData ),
        .io_wrAddr( mb_wrAddr ),
        .io_wrEna( T129 ),
        .io_wrData( T128 )
   );
-  MemBlock_2 MemBlock_3(.clk(clk),
+  MemBlock_5 MemBlock_3(.clk(clk),
        .io_rdAddr( mb_rdAddr ),
        .io_rdData( MemBlock_3_io_rdData ),
        .io_wrAddr( mb_wrAddr ),

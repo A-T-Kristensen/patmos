@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/patmos/t-crest/patmos/hardware/vivado/filter_bank_float_256/filter_bank.xdc rfile:../../../filter_bank.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/patmos/t-crest/patmos/hardware/vivado/filterbank_float_256/filterbank.xdc rfile:../../../filterbank.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN E3 IOSTANDARD LVCMOS33} [get_ports clk_in]
 set_property src_info {type:XDC file:1 line:13 export:INPUT save:INPUT read:READ} [current_design]

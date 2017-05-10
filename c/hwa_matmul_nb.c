@@ -20,6 +20,7 @@ int main() {
 
     volatile _IODEV mat_type *bank_ptr_array[NBANKS];
     bank_ptrs(bank_ptr_array, NBANKS);
+
     volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;    
 
 	mat_type mat_a[DIM][DIM], mat_b[DIM][DIM];
@@ -84,6 +85,13 @@ int main() {
 	err_cnt = compare_arrays(hw_result, sw_result);
 
     print_benchmark(return_compute, return_transfer);
+
+for ( i = 0; i < DIM; i++ ) {
+        for ( j = 0; j < DIM; j++ ) {
+            printf("%f ", hw_result[i][j]);
+        }
+        printf("\n");
+    }    
 
 	return err_cnt;
 }

@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Fri Apr 28 08:14:54 2017
+| Date         : Wed May 10 08:05:40 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_drc -file patmos_top_drc_opted.rpt
 | Design       : patmos_top
@@ -24,7 +24,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 79
+             Violations found: 81
 +-----------+----------+-------------------------------------------------------------------+------------+
 | Rule      | Severity | Description                                                       | Violations |
 +-----------+----------+-------------------------------------------------------------------+------------+
@@ -34,7 +34,7 @@ Table of Contents
 | DPOP-1    | Warning  | PREG Output pipelining                                            | 13         |
 | DPOP-2    | Warning  | MREG Output pipelining                                            | 5          |
 | REQP-1709 | Warning  | Clock output buffering                                            | 1          |
-| REQP-1839 | Warning  | RAMB36 async control check                                        | 2          |
+| REQP-1839 | Warning  | RAMB36 async control check                                        | 4          |
 | REQP-1840 | Warning  | RAMB18 async control check                                        | 20         |
 | AVAL-4    | Advisory | enum_USE_DPORT_FALSE_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND | 8          |
 | AVAL-5    | Advisory | enum_USE_MULT_NONE_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND   | 2          |
@@ -284,6 +284,16 @@ Related violations: <none>
 REQP-1839#2 Warning
 RAMB36 async control check  
 The RAMB36E1 n_bank_inst_0/bram_gen[1].bram_array/mem_reg_1 has an input control pin n_bank_inst_0/bram_gen[1].bram_array/mem_reg_1/ENBWREN (net: n_bank_inst_0/bram_gen[1].bram_array/mem_reg_1_ENBWREN_cooolgate_en_sig_2) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#3 Warning
+RAMB36 async control check  
+The RAMB36E1 n_bank_inst_0/bram_gen[1].bram_array/mem_reg_2 has an input control pin n_bank_inst_0/bram_gen[1].bram_array/mem_reg_2/ENBWREN (net: n_bank_inst_0/bram_gen[1].bram_array/mem_reg_2_ENBWREN_cooolgate_en_sig_3) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#4 Warning
+RAMB36 async control check  
+The RAMB36E1 n_bank_inst_0/bram_gen[1].bram_array/mem_reg_3 has an input control pin n_bank_inst_0/bram_gen[1].bram_array/mem_reg_3/ENBWREN (net: n_bank_inst_0/bram_gen[1].bram_array/mem_reg_3_ENBWREN_cooolgate_en_sig_4) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#1 Warning

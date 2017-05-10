@@ -122,7 +122,9 @@ int filterbank_main( void ) {
     mat_type F[ 8 ][ 32 ] = {0};
     int err_cnt = 0;
 
-    volatile _IODEV mat_type** bank_ptr_array = (volatile _IODEV mat_type**) bank_ptrs(NBANKS);
+    volatile _IODEV mat_type *bank_ptr_array[NBANKS];
+    bank_ptrs(bank_ptr_array, NBANKS);
+
     volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;     
 
     int i, j;
@@ -149,8 +151,8 @@ int filterbank_main( void ) {
 
     start_transfer = get_cpu_cycles();
 
-    write_vector(r, DIM, 1, 0, bank_ptr_array);
-    write_vector(y_hw, DIM, 1, 1, bank_ptr_array);
+    write_vector(r, 256, 1, 0, bank_ptr_array);
+    write_vector(y_hw, 256, 1, 1, bank_ptr_array);
     write_array(H, 32, 8, 1, 2, bank_ptr_array, 1);
     write_array(F, 32, 8, 1, 3, bank_ptr_array, 1);
 
@@ -177,7 +179,7 @@ int filterbank_main( void ) {
 
     start_transfer = get_cpu_cycles();        
 
-    read_vector(y_hw, DIM, 1, 1, bank_ptr_array);
+    read_vector(y_hw, 256, 1, 1, bank_ptr_array);
 
     stop_transfer = get_cpu_cycles();
     return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -190,10 +192,12 @@ int filterbank_main( void ) {
         }
     }
 
+    printf("%d\n", err_cnt);
+
+
     print_benchmark(return_compute, return_transfer);
 
-    return err_cnt;
-
+    return ( int )( y_sw[0] ) - 9408;
 }
 
 /*

@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/patmos/t-crest/patmos/hardware/vivado/filter_bank_float_256/filter_bank.runs/impl_1'
+HD_PWD='/home/patmos/t-crest/patmos/hardware/vivado/filterbank_float_256/filterbank.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -37,7 +37,7 @@ EAStep()
 }
 
 # pre-commands:
-/bin/touch .init_design.begin.rst
+/bin/touch .write_bitstream.begin.rst
 EAStep vivado -log patmos_top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source patmos_top.tcl -notrace
 
 

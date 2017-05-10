@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Fri Apr 28 08:14:01 2017
+| Date         : Wed May 10 08:04:51 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_utilization -file patmos_top_utilization_synth.rpt -pb patmos_top_utilization_synth.pb
 | Design       : patmos_top
@@ -69,11 +69,11 @@ Table of Contents
 +-------------------+------+-------+-----------+-------+
 |     Site Type     | Used | Fixed | Available | Util% |
 +-------------------+------+-------+-----------+-------+
-| Block RAM Tile    | 19.5 |     0 |       135 | 14.44 |
-|   RAMB36/FIFO*    |   10 |     0 |       135 |  7.41 |
-|     RAMB36E1 only |   10 |       |           |       |
-|   RAMB18          |   19 |     0 |       270 |  7.04 |
-|     RAMB18E1 only |   19 |       |           |       |
+| Block RAM Tile    | 29.5 |     0 |       135 | 21.85 |
+|   RAMB36/FIFO*    |   22 |     0 |       135 | 16.30 |
+|     RAMB36E1 only |   22 |       |           |       |
+|   RAMB18          |   15 |     0 |       270 |  5.56 |
+|     RAMB18E1 only |   15 |       |           |       |
 +-------------------+------+-------+-----------+-------+
 * Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E1 or one FIFO18E1. However, if a FIFO18E1 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E1
 
@@ -152,9 +152,9 @@ Table of Contents
 | Ref Name |  Used | Functional Category |
 +----------+-------+---------------------+
 | FDRE     | 11671 |        Flop & Latch |
-| LUT6     |  5897 |                 LUT |
+| LUT6     |  5898 |                 LUT |
 | LUT5     |  1465 |                 LUT |
-| LUT3     |  1391 |                 LUT |
+| LUT3     |  1392 |                 LUT |
 | LUT4     |  1356 |                 LUT |
 | SRL16E   |   970 |  Distributed Memory |
 | LUT2     |   825 |                 LUT |
@@ -166,10 +166,10 @@ Table of Contents
 | RAMS32   |    76 |  Distributed Memory |
 | OBUF     |    41 |                  IO |
 | IBUF     |    23 |                  IO |
+| RAMB36E1 |    22 |        Block Memory |
 | MUXF8    |    21 |               MuxFx |
-| RAMB18E1 |    19 |        Block Memory |
+| RAMB18E1 |    15 |        Block Memory |
 | DSP48E1  |    14 |    Block Arithmetic |
-| RAMB36E1 |    10 |        Block Memory |
 +----------+-------+---------------------+
 
 
