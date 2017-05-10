@@ -22,18 +22,14 @@
  */
 
 
-volatile _IODEV unsigned long** bank_ptrs(unsigned long nbanks) {
+void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS], unsigned long nbanks) {
 
 	int i;
-	unsigned long bank_bits = (unsigned long) ceil(log2(nbanks));
+    unsigned long bank_bits = (unsigned long) ceil(log2(NBANKS));
 
-	volatile _IODEV unsigned long** bank_ptr_array = (volatile _IODEV unsigned long**) malloc(bank_bits*sizeof(unsigned long*));
-
-	for(i = 0; i < nbanks; i++) {
-		bank_ptr_array[i] = (volatile _IODEV unsigned long *) ((i << (ADDR_BITS - bank_bits)) + BRAM_BASE);
-	}
-
-	return bank_ptr_array;
+    for(i = 0; i < NBANKS; i++) {
+        bank_ptr_array[i] = (volatile _IODEV mat_type *) ((i << (ADDR_BITS - bank_bits)) + BRAM_BASE);
+    }
 }
 
 /*

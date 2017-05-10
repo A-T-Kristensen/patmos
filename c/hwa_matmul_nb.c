@@ -18,8 +18,9 @@ int main() {
 
 	int i, j, k, err_cnt = 0;
 
-	volatile _IODEV mat_type** bank_ptr_array = (volatile _IODEV mat_type**) bank_ptrs(NBANKS);
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;    
+    volatile _IODEV mat_type *bank_ptr_array[NBANKS];
+    bank_ptrs(bank_ptr_array, NBANKS);
+    volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;    
 
 	mat_type mat_a[DIM][DIM], mat_b[DIM][DIM];
 	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];

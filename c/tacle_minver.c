@@ -163,6 +163,15 @@ void minver_main() {
       minver_aa[ i ][ j ] = minver_a[ i ][ j ];
   }
 
+
+  for ( i = 0; i < DIM; i++ ) {
+      for ( j = 0; j < DIM; j++ ) {
+          printf("%f ", minver_a[i][j]);
+      }
+      printf("\n");
+  }
+
+
   start_cycle = get_cpu_cycles();
   
 

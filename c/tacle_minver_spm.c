@@ -39,6 +39,12 @@ mat_type minver_fabs( mat_type n );
 void minver_main();
 int main( void );
 
+struct matrix {
+    mat_type mat_a[DIM][DIM];
+};
+volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BASE;
+
+
 mat_type minver_fabs( mat_type n )
 {
   mat_type f;
@@ -142,9 +148,6 @@ int minver_minver_spm(volatile _SPM mat_type (*minver_a)[ DIM ][ DIM ], int side
     Main functions
 */
 
-struct matrix {
-    mat_type mat_a[DIM][DIM];
-};
 
 
 void minver_main() {
@@ -152,7 +155,6 @@ void minver_main() {
   mat_type eps;
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
-  volatile _SPM struct matrix *spm_matrix = (volatile _SPM struct matrix *) SPM_BASE;
 
   mat_type minver_aa[DIM][DIM];
   mat_type minver_a_i[DIM][DIM];

@@ -27,7 +27,7 @@
 	
  */
 
-volatile _IODEV unsigned long** bank_ptrs(unsigned long nbanks);
+void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS], unsigned long nbanks);
 
 
 /*

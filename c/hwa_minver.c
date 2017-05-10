@@ -34,7 +34,9 @@ int minver_main() {
     unsigned long long start_compute, stop_compute, return_compute;  
     unsigned long long start_transfer, stop_transfer, return_transfer;     
 
-    volatile _IODEV mat_type** bank_ptr_array = (volatile _IODEV mat_type**) bank_ptrs(NBANKS);
+    volatile _IODEV mat_type *bank_ptr_array[NBANKS];
+    bank_ptrs(bank_ptr_array, NBANKS);
+
     volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
     mat_type minver_hw_i[DIM][DIM];
