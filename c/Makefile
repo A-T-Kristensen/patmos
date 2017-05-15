@@ -144,6 +144,8 @@ $(BUILDDIR)/tacle_minver_uncached.elf: libminver/minver_init_uncached.c libminve
 #This seems to work without additions for _spm and _uncached versions, so maybe it is not needed
 $(BUILDDIR)/hwa_matmul_nb.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 
+$(BUILDDIR)/hwa_fir2dim.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+
 $(BUILDDIR)/hwa_filterbank.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/hwa_filterbank_spm.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/hwa_filterbank_uncached.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
@@ -151,7 +153,6 @@ $(BUILDDIR)/hwa_filterbank_uncached.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h lib
 $(BUILDDIR)/tacle_filterbank_spm.elf: libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/tacle_filterbank_uncached.elf: libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/tacle_filterbank.elf: libhwa/benchmark.h libhwa/hwa_lib.h
-
 
 # touch the nocinit file
 $(NOCINIT):
