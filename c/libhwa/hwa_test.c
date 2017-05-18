@@ -34,13 +34,13 @@ int compare_arrays(mat_type hw_result[ROWS][COLS],
 }
 
 int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[ROWS][COLS], 
-					   volatile _SPM mat_type (*sw_result)[ROWS][COLS]) {
+					   mat_type sw_result[ROWS][COLS]) {
 
 	int i, j, err_cnt = 0;
 
 	for(i = 0; i < DIM; i++){
 		for(j = 0; j < DIM; j++){
-			if((*hw_result)[i][j] != (*sw_result)[i][j]) {
+			if((*hw_result)[i][j] != sw_result[i][j]) {
 				err_cnt++;	
 			}
 		}
@@ -57,13 +57,13 @@ int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[ROWS][COLS],
 }
 
 int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[ROWS][COLS], 
-						  	volatile _UNCACHED mat_type (*sw_result)[ROWS][COLS]) {
+						  	mat_type sw_result[ROWS][COLS]) {
 
 	int i, j, err_cnt = 0;
 
 	for(i = 0; i < DIM; i++){
 		for(j = 0; j < DIM; j++){
-			if((*hw_result)[i][j] != (*sw_result)[i][j]) {
+			if((*hw_result)[i][j] != sw_result[i][j]) {
 				err_cnt++;	
 			}
 		}

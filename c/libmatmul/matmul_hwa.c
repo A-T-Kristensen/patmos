@@ -75,7 +75,7 @@ void matmul_expected(mat_type mat_a[DIM][DIM],
 	}		
 }
 
-void matmul_expected_spm(volatile _SPM mat_type (*mat_a)[DIM][DIM], 
+/*void matmul_expected_spm(volatile _SPM mat_type (*mat_a)[DIM][DIM], 
 						 volatile _SPM mat_type (*mat_b)[DIM][DIM], 
 						 volatile _SPM mat_type (*sw_result)[DIM][DIM]) {
 	int i, j, k;
@@ -102,3 +102,4 @@ void matmul_expected_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM],
 		}
 	}		
 }
+*/

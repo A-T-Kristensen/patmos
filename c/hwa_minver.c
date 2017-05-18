@@ -35,18 +35,13 @@ int minver_main() {
     volatile _IODEV mat_type *bank_ptr_array[NBANKS];
     bank_ptrs(bank_ptr_array, NBANKS);
 
-    volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
+    volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
     mat_type minver_hw_i[DIM][DIM];
     mat_type minver_sw_i[DIM][DIM];
 
     set_minver(minver_hw_i);
-
-    for ( i = 0; i < DIM; i++ ) {
-        for ( j = 0; j < DIM; j++ ) {
-          	minver_sw_i[i][j] = minver_hw_i[i][j];
-        }
-    }
+    set_minver(minver_sw_i);
 
     printf("Benchmarking \n");
 

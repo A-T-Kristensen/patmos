@@ -31,10 +31,10 @@ int compare_arrays(mat_type hw_result[ROWS][COLS],
 				   mat_type sw_result[ROWS][COLS]);
 
 int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[ROWS][COLS], 
-					 volatile _SPM mat_type (*sw_result)[ROWS][COLS]); 
+						mat_type sw_result[ROWS][COLS]); 
 
 int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[ROWS][COLS], 
-						    volatile _UNCACHED mat_type (*sw_result)[ROWS][COLS]);
+							mat_type sw_result[ROWS][COLS]);
 
 /*
 	NAME: compare_vectors()

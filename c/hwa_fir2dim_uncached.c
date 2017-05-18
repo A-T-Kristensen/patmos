@@ -37,6 +37,13 @@
 #define ARRAY_OFFSET (IMAGE_OFFSET+IMAGEDIM*IMAGEDIM)
 #define SIZE (COEFFICIENTS * COEFFICIENTS + 1*IMAGEDIM * IMAGEDIM + ARRAYDIM * ARRAYDIM)
 
+struct filter_data {
+	float fir2dim_input[SIZE];
+	float fir2dim_output_hw[IMAGEDIM * IMAGEDIM];
+};
+
+volatile _UNCACHED struct filter_data *spm_filter;
+
 /*
   Forward declaration of functions
 */
@@ -174,22 +181,22 @@ int main(void) {
 
 	// Assign the values
 	for(i = 0; i < COEFFICIENTS*COEFFICIENTS; i++){
-		fir2dim_input[COEFF_OFFSET + i] = fir2dim_coefficients[i];
+		spm_filter->fir2dim_input[COEFF_OFFSET + i] = fir2dim_coefficients[i];
 	}
 
 	for(i = 0; i < IMAGEDIM*IMAGEDIM; i++){
-		fir2dim_input[IMAGE_OFFSET + i] = fir2dim_image[i];
+		spm_filter->fir2dim_input[IMAGE_OFFSET + i] = fir2dim_image[i];
 	}
 
 	for(i = 0; i < ARRAYDIM*ARRAYDIM; i++){
-		fir2dim_input[ARRAY_OFFSET + i] = fir2dim_array[i];
+		spm_filter->fir2dim_input[ARRAY_OFFSET + i] = fir2dim_array[i];
 	}
 
 	// Run hardware
 
     start_transfer = get_cpu_cycles();	
 
-	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array);
+	write_vector_uncached(&spm_filter->fir2dim_input, SIZE, 1, 0, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;		
@@ -209,14 +216,14 @@ int main(void) {
 
 	start_transfer = get_cpu_cycles();        	
 
-	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
+	read_vector_uncached(&spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
 
 	// Check results
 
-	fir2dim_result_hw = fir2dim_output_hw[0] + fir2dim_output_hw[5] + fir2dim_array[9];
+	fir2dim_result_hw = spm_filter->fir2dim_output_hw[0] + spm_filter->fir2dim_output_hw[5] + fir2dim_array[9];
 
 	printf("%d\n", fir2dim_return(fir2dim_result_hw));
 

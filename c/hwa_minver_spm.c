@@ -23,7 +23,6 @@
 
 struct minver_matrix {
     mat_type hw_result[DIM][DIM]; 
-    mat_type sw_result[DIM][DIM]; 
 };
 
 volatile _SPM struct minver_matrix *spm_matrix = (volatile _SPM struct minver_matrix *) SPM_BASE;
@@ -31,99 +30,11 @@ volatile _SPM struct minver_matrix *spm_matrix = (volatile _SPM struct minver_ma
 int minver_main();
 int main(void);
 
-int minver_minver_spm(volatile _SPM mat_type (*minver_a)[ DIM ][ DIM ], 
-                      int side, mat_type eps ) {
-
-  int work[ 500 ], i, j, k, iw;
-  int r = 0;
-  mat_type w, wmax, pivot, api, w1;
-  mat_type minver_det;
-
-
-  if ( side < 2 || side > 500 || eps <= 0.0 )
-    return ( 999 );
-  w1 = 1.0;
-  _Pragma( "loopbound min 3 max 3" )
-  for ( i = 0; i < side; i++ )
-    work[ i ] = i;
-  _Pragma( "loopbound min 3 max 3" )
-  for ( k = 0; k < side; k++ ) {
-    wmax = 0.0;
-    _Pragma( "loopbound min 1 max 3" )
-    for ( i = k; i < side; i++ ) {
-      w = minver_fabs( (*minver_a)[ i ][ k ] );
-      if ( w > wmax ) {
-        wmax = w;
-        r = i;
-      }
-    }
-    pivot = (*minver_a)[ r ][ k ];
-    api = minver_fabs( pivot );
-    if ( api <= eps ) {
-      minver_det = w1;
-      return ( 1 );
-    }
-    w1 *= pivot;
-    if ( r != k ) {
-      w1 = -w;
-      iw = work[ k ];
-      work[ k ] = work[ r ];
-      work[ r ] = iw;
-      _Pragma( "loopbound min 3 max 3" )
-      for ( j = 0; j < side; j++ ) {
-        w = (*minver_a)[ k ][ j ];
-        (*minver_a)[ k ][ j ] = (*minver_a)[ r ][ j ];
-        (*minver_a)[ r ][ j ] = w;
-      }
-    }
-    _Pragma( "loopbound min 3 max 3" )
-    for ( i = 0; i < side; i++ )
-      (*minver_a)[ k ][ i ] /= pivot;
-    _Pragma( "loopbound min 3 max 3" )
-    for ( i = 0; i < side; i++ ) {
-      if ( i != k ) {
-        w = (*minver_a)[ i ][ k ];
-        if ( w != 0.0 ) {
-          _Pragma( "loopbound min 3 max 3" )
-          for ( j = 0; j < side; j++ ) {
-            if ( j != k ) (*minver_a)[ i ][ j ] -= w * (*minver_a)[ k ][ j ];
-          }
-          (*minver_a)[ i ][ k ] = -w / pivot;
-
-        }
-      }
-    }
-    (*minver_a)[ k ][ k ] = 1.0 / pivot;
-  }
-  for ( i = 0; i < side; ) {
-    /*  The following redundant statement is inserted due to limitations of
-        WCC's flow fact manager. It is required in order to have the flow
-        fact pragma below uniquely attached to the while(1) loop.
-    */
-    i = i;
-    while ( 1 ) {
-      k = work[ i ];
-      if ( k == i ) break;
-      iw = work[ k ];
-      work[ k ] = work[ i ];
-      work[ i ] = iw;
-      for ( j = 0; j < side; j++ ) {
-        w = (*minver_a) [k ][ i ];
-        (*minver_a)[ k ][ i ] = (*minver_a)[ k ][ k ];
-        (*minver_a)[ k ][ k ] = w;
-      }
-    }
-    i++;
-  }
-  minver_det = w1;
-  return ( 0 );
-
-}
-
 int minver_main() {
 
     int i, j, k, err_cnt = 0;
     mat_type eps = 1.0e-6;
+    mat_type sw_result[DIM][DIM];     
 
     unsigned long long start_compute, stop_compute, return_compute;  
     unsigned long long start_transfer, stop_transfer, return_transfer;     
@@ -134,18 +45,13 @@ int minver_main() {
     volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
     set_minver_spm(&spm_matrix->hw_result);
+    set_minver(sw_result);    
 
     printf("Benchmarking \n");
 
-    for ( i = 0; i < DIM; i++ ) {
-        for ( j = 0; j < DIM; j++ ) {
-          	spm_matrix->sw_result[i][j] = spm_matrix->hw_result[i][j];
-        }
-    }
-
     // Compute expected results
 
-    minver_minver_spm(&spm_matrix->sw_result, DIM, eps );
+    minver_minver(sw_result, DIM, eps );
 
     // Run accelerator
 
@@ -195,7 +101,7 @@ int minver_main() {
     return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
     err_cnt = compare_arrays_spm(&spm_matrix->hw_result, 
-                                 &spm_matrix->sw_result);
+                                 sw_result);
 
     print_benchmark(return_compute, return_transfer);
 

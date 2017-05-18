@@ -52,18 +52,18 @@ int main() {
 
 	#else
 
-	write_array(mat_a, DIM, DIM, factor, 0, bank_ptr_array, 2);		
+	write_array(mat_a, DIM, DIM, factor, 0, bank_ptr_array, 2);
 
 	#endif	
 
 	write_array(mat_b, DIM, DIM, factor, factor, bank_ptr_array, 1);
 
 	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
 	// Start HLS module
 
-	start_compute = get_cpu_cycles();       
+	start_compute = get_cpu_cycles();
 	
 	*hls_ptr = 1;
 
@@ -72,13 +72,13 @@ int main() {
 	while((*hls_ptr) != 1);
 
 	stop_compute = get_cpu_cycles();
-	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;        
+	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
 	// Read back the data    
 
-	start_transfer = get_cpu_cycles();        
+	start_transfer = get_cpu_cycles();
 
-	read_array(hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1);    
+	read_array(hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
