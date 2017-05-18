@@ -22,6 +22,16 @@
 #include "libhwa/hwa_lib.h"
 #include "libhwa/hwa_test.h"
 
+
+
+#define IMAGEDIM      4
+#define ARRAYDIM      (IMAGEDIM + 2)
+#define COEFFICIENTS  3
+
+#define COEFF_OFFSET 0
+#define IMAGE_OFFSET (COEFFICIENTS*COEFFICIENTS)
+#define ARRAY_OFFSET (IMAGE_OFFSET+IMAGEDIM*IMAGEDIM)
+#define OUTPUT_OFFSET (ARRAY_OFFSET+ARRAYDIM*ARRAYDIM)
 /*
   Forward declaration of functions
 */
@@ -39,7 +49,14 @@ int main( void );
 /*
   Declaration of global variables
 */
+
+volatile _SPM float *fir2dim_coefficients_spm = (volatile _SPM float *) SPM_BASE;
+volatile _SPM float *fir2dim_image_spm = (volatile _SPM float *) SPM_BASE + IMAGE_OFFSET;
+volatile _SPM float *fir2dim_array_spm = (volatile _SPM float *) SPM_BASE + ARRAY_OFFSET;
+volatile _SPM float *fir2dim_output_spm = (volatile _SPM float *) SPM_BASE + OUTPUT_OFFSET;
+
 static float  fir2dim_coefficients[3 * 3] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+
 static float  fir2dim_image[4 * 4] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
@@ -50,6 +67,8 @@ static float  fir2dim_array[6 * 6]  = {
 static float  fir2dim_output[4 * 4] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
+
+
 int fir2dim_result;
 
 
@@ -147,15 +166,35 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
   static unsigned long long start_cycle, stop_cycle; 
   static unsigned long long return_cycles = 0;   
 
-  register float *parray  = &fir2dim_array[0], *parray2, *parray3 ;
-  register float *pcoeff  = &fir2dim_coefficients[0] ;
-  register float *poutput = &fir2dim_output[0]       ;
+  volatile _SPM float *parray  = fir2dim_array_spm, *parray2, *parray3;
+  volatile _SPM float *pcoeff  = fir2dim_coefficients_spm;
+  volatile _SPM float *poutput = fir2dim_output_spm;
   int k, f, i;
 
-  fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
+  fir2dim_pin_down(&fir2dim_image[0], &fir2dim_array[0],
 					&fir2dim_coefficients[0], &fir2dim_output[0]);
 
-  poutput = &fir2dim_output[0];
+  poutput = fir2dim_output_spm;
+
+  // Set values in the scratch pad memory
+  for(i = 0; i < 3 * 3; i++){
+    *(fir2dim_coefficients_spm + i) = fir2dim_coefficients[i];
+  }
+
+  for(i = 0; i < 4 * 4; i++){
+    *(fir2dim_image_spm + i) = fir2dim_image[i];
+  }
+
+  for(i = 0; i < 6 * 6; i++){
+    *(fir2dim_array_spm + i) = fir2dim_array[i];
+  }
+
+  for(i = 0; i < 4 * 4; i++){
+    *(fir2dim_output_spm + i) = fir2dim_output[i];
+  }  
+
+  // Benchmark
+
 
   printf("Benchmarking \n");
   start_cycle = get_cpu_cycles();  
@@ -165,8 +204,8 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
 
 	_Pragma( "loopbound min 4 max 4" )
 	for ( f = 0 ; f < 4 ; f++ ) {
-	  pcoeff = &fir2dim_coefficients[0] ;
-	  parray = &fir2dim_array[k * 6 + f] ;
+	  pcoeff = fir2dim_coefficients_spm;
+	  parray =  (fir2dim_array_spm + k * 6 + f);
 	  parray2 = parray + 6 ;
 	  parray3 = parray + 6 + 6 ;
 
@@ -192,7 +231,7 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;  
   print_benchmark(return_cycles, 0);  
 
-  fir2dim_result = fir2dim_output[0] + fir2dim_output[5] + fir2dim_array[9];
+  fir2dim_result = *(fir2dim_output_spm + 0) + *(fir2dim_output_spm + 5) + fir2dim_array[9];
 
   fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
 			&fir2dim_coefficients[0], &fir2dim_output[0] );

@@ -43,6 +43,7 @@ static float  fir2dim_coefficients[3 * 3] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 static float  fir2dim_image[4 * 4] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
+
 static float  fir2dim_array[6 * 6]  = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0

@@ -480,14 +480,14 @@ def fir2dim(synth = 0, hw_test = 0):
 			transferArray[0][i] = transfer_time
 			totalArray[0][i] = total_time 
 
-	store_benchmark("filterbank", appList, computeArray, 
+	store_benchmark("fir2dim", appList, computeArray, 
 					transferArray, totalArray, csv_rows)	
 
 def main(): 
 
-	#matmul(synth = 0, hw_test = 0)
-	#minver(synth = 0, hw_test = 0)
-	#filterbank(synth = 0, hw_test = 0)
+	matmul(synth = 0, hw_test = 0)
+	minver(synth = 0, hw_test = 0)
+	filterbank(synth = 0, hw_test = 0)
 	fir2dim(synth = 0, hw_test = 0)
 
 	clean_up()

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="clk_manager_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1494430629">
-  <File Type="RDS-UTIL-PB" Name="clk_manager_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="clk_manager.dcp"/>
-  <File Type="RDS-UTIL" Name="clk_manager_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="clk_manager_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="clk_manager.vds"/>
   <File Type="VDS-TIMING-PB" Name="clk_manager_timing_summary_synth.pb"/>
+  <File Type="RDS-RDS" Name="clk_manager.vds"/>
   <File Type="PA-TCL" Name="clk_manager.tcl"/>
   <File Type="VDS-TIMINGSUMMARY" Name="clk_manager_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="clk_manager.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="clk_manager_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="clk_manager_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="clk_manager_drc_synth.rpt"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/clk_manager">
     <File Path="$PSRCDIR/sources_1/ip/clk_manager/clk_manager.xci">
       <FileInfo>

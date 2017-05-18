@@ -28,26 +28,27 @@
 
 void fir2dim_initSeed( void );
 long fir2dim_randomInteger();
-void fir2dim_pin_down(float *pimage, float *parray, float *pcoeff,
-					  float *poutput );
+void fir2dim_pin_down(volatile _UNCACHED float *pimage, 
+					  volatile _UNCACHED float *parray, 
+					  volatile _UNCACHED float *pcoeff,
+					  volatile _UNCACHED float *poutput );
 void fir2dim_init();
 int fir2dim_return();
 void fir2dim_main();
 int main( void );
 
-
 /*
   Declaration of global variables
 */
-static float  fir2dim_coefficients[3 * 3] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-static float  fir2dim_image[4 * 4] = {
+volatile _UNCACHED float  fir2dim_coefficients[3 * 3] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+volatile _UNCACHED float  fir2dim_image[4 * 4] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-static float  fir2dim_array[6 * 6]  = {
+volatile _UNCACHED float  fir2dim_array[6 * 6]  = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-static float  fir2dim_output[4 * 4] = {
+volatile _UNCACHED float  fir2dim_output[4 * 4] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 int fir2dim_result;
@@ -98,7 +99,7 @@ int fir2dim_return()
   Helper functions
 */
 
-void fir2dim_pin_down( float *pimage, float *parray, float *pcoeff, float *poutput )
+void fir2dim_pin_down(volatile _UNCACHED float *pimage, volatile _UNCACHED float *parray, volatile _UNCACHED float *pcoeff, volatile _UNCACHED float *poutput )
 {
   register float    i, f;
 
@@ -147,9 +148,9 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
   static unsigned long long start_cycle, stop_cycle; 
   static unsigned long long return_cycles = 0;   
 
-  register float *parray  = &fir2dim_array[0], *parray2, *parray3 ;
-  register float *pcoeff  = &fir2dim_coefficients[0] ;
-  register float *poutput = &fir2dim_output[0]       ;
+  volatile _UNCACHED float *parray  = &fir2dim_array[0], *parray2, *parray3 ;
+  volatile _UNCACHED float *pcoeff  = &fir2dim_coefficients[0] ;
+  volatile _UNCACHED float *poutput = &fir2dim_output[0]       ;
   int k, f, i;
 
   fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
