@@ -156,8 +156,8 @@ def matmul(synth = 0, hw_test = 0):
 	nbanksList  = [3, 5, 9]
 	dimList     = [4, 16, 32]
 	valsType    = ["float", "int"]
-	appList     = ["hwa_matmul_nb", "hwa_matmul_nb_spm", 
-				   "hwa_matmul_nb_uncached", "tacle_matrix1_spm", 
+	appList     = ["hwa_matmul", "hwa_matmul_spm", 
+				   "hwa_matmul_uncached", "tacle_matrix1_spm", 
 				   "tacle_matrix1_uncached"]
 
 	# Arrays for data storage
@@ -418,11 +418,77 @@ def filterbank(synth = 0, hw_test = 0):
 	store_benchmark("filterbank", appList, computeArray, 
 					transferArray, totalArray, csv_rows)
 
+def fir2dim(synth = 0, hw_test = 0):
+
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
+
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS"]
+	keywordsTypes   = ["mat_type;","vec_type;"]    
+
+	# Parameter space to explore for filterbank
+
+	appList = ["hwa_fir2dim", "hwa_fir2dim_spm", 
+			   "hwa_fir2dim_uncached", "tacle_fir2dim"] 
+
+	# Arrays for data storage
+
+	computeArray = np.zeros([1, len(appList)])
+	transferArray = np.zeros([1, len(appList)]) 
+	totalArray = np.zeros([1, len(appList)]) 
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([2, 1], dtype = "S10") 
+
+	for i in range(0, len(appList)):    # Iterate over apps      
+
+		# Get the current iteration options      
+
+		app = appList[i]
+		valsDefine = [1, 1, 1, 2] # It only uses the last value                
+
+		print("\n*******************************************")
+		print("Fir2dim: type = %s, NBANKS = %d\n" \
+			  % ("float", 2))
+		print("APP: %s" % (app))                    
+		print("*******************************************\n")                
+
+		# Update the benchmark.h file
+
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+
+		# Project name string
+		
+		project = ('fir2dim_{type}') \
+				  .format(type = "float")
+
+		[compute_time, transfer_time, retries] \
+			= run_benchmark(project, app, synth, hw_test)
+
+		if retries > 0:
+
+			# Success
+
+			print("#cycles computation: %d" % (compute_time))
+			print("#cycles transfer: %d" % (transfer_time))
+
+			total_time = transfer_time + compute_time
+
+			computeArray[0][i] = compute_time
+			transferArray[0][i] = transfer_time
+			totalArray[0][i] = total_time 
+
+	store_benchmark("filterbank", appList, computeArray, 
+					transferArray, totalArray, csv_rows)	
+
 def main(): 
 
 	#matmul(synth = 0, hw_test = 0)
 	#minver(synth = 0, hw_test = 0)
 	#filterbank(synth = 0, hw_test = 0)
+	fir2dim(synth = 0, hw_test = 0)
 
 	clean_up()
 

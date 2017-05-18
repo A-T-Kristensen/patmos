@@ -1,6 +1,6 @@
-,hwa_filterbank,hwa_filterbank_spm,hwa_filterbank_uncached,tacle_filterbank,tacle_filterbank_spm,tacle_filterbank_uncached
-,108556,108526,108568,40273594,39662381,49930819
-,hwa_filterbank,hwa_filterbank_spm,hwa_filterbank_uncached,tacle_filterbank,tacle_filterbank_spm,tacle_filterbank_uncached
-,19712,12230,40316,0,0,0
-,hwa_filterbank,hwa_filterbank_spm,hwa_filterbank_uncached,tacle_filterbank,tacle_filterbank_spm,tacle_filterbank_uncached
-,128268,120756,148884,40273594,39662381,49930819
+,hwa_fir2dim,hwa_fir2dim_spm,hwa_fir2dim_uncached,tacle_fir2dim
+,1246.0,1285.0,1283.0,73116.0
+,hwa_fir2dim,hwa_fir2dim_spm,hwa_fir2dim_uncached,tacle_fir2dim
+,1088.0,625.0,2309.0,0.0
+,hwa_fir2dim,hwa_fir2dim_spm,hwa_fir2dim_uncached,tacle_fir2dim
+,2334.0,1910.0,3592.0,73116.0
