@@ -42,13 +42,13 @@ struct filter_data {
 	float fir2dim_output_hw[IMAGEDIM * IMAGEDIM];
 };
 
-volatile _UNCACHED struct filter_data *spm_filter;
+volatile _UNCACHED struct filter_data *test_filter;
 
 /*
   Forward declaration of functions
 */
 
-void fir2dim_initSeed( void );
+void fir2dim_initSeed(void);
 
 long fir2dim_randomInteger();
 
@@ -62,7 +62,16 @@ void fir2dim_init(float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
 
 int fir2dim_return(int fir2dim_result);
 
-int main( void );
+int main(void);
+int fir2dim_main(void);
+int fir2dim_main_wcet(void) __attribute__((noinline));
+
+int fir2dim_result_hw;
+float fir2dim_input[SIZE];
+float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS];
+float fir2dim_image[IMAGEDIM * IMAGEDIM];
+float fir2dim_array[ARRAYDIM * ARRAYDIM];
+float fir2dim_output_hw[IMAGEDIM * IMAGEDIM];
 
 /*
   Initialization- and return-value-related functions
@@ -81,20 +90,24 @@ void fir2dim_init(float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
 	Apply volatile XOR-bitmask to entire input array.
   */
   p = ( unsigned char * ) &fir2dim_coefficients[ 0 ];
+ _Pragma( "loopbound min 36 max 36" )  
   for ( i = 0; i < sizeof( fir2dim_coefficients ); ++i, ++p ){
 	*p ^= bitmask;      
   }
 
   p = ( unsigned char * ) &fir2dim_image[ 0 ];
+ _Pragma( "loopbound min 64 max 64" )  
   for ( i = 0; i < sizeof( fir2dim_image ); ++i, ++p ){
 	*p ^= bitmask;      
   }
 
   p = ( unsigned char * ) &fir2dim_array[ 0 ];
+ _Pragma( "loopbound min 144 max 144" )  
   for ( i = 0; i < sizeof( fir2dim_array ); ++i, ++p ){
 	*p ^= bitmask;      
   }
   p = ( unsigned char * ) &fir2dim_output[ 0 ];
+ _Pragma( "loopbound min 64 max 64" )  
   for ( i = 0; i < sizeof( fir2dim_output ); ++i, ++p ){
 	*p ^= bitmask;      
   }
@@ -113,7 +126,10 @@ void fir2dim_pin_down(float *pimage, float *parray,
 
   float i, f;
 
+ _Pragma( "loopbound min 4 max 4" )
   for ( i = 0 ; i < IMAGEDIM ; i++ ) {
+ _Pragma( "loopbound min 4 max 4" )
+
 	for ( f = 0 ; f < IMAGEDIM ; f++ ){
 	  *pimage++ = 1 ;
 	}
@@ -121,17 +137,21 @@ void fir2dim_pin_down(float *pimage, float *parray,
 
   pimage = pimage - IMAGEDIM * IMAGEDIM;
 
+ _Pragma( "loopbound min 9 max 9" )
   for ( i = 0; i < COEFFICIENTS * COEFFICIENTS; i++ ){
 	*pcoeff++ = 1;      
   }
 
+ _Pragma( "loopbound min 6 max 6" )
   for ( i = 0 ; i < ARRAYDIM ; i++ ){
 	*parray++ = 0 ;     
   }
 
+ _Pragma( "loopbound min 4 max 4" )
   for ( f = 0 ; f < IMAGEDIM; f++ ) {
 	*parray++ = 0 ;
 
+ _Pragma( "loopbound min 4 max 4" )
 	for ( i = 0 ; i < IMAGEDIM ; i++ ){
 	  *parray++ = *pimage++;        
 	}
@@ -139,64 +159,49 @@ void fir2dim_pin_down(float *pimage, float *parray,
 	*parray++ = 0 ;
   }
 
+ _Pragma( "loopbound min 6 max 6" )
   for ( i = 0 ; i < ARRAYDIM ; i++ ){
 	*parray++ = 0 ;     
   }
 
+ _Pragma( "loopbound min 16 max 16" )
   for ( i = 0 ; i < IMAGEDIM * IMAGEDIM; i++ ){
 	*poutput++ = 0 ;
   }
 }
 
-int main(void) {
+int _Pragma( "entrypoint" ) fir2dim_main_wcet(void) {
 
-	int fir2dim_result_hw;
 	int i;
+
+	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
+	bank_ptrs(bank_ptr_array, NBANKS);   
+
+	write_vector_uncached(&test_filter->fir2dim_input, SIZE, 1, 0, bank_ptr_array);
+
+	read_vector_uncached(&test_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
+
+	return 0;
+}
+
+
+int fir2dim_main(void) {
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;      
 
-	float fir2dim_input[SIZE] = {0};
-	float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS] = {0};
-	float fir2dim_image[IMAGEDIM * IMAGEDIM] = {0};
-	float fir2dim_array[ARRAYDIM * ARRAYDIM]  = {0};
-	float fir2dim_output_hw[IMAGEDIM * IMAGEDIM] = {0};
-
 	unsigned long long start_compute, stop_compute, return_compute;  
 	unsigned long long start_transfer, stop_transfer, return_transfer;     
 
 	printf("Benchmarking \n");
 
-	// Initialize
-
-	fir2dim_init(fir2dim_coefficients, fir2dim_image, 
-				 fir2dim_array, fir2dim_output_hw);
-
-	fir2dim_pin_down(&fir2dim_image[0], &fir2dim_array[0],
-				   &fir2dim_coefficients[0], &fir2dim_output_hw[0]);
-
-	// Assign values to input array
-
-	// Assign the values
-	for(i = 0; i < COEFFICIENTS*COEFFICIENTS; i++){
-		spm_filter->fir2dim_input[COEFF_OFFSET + i] = fir2dim_coefficients[i];
-	}
-
-	for(i = 0; i < IMAGEDIM*IMAGEDIM; i++){
-		spm_filter->fir2dim_input[IMAGE_OFFSET + i] = fir2dim_image[i];
-	}
-
-	for(i = 0; i < ARRAYDIM*ARRAYDIM; i++){
-		spm_filter->fir2dim_input[ARRAY_OFFSET + i] = fir2dim_array[i];
-	}
-
 	// Run hardware
 
     start_transfer = get_cpu_cycles();	
 
-	write_vector_uncached(&spm_filter->fir2dim_input, SIZE, 1, 0, bank_ptr_array);
+	write_vector_uncached(&test_filter->fir2dim_input, SIZE, 1, 0, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;		
@@ -216,19 +221,52 @@ int main(void) {
 
 	start_transfer = get_cpu_cycles();        	
 
-	read_vector_uncached(&spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
+	read_vector_uncached(&test_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
 
 	// Check results
 
-	fir2dim_result_hw = spm_filter->fir2dim_output_hw[0] + spm_filter->fir2dim_output_hw[5] + fir2dim_array[9];
+	fir2dim_result_hw = test_filter->fir2dim_output_hw[0] + test_filter->fir2dim_output_hw[5] + fir2dim_array[9];
 
-	printf("%d\n", fir2dim_return(fir2dim_result_hw));
-
-	print_benchmark(return_compute, return_transfer);	
+	print_benchmark(return_compute, return_transfer);
 
 	return fir2dim_return(fir2dim_result_hw);
 }
 
+
+int main(void) {
+
+	int i;
+
+	// Initialize
+
+	fir2dim_init(fir2dim_coefficients, fir2dim_image, 
+				 fir2dim_array, fir2dim_output_hw);
+
+	fir2dim_pin_down(&fir2dim_image[0], &fir2dim_array[0],
+				   &fir2dim_coefficients[0], &fir2dim_output_hw[0]);
+
+	for(i = 0; i < COEFFICIENTS*COEFFICIENTS; i++){
+		test_filter->fir2dim_input[COEFF_OFFSET + i] = fir2dim_coefficients[i];
+	}
+
+	for(i = 0; i < IMAGEDIM*IMAGEDIM; i++){
+		test_filter->fir2dim_input[IMAGE_OFFSET + i] = fir2dim_image[i];
+	}
+
+	for(i = 0; i < ARRAYDIM*ARRAYDIM; i++){
+		test_filter->fir2dim_input[ARRAY_OFFSET + i] = fir2dim_array[i];
+	}	
+
+	#if(WCET)
+
+	return fir2dim_main_wcet();
+
+	#else
+
+	return fir2dim_main();
+
+	#endif
+}

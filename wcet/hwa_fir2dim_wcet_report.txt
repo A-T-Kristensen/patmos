@@ -1,0 +1,15 @@
+---
+- analysis-entry: fir2dim_main_wcet
+  source: platin
+  cycles: 7250
+  cache-max-cycles-instr: 0
+  cache-min-hits-instr: 0
+  cache-max-misses-instr: 0
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 6640
+  cache-min-hits-data: 0
+  cache-max-misses-data: 62
+  cache-max-stores-data: 18
+  cache-unknown-address-data: 80
+  cache-max-cycles: 6640

@@ -1,0 +1,16 @@
+---
+- analysis-entry: fir2dim_main
+  source: platin
+  cycles: 1914606
+  cache-max-cycles-instr: 1777528
+  cache-min-hits-instr: 1016
+  cache-max-misses-instr: 3176
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 56855
+  cache-min-hits-data: 0
+  cache-max-misses-data: 0
+  cache-max-stores-data: 237
+  cache-max-bypass-data: 685
+  cache-unknown-address-data: 685
+  cache-max-cycles: 1834383

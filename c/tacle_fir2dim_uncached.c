@@ -26,16 +26,16 @@
   Forward declaration of functions
 */
 
-void fir2dim_initSeed( void );
-long fir2dim_randomInteger();
+void fir2dim_initSeed(void);
+long fir2dim_randomInteger(void);
 void fir2dim_pin_down(volatile _UNCACHED float *pimage, 
 					  volatile _UNCACHED float *parray, 
 					  volatile _UNCACHED float *pcoeff,
 					  volatile _UNCACHED float *poutput );
-void fir2dim_init();
-int fir2dim_return();
-void fir2dim_main();
-int main( void );
+void fir2dim_init(void);
+int fir2dim_return(void);
+void fir2dim_main(void) __attribute__((noinline));
+int main(void);
 
 /*
   Declaration of global variables
@@ -89,18 +89,19 @@ void fir2dim_init()
 }
 
 
-int fir2dim_return()
-{
+int fir2dim_return(){
   return ( fir2dim_result - 14 != 0 );
 }
-
 
 /*
   Helper functions
 */
 
-void fir2dim_pin_down(volatile _UNCACHED float *pimage, volatile _UNCACHED float *parray, volatile _UNCACHED float *pcoeff, volatile _UNCACHED float *poutput )
-{
+void fir2dim_pin_down(volatile _UNCACHED float *pimage, 
+                      volatile _UNCACHED float *parray, 
+                      volatile _UNCACHED float *pcoeff, 
+                      volatile _UNCACHED float *poutput ){
+
   register float    i, f;
 
   _Pragma( "loopbound min 4 max 4" )
@@ -145,9 +146,6 @@ void fir2dim_pin_down(volatile _UNCACHED float *pimage, volatile _UNCACHED float
 
 void _Pragma( "entrypoint" ) fir2dim_main() {
 
-  static unsigned long long start_cycle, stop_cycle; 
-  static unsigned long long return_cycles = 0;   
-
   volatile _UNCACHED float *parray  = &fir2dim_array[0], *parray2, *parray3 ;
   volatile _UNCACHED float *pcoeff  = &fir2dim_coefficients[0] ;
   volatile _UNCACHED float *poutput = &fir2dim_output[0]       ;
@@ -157,9 +155,6 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
 					&fir2dim_coefficients[0], &fir2dim_output[0]);
 
   poutput = &fir2dim_output[0];
-
-  printf("Benchmarking \n");
-  start_cycle = get_cpu_cycles();  
 
   _Pragma( "loopbound min 4 max 4" )
   for ( k = 0 ; k < 4 ; k++ ) {
@@ -188,23 +183,33 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
 	  poutput++ ;
 	}
   }
-
-  stop_cycle = get_cpu_cycles();
-  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;  
-  print_benchmark(return_cycles, 0);  
-
-  fir2dim_result = fir2dim_output[0] + fir2dim_output[5] + fir2dim_array[9];
-
-  fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
-			&fir2dim_coefficients[0], &fir2dim_output[0] );
 }
-
 
 int main( void ){
 
-
   fir2dim_init();
+
+  #if(WCET)
+
+  fir2dim_main();  
+
+  #else
+
+  static unsigned long long start_cycle, stop_cycle; 
+  static unsigned long long return_cycles = 0;   
+
+  printf("Benchmarking \n");
+  start_cycle = get_cpu_cycles();  
+
   fir2dim_main();
+
+  stop_cycle = get_cpu_cycles();
+  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;  
+  print_benchmark(return_cycles, 0);     
+
+  #endif
+
+  fir2dim_result = fir2dim_output[0] + fir2dim_output[5] + fir2dim_array[9];
 
   return ( fir2dim_return() );
 }

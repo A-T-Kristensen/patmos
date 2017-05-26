@@ -3,8 +3,8 @@ TCRESTHOMEDIR?=$(HOME)/t-crest
 # PROJECT and FUNCTION should just go into a python script as arguments to
 # make: "make PROJECT?=hwa_matmul wcet"
 
-PROJECT?=hwa_filterbank
-FUNCTION?=filterbank_main_wcet
+PROJECT?=tacle_fir2dim_spm
+FUNCTION?=fir2dim_main
 
 #Delay to global memory per request in cycles
 T_DELAY_CYCLES?=0
@@ -12,7 +12,7 @@ T_DELAY_CYCLES?=0
 B_SIZE?=16
 # Transfer time shall be used for the memory timing
 TRANS_CYCLES?=83
-	
+
 wcet-config: 
 	platin pml-config \
 	--target patmos-unknown-unknown-elf \

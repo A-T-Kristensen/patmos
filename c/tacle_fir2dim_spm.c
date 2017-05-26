@@ -42,9 +42,8 @@ void fir2dim_pin_down(float *pimage, float *parray, float *pcoeff,
 					  float *poutput );
 void fir2dim_init();
 int fir2dim_return();
-void fir2dim_main();
+void fir2dim_main() __attribute__((noinline));
 int main( void );
-
 
 /*
   Declaration of global variables
@@ -68,9 +67,7 @@ static float  fir2dim_output[4 * 4] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
-
 int fir2dim_result;
-
 
 /*
   Initialization- and return-value-related functions
@@ -85,22 +82,22 @@ void fir2dim_init()
   /*
 	Apply volatile XOR-bitmask to entire input array.
   */
-  p = ( unsigned char * ) &fir2dim_coefficients[ 0 ];
+  p = ( unsigned char * ) &fir2dim_coefficients[0];
   _Pragma( "loopbound min 36 max 36" )
   for ( i = 0; i < sizeof( fir2dim_coefficients ); ++i, ++p )
 	*p ^= bitmask;
 
-  p = ( unsigned char * ) &fir2dim_image[ 0 ];
+  p = ( unsigned char * ) &fir2dim_image[0];
   _Pragma( "loopbound min 64 max 64" )
   for ( i = 0; i < sizeof( fir2dim_image ); ++i, ++p )
 	*p ^= bitmask;
 
-  p = ( unsigned char * ) &fir2dim_array[ 0 ];
+  p = ( unsigned char * ) &fir2dim_array[0];
   _Pragma( "loopbound min 144 max 144" )
   for ( i = 0; i < sizeof( fir2dim_array ); ++i, ++p )
 	*p ^= bitmask;
 
-  p = ( unsigned char * ) &fir2dim_output[ 0 ];
+  p = ( unsigned char * ) &fir2dim_output[0];
   _Pragma( "loopbound min 64 max 64" )
   for ( i = 0; i < sizeof( fir2dim_output ); ++i, ++p )
 	*p ^= bitmask;
@@ -111,7 +108,6 @@ int fir2dim_return()
 {
   return ( fir2dim_result - 14 != 0 );
 }
-
 
 /*
   Helper functions
@@ -163,41 +159,12 @@ void fir2dim_pin_down( float *pimage, float *parray, float *pcoeff, float *poutp
 
 void _Pragma( "entrypoint" ) fir2dim_main() {
 
-  static unsigned long long start_cycle, stop_cycle; 
-  static unsigned long long return_cycles = 0;   
-
   volatile _SPM float *parray  = fir2dim_array_spm, *parray2, *parray3;
   volatile _SPM float *pcoeff  = fir2dim_coefficients_spm;
   volatile _SPM float *poutput = fir2dim_output_spm;
   int k, f, i;
 
-  fir2dim_pin_down(&fir2dim_image[0], &fir2dim_array[0],
-					&fir2dim_coefficients[0], &fir2dim_output[0]);
-
   poutput = fir2dim_output_spm;
-
-  // Set values in the scratch pad memory
-  for(i = 0; i < 3 * 3; i++){
-    *(fir2dim_coefficients_spm + i) = fir2dim_coefficients[i];
-  }
-
-  for(i = 0; i < 4 * 4; i++){
-    *(fir2dim_image_spm + i) = fir2dim_image[i];
-  }
-
-  for(i = 0; i < 6 * 6; i++){
-    *(fir2dim_array_spm + i) = fir2dim_array[i];
-  }
-
-  for(i = 0; i < 4 * 4; i++){
-    *(fir2dim_output_spm + i) = fir2dim_output[i];
-  }  
-
-  // Benchmark
-
-
-  printf("Benchmarking \n");
-  start_cycle = get_cpu_cycles();  
 
   _Pragma( "loopbound min 4 max 4" )
   for ( k = 0 ; k < 4 ; k++ ) {
@@ -226,24 +193,55 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
 	  poutput++ ;
 	}
   }
+}
+
+int main(void){
+
+  int i;
+
+  fir2dim_init();  
+  fir2dim_pin_down(&fir2dim_image[0], &fir2dim_array[0],
+          &fir2dim_coefficients[0], &fir2dim_output[0]);
+
+  // Set values in the scratch pad memory
+  for(i = 0; i < 3 * 3; i++){
+    *(fir2dim_coefficients_spm + i) = fir2dim_coefficients[i];
+  }
+
+  for(i = 0; i < 4 * 4; i++){
+    *(fir2dim_image_spm + i) = fir2dim_image[i];
+  }
+
+  for(i = 0; i < 6 * 6; i++){
+    *(fir2dim_array_spm + i) = fir2dim_array[i];
+  }
+
+  for(i = 0; i < 4 * 4; i++){
+    *(fir2dim_output_spm + i) = fir2dim_output[i];
+  }  
+
+  #if(WCET)
+
+  fir2dim_main();  
+
+  #else
+
+  static unsigned long long start_cycle, stop_cycle; 
+  static unsigned long long return_cycles = 0;   
+
+  printf("Benchmarking \n");
+  start_cycle = get_cpu_cycles();  
+
+  fir2dim_main();
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;  
-  print_benchmark(return_cycles, 0);  
+  print_benchmark(return_cycles, 0);    
+
+  #endif
 
   fir2dim_result = *(fir2dim_output_spm + 0) + *(fir2dim_output_spm + 5) + fir2dim_array[9];
 
-  fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
-			&fir2dim_coefficients[0], &fir2dim_output[0] );
-}
-
-
-int main( void ){
-
-
-  fir2dim_init();
-  fir2dim_main();
-
-  return ( fir2dim_return() );
+  return (fir2dim_return());
 }
 

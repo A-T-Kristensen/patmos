@@ -3,7 +3,7 @@
 #include "libhwa/hwa_bram.h"
 #include "libhwa/hwa_test.h"
 
-void filterbank_init( void );
+void filterbank_init(void);
 int filterbank_main(mat_type r[256], 
 					mat_type H[8][32], 
 					mat_type F[8][32], 
@@ -28,16 +28,17 @@ void filter_init(mat_type r[256],
 static int filterbank_return_value;
 static int filterbank_numiters;
 
-void filterbank_init( void ){
+void filterbank_init(void){
   filterbank_numiters = 2;
 }
 
 
-int filterbank_return( void ){
+int filterbank_return(void){
   return filterbank_return_value;
 }
 
-void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32], mat_type y[256]) {
+void filter_init(mat_type r[256], mat_type H[8][32], 
+				 mat_type F[8][32], mat_type y[256]) {
 
 	int i, j;
 
@@ -55,7 +56,10 @@ void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32], mat_type
 }
 
 
-int _Pragma ("entrypoint") filterbank_main_wcet(mat_type r[256], mat_type H[8][32], mat_type F[8][32], mat_type y[256]) {
+int _Pragma ("entrypoint") filterbank_main_wcet(mat_type r[256], 
+												mat_type H[8][32], 
+												mat_type F[8][32], 
+												mat_type y[256]) {
 
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
@@ -74,7 +78,8 @@ int _Pragma ("entrypoint") filterbank_main_wcet(mat_type r[256], mat_type H[8][3
 	return (int)(y[0]) - 9408;
 }
 
-int filterbank_main( mat_type r[256], mat_type H[8][32], mat_type F[8][32], mat_type y[256] ) {
+int filterbank_main(mat_type r[256], mat_type H[8][32], 
+					mat_type F[8][32], mat_type y[256] ) {
 	int err_cnt = 0;
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
@@ -143,7 +148,6 @@ int main(void){
 	mat_type F[8][32];
 
 	filterbank_init();	
-
 	filter_init(r, H, F, y);	
 
 	#if(WCET)

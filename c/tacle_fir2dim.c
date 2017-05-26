@@ -32,7 +32,7 @@ void fir2dim_pin_down(float *pimage, float *parray, float *pcoeff,
 					  float *poutput );
 void fir2dim_init();
 int fir2dim_return();
-void fir2dim_main();
+void fir2dim_main() __attribute__((noinline));
 int main( void );
 
 
@@ -58,8 +58,8 @@ int fir2dim_result;
   Initialization- and return-value-related functions
 */
 
-void fir2dim_init()
-{
+void fir2dim_init(){
+
   unsigned int i;
   unsigned char *p;
   volatile char bitmask = 0;
@@ -145,21 +145,12 @@ void fir2dim_pin_down( float *pimage, float *parray, float *pcoeff, float *poutp
 
 void _Pragma( "entrypoint" ) fir2dim_main() {
 
-  static unsigned long long start_cycle, stop_cycle; 
-  static unsigned long long return_cycles = 0;   
-
-  register float *parray  = &fir2dim_array[0], *parray2, *parray3 ;
-  register float *pcoeff  = &fir2dim_coefficients[0] ;
-  register float *poutput = &fir2dim_output[0]       ;
+  register float *parray  = &fir2dim_array[0], *parray2, *parray3;
+  register float *pcoeff  = &fir2dim_coefficients[0];
+  register float *poutput = &fir2dim_output[0];
   int k, f, i;
 
-  fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
-					&fir2dim_coefficients[0], &fir2dim_output[0]);
-
   poutput = &fir2dim_output[0];
-
-  printf("Benchmarking \n");
-  start_cycle = get_cpu_cycles();  
 
   _Pragma( "loopbound min 4 max 4" )
   for ( k = 0 ; k < 4 ; k++ ) {
@@ -186,26 +177,38 @@ void _Pragma( "entrypoint" ) fir2dim_main() {
 		*poutput += *pcoeff++ **parray3++ ;
 
 	  poutput++ ;
-	}
+	 }
   }
+}
+
+int main(void){
+
+  fir2dim_init();
+  fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
+          &fir2dim_coefficients[0], &fir2dim_output[0]); 
+
+  #if(WCET)
+
+  fir2dim_main();
+
+  #else
+
+  static unsigned long long start_cycle, stop_cycle; 
+  static unsigned long long return_cycles = 0;     
+
+  printf("Benchmarking \n");
+  start_cycle = get_cpu_cycles();  
+
+  fir2dim_main();
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;  
-  print_benchmark(return_cycles, 0);  
+  print_benchmark(return_cycles, 0);    
+
+  #endif
 
   fir2dim_result = fir2dim_output[0] + fir2dim_output[5] + fir2dim_array[9];
 
-  fir2dim_pin_down( &fir2dim_image[0], &fir2dim_array[0],
-			&fir2dim_coefficients[0], &fir2dim_output[0] );
-}
-
-
-int main( void ){
-
-
-  fir2dim_init();
-  fir2dim_main();
-
-  return ( fir2dim_return() );
+  return (fir2dim_return());
 }
 

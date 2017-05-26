@@ -28,7 +28,6 @@
 #include "libhwa/hwa_lib.h"
 #include "libhwa/hwa_test.h"
 
-
 /*
   Forward declaration of functions
 */
