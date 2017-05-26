@@ -4,22 +4,18 @@
 #include "libhwa/hwa_test.h"
 
 struct filter_data {
-	mat_type r[ 256 ];
+	mat_type r[256];
 	mat_type y[256];    
-	mat_type H[ 8 ][ 32 ];
-	mat_type F[ 8 ][ 32 ];
+	mat_type H[8][32];
+	mat_type F[8][32];
 };
 
 volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data *) SPM_BASE;
 
-void filterbank_init( void );
-int filterbank_main( void );
-int filterbank_return( void );
-
-void filterbank_core_test(volatile _SPM mat_type (*r)[256],
-						  volatile _SPM mat_type (*y)[256],
-						  volatile _SPM mat_type (*H)[8][32],
-						  volatile _SPM mat_type (*F)[8][32]);
+void filterbank_init(void);
+int filterbank_main(void);
+int filterbank_main_wcet(void) __attribute__((noinline));
+int filterbank_return(void);
 
 /*
   Declaration of global variables
@@ -32,73 +28,44 @@ void filterbank_init( void ) {
   filterbank_numiters = 2;
 }
 
-
 int filterbank_return( void ){
   return filterbank_return_value;
 }
 
-/*
-  Core benchmark functions for test
-*/
+void filter_init(){
 
-void filterbank_core_test(volatile _SPM mat_type (*r)[256],
-						  volatile _SPM mat_type (*y)[256],
-						  volatile _SPM mat_type (*H)[8][32],
-						  volatile _SPM mat_type (*F)[8][32])
-{
-  int i, j, k;
+	int i, j;
 
-  for ( i = 0; i < 256; i++ ){
-		(*y)[ i ] = 0;
-  }
-
-	for ( i = 0; i < 8; i++ ) {
-		mat_type Vect_H[ 256 ]; /* (output of the H) */
-		mat_type Vect_Dn[ ( int ) 256 / 8 ]; /* output of the down sampler; */
-		mat_type Vect_Up[ 256 ]; /* output of the up sampler; */
-		mat_type Vect_F[ 256 ]; /* this is the output of the */
-
-		/* convolving H */
-		for ( j = 0; j < 256; j++ ) {
-			Vect_H[ j ] = 0;
-
-			for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ ){
-				Vect_H[ j ] += (*H)[ i ][ k ] * (*r)[ j - k ];
-			}
-		}
-
-		/* Down Sampling */
-		for ( j = 0; j < 256 / 8; j++ ){
-			Vect_Dn[ j ] = Vect_H[ j * 8 ];
-		}
-		/* Up Sampling */
-		for ( j = 0; j < 256; j++ ){
-			Vect_Up[ j ] = 0;
-		}
-
-		for ( j = 0; j < 256 / 8; j++ ){
-			Vect_Up[ j * 8 ] = Vect_Dn[ j ];
-		}
-		/* convolving F */
-		for ( j = 0; j < 256; j++ ) {
-			Vect_F[ j ] = 0;
-
-			for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ ){
-				Vect_F[ j ] += (*F)[ i ][ k ] * Vect_Up[ j - k ];
-			}
-		}
-
-		/* adding the results to the y matrix */
-
-		for ( j = 0; j < 256; j++ ){
-			(*y)[ j ] += Vect_F[ j ];
-
-		}
+	for ( i = 0; i < 256; i++ ){
+		spm_filter->r[i] = i + 1;
+		spm_filter->y[i] = 0;
 	}
+
+	for ( i = 0; i < 32; i++ ) {
+		for ( j = 0; j < 8; j++ ) {
+			spm_filter->H[j][i] = i * 32 + j * 8 + j + i + j + 1;
+			spm_filter->F[j][i] = i * j + j * j + j + i;
+		}
+	}  
+
+}
+
+int _Pragma ("entrypoint") filterbank_main_wcet(void) {
+
+	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
+	bank_ptrs(bank_ptr_array, NBANKS);
+
+	write_vector_spm(&spm_filter->r, 256, 1, 0, bank_ptr_array);
+	write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
+	write_array_spm(&spm_filter->H, 32, 8, 1, 2, bank_ptr_array, 1);
+	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1);
+
+	read_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
+
+	return (int)(spm_filter->y[0]) - 9408;
 }
 
 int filterbank_main( void ) {
-	int err_cnt = 0;
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
@@ -110,20 +77,7 @@ int filterbank_main( void ) {
 	unsigned long long start_compute, stop_compute, return_compute;  
 	unsigned long long start_transfer, stop_transfer, return_transfer;   
 
-	// Initialize
-
-	for ( i = 0; i < 256; i++ ){
-		spm_filter->r[i] = i + 1;
-	}
-
-	for ( i = 0; i < 32; i++ ) {
-		for ( j = 0; j < 8; j++ ) {
-			spm_filter->H[j][i] = i * 32 + j * 8 + j + i + j + 1;
-			spm_filter->F[j][i] = i * j + j * j + j + i;
-		}
-	}    
-
-	filterbank_init();
+	printf("Benchmarking \n");  			
 
 	// Move data into hardware
 
@@ -139,7 +93,7 @@ int filterbank_main( void ) {
 
 	start_compute = get_cpu_cycles();     
 
-	while ( filterbank_numiters-- > 0 ) {
+	while (filterbank_numiters-- > 0) {
 
 		// Start HLS module
 
@@ -164,20 +118,26 @@ int filterbank_main( void ) {
 
 	print_benchmark(return_compute, return_transfer);
 
-	return ( int )( spm_filter->y[0] ) - 9408;
+	return (int)(spm_filter->y[0]) - 9408;
 }
 
 /*
   Main function
 */
 
-int main( void ){
+int main(void){
 
-	int err_cnt;
+	filter_init();
+	filterbank_init();	
 
-	printf("Benchmarking \n");  		
+	#if(WCET)
 
-	err_cnt = filterbank_main();
+	return filterbank_main_wcet();
 
-	return err_cnt;
+	#else
+
+	return filterbank_main();
+
+	#endif	
+
 }

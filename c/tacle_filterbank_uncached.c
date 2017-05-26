@@ -34,14 +34,15 @@
 */
 
 struct filter_data {
-    mat_type r[ 256 ];
-    mat_type y[ 256 ];
-    mat_type H[ 8 ][ 32 ];
-    mat_type F[ 8 ][ 32 ];
+    mat_type r[256];
+    mat_type y[256];
+    mat_type H[8][32];
+    mat_type F[8][32];
 };
 
 void filterbank_init( void );
-void filterbank_main( void );
+void filter_init( void );
+void filterbank_main( void ) __attribute__((noinline));
 int filterbank_return( void );
 void filterbank_core(volatile _UNCACHED mat_type (*r)[256],
                      volatile _UNCACHED mat_type (*y)[256],
@@ -55,7 +56,7 @@ void filterbank_core(volatile _UNCACHED mat_type (*r)[256],
 
 static int filterbank_return_value;
 static int filterbank_numiters;
-volatile _UNCACHED struct filter_data *spm_filter;
+volatile _UNCACHED struct filter_data *test_filter;
 
 
 /*
@@ -74,18 +75,14 @@ int filterbank_return( void )
 }
 
 
-/*
-  Core benchmark functions
-*/
 
-void _Pragma( "entrypoint" ) filterbank_main( void )
-{
+void filter_init() {
 
   int i, j;
 
   _Pragma( "loopbound min 256 max 256" )
   for ( i = 0; i < 256; i++ ){
-    spm_filter->r[i] = i + 1;
+    test_filter->r[i] = i + 1;
   }
 
   _Pragma( "loopbound min 32 max 32" )
@@ -93,18 +90,26 @@ void _Pragma( "entrypoint" ) filterbank_main( void )
 
     _Pragma( "loopbound min 8 max 8" )
     for ( j = 0; j < 8; j++ ) {
-      spm_filter->H[j][i] = i * 32 + j * 8 + j + i + j + 1;
-      spm_filter->F[j][i] = i * j + j * j + j + i;
+      test_filter->H[j][i] = i * 32 + j * 8 + j + i + j + 1;
+      test_filter->F[j][i] = i * j + j * j + j + i;
     }
   }
+}
 
+
+/*
+  Core benchmark functions
+*/
+
+void _Pragma( "entrypoint" ) filterbank_main( void )
+{
 
   _Pragma( "loopbound min 2 max 2" )
   while ( filterbank_numiters-- > 0 )
-    filterbank_core(&spm_filter->r, &spm_filter->y, &spm_filter->H, &spm_filter->F);
+    filterbank_core(&test_filter->r, &test_filter->y, &test_filter->H, &test_filter->F);
  
 
-  filterbank_return_value = ( int )( spm_filter->y[0] ) - 9408;
+  filterbank_return_value = ( int )( test_filter->y[0] ) - 9408;
 }
 
 
@@ -171,13 +176,20 @@ void filterbank_core(volatile _UNCACHED mat_type (*r)[256],
   Main function
 */
 
-int main( void )
-{
+int main( void ){
+
+  filter_init();  
+  filterbank_init();  
+
+  #if(WCET)
+
+  filterbank_main();
+
+  #else
+
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
-  filterbank_init();
-
-  printf("Benchmarking \n");        
+  printf("Benchmarking \n");    
 
   start_cycle = get_cpu_cycles();
 
@@ -188,6 +200,7 @@ int main( void )
 
   print_benchmark(return_cycles, 0);
 
+  #endif  
 
   return filterbank_return();
 }

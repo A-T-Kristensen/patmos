@@ -1,0 +1,15 @@
+---
+- analysis-entry: filterbank_main_wcet
+  source: platin
+  cycles: 120165
+  cache-max-cycles-instr: 2573
+  cache-min-hits-instr: 1
+  cache-max-misses-instr: 3
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 106987
+  cache-min-hits-data: 0
+  cache-max-misses-data: 1029
+  cache-max-stores-data: 260
+  cache-unknown-address-data: 1289
+  cache-max-cycles: 109560

@@ -40,9 +40,10 @@ struct filter_data {
     mat_type F[ 8 ][ 32 ];
 };
 
-void filterbank_init( void );
-void filterbank_main( void );
-int filterbank_return( void );
+void filterbank_init(void);
+void filterbank_main(void) __attribute__((noinline));
+int filterbank_return(void);
+void filter_init();
 void filterbank_core(volatile _SPM mat_type (*r)[256],
                      volatile _SPM mat_type (*y)[256],
                      volatile _SPM mat_type (*H)[8][32],
@@ -62,24 +63,16 @@ volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data
   Initialization- and return-value-related functions
 */
 
-void filterbank_init( void )
-{
+void filterbank_init( void ){
   filterbank_numiters = 2;
 }
 
 
-int filterbank_return( void )
-{
+int filterbank_return( void ){
   return filterbank_return_value;
 }
 
-
-/*
-  Core benchmark functions
-*/
-
-void _Pragma( "entrypoint" ) filterbank_main( void )
-{
+void filter_init() {
 
   int i, j;
 
@@ -97,6 +90,14 @@ void _Pragma( "entrypoint" ) filterbank_main( void )
       spm_filter->F[j][i] = i * j + j * j + j + i;
     }
   }
+}
+
+
+/*
+  Core benchmark functions
+*/
+
+void _Pragma( "entrypoint" ) filterbank_main(void){
 
   _Pragma( "loopbound min 2 max 2" )
   while ( filterbank_numiters-- > 0 )
@@ -168,13 +169,20 @@ void filterbank_core(volatile _SPM mat_type (*r)[256],
   Main function
 */
 
-int main( void )
-{
+int main(void){
+
+  filter_init();  
+  filterbank_init();  
+
+  #if(WCET)
+
+  filterbank_main();
+
+  #else
+
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
-  filterbank_init();
-
-  printf("Benchmarking \n");      
+  printf("Benchmarking \n");    
 
   start_cycle = get_cpu_cycles();
 
@@ -185,6 +193,7 @@ int main( void )
 
   print_benchmark(return_cycles, 0);
 
+  #endif  
 
   return filterbank_return();
 }

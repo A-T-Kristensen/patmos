@@ -1,0 +1,15 @@
+---
+- analysis-entry: filterbank_main
+  source: platin
+  cycles: 3147817885
+  cache-max-cycles-instr: 2970773267
+  cache-min-hits-instr: 295296
+  cache-max-misses-instr: 5009624
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 67526808
+  cache-min-hits-data: 0
+  cache-max-misses-data: 533508
+  cache-max-stores-data: 280068
+  cache-unknown-address-data: 813576
+  cache-max-cycles: 3038300075

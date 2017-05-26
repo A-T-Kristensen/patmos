@@ -34,8 +34,12 @@
 */
 
 void filterbank_init( void );
-void filterbank_main( void );
-int filterbank_return( void );
+void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32]);
+void filterbank_main( mat_type r[ 256 ],
+                      mat_type y[ 256 ],
+                      mat_type H[ 8 ][ 32 ],
+                      mat_type F[ 8 ][ 32 ] ) __attribute__((noinline));
+int filterbank_return(void);
 void filterbank_core( mat_type r[ 256 ],
                       mat_type y[ 256 ],
                       mat_type H[ 8 ][ 32 ],
@@ -70,28 +74,30 @@ int filterbank_return( void )
   Core benchmark functions
 */
 
-void _Pragma( "entrypoint" ) filterbank_main( void )
-{
-  mat_type r[ 256 ];
-  mat_type y[ 256 ];
-  mat_type H[ 8 ][ 32 ];
-  mat_type F[ 8 ][ 32 ];
+void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32]) {
 
   int i, j;
 
   _Pragma( "loopbound min 256 max 256" )
-  for ( i = 0; i < 256; i++ )
-    r[ i ] = i + 1;
+  for ( i = 0; i < 256; i++ ){
+    r[i] = i + 1;
+  }
 
   _Pragma( "loopbound min 32 max 32" )
   for ( i = 0; i < 32; i++ ) {
-
-    _Pragma( "loopbound min 8 max 8" )
+    _Pragma( "loopbound min 8 max 8" )    
     for ( j = 0; j < 8; j++ ) {
-      H[ j ][ i ] = i * 32 + j * 8 + j + i + j + 1;
-      F[ j ][ i ] = i * j + j * j + j + i;
+      H[j][i] = i * 32 + j * 8 + j + i + j + 1;
+      F[j][i] = i * j + j * j + j + i;
     }
   }
+
+}
+
+void _Pragma( "entrypoint" ) filterbank_main(mat_type r[ 256 ],
+                      mat_type y[ 256 ],
+                      mat_type H[ 8 ][ 32 ],
+                      mat_type F[ 8 ][ 32 ]){
 
   _Pragma( "loopbound min 2 max 2" )
   while ( filterbank_numiters-- > 0 )
@@ -106,8 +112,8 @@ void _Pragma( "entrypoint" ) filterbank_main( void )
 void filterbank_core( mat_type r[ 256 ],
                       mat_type y[ 256 ],
                       mat_type H[ 8 ][ 32 ],
-                      mat_type F[ 8 ][ 32 ] )
-{
+                      mat_type F[ 8 ][ 32 ] ){
+
   int i, j, k;
 
   _Pragma( "loopbound min 256 max 256" )
@@ -165,7 +171,21 @@ void filterbank_core( mat_type r[ 256 ],
   Main function
 */
 
-int main( void ) {
+int main(void) {
+
+  mat_type r[256];
+  mat_type y[256];
+  mat_type H[8][32];
+  mat_type F[8][32];
+
+  filter_init(r, H, F);  
+
+  #if(WCET)
+
+  filterbank_init();
+  filterbank_main(r, y, H, F);
+
+  #else
 
   unsigned long long start_cycle, stop_cycle, return_cycles;  
 
@@ -175,13 +195,14 @@ int main( void ) {
 
   start_cycle = get_cpu_cycles();
 
-  filterbank_main();
+  filterbank_main(r, y, H, F);
 
   stop_cycle = get_cpu_cycles();
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;  
 
   print_benchmark(return_cycles, 0);
 
+  #endif  
 
   return filterbank_return();
 }

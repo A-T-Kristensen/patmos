@@ -1,0 +1,15 @@
+---
+- analysis-entry: matrix1_main
+  source: platin
+  cycles: 766484
+  cache-max-cycles-instr: 717452
+  cache-min-hits-instr: 48
+  cache-max-misses-instr: 1273
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 22576
+  cache-min-hits-data: 0
+  cache-max-misses-data: 192
+  cache-max-stores-data: 80
+  cache-unknown-address-data: 272
+  cache-max-cycles: 740028

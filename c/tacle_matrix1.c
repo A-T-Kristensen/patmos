@@ -74,7 +74,7 @@
 
 void matrix1_pin_down( mat_type A[], mat_type B[], mat_type C[] );
 void matrix1_init(void);
-void matrix1_main(void) __attribute__((noinline));;
+void matrix1_main(void) __attribute__((noinline));
 int main(void);
 
 
