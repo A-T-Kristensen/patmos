@@ -85,42 +85,41 @@ volatile _UNCACHED struct matrix *spm_matrix;
 */
 
 void matrix1_pin_down(void);
-void matrix1_main( void );
-int main( void );
+void matrix1_main(void) __attribute__((noinline));;
+int main(void);
 
 /*
   Initialization functions
 */
 
-void matrix1_pin_down(void)
-{
+void matrix1_pin_down(void){
+  
   int i;
   volatile mat_type x = 1;
 
-  _Pragma( "loopbound min 100 max 100" )
+  _Pragma( "loopbound min SIZE max SIZE" )
   for ( i = 0 ; i < X * Y; i++ )
     spm_matrix->matrix1_A[i] = x ;
 
-  _Pragma( "loopbound min 100 max 100" )
+  _Pragma( "loopbound min SIZE max SIZE" )
   for ( i = 0 ; i < Y * Z ; i++ )
     spm_matrix->matrix1_B[i] = x ;
 
-  _Pragma( "loopbound min 100 max 100" )
+  _Pragma( "loopbound min SIZE max SIZE" )
   for ( i = 0 ; i < X * Z ; i++ )
     spm_matrix->matrix1_C[i] = 0 ;
 }
-
 
 /*
   Return function
 */
 
-int matrix1_return( void )
-{
+int matrix1_return(void){
+
 	int i;
 	int checksum = 0;
 
-	  _Pragma( "loopbound min 100 max 100" )
+	  _Pragma( "loopbound min SIZE max SIZE" )
 	  for ( i = 0; i <= X*Z; i++ )
 		  checksum += spm_matrix->matrix1_C[i];
 
@@ -132,24 +131,24 @@ int matrix1_return( void )
   Main functions
 */
 
-void _Pragma ( "entrypoint" ) matrix1_main( void )
-{
+void _Pragma ("entrypoint") matrix1_main( void ){
+
   volatile _UNCACHED mat_type *p_a = &(spm_matrix->matrix1_A[0]);
   volatile _UNCACHED mat_type *p_b = &(spm_matrix->matrix1_B[0]);
   volatile _UNCACHED mat_type *p_c = &(spm_matrix->matrix1_C[0]);
 
   int f, i, k;
 
-  _Pragma( "loopbound min 10 max 10" )
+  _Pragma( "loopbound min DIM max DIM" )
   for ( k = 0; k < Z; k++ ) {
     p_a = &(spm_matrix->matrix1_A[0]);  /* point to the beginning of array A */
 
-    _Pragma( "loopbound min 10 max 10" )
+    _Pragma( "loopbound min DIM max DIM" )
     for ( i = 0; i < X; i++ ) {
       p_b = &(spm_matrix->matrix1_B[k * Y]); /* take next column */
 
       *p_c = 0;
-      _Pragma( "loopbound min 10 max 10" )
+      _Pragma( "loopbound min DIM max DIM" )
       for ( f = 0; f < Y; f++ ) /* do multiply */
         *p_c += *p_a++ * *p_b++;
 
@@ -159,8 +158,15 @@ void _Pragma ( "entrypoint" ) matrix1_main( void )
 }
 
 
-int main( void ) {
+int main(void){
   
+  #if(WCET)
+
+  matrix1_pin_down();
+  matrix1_main();
+
+  #else
+
   static unsigned long long start_cycle, stop_cycle; 
   static unsigned long long return_cycles = 0;   
 
@@ -176,6 +182,8 @@ int main( void ) {
   return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
   print_benchmark(return_cycles, 0);
+
+  #endif
 
   return 0;
 }

@@ -87,7 +87,7 @@ $(BUILDDIR)/%.o: %.c Makefile
 # -lhwa should be compiled before everything else that you run on the FPGA
 $(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBHWA) $(LIBSHA) $(LIBMATMUL) $(LIBMINVER) $(LIBELF) Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lhwa -lsha -lmatmul -lminver -lm
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lm -laudio -lhwa -lsha -lmatmul -lminver -lm -lelf 
 
 $(BUILDDIR)/%.s: %.c Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
@@ -106,6 +106,11 @@ $(BUILDDIR)/bootable-%.s: %.c Makefile
 $(BUILDDIR)/vm-%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBELF) Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
 	$(CC) $(CFLAGS-VM) $(LDFLAGS-VM) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf
+
+$(BUILDDIR)/wcet-%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBHWA) $(LIBSHA) $(LIBMATMUL) $(LIBMINVER) $(LIBELF) Makefile
+	mkdir -p $(BUILDDIR)/$(dir $*)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lelf -lm -laudio -lhwa -lsha -lmatmul -lminver -lm \
+	-mserialize=$(BUILDDIR)/$(APP).pml		
 
 # application-specific additional dependencies
 $(BUILDDIR)/bootable-bootloader.elf: download.c decompress.c ethmac.c boot.h bootable.h
@@ -142,7 +147,7 @@ $(BUILDDIR)/tacle_minver_spm.elf: libminver/minver_init_spm.c libminver/minver_i
 $(BUILDDIR)/tacle_minver_uncached.elf: libminver/minver_init_uncached.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
 
 #This seems to work without additions for _spm and _uncached versions, so maybe it is not needed
-$(BUILDDIR)/hwa_matmul_nb.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/hwa_matmul.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 
 $(BUILDDIR)/hwa_fir2dim.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 

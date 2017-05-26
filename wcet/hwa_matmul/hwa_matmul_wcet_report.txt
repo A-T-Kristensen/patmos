@@ -1,0 +1,15 @@
+---
+- analysis-entry: matmul_main_wcet
+  source: platin
+  cycles: 10752
+  cache-max-cycles-instr: 1743
+  cache-min-hits-instr: 9
+  cache-max-misses-instr: 3
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 8217
+  cache-min-hits-data: 0
+  cache-max-misses-data: 80
+  cache-max-stores-data: 19
+  cache-unknown-address-data: 99
+  cache-max-cycles: 9960

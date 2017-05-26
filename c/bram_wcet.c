@@ -3,16 +3,16 @@
     the bram.
     
     Author: Andreas T. Kristensen 
-    Copyright: DTU, BSD License
+    Copyright: BSD License
 */
 
 #include <machine/patmos.h> 
 
 #define DIM 10
 
-void bram_main( void ) __attribute__((noinline));
+void bram_main(void) __attribute__((noinline));
 
-void _Pragma ( "entrypoint" ) bram_main(void){
+void _Pragma ("entrypoint") bram_main(void){
 
 	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 	
@@ -33,7 +33,6 @@ void _Pragma ( "entrypoint" ) bram_main(void){
 		temp[i] = *(bram_ptr + i);
 	}
 }
-
 
 int main(){
 

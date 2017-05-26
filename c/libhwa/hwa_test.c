@@ -14,8 +14,10 @@ int compare_arrays(mat_type hw_result[ROWS][COLS],
 
 	int i, j, err_cnt = 0;
 
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
+	_Pragma("loopbound min ROWS max ROWS")
+	for(i = 0; i < ROWS; i++){
+		_Pragma("loopbound min COLS max COLS")		
+		for(j = 0; j < COLS; j++){
 			if(hw_result[i][j] != sw_result[i][j]) {
 				err_cnt++;
 			}
@@ -38,8 +40,10 @@ int compare_arrays_spm(volatile _SPM mat_type (*hw_result)[ROWS][COLS],
 
 	int i, j, err_cnt = 0;
 
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
+	_Pragma("loopbound min ROWS max ROWS")
+	for(i = 0; i < ROWS; i++){
+		_Pragma("loopbound min COLS max COLS")		
+		for(j = 0; j < COLS; j++){
 			if((*hw_result)[i][j] != sw_result[i][j]) {
 				err_cnt++;	
 			}
@@ -61,8 +65,10 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type (*hw_result)[ROWS][COLS]
 
 	int i, j, err_cnt = 0;
 
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
+	_Pragma("loopbound min ROWS max ROWS")
+	for(i = 0; i < ROWS; i++){
+		_Pragma("loopbound min COLS max COLS")		
+		for(j = 0; j < COLS; j++){
 			if((*hw_result)[i][j] != sw_result[i][j]) {
 				err_cnt++;	
 			}
@@ -85,6 +91,7 @@ int compare_vectors(mat_type hw_result[],
 
 	int i, err_cnt = 0;
 
+	_Pragma("loopbound min VECSIZE max VECSIZE")
 	for(i = 0; i < length; i++){
 		if(hw_result[i] != sw_result[i]) {
 			err_cnt++;	
@@ -108,6 +115,7 @@ int compare_vectors_spm(volatile _SPM mat_type (*hw_result)[],
 
 	int i, err_cnt = 0;
 
+	_Pragma("loopbound min VECSIZE max VECSIZE")
 	for(i = 0; i < length; i++){
 		if((*hw_result)[i] != (*sw_result)[i]) {
 			err_cnt++;	
@@ -130,6 +138,7 @@ int compare_vectors_uncached(volatile _UNCACHED mat_type (*hw_result)[],
 
 	int i, err_cnt = 0;
 
+	_Pragma("loopbound min VECSIZE max VECSIZE")
 	for(i = 0; i < length; i++){
 		if((*hw_result)[i] != (*sw_result)[i]) {
 			err_cnt++;	
