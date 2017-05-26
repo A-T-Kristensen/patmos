@@ -1,4 +1,5 @@
 TCRESTHOMEDIR?=$(HOME)/t-crest
+SAVEDIR?=$(CURDIR)/analysis
 
 # PROJECT and FUNCTION should just go into a python script as arguments to
 # make: "make PROJECT?=hwa_matmul wcet"
@@ -29,6 +30,6 @@ wcet: wcet-config
 	--stats \
 	--binary $(TCRESTHOMEDIR)/patmos/tmp/wcet-$(PROJECT).elf \
 	-e $(FUNCTION) \
-	-o $(PROJECT).wca \
-	--report $(PROJECT)_wcet_report.txt \
+	-o $(SAVEDIR)/$(PROJECT).wca \
+	--report $(SAVEDIR)/$(PROJECT)_wcet_report.txt \
 -i $(TCRESTHOMEDIR)/patmos/tmp/$(PROJECT)config.pml
