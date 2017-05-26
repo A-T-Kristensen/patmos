@@ -3,8 +3,8 @@ TCRESTHOMEDIR?=$(HOME)/t-crest
 # PROJECT and FUNCTION should just go into a python script as arguments to
 # make: "make PROJECT?=hwa_matmul wcet"
 
-PROJECT?=tacle_fir2dim_spm
-FUNCTION?=fir2dim_main
+PROJECT?=tacle_minver_uncached
+FUNCTION?=minver_minver
 
 #Delay to global memory per request in cycles
 T_DELAY_CYCLES?=0

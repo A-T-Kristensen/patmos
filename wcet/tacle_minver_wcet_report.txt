@@ -1,0 +1,15 @@
+---
+- analysis-entry: minver_minver
+  source: platin
+  cycles: 1040051
+  cache-max-cycles-instr: 945868
+  cache-min-hits-instr: 308
+  cache-max-misses-instr: 1760
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 55776
+  cache-min-hits-data: 0
+  cache-max-misses-data: 368
+  cache-max-stores-data: 304
+  cache-unknown-address-data: 672
+  cache-max-cycles: 1001644

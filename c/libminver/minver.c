@@ -42,12 +42,14 @@ int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps)
     return ( 999 );
 
   w1 = 1.0;
-
+ _Pragma( "loopbound min DIM max DIM" )
   for ( i = 0; i < side; i++ )
     work[ i ] = i;
 
+  _Pragma( "loopbound min DIM max DIM" )
   for ( k = 0; k < side; k++ ) {
     wmax = 0.0;
+    _Pragma( "loopbound min DIM max DIM" )    
     for ( i = k; i < side; i++ ) {
       w = minver_fabs( minver_a[ i ][ k ] );
       if ( w > wmax ) {
@@ -69,20 +71,23 @@ int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps)
       iw = work[ k ];
       work[ k ] = work[ r ];
       work[ r ] = iw;
+      _Pragma( "loopbound min DIM max DIM" )
       for ( j = 0; j < side; j++ ) {
         w = minver_a[ k ][ j ];
         minver_a[ k ][ j ] = minver_a[ r ][ j ];
         minver_a[ r ][ j ] = w;
       }
     }
-
+    _Pragma( "loopbound min DIM max DIM" )
     for ( i = 0; i < side; i++ )
       minver_a[ k ][ i ] /= pivot;
 
+    _Pragma( "loopbound min DIM max DIM" )
     for ( i = 0; i < side; i++ ) {
       if ( i != k ) {
         w = minver_a[ i ][ k ];
         if ( w != 0.0 ) {
+          _Pragma( "loopbound min DIM max DIM" )
           for ( j = 0; j < side; j++ ) {
             if ( j != k ) minver_a[ i ][ j ] -= w * minver_a[ k ][ j ];
           }
@@ -94,6 +99,7 @@ int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps)
     minver_a[ k ][ k ] = 1.0 / pivot;
   }
 
+  _Pragma( "loopbound min DIM max DIM" )
   for ( i = 0; i < side; ) {
     while ( 1 ) {
       k = work[ i ];
@@ -101,6 +107,7 @@ int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps)
       iw = work[ k ];
       work[ k ] = work[ i ];
       work[ i ] = iw;
+      _Pragma( "loopbound min DIM max DIM" )      
       for ( j = 0; j < side; j++ ) {
         w = minver_a [k ][ i ];
         minver_a[ k ][ i ] = minver_a[ k ][ k ];

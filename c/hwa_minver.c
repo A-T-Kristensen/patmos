@@ -1,17 +1,17 @@
 /*
-    This c file contains the main benchmark program
-    for matrix inversion.
+	This c file contains the main benchmark program
+	for matrix inversion.
 
-    It is based on the "minver" benchmark from the TACLeBench 
-    benchmark suite (author Sung-Soo Lim).
+	It is based on the "minver" benchmark from the TACLeBench 
+	benchmark suite (author Sung-Soo Lim).
 
-    Author: Andreas T. Kristensen (s144026@student.dtu.dk)
-    Copyright: BSD License
+	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
+	Copyright: BSD License
 
-    This program is derived from the SNU-RT Benchmark Suite for Worst
-    Case Timing Analysis by Sung-Soo Lim
+	This program is derived from the SNU-RT Benchmark Suite for Worst
+	Case Timing Analysis by Sung-Soo Lim
 
-    Original source: Turbo C Programming for Engineering by Hyun Soo Ahn  
+	Original source: Turbo C Programming for Engineering by Hyun Soo Ahn  
   
  */
 
@@ -21,86 +21,126 @@
 #include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
-int minver_main();
+int minver_main(void);
+int minver_main_wcet(void) __attribute__((noinline));
 int main(void);
+
+mat_type minver_hw_i[DIM][DIM];
+mat_type minver_sw_i[DIM][DIM];
+
+int _Pragma ("entrypoint") minver_main_wcet(){
+
+	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
+	bank_ptrs(bank_ptr_array, NBANKS);
+
+	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
+
+	#if(NBANKS>1)
+
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+
+	#else
+
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+
+	#endif
+  
+	*hls_ptr = 1;
+ 
+	#if(NBANKS>1)
+
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+
+	#else
+
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+
+	#endif   
+
+	return 0;
+}
 
 int minver_main() {
 
-    int i, j, k, err_cnt = 0;
-    mat_type eps = 1.0e-6;
+	int err_cnt = 0;
+	mat_type eps = 1.0e-6;
 
-    unsigned long long start_compute, stop_compute, return_compute;  
-    unsigned long long start_transfer, stop_transfer, return_transfer;     
+	unsigned long long start_compute, stop_compute, return_compute;  
+	unsigned long long start_transfer, stop_transfer, return_transfer;     
 
-    volatile _IODEV mat_type *bank_ptr_array[NBANKS];
-    bank_ptrs(bank_ptr_array, NBANKS);
+	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
+	bank_ptrs(bank_ptr_array, NBANKS);
 
-    volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
+	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-    mat_type minver_hw_i[DIM][DIM];
-    mat_type minver_sw_i[DIM][DIM];
+	printf("Benchmarking \n");
 
-    set_minver(minver_hw_i);
-    set_minver(minver_sw_i);
+	// Compute expected results
 
-    printf("Benchmarking \n");
+	minver_minver(minver_sw_i, DIM, eps);
 
-    // Compute expected results
+	// Run accelerator
 
-    minver_minver(minver_sw_i, DIM, eps);
+	start_transfer = get_cpu_cycles();
 
-    // Run accelerator
+	#if(NBANKS>1)
 
-    start_transfer = get_cpu_cycles();
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
-    #if(NBANKS>1)
+	#else
 
-    write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
 
-    #else
+	#endif
 
-    write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+	stop_transfer = get_cpu_cycles();
+	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
-    #endif
+	// Poll status of HLS module    
 
-    stop_transfer = get_cpu_cycles();
-    return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	start_compute = get_cpu_cycles();    
 
-    // Poll status of HLS module    
+	*hls_ptr = 1;
 
-    start_compute = get_cpu_cycles();    
+	while((*hls_ptr) != 1);
 
-    *hls_ptr = 1;
+	stop_compute = get_cpu_cycles();
+	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;    
 
-    while((*hls_ptr) != 1);
+	start_transfer = get_cpu_cycles();    
 
-    stop_compute = get_cpu_cycles();
-    return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;    
+	#if(NBANKS>1)
 
-    start_transfer = get_cpu_cycles();    
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
-    #if(NBANKS>1)
+	#else
 
-    read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
 
-    #else
+	#endif   
 
-    read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);    
+	stop_transfer = get_cpu_cycles();
+	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
-    #endif   
+	err_cnt = compare_arrays(minver_hw_i, minver_sw_i);
 
-    stop_transfer = get_cpu_cycles();
-    return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	print_benchmark(return_compute, return_transfer);
 
-    err_cnt = compare_arrays(minver_hw_i, minver_sw_i);
-
-    print_benchmark(return_compute, return_transfer);
-
-    return err_cnt;
+	return err_cnt;
 }
 
-int main( void ) {
+int main(void) {
 
-    return (minver_main());  
+	set_minver(minver_hw_i);
+	set_minver(minver_sw_i);
 
+	#if(WCET)	
+
+	return (minver_main_wcet());  
+
+	#else
+
+	return (minver_main());  	
+
+	#endif
 }

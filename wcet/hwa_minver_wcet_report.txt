@@ -1,0 +1,15 @@
+---
+- analysis-entry: minver_main_wcet
+  source: platin
+  cycles: 2928
+  cache-max-cycles-instr: 0
+  cache-min-hits-instr: 0
+  cache-max-misses-instr: 0
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 2822
+  cache-min-hits-data: 0
+  cache-max-misses-data: 17
+  cache-max-stores-data: 17
+  cache-unknown-address-data: 34
+  cache-max-cycles: 2822

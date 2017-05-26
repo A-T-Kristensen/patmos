@@ -1,0 +1,1443 @@
+---
+format: pml-0.1
+triple: patmos-unknown-unknown-elf
+machine-functions:
+- name: 8
+  level: machinecode
+  mapsto: main
+  hash: 0
+  blocks:
+  - name: 0
+    mapsto: entry
+    predecessors: []
+    successors: []
+    instructions:
+    - index: 0
+      opcode: SRESi
+      size: 4
+      stack-cache-argument: 8
+      address: 133652
+    - index: 1
+      opcode: MFS
+      size: 4
+      address: 133656
+    - index: 2
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133660
+    - index: 3
+      opcode: LIl
+      size: 8
+      address: 133664
+    - index: 4
+      opcode: LIl
+      size: 8
+      address: 133672
+    - index: 5
+      opcode: MFS
+      size: 4
+      address: 133680
+    - index: 6
+      opcode: LIl
+      size: 8
+      address: 133684
+    - index: 7
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133692
+    - index: 8
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133696
+    - index: 9
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133700
+    - index: 10
+      opcode: LIl
+      size: 8
+      address: 133704
+    - index: 11
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133712
+    - index: 12
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133716
+    - index: 13
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133720
+    - index: 14
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133724
+    - index: 15
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133728
+    - index: 16
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133732
+    - index: 17
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133736
+    - index: 18
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133740
+    - index: 19
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133744
+    - index: 20
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133748
+    - index: 21
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133752
+    - index: 22
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133756
+    - index: 23
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133760
+    - index: 24
+      opcode: LIl
+      size: 8
+      address: 133764
+    - index: 25
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133772
+    - index: 26
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133776
+    - index: 27
+      opcode: LIl
+      size: 8
+      address: 133780
+    - index: 28
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133788
+    - index: 29
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133792
+    - index: 30
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133796
+    - index: 31
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133800
+    - index: 32
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133804
+    - index: 33
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133808
+    - index: 34
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133812
+    - index: 35
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133816
+    - index: 36
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133820
+    - index: 37
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133824
+    - index: 38
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133828
+    - index: 39
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133832
+    - index: 40
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133836
+    - index: 41
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133840
+    - index: 42
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133844
+    - index: 43
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133848
+    - index: 44
+      opcode: CALLND
+      callees:
+      - minver_main_wcet
+      size: 4
+      branch-type: call
+      address: 133852
+    - index: 45
+      opcode: SENSi
+      size: 4
+      stack-cache-argument: 8
+      address: 133856
+    - index: 46
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133860
+    - index: 47
+      opcode: NOP
+      size: 4
+      address: 133864
+    - index: 48
+      opcode: MTS
+      size: 4
+      address: 133868
+    - index: 49
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133872
+    - index: 50
+      opcode: NOP
+      size: 4
+      address: 133876
+    - index: 51
+      opcode: MTS
+      size: 4
+      address: 133880
+    - index: 52
+      opcode: NOP
+      size: 4
+      address: 133884
+    - index: 53
+      opcode: RET
+      size: 4
+      branch-type: return
+      branch-delay-slots: 3
+      address: 133888
+    - index: 54
+      opcode: NOP
+      size: 4
+      address: 133892
+    - index: 55
+      opcode: MOV
+      size: 4
+      address: 133896
+    - index: 56
+      opcode: SFREEi
+      size: 4
+      stack-cache-argument: 8
+      address: 133900
+    address: 133652
+  subfunctions:
+  - name: 0
+    blocks:
+    - 0
+- name: 7
+  level: machinecode
+  mapsto: minver_main_wcet
+  hash: 0
+  blocks:
+  - name: 0
+    mapsto: entry
+    predecessors: []
+    successors: []
+    instructions:
+    - index: 0
+      opcode: LIl
+      size: 8
+      address: 133188
+    - index: 1
+      opcode: SUBi
+      size: 4
+      address: 133196
+    - index: 2
+      opcode: LIl
+      size: 8
+      address: 133200
+    - index: 3
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133208
+    - index: 4
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133212
+    - index: 5
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133216
+    - index: 6
+      opcode: NOP
+      size: 4
+      address: 133220
+    - index: 7
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133224
+    - index: 8
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133228
+    - index: 9
+      opcode: NOP
+      size: 4
+      address: 133232
+    - index: 10
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133236
+    - index: 11
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133240
+    - index: 12
+      opcode: NOP
+      size: 4
+      address: 133244
+    - index: 13
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133248
+    - index: 14
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133252
+    - index: 15
+      opcode: NOP
+      size: 4
+      address: 133256
+    - index: 16
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133260
+    - index: 17
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133264
+    - index: 18
+      opcode: NOP
+      size: 4
+      address: 133268
+    - index: 19
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133272
+    - index: 20
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133276
+    - index: 21
+      opcode: NOP
+      size: 4
+      address: 133280
+    - index: 22
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133284
+    - index: 23
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133288
+    - index: 24
+      opcode: NOP
+      size: 4
+      address: 133292
+    - index: 25
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133296
+    - index: 26
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133300
+    - index: 27
+      opcode: NOP
+      size: 4
+      address: 133304
+    - index: 28
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133308
+    - index: 29
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133312
+    - index: 30
+      opcode: NOP
+      size: 4
+      address: 133316
+    - index: 31
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133320
+    - index: 32
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133324
+    - index: 33
+      opcode: NOP
+      size: 4
+      address: 133328
+    - index: 34
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133332
+    - index: 35
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133336
+    - index: 36
+      opcode: NOP
+      size: 4
+      address: 133340
+    - index: 37
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133344
+    - index: 38
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133348
+    - index: 39
+      opcode: NOP
+      size: 4
+      address: 133352
+    - index: 40
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133356
+    - index: 41
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133360
+    - index: 42
+      opcode: NOP
+      size: 4
+      address: 133364
+    - index: 43
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133368
+    - index: 44
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133372
+    - index: 45
+      opcode: NOP
+      size: 4
+      address: 133376
+    - index: 46
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133380
+    - index: 47
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133384
+    - index: 48
+      opcode: NOP
+      size: 4
+      address: 133388
+    - index: 49
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133392
+    - index: 50
+      opcode: LWM
+      size: 4
+      memmode: load
+      memtype: memory
+      address: 133396
+    - index: 51
+      opcode: NOP
+      size: 4
+      address: 133400
+    - index: 52
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133404
+    - index: 53
+      opcode: LIi
+      size: 4
+      address: 133408
+    - index: 54
+      opcode: LIl
+      size: 8
+      address: 133412
+    - index: 55
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133420
+    - index: 56
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133424
+    - index: 57
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133428
+    - index: 58
+      opcode: NOP
+      size: 4
+      address: 133432
+    - index: 59
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133436
+    - index: 60
+      opcode: NOP
+      size: 4
+      address: 133440
+    - index: 61
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133444
+    - index: 62
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133448
+    - index: 63
+      opcode: NOP
+      size: 4
+      address: 133452
+    - index: 64
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133456
+    - index: 65
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133460
+    - index: 66
+      opcode: NOP
+      size: 4
+      address: 133464
+    - index: 67
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133468
+    - index: 68
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133472
+    - index: 69
+      opcode: NOP
+      size: 4
+      address: 133476
+    - index: 70
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133480
+    - index: 71
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133484
+    - index: 72
+      opcode: NOP
+      size: 4
+      address: 133488
+    - index: 73
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133492
+    - index: 74
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133496
+    - index: 75
+      opcode: NOP
+      size: 4
+      address: 133500
+    - index: 76
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133504
+    - index: 77
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133508
+    - index: 78
+      opcode: NOP
+      size: 4
+      address: 133512
+    - index: 79
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133516
+    - index: 80
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133520
+    - index: 81
+      opcode: NOP
+      size: 4
+      address: 133524
+    - index: 82
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133528
+    - index: 83
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133532
+    - index: 84
+      opcode: NOP
+      size: 4
+      address: 133536
+    - index: 85
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133540
+    - index: 86
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133544
+    - index: 87
+      opcode: NOP
+      size: 4
+      address: 133548
+    - index: 88
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133552
+    - index: 89
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133556
+    - index: 90
+      opcode: NOP
+      size: 4
+      address: 133560
+    - index: 91
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133564
+    - index: 92
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133568
+    - index: 93
+      opcode: NOP
+      size: 4
+      address: 133572
+    - index: 94
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133576
+    - index: 95
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133580
+    - index: 96
+      opcode: NOP
+      size: 4
+      address: 133584
+    - index: 97
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133588
+    - index: 98
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133592
+    - index: 99
+      opcode: NOP
+      size: 4
+      address: 133596
+    - index: 100
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133600
+    - index: 101
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133604
+    - index: 102
+      opcode: NOP
+      size: 4
+      address: 133608
+    - index: 103
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133612
+    - index: 104
+      opcode: LWL
+      size: 4
+      memmode: load
+      memtype: local
+      address: 133616
+    - index: 105
+      opcode: RET
+      size: 4
+      branch-type: return
+      branch-delay-slots: 3
+      address: 133620
+    - index: 106
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133624
+    - index: 107
+      opcode: ADDi
+      size: 4
+      address: 133628
+    - index: 108
+      opcode: MOV
+      size: 4
+      address: 133632
+    address: 133188
+  subfunctions:
+  - name: 0
+    blocks:
+    - 0
+bitcode-functions:
+- name: main
+  level: bitcode
+  hash: 0
+  blocks:
+  - name: entry
+    predecessors: []
+    successors: []
+    instructions:
+    - index: 0
+      opcode: load
+      memmode: load
+    - index: 1
+      opcode: bitcast
+    - index: 2
+      opcode: store
+      memmode: store
+    - index: 3
+      opcode: getelementptr
+    - index: 4
+      opcode: store
+      memmode: store
+    - index: 5
+      opcode: getelementptr
+    - index: 6
+      opcode: store
+      memmode: store
+    - index: 7
+      opcode: getelementptr
+    - index: 8
+      opcode: store
+      memmode: store
+    - index: 9
+      opcode: getelementptr
+    - index: 10
+      opcode: store
+      memmode: store
+    - index: 11
+      opcode: getelementptr
+    - index: 12
+      opcode: store
+      memmode: store
+    - index: 13
+      opcode: getelementptr
+    - index: 14
+      opcode: store
+      memmode: store
+    - index: 15
+      opcode: getelementptr
+    - index: 16
+      opcode: store
+      memmode: store
+    - index: 17
+      opcode: getelementptr
+    - index: 18
+      opcode: store
+      memmode: store
+    - index: 19
+      opcode: getelementptr
+    - index: 20
+      opcode: store
+      memmode: store
+    - index: 21
+      opcode: getelementptr
+    - index: 22
+      opcode: store
+      memmode: store
+    - index: 23
+      opcode: getelementptr
+    - index: 24
+      opcode: store
+      memmode: store
+    - index: 25
+      opcode: getelementptr
+    - index: 26
+      opcode: store
+      memmode: store
+    - index: 27
+      opcode: getelementptr
+    - index: 28
+      opcode: store
+      memmode: store
+    - index: 29
+      opcode: getelementptr
+    - index: 30
+      opcode: store
+      memmode: store
+    - index: 31
+      opcode: getelementptr
+    - index: 32
+      opcode: store
+      memmode: store
+    - index: 33
+      opcode: store
+      memmode: store
+    - index: 34
+      opcode: store
+      memmode: store
+    - index: 35
+      opcode: store
+      memmode: store
+    - index: 36
+      opcode: store
+      memmode: store
+    - index: 37
+      opcode: store
+      memmode: store
+    - index: 38
+      opcode: store
+      memmode: store
+    - index: 39
+      opcode: store
+      memmode: store
+    - index: 40
+      opcode: store
+      memmode: store
+    - index: 41
+      opcode: store
+      memmode: store
+    - index: 42
+      opcode: store
+      memmode: store
+    - index: 43
+      opcode: store
+      memmode: store
+    - index: 44
+      opcode: store
+      memmode: store
+    - index: 45
+      opcode: store
+      memmode: store
+    - index: 46
+      opcode: store
+      memmode: store
+    - index: 47
+      opcode: store
+      memmode: store
+    - index: 48
+      opcode: store
+      memmode: store
+    - index: 49
+      opcode: call
+      callees:
+      - minver_main_wcet
+    - index: 50
+      opcode: ret
+- name: minver_main_wcet
+  level: bitcode
+  hash: 0
+  blocks:
+  - name: entry
+    predecessors: []
+    successors: []
+    instructions:
+    - index: 0
+      opcode: alloca
+    - index: 1
+      opcode: bitcast
+    - index: 2
+      opcode: store
+      memmode: store
+    - index: 3
+      opcode: load
+      memmode: load
+    - index: 4
+      opcode: bitcast
+    - index: 5
+      opcode: load
+      memmode: load
+    - index: 6
+      opcode: store
+      memmode: store
+    - index: 7
+      opcode: getelementptr
+    - index: 8
+      opcode: load
+      memmode: load
+    - index: 9
+      opcode: store
+      memmode: store
+    - index: 10
+      opcode: getelementptr
+    - index: 11
+      opcode: load
+      memmode: load
+    - index: 12
+      opcode: store
+      memmode: store
+    - index: 13
+      opcode: getelementptr
+    - index: 14
+      opcode: load
+      memmode: load
+    - index: 15
+      opcode: store
+      memmode: store
+    - index: 16
+      opcode: getelementptr
+    - index: 17
+      opcode: load
+      memmode: load
+    - index: 18
+      opcode: store
+      memmode: store
+    - index: 19
+      opcode: getelementptr
+    - index: 20
+      opcode: load
+      memmode: load
+    - index: 21
+      opcode: store
+      memmode: store
+    - index: 22
+      opcode: getelementptr
+    - index: 23
+      opcode: load
+      memmode: load
+    - index: 24
+      opcode: store
+      memmode: store
+    - index: 25
+      opcode: getelementptr
+    - index: 26
+      opcode: load
+      memmode: load
+    - index: 27
+      opcode: store
+      memmode: store
+    - index: 28
+      opcode: getelementptr
+    - index: 29
+      opcode: load
+      memmode: load
+    - index: 30
+      opcode: store
+      memmode: store
+    - index: 31
+      opcode: getelementptr
+    - index: 32
+      opcode: load
+      memmode: load
+    - index: 33
+      opcode: store
+      memmode: store
+    - index: 34
+      opcode: getelementptr
+    - index: 35
+      opcode: load
+      memmode: load
+    - index: 36
+      opcode: store
+      memmode: store
+    - index: 37
+      opcode: getelementptr
+    - index: 38
+      opcode: load
+      memmode: load
+    - index: 39
+      opcode: store
+      memmode: store
+    - index: 40
+      opcode: getelementptr
+    - index: 41
+      opcode: load
+      memmode: load
+    - index: 42
+      opcode: store
+      memmode: store
+    - index: 43
+      opcode: getelementptr
+    - index: 44
+      opcode: load
+      memmode: load
+    - index: 45
+      opcode: store
+      memmode: store
+    - index: 46
+      opcode: getelementptr
+    - index: 47
+      opcode: load
+      memmode: load
+    - index: 48
+      opcode: store
+      memmode: store
+    - index: 49
+      opcode: getelementptr
+    - index: 50
+      opcode: load
+      memmode: load
+    - index: 51
+      opcode: store
+      memmode: store
+    - index: 52
+      opcode: store
+      memmode: store
+    - index: 53
+      opcode: load
+      memmode: load
+    - index: 54
+      opcode: load
+      memmode: load
+    - index: 55
+      opcode: load
+      memmode: load
+    - index: 56
+      opcode: bitcast
+    - index: 57
+      opcode: store
+      memmode: store
+    - index: 58
+      opcode: getelementptr
+    - index: 59
+      opcode: load
+      memmode: load
+    - index: 60
+      opcode: getelementptr
+    - index: 61
+      opcode: store
+      memmode: store
+    - index: 62
+      opcode: getelementptr
+    - index: 63
+      opcode: load
+      memmode: load
+    - index: 64
+      opcode: getelementptr
+    - index: 65
+      opcode: store
+      memmode: store
+    - index: 66
+      opcode: getelementptr
+    - index: 67
+      opcode: load
+      memmode: load
+    - index: 68
+      opcode: getelementptr
+    - index: 69
+      opcode: store
+      memmode: store
+    - index: 70
+      opcode: getelementptr
+    - index: 71
+      opcode: load
+      memmode: load
+    - index: 72
+      opcode: getelementptr
+    - index: 73
+      opcode: store
+      memmode: store
+    - index: 74
+      opcode: getelementptr
+    - index: 75
+      opcode: load
+      memmode: load
+    - index: 76
+      opcode: getelementptr
+    - index: 77
+      opcode: store
+      memmode: store
+    - index: 78
+      opcode: getelementptr
+    - index: 79
+      opcode: load
+      memmode: load
+    - index: 80
+      opcode: getelementptr
+    - index: 81
+      opcode: store
+      memmode: store
+    - index: 82
+      opcode: getelementptr
+    - index: 83
+      opcode: load
+      memmode: load
+    - index: 84
+      opcode: getelementptr
+    - index: 85
+      opcode: store
+      memmode: store
+    - index: 86
+      opcode: getelementptr
+    - index: 87
+      opcode: load
+      memmode: load
+    - index: 88
+      opcode: getelementptr
+    - index: 89
+      opcode: store
+      memmode: store
+    - index: 90
+      opcode: getelementptr
+    - index: 91
+      opcode: load
+      memmode: load
+    - index: 92
+      opcode: getelementptr
+    - index: 93
+      opcode: store
+      memmode: store
+    - index: 94
+      opcode: getelementptr
+    - index: 95
+      opcode: load
+      memmode: load
+    - index: 96
+      opcode: getelementptr
+    - index: 97
+      opcode: store
+      memmode: store
+    - index: 98
+      opcode: getelementptr
+    - index: 99
+      opcode: load
+      memmode: load
+    - index: 100
+      opcode: getelementptr
+    - index: 101
+      opcode: store
+      memmode: store
+    - index: 102
+      opcode: getelementptr
+    - index: 103
+      opcode: load
+      memmode: load
+    - index: 104
+      opcode: getelementptr
+    - index: 105
+      opcode: store
+      memmode: store
+    - index: 106
+      opcode: getelementptr
+    - index: 107
+      opcode: load
+      memmode: load
+    - index: 108
+      opcode: getelementptr
+    - index: 109
+      opcode: store
+      memmode: store
+    - index: 110
+      opcode: getelementptr
+    - index: 111
+      opcode: load
+      memmode: load
+    - index: 112
+      opcode: getelementptr
+    - index: 113
+      opcode: store
+      memmode: store
+    - index: 114
+      opcode: getelementptr
+    - index: 115
+      opcode: load
+      memmode: load
+    - index: 116
+      opcode: getelementptr
+    - index: 117
+      opcode: store
+      memmode: store
+    - index: 118
+      opcode: ret
+relation-graphs:
+- src:
+    function: main
+    level: bitcode
+  dst:
+    function: 8
+    level: machinecode
+  nodes:
+  - name: 0
+    type: entry
+    src-block: entry
+    dst-block: 0
+    src-successors:
+    - 1
+    dst-successors:
+    - 1
+  - name: 1
+    type: exit
+  status: valid
+- src:
+    function: minver_main_wcet
+    level: bitcode
+  dst:
+    function: 7
+    level: machinecode
+  nodes:
+  - name: 0
+    type: entry
+    src-block: entry
+    dst-block: 0
+    src-successors:
+    - 1
+    dst-successors:
+    - 1
+  - name: 1
+    type: exit
+  status: valid
+timing:
+- scope:
+    function: 7
+  cycles: 3097
+  level: machinecode
+  origin: platin
+  cache-max-cycles-instr: 0
+  cache-min-hits-instr: 0
+  cache-max-misses-instr: 0
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 2988
+  cache-min-hits-data: 0
+  cache-max-misses-data: 3
+  cache-max-stores-data: 17
+  cache-max-bypass-data: 32
+  cache-unknown-address-data: 36
+  cache-max-cycles: 2988
+  profile:
+  - reference:
+      function: 7
+      edgesource: 0
+    cycles: 3097
+    wcet-frequency: 1
+    wcet-contribution: 3097
