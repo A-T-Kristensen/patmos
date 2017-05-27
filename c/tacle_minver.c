@@ -34,114 +34,116 @@
 #include "libminver/minver_init.h"
 #include "libhwa/hwa_test.h"
 
-int minver_minver(mat_type minver_a[DIM][DIM], 
+int minver_minver(mat_type minver_a[DIM][DIM],
 				  int side, mat_type eps)  __attribute__((noinline));
 
-mat_type minver_fabs( mat_type n);
+mat_type minver_fabs(mat_type n);
 int main(void);
 
 mat_type minver_a[DIM][DIM];
 mat_type minver_aa[DIM][DIM];
 mat_type minver_a_i[DIM][DIM];
 
-mat_type minver_fabs( mat_type n ){
-  mat_type f;
+mat_type minver_fabs(mat_type n)
+{
+	mat_type f;
 
-  if ( n >= 0 )
-	f = n;
-  else
-	f = -n;
-  return f;
+	if(n >= 0)
+		f = n;
+	else
+		f = -n;
+	return f;
 }
 
-int _Pragma ("entrypoint") minver_minver(mat_type minver_a[DIM][DIM], 
-										 int side, mat_type eps){
+int _Pragma("entrypoint") minver_minver(mat_type minver_a[DIM][DIM],
+										int side, mat_type eps)
+{
 
-  int work[ 500 ], i, j, k, iw;
-  int r = 0;
-  mat_type w, wmax, pivot, api, w1;
-  mat_type minver_det;
+	int work[ 500 ], i, j, k, iw;
+	int r = 0;
+	mat_type w, wmax, pivot, api, w1;
+	mat_type minver_det;
 
-  if ( side < 2 || side > 500 || eps <= 0.0 )
-	return ( 999 );
-  w1 = 1.0;
-  _Pragma( "loopbound min DIM max DIM" )
-  for ( i = 0; i < side; i++ )
-	work[ i ] = i;
-  _Pragma( "loopbound min DIM max DIM" )
-  for ( k = 0; k < side; k++ ) {
-	wmax = 0.0;
-	_Pragma( "loopbound min 1 max DIM" )
-	for ( i = k; i < side; i++ ) {
-	  w = minver_fabs( minver_a[ i ][ k ] );
-	  if ( w > wmax ) {
-		wmax = w;
-		r = i;
-	  }
-	}
-	pivot = minver_a[ r ][ k ];
-	api = minver_fabs( pivot );
-	if ( api <= eps ) {
-	  minver_det = w1;
-	  return ( 1 );
-	}
-	w1 *= pivot;
-	if ( r != k ) {
-	  w1 = -w;
-	  iw = work[ k ];
-	  work[ k ] = work[ r ];
-	  work[ r ] = iw;
-	  _Pragma( "loopbound min DIM max DIM" )
-	  for ( j = 0; j < side; j++ ) {
-		w = minver_a[ k ][ j ];
-		minver_a[ k ][ j ] = minver_a[ r ][ j ];
-		minver_a[ r ][ j ] = w;
-	  }
-	}
-	_Pragma( "loopbound min DIM max DIM" )
-	for ( i = 0; i < side; i++ )
-	  minver_a[ k ][ i ] /= pivot;
-	_Pragma( "loopbound min DIM max DIM" )
-	for ( i = 0; i < side; i++ ) {
-	  if ( i != k ) {
-		w = minver_a[ i ][ k ];
-		if ( w != 0.0 ) {
-		  _Pragma( "loopbound min DIM max DIM" )
-		  for ( j = 0; j < side; j++ ) {
-			if ( j != k ) minver_a[ i ][ j ] -= w * minver_a[ k ][ j ];
-		  }
-		  minver_a[ i ][ k ] = -w / pivot;
-
+	if(side < 2 || side > 500 || eps <= 0.0)
+		return (999);
+	w1 = 1.0;
+	_Pragma("loopbound min DIM max DIM")
+	for(i = 0; i < side; i++)
+		work[ i ] = i;
+	_Pragma("loopbound min DIM max DIM")
+	for(k = 0; k < side; k++) {
+		wmax = 0.0;
+		_Pragma("loopbound min 1 max DIM")
+		for(i = k; i < side; i++) {
+			w = minver_fabs(minver_a[ i ][ k ]);
+			if(w > wmax) {
+				wmax = w;
+				r = i;
+			}
 		}
-	  }
+		pivot = minver_a[ r ][ k ];
+		api = minver_fabs(pivot);
+		if(api <= eps) {
+			minver_det = w1;
+			return (1);
+		}
+		w1 *= pivot;
+		if(r != k) {
+			w1 = -w;
+			iw = work[ k ];
+			work[ k ] = work[ r ];
+			work[ r ] = iw;
+			_Pragma("loopbound min DIM max DIM")
+			for(j = 0; j < side; j++) {
+				w = minver_a[ k ][ j ];
+				minver_a[ k ][ j ] = minver_a[ r ][ j ];
+				minver_a[ r ][ j ] = w;
+			}
+		}
+		_Pragma("loopbound min DIM max DIM")
+		for(i = 0; i < side; i++)
+			minver_a[ k ][ i ] /= pivot;
+		_Pragma("loopbound min DIM max DIM")
+		for(i = 0; i < side; i++) {
+			if(i != k) {
+				w = minver_a[ i ][ k ];
+				if(w != 0.0) {
+					_Pragma("loopbound min DIM max DIM")
+					for(j = 0; j < side; j++) {
+						if(j != k) minver_a[ i ][ j ] -= w * minver_a[ k ][ j ];
+					}
+					minver_a[ i ][ k ] = -w / pivot;
+
+				}
+			}
+		}
+		minver_a[ k ][ k ] = 1.0 / pivot;
 	}
-	minver_a[ k ][ k ] = 1.0 / pivot;
-  }
-   _Pragma( "loopbound min DIM max DIM" )  
-  for ( i = 0; i < side; ) {
-	/*  The following redundant statement is inserted due to limitations of
-		WCC's flow fact manager. It is required in order to have the flow
-		fact pragma below uniquely attached to the while(1) loop.
-	*/
-	i = i;
-   _Pragma( "loopbound min 1 max DIM" )
-	while (1) {
-	  k = work[ i ];
-	  if ( k == i ) break;
-	  iw = work[ k ];
-	  work[ k ] = work[ i ];
-	  work[ i ] = iw;
-	  _Pragma( "loopbound min DIM max DIM" )	  
-	  for ( j = 0; j < side; j++ ) {
-		w = minver_a [k ][ i ];
-		minver_a[ k ][ i ] = minver_a[ k ][ k ];
-		minver_a[ k ][ k ] = w;
-	  }
+	_Pragma("loopbound min DIM max DIM")
+	for(i = 0; i < side;) {
+		/*  The following redundant statement is inserted due to limitations of
+			WCC's flow fact manager. It is required in order to have the flow
+			fact pragma below uniquely attached to the while(1) loop.
+		*/
+		i = i;
+		_Pragma("loopbound min 1 max DIM")
+		while(1) {
+			k = work[ i ];
+			if(k == i) break;
+			iw = work[ k ];
+			work[ k ] = work[ i ];
+			work[ i ] = iw;
+			_Pragma("loopbound min DIM max DIM")
+			for(j = 0; j < side; j++) {
+				w = minver_a [k ][ i ];
+				minver_a[ k ][ i ] = minver_a[ k ][ k ];
+				minver_a[ k ][ k ] = w;
+			}
+		}
+		i++;
 	}
-	i++;
-  }
-  minver_det = w1;
-  return ( 0 );
+	minver_det = w1;
+	return (0);
 
 }
 
@@ -149,38 +151,39 @@ int _Pragma ("entrypoint") minver_minver(mat_type minver_a[DIM][DIM],
 	Main functions
 */
 
-int main(void){
+int main(void)
+{
 
-  int i, j;
+	int i, j;
 
-  mat_type eps = 1.0e-6;
-  set_minver(minver_a);
+	mat_type eps = 1.0e-6;
+	set_minver(minver_a);
 
-  for ( i = 0; i < DIM; i++ ) {
-	for ( j = 0; j < DIM; j++ )
-	  minver_aa[ i ][ j ] = minver_a[ i ][ j ];
-  }
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++)
+			minver_aa[ i ][ j ] = minver_a[ i ][ j ];
+	}
 
-  #if(WCET)
+#if(WCET)
 
-  minver_minver(minver_a, DIM, eps );
+	minver_minver(minver_a, DIM, eps);
 
-  #else
+#else
 
-  unsigned long long start_cycle, stop_cycle, return_cycles;  
+	unsigned long long start_cycle, stop_cycle, return_cycles;
 
-  printf("Benchmarking \n");  
+	printf("Benchmarking \n");
 
-  start_cycle = get_cpu_cycles();
-  
-  minver_minver(minver_a, DIM, eps);
+	start_cycle = get_cpu_cycles();
 
-  stop_cycle = get_cpu_cycles();
-  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+	minver_minver(minver_a, DIM, eps);
 
-  print_benchmark(return_cycles, 0);  
+	stop_cycle = get_cpu_cycles();
+	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-  #endif
+	print_benchmark(return_cycles, 0);
 
-  return 0;
+#endif
+
+	return 0;
 }

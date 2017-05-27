@@ -21,54 +21,54 @@
 
 #include "memcpy.h"
 
-void *sha_glibc_memcpy( void *dstpp, const void *srcpp, size_tacle len )
+void *sha_glibc_memcpy(void *dstpp, const void *srcpp, size_tacle len)
 {
-  unsigned long int dstp = ( long int ) dstpp;
-  unsigned long int srcp = ( long int ) srcpp;
-  size_tacle __nbytes;
+	unsigned long int dstp = (long int) dstpp;
+	unsigned long int srcp = (long int) srcpp;
+	size_tacle __nbytes;
 
-  /* Copy from the beginning to the end.  */
+	/* Copy from the beginning to the end.  */
 
-  /* If there not too few bytes to copy, use word copy.  */
-  if ( len >= OP_T_THRES ) {
-    /* Copy just a few bytes to make DSTP aligned.  */
-    len -= ( -dstp ) % OPSIZ;
+	/* If there not too few bytes to copy, use word copy.  */
+	if(len >= OP_T_THRES) {
+		/* Copy just a few bytes to make DSTP aligned.  */
+		len -= (-dstp) % OPSIZ;
 
-    __nbytes = ( -dstp ) % OPSIZ;
-    _Pragma( "loopbound min 0 max 0" )
-    while ( __nbytes > 0 ) {
-      BYTE __x = ( ( BYTE * ) srcp )[0];
-      srcp += 1;
-      __nbytes -= 1;
-      ( ( BYTE * ) dstp )[0] = __x;
-      dstp += 1;
-    }
+		__nbytes = (-dstp) % OPSIZ;
+		_Pragma("loopbound min 0 max 0")
+		while(__nbytes > 0) {
+			BYTE __x = ((BYTE *) srcp)[0];
+			srcp += 1;
+			__nbytes -= 1;
+			((BYTE *) dstp)[0] = __x;
+			dstp += 1;
+		}
 
-    /* Copy whole pages from SRCP to DSTP by virtual address manipulation,
-      as much as possible.  */
+		/* Copy whole pages from SRCP to DSTP by virtual address manipulation,
+		  as much as possible.  */
 
-    PAGE_COPY_FWD_MAYBE ( dstp, srcp, len, len );
+		PAGE_COPY_FWD_MAYBE(dstp, srcp, len, len);
 
-    /* Copy from SRCP to DSTP taking advantage of the known alignment of
-      DSTP.  Number of bytes remaining is put in the third argument,
-      i.e. in LEN.  This number may vary from machine to machine.  */
+		/* Copy from SRCP to DSTP taking advantage of the known alignment of
+		  DSTP.  Number of bytes remaining is put in the third argument,
+		  i.e. in LEN.  This number may vary from machine to machine.  */
 
-    WORD_COPY_FWD ( dstp, srcp, len, len );
+		WORD_COPY_FWD(dstp, srcp, len, len);
 
-    /* Fall out and copy the tail.  */
-  }
+		/* Fall out and copy the tail.  */
+	}
 
-  /* There are just a few bytes to copy.  Use byte memory operations.  */
-  __nbytes = len;
-  _Pragma( "loopbound min 0 max 7" )
-  while ( __nbytes > 0 ) {
-    BYTE __x = ( ( BYTE * ) srcp )[0];
-    srcp += 1;
-    __nbytes -= 1;
-    ( ( BYTE * ) dstp )[0] = __x;
-    dstp += 1;
-  }
+	/* There are just a few bytes to copy.  Use byte memory operations.  */
+	__nbytes = len;
+	_Pragma("loopbound min 0 max 7")
+	while(__nbytes > 0) {
+		BYTE __x = ((BYTE *) srcp)[0];
+		srcp += 1;
+		__nbytes -= 1;
+		((BYTE *) dstp)[0] = __x;
+		dstp += 1;
+	}
 
-  return dstpp;
+	return dstpp;
 }
 

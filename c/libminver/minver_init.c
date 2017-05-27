@@ -1,17 +1,18 @@
 /*
 	This c file contains the set_minver() function used to
   	set the values of the matrix to that of an invertible matrix.
-	
+
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: BSD License
-	
+
  */
 
 #include "minver_init.h"
 
-void set_minver(mat_type minver_a[DIM][DIM]) {
+void set_minver(mat_type minver_a[DIM][DIM])
+{
 
-	#if(DIM == 3)
+#if(DIM == 3)
 
 	minver_a[0][0] = 1;
 	minver_a[0][1] = 3;
@@ -23,7 +24,7 @@ void set_minver(mat_type minver_a[DIM][DIM]) {
 	minver_a[2][1] = 3;
 	minver_a[2][2] = 1;
 
-	#elif(DIM == 4)
+#elif(DIM == 4)
 
 	minver_a[0][0] = 1;
 	minver_a[0][1] = 2;
@@ -42,7 +43,7 @@ void set_minver(mat_type minver_a[DIM][DIM]) {
 	minver_a[3][2] = 4;
 	minver_a[3][3] = 3;
 
-	#elif(DIM == 16)
+#elif(DIM == 16)
 
 	minver_a[0][0] = 6;
 	minver_a[0][1] = 16;
@@ -302,7 +303,7 @@ void set_minver(mat_type minver_a[DIM][DIM]) {
 	minver_a[15][15] = 9;
 
 
-	#elif(DIM == 32)
+#elif(DIM == 32)
 
 	minver_a[0][0] = 21;
 	minver_a[0][1] = 27;
@@ -1329,7 +1330,7 @@ void set_minver(mat_type minver_a[DIM][DIM]) {
 	minver_a[31][30] = 18;
 	minver_a[31][31] = 15;
 
-	#endif
+#endif
 
 }
 

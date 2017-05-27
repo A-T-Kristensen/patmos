@@ -22,7 +22,7 @@
 
 #include "sha.h"
 
-void sha_wordcopy_fwd_aligned( long int dstp, long int srcp, size_tacle len );
+void sha_wordcopy_fwd_aligned(long int dstp, long int srcp, size_tacle len);
 
 /* Type to use for aligned memory operations.
    This should normally be the biggest type supported by a single load

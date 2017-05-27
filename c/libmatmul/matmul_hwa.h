@@ -8,7 +8,7 @@
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: BSD License
-	
+
  */
 
 #ifndef MATMUL_HWA_H_
@@ -30,17 +30,17 @@
 
  */
 
-void matmul_init(mat_type mat_a[DIM][DIM], 
-				 mat_type mat_b[DIM][DIM], 
+void matmul_init(mat_type mat_a[DIM][DIM],
+				 mat_type mat_b[DIM][DIM],
 				 mat_type sw_result[DIM][DIM]);
 
-void matmul_init_spm(volatile _SPM mat_type (*mat_a)[DIM][DIM], 
-					 volatile _SPM mat_type (*mat_b)[DIM][DIM], 
-				 	 volatile _SPM mat_type (*sw_result)[DIM][DIM]);
+void matmul_init_spm(volatile _SPM mat_type(*mat_a)[DIM][DIM],
+					 volatile _SPM mat_type(*mat_b)[DIM][DIM],
+					 volatile _SPM mat_type(*sw_result)[DIM][DIM]);
 
-void matmul_init_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM], 
-						  volatile _UNCACHED mat_type (*mat_b)[DIM][DIM], 
-						  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]);
+void matmul_init_uncached(volatile _UNCACHED mat_type(*mat_a)[DIM][DIM],
+						  volatile _UNCACHED mat_type(*mat_b)[DIM][DIM],
+						  volatile _UNCACHED mat_type(*sw_result)[DIM][DIM]);
 
 /*
 	NAME: matmul_expected()
@@ -53,21 +53,21 @@ void matmul_init_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM],
 
 	RETURNS: None
 
-	DESCRIPTION: Computes the software result for comparison 
+	DESCRIPTION: Computes the software result for comparison
 				 with HwA result (used for testing of correctness)
 
  */
 
-void matmul_expected(mat_type mat_a[DIM][DIM], 
-					 mat_type mat_b[DIM][DIM], 
+void matmul_expected(mat_type mat_a[DIM][DIM],
+					 mat_type mat_b[DIM][DIM],
 					 mat_type sw_result[DIM][DIM]);
 
-/*void matmul_expected_spm(volatile _SPM mat_type (*mat_a)[DIM][DIM], 
-						 volatile _SPM mat_type (*mat_b)[DIM][DIM], 
+/*void matmul_expected_spm(volatile _SPM mat_type (*mat_a)[DIM][DIM],
+						 volatile _SPM mat_type (*mat_b)[DIM][DIM],
 						 volatile _SPM mat_type (*sw_result)[DIM][DIM]);
 
-void matmul_expected_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM], 
-					 		  volatile _UNCACHED mat_type (*mat_b)[DIM][DIM], 
+void matmul_expected_uncached(volatile _UNCACHED mat_type (*mat_a)[DIM][DIM],
+					 		  volatile _UNCACHED mat_type (*mat_b)[DIM][DIM],
 				 			  volatile _UNCACHED mat_type (*sw_result)[DIM][DIM]);*/
 
 #endif /* __MATMUL_HWA_H__ */

@@ -36,30 +36,30 @@ typedef unsigned size_tacle;
 extern unsigned char sha_data[32743];
 
 struct SHA_MY_FILE {
-  unsigned char *data;
-  size_tacle size;
-  unsigned cur_pos;
+	unsigned char *data;
+	size_tacle size;
+	unsigned cur_pos;
 };
 
 struct SHA_INFO {
-  LONG digest[5];   /* message digest */
-  LONG count_lo, count_hi;  /* 64-bit bit count */
-  LONG data[16];    /* SHA data buffer */
+	LONG digest[5];   /* message digest */
+	LONG count_lo, count_hi;  /* 64-bit bit count */
+	LONG data[16];    /* SHA data buffer */
 };
 
 /*
   Forward declaration of functions
 */
-void sha_transform( struct SHA_INFO * );
-void sha_byte_reverse( LONG *buffer, int count );
-void sha_init( void );
-size_tacle sha_fread( void *, size_tacle , size_tacle , struct SHA_MY_FILE * );
-void sha_update( struct SHA_INFO *, BYTE *, int );
-void sha_final( struct SHA_INFO * );
-void sha_stream( struct SHA_INFO *, struct SHA_MY_FILE * );
-void sha_main( void );
-int sha_return ( void );
-int main( void );
+void sha_transform(struct SHA_INFO *);
+void sha_byte_reverse(LONG *buffer, int count);
+void sha_init(void);
+size_tacle sha_fread(void *, size_tacle , size_tacle , struct SHA_MY_FILE *);
+void sha_update(struct SHA_INFO *, BYTE *, int);
+void sha_final(struct SHA_INFO *);
+void sha_stream(struct SHA_INFO *, struct SHA_MY_FILE *);
+void sha_main(void);
+int sha_return(void);
+int main(void);
 
 #endif  // SHA_H
 

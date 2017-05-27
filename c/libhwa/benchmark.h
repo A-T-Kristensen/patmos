@@ -4,5 +4,5 @@
 #define SIZE	16
 #define VECSIZE 4
 #define NBANKS 	1
-#define WCET	1
+#define WCET	0
 typedef float mat_type;

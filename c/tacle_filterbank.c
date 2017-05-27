@@ -32,17 +32,17 @@
   Forward declaration of functions
 */
 
-void filterbank_init( void );
+void filterbank_init(void);
 void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32]);
-void filterbank_main( mat_type r[ 256 ],
-                      mat_type y[ 256 ],
-                      mat_type H[ 8 ][ 32 ],
-                      mat_type F[ 8 ][ 32 ] ) __attribute__((noinline));
+void filterbank_main(mat_type r[ 256 ],
+					 mat_type y[ 256 ],
+					 mat_type H[ 8 ][ 32 ],
+					 mat_type F[ 8 ][ 32 ]) __attribute__((noinline));
 int filterbank_return(void);
-void filterbank_core( mat_type r[ 256 ],
-                      mat_type y[ 256 ],
-                      mat_type H[ 8 ][ 32 ],
-                      mat_type F[ 8 ][ 32 ] );
+void filterbank_core(mat_type r[ 256 ],
+					 mat_type y[ 256 ],
+					 mat_type H[ 8 ][ 32 ],
+					 mat_type F[ 8 ][ 32 ]);
 
 
 /*
@@ -57,15 +57,15 @@ static int filterbank_numiters;
   Initialization- and return-value-related functions
 */
 
-void filterbank_init( void )
+void filterbank_init(void)
 {
-  filterbank_numiters = 2;
+	filterbank_numiters = 2;
 }
 
 
-int filterbank_return( void )
+int filterbank_return(void)
 {
-  return filterbank_return_value;
+	return filterbank_return_value;
 }
 
 
@@ -73,96 +73,99 @@ int filterbank_return( void )
   Core benchmark functions
 */
 
-void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32]) {
+void filter_init(mat_type r[256], mat_type H[8][32], mat_type F[8][32])
+{
 
-  int i, j;
+	int i, j;
 
-  _Pragma( "loopbound min 256 max 256" )
-  for ( i = 0; i < 256; i++ ){
-    r[i] = i + 1;
-  }
+	_Pragma("loopbound min 256 max 256")
+	for(i = 0; i < 256; i++) {
+		r[i] = i + 1;
+	}
 
-  _Pragma( "loopbound min 32 max 32" )
-  for ( i = 0; i < 32; i++ ) {
-    _Pragma( "loopbound min 8 max 8" )    
-    for ( j = 0; j < 8; j++ ) {
-      H[j][i] = i * 32 + j * 8 + j + i + j + 1;
-      F[j][i] = i * j + j * j + j + i;
-    }
-  }
+	_Pragma("loopbound min 32 max 32")
+	for(i = 0; i < 32; i++) {
+		_Pragma("loopbound min 8 max 8")
+		for(j = 0; j < 8; j++) {
+			H[j][i] = i * 32 + j * 8 + j + i + j + 1;
+			F[j][i] = i * j + j * j + j + i;
+		}
+	}
 
 }
 
-void _Pragma( "entrypoint" ) filterbank_main(mat_type r[ 256 ],
-                      mat_type y[ 256 ],
-                      mat_type H[ 8 ][ 32 ],
-                      mat_type F[ 8 ][ 32 ]){
+void _Pragma("entrypoint") filterbank_main(mat_type r[ 256 ],
+		mat_type y[ 256 ],
+		mat_type H[ 8 ][ 32 ],
+		mat_type F[ 8 ][ 32 ])
+{
 
-  _Pragma( "loopbound min 2 max 2" )
-  while ( filterbank_numiters-- > 0 )
-    filterbank_core( r, y, H, F );
+	_Pragma("loopbound min 2 max 2")
+	while(filterbank_numiters-- > 0)
+		filterbank_core(r, y, H, F);
 
-  filterbank_return_value = ( int )( y[ 0 ] ) - 9408;
+	filterbank_return_value = (int)(y[ 0 ]) - 9408;
 }
 
 
 /* the FB core gets the input vector (r) , the filter responses H and F and */
 /* generates the output vector(y) */
-void filterbank_core( mat_type r[ 256 ],
-                      mat_type y[ 256 ],
-                      mat_type H[ 8 ][ 32 ],
-                      mat_type F[ 8 ][ 32 ] ){
+void filterbank_core(mat_type r[ 256 ],
+					 mat_type y[ 256 ],
+					 mat_type H[ 8 ][ 32 ],
+					 mat_type F[ 8 ][ 32 ])
+{
 
-  int i, j, k;
+	int i, j, k;
 
-  _Pragma( "loopbound min 256 max 256" )
-  for ( i = 0; i < 256; i++ )
-    y[ i ] = 0;
+	_Pragma("loopbound min 256 max 256")
+	for(i = 0; i < 256; i++)
+		y[ i ] = 0;
 
-  _Pragma( "loopbound min 8 max 8" )
-  for ( i = 0; i < 8; i++ ) {
-    mat_type Vect_H[ 256 ]; /* (output of the H) */
-    mat_type Vect_Dn[ ( int ) 256 / 8 ]; /* output of the down sampler; */
-    mat_type Vect_Up[ 256 ]; /* output of the up sampler; */
-    mat_type Vect_F[ 256 ]; /* this is the output of the */
+	_Pragma("loopbound min 8 max 8")
+	for(i = 0; i < 8; i++) {
+		mat_type Vect_H[ 256 ]; /* (output of the H) */
+		mat_type Vect_Dn[(int) 256 / 8 ];    /* output of the down sampler; */
+		mat_type Vect_Up[ 256 ]; /* output of the up sampler; */
+		mat_type Vect_F[ 256 ]; /* this is the output of the */
 
-    /* convolving H */
-    _Pragma( "loopbound min 256 max 256" )
-    for ( j = 0; j < 256; j++ ) {
-      Vect_H[ j ] = 0;
-      _Pragma( "loopbound min 1 max 32" )
-      for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ )
-        Vect_H[ j ] += H[ i ][ k ] * r[ j - k ];
-    }
+		/* convolving H */
+		_Pragma("loopbound min 256 max 256")
+		for(j = 0; j < 256; j++) {
+			Vect_H[ j ] = 0;
+			_Pragma("loopbound min 1 max 32")
+			for(k = 0; ((k < 32) & ((j - k) >= 0)); k++)
+				Vect_H[ j ] += H[ i ][ k ] * r[ j - k ];
+		}
 
-    /* Down Sampling */
-    _Pragma( "loopbound min 32 max 32" )
-    for ( j = 0; j < 256 / 8; j++ )
-      Vect_Dn[ j ] = Vect_H[ j * 8 ];
+		/* Down Sampling */
+		_Pragma("loopbound min 32 max 32")
+		for(j = 0; j < 256 / 8; j++)
+			Vect_Dn[ j ] = Vect_H[ j * 8 ];
 
-    /* Up Sampling */
-    _Pragma( "loopbound min 256 max 256" )
-    for ( j = 0; j < 256; j++ )
-      Vect_Up[ j ] = 0;
-    _Pragma( "loopbound min 32 max 32" )
-    for ( j = 0; j < 256 / 8; j++ )
-      Vect_Up[ j * 8 ] = Vect_Dn[ j ];
+		/* Up Sampling */
+		_Pragma("loopbound min 256 max 256")
+		for(j = 0; j < 256; j++)
+			Vect_Up[ j ] = 0;
+		_Pragma("loopbound min 32 max 32")
+		for(j = 0; j < 256 / 8; j++)
+			Vect_Up[ j * 8 ] = Vect_Dn[ j ];
 
-    /* convolving F */
-    _Pragma( "loopbound min 256 max 256" )
-    for ( j = 0; j < 256; j++ ) {
-      Vect_F[ j ] = 0;
-      _Pragma( "loopbound min 1 max 32" )
-      for ( k = 0; ( ( k < 32 ) & ( ( j - k ) >= 0 ) ); k++ )
-        Vect_F[ j ] += F[ i ][ k ] * Vect_Up[ j - k ];
-    }
+		/* convolving F */
+		_Pragma("loopbound min 256 max 256")
+		for(j = 0; j < 256; j++) {
+			Vect_F[ j ] = 0;
+			_Pragma("loopbound min 1 max 32")
+			for(k = 0; ((k < 32) & ((j - k) >= 0)); k++)
+				Vect_F[ j ] += F[ i ][ k ] * Vect_Up[ j - k ];
+		}
 
-    /* adding the results to the y matrix */
+		/* adding the results to the y matrix */
 
-    _Pragma( "loopbound min 256 max 256" )
-    for ( j = 0; j < 256; j++ )
-      y[ j ] += Vect_F[ j ];
-  }
+		_Pragma("loopbound min 256 max 256")
+		for(j = 0; j < 256; j++)
+			y[ j ] += Vect_F[ j ];
+	}
 }
 
 
@@ -170,38 +173,39 @@ void filterbank_core( mat_type r[ 256 ],
   Main function
 */
 
-int main(void) {
+int main(void)
+{
 
-  mat_type r[256];
-  mat_type y[256];
-  mat_type H[8][32];
-  mat_type F[8][32];
+	mat_type r[256];
+	mat_type y[256];
+	mat_type H[8][32];
+	mat_type F[8][32];
 
-  filter_init(r, H, F);  
+	filter_init(r, H, F);
 
-  #if(WCET)
+#if(WCET)
 
-  filterbank_init();
-  filterbank_main(r, y, H, F);
+	filterbank_init();
+	filterbank_main(r, y, H, F);
 
-  #else
+#else
 
-  unsigned long long start_cycle, stop_cycle, return_cycles;  
+	unsigned long long start_cycle, stop_cycle, return_cycles;
 
-  filterbank_init();
+	filterbank_init();
 
-  printf("Benchmarking \n");    
+	printf("Benchmarking \n");
 
-  start_cycle = get_cpu_cycles();
+	start_cycle = get_cpu_cycles();
 
-  filterbank_main(r, y, H, F);
+	filterbank_main(r, y, H, F);
 
-  stop_cycle = get_cpu_cycles();
-  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;  
+	stop_cycle = get_cpu_cycles();
+	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-  print_benchmark(return_cycles, 0);
+	print_benchmark(return_cycles, 0);
 
-  #endif  
+#endif
 
-  return filterbank_return();
+	return filterbank_return();
 }

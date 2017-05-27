@@ -72,9 +72,9 @@
 */
 
 struct matrix {
-    mat_type matrix1_A[X * Y];
-    mat_type matrix1_B[Y * Z];
-    mat_type matrix1_C[X * Z]; 
+	mat_type matrix1_A[X * Y];
+	mat_type matrix1_B[Y * Z];
+	mat_type matrix1_C[X * Z];
 };
 
 volatile _UNCACHED struct matrix *spm_matrix;
@@ -92,38 +92,40 @@ int main(void);
   Initialization functions
 */
 
-void matrix1_pin_down(void){
-  
-  int i;
-  volatile mat_type x = 1;
+void matrix1_pin_down(void)
+{
 
-  _Pragma( "loopbound min SIZE max SIZE" )
-  for ( i = 0 ; i < X * Y; i++ )
-    spm_matrix->matrix1_A[i] = x ;
+	int i;
+	volatile mat_type x = 1;
 
-  _Pragma( "loopbound min SIZE max SIZE" )
-  for ( i = 0 ; i < Y * Z ; i++ )
-    spm_matrix->matrix1_B[i] = x ;
+	_Pragma("loopbound min SIZE max SIZE")
+	for(i = 0 ; i < X * Y; i++)
+		spm_matrix->matrix1_A[i] = x ;
 
-  _Pragma( "loopbound min SIZE max SIZE" )
-  for ( i = 0 ; i < X * Z ; i++ )
-    spm_matrix->matrix1_C[i] = 0 ;
+	_Pragma("loopbound min SIZE max SIZE")
+	for(i = 0 ; i < Y * Z ; i++)
+		spm_matrix->matrix1_B[i] = x ;
+
+	_Pragma("loopbound min SIZE max SIZE")
+	for(i = 0 ; i < X * Z ; i++)
+		spm_matrix->matrix1_C[i] = 0 ;
 }
 
 /*
   Return function
 */
 
-int matrix1_return(void){
+int matrix1_return(void)
+{
 
 	int i;
 	int checksum = 0;
 
-	  _Pragma( "loopbound min SIZE max SIZE" )
-	  for ( i = 0; i <= X*Z; i++ )
-		  checksum += spm_matrix->matrix1_C[i];
+	_Pragma("loopbound min SIZE max SIZE")
+	for(i = 0; i <= X*Z; i++)
+		checksum += spm_matrix->matrix1_C[i];
 
-	  return ( checksum ==  1000 ? 0 : -1 );
+	return (checksum ==  1000 ? 0 : -1);
 }
 
 
@@ -131,59 +133,61 @@ int matrix1_return(void){
   Main functions
 */
 
-void _Pragma ("entrypoint") matrix1_main( void ){
+void _Pragma("entrypoint") matrix1_main(void)
+{
 
-  volatile _UNCACHED mat_type *p_a = &(spm_matrix->matrix1_A[0]);
-  volatile _UNCACHED mat_type *p_b = &(spm_matrix->matrix1_B[0]);
-  volatile _UNCACHED mat_type *p_c = &(spm_matrix->matrix1_C[0]);
+	volatile _UNCACHED mat_type *p_a = &(spm_matrix->matrix1_A[0]);
+	volatile _UNCACHED mat_type *p_b = &(spm_matrix->matrix1_B[0]);
+	volatile _UNCACHED mat_type *p_c = &(spm_matrix->matrix1_C[0]);
 
-  int f, i, k;
+	int f, i, k;
 
-  _Pragma( "loopbound min DIM max DIM" )
-  for ( k = 0; k < Z; k++ ) {
-    p_a = &(spm_matrix->matrix1_A[0]);  /* point to the beginning of array A */
+	_Pragma("loopbound min DIM max DIM")
+	for(k = 0; k < Z; k++) {
+		p_a = &(spm_matrix->matrix1_A[0]);  /* point to the beginning of array A */
 
-    _Pragma( "loopbound min DIM max DIM" )
-    for ( i = 0; i < X; i++ ) {
-      p_b = &(spm_matrix->matrix1_B[k * Y]); /* take next column */
+		_Pragma("loopbound min DIM max DIM")
+		for(i = 0; i < X; i++) {
+			p_b = &(spm_matrix->matrix1_B[k * Y]); /* take next column */
 
-      *p_c = 0;
-      _Pragma( "loopbound min DIM max DIM" )
-      for ( f = 0; f < Y; f++ ) /* do multiply */
-        *p_c += *p_a++ * *p_b++;
+			*p_c = 0;
+			_Pragma("loopbound min DIM max DIM")
+			for(f = 0; f < Y; f++)    /* do multiply */
+				*p_c += *p_a++ * *p_b++;
 
-      p_c++;
-    }
-  }
+			p_c++;
+		}
+	}
 }
 
 
-int main(void){
-  
-  #if(WCET)
+int main(void)
+{
 
-  matrix1_pin_down();
-  matrix1_main();
+#if(WCET)
 
-  #else
+	matrix1_pin_down();
+	matrix1_main();
 
-  static unsigned long long start_cycle, stop_cycle; 
-  static unsigned long long return_cycles = 0;   
+#else
 
-  printf("Benchmarking \n");   
+	static unsigned long long start_cycle, stop_cycle;
+	static unsigned long long return_cycles = 0;
 
-  matrix1_pin_down();
+	printf("Benchmarking \n");
 
-  start_cycle = get_cpu_cycles();
+	matrix1_pin_down();
 
-  matrix1_main();
+	start_cycle = get_cpu_cycles();
 
-  stop_cycle = get_cpu_cycles();
-  return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+	matrix1_main();
 
-  print_benchmark(return_cycles, 0);
+	stop_cycle = get_cpu_cycles();
+	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-  #endif
+	print_benchmark(return_cycles, 0);
 
-  return 0;
+#endif
+
+	return 0;
 }

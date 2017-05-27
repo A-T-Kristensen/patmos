@@ -1,5 +1,9 @@
 # WCET Analysis
 
+To run the wcet analysis, in this folder do `make wcet`. 
+
+Otherwise `make wcet PROJECT=tacle_minver_uncached FUNCTION=minver_minver`.
+
 ## Folders
 
 ### Examples

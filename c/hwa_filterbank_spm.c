@@ -5,7 +5,7 @@
 
 struct filter_data {
 	mat_type r[256];
-	mat_type y[256];    
+	mat_type y[256];
 	mat_type H[8][32];
 	mat_type F[8][32];
 };
@@ -24,33 +24,37 @@ int filterbank_return(void);
 static int filterbank_return_value;
 static int filterbank_numiters;
 
-void filterbank_init( void ) {
-  filterbank_numiters = 2;
+void filterbank_init(void)
+{
+	filterbank_numiters = 2;
 }
 
-int filterbank_return( void ){
-  return filterbank_return_value;
+int filterbank_return(void)
+{
+	return filterbank_return_value;
 }
 
-void filter_init(){
+void filter_init()
+{
 
 	int i, j;
 
-	for ( i = 0; i < 256; i++ ){
+	for(i = 0; i < 256; i++) {
 		spm_filter->r[i] = i + 1;
 		spm_filter->y[i] = 0;
 	}
 
-	for ( i = 0; i < 32; i++ ) {
-		for ( j = 0; j < 8; j++ ) {
+	for(i = 0; i < 32; i++) {
+		for(j = 0; j < 8; j++) {
 			spm_filter->H[j][i] = i * 32 + j * 8 + j + i + j + 1;
 			spm_filter->F[j][i] = i * j + j * j + j + i;
 		}
-	}  
+	}
 
 }
 
-int _Pragma ("entrypoint") filterbank_main_wcet(void) {
+int _Pragma("entrypoint") filterbank_main_wcet(void)
+{
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
@@ -65,19 +69,20 @@ int _Pragma ("entrypoint") filterbank_main_wcet(void) {
 	return (int)(spm_filter->y[0]) - 9408;
 }
 
-int filterbank_main( void ) {
+int filterbank_main(void)
+{
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
 
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;     
+	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	int i, j;
 
-	unsigned long long start_compute, stop_compute, return_compute;  
-	unsigned long long start_transfer, stop_transfer, return_transfer;   
+	unsigned long long start_compute, stop_compute, return_compute;
+	unsigned long long start_transfer, stop_transfer, return_transfer;
 
-	printf("Benchmarking \n");  			
+	printf("Benchmarking \n");
 
 	// Move data into hardware
 
@@ -89,16 +94,16 @@ int filterbank_main( void ) {
 	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1);
 
 	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION; 
+	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
-	start_compute = get_cpu_cycles();     
+	start_compute = get_cpu_cycles();
 
-	while (filterbank_numiters-- > 0) {
+	while(filterbank_numiters-- > 0) {
 
 		// Start HLS module
 
 		*hls_ptr = 1;
-		*hls_ptr = 0;  
+		*hls_ptr = 0;
 
 		// Poll status of HLS module
 
@@ -107,9 +112,9 @@ int filterbank_main( void ) {
 	}
 
 	stop_compute = get_cpu_cycles();
-	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;         
+	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
-	start_transfer = get_cpu_cycles();        
+	start_transfer = get_cpu_cycles();
 
 	read_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
 
@@ -125,19 +130,20 @@ int filterbank_main( void ) {
   Main function
 */
 
-int main(void){
+int main(void)
+{
 
 	filter_init();
-	filterbank_init();	
+	filterbank_init();
 
-	#if(WCET)
+#if(WCET)
 
 	return filterbank_main_wcet();
 
-	#else
+#else
 
 	return filterbank_main();
 
-	#endif	
+#endif
 
 }

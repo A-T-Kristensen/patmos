@@ -5,7 +5,7 @@
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: BSD License
-	
+
  */
 
 #ifndef MINVER_H_
@@ -23,7 +23,7 @@
 	RETURNS:  The absolute value of n.
 
 	DESCRIPTION: minver_fabs() computes the absolute value of the input n.
-	
+
  */
 
 mat_type minver_fabs(mat_type n);
@@ -39,7 +39,7 @@ mat_type minver_fabs(mat_type n);
 	RETURNS:
 
 	DESCRIPTION: Returns the inverted matrix of minver_a.
-	
+
  */
 
 int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps);

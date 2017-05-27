@@ -2,7 +2,7 @@
     This is a minimal C program executed on the FPGA version of Patmos.
     An embedded test of a vivado hls module: Matrix multiplication on an array of dimension DIM
 
-    Author: Andreas T. Kristensen 
+    Author: Andreas T. Kristensen
     Copyright: DTU, BSD License
 */
 
@@ -20,12 +20,12 @@
 
 #define LED_RUN_LENGTH 2
 
-int main() 
+int main()
 {
 
 	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
 	volatile _SPM int *spm_ptr  = (volatile _SPM int *) SPM_BASE;
-	
+
 	int hw_result[DIM][DIM];
 	int in_spm[DIM][DIM]; // Data to be written to the bram.
 
@@ -40,57 +40,57 @@ int main()
 		}
 	}
 
-   // Write to bram
+	// Write to bram
 
-   //We write linearly
-    for(i = 0; i < DIM*DIM; i++){
-        *(spm_ptr + i) = *((&in_spm[0][0]) + i);
-    }
-	
-    for(i = 0; i < DIM*DIM; i++){
-        *((&hw_result[0][0]) + i) = *(spm_ptr + i);
-    }
+	//We write linearly
+	for(i = 0; i < DIM*DIM; i++) {
+		*(spm_ptr + i) = *((&in_spm[0][0]) + i);
+	}
 
-    // We now continously loop, showing a pattern on the LEDS
-	
+	for(i = 0; i < DIM*DIM; i++) {
+		*((&hw_result[0][0]) + i) = *(spm_ptr + i);
+	}
+
+	// We now continously loop, showing a pattern on the LEDS
+
 	if(!err_cnt) {
-		for (;;) {
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
+		for(;;) {
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 3;
 
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
+
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 15;
 
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
+
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 63;
 
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 0;			
-		}		
-	} 
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
+					*led_ptr = 0;
+		}
+	}
 
 	else {
-		// Flash 111 LEDS		
-		for (;;) {
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
+		// Flash 111 LEDS
+		for(;;) {
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
 					*led_ptr = 0;
-			
-			for (i=LED_RUN_LENGTH; i!=0; --i)
-				for (j=LED_RUN_LENGTH; j!=0; --j)
-					*led_ptr = 7; 	
-	  	}
+
+			for(i=LED_RUN_LENGTH; i!=0; --i)
+				for(j=LED_RUN_LENGTH; j!=0; --j)
+					*led_ptr = 7;
+		}
 	}
 }

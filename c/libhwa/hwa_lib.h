@@ -5,7 +5,7 @@
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: DTU, BSD License
-	
+
  */
 
 #ifndef HWA_LIB_H_
@@ -18,7 +18,7 @@
 #include <machine/rtc.h> 	// Gives us get_cpu_cycles
 
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 
 #include "benchmark.h"	// Contains parameters for benchmarks
 

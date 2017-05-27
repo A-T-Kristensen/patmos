@@ -1,13 +1,13 @@
 /*
 	This header file contains the forward declarations and
 	documentation for the functions in hwa_bram.c
-	
+
 	These functions are used to write to the BRAM and generate
 	pointers to the BRAMs.
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: DTU, BSD License
-	
+
  */
 
 #ifndef HWA_BRAM_H_
@@ -19,16 +19,16 @@
 	NAME: bank_ptrs()
 
 	PARAMETERS:
-		* bank_ptr_array: 
+		* bank_ptr_array:
 		* nbanks: The number of memory banks
 
 	RETURNS: void
 
 	DESCRIPTION: bank_ptrs() generates an array of pointers to the bram blocks.
-	
+
  */
 
-void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS], 
+void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS],
 			   unsigned long nbanks);
 
 /*
@@ -47,21 +47,21 @@ void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS],
 
 	DESCRIPTION: write_array() writes an array to BRAM blocks.
 				 If factor > 1, array is partitioned.
-	
+
  */
 
-void write_array(mat_type array[ROWS][COLS], int n, int m, 
-				 int factor, int array_bank0, 
+void write_array(mat_type array[ROWS][COLS], int n, int m,
+				 int factor, int array_bank0,
 				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
-void write_array_spm(volatile _SPM mat_type (*array)[ROWS][COLS], int n, 
-					 int m, int factor, int array_bank0, 
-				     volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
+					 int m, int factor, int array_bank0,
+					 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
-void write_array_uncached(volatile _UNCACHED mat_type (*array)[ROWS][COLS], 
-						  int n, int m, int factor, int array_bank0, 
-				      	  volatile _IODEV mat_type** bank_ptr_array, 
-				      	  int wr_dim);
+void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
+						  int n, int m, int factor, int array_bank0,
+						  volatile _IODEV mat_type** bank_ptr_array,
+						  int wr_dim);
 
 /*
 	NAME: read_array()
@@ -79,21 +79,21 @@ void write_array_uncached(volatile _UNCACHED mat_type (*array)[ROWS][COLS],
 
 	DESCRIPTION: read_array() read an array from BRAM blocks.
 				 If factor > 1, array is partitioned.
-	
+
  */
 
-void read_array(mat_type array[ROWS][COLS], int n, int m, 
-				int factor, int array_bank0, 
-				volatile _IODEV mat_type** bank_ptr_array, 
+void read_array(mat_type array[ROWS][COLS], int n, int m,
+				int factor, int array_bank0,
+				volatile _IODEV mat_type** bank_ptr_array,
 				int wr_dim);
 
-void read_array_spm(volatile _SPM mat_type (*array)[ROWS][COLS], int n, 
-					int m, int factor, int array_bank0, 
-				    volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
+					int m, int factor, int array_bank0,
+					volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
-void read_array_uncached(volatile _UNCACHED mat_type (*array)[ROWS][COLS], 
-						 int n, int m, int factor, int array_bank0, 
-				     	 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
+						 int n, int m, int factor, int array_bank0,
+						 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 /*
 	NAME: write_vector()
@@ -109,18 +109,18 @@ void read_array_uncached(volatile _UNCACHED mat_type (*array)[ROWS][COLS],
 
 	DESCRIPTION: write_vector() writes a vector to BRAM blocks.
 				 If factor > 1, vector is partitioned.
-	
+
  */
 
-void write_vector(mat_type vec[], int length, int factor, int vec_bank0, 
+void write_vector(mat_type vec[], int length, int factor, int vec_bank0,
 				  volatile _IODEV mat_type** bank_ptr_array);
 
-void write_vector_spm(volatile _SPM mat_type (*vec)[], int length, 
-					  int factor, int vec_bank0, 
-				  	  volatile _IODEV mat_type** bank_ptr_array);
+void write_vector_spm(volatile _SPM mat_type(*vec)[], int length,
+					  int factor, int vec_bank0,
+					  volatile _IODEV mat_type** bank_ptr_array);
 
-void write_vector_uncached(volatile _UNCACHED mat_type (*vec)[], int length, 
-						   int factor, int vec_bank0, 
+void write_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
+						   int factor, int vec_bank0,
 						   volatile _IODEV mat_type** bank_ptr_array);
 
 /*
@@ -137,18 +137,18 @@ void write_vector_uncached(volatile _UNCACHED mat_type (*vec)[], int length,
 
 	DESCRIPTION: write_vector() read a vector from BRAM blocks.
 				 If factor > 1, vector is partitioned.
-	
+
  */
 
-void read_vector(mat_type vec[], int length, int factor, int vec_bank0, 
-				  volatile _IODEV mat_type** bank_ptr_array);
+void read_vector(mat_type vec[], int length, int factor, int vec_bank0,
+				 volatile _IODEV mat_type** bank_ptr_array);
 
-void read_vector_spm(volatile _SPM mat_type (*vec)[], int length, 
-					 int factor, int vec_bank0, 
-				  	 volatile _IODEV mat_type** bank_ptr_array);
+void read_vector_spm(volatile _SPM mat_type(*vec)[], int length,
+					 int factor, int vec_bank0,
+					 volatile _IODEV mat_type** bank_ptr_array);
 
-void read_vector_uncached(volatile _UNCACHED mat_type (*vec)[], int length, 
-						  int factor, int vec_bank0, 
-				 		  volatile _IODEV mat_type** bank_ptr_array);
+void read_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
+						  int factor, int vec_bank0,
+						  volatile _IODEV mat_type** bank_ptr_array);
 
 #endif /* __HWA_BRAM_H__ */

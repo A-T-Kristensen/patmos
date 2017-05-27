@@ -1,40 +1,42 @@
 /*
-    This is a minimal C program used for WCET test for writing to 
+    This is a minimal C program used for WCET test for writing to
     the bram.
-    
-    Author: Andreas T. Kristensen 
+
+    Author: Andreas T. Kristensen
     Copyright: BSD License
 */
 
-#include <machine/patmos.h> 
+#include <machine/patmos.h>
 
 #define DIM 10
 
 void bram_main(void) __attribute__((noinline));
 
-void _Pragma ("entrypoint") bram_main(void){
+void _Pragma("entrypoint") bram_main(void)
+{
 
 	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
-	
+
 	int i;
 	int temp[DIM];
 
 	// Write data to BRAM
 
 	_Pragma("loopbound min DIM max DIM")
-	for(i = 0; i < DIM; i++){
+	for(i = 0; i < DIM; i++) {
 		*(bram_ptr + i) = i + 1;
 	}
-	
+
 	// Read back data from BRAM
 
 	_Pragma("loopbound min DIM max DIM")
-	for(i = 0; i < DIM; i++){
+	for(i = 0; i < DIM; i++) {
 		temp[i] = *(bram_ptr + i);
 	}
 }
 
-int main(){
+int main()
+{
 
 	bram_main();
 

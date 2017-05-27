@@ -20,5 +20,5 @@
 */
 #include "memhelper.h"
 
-void *sha_glibc_memset( void *dstpp, int c, size_tacle len );
+void *sha_glibc_memset(void *dstpp, int c, size_tacle len);
 
