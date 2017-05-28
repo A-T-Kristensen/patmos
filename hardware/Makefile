@@ -176,3 +176,11 @@ modcomp:
 .FORCE:
 
 .PHONY: all emulator test view verilog vsim
+
+# HwA Ctrl make targets
+
+HwACtrlExt:
+	$(SBT) "run-main io.HwACtrlExt --targetDir $(HWGENDIR) --cse --backend v"
+
+HwACtrlExt-test:
+	$(SBT) "run-main io.HwACtrlExtTester --targetDir $(HWGENDIR) --cse --backend v"
