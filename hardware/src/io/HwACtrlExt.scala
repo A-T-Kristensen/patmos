@@ -38,23 +38,32 @@ object HwACtrlExt extends DeviceObject {
 	}
 }
 
-class HwACtrlExt(extAddrWidth : Int = 32,
-										 dataWidth : Int = 32) extends CoreDevice() {
+class HwACtrlExt(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevice() {
 	override val io = new CoreDeviceIO() with HwACtrlExt.Pins
 
 	// Default response and data
 	val respReg = Reg(init = OcpResp.NULL)
 	respReg := OcpResp.NULL
 
-	val rdDataReg = Reg(init = Bits(0, width = 32))
-	rdDataReg := Bits(0)
+	val doneReg = Reg(init = Bits(0, width = 32))
+	doneReg := Bits(0)
 
+	val readyReg = Reg(init = Bits(0, width = 32))
+	readyReg := Bits(0)
+
+	// Register holding start output value
 	val startReg = Reg(init = Bits(0))
-	startReg := Bits(0)  
+	startReg := Bits(0)
 
 	// Connections to master
 	io.ocp.S.Resp := respReg
-	io.ocp.S.Data := rdDataReg
+	io.ocp.S.Data := Bits(0)
+
+	when(doneReg === Bits(1)){
+		io.ocp.S.Data := doneReg		
+	}.otherwise{
+		io.ocp.S.Data := readyReg		
+	}
 
 	// Default values out
 
@@ -82,14 +91,15 @@ class HwACtrlExt(extAddrWidth : Int = 32,
 
 	//States for the controller
 
-	val s_idle :: s_start :: s_wait_read :: Nil = Enum(UInt(), 3)
+	val s_idle :: s_start :: s_wait_read_ready :: s_wait_read_done :: Nil = Enum(UInt(), 4)
 
 	val state = Reg(init = s_idle)
 
 	//State control
 
 	when(state === s_idle) {
-		when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Data === SInt(1) && io.ocp.M.Addr === Bits(0)) {
+		when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Addr === Bits(0)) {
+
 			// On next cycle, give data valid, for a single cycle
 			respReg := OcpResp.DVA
 			state := s_start
@@ -97,60 +107,78 @@ class HwACtrlExt(extAddrWidth : Int = 32,
 
 		}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
 			respReg := OcpResp.DVA
-			rdDataReg := Bits(0)  
 			state === s_idle
 
-		}.otherwise {
-			state === s_idle
 		}
 	}
 
 	when(state === s_start) {
 		startReg := Bits(0)
 
+		// Check for ready
+		when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
+			respReg := OcpResp.DVA
+		}
+		// Start again (used with ready)
+		when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Addr === Bits(0)) {
+			startReg := Bits(1)
+		}		
+
 		when(io.hwACtrlExtPins.ap_done_in === UInt(1)) {
-			state := s_wait_read
+			state := s_wait_read_done
+			doneReg := Bits(1)					
 
-			when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
-				respReg := OcpResp.DVA
-				rdDataReg := Bits(0)
-			}
-
-		}.otherwise {
-			state := s_start
-
-			when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
-			 respReg := OcpResp.DVA
-			 rdDataReg := Bits(0)
-			}
+		}.elsewhen(io.hwACtrlExtPins.ap_ready_in === UInt(1)){
+			readyReg := Bits(2)
+			state := s_wait_read_ready
 		}
 	}
 
-	when(state === s_wait_read) {
+	when(state === s_wait_read_ready){
+		readyReg := Bits(2)
+
+		when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
+			respReg := OcpResp.DVA
+		}
+
+		when(io.hwACtrlExtPins.ap_done_in === UInt(1)) {
+			state := s_wait_read_done
+			doneReg := Bits(1)					
+
+		}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD && io.ocp.M.Addr === Bits(0)){
+			state := s_start
+
+		}
+	}	
+
+	when(state === s_wait_read_done) {
+		doneReg := Bits(1)
+
 		when(io.ocp.M.Cmd === OcpCmd.RD) {
 			// On next cycle, give data valid, for a single cycle
 			respReg := OcpResp.DVA
-			rdDataReg := Bits(1)
 			state := s_idle
 
 		}.elsewhen(io.ocp.M.Cmd === OcpCmd.WR) {
-				respReg := OcpResp.DVA
-				state := s_wait_read
-				rdDataReg := Bits(1)
-		}.otherwise{
-			rdDataReg := Bits(1)      
-			state := s_wait_read
+			respReg := OcpResp.DVA
+			state := s_wait_read_done
+
 		}
 	}
 }
 
 class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 
+	def currentState() = {
+		peek(dut.state)
+	}	
+
 	def idle() = {
 		poke(dut.io.ocp.M.Cmd, OcpCmd.IDLE.litValue())
 		poke(dut.io.ocp.M.Addr, 0)
 		poke(dut.io.ocp.M.Data, 0)
 		poke(dut.io.ocp.M.ByteEn, Bits("b0000").litValue())
+		currentState()
 	}
 
 	def wr(addr: BigInt, data: BigInt, byteEn: BigInt) = {
@@ -158,17 +186,20 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 		poke(dut.io.ocp.M.Addr, addr)
 		poke(dut.io.ocp.M.Data, data)
 		poke(dut.io.ocp.M.ByteEn, byteEn)
+		currentState()
 	}
 
 	def expectOut(start: BigInt, reset: BigInt) = {
 		expect(dut.io.hwACtrlExtPins.ap_start_out, start)
 		expect(dut.io.hwACtrlExtPins.ap_reset_out, reset)
+		currentState()
 	}
 
 	def HwASignals(ready: BigInt, idle: BigInt, done: BigInt) = {
 		poke(dut.io.hwACtrlExtPins.ap_ready_in, ready)
 		poke(dut.io.hwACtrlExtPins.ap_idle_in, idle)
 		poke(dut.io.hwACtrlExtPins.ap_done_in, done)      
+		currentState()
 	}    
 
 	def rd(addr: BigInt, byteEn: BigInt) = {
@@ -176,17 +207,19 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 		poke(dut.io.ocp.M.Addr, addr)
 		poke(dut.io.ocp.M.Data, 0)
 		poke(dut.io.ocp.M.ByteEn, byteEn)
+		currentState()
 	}
 
 	def expectRd(data: BigInt, resp: BigInt) = {
 		expect(dut.io.ocp.S.Data, data)
 		expect(dut.io.ocp.S.Resp, resp)
+		currentState()
 	}  
 
 	def expectPar(dataPar1: BigInt, dataPar2: BigInt) = {
 		expect(dut.io.hwACtrlExtPins.par1 , dataPar1)
 		expect(dut.io.hwACtrlExtPins.par2 , dataPar2)
-
+		currentState()
 	}  	
 
 	// Set to initial state
@@ -204,7 +237,6 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 	wr(0, 1, Bits("b1111").litValue())
 
 	step(1)
-
 	idle()
 
 	expectOut(1, 0)
@@ -215,13 +247,51 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 
 	step(1)
 
+	println("\nAcelerator ready\n")  
+
+	// Return ready = 1 from HwA
+
+	HwASignals(1, 0, 0)	
+
+	step(1)
+
+	HwASignals(0, 0, 0)			
+
+	step(10)
+
+	rd(0, Bits("b1111").litValue())
+
+	step(1)	
+
+	idle()
+	expectRd(2, 1)
+
+	step(1)
+
+	// Start again due to read ready
+
+	wr(0, 1, Bits("b1111").litValue())
+
+	step(1)	
+
+	expectOut(1, 0)
+
+	step(10)	
+
+	rd(0, Bits("b1111").litValue())
+
+	step(1)
+	idle()	
+	expectRd(0, 1)
+
+
 	println("\nAcelerator done\n")  
 
 	// Return done = 1 from HwA
 
 	HwASignals(0, 0, 1)
 
-	step(10)
+	step(2)
 
 	rd(0, Bits("b1111").litValue())
 
@@ -242,7 +312,6 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 	wr(4, 1, Bits("b1111").litValue())
 
 	step(1)
-
 	idle()
 
 	expectPar(1, 0)
@@ -265,11 +334,9 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 	wr(0, 1, Bits("b1111").litValue())
 
 	step(1)
-
 	idle()
 
 	expectOut(1, 0)	
-
 
 }
 
