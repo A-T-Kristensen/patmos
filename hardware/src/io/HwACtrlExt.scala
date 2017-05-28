@@ -57,7 +57,6 @@ class HwACtrlExt(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevi
 
 	// Connections to master
 	io.ocp.S.Resp := respReg
-	io.ocp.S.Data := Bits(0)
 
 	when(doneReg === Bits(1)){
 		io.ocp.S.Data := doneReg		
@@ -92,22 +91,21 @@ class HwACtrlExt(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevi
 	//States for the controller
 
 	val s_idle :: s_start :: s_wait_read_ready :: s_wait_read_done :: Nil = Enum(UInt(), 4)
-
 	val state = Reg(init = s_idle)
 
 	//State control
 
 	when(state === s_idle) {
-		when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Addr === Bits(0)) {
 
+		when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
+			respReg := OcpResp.DVA
+		}
+
+		when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Addr === Bits(0)) {
 			// On next cycle, give data valid, for a single cycle
 			respReg := OcpResp.DVA
 			state := s_start
 			startReg := Bits(1)
-
-		}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
-			respReg := OcpResp.DVA
-			state === s_idle
 
 		}
 	}
@@ -115,10 +113,10 @@ class HwACtrlExt(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevi
 	when(state === s_start) {
 		startReg := Bits(0)
 
-		// Check for ready
 		when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
 			respReg := OcpResp.DVA
 		}
+
 		// Start again (used with ready)
 		when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Addr === Bits(0)) {
 			startReg := Bits(1)
@@ -154,15 +152,13 @@ class HwACtrlExt(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevi
 	when(state === s_wait_read_done) {
 		doneReg := Bits(1)
 
-		when(io.ocp.M.Cmd === OcpCmd.RD) {
-			// On next cycle, give data valid, for a single cycle
+		when(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
+			respReg := OcpResp.DVA
+		}		
+
+		when(io.ocp.M.Cmd === OcpCmd.RD && io.ocp.M.Addr === Bits(0)) {
 			respReg := OcpResp.DVA
 			state := s_idle
-
-		}.elsewhen(io.ocp.M.Cmd === OcpCmd.WR) {
-			respReg := OcpResp.DVA
-			state := s_wait_read_done
-
 		}
 	}
 }
@@ -222,7 +218,11 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 		currentState()
 	}  	
 
-	// Set to initial state
+	/*
+		Set to initial state
+
+		* set to idle
+	*/
 
 	println("\nSet to initial state\n")  
 
@@ -230,8 +230,13 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 
 	step(1)
 
-	// Start Accelerator
+	/*
+		Start accelerator
 
+		* Write 1 to address 0
+		* set to idle and expect start = 1
+		* expect all output = 0
+	*/
 	println("\nStart Accelerator\n")  
 
 	wr(0, 1, Bits("b1111").litValue())
@@ -247,9 +252,17 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 
 	step(1)
 
+	/*
+		Test ready
+
+		* Set HwA signal ready = 1
+		* set HwA signals to 0
+		* Read at address 0
+		* Expect S.Data = 2
+	*/	
+
 	println("\nAcelerator ready\n")  
 
-	// Return ready = 1 from HwA
 
 	HwASignals(1, 0, 0)	
 
@@ -268,7 +281,13 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 
 	step(1)
 
-	// Start again due to read ready
+	/*
+		Test start again after ready given
+
+		* Write 1 to start
+		* Expect start = 1
+		* Expect read to give S.Data = 0
+	*/	
 
 	wr(0, 1, Bits("b1111").litValue())
 
@@ -276,18 +295,27 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 
 	expectOut(1, 0)
 
-	step(10)	
+	step(1)	
 
 	rd(0, Bits("b1111").litValue())
 
 	step(1)
 	idle()	
+
 	expectRd(0, 1)
 
+	step(1)
+
+	/*
+		Test accelerator done
+
+		* Set HwA done = 1
+		* read at address 0
+		* expect S.Data = 1
+		* expect S.Data = 0 and output = 0
+	*/		
 
 	println("\nAcelerator done\n")  
-
-	// Return done = 1 from HwA
 
 	HwASignals(0, 0, 1)
 
@@ -306,6 +334,16 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 	expectOut(0, 0)  
 
 	step(1)
+
+	/*
+		Check that parameters can be update
+
+		* Write 1 to address 4 (parameter 1)
+		* expect 1 at parameters 1
+		* Write 1 to address 8.
+		* expect 1 at parameter 1 and 2.
+	*/		
+
 
 	println("\nCheck that parameters can be updated\n")  
 
@@ -329,6 +367,14 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 
 	expectPar(1, 1)
 
+	/*
+		Check that accelerator can run again
+
+		* Write 1 to address 0 to start
+		* Expect start = 1
+		* Expect start = 0
+	*/		
+
 	println("\nVerify that accelerator can run again\n")  
 
 	wr(0, 1, Bits("b1111").litValue())
@@ -337,6 +383,34 @@ class HwACtrlExtTester(dut: HwACtrlExt) extends Tester(dut) {
 	idle()
 
 	expectOut(1, 0)	
+
+	step(1)
+
+	expectOut(0, 0)
+	expectPar(1, 1)
+
+	step(1)
+
+	println("\nVerify parameters can be set to 0\n")  
+
+	/*
+		Check that parameters can be set to 0 again
+
+		* Set pars to 0
+		* Expect 0
+	*/		
+
+	wr(4, 0, Bits("b1111").litValue())	
+
+	step(1)
+
+	expectPar(0, 1)	
+
+	wr(8, 0, Bits("b1111").litValue())	
+
+	step(1)
+
+	expectPar(0, 0)
 
 }
 
