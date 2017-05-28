@@ -32,8 +32,8 @@ object HwACtrlExt extends DeviceObject {
 			val ap_idle_in    = UInt(INPUT,1)
 			val ap_done_in    = UInt(INPUT,1)
 
-			val par1  = UInt(OUTPUT,1)
-			val par2  = UInt(OUTPUT,1)			
+			val par1  = UInt(OUTPUT,32)
+			val par2  = UInt(OUTPUT,32)			
 		}
 	}
 }

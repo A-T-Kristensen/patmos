@@ -14,7 +14,7 @@
 	<IO DevTypeRef="Uart" offset="8"/>
 	<IO DevTypeRef="Nexys4DDRIO" offset="9"/>
 	<IO DevTypeRef="BRamCtrl" offset="11"/>	  	  
-	<IO DevTypeRef="HwACtrl" offset="12"/>   
+	<IO DevTypeRef="HwACtrlExt" offset="12"/>   
   </IOs>
 
   <Devs>
@@ -36,7 +36,7 @@
             <param name="dataWidth" value="32" />
           </params>
 	</Dev> 
-	<Dev DevType="HwACtrl" entity="HwACtrl" iface="OcpCore">
+	<Dev DevType="HwACtrlExt" entity="HwACtrlExt" iface="OcpCore">
           <params>
             <param name="extAddrWidth" value="16" />
             <param name="dataWidth" value="32" />
