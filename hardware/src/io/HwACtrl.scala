@@ -114,8 +114,8 @@ class HwACtrl(extAddrWidth : Int = 32,
       // On next cycle, give data valid, for a single cycle
       respReg := OcpResp.DVA
       rdDataReg := Bits(1)
-      //state := s_idle
-	  state := s_wait_read
+      state := s_idle // This used to be outcommented?
+	     //state := s_wait_read
     }.elsewhen(io.ocp.M.Cmd === OcpCmd.WR) {
         respReg := OcpResp.DVA
       	state := s_wait_read

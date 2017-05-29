@@ -333,7 +333,8 @@ architecture rtl of patmos_top is
 
 	attribute dont_touch : string;  
 
-	attribute dont_touch of hwa_addr_i 	: signal is "true";		
+	attribute dont_touch of hwa_addr_i 	: signal is "true";	
+		
 
 begin
 

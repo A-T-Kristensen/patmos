@@ -1,8 +1,8 @@
-#define ROWS 	4
-#define COLS	4
-#define DIM 	4
-#define SIZE	16
-#define VECSIZE 4
-#define NBANKS 	1
+#define ROWS 	3
+#define COLS	3
+#define DIM 	3
+#define SIZE	9
+#define VECSIZE 3
+#define NBANKS 	3
 #define WCET	0
-typedef float mat_type;
+typedef int mat_type;
