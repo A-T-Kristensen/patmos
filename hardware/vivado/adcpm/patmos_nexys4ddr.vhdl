@@ -375,6 +375,9 @@ architecture rtl of patmos_top is
 
 	attribute mark_debug of bram_m_i : signal is "true";
 	attribute mark_debug of bram_s_i : signal is "true";	
+	
+	attribute dont_touch of hwa_rst : signal is "true";	
+	attribute mark_debug of hwa_rst : signal is "true";	
 
 begin
 
