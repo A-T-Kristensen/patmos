@@ -156,46 +156,78 @@ int _Pragma("entrypoint") adpcm_main()
 
 	init(test_data);
 
+	/*
 	for(i = 0; i < TEST_SIZE; i++) {
 		printf("%d \n", test_data[i]);
 	}
+	*/
+
+	start_transfer = get_cpu_cycles();
 
 	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array);
 
+	stop_transfer = get_cpu_cycles();
+	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
+
+	start_compute = get_cpu_cycles();
+
 	*hls_ptr = 1;	
 
-	printf("Starting\n");
-
 	while((*hls_ptr) != 1);	
+
+	stop_compute = get_cpu_cycles();
+	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;	
+
+	start_transfer = get_cpu_cycles();	
 	
 	read_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
-	
+
+	stop_transfer = get_cpu_cycles();
+	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+
+	/*
 	printf("Compressed\n");
 
 	for(i = 0; i < TEST_SIZE; i++) {
 		printf("%d\n", compressed[i]);
 	}
-	
-	printf("Starting\n");
+	*/
 
 	*(hls_ptr + 1) = 1; 
+
+	start_compute = get_cpu_cycles();
+
 	*hls_ptr = 1;
 
 	while((*hls_ptr) != 1);	
 
+	stop_compute = get_cpu_cycles();
+	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;		
+
+	start_transfer = get_cpu_cycles();	
+
+
 	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array);
-	
+
+	stop_transfer = get_cpu_cycles();
+	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+
+
+	/*
 	for(i = 0; i < TEST_SIZE; i++) {
 		printf("%d\n", dec_result[i]);
 	}
-	
+	*/
+
 	printf("Return: %d\n", enc_return(compressed));
 	printf("Return: %d\n", dec_return(dec_result));
 
-	return 0;
+	print_benchmark(return_compute, return_transfer);
 
+	return 0;
 }
 
 
