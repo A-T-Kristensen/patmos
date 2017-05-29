@@ -244,3 +244,114 @@ set_property -dict {PACKAGE_PIN D4 IOSTANDARD LVCMOS33} [get_ports uart_rxd]
 #set_property -dict { PACKAGE_PIN L14   IOSTANDARD LVCMOS33 } [get_ports { QSPI_DQ[2] }]; #IO_L2P_T0_D02_14 Sch=qspi_dq[2]
 #set_property -dict { PACKAGE_PIN M14   IOSTANDARD LVCMOS33 } [get_ports { QSPI_DQ[3] }]; #IO_L2N_T0_D03_14 Sch=qspi_dq[3]
 #set_property -dict { PACKAGE_PIN L13   IOSTANDARD LVCMOS33 } [get_ports { QSPI_CSN }]; #IO_L6P_T0_FCS_B_14 Sch=qspi_csn
+
+create_debug_core u_ila_0 ila
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_DATA_DEPTH 4096 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/CLK]]
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe0]
+set_property port_width 32 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {hwACtrlExt_par2[0]} {hwACtrlExt_par2[1]} {hwACtrlExt_par2[2]} {hwACtrlExt_par2[3]} {hwACtrlExt_par2[4]} {hwACtrlExt_par2[5]} {hwACtrlExt_par2[6]} {hwACtrlExt_par2[7]} {hwACtrlExt_par2[8]} {hwACtrlExt_par2[9]} {hwACtrlExt_par2[10]} {hwACtrlExt_par2[11]} {hwACtrlExt_par2[12]} {hwACtrlExt_par2[13]} {hwACtrlExt_par2[14]} {hwACtrlExt_par2[15]} {hwACtrlExt_par2[16]} {hwACtrlExt_par2[17]} {hwACtrlExt_par2[18]} {hwACtrlExt_par2[19]} {hwACtrlExt_par2[20]} {hwACtrlExt_par2[21]} {hwACtrlExt_par2[22]} {hwACtrlExt_par2[23]} {hwACtrlExt_par2[24]} {hwACtrlExt_par2[25]} {hwACtrlExt_par2[26]} {hwACtrlExt_par2[27]} {hwACtrlExt_par2[28]} {hwACtrlExt_par2[29]} {hwACtrlExt_par2[30]} {hwACtrlExt_par2[31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe1]
+set_property port_width 32 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list {hwACtrlExt_par1[0]} {hwACtrlExt_par1[1]} {hwACtrlExt_par1[2]} {hwACtrlExt_par1[3]} {hwACtrlExt_par1[4]} {hwACtrlExt_par1[5]} {hwACtrlExt_par1[6]} {hwACtrlExt_par1[7]} {hwACtrlExt_par1[8]} {hwACtrlExt_par1[9]} {hwACtrlExt_par1[10]} {hwACtrlExt_par1[11]} {hwACtrlExt_par1[12]} {hwACtrlExt_par1[13]} {hwACtrlExt_par1[14]} {hwACtrlExt_par1[15]} {hwACtrlExt_par1[16]} {hwACtrlExt_par1[17]} {hwACtrlExt_par1[18]} {hwACtrlExt_par1[19]} {hwACtrlExt_par1[20]} {hwACtrlExt_par1[21]} {hwACtrlExt_par1[22]} {hwACtrlExt_par1[23]} {hwACtrlExt_par1[24]} {hwACtrlExt_par1[25]} {hwACtrlExt_par1[26]} {hwACtrlExt_par1[27]} {hwACtrlExt_par1[28]} {hwACtrlExt_par1[29]} {hwACtrlExt_par1[30]} {hwACtrlExt_par1[31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe2]
+set_property port_width 13 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list {bram_m_i[2][addr][0]} {bram_m_i[2][addr][1]} {bram_m_i[2][addr][2]} {bram_m_i[2][addr][3]} {bram_m_i[2][addr][4]} {bram_m_i[2][addr][5]} {bram_m_i[2][addr][6]} {bram_m_i[2][addr][7]} {bram_m_i[2][addr][8]} {bram_m_i[2][addr][9]} {bram_m_i[2][addr][10]} {bram_m_i[2][addr][11]} {bram_m_i[2][addr][12]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe3]
+set_property port_width 4 [get_debug_ports u_ila_0/probe3]
+connect_debug_port u_ila_0/probe3 [get_nets [list {bram_m_i[0][wr][0]} {bram_m_i[0][wr][1]} {bram_m_i[0][wr][2]} {bram_m_i[0][wr][3]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe4]
+set_property port_width 32 [get_debug_ports u_ila_0/probe4]
+connect_debug_port u_ila_0/probe4 [get_nets [list {bram_s_i[0][dout][0]} {bram_s_i[0][dout][1]} {bram_s_i[0][dout][2]} {bram_s_i[0][dout][3]} {bram_s_i[0][dout][4]} {bram_s_i[0][dout][5]} {bram_s_i[0][dout][6]} {bram_s_i[0][dout][7]} {bram_s_i[0][dout][8]} {bram_s_i[0][dout][9]} {bram_s_i[0][dout][10]} {bram_s_i[0][dout][11]} {bram_s_i[0][dout][12]} {bram_s_i[0][dout][13]} {bram_s_i[0][dout][14]} {bram_s_i[0][dout][15]} {bram_s_i[0][dout][16]} {bram_s_i[0][dout][17]} {bram_s_i[0][dout][18]} {bram_s_i[0][dout][19]} {bram_s_i[0][dout][20]} {bram_s_i[0][dout][21]} {bram_s_i[0][dout][22]} {bram_s_i[0][dout][23]} {bram_s_i[0][dout][24]} {bram_s_i[0][dout][25]} {bram_s_i[0][dout][26]} {bram_s_i[0][dout][27]} {bram_s_i[0][dout][28]} {bram_s_i[0][dout][29]} {bram_s_i[0][dout][30]} {bram_s_i[0][dout][31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe5]
+set_property port_width 16 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list {bRamCtrl_MAddr[0]} {bRamCtrl_MAddr[1]} {bRamCtrl_MAddr[2]} {bRamCtrl_MAddr[3]} {bRamCtrl_MAddr[4]} {bRamCtrl_MAddr[5]} {bRamCtrl_MAddr[6]} {bRamCtrl_MAddr[7]} {bRamCtrl_MAddr[8]} {bRamCtrl_MAddr[9]} {bRamCtrl_MAddr[10]} {bRamCtrl_MAddr[11]} {bRamCtrl_MAddr[12]} {bRamCtrl_MAddr[13]} {bRamCtrl_MAddr[14]} {bRamCtrl_MAddr[15]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe6]
+set_property port_width 4 [get_debug_ports u_ila_0/probe6]
+connect_debug_port u_ila_0/probe6 [get_nets [list {bRamCtrl_MByteEn[0]} {bRamCtrl_MByteEn[1]} {bRamCtrl_MByteEn[2]} {bRamCtrl_MByteEn[3]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe7]
+set_property port_width 32 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list {bRamCtrl_MData[0]} {bRamCtrl_MData[1]} {bRamCtrl_MData[2]} {bRamCtrl_MData[3]} {bRamCtrl_MData[4]} {bRamCtrl_MData[5]} {bRamCtrl_MData[6]} {bRamCtrl_MData[7]} {bRamCtrl_MData[8]} {bRamCtrl_MData[9]} {bRamCtrl_MData[10]} {bRamCtrl_MData[11]} {bRamCtrl_MData[12]} {bRamCtrl_MData[13]} {bRamCtrl_MData[14]} {bRamCtrl_MData[15]} {bRamCtrl_MData[16]} {bRamCtrl_MData[17]} {bRamCtrl_MData[18]} {bRamCtrl_MData[19]} {bRamCtrl_MData[20]} {bRamCtrl_MData[21]} {bRamCtrl_MData[22]} {bRamCtrl_MData[23]} {bRamCtrl_MData[24]} {bRamCtrl_MData[25]} {bRamCtrl_MData[26]} {bRamCtrl_MData[27]} {bRamCtrl_MData[28]} {bRamCtrl_MData[29]} {bRamCtrl_MData[30]} {bRamCtrl_MData[31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe8]
+set_property port_width 32 [get_debug_ports u_ila_0/probe8]
+connect_debug_port u_ila_0/probe8 [get_nets [list {bram_m_i[2][din][0]} {bram_m_i[2][din][1]} {bram_m_i[2][din][2]} {bram_m_i[2][din][3]} {bram_m_i[2][din][4]} {bram_m_i[2][din][5]} {bram_m_i[2][din][6]} {bram_m_i[2][din][7]} {bram_m_i[2][din][8]} {bram_m_i[2][din][9]} {bram_m_i[2][din][10]} {bram_m_i[2][din][11]} {bram_m_i[2][din][12]} {bram_m_i[2][din][13]} {bram_m_i[2][din][14]} {bram_m_i[2][din][15]} {bram_m_i[2][din][16]} {bram_m_i[2][din][17]} {bram_m_i[2][din][18]} {bram_m_i[2][din][19]} {bram_m_i[2][din][20]} {bram_m_i[2][din][21]} {bram_m_i[2][din][22]} {bram_m_i[2][din][23]} {bram_m_i[2][din][24]} {bram_m_i[2][din][25]} {bram_m_i[2][din][26]} {bram_m_i[2][din][27]} {bram_m_i[2][din][28]} {bram_m_i[2][din][29]} {bram_m_i[2][din][30]} {bram_m_i[2][din][31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe9]
+set_property port_width 13 [get_debug_ports u_ila_0/probe9]
+connect_debug_port u_ila_0/probe9 [get_nets [list {bram_m_i[1][addr][0]} {bram_m_i[1][addr][1]} {bram_m_i[1][addr][2]} {bram_m_i[1][addr][3]} {bram_m_i[1][addr][4]} {bram_m_i[1][addr][5]} {bram_m_i[1][addr][6]} {bram_m_i[1][addr][7]} {bram_m_i[1][addr][8]} {bram_m_i[1][addr][9]} {bram_m_i[1][addr][10]} {bram_m_i[1][addr][11]} {bram_m_i[1][addr][12]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe10]
+set_property port_width 32 [get_debug_ports u_ila_0/probe10]
+connect_debug_port u_ila_0/probe10 [get_nets [list {bram_s_i[2][dout][0]} {bram_s_i[2][dout][1]} {bram_s_i[2][dout][2]} {bram_s_i[2][dout][3]} {bram_s_i[2][dout][4]} {bram_s_i[2][dout][5]} {bram_s_i[2][dout][6]} {bram_s_i[2][dout][7]} {bram_s_i[2][dout][8]} {bram_s_i[2][dout][9]} {bram_s_i[2][dout][10]} {bram_s_i[2][dout][11]} {bram_s_i[2][dout][12]} {bram_s_i[2][dout][13]} {bram_s_i[2][dout][14]} {bram_s_i[2][dout][15]} {bram_s_i[2][dout][16]} {bram_s_i[2][dout][17]} {bram_s_i[2][dout][18]} {bram_s_i[2][dout][19]} {bram_s_i[2][dout][20]} {bram_s_i[2][dout][21]} {bram_s_i[2][dout][22]} {bram_s_i[2][dout][23]} {bram_s_i[2][dout][24]} {bram_s_i[2][dout][25]} {bram_s_i[2][dout][26]} {bram_s_i[2][dout][27]} {bram_s_i[2][dout][28]} {bram_s_i[2][dout][29]} {bram_s_i[2][dout][30]} {bram_s_i[2][dout][31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe11]
+set_property port_width 32 [get_debug_ports u_ila_0/probe11]
+connect_debug_port u_ila_0/probe11 [get_nets [list {bram_s_i[1][dout][0]} {bram_s_i[1][dout][1]} {bram_s_i[1][dout][2]} {bram_s_i[1][dout][3]} {bram_s_i[1][dout][4]} {bram_s_i[1][dout][5]} {bram_s_i[1][dout][6]} {bram_s_i[1][dout][7]} {bram_s_i[1][dout][8]} {bram_s_i[1][dout][9]} {bram_s_i[1][dout][10]} {bram_s_i[1][dout][11]} {bram_s_i[1][dout][12]} {bram_s_i[1][dout][13]} {bram_s_i[1][dout][14]} {bram_s_i[1][dout][15]} {bram_s_i[1][dout][16]} {bram_s_i[1][dout][17]} {bram_s_i[1][dout][18]} {bram_s_i[1][dout][19]} {bram_s_i[1][dout][20]} {bram_s_i[1][dout][21]} {bram_s_i[1][dout][22]} {bram_s_i[1][dout][23]} {bram_s_i[1][dout][24]} {bram_s_i[1][dout][25]} {bram_s_i[1][dout][26]} {bram_s_i[1][dout][27]} {bram_s_i[1][dout][28]} {bram_s_i[1][dout][29]} {bram_s_i[1][dout][30]} {bram_s_i[1][dout][31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe12]
+set_property port_width 32 [get_debug_ports u_ila_0/probe12]
+connect_debug_port u_ila_0/probe12 [get_nets [list {bram_m_i[1][din][0]} {bram_m_i[1][din][1]} {bram_m_i[1][din][2]} {bram_m_i[1][din][3]} {bram_m_i[1][din][4]} {bram_m_i[1][din][5]} {bram_m_i[1][din][6]} {bram_m_i[1][din][7]} {bram_m_i[1][din][8]} {bram_m_i[1][din][9]} {bram_m_i[1][din][10]} {bram_m_i[1][din][11]} {bram_m_i[1][din][12]} {bram_m_i[1][din][13]} {bram_m_i[1][din][14]} {bram_m_i[1][din][15]} {bram_m_i[1][din][16]} {bram_m_i[1][din][17]} {bram_m_i[1][din][18]} {bram_m_i[1][din][19]} {bram_m_i[1][din][20]} {bram_m_i[1][din][21]} {bram_m_i[1][din][22]} {bram_m_i[1][din][23]} {bram_m_i[1][din][24]} {bram_m_i[1][din][25]} {bram_m_i[1][din][26]} {bram_m_i[1][din][27]} {bram_m_i[1][din][28]} {bram_m_i[1][din][29]} {bram_m_i[1][din][30]} {bram_m_i[1][din][31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe13]
+set_property port_width 32 [get_debug_ports u_ila_0/probe13]
+connect_debug_port u_ila_0/probe13 [get_nets [list {bRamCtrl_SData[0]} {bRamCtrl_SData[1]} {bRamCtrl_SData[2]} {bRamCtrl_SData[3]} {bRamCtrl_SData[4]} {bRamCtrl_SData[5]} {bRamCtrl_SData[6]} {bRamCtrl_SData[7]} {bRamCtrl_SData[8]} {bRamCtrl_SData[9]} {bRamCtrl_SData[10]} {bRamCtrl_SData[11]} {bRamCtrl_SData[12]} {bRamCtrl_SData[13]} {bRamCtrl_SData[14]} {bRamCtrl_SData[15]} {bRamCtrl_SData[16]} {bRamCtrl_SData[17]} {bRamCtrl_SData[18]} {bRamCtrl_SData[19]} {bRamCtrl_SData[20]} {bRamCtrl_SData[21]} {bRamCtrl_SData[22]} {bRamCtrl_SData[23]} {bRamCtrl_SData[24]} {bRamCtrl_SData[25]} {bRamCtrl_SData[26]} {bRamCtrl_SData[27]} {bRamCtrl_SData[28]} {bRamCtrl_SData[29]} {bRamCtrl_SData[30]} {bRamCtrl_SData[31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe14]
+set_property port_width 4 [get_debug_ports u_ila_0/probe14]
+connect_debug_port u_ila_0/probe14 [get_nets [list {bram_m_i[2][wr][0]} {bram_m_i[2][wr][1]} {bram_m_i[2][wr][2]} {bram_m_i[2][wr][3]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe15]
+set_property port_width 3 [get_debug_ports u_ila_0/probe15]
+connect_debug_port u_ila_0/probe15 [get_nets [list {bRamCtrl_Mcmd[0]} {bRamCtrl_Mcmd[1]} {bRamCtrl_Mcmd[2]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe16]
+set_property port_width 4 [get_debug_ports u_ila_0/probe16]
+connect_debug_port u_ila_0/probe16 [get_nets [list {bram_m_i[1][wr][0]} {bram_m_i[1][wr][1]} {bram_m_i[1][wr][2]} {bram_m_i[1][wr][3]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe17]
+set_property port_width 32 [get_debug_ports u_ila_0/probe17]
+connect_debug_port u_ila_0/probe17 [get_nets [list {bram_m_i[0][din][0]} {bram_m_i[0][din][1]} {bram_m_i[0][din][2]} {bram_m_i[0][din][3]} {bram_m_i[0][din][4]} {bram_m_i[0][din][5]} {bram_m_i[0][din][6]} {bram_m_i[0][din][7]} {bram_m_i[0][din][8]} {bram_m_i[0][din][9]} {bram_m_i[0][din][10]} {bram_m_i[0][din][11]} {bram_m_i[0][din][12]} {bram_m_i[0][din][13]} {bram_m_i[0][din][14]} {bram_m_i[0][din][15]} {bram_m_i[0][din][16]} {bram_m_i[0][din][17]} {bram_m_i[0][din][18]} {bram_m_i[0][din][19]} {bram_m_i[0][din][20]} {bram_m_i[0][din][21]} {bram_m_i[0][din][22]} {bram_m_i[0][din][23]} {bram_m_i[0][din][24]} {bram_m_i[0][din][25]} {bram_m_i[0][din][26]} {bram_m_i[0][din][27]} {bram_m_i[0][din][28]} {bram_m_i[0][din][29]} {bram_m_i[0][din][30]} {bram_m_i[0][din][31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe18]
+set_property port_width 13 [get_debug_ports u_ila_0/probe18]
+connect_debug_port u_ila_0/probe18 [get_nets [list {bram_m_i[0][addr][0]} {bram_m_i[0][addr][1]} {bram_m_i[0][addr][2]} {bram_m_i[0][addr][3]} {bram_m_i[0][addr][4]} {bram_m_i[0][addr][5]} {bram_m_i[0][addr][6]} {bram_m_i[0][addr][7]} {bram_m_i[0][addr][8]} {bram_m_i[0][addr][9]} {bram_m_i[0][addr][10]} {bram_m_i[0][addr][11]} {bram_m_i[0][addr][12]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe19]
+set_property port_width 1 [get_debug_ports u_ila_0/probe19]
+connect_debug_port u_ila_0/probe19 [get_nets [list hwACtrlExt_ap_done_in]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe20]
+set_property port_width 1 [get_debug_ports u_ila_0/probe20]
+connect_debug_port u_ila_0/probe20 [get_nets [list hwACtrlExt_ap_idle_in]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe21]
+set_property port_width 1 [get_debug_ports u_ila_0/probe21]
+connect_debug_port u_ila_0/probe21 [get_nets [list hwACtrlExt_ap_ready_in]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe22]
+set_property port_width 1 [get_debug_ports u_ila_0/probe22]
+connect_debug_port u_ila_0/probe22 [get_nets [list hwACtrlExt_ap_reset_out]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe23]
+set_property port_width 1 [get_debug_ports u_ila_0/probe23]
+connect_debug_port u_ila_0/probe23 [get_nets [list hwACtrlExt_ap_start_out]]
+set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
+set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
+set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]
+connect_debug_port dbg_hub/clk [get_nets clk_int]

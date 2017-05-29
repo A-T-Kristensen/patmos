@@ -9892,180 +9892,252 @@ module HwACtrlExt(input clk, input reset,
     output io_hwACtrlExtPins_ap_reset_out,
     input  io_hwACtrlExtPins_ap_ready_in,
     input  io_hwACtrlExtPins_ap_idle_in,
-    input  io_hwACtrlExtPins_ap_done_in
+    input  io_hwACtrlExtPins_ap_done_in,
+    output[31:0] io_hwACtrlExtPins_par1,
+    output[31:0] io_hwACtrlExtPins_par2
 );
 
-  wire T0;
+  reg [31:0] parReg2;
+  wire[31:0] T75;
+  wire[31:0] T0;
   wire T1;
   wire T2;
   wire T3;
   wire T4;
-  wire T5;
+  wire[15:0] T5;
   wire T6;
-  reg [1:0] state;
-  wire[1:0] T52;
-  wire[1:0] T7;
-  wire[1:0] T8;
-  wire[1:0] T9;
-  wire[1:0] T10;
-  wire[1:0] T11;
-  wire[1:0] T12;
+  wire T7;
+  wire T8;
+  wire T9;
+  wire T10;
+  wire[15:0] T11;
+  wire T12;
   wire T13;
   wire T14;
-  wire T15;
+  wire[15:0] T15;
   wire T16;
   wire T17;
   wire T18;
   wire T19;
-  wire T20;
-  wire T21;
-  wire T22;
-  wire T23;
-  wire T24;
-  wire T25;
+  reg [1:0] state;
+  wire[1:0] T76;
+  wire[1:0] T20;
+  wire[1:0] T21;
+  wire[1:0] T22;
+  wire[1:0] T23;
+  wire[1:0] T24;
+  wire[1:0] T25;
   wire T26;
   wire T27;
   wire T28;
   wire T29;
   wire T30;
   wire T31;
-  reg [31:0] rdDataReg;
-  wire[31:0] T53;
-  wire[31:0] T32;
-  wire[31:0] T33;
-  wire[31:0] T34;
-  wire[31:0] T35;
+  wire T32;
+  wire T33;
+  wire T34;
+  wire T35;
   wire T36;
   wire T37;
   wire T38;
   wire T39;
   wire T40;
   wire T41;
-  wire T42;
+  reg [31:0] parReg1;
+  wire[31:0] T77;
+  wire[31:0] T42;
   wire T43;
   wire T44;
   wire T45;
+  wire T46;
+  wire T47;
+  wire T48;
+  wire T49;
+  wire T50;
+  wire T51;
+  reg [31:0] rdDataReg;
+  wire[31:0] T78;
+  wire[31:0] T52;
+  wire[31:0] T53;
+  wire[31:0] T54;
+  wire[31:0] T55;
+  wire T56;
+  wire T57;
+  wire T58;
+  wire T59;
+  wire T60;
+  wire T61;
+  wire T62;
+  wire T63;
+  wire T64;
+  wire T65;
+  wire T66;
   reg [1:0] respReg;
-  wire[1:0] T54;
-  wire[1:0] T46;
-  wire[1:0] T47;
-  wire[1:0] T48;
-  wire[1:0] T49;
-  wire[1:0] T50;
-  wire[1:0] T51;
+  wire[1:0] T79;
+  wire[1:0] T67;
+  wire[1:0] T68;
+  wire[1:0] T69;
+  wire[1:0] T70;
+  wire[1:0] T71;
+  wire[1:0] T72;
+  wire[1:0] T73;
+  wire[1:0] T74;
 
 `ifndef SYNTHESIS
 // synthesis translate_off
   integer initvar;
   initial begin
     #0.002;
+    parReg2 = {1{$random}};
     state = {1{$random}};
+    parReg1 = {1{$random}};
     rdDataReg = {1{$random}};
     respReg = {1{$random}};
   end
 // synthesis translate_on
 `endif
 
-  assign io_hwACtrlExtPins_ap_reset_out = 1'h0;
-  assign io_hwACtrlExtPins_ap_start_out = T0;
-  assign T0 = T30 ? 1'h1 : T1;
-  assign T1 = T26 ? 1'h0 : T2;
-  assign T2 = T6 & T3;
-  assign T3 = T5 & T4;
-  assign T4 = io_ocp_M_Data == 32'h1;
-  assign T5 = io_ocp_M_Cmd == 3'h1;
-  assign T6 = state == 2'h0;
-  assign T52 = reset ? 2'h0 : T7;
-  assign T7 = T23 ? 2'h2 : T8;
-  assign T8 = T19 ? 2'h2 : T9;
-  assign T9 = T16 ? 2'h0 : T10;
-  assign T10 = T30 ? 2'h1 : T11;
-  assign T11 = T13 ? 2'h2 : T12;
-  assign T12 = T2 ? 2'h1 : state;
-  assign T13 = T15 & T14;
-  assign T14 = io_hwACtrlExtPins_ap_done_in == 1'h1;
-  assign T15 = state == 2'h1;
+  assign io_hwACtrlExtPins_par2 = parReg2;
+  assign T75 = reset ? 32'h0 : T0;
+  assign T0 = T1 ? io_ocp_M_Data : parReg2;
+  assign T1 = T19 & T2;
+  assign T2 = T7 & T3;
+  assign T3 = T6 & T4;
+  assign T4 = T5 == 16'h8;
+  assign T5 = io_ocp_M_Addr[4'hf:1'h0];
+  assign T6 = io_ocp_M_Cmd == 3'h1;
+  assign T7 = T8 ^ 1'h1;
+  assign T8 = T13 | T9;
+  assign T9 = T12 & T10;
+  assign T10 = T11 == 16'h4;
+  assign T11 = io_ocp_M_Addr[4'hf:1'h0];
+  assign T12 = io_ocp_M_Cmd == 3'h1;
+  assign T13 = T16 & T14;
+  assign T14 = T15 == 16'h0;
+  assign T15 = io_ocp_M_Addr[4'hf:1'h0];
   assign T16 = T18 & T17;
-  assign T17 = io_ocp_M_Cmd == 3'h2;
-  assign T18 = state == 2'h2;
-  assign T19 = T18 & T20;
-  assign T20 = T22 & T21;
-  assign T21 = io_ocp_M_Cmd == 3'h1;
-  assign T22 = T17 ^ 1'h1;
-  assign T23 = T18 & T24;
-  assign T24 = T25 ^ 1'h1;
-  assign T25 = T17 | T21;
-  assign T26 = T13 & T27;
-  assign T27 = T29 | T28;
-  assign T28 = io_ocp_M_Cmd == 3'h1;
-  assign T29 = io_ocp_M_Cmd == 3'h2;
-  assign T30 = T15 & T31;
-  assign T31 = T14 ^ 1'h1;
+  assign T17 = io_ocp_M_Data == 32'h1;
+  assign T18 = io_ocp_M_Cmd == 3'h1;
+  assign T19 = state == 2'h0;
+  assign T76 = reset ? 2'h0 : T20;
+  assign T20 = T39 ? 2'h2 : T21;
+  assign T21 = T35 ? 2'h2 : T22;
+  assign T22 = T32 ? 2'h0 : T23;
+  assign T23 = T30 ? 2'h1 : T24;
+  assign T24 = T27 ? 2'h2 : T25;
+  assign T25 = T26 ? 2'h1 : state;
+  assign T26 = T19 & T13;
+  assign T27 = T29 & T28;
+  assign T28 = io_hwACtrlExtPins_ap_done_in == 1'h1;
+  assign T29 = state == 2'h1;
+  assign T30 = T29 & T31;
+  assign T31 = T28 ^ 1'h1;
+  assign T32 = T34 & T33;
+  assign T33 = io_ocp_M_Cmd == 3'h2;
+  assign T34 = state == 2'h2;
+  assign T35 = T34 & T36;
+  assign T36 = T38 & T37;
+  assign T37 = io_ocp_M_Cmd == 3'h1;
+  assign T38 = T33 ^ 1'h1;
+  assign T39 = T34 & T40;
+  assign T40 = T41 ^ 1'h1;
+  assign T41 = T33 | T37;
+  assign io_hwACtrlExtPins_par1 = parReg1;
+  assign T77 = reset ? 32'h0 : T42;
+  assign T42 = T43 ? io_ocp_M_Data : parReg1;
+  assign T43 = T19 & T44;
+  assign T44 = T45 & T9;
+  assign T45 = T13 ^ 1'h1;
+  assign io_hwACtrlExtPins_ap_reset_out = 1'h0;
+  assign io_hwACtrlExtPins_ap_start_out = T46;
+  assign T46 = T30 ? 1'h1 : T47;
+  assign T47 = T48 ? 1'h0 : T26;
+  assign T48 = T27 & T49;
+  assign T49 = T51 | T50;
+  assign T50 = io_ocp_M_Cmd == 3'h1;
+  assign T51 = io_ocp_M_Cmd == 3'h2;
   assign io_ocp_S_Data = rdDataReg;
-  assign T53 = reset ? 32'h0 : T32;
-  assign T32 = T16 ? 32'h1 : T33;
-  assign T33 = T42 ? 32'h0 : T34;
-  assign T34 = T26 ? 32'h0 : T35;
-  assign T35 = T36 ? 32'h0 : rdDataReg;
-  assign T36 = T6 & T37;
-  assign T37 = T41 & T38;
-  assign T38 = T40 | T39;
-  assign T39 = io_ocp_M_Cmd == 3'h1;
-  assign T40 = io_ocp_M_Cmd == 3'h2;
-  assign T41 = T3 ^ 1'h1;
-  assign T42 = T30 & T43;
-  assign T43 = T45 | T44;
-  assign T44 = io_ocp_M_Cmd == 3'h1;
-  assign T45 = io_ocp_M_Cmd == 3'h2;
+  assign T78 = reset ? 32'h0 : T52;
+  assign T52 = T32 ? 32'h1 : T53;
+  assign T53 = T63 ? 32'h0 : T54;
+  assign T54 = T48 ? 32'h0 : T55;
+  assign T55 = T56 ? 32'h0 : rdDataReg;
+  assign T56 = T19 & T57;
+  assign T57 = T61 & T58;
+  assign T58 = T60 | T59;
+  assign T59 = io_ocp_M_Cmd == 3'h1;
+  assign T60 = io_ocp_M_Cmd == 3'h2;
+  assign T61 = T62 ^ 1'h1;
+  assign T62 = T8 | T3;
+  assign T63 = T30 & T64;
+  assign T64 = T66 | T65;
+  assign T65 = io_ocp_M_Cmd == 3'h1;
+  assign T66 = io_ocp_M_Cmd == 3'h2;
   assign io_ocp_S_Resp = respReg;
-  assign T54 = reset ? 2'h0 : T46;
-  assign T46 = T19 ? 2'h1 : T47;
-  assign T47 = T16 ? 2'h1 : T48;
-  assign T48 = T42 ? 2'h1 : T49;
-  assign T49 = T26 ? 2'h1 : T50;
-  assign T50 = T36 ? 2'h1 : T51;
-  assign T51 = T2 ? 2'h1 : 2'h0;
+  assign T79 = reset ? 2'h0 : T67;
+  assign T67 = T35 ? 2'h1 : T68;
+  assign T68 = T32 ? 2'h1 : T69;
+  assign T69 = T63 ? 2'h1 : T70;
+  assign T70 = T48 ? 2'h1 : T71;
+  assign T71 = T56 ? 2'h1 : T72;
+  assign T72 = T1 ? 2'h1 : T73;
+  assign T73 = T43 ? 2'h1 : T74;
+  assign T74 = T26 ? 2'h1 : 2'h0;
 
   always @(posedge clk) begin
     if(reset) begin
+      parReg2 <= 32'h0;
+    end else if(T1) begin
+      parReg2 <= io_ocp_M_Data;
+    end
+    if(reset) begin
       state <= 2'h0;
-    end else if(T23) begin
+    end else if(T39) begin
       state <= 2'h2;
-    end else if(T19) begin
+    end else if(T35) begin
       state <= 2'h2;
-    end else if(T16) begin
+    end else if(T32) begin
       state <= 2'h0;
     end else if(T30) begin
       state <= 2'h1;
-    end else if(T13) begin
+    end else if(T27) begin
       state <= 2'h2;
-    end else if(T2) begin
+    end else if(T26) begin
       state <= 2'h1;
     end
     if(reset) begin
+      parReg1 <= 32'h0;
+    end else if(T43) begin
+      parReg1 <= io_ocp_M_Data;
+    end
+    if(reset) begin
       rdDataReg <= 32'h0;
-    end else if(T16) begin
+    end else if(T32) begin
       rdDataReg <= 32'h1;
-    end else if(T42) begin
+    end else if(T63) begin
       rdDataReg <= 32'h0;
-    end else if(T26) begin
+    end else if(T48) begin
       rdDataReg <= 32'h0;
-    end else if(T36) begin
+    end else if(T56) begin
       rdDataReg <= 32'h0;
     end
     if(reset) begin
       respReg <= 2'h0;
-    end else if(T19) begin
+    end else if(T35) begin
       respReg <= 2'h1;
-    end else if(T16) begin
+    end else if(T32) begin
       respReg <= 2'h1;
-    end else if(T42) begin
+    end else if(T63) begin
+      respReg <= 2'h1;
+    end else if(T48) begin
+      respReg <= 2'h1;
+    end else if(T56) begin
+      respReg <= 2'h1;
+    end else if(T1) begin
+      respReg <= 2'h1;
+    end else if(T43) begin
       respReg <= 2'h1;
     end else if(T26) begin
-      respReg <= 2'h1;
-    end else if(T36) begin
-      respReg <= 2'h1;
-    end else if(T2) begin
       respReg <= 2'h1;
     end else begin
       respReg <= 2'h0;
@@ -10507,6 +10579,8 @@ module InOut(input clk, input reset,
     input  io_hwACtrlExtPins_ap_ready_in,
     input  io_hwACtrlExtPins_ap_idle_in,
     input  io_hwACtrlExtPins_ap_done_in,
+    output[31:0] io_hwACtrlExtPins_par1,
+    output[31:0] io_hwACtrlExtPins_par2,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -10823,6 +10897,8 @@ module InOut(input clk, input reset,
   wire[31:0] HwACtrlExt_io_ocp_S_Data;
   wire HwACtrlExt_io_hwACtrlExtPins_ap_start_out;
   wire HwACtrlExt_io_hwACtrlExtPins_ap_reset_out;
+  wire[31:0] HwACtrlExt_io_hwACtrlExtPins_par1;
+  wire[31:0] HwACtrlExt_io_hwACtrlExtPins_par2;
   wire[1:0] CpuInfo_io_ocp_S_Resp;
   wire[31:0] CpuInfo_io_ocp_S_Data;
   wire[1:0] Timer_io_ocp_S_Resp;
@@ -10934,6 +11010,8 @@ module InOut(input clk, input reset,
   assign T44 = T46 & T45;
   assign T45 = selNI ^ 1'h1;
   assign T46 = selIO ^ 1'h1;
+  assign io_hwACtrlExtPins_par2 = HwACtrlExt_io_hwACtrlExtPins_par2;
+  assign io_hwACtrlExtPins_par1 = HwACtrlExt_io_hwACtrlExtPins_par1;
   assign io_hwACtrlExtPins_ap_reset_out = HwACtrlExt_io_hwACtrlExtPins_ap_reset_out;
   assign io_hwACtrlExtPins_ap_start_out = HwACtrlExt_io_hwACtrlExtPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = BRamCtrl_io_bRamCtrlPins_MByteEn;
@@ -11268,7 +11346,9 @@ module InOut(input clk, input reset,
        .io_hwACtrlExtPins_ap_reset_out( HwACtrlExt_io_hwACtrlExtPins_ap_reset_out ),
        .io_hwACtrlExtPins_ap_ready_in( io_hwACtrlExtPins_ap_ready_in ),
        .io_hwACtrlExtPins_ap_idle_in( io_hwACtrlExtPins_ap_idle_in ),
-       .io_hwACtrlExtPins_ap_done_in( io_hwACtrlExtPins_ap_done_in )
+       .io_hwACtrlExtPins_ap_done_in( io_hwACtrlExtPins_ap_done_in ),
+       .io_hwACtrlExtPins_par1( HwACtrlExt_io_hwACtrlExtPins_par1 ),
+       .io_hwACtrlExtPins_par2( HwACtrlExt_io_hwACtrlExtPins_par2 )
   );
   CpuInfo CpuInfo(.clk(clk),
        .io_superMode( io_superMode ),
@@ -17249,6 +17329,8 @@ module PatmosCore(input clk, input reset,
     input  io_hwACtrlExtPins_ap_ready_in,
     input  io_hwACtrlExtPins_ap_idle_in,
     input  io_hwACtrlExtPins_ap_done_in,
+    output[31:0] io_hwACtrlExtPins_par1,
+    output[31:0] io_hwACtrlExtPins_par2,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -17494,6 +17576,8 @@ module PatmosCore(input clk, input reset,
   wire[3:0] iocomp_io_bRamCtrlPins_MByteEn;
   wire iocomp_io_hwACtrlExtPins_ap_start_out;
   wire iocomp_io_hwACtrlExtPins_ap_reset_out;
+  wire[31:0] iocomp_io_hwACtrlExtPins_par1;
+  wire[31:0] iocomp_io_hwACtrlExtPins_par2;
   wire[1:0] dcache_io_master_S_Resp;
   wire[31:0] dcache_io_master_S_Data;
   wire[2:0] dcache_io_slave_M_Cmd;
@@ -17552,6 +17636,8 @@ module PatmosCore(input clk, input reset,
   assign T25 = R5 ? 2'h0 : burstBus_io_slave_S_Resp;
   assign T26 = memory_io_ena_out & T27;
   assign T27 = dcache_io_scIO_stall ^ 1'h1;
+  assign io_hwACtrlExtPins_par2 = iocomp_io_hwACtrlExtPins_par2;
+  assign io_hwACtrlExtPins_par1 = iocomp_io_hwACtrlExtPins_par1;
   assign io_hwACtrlExtPins_ap_reset_out = iocomp_io_hwACtrlExtPins_ap_reset_out;
   assign io_hwACtrlExtPins_ap_start_out = iocomp_io_hwACtrlExtPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = iocomp_io_bRamCtrlPins_MByteEn;
@@ -17985,6 +18071,8 @@ module PatmosCore(input clk, input reset,
        .io_hwACtrlExtPins_ap_ready_in( io_hwACtrlExtPins_ap_ready_in ),
        .io_hwACtrlExtPins_ap_idle_in( io_hwACtrlExtPins_ap_idle_in ),
        .io_hwACtrlExtPins_ap_done_in( io_hwACtrlExtPins_ap_done_in ),
+       .io_hwACtrlExtPins_par1( iocomp_io_hwACtrlExtPins_par1 ),
+       .io_hwACtrlExtPins_par2( iocomp_io_hwACtrlExtPins_par2 ),
        .io_cpuInfoPins_id( io_cpuInfoPins_id ),
        .io_cpuInfoPins_cnt( io_cpuInfoPins_cnt )
   );
@@ -18159,6 +18247,8 @@ module Patmos(input clk, input reset,
     input  io_hwACtrlExtPins_ap_ready_in,
     input  io_hwACtrlExtPins_ap_idle_in,
     input  io_hwACtrlExtPins_ap_done_in,
+    output[31:0] io_hwACtrlExtPins_par1,
+    output[31:0] io_hwACtrlExtPins_par2,
     input [31:0] io_cpuInfoPins_id,
     input [31:0] io_cpuInfoPins_cnt
 );
@@ -18198,9 +18288,13 @@ module Patmos(input clk, input reset,
   wire[3:0] core_io_bRamCtrlPins_MByteEn;
   wire core_io_hwACtrlExtPins_ap_start_out;
   wire core_io_hwACtrlExtPins_ap_reset_out;
+  wire[31:0] core_io_hwACtrlExtPins_par1;
+  wire[31:0] core_io_hwACtrlExtPins_par2;
 
 
   assign T0 = {5'h0, core_io_memPort_M_Addr};
+  assign io_hwACtrlExtPins_par2 = core_io_hwACtrlExtPins_par2;
+  assign io_hwACtrlExtPins_par1 = core_io_hwACtrlExtPins_par1;
   assign io_hwACtrlExtPins_ap_reset_out = core_io_hwACtrlExtPins_ap_reset_out;
   assign io_hwACtrlExtPins_ap_start_out = core_io_hwACtrlExtPins_ap_start_out;
   assign io_bRamCtrlPins_MByteEn = core_io_bRamCtrlPins_MByteEn;
@@ -18271,6 +18365,8 @@ module Patmos(input clk, input reset,
        .io_hwACtrlExtPins_ap_ready_in( io_hwACtrlExtPins_ap_ready_in ),
        .io_hwACtrlExtPins_ap_idle_in( io_hwACtrlExtPins_ap_idle_in ),
        .io_hwACtrlExtPins_ap_done_in( io_hwACtrlExtPins_ap_done_in ),
+       .io_hwACtrlExtPins_par1( core_io_hwACtrlExtPins_par1 ),
+       .io_hwACtrlExtPins_par2( core_io_hwACtrlExtPins_par2 ),
        .io_cpuInfoPins_id( io_cpuInfoPins_id ),
        .io_cpuInfoPins_cnt( io_cpuInfoPins_cnt )
   );

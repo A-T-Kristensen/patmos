@@ -105,7 +105,10 @@ architecture rtl of patmos_top is
 			io_hwACtrlExtPins_ap_reset_out : out std_logic;
 			io_hwACtrlExtPins_ap_ready_in 	: in std_logic;
 			io_hwACtrlExtPins_ap_idle_in 	: in std_logic;
-			io_hwACtrlExtPins_ap_done_in 	: in std_logic		
+			io_hwACtrlExtPins_ap_done_in 	: in std_logic;
+
+			io_hwACtrlExtPins_par1 : out std_logic_vector(31 downto 0);
+			io_hwACtrlExtPins_par2 : out std_logic_vector(31 downto 0)			
 		);
 	end component;
 
@@ -302,8 +305,8 @@ architecture rtl of patmos_top is
 	signal hwACtrlExt_ap_ready_in 	: std_logic;
 	signal hwACtrlExt_ap_idle_in 	: std_logic;
 	signal hwACtrlExt_ap_done_in 	: std_logic;
-	signal hwACtrlExt_par1 	: std_logic_vector(31 downto 0) := (others => '0');
-    signal hwACtrlExt_par2    : std_logic_vector(31 downto 0) := ( 0 => '1', 1 => '1', others => '0');	
+	signal hwACtrlExt_par1 	: std_logic_vector(31 downto 0);	
+    signal hwACtrlExt_par2    : std_logic_vector(31 downto 0);	
 
 	signal bram_m_i 	: bank_master_a;
 	signal bram_s_i		: bank_slave_a;	
@@ -543,7 +546,9 @@ begin
 		io_hwACtrlExtPins_ap_reset_out => hwACtrlExt_ap_reset_out,
 		io_hwACtrlExtPins_ap_ready_in 	=> hwACtrlExt_ap_ready_in,
 		io_hwACtrlExtPins_ap_idle_in 	=> hwACtrlExt_ap_idle_in,
-		io_hwACtrlExtPins_ap_done_in 	=> hwACtrlExt_ap_done_in
+		io_hwACtrlExtPins_ap_done_in 	=> hwACtrlExt_ap_done_in,
+		io_hwACtrlExtPins_par1 => hwACtrlExt_par1,
+		io_hwACtrlExtPins_par2 => hwACtrlExt_par2
 	);
 
 	nexys4ddr_io_inst_0 : nexys4ddr_io port map(
@@ -588,8 +593,8 @@ begin
 		ap_idle 	=> hwACtrlExt_ap_idle_in,
 		ap_ready 	=> hwACtrlExt_ap_ready_in,
 
-		select_r  => hwACtrlExt_par1,
-		size      => hwACtrlExt_par2,		
+		select_r  => hwACtrlExt_par1, --(others => '0'), --hwACtrlExt_par1,
+		size      => hwACtrlExt_par2,--(0  => '1', 1 => '1', others => '0'), --hwACtrlExt_par2,		
 
 		test_data_Addr_A 	=> hwa_addr_i(0).addr,
 		test_data_EN_A  	=> open,

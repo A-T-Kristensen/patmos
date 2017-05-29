@@ -162,37 +162,38 @@ int _Pragma("entrypoint") adpcm_main()
 
 	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array);
 
-//	*(hls_ptr + 1) = 0; // Select encoder
-	//*(hls_ptr + 2) = TEST_SIZE;	// Set the size
+	*(hls_ptr + 1) = 0; // Select encoder
+	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
 	*hls_ptr = 1;	
 
 	printf("Starting\n");
 
 	while((*hls_ptr) != 1);	
-	/*
-	for(i = 0; i < 1000000000; i++){
-		err_cnt++;
-	}
-	*/
 	
 	read_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
-	
+	/*
 	printf("Compressed\n");
 
 	for(i = 0; i < TEST_SIZE; i++) {
 		printf("%d\n", compressed[i]);
 	}
+	*/
 
-	/*
+	
 
 	*(hls_ptr + 1) = 1; 
 	*hls_ptr = 1;
 
 	while((*hls_ptr) != 1);	
 
-	read_vector(dec_result, 256, 1, 2, bank_ptr_array);
-
+	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array);
+	/*
+	for(i = 0; i < TEST_SIZE; i++) {
+		printf("%d\n", dec_result[i]);
+	}
 	*/
+	printf("Return: %d\n", enc_return(compressed));
+	printf("Return: %d\n", dec_return(dec_result));
 
 	return 0;
 

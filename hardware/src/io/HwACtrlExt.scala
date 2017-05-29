@@ -31,6 +31,9 @@ object HwACtrlExt extends DeviceObject {
       val ap_ready_in   = UInt(INPUT,1)
       val ap_idle_in    = UInt(INPUT,1)
       val ap_done_in    = UInt(INPUT,1)
+
+		val par1  = UInt(OUTPUT,32)
+		val par2  = UInt(OUTPUT,32)	      
     }
   }
 }
@@ -62,6 +65,17 @@ class HwACtrlExt(extAddrWidth : Int = 32,
   io.hwACtrlExtPins.ap_start_out := Bits(0)
   io.hwACtrlExtPins.ap_reset_out := Bits(0)
 
+	// Parameter registers and logic
+
+	val parReg1 = Reg(init = Bits(0, width = 32))
+	parReg1 := parReg1
+
+	val parReg2 = Reg(init = Bits(0, width = 32))
+	parReg2 := parReg2	
+
+	io.hwACtrlExtPins.par1 := parReg1
+	io.hwACtrlExtPins.par2 := parReg2		  
+
   //States for the controller
 
   val s_idle :: s_start :: s_wait_read :: Nil = Enum(UInt(), 3)
@@ -71,13 +85,22 @@ class HwACtrlExt(extAddrWidth : Int = 32,
   //State control
 
   when(state === s_idle) {
-    when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Data === SInt(1)) {
+
+    when(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Data === SInt(1) && io.ocp.M.Addr(15,0) === UInt(0)) {
       // On next cycle, give data valid, for a single cycle
       respReg := OcpResp.DVA
       state := s_start
       io.hwACtrlExtPins.ap_start_out := UInt(1)
 
-    }.elsewhen(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
+    }.elsewhen(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Addr(15,0) === UInt(4)) {
+      	respReg := OcpResp.DVA
+		parReg1 := io.ocp.M.Data
+
+	}.elsewhen(io.ocp.M.Cmd === OcpCmd.WR && io.ocp.M.Addr(15,0) === UInt(8)) {
+      	respReg := OcpResp.DVA
+		parReg2 := io.ocp.M.Data
+
+	}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD || io.ocp.M.Cmd === OcpCmd.WR) {
       respReg := OcpResp.DVA
       rdDataReg := Bits(0)  
       state === s_idle
@@ -85,6 +108,8 @@ class HwACtrlExt(extAddrWidth : Int = 32,
     }.otherwise {
       state === s_idle
     }
+
+
   }
 
   when(state === s_start) {
