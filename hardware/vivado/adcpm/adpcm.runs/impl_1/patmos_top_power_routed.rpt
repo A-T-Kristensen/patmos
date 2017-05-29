@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Mon May 29 15:09:23 2017
+| Date             : Mon May 29 15:33:59 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,9 +30,9 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.180 |
-| Dynamic (W)              | 1.068 |
-| Device Static (W)        | 0.112 |
+| Total On-Chip Power (W)  | 1.176 |
+| Dynamic (W)              | 1.064 |
+| Device Static (W)        | 0.113 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
 | Max Ambient (C)          | 79.6  |
@@ -51,24 +51,24 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.034 |       47 |       --- |             --- |
-| Slice Logic              |     0.018 |    38162 |       --- |             --- |
-|   LUT as Logic           |     0.015 |    14926 |     63400 |           23.54 |
-|   CARRY4                 |     0.001 |      946 |     15850 |            5.97 |
-|   Register               |    <0.001 |    16101 |    126800 |           12.70 |
+| Slice Logic              |     0.017 |    38448 |       --- |             --- |
+|   LUT as Logic           |     0.014 |    15266 |     63400 |           24.08 |
+|   CARRY4                 |    <0.001 |      962 |     15850 |            6.07 |
+|   Register               |    <0.001 |    16162 |    126800 |           12.75 |
 |   LUT as Shift Register  |    <0.001 |      577 |     19000 |            3.04 |
-|   LUT as Distributed RAM |    <0.001 |      720 |     19000 |            3.79 |
-|   F7/F8 Muxes            |    <0.001 |      272 |     63400 |            0.43 |
-|   Others                 |     0.000 |      887 |       --- |             --- |
-| Signals                  |     0.033 |    31664 |       --- |             --- |
-| Block RAM                |     0.076 |     82.5 |       135 |           61.11 |
+|   LUT as Distributed RAM |    <0.001 |      624 |     19000 |            3.28 |
+|   F7/F8 Muxes            |    <0.001 |      285 |     63400 |            0.45 |
+|   Others                 |     0.000 |      893 |       --- |             --- |
+| Signals                  |     0.029 |    32244 |       --- |             --- |
+| Block RAM                |     0.075 |     86.5 |       135 |           64.07 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
-| DSPs                     |     0.013 |       30 |       240 |           12.50 |
-| I/O                      |     0.508 |      109 |       210 |           51.90 |
+| DSPs                     |     0.012 |       30 |       240 |           12.50 |
+| I/O                      |     0.511 |      109 |       210 |           51.90 |
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
-| Static Power             |     0.112 |          |           |                 |
-| Total                    |     1.180 |          |           |                 |
+| Static Power             |     0.113 |          |           |                 |
+| Total                    |     1.176 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,16 +78,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.212 |       0.192 |      0.020 |
-| Vccaux    |       1.800 |     0.268 |       0.250 |      0.018 |
+| Vccint    |       1.000 |     0.206 |       0.185 |      0.021 |
+| Vccaux    |       1.800 |     0.269 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18    |       1.800 |     0.587 |       0.583 |      0.004 |
+| Vcco18    |       1.800 |     0.588 |       0.584 |      0.004 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.008 |       0.006 |      0.002 |
+| Vccbram   |       1.000 |     0.008 |       0.006 |      0.003 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccadc    |       1.800 |     0.022 |       0.002 |      0.020 |
@@ -191,8 +191,8 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     1.068 |
-|   adpcm_main_inst_0                                                                                 |     0.032 |
+| patmos_top                                                                                          |     1.064 |
+|   adpcm_main_inst_0                                                                                 |     0.029 |
 |     accumc_U                                                                                        |    <0.001 |
 |       adpcm_main_accumc_ram_U                                                                       |    <0.001 |
 |         ram_reg_0_15_0_0                                                                            |    <0.001 |
@@ -261,60 +261,36 @@ Table of Contents
 |         ram_reg_0_15_7_7                                                                            |    <0.001 |
 |         ram_reg_0_15_8_8                                                                            |    <0.001 |
 |         ram_reg_0_15_9_9                                                                            |    <0.001 |
-|     adpcm_main_mul_32cud_x_U39                                                                      |     0.003 |
+|     adpcm_main_mul_32cud_x_U82                                                                      |     0.003 |
 |       adpcm_main_mul_32cud_MulnS_1_U                                                                |     0.003 |
 |     dec_del_bph_U                                                                                   |    <0.001 |
-|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
-|         ram_reg_0_7_0_5                                                                             |    <0.001 |
-|         ram_reg_0_7_12_17                                                                           |    <0.001 |
-|         ram_reg_0_7_18_23                                                                           |    <0.001 |
-|         ram_reg_0_7_24_29                                                                           |    <0.001 |
-|         ram_reg_0_7_30_31                                                                           |    <0.001 |
-|         ram_reg_0_7_6_11                                                                            |    <0.001 |
+|       adpcm_main_delay_mb6_ram_U                                                                    |    <0.001 |
 |     dec_del_bpl_U                                                                                   |    <0.001 |
-|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
-|         ram_reg_0_7_0_5                                                                             |    <0.001 |
-|         ram_reg_0_7_12_17                                                                           |    <0.001 |
-|         ram_reg_0_7_18_23                                                                           |    <0.001 |
-|         ram_reg_0_7_24_29                                                                           |    <0.001 |
-|         ram_reg_0_7_30_31                                                                           |    <0.001 |
-|         ram_reg_0_7_6_11                                                                            |    <0.001 |
+|       adpcm_main_delay_mb6_ram_U                                                                    |    <0.001 |
 |     dec_del_dhx_U                                                                                   |    <0.001 |
-|       adpcm_main_delay_jbC_ram_U                                                                    |    <0.001 |
+|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
 |     dec_del_dltx_U                                                                                  |    <0.001 |
-|       adpcm_main_delay_jbC_ram_U                                                                    |    <0.001 |
+|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
 |     delay_bph_U                                                                                     |    <0.001 |
-|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
-|         ram_reg_0_7_0_5                                                                             |    <0.001 |
-|         ram_reg_0_7_12_17                                                                           |    <0.001 |
-|         ram_reg_0_7_18_23                                                                           |    <0.001 |
-|         ram_reg_0_7_24_29                                                                           |    <0.001 |
-|         ram_reg_0_7_30_31                                                                           |    <0.001 |
-|         ram_reg_0_7_6_11                                                                            |    <0.001 |
+|       adpcm_main_delay_mb6_ram_U                                                                    |    <0.001 |
 |     delay_bpl_U                                                                                     |    <0.001 |
-|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
-|         ram_reg_0_7_0_5                                                                             |    <0.001 |
-|         ram_reg_0_7_12_17                                                                           |    <0.001 |
-|         ram_reg_0_7_18_23                                                                           |    <0.001 |
-|         ram_reg_0_7_24_29                                                                           |    <0.001 |
-|         ram_reg_0_7_30_31                                                                           |    <0.001 |
-|         ram_reg_0_7_6_11                                                                            |    <0.001 |
+|       adpcm_main_delay_mb6_ram_U                                                                    |    <0.001 |
 |     delay_dhx_U                                                                                     |    <0.001 |
-|       adpcm_main_delay_jbC_ram_U                                                                    |    <0.001 |
+|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
 |     delay_dltx_U                                                                                    |    <0.001 |
-|       adpcm_main_delay_jbC_ram_U                                                                    |    <0.001 |
-|     grp_filtep_fu_1215                                                                              |     0.003 |
-|       adpcm_main_mul_32cud_U4                                                                       |     0.003 |
-|         adpcm_main_mul_32cud_MulnS_1_U                                                              |     0.003 |
-|     grp_filtez_fu_1174                                                                              |     0.004 |
-|       adpcm_main_mul_32bkb_U1                                                                       |     0.002 |
+|       adpcm_main_delay_ibs_ram_U                                                                    |    <0.001 |
+|     grp_filtep_fu_1139                                                                              |     0.003 |
+|       adpcm_main_mul_32cud_U47                                                                      |     0.002 |
+|         adpcm_main_mul_32cud_MulnS_1_U                                                              |     0.002 |
+|     grp_filtez_fu_1098                                                                              |     0.003 |
+|       adpcm_main_mul_32bkb_U44                                                                      |     0.002 |
 |         adpcm_main_mul_32bkb_MulnS_0_U                                                              |     0.002 |
-|     grp_logsch_fu_1419                                                                              |    <0.001 |
-|     grp_logscl_fu_1270                                                                              |    <0.001 |
+|     grp_logsch_fu_1343                                                                              |    <0.001 |
+|     grp_logscl_fu_1194                                                                              |    <0.001 |
 |       wl_code_table_U                                                                               |    <0.001 |
 |         logscl_wl_code_tadEe_rom_U                                                                  |    <0.001 |
-|     grp_quantl_fu_1244                                                                              |     0.001 |
-|       adpcm_main_mul_32hbi_U33                                                                      |    <0.001 |
+|     grp_quantl_fu_1168                                                                              |    <0.001 |
+|       adpcm_main_mul_32hbi_U76                                                                      |    <0.001 |
 |         adpcm_main_mul_32hbi_MulnS_2_U                                                              |    <0.001 |
 |       decis_levl_U                                                                                  |    <0.001 |
 |         quantl_decis_levl_rom_U                                                                     |    <0.001 |
@@ -322,30 +298,31 @@ Table of Contents
 |         quantl_quant26bt_g8j_rom_U                                                                  |    <0.001 |
 |       quant26bt_pos_U                                                                               |    <0.001 |
 |         quantl_quant26bt_fYi_rom_U                                                                  |    <0.001 |
-|     grp_scalel_fu_1291                                                                              |    <0.001 |
+|     grp_reset_fu_1361                                                                               |    <0.001 |
+|     grp_scalel_fu_1215                                                                              |    <0.001 |
 |       ilb_table_U                                                                                   |    <0.001 |
 |         scalel_ilb_table_rom_U                                                                      |    <0.001 |
-|     grp_uppol1_fu_1392                                                                              |     0.003 |
-|       adpcm_main_mul_32bkb_x_U25                                                                    |     0.002 |
+|     grp_uppol1_fu_1316                                                                              |     0.003 |
+|       adpcm_main_mul_32bkb_x_U68                                                                    |     0.002 |
 |         adpcm_main_mul_32bkb_MulnS_0_U                                                              |     0.002 |
-|     grp_uppol2_fu_1363                                                                              |     0.003 |
-|       adpcm_main_mul_32bkb_x_U19                                                                    |     0.002 |
+|     grp_uppol2_fu_1287                                                                              |     0.003 |
+|       adpcm_main_mul_32bkb_x_U62                                                                    |     0.002 |
 |         adpcm_main_mul_32bkb_MulnS_0_U                                                              |     0.002 |
-|     grp_upzero_fu_1322                                                                              |     0.003 |
-|       adpcm_main_mul_32bkb_x_U15                                                                    |     0.002 |
-|         adpcm_main_mul_32bkb_MulnS_0_U                                                              |     0.002 |
+|     grp_upzero_fu_1246                                                                              |     0.002 |
+|       adpcm_main_mul_32bkb_x_U58                                                                    |     0.001 |
+|         adpcm_main_mul_32bkb_MulnS_0_U                                                              |     0.001 |
 |     h_U                                                                                             |    <0.001 |
 |       adpcm_main_h_rom_U                                                                            |    <0.001 |
 |     qq4_code4_table_U                                                                               |    <0.001 |
-|       adpcm_main_qq4_cokbM_rom_U                                                                    |    <0.001 |
-|     tqmf_U                                                                                          |     0.002 |
-|       adpcm_main_tqmf_ram_U                                                                         |     0.002 |
+|       adpcm_main_qq4_coqcK_rom_U                                                                    |    <0.001 |
+|     tqmf_U                                                                                          |     0.003 |
+|       adpcm_main_tqmf_ram_U                                                                         |     0.003 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
 |   dbg_hub                                                                                           |     0.002 |
 |     inst                                                                                            |     0.002 |
 |       CORE_XSDB.UUT_MASTER                                                                          |     0.001 |
-|         U_ICON_INTERFACE                                                                            |     0.001 |
+|         U_ICON_INTERFACE                                                                            |    <0.001 |
 |           U_CMD1                                                                                    |    <0.001 |
 |           U_CMD2                                                                                    |    <0.001 |
 |           U_CMD3                                                                                    |    <0.001 |
@@ -422,7 +399,7 @@ Table of Contents
 |         U_SYNC                                                                                      |    <0.001 |
 |       SWITCH_N_EXT_BSCAN.bscan_inst                                                                 |    <0.001 |
 |       SWITCH_N_EXT_BSCAN.bscan_switch                                                               |    <0.001 |
-|   ddr2_ctrl_inst_0                                                                                  |     0.801 |
+|   ddr2_ctrl_inst_0                                                                                  |     0.804 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_12_17 |    <0.001 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_24_29 |    <0.001 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_30_35 |    <0.001 |
@@ -488,14 +465,14 @@ Table of Contents
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_6_11             |    <0.001 |
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_72_77            |    <0.001 |
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_78_79            |    <0.001 |
-|     u_ddr2_ctrl_mig                                                                                 |     0.800 |
+|     u_ddr2_ctrl_mig                                                                                 |     0.803 |
 |       temp_mon_enabled.u_tempmon                                                                    |     0.006 |
 |       u_ddr2_clk_ibuf                                                                               |     0.000 |
 |       u_ddr2_infrastructure                                                                         |     0.206 |
 |       u_iodelay_ctrl                                                                                |    <0.001 |
-|       u_memc_ui_top_std                                                                             |     0.588 |
-|         mem_intfc0                                                                                  |     0.587 |
-|           ddr_phy_top0                                                                              |     0.585 |
+|       u_memc_ui_top_std                                                                             |     0.591 |
+|         mem_intfc0                                                                                  |     0.590 |
+|           ddr_phy_top0                                                                              |     0.588 |
 |             u_ddr_calib_top                                                                         |     0.005 |
 |               ddr_phy_rdlvl_gen.u_ddr_phy_rdlvl                                                     |     0.002 |
 |               ddr_phy_tempmon_0                                                                     |    <0.001 |
@@ -503,7 +480,7 @@ Table of Contents
 |               mb_wrlvl_off.u_phy_wrlvl_off_delay                                                    |    <0.001 |
 |               u_ddr_phy_init                                                                        |     0.001 |
 |               u_ddr_phy_wrcal                                                                       |    <0.001 |
-|             u_ddr_mc_phy_wrapper                                                                    |     0.580 |
+|             u_ddr_mc_phy_wrapper                                                                    |     0.583 |
 |               gen_dq_iobuf_HR.gen_dq_iobuf[0].u_iobuf_dq                                            |     0.013 |
 |               gen_dq_iobuf_HR.gen_dq_iobuf[10].u_iobuf_dq                                           |     0.013 |
 |               gen_dq_iobuf_HR.gen_dq_iobuf[11].u_iobuf_dq                                           |     0.013 |
@@ -528,14 +505,14 @@ Table of Contents
 |                 OBUFTDS                                                                             |     0.008 |
 |               u_ddr_mc_phy                                                                          |     0.158 |
 |                 ddr_phy_4lanes_0.u_ddr_phy_4lanes                                                   |     0.158 |
-|                   ddr_byte_lane_A.ddr_byte_lane_A                                                   |     0.042 |
+|                   ddr_byte_lane_A.ddr_byte_lane_A                                                   |     0.043 |
 |                     ddr_byte_group_io                                                               |     0.031 |
 |                     dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo                                   |    <0.001 |
 |                     of_pre_fifo_gen.u_ddr_of_pre_fifo                                               |    <0.001 |
 |                   ddr_byte_lane_B.ddr_byte_lane_B                                                   |     0.010 |
 |                     ddr_byte_group_io                                                               |    <0.001 |
 |                     of_pre_fifo_gen.u_ddr_of_pre_fifo                                               |    <0.001 |
-|                   ddr_byte_lane_C.ddr_byte_lane_C                                                   |     0.042 |
+|                   ddr_byte_lane_C.ddr_byte_lane_C                                                   |     0.043 |
 |                     ddr_byte_group_io                                                               |     0.031 |
 |                     dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo                                   |    <0.001 |
 |                     of_pre_fifo_gen.u_ddr_of_pre_fifo                                               |    <0.001 |
@@ -617,14 +594,14 @@ Table of Contents
 |             write_buffer.wr_buffer_ram[7].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[8].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[9].RAM32M0                                                   |    <0.001 |
-|   n_bank_inst_0                                                                                     |     0.053 |
+|   n_bank_inst_0                                                                                     |     0.051 |
 |     bram_gen[0].bram_array                                                                          |     0.017 |
 |     bram_gen[1].bram_array                                                                          |     0.018 |
 |     bram_gen[2].bram_array                                                                          |     0.017 |
 |   nexys4ddr_io_inst_0                                                                               |     0.002 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
-|   patmos_inst_0                                                                                     |     0.042 |
-|     core                                                                                            |     0.042 |
+|   patmos_inst_0                                                                                     |     0.041 |
+|     core                                                                                            |     0.041 |
 |       dcache                                                                                        |     0.010 |
 |         bp                                                                                          |    <0.001 |
 |         dm                                                                                          |     0.005 |
@@ -633,11 +610,11 @@ Table of Contents
 |           MemBlock_2                                                                                |    <0.001 |
 |           MemBlock_3                                                                                |    <0.001 |
 |           tagMem                                                                                    |     0.001 |
-|         sc                                                                                          |     0.004 |
+|         sc                                                                                          |     0.003 |
 |           MemBlock                                                                                  |    <0.001 |
 |           MemBlock_1                                                                                |    <0.001 |
 |           MemBlock_2                                                                                |    <0.001 |
-|           MemBlock_3                                                                                |     0.001 |
+|           MemBlock_3                                                                                |    <0.001 |
 |         wc                                                                                          |    <0.001 |
 |       decode                                                                                        |     0.002 |
 |         rf                                                                                          |    <0.001 |
@@ -700,7 +677,7 @@ Table of Contents
 |         ctrl                                                                                        |    <0.001 |
 |         mem                                                                                         |     0.002 |
 |           mcacheEven                                                                                |     0.001 |
-|           mcacheOdd                                                                                 |     0.001 |
+|           mcacheOdd                                                                                 |    <0.001 |
 |         repl                                                                                        |     0.003 |
 |       iocomp                                                                                        |     0.004 |
 |         BRamCtrl                                                                                    |    <0.001 |
@@ -719,10 +696,10 @@ Table of Contents
 |           MemBlock_1                                                                                |    <0.001 |
 |           MemBlock_2                                                                                |    <0.001 |
 |           MemBlock_3                                                                                |    <0.001 |
-|       memory                                                                                        |     0.001 |
-|   u_ila_0                                                                                           |     0.027 |
-|     inst                                                                                            |     0.027 |
-|       ila_core_inst                                                                                 |     0.027 |
+|       memory                                                                                        |    <0.001 |
+|   u_ila_0                                                                                           |     0.026 |
+|     inst                                                                                            |     0.026 |
+|       ila_core_inst                                                                                 |     0.026 |
 |         ila_trace_memory_inst                                                                       |     0.015 |
 |           SUBCORE_RAM_BLK_MEM_1.trace_block_memory                                                  |     0.015 |
 |             inst_blk_mem_gen                                                                        |     0.015 |
@@ -949,7 +926,7 @@ Table of Contents
 |           asyncrounous_transfer.halt_in_transfer_inst                                               |    <0.001 |
 |           asyncrounous_transfer.halt_out_transfer_inst                                              |    <0.001 |
 |           halt_detection_inst                                                                       |    <0.001 |
-|         u_trig                                                                                      |     0.004 |
+|         u_trig                                                                                      |     0.003 |
 |           N_DDR_TC.N_DDR_TC_INST[0].U_TC                                                            |    <0.001 |
 |             allx_typeA_match_detection.ltlib_v1_0_0_allx_typeA_inst                                 |    <0.001 |
 |               DUT                                                                                   |    <0.001 |
@@ -1344,7 +1321,7 @@ Table of Contents
 |                     u_srlB                                                                          |    <0.001 |
 |                     u_srlC                                                                          |    <0.001 |
 |                     u_srlD                                                                          |    <0.001 |
-|         xsdb_memory_read_inst                                                                       |     0.001 |
+|         xsdb_memory_read_inst                                                                       |     0.002 |
 +-----------------------------------------------------------------------------------------------------+-----------+
 
 

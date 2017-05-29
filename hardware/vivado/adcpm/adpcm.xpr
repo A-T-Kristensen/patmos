@@ -144,19 +144,25 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_qq6_copcA.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_mul_32bkb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_qq6_corcU.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_mul_32hbi.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_qq4_coqcK.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -180,12 +186,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_qq4_cokbM.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/quantl_decis_levl.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -199,6 +199,12 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_accumc.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_delay_mb6.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -252,6 +258,12 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/reset.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/logscl.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -259,12 +271,6 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_delay_ibs.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/sequential/adpcm/hls_adpcm/solution1/impl/vhdl/adpcm_main_delay_jbC.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
