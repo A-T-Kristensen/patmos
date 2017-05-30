@@ -551,6 +551,96 @@ def adpcm(synth = 0, hw_test = 0):
 	store_benchmark("adpcm", appList, computeArray, 
 					transferArray, totalArray, csv_rows)		
 
+
+def filterbank_wcet():
+
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
+
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE" , "VECSIZE", "WCET"]
+	keywordsTypes   = ["mat_type;","vec_type;"]    
+
+	# Parameter space to explore for filterbank
+
+	appList = ["hwa_filterbank", "hwa_filterbank_spm", 
+			   "hwa_filterbank_uncached", "tacle_filterbank", 
+			   "tacle_filterbank_spm", "tacle_filterbank_uncached"] 
+
+	functionList = ["filterbank_main_wcet", "filterbank_main"]			   
+
+	app_type = [1, 1, 1, 0, 0, 0] # 1 is for hardware
+
+	# Arrays for data storage
+
+	dataArray = np.zeros([1, len(appList)])
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([2, 1], dtype = "S10") 
+
+	for i in range(0, len(appList)):    # Iterate over apps      
+
+		# Get the current iteration options      
+
+		app = appList[i]
+		valsDefine = [32, 8, 32, 4, 256, 256, 1]                    
+
+		print("\n*******************************************")
+		print("Filterbank WCET: type = %s, NBANKS = %d\n" \
+			  % ("float", 4))
+		print("APP: %s" % (app))                    
+		print("*******************************************\n")                
+
+		# Update the benchmark.h file
+
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+
+		# Project name string
+
+		cmd = ('make -B APP=wcet-{app} comp') \
+				.format(app = app)
+
+		subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)				
+
+		if(app_type[i] == 1):
+
+			cmd = ('(cd wcet; make wcet PROJECT?={app} FUNCTION?={func} )').format(app = app, func =functionList[0])
+
+		else:
+			cmd = ('(cd wcet; make wcet PROJECT?={app} FUNCTION?={func} )').format(app = app, func =functionList[1])
+
+		result = subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+
+		result = result.stderr.decode('utf-8') 
+
+		wcet_bound = 0
+
+		try:
+
+			wcet_bound = int((re.search('bound: (.*) cycles', result)).group(1))
+
+		except:
+			print("Error when getting the number of cycles")
+			print(result)
+
+			# Success
+
+		print("#WCET bound: %d" % (wcet_bound))
+
+		dataArray[0][i] = wcet_bound
+
+	store_wcet_benchmark("filterbank", appList, dataArray, csv_rows)
+
+
+def store_wcet_benchmark(bench_name, appList, dataArray, csv_rows):
+
+	dataOut = np.vstack((appList, dataArray))
+	dataOut = np.hstack((csv_rows, dataOut))
+
+	np.savetxt(bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 	
+
+
 def main(): 
 
 	#matmul(synth = 0, hw_test = 0)
@@ -558,6 +648,8 @@ def main():
 	#filterbank(synth = 0, hw_test = 0)
 	#fir2dim(synth = 0, hw_test = 0)
 	#adpcm(synth = 0, hw_test = 0)
+
+	filterbank_wcet()
 
 	clean_up()
 

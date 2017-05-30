@@ -4,7 +4,7 @@ SAVEDIR?=$(CURDIR)/analysis
 # PROJECT and FUNCTION should just go into a python script as arguments to
 # make: "make PROJECT?=hwa_matmul wcet"
 
-PROJECT?=tacle_adpcm_enc
+PROJECT?=hwa_filterbank_uncached
 FUNCTION?=adpcm_enc_main
 
 #Delay to global memory per request in cycles
@@ -22,7 +22,7 @@ wcet-config:
 	--gtime $(TRANS_CYCLES) \
 	--bsize $(B_SIZE)
 
-wcet: wcet-config
+wcet_report: wcet-config
 	platin wcet \
 	-i $(TCRESTHOMEDIR)/patmos/tmp/wcet-$(PROJECT).pml \
 	--enable-wca \
@@ -32,4 +32,15 @@ wcet: wcet-config
 	-e $(FUNCTION) \
 	-o $(SAVEDIR)/$(PROJECT).wca \
 	--report $(SAVEDIR)/$(PROJECT)_wcet_report.txt \
+-i $(TCRESTHOMEDIR)/patmos/tmp/$(PROJECT)config.pml
+
+wcet: wcet-config
+	platin wcet \
+	-i $(TCRESTHOMEDIR)/patmos/tmp/wcet-$(PROJECT).pml \
+	--enable-wca \
+	--disable-ait \
+	--stats \
+	--binary $(TCRESTHOMEDIR)/patmos/tmp/wcet-$(PROJECT).elf \
+	-e $(FUNCTION) \
+	-o $(SAVEDIR)/$(PROJECT).wca \
 -i $(TCRESTHOMEDIR)/patmos/tmp/$(PROJECT)config.pml
