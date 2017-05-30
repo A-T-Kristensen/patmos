@@ -21,14 +21,13 @@
 #include "libminver/minver_init.h"
 #include "libminver/minver.h"
 
-int minver_main(void);
-int minver_main_wcet(void) __attribute__((noinline));
+int minver_main(mat_type minver_hw_i[DIM][DIM],
+				mat_type minver_sw_i[DIM][DIM]);
+
+int minver_main_wcet(mat_type minver_hw_i[DIM][DIM]) __attribute__((noinline));
 int main(void);
 
-mat_type minver_hw_i[DIM][DIM];
-mat_type minver_sw_i[DIM][DIM];
-
-int _Pragma("entrypoint") minver_main_wcet()
+int _Pragma("entrypoint") minver_main_wcet(mat_type minver_hw_i[DIM][DIM])
 {
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
@@ -61,7 +60,8 @@ int _Pragma("entrypoint") minver_main_wcet()
 	return 0;
 }
 
-int minver_main()
+int minver_main(mat_type minver_hw_i[DIM][DIM],
+				mat_type minver_sw_i[DIM][DIM])
 {
 
 	int err_cnt = 0;
@@ -133,17 +133,19 @@ int minver_main()
 
 int main(void)
 {
+	mat_type minver_hw_i[DIM][DIM];
+	mat_type minver_sw_i[DIM][DIM];	
 
 	set_minver(minver_hw_i);
 	set_minver(minver_sw_i);
 
 #if(WCET)
 
-	return (minver_main_wcet());
+	return minver_main_wcet(minver_hw_i);
 
 #else
 
-	return (minver_main());
+	return minver_main(minver_hw_i, minver_sw_i);
 
 #endif
 }

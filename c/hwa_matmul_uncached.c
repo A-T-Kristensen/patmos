@@ -13,7 +13,9 @@
 #include "libhwa/hwa_test.h"
 
 int main(void);
-int matmul_main(void) ;
+int matmul_main(mat_type mat_a[DIM][DIM], 
+				mat_type mat_b[DIM][DIM], 
+				mat_type sw_result[DIM][DIM]);
 int matmul_main_wcet(void) __attribute__((noinline));
 
 struct matmul_matrix {
@@ -23,10 +25,6 @@ struct matmul_matrix {
 };
 
 volatile _UNCACHED struct matmul_matrix *test_matrix;
-
-mat_type mat_a[DIM][DIM];
-mat_type mat_b[DIM][DIM];
-mat_type sw_result[DIM][DIM];
 
 int _Pragma("entrypoint") matmul_main_wcet()
 {
@@ -64,7 +62,9 @@ int _Pragma("entrypoint") matmul_main_wcet()
 
 }
 
-int matmul_main()
+int matmul_main(mat_type mat_a[DIM][DIM], 
+				mat_type mat_b[DIM][DIM], 
+				mat_type sw_result[DIM][DIM])
 {
 
 	int err_cnt = 0;
@@ -132,7 +132,7 @@ int matmul_main()
 
 	// Check results
 
-	err_cnt = compare_arrays_uncached(&test_matrix->hw_result, sw_result);
+	//err_cnt = compare_arrays_uncached(&test_matrix->hw_result, sw_result);
 
 	print_benchmark(return_compute, return_transfer);
 
@@ -142,6 +142,10 @@ int matmul_main()
 int main()
 {
 
+	mat_type mat_a[DIM][DIM];
+	mat_type mat_b[DIM][DIM];
+	mat_type sw_result[DIM][DIM];	
+
 	// Initialize matrices
 
 	matmul_init(mat_a, mat_b, sw_result);
@@ -149,14 +153,15 @@ int main()
 	matmul_init_uncached(&test_matrix->mat_a,
 						 &test_matrix->mat_b,
 						 &test_matrix->hw_result);
-
+	
 #if(WCET)
 
 	return matmul_main_wcet();
 
 #else
 
-	return matmul_main();
+	return matmul_main(mat_a, mat_b, sw_result);
+	return 0;
 
 #endif
 }

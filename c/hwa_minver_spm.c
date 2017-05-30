@@ -27,9 +27,7 @@ struct minver_matrix {
 
 volatile _SPM struct minver_matrix *spm_matrix = (volatile _SPM struct minver_matrix *) SPM_BASE;
 
-mat_type sw_result[DIM][DIM];
-
-int minver_main(void);
+int minver_main(mat_type sw_result[DIM][DIM]);
 int minver_main_wcet(void) __attribute__((noinline));
 int main(void);
 
@@ -71,7 +69,7 @@ int _Pragma("entrypoint") minver_main_wcet()
 }
 
 
-int minver_main()
+int minver_main(mat_type sw_result[DIM][DIM])
 {
 
 	int err_cnt = 0;
@@ -148,17 +146,18 @@ int minver_main()
 
 int main(void)
 {
+	mat_type sw_result[DIM][DIM];
 
 	set_minver_spm(&spm_matrix->hw_result);
 	set_minver(sw_result);
 
 #if(WCET)
 
-	return (minver_main_wcet());
+	return minver_main_wcet();
 
 #else
 
-	return (minver_main());
+	return minver_main(sw_result);
 
 #endif
 

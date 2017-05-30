@@ -73,18 +73,18 @@
 */
 
 void matrix1_pin_down(mat_type A[], mat_type B[], mat_type C[]);
-void matrix1_init(void);
-void matrix1_main(void) __attribute__((noinline));
+void matrix1_init(mat_type matrix1_A[X * Y],
+				  mat_type matrix1_B[Y * Z],
+				  mat_type matrix1_C[X * Z]);
+void matrix1_main(mat_type matrix1_A[X * Y],
+				  mat_type matrix1_B[Y * Z],
+				  mat_type matrix1_C[X * Z]) __attribute__((noinline));
 int main(void);
 
 
 /*
   Declaration of global variables
 */
-
-mat_type matrix1_A[X * Y];
-mat_type matrix1_B[Y * Z];
-mat_type matrix1_C[X * Z];
 
 /*
   Initialization functions
@@ -109,7 +109,9 @@ void matrix1_pin_down(mat_type A[], mat_type B[], mat_type C[])
 		C[i] = 0 ;
 }
 
-void matrix1_init(void)
+void matrix1_init(mat_type matrix1_A[X * Y],
+				  mat_type matrix1_B[Y * Z],
+				  mat_type matrix1_C[X * Z])
 {
 	matrix1_pin_down(&matrix1_A[0], &matrix1_B[0], &matrix1_C[0]);
 }
@@ -118,7 +120,7 @@ void matrix1_init(void)
   Return function
 */
 
-int matrix1_return(void)
+int matrix1_return(mat_type matrix1_C[X * Z])
 {
 
 	int i;
@@ -131,12 +133,13 @@ int matrix1_return(void)
 	return (checksum ==  1000 ? 0 : -1);
 }
 
-
 /*
   Main functions
 */
 
-void _Pragma("entrypoint") matrix1_main(void)
+void _Pragma("entrypoint") matrix1_main(mat_type matrix1_A[X * Y],
+										mat_type matrix1_B[Y * Z],
+										mat_type matrix1_C[X * Z])
 {
 
 	register mat_type *p_a = &matrix1_A[0]; // It also fails without register
@@ -168,11 +171,15 @@ void _Pragma("entrypoint") matrix1_main(void)
 int main(void)
 {
 
-	matrix1_init();	
+	mat_type matrix1_A[X * Y];
+	mat_type matrix1_B[Y * Z];
+	mat_type matrix1_C[X * Z];	
+
+	matrix1_init(matrix1_A, matrix1_B, matrix1_C);	
 
 #if(WCET)
 
-	matrix1_main();
+	matrix1_main(matrix1_A, matrix1_B, matrix1_C);
 
 #else
 
@@ -183,7 +190,7 @@ int main(void)
 
 	start_cycle = get_cpu_cycles();
 
-	matrix1_main();
+	matrix1_main(matrix1_A, matrix1_B, matrix1_C);
 
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;

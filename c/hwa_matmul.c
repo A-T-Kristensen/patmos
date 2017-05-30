@@ -13,13 +13,18 @@
 #include "libhwa/hwa_test.h"
 
 int main(void);
-int matmul_main(void) ;
-int matmul_main_wcet(void) __attribute__((noinline));
+int matmul_main(mat_type mat_a[DIM][DIM], 
+				mat_type mat_b[DIM][DIM], 
+				mat_type sw_result[DIM][DIM], 
+				mat_type hw_result[DIM][DIM]
+) ;
+int matmul_main_wcet(mat_type mat_a[DIM][DIM], 
+					 mat_type mat_b[DIM][DIM], 
+					 mat_type hw_result[DIM][DIM]) __attribute__((noinline));
 
-mat_type mat_a[DIM][DIM], mat_b[DIM][DIM];
-mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
-
-int _Pragma("entrypoint") matmul_main_wcet()
+int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM], 
+										   mat_type mat_b[DIM][DIM], 
+										   mat_type hw_result[DIM][DIM])
 {
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
@@ -51,7 +56,10 @@ int _Pragma("entrypoint") matmul_main_wcet()
 }
 
 
-int matmul_main()
+int matmul_main(mat_type mat_a[DIM][DIM], 
+				mat_type mat_b[DIM][DIM], 
+				mat_type sw_result[DIM][DIM], 
+				mat_type hw_result[DIM][DIM])
 {
 
 	int err_cnt = 0;
@@ -125,17 +133,20 @@ int matmul_main()
 int main()
 {
 
+	mat_type mat_a[DIM][DIM], mat_b[DIM][DIM];
+	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];	
+
 	// Initialize matrices
 
 	matmul_init(mat_a, mat_b, sw_result);
 
 #if(WCET)
 
-	return matmul_main_wcet();
+	return matmul_main_wcet(mat_a, mat_b, hw_result);
 
 #else
 
-	return matmul_main();
+	return matmul_main(mat_a, mat_b, sw_result, hw_result);
 
 #endif
 }

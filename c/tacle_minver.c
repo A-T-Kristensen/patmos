@@ -40,9 +40,6 @@ int minver_minver(mat_type minver_a[DIM][DIM],
 mat_type minver_fabs(mat_type n);
 int main(void);
 
-mat_type minver_a[DIM][DIM];
-mat_type minver_aa[DIM][DIM];
-mat_type minver_a_i[DIM][DIM];
 
 mat_type minver_fabs(mat_type n)
 {
@@ -153,6 +150,10 @@ int _Pragma("entrypoint") minver_minver(mat_type minver_a[DIM][DIM],
 
 int main(void)
 {
+
+	mat_type minver_a[DIM][DIM];
+	mat_type minver_aa[DIM][DIM];
+	mat_type minver_a_i[DIM][DIM];
 
 	int i, j;
 

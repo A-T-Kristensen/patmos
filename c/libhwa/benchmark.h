@@ -1,8 +1,8 @@
-#define ROWS 	16
-#define COLS	16
-#define DIM 	16
-#define SIZE	256
+#define ROWS 	32
+#define COLS	32
+#define DIM 	32
+#define SIZE	1024
 #define VECSIZE 0
-#define NBANKS 	3
+#define NBANKS 	1
 #define WCET	0
 typedef float mat_type;

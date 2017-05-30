@@ -46,9 +46,6 @@ struct matrix {
 
 volatile _UNCACHED struct matrix *test_matrix;
 
-mat_type minver_aa[DIM][DIM];
-mat_type minver_a_i[DIM][DIM];
-
 mat_type minver_fabs(mat_type n)
 {
 	mat_type f;
@@ -159,6 +156,9 @@ int _Pragma("entrypoint")  minver_minver(volatile _UNCACHED mat_type(*minver_a)[
 
 int main(void)
 {
+
+	mat_type minver_aa[DIM][DIM];
+	mat_type minver_a_i[DIM][DIM];	
 
 	int i, j;
 

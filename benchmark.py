@@ -157,8 +157,8 @@ def matmul(synth = 0, hw_test = 0):
 	dimList     = [4, 16, 32]
 	valsType    = ["float", "int"]
 	appList     = ["hwa_matmul", "hwa_matmul_spm", 
-				   "hwa_matmul_uncached", "tacle_matrix1_spm", 
-				   "tacle_matrix1_uncached"]
+				   "hwa_matmul_uncached", "tacle_matrix1", 
+				   "tacle_matrix1_spm", "tacle_matrix1_uncached"]
 
 	# Arrays for data storage
 
@@ -552,7 +552,7 @@ def adpcm(synth = 0, hw_test = 0):
 
 def main(): 
 
-	matmul(synth = 0, hw_test = 0)
+	#matmul(synth = 0, hw_test = 0)
 	minver(synth = 0, hw_test = 0)
 	filterbank(synth = 0, hw_test = 0)
 	fir2dim(synth = 0, hw_test = 0)
