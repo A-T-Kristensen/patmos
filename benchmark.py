@@ -349,7 +349,7 @@ def minver(synth = 0, hw_test = 0):
 		# add 1 is for alignment                       
 
 		csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
-				   = ('Type={type}').format(type = valsType[i])                       
+				   = ('Type={type}').format(type = valsType[i])
 
 	store_benchmark("minver", appList, computeArray, 
 					transferArray, totalArray, csv_rows)
@@ -552,6 +552,209 @@ def adpcm(synth = 0, hw_test = 0):
 					transferArray, totalArray, csv_rows)		
 
 
+def run_wcet(app, function):
+
+	# Project name string
+
+	cmd = ('make -B APP=wcet-{app} comp') \
+			.format(app = app)
+
+	subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)				
+
+	cmd = ('(cd wcet; make wcet PROJECT?={app} FUNCTION?={func} )').format(app = app, func =function)
+
+	result = subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+
+	result = result.stderr.decode('utf-8') 
+
+	wcet_bound = 0
+
+	try:
+
+		wcet_bound = int((re.search('bound: (.*) cycles', result)).group(1))
+
+	except:
+		print("Error when getting the number of cycles")
+		print(result)
+
+	# Success
+
+	print("#WCET bound: %d" % (wcet_bound))	
+
+	return wcet_bound	
+
+def store_wcet_benchmark(bench_name, appList, dataArray, csv_rows):
+
+	dataOut = np.vstack((appList, dataArray))
+	dataOut = np.hstack((csv_rows, dataOut))
+
+	np.savetxt(bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 	
+
+
+
+def matmul_wcet():
+
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
+
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsTypes   = ["mat_type;","vec_type;"]    
+
+	# Parameter space to explore for matrix multiplication
+
+	nbanksList  = [3, 5, 9]
+	dimList     = [4, 16, 32]
+	valsType    = ["float", "int"]
+	appList     = ["hwa_matmul", "hwa_matmul_spm", 
+				   "hwa_matmul_uncached", "tacle_matrix1", 
+				   "tacle_matrix1_spm", "tacle_matrix1_uncached"]
+
+	functionList = ["matmul_main_wcet", "matrix1_main"]
+
+	app_type = [0, 0, 0, 1, 1, 1] # 0 is for hardware
+
+	# Arrays for data storage
+
+	size = int(len(valsType) * len(dimList) * len(nbanksList))
+
+	dataArray = np.zeros([size, len(appList)])
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([len(valsType) * len(dimList) 
+						 * len(nbanksList) + 1, 3], dtype = "S10") 
+
+	for i in range(0, len(valsType)):               # Iterate over data type (float/int)
+		for j in range(0, len(nbanksList)):         # Iterate over number of banks
+			for k in range(0, len(dimList)):        # Iterate over matrix dimensions
+				for g in range(0, len(appList)):    # Iterate over apps      
+
+					# Get the current iteration options      
+
+					app = appList[g]
+					valsDefine = [dimList[k], dimList[k], 
+								  dimList[k], nbanksList[j], 
+								  dimList[k]*dimList[k], 0, 1] # Vectors not used
+
+					print("\n*******************************************")
+					print("Matmul: type = %s, NBANKS = %d, DIM = %d\n" \
+						  % (valsType[i], nbanksList[j], dimList[k]))
+					print("APP: %s" % (app))                    
+					print("*******************************************\n")                     
+
+					# Update the benchmark.h file
+
+					update_header(keywordsDefine, valsDefine, 
+								  keywordsTypes[0], valsType[i])   
+
+					wcet_bound = run_wcet(app, functionList[app_type[g]])
+
+					dataArray[k + j*len(dimList) + i * len(nbanksList) 
+								   * len(dimList)][g] = wcet_bound
+
+					# Add {dim}x{dim} (e.g. 4x4)
+					# add 1 is for alignment                       
+
+					csv_rows[k + j * len(dimList) + i * len(nbanksList) 
+							   * len(dimList) + 1][2] \
+							   = ('{dim}x{dim}').format(dim=dimList[k])   
+
+			# Add NBANKS={nbank} (e.g. NBANKS=5)                                   
+			# add 2 is for alignment
+
+			csv_rows[k + j * len(dimList) + i * len(nbanksList) 
+					   * len(dimList) - len(dimList) + 2][1] \
+					   = ('NBANKS={nbank}').format(nbank = nbanksList[j])
+
+		# Add Type={type} (e.g. Type=int)                                   
+		# add 1 is for alignment                       
+
+		csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
+				   = ('Type={type}').format(type = valsType[i])                       
+
+	store_wcet_benchmark("matmul", appList, dataArray, csv_rows)
+
+
+def minver_wcet():
+
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
+
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsTypes   = ["mat_type;","vec_type;"]    
+
+	# Parameter space to explore for matrix inversion
+
+	nbanksList  = [1, 2, 4]
+	dimList     = [4, 16, 32]
+	valsType    = ["float"]
+	appList     = ["hwa_minver", "hwa_minver_spm", "hwa_minver_uncached",
+				   "tacle_minver", "tacle_minver_spm", "tacle_minver_uncached"] 
+
+	functionList = ["minver_main_wcet", "minver_minver"]
+
+	app_type = [0, 0, 0, 1, 1, 1] # 0 is for hardware				   
+
+	# Arrays for data storage
+
+	size = int(len(valsType) * len(dimList) * len(nbanksList))
+
+	dataArray 		= np.zeros([size, len(appList)]) 
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([len(valsType) * len(dimList) 
+						 * len(nbanksList) + 1, 3], dtype = "S10") 
+
+	for i in range(0, len(valsType)):               # Iterate over data type (float/int)
+		for j in range(0, len(nbanksList)):         # Iterate over number of banks
+			for k in range(0, len(dimList)):        # Iterate over matrix dimensions
+				for g in range(0, len(appList)):    # Iterate over apps      
+
+					# Get the current iteration options      
+
+					app = appList[g]
+					valsDefine = [dimList[k], dimList[k], 
+								  dimList[k], nbanksList[j], 
+								  dimList[k]*dimList[k], 0, 1] #Vectors not used
+
+					print("\n*******************************************")
+					print("Minver: type = %s, NBANKS = %d, DIM = %d\n" \
+						  % (valsType[i], nbanksList[j], dimList[k]))
+					print("APP: %s" % (app))                    
+					print("*******************************************\n")                
+
+					# Update the benchmark.h file
+
+					update_header(keywordsDefine, valsDefine, 
+								  keywordsTypes[0], valsType[i])   
+
+					wcet_bound = run_wcet(app, functionList[app_type[g]])
+
+					dataArray[k + j*len(dimList) + i * len(nbanksList) 
+								   * len(dimList)][g] = wcet_bound 
+
+					csv_rows[k + j * len(dimList) + i * len(nbanksList) 
+							   * len(dimList) + 1][2] \
+							   = ('{dim}x{dim}').format(dim=dimList[k])   
+
+			# Add NBANKS={nbank} (e.g. NBANKS=5)                                   
+			# add 2 is for alignment
+
+			csv_rows[k + j * len(dimList) + i * len(nbanksList) 
+					   * len(dimList) - len(dimList) + 2][1] \
+					   = ('NBANKS={nbank}').format(nbank = nbanksList[j])
+
+		# Add Type={type} (e.g. Type=int)                                   
+		# add 1 is for alignment                       
+
+		csv_rows[i * len(nbanksList) * len(dimList) + 1][0] \
+				   = ('Type={type}').format(type = valsType[i])                       
+
+	store_wcet_benchmark("minver", appList, dataArray, csv_rows)
+
 def filterbank_wcet():
 
 	# These lists holds the definitions for the
@@ -568,7 +771,7 @@ def filterbank_wcet():
 
 	functionList = ["filterbank_main_wcet", "filterbank_main"]			   
 
-	app_type = [1, 1, 1, 0, 0, 0] # 1 is for hardware
+	app_type = [0, 0, 0, 1, 1, 1] # 0 is for hardware
 
 	# Arrays for data storage
 
@@ -594,52 +797,66 @@ def filterbank_wcet():
 
 		# Update the benchmark.h file
 
-		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")  
 
-		# Project name string
-
-		cmd = ('make -B APP=wcet-{app} comp') \
-				.format(app = app)
-
-		subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)				
-
-		if(app_type[i] == 1):
-
-			cmd = ('(cd wcet; make wcet PROJECT?={app} FUNCTION?={func} )').format(app = app, func =functionList[0])
-
-		else:
-			cmd = ('(cd wcet; make wcet PROJECT?={app} FUNCTION?={func} )').format(app = app, func =functionList[1])
-
-		result = subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-
-		result = result.stderr.decode('utf-8') 
-
-		wcet_bound = 0
-
-		try:
-
-			wcet_bound = int((re.search('bound: (.*) cycles', result)).group(1))
-
-		except:
-			print("Error when getting the number of cycles")
-			print(result)
-
-			# Success
-
-		print("#WCET bound: %d" % (wcet_bound))
-
+		wcet_bound = run_wcet(app, functionList[app_type[i]])
+ 
 		dataArray[0][i] = wcet_bound
 
 	store_wcet_benchmark("filterbank", appList, dataArray, csv_rows)
 
 
-def store_wcet_benchmark(bench_name, appList, dataArray, csv_rows):
+def fir2dim_wcet():
 
-	dataOut = np.vstack((appList, dataArray))
-	dataOut = np.hstack((csv_rows, dataOut))
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
 
-	np.savetxt(bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 	
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsTypes   = ["mat_type;","vec_type;"]
 
+	# Parameter space to explore for filterbank
+
+	appList = ["hwa_fir2dim", "hwa_fir2dim_spm", 
+			   "hwa_fir2dim_uncached", "tacle_fir2dim", 
+			   "tacle_fir2dim_spm", "tacle_fir2dim_uncached"] 
+
+
+	functionList = ["fir2dim_main_wcet", "fir2dim_main"]			   
+
+	app_type = [0, 0, 0, 1, 1, 1] # 0 is for hardware
+
+	# Arrays for data storage
+
+	dataArray = np.zeros([1, len(appList)])
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([2, 1], dtype = "S10") 
+
+	for i in range(0, len(appList)):    # Iterate over apps      
+
+		# Get the current iteration options      
+
+		app = appList[i]
+		valsDefine = [1, 1, 1, 2, 61, 61, 1] #NBANKS is the only one really used
+										 #VECSIZE is for WCET analysis    
+
+		print("\n*******************************************")
+		print("Fir2Dim: type = %s, NBANKS = %d\n" \
+			  % ("float", 2))
+		print("APP: %s" % (app))                    
+		print("*******************************************\n")                
+
+		# Update the benchmark.h file
+
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+
+		wcet_bound = run_wcet(app, functionList[app_type[i]])
+ 
+		dataArray[0][i] = wcet_bound
+
+	store_wcet_benchmark("fir2dim", appList, dataArray, csv_rows)
 
 def main(): 
 
@@ -649,7 +866,10 @@ def main():
 	#fir2dim(synth = 0, hw_test = 0)
 	#adpcm(synth = 0, hw_test = 0)
 
-	filterbank_wcet()
+	#filterbank_wcet()
+	#fir2dim_wcet()
+	matmul_wcet()
+	#minver_wcet()
 
 	clean_up()
 

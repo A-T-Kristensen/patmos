@@ -11,371 +11,421 @@ machine-functions:
     mapsto: entry
     predecessors: []
     successors:
-    - 1
+    - 2
     instructions:
     - index: 0
       opcode: SRESi
       size: 4
       stack-cache-argument: 8
-      address: 133540
+      address: 133572
     - index: 1
       opcode: MFS
       size: 4
-      address: 133544
+      address: 133576
     - index: 2
       opcode: SWS
       size: 4
       memmode: store
       memtype: stack
-      address: 133548
+      address: 133580
     - index: 3
-      opcode: MFS
-      size: 4
-      address: 133552
+      opcode: LIl
+      size: 8
+      address: 133584
     - index: 4
-      opcode: SWS
+      opcode: MOV
       size: 4
-      memmode: store
-      memtype: stack
-      address: 133556
+      address: 133592
     - index: 5
       opcode: MFS
       size: 4
-      address: 133560
+      address: 133596
     - index: 6
       opcode: SWS
       size: 4
       memmode: store
       memtype: stack
-      address: 133564
+      address: 133600
     - index: 7
-      opcode: LIl
-      size: 8
-      address: 133568
+      opcode: MFS
+      size: 4
+      address: 133604
     - index: 8
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133608
+    - index: 9
       opcode: SUBi
       size: 4
-      address: 133576
-    - index: 9
+      address: 133612
+    - index: 10
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 1
-      address: 133580
-    - index: 10
+      - 2
+      address: 133616
+    - index: 11
+      opcode: LIl
+      size: 8
+      address: 133620
+    - index: 12
       opcode: SWC
       size: 4
       memmode: store
       memtype: cache
-      address: 133584
-    - index: 11
-      opcode: MOV
-      size: 4
-      address: 133588
-    address: 133540
-  - name: 8
-    mapsto: for.body.i.i
+      address: 133628
+    address: 133572
+  - name: 1
+    mapsto: for.body.i
     predecessors:
-    - 1
+    - 2
     successors:
-    - 1
+    - 2
     loops:
-    - 1
+    - 2
     instructions:
     - index: 0
-      opcode: ADDi
+      opcode: LWC
       size: 4
-      address: 133592
+      memmode: load
+      memtype: cache
+      address: 133632
     - index: 1
       opcode: LWC
       size: 4
       memmode: load
       memtype: cache
-      address: 133596
+      address: 133636
     - index: 2
+      opcode: NOP
+      size: 4
+      address: 133640
+    - index: 3
       opcode: SHADD2r
       size: 4
-      address: 133600
-    - index: 3
-      opcode: SWC
+      address: 133644
+    - index: 4
+      opcode: SWM
       size: 4
       memmode: store
-      memtype: cache
-      address: 133604
-    - index: 4
+      memtype: memory
+      address: 133648
+    - index: 5
       opcode: ADDi
       size: 4
-      address: 133608
-    address: 133592
-  - name: 1
-    mapsto: for.cond.i.i
+      address: 133652
+    address: 133632
+  - name: 2
+    mapsto: for.cond.i
     predecessors:
     - 0
-    - 8
-    successors:
-    - 2
-    - 8
-    loops:
     - 1
+    successors:
+    - 3
+    - 1
+    loops:
+    - 2
     instructions:
     - index: 0
-      opcode: CMPINEQ
+      opcode: LIi
       size: 4
-      address: 133612
+      address: 133656
+    - index: 1
+      opcode: CMPEQ
+      size: 4
+      address: 133660
+    - index: 2
+      opcode: BRND
+      size: 4
+      branch-type: conditional
+      branch-targets:
+      - 1
+      address: 133664
+    address: 133656
+  - name: 3
+    mapsto: "(null)"
+    predecessors:
+    - 2
+    successors:
+    - 5
+    instructions:
+    - index: 0
+      opcode: BRu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 5
+      address: 133668
+    - index: 1
+      opcode: NOP
+      size: 4
+      address: 133672
+    - index: 2
+      opcode: LIl
+      size: 8
+      address: 133676
+    address: 133668
+  - name: 4
+    mapsto: for.body2.i
+    predecessors:
+    - 5
+    successors:
+    - 5
+    loops:
+    - 5
+    instructions:
+    - index: 0
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133684
+    - index: 1
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133688
+    - index: 2
+      opcode: NOP
+      size: 4
+      address: 133692
+    - index: 3
+      opcode: SHADD2r
+      size: 4
+      address: 133696
+    - index: 4
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133700
+    - index: 5
+      opcode: ADDi
+      size: 4
+      address: 133704
+    address: 133684
+  - name: 5
+    mapsto: for.cond1.i
+    predecessors:
+    - 4
+    - 3
+    successors:
+    - 6
+    - 4
+    loops:
+    - 5
+    instructions:
+    - index: 0
+      opcode: LIi
+      size: 4
+      address: 133708
+    - index: 1
+      opcode: CMPEQ
+      size: 4
+      address: 133712
+    - index: 2
+      opcode: BRND
+      size: 4
+      branch-type: conditional
+      branch-targets:
+      - 4
+      address: 133716
+    address: 133708
+  - name: 6
+    mapsto: "(null)"
+    predecessors:
+    - 5
+    successors:
+    - 7
+    instructions:
+    - index: 0
+      opcode: BRCFu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 3
+      branch-targets:
+      - 7
+      address: 133720
+    - index: 1
+      opcode: LIi
+      size: 4
+      address: 133724
+    - index: 2
+      opcode: LIl
+      size: 8
+      address: 133728
+    - index: 3
+      opcode: NOP
+      size: 4
+      address: 133736
+    address: 133720
+  - name: 7
+    mapsto: for.cond5.i
+    predecessors:
+    - 8
+    - 6
+    successors:
+    - 9
+    - 8
+    loops:
+    - 7
+    instructions:
+    - index: 0
+      opcode: CMPEQ
+      size: 4
+      address: 133748
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 8
-      address: 133616
-    address: 133612
-  - name: 2
-    mapsto: for.cond1.i.i.preheader
-    predecessors:
-    - 1
-    successors:
-    - 3
-    instructions:
-    - index: 0
-      opcode: MOV
-      size: 4
-      address: 133620
-    - index: 1
-      opcode: BRNDu
+      address: 133752
+    - index: 2
+      opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 3
-      address: 133624
-    address: 133620
-  - name: 9
-    mapsto: for.body2.i.i
+      - 9
+      address: 133756
+    address: 133748
+  - name: 8
+    mapsto: for.body6.i
     predecessors:
-    - 3
+    - 7
     successors:
-    - 3
+    - 7
     loops:
-    - 3
+    - 7
     instructions:
     - index: 0
-      opcode: ADDi
-      size: 4
-      address: 133628
-    - index: 1
       opcode: LWC
       size: 4
       memmode: load
       memtype: cache
-      address: 133632
+      address: 133760
+    - index: 1
+      opcode: NOP
+      size: 4
+      address: 133764
     - index: 2
       opcode: SHADD2r
       size: 4
-      address: 133636
+      address: 133768
     - index: 3
-      opcode: SWC
-      size: 4
-      memmode: store
-      memtype: cache
-      address: 133640
-    - index: 4
-      opcode: ADDi
-      size: 4
-      address: 133644
-    address: 133628
-  - name: 3
-    mapsto: for.cond1.i.i
-    predecessors:
-    - 2
-    - 9
-    successors:
-    - 4
-    - 9
-    loops:
-    - 3
-    instructions:
-    - index: 0
-      opcode: CMPIEQ
-      size: 4
-      address: 133648
-    - index: 1
-      opcode: BRND
-      size: 4
-      branch-type: conditional
-      branch-targets:
-      - 9
-      address: 133652
-    address: 133648
-  - name: 4
-    mapsto: "(null)"
-    predecessors:
-    - 3
-    successors:
-    - 5
-    instructions:
-    - index: 0
-      opcode: MOV
-      size: 4
-      address: 133656
-    - index: 1
-      opcode: BRNDu
+      opcode: BRu
       size: 4
       branch-type: unconditional
+      branch-delay-slots: 2
       branch-targets:
-      - 5
-      address: 133660
-    address: 133656
-  - name: 6
-    mapsto: for.body6.i.i
-    predecessors:
-    - 5
-    successors:
-    - 5
-    loops:
-    - 5
-    instructions:
-    - index: 0
-      opcode: ADDi
-      size: 4
-      address: 133664
-    - index: 1
-      opcode: SHADD2r
-      size: 4
-      address: 133668
-    - index: 2
-      opcode: SWC
+      - 7
+      address: 133772
+    - index: 4
+      opcode: SWM
       size: 4
       memmode: store
-      memtype: cache
-      address: 133672
-    - index: 3
+      memtype: memory
+      address: 133776
+    - index: 5
       opcode: ADDi
       size: 4
-      address: 133676
-    address: 133664
-  - name: 5
-    mapsto: for.cond5.i.i
+      address: 133780
+    address: 133760
+  - name: 9
+    mapsto: matrix1_pin_down.exit
     predecessors:
-    - 6
-    - 4
-    successors:
     - 7
-    - 6
-    loops:
-    - 5
-    instructions:
-    - index: 0
-      opcode: CMPIEQ
-      size: 4
-      address: 133680
-    - index: 1
-      opcode: BRND
-      size: 4
-      branch-type: conditional
-      branch-targets:
-      - 6
-      address: 133684
-    address: 133680
-  - name: 7
-    mapsto: matrix1_init.exit
-    predecessors:
-    - 5
     successors: []
     instructions:
     - index: 0
-      opcode: CALL
+      opcode: CALLND
       callees:
       - matrix1_main
       size: 4
       branch-type: call
-      branch-delay-slots: 3
-      address: 133688
+      address: 133796
     - index: 1
-      opcode: ADDi
-      size: 4
-      address: 133692
-    - index: 2
-      opcode: ADDi
-      size: 4
-      address: 133696
-    - index: 3
-      opcode: ADDi
-      size: 4
-      address: 133700
-    - index: 4
       opcode: SENSi
       size: 4
       stack-cache-argument: 8
-      address: 133704
+      address: 133800
+    - index: 2
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133804
+    - index: 3
+      opcode: NOP
+      size: 4
+      address: 133808
+    - index: 4
+      opcode: MTS
+      size: 4
+      address: 133812
     - index: 5
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133708
+      address: 133816
     - index: 6
-      opcode: NOP
+      opcode: MOV
       size: 4
-      address: 133712
+      address: 133820
     - index: 7
       opcode: MTS
       size: 4
-      address: 133716
+      address: 133824
     - index: 8
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133720
+      address: 133828
     - index: 9
-      opcode: MOV
-      size: 4
-      address: 133724
-    - index: 10
-      opcode: MTS
-      size: 4
-      address: 133728
-    - index: 11
-      opcode: LWS
-      size: 4
-      memmode: load
-      memtype: stack
-      address: 133732
-    - index: 12
       opcode: RET
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 133736
-    - index: 13
+      address: 133832
+    - index: 10
       opcode: ADDi
       size: 4
-      address: 133740
-    - index: 14
+      address: 133836
+    - index: 11
       opcode: MTS
       size: 4
-      address: 133744
-    - index: 15
+      address: 133840
+    - index: 12
       opcode: SFREEi
       size: 4
       stack-cache-argument: 8
-      address: 133748
-    address: 133688
+      address: 133844
+    address: 133796
   subfunctions:
   - name: 0
     blocks:
     - 0
-    - 8
     - 1
     - 2
-    - 9
     - 3
     - 4
-    - 6
     - 5
+    - 6
+  - name: 7
+    blocks:
     - 7
+    - 8
+  - name: 9
+    blocks:
+    - 9
 - name: 7
   level: machinecode
   mapsto: matrix1_main
@@ -405,14 +455,14 @@ machine-functions:
       memtype: stack
       address: 133196
     - index: 3
-      opcode: MFS
-      size: 4
-      address: 133200
-    - index: 4
       opcode: SWS
       size: 4
       memmode: store
       memtype: stack
+      address: 133200
+    - index: 4
+      opcode: MFS
+      size: 4
       address: 133204
     - index: 5
       opcode: SWS
@@ -421,7 +471,7 @@ machine-functions:
       memtype: stack
       address: 133208
     - index: 6
-      opcode: MOV
+      opcode: LIi
       size: 4
       address: 133212
     - index: 7
@@ -455,49 +505,55 @@ machine-functions:
       memtype: stack
       address: 133232
     - index: 12
-      opcode: SWS
-      size: 4
-      memmode: store
-      memtype: stack
-      address: 133236
-    - index: 13
-      opcode: SWS
-      size: 4
-      memmode: store
-      memtype: stack
-      address: 133240
-    - index: 14
       opcode: MOV
       size: 4
-      address: 133244
+      address: 133236
+    - index: 13
+      opcode: LIl
+      size: 8
+      address: 133240
+    - index: 14
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133248
     - index: 15
+      opcode: MOV
+      size: 4
+      address: 133252
+    - index: 16
+      opcode: ADDl
+      size: 8
+      address: 133256
+    - index: 17
       opcode: MFS
       size: 4
-      address: 133248
-    - index: 16
+      address: 133264
+    - index: 18
       opcode: BRCFu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 3
       branch-targets:
       - 1
-      address: 133252
-    - index: 17
-      opcode: SWS
-      size: 4
-      memmode: store
-      memtype: stack
-      address: 133256
-    - index: 18
-      opcode: MFS
-      size: 4
-      address: 133260
+      address: 133268
     - index: 19
       opcode: SWS
       size: 4
       memmode: store
       memtype: stack
-      address: 133264
+      address: 133272
+    - index: 20
+      opcode: MFS
+      size: 4
+      address: 133276
+    - index: 21
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133280
     address: 133188
   - name: 1
     mapsto: for.cond
@@ -511,19 +567,19 @@ machine-functions:
     - 1
     instructions:
     - index: 0
-      opcode: CMPIEQ
+      opcode: CMPEQ
       size: 4
-      address: 133284
+      address: 133300
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 3
-      address: 133288
-    address: 133284
+      address: 133304
+    address: 133300
   - name: 2
-    mapsto: for.cond1.preheader
+    mapsto: for.body
     predecessors:
     - 1
     successors:
@@ -532,42 +588,40 @@ machine-functions:
     - 1
     instructions:
     - index: 0
-      opcode: LWS
+      opcode: LWC
       size: 4
       memmode: load
-      memtype: stack
-      address: 133292
+      memtype: cache
+      address: 133308
     - index: 1
-      opcode: LWS
+      opcode: SWS
       size: 4
-      memmode: load
+      memmode: store
       memtype: stack
-      address: 133296
+      address: 133312
     - index: 2
-      opcode: SLi
-      size: 4
-      address: 133300
-    - index: 3
       opcode: BRCFu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 3
       branch-targets:
       - 4
-      address: 133304
-    - index: 4
-      opcode: ADDr
+      address: 133316
+    - index: 3
+      opcode: SWS
       size: 4
-      address: 133308
+      memmode: store
+      memtype: stack
+      address: 133320
+    - index: 4
+      opcode: MOV
+      size: 4
+      address: 133324
     - index: 5
       opcode: MOV
       size: 4
-      address: 133312
-    - index: 6
-      opcode: MOV
-      size: 4
-      address: 133316
-    address: 133292
+      address: 133328
+    address: 133308
   - name: 3
     mapsto: for.end8
     predecessors:
@@ -579,99 +633,99 @@ machine-functions:
       size: 4
       memmode: load
       memtype: stack
-      address: 133320
+      address: 133332
     - index: 1
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133324
+      address: 133336
     - index: 2
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133328
+      address: 133340
     - index: 3
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133332
+      address: 133344
     - index: 4
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133336
+      address: 133348
     - index: 5
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133340
+      address: 133352
     - index: 6
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133344
+      address: 133356
     - index: 7
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133348
+      address: 133360
     - index: 8
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133352
+      address: 133364
     - index: 9
       opcode: MTS
       size: 4
-      address: 133356
+      address: 133368
     - index: 10
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133360
+      address: 133372
     - index: 11
       opcode: NOP
       size: 4
-      address: 133364
+      address: 133376
     - index: 12
       opcode: MTS
       size: 4
-      address: 133368
+      address: 133380
     - index: 13
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 133372
+      address: 133384
     - index: 14
       opcode: RET
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 133376
+      address: 133388
     - index: 15
       opcode: NOP
       size: 4
-      address: 133380
+      address: 133392
     - index: 16
       opcode: MTS
       size: 4
-      address: 133384
+      address: 133396
     - index: 17
       opcode: SFREEi
       size: 4
       stack-cache-argument: 16
-      address: 133388
-    address: 133320
+      address: 133400
+    address: 133332
   - name: 4
     mapsto: for.cond1
     predecessors:
@@ -685,17 +739,17 @@ machine-functions:
     - 1
     instructions:
     - index: 0
-      opcode: CMPIEQ
+      opcode: CMPEQ
       size: 4
-      address: 133396
+      address: 133412
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 6
-      address: 133400
-    address: 133396
+      address: 133416
+    address: 133412
   - name: 5
     mapsto: for.body2
     predecessors:
@@ -707,28 +761,38 @@ machine-functions:
     - 1
     instructions:
     - index: 0
+      opcode: MOV
+      size: 4
+      address: 133420
+    - index: 1
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133424
+    - index: 2
       opcode: BRCFu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 3
       branch-targets:
       - 7
-      address: 133404
-    - index: 1
-      opcode: MOV
-      size: 4
-      address: 133408
-    - index: 2
-      opcode: MOV
-      size: 4
-      address: 133412
+      address: 133428
     - index: 3
-      opcode: SWC
+      opcode: SWM
       size: 4
       memmode: store
-      memtype: cache
-      address: 133416
-    address: 133404
+      memtype: memory
+      address: 133432
+    - index: 4
+      opcode: SHADD2r
+      size: 4
+      address: 133436
+    - index: 5
+      opcode: ADDl
+      size: 8
+      address: 133440
+    address: 133420
   - name: 6
     mapsto: for.inc7
     predecessors:
@@ -739,26 +803,38 @@ machine-functions:
     - 1
     instructions:
     - index: 0
+      opcode: ADDi
+      size: 4
+      address: 133448
+    - index: 1
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133452
+    - index: 2
       opcode: BRCFu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 3
       branch-targets:
       - 1
-      address: 133420
-    - index: 1
-      opcode: ADDi
-      size: 4
-      address: 133424
-    - index: 2
-      opcode: ADDi
-      size: 4
-      address: 133428
+      address: 133456
     - index: 3
-      opcode: NOP
+      opcode: LWS
       size: 4
-      address: 133432
-    address: 133420
+      memmode: load
+      memtype: stack
+      address: 133460
+    - index: 4
+      opcode: ADDi
+      size: 4
+      address: 133464
+    - index: 5
+      opcode: ADDi
+      size: 4
+      address: 133468
+    address: 133448
   - name: 7
     mapsto: for.cond3
     predecessors:
@@ -773,24 +849,24 @@ machine-functions:
     - 1
     instructions:
     - index: 0
-      opcode: CMPIEQ
+      opcode: CMPEQ
       size: 4
-      address: 133444
+      address: 133476
     - index: 1
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 9
-      address: 133448
+      address: 133480
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 8
-      address: 133452
-    address: 133444
+      address: 133484
+    address: 133476
   - name: 8
     mapsto: for.inc5
     predecessors:
@@ -808,20 +884,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 4
-      address: 133456
+      address: 133488
     - index: 1
       opcode: ADDi
       size: 4
-      address: 133460
+      address: 133492
     - index: 2
       opcode: ADDi
       size: 4
-      address: 133464
+      address: 133496
     - index: 3
       opcode: ADDi
       size: 4
-      address: 133468
-    address: 133456
+      address: 133500
+    address: 133488
   - name: 9
     mapsto: for.body4
     predecessors:
@@ -836,53 +912,52 @@ machine-functions:
     - index: 0
       opcode: SHADD2r
       size: 4
-      address: 133476
+      address: 133508
     - index: 1
-      opcode: LWC
+      opcode: LWM
       size: 4
       memmode: load
-      memtype: cache
-      address: 133480
+      memtype: memory
+      address: 133512
     - index: 2
-      opcode: LWC
+      opcode: SHADD2r
+      size: 4
+      address: 133516
+    - index: 3
+      opcode: LWM
       size: 4
       memmode: load
-      memtype: cache
-      address: 133484
-    - index: 3
+      memtype: memory
+      address: 133520
+    - index: 4
       opcode: CALLND
       callees:
       - __mulsf3
       size: 4
       branch-type: call
-      address: 133488
-    - index: 4
+      address: 133524
+    - index: 5
       opcode: SENSi
       size: 4
       stack-cache-argument: 16
-      address: 133492
-    - index: 5
-      opcode: LWC
+      address: 133528
+    - index: 6
+      opcode: LWM
       size: 4
       memmode: load
-      memtype: cache
-      address: 133496
-    - index: 6
+      memtype: memory
+      address: 133532
+    - index: 7
       opcode: MOV
       size: 4
-      address: 133500
-    - index: 7
+      address: 133536
+    - index: 8
       opcode: CALLND
       callees:
       - __addsf3
       size: 4
       branch-type: call
-      address: 133504
-    - index: 8
-      opcode: SENSi
-      size: 4
-      stack-cache-argument: 16
-      address: 133508
+      address: 133540
     - index: 9
       opcode: BRCFu
       size: 4
@@ -890,22 +965,23 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 7
-      address: 133512
+      address: 133544
     - index: 10
-      opcode: ADDi
+      opcode: SENSi
       size: 4
-      address: 133516
+      stack-cache-argument: 16
+      address: 133548
     - index: 11
       opcode: ADDi
       size: 4
-      address: 133520
+      address: 133552
     - index: 12
-      opcode: SWC
+      opcode: SWM
       size: 4
       memmode: store
-      memtype: cache
-      address: 133524
-    address: 133476
+      memtype: memory
+      address: 133556
+    address: 133508
   subfunctions:
   - name: 0
     blocks:
@@ -942,55 +1018,55 @@ machine-functions:
     - index: 0
       opcode: MFS
       size: 4
-      address: 298660
+      address: 298756
     - index: 1
       opcode: ANDl
       size: 8
-      address: 298664
+      address: 298760
     - index: 2
       opcode: SRi
       size: 4
-      address: 298672
+      address: 298768
     - index: 3
       opcode: ANDi
       size: 4
-      address: 298676
+      address: 298772
     - index: 4
       opcode: LIi
       size: 4
-      address: 298680
+      address: 298776
     - index: 5
       opcode: SUBi
       size: 4
-      address: 298684
+      address: 298780
     - index: 6
       opcode: CMPULT
       size: 4
-      address: 298688
+      address: 298784
     - index: 7
       opcode: SRi
       size: 4
-      address: 298692
+      address: 298788
     - index: 8
       opcode: ANDi
       size: 4
-      address: 298696
+      address: 298792
     - index: 9
       opcode: SUBi
       size: 4
-      address: 298700
+      address: 298796
     - index: 10
       opcode: CMPULT
       size: 4
-      address: 298704
+      address: 298800
     - index: 11
       opcode: POR
       size: 4
-      address: 298708
+      address: 298804
     - index: 12
       opcode: XORr
       size: 4
-      address: 298712
+      address: 298808
     - index: 13
       opcode: BR
       size: 4
@@ -998,16 +1074,16 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 3
-      address: 298716
+      address: 298812
     - index: 14
       opcode: ANDl
       size: 8
-      address: 298720
+      address: 298816
     - index: 15
       opcode: ANDl
       size: 8
-      address: 298728
-    address: 298660
+      address: 298824
+    address: 298756
   - name: 1
     mapsto: if.then
     predecessors:
@@ -1019,23 +1095,23 @@ machine-functions:
     - index: 0
       opcode: ANDl
       size: 8
-      address: 298736
+      address: 298832
     - index: 1
       opcode: LIl
       size: 8
-      address: 298744
+      address: 298840
     - index: 2
       opcode: CMPULT
       size: 4
-      address: 298752
+      address: 298848
     - index: 3
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 4
-      address: 298756
-    address: 298736
+      address: 298852
+    address: 298832
   - name: 2
     mapsto: if.then1
     predecessors:
@@ -1047,20 +1123,20 @@ machine-functions:
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 298760
+      address: 298856
     - index: 1
       opcode: NOP
       size: 4
-      address: 298764
+      address: 298860
     - index: 2
       opcode: ORl
       size: 8
-      address: 298768
+      address: 298864
     - index: 3
       opcode: MTS
       size: 4
-      address: 298776
-    address: 298760
+      address: 298872
+    address: 298856
   - name: 3
     mapsto: "(null)"
     predecessors:
@@ -1075,20 +1151,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 16
-      address: 298780
+      address: 298876
     - index: 1
       opcode: MOV
       size: 4
-      address: 298784
+      address: 298880
     - index: 2
       opcode: NOP
       size: 4
-      address: 298788
+      address: 298884
     - index: 3
       opcode: NOP
       size: 4
-      address: 298792
-    address: 298780
+      address: 298888
+    address: 298876
   - name: 4
     mapsto: if.end
     predecessors:
@@ -1100,19 +1176,19 @@ machine-functions:
     - index: 0
       opcode: ANDl
       size: 8
-      address: 298796
+      address: 298892
     - index: 1
       opcode: CMPULT
       size: 4
-      address: 298804
+      address: 298900
     - index: 2
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 6
-      address: 298808
-    address: 298796
+      address: 298904
+    address: 298892
   - name: 5
     mapsto: if.then2
     predecessors:
@@ -1124,20 +1200,20 @@ machine-functions:
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 298812
+      address: 298908
     - index: 1
       opcode: NOP
       size: 4
-      address: 298816
+      address: 298912
     - index: 2
       opcode: ORl
       size: 8
-      address: 298820
+      address: 298916
     - index: 3
       opcode: MTS
       size: 4
-      address: 298828
-    address: 298812
+      address: 298924
+    address: 298908
   - name: 6
     mapsto: if.end3
     predecessors:
@@ -1149,19 +1225,19 @@ machine-functions:
     - index: 0
       opcode: LIl
       size: 8
-      address: 298836
+      address: 298932
     - index: 1
       opcode: CMPNEQ
       size: 4
-      address: 298844
+      address: 298940
     - index: 2
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 8
-      address: 298848
-    address: 298836
+      address: 298944
+    address: 298932
   - name: 7
     mapsto: if.then4
     predecessors:
@@ -1173,7 +1249,7 @@ machine-functions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 298852
+      address: 298948
     - index: 1
       opcode: BRCF
       size: 4
@@ -1181,27 +1257,27 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 21
-      address: 298856
+      address: 298952
     - index: 2
       opcode: NOP
       size: 4
-      address: 298860
+      address: 298956
     - index: 3
       opcode: LIl
       size: 8
-      address: 298864
+      address: 298960
     - index: 4
       opcode: NOP
       size: 4
-      address: 298872
+      address: 298968
     - index: 5
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 25
-      address: 298876
-    address: 298852
+      address: 298972
+    address: 298948
   - name: 8
     mapsto: if.end6
     predecessors:
@@ -1213,15 +1289,15 @@ machine-functions:
     - index: 0
       opcode: CMPNEQ
       size: 4
-      address: 298880
+      address: 298976
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 10
-      address: 298884
-    address: 298880
+      address: 298980
+    address: 298976
   - name: 9
     mapsto: if.then7
     predecessors:
@@ -1233,7 +1309,7 @@ machine-functions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 298888
+      address: 298984
     - index: 1
       opcode: BRCF
       size: 4
@@ -1241,27 +1317,27 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 25
-      address: 298892
+      address: 298988
     - index: 2
       opcode: NOP
       size: 4
-      address: 298896
+      address: 298992
     - index: 3
       opcode: LIl
       size: 8
-      address: 298900
+      address: 298996
     - index: 4
       opcode: NOP
       size: 4
-      address: 298908
+      address: 299004
     - index: 5
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 21
-      address: 298912
-    address: 298888
+      address: 299008
+    address: 298984
   - name: 10
     mapsto: if.end10
     predecessors:
@@ -1273,19 +1349,19 @@ machine-functions:
     - index: 0
       opcode: MOVrp
       size: 4
-      address: 298916
+      address: 299012
     - index: 1
       opcode: MOVrp
       size: 4
-      address: 298920
+      address: 299016
     - index: 2
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 26
-      address: 298924
-    address: 298916
+      address: 299020
+    address: 299012
   - name: 11
     mapsto: if.end14
     predecessors:
@@ -1297,26 +1373,26 @@ machine-functions:
     - index: 0
       opcode: LIl
       size: 8
-      address: 298928
+      address: 299024
     - index: 1
       opcode: CMPULT
       size: 4
-      address: 298936
+      address: 299032
     - index: 2
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 13
-      address: 298940
+      address: 299036
     - index: 3
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 12
-      address: 298944
-    address: 298928
+      address: 299040
+    address: 299024
   - name: 12
     mapsto: if.then15
     predecessors:
@@ -1327,107 +1403,107 @@ machine-functions:
     - index: 0
       opcode: SRi
       size: 4
-      address: 298964
+      address: 299060
     - index: 1
       opcode: ORr
       size: 4
-      address: 298968
+      address: 299064
     - index: 2
       opcode: SRi
       size: 4
-      address: 298972
+      address: 299068
     - index: 3
       opcode: ORr
       size: 4
-      address: 298976
+      address: 299072
     - index: 4
       opcode: SRi
       size: 4
-      address: 298980
+      address: 299076
     - index: 5
       opcode: ORr
       size: 4
-      address: 298984
+      address: 299080
     - index: 6
       opcode: SRi
       size: 4
-      address: 298988
+      address: 299084
     - index: 7
       opcode: ORr
       size: 4
-      address: 298992
+      address: 299088
     - index: 8
       opcode: SRi
       size: 4
-      address: 298996
+      address: 299092
     - index: 9
       opcode: NORr
       size: 4
-      address: 299000
+      address: 299096
     - index: 10
       opcode: SRi
       size: 4
-      address: 299004
+      address: 299100
     - index: 11
       opcode: ANDl
       size: 8
-      address: 299008
+      address: 299104
     - index: 12
       opcode: SUBr
       size: 4
-      address: 299016
+      address: 299112
     - index: 13
       opcode: ANDl
       size: 8
-      address: 299020
+      address: 299116
     - index: 14
       opcode: SRi
       size: 4
-      address: 299028
+      address: 299124
     - index: 15
       opcode: ANDl
       size: 8
-      address: 299032
+      address: 299128
     - index: 16
       opcode: ADDr
       size: 4
-      address: 299040
+      address: 299136
     - index: 17
       opcode: SRi
       size: 4
-      address: 299044
+      address: 299140
     - index: 18
       opcode: ADDr
       size: 4
-      address: 299048
+      address: 299144
     - index: 19
       opcode: ANDl
       size: 8
-      address: 299052
+      address: 299148
     - index: 20
       opcode: LIl
       size: 8
-      address: 299060
+      address: 299156
     - index: 21
       opcode: MUL
       size: 4
-      address: 299068
+      address: 299164
     - index: 22
       opcode: NOP
       size: 4
-      address: 299072
+      address: 299168
     - index: 23
       opcode: MFS
       size: 4
-      address: 299076
+      address: 299172
     - index: 24
       opcode: SRi
       size: 4
-      address: 299080
+      address: 299176
     - index: 25
       opcode: LIi
       size: 4
-      address: 299084
+      address: 299180
     - index: 26
       opcode: BRCFu
       size: 4
@@ -1435,20 +1511,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 14
-      address: 299088
+      address: 299184
     - index: 27
       opcode: SUBr
       size: 4
-      address: 299092
+      address: 299188
     - index: 28
       opcode: SUBi
       size: 4
-      address: 299096
+      address: 299192
     - index: 29
       opcode: SLr
       size: 4
-      address: 299100
-    address: 298964
+      address: 299196
+    address: 299060
   - name: 13
     mapsto: "(null)"
     predecessors:
@@ -1463,20 +1539,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 14
-      address: 299108
+      address: 299204
     - index: 1
       opcode: MOV
       size: 4
-      address: 299112
+      address: 299208
     - index: 2
       opcode: NOP
       size: 4
-      address: 299116
+      address: 299212
     - index: 3
       opcode: NOP
       size: 4
-      address: 299120
-    address: 299108
+      address: 299216
+    address: 299204
   - name: 14
     mapsto: if.end16
     predecessors:
@@ -1489,15 +1565,15 @@ machine-functions:
     - index: 0
       opcode: CMPULT
       size: 4
-      address: 299140
+      address: 299236
     - index: 1
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 16
-      address: 299144
-    address: 299140
+      address: 299240
+    address: 299236
   - name: 15
     mapsto: if.then17
     predecessors:
@@ -1508,107 +1584,107 @@ machine-functions:
     - index: 0
       opcode: SRi
       size: 4
-      address: 299148
+      address: 299244
     - index: 1
       opcode: ORr
       size: 4
-      address: 299152
+      address: 299248
     - index: 2
       opcode: SRi
       size: 4
-      address: 299156
+      address: 299252
     - index: 3
       opcode: ORr
       size: 4
-      address: 299160
+      address: 299256
     - index: 4
       opcode: SRi
       size: 4
-      address: 299164
+      address: 299260
     - index: 5
       opcode: ORr
       size: 4
-      address: 299168
+      address: 299264
     - index: 6
       opcode: SRi
       size: 4
-      address: 299172
+      address: 299268
     - index: 7
       opcode: ORr
       size: 4
-      address: 299176
+      address: 299272
     - index: 8
       opcode: SRi
       size: 4
-      address: 299180
+      address: 299276
     - index: 9
       opcode: NORr
       size: 4
-      address: 299184
+      address: 299280
     - index: 10
       opcode: SRi
       size: 4
-      address: 299188
+      address: 299284
     - index: 11
       opcode: ANDl
       size: 8
-      address: 299192
+      address: 299288
     - index: 12
       opcode: SUBr
       size: 4
-      address: 299200
+      address: 299296
     - index: 13
       opcode: ANDl
       size: 8
-      address: 299204
+      address: 299300
     - index: 14
       opcode: SRi
       size: 4
-      address: 299212
+      address: 299308
     - index: 15
       opcode: ANDl
       size: 8
-      address: 299216
+      address: 299312
     - index: 16
       opcode: ADDr
       size: 4
-      address: 299224
+      address: 299320
     - index: 17
       opcode: SRi
       size: 4
-      address: 299228
+      address: 299324
     - index: 18
       opcode: ADDr
       size: 4
-      address: 299232
+      address: 299328
     - index: 19
       opcode: ANDl
       size: 8
-      address: 299236
+      address: 299332
     - index: 20
       opcode: LIl
       size: 8
-      address: 299244
+      address: 299340
     - index: 21
       opcode: MUL
       size: 4
-      address: 299252
+      address: 299348
     - index: 22
       opcode: NOP
       size: 4
-      address: 299256
+      address: 299352
     - index: 23
       opcode: MFS
       size: 4
-      address: 299260
+      address: 299356
     - index: 24
       opcode: SRi
       size: 4
-      address: 299264
+      address: 299360
     - index: 25
       opcode: ADDi
       size: 4
-      address: 299268
+      address: 299364
     - index: 26
       opcode: BRCFu
       size: 4
@@ -1616,20 +1692,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 16
-      address: 299272
+      address: 299368
     - index: 27
       opcode: SUBr
       size: 4
-      address: 299276
+      address: 299372
     - index: 28
       opcode: SUBi
       size: 4
-      address: 299280
+      address: 299376
     - index: 29
       opcode: SLr
       size: 4
-      address: 299284
-    address: 299148
+      address: 299380
+    address: 299244
   - name: 16
     mapsto: if.end19
     predecessors:
@@ -1643,87 +1719,87 @@ machine-functions:
     - index: 0
       opcode: SLi
       size: 4
-      address: 299300
+      address: 299396
     - index: 1
       opcode: ORl
       size: 8
-      address: 299304
+      address: 299400
     - index: 2
       opcode: ORl
       size: 8
-      address: 299312
+      address: 299408
     - index: 3
       opcode: MULU
       size: 4
-      address: 299320
+      address: 299416
     - index: 4
       opcode: NOP
       size: 4
-      address: 299324
+      address: 299420
     - index: 5
       opcode: MFS
       size: 4
-      address: 299328
+      address: 299424
     - index: 6
       opcode: ADDr
       size: 4
-      address: 299332
+      address: 299428
     - index: 7
       opcode: ANDl
       size: 8
-      address: 299336
+      address: 299432
     - index: 8
       opcode: MFS
       size: 4
-      address: 299344
+      address: 299440
     - index: 9
       opcode: CMPIEQ
       size: 4
-      address: 299348
+      address: 299444
     - index: 10
       opcode: SRi
       size: 4
-      address: 299352
+      address: 299448
     - index: 11
       opcode: SLi
       size: 4
-      address: 299356
+      address: 299452
     - index: 12
       opcode: ORr
       size: 4
-      address: 299360
+      address: 299456
     - index: 13
       opcode: SLi
       size: 4
-      address: 299364
+      address: 299460
     - index: 14
       opcode: ADDr
       size: 4
-      address: 299368
+      address: 299464
     - index: 15
       opcode: SUBi
       size: 4
-      address: 299372
+      address: 299468
     - index: 16
       opcode: ADDi
       size: 4
-      address: 299376
+      address: 299472
     - index: 17
       opcode: LIi
       size: 4
-      address: 299380
+      address: 299476
     - index: 18
       opcode: CMPLT
       size: 4
-      address: 299384
+      address: 299480
     - index: 19
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 21
-      address: 299388
-    address: 299300
+      address: 299484
+    address: 299396
   - name: 17
     mapsto: if.end24
     predecessors:
@@ -1735,15 +1811,15 @@ machine-functions:
     - index: 0
       opcode: CMPLT
       size: 4
-      address: 299392
+      address: 299488
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 19
-      address: 299396
-    address: 299392
+      address: 299492
+    address: 299488
   - name: 18
     mapsto: if.else26
     predecessors:
@@ -1758,20 +1834,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 24
-      address: 299400
+      address: 299496
     - index: 1
       opcode: ANDl
       size: 8
-      address: 299404
+      address: 299500
     - index: 2
       opcode: SLi
       size: 4
-      address: 299412
+      address: 299508
     - index: 3
       opcode: ORr
       size: 4
-      address: 299416
-    address: 299400
+      address: 299512
+    address: 299496
   - name: 19
     mapsto: if.then25
     predecessors:
@@ -1783,34 +1859,34 @@ machine-functions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 299420
+      address: 299516
     - index: 1
       opcode: SUBr
       size: 4
-      address: 299424
+      address: 299520
     - index: 2
       opcode: LIi
       size: 4
-      address: 299428
+      address: 299524
     - index: 3
       opcode: CMPULT
       size: 4
-      address: 299432
+      address: 299528
     - index: 4
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 22
-      address: 299436
+      address: 299532
     - index: 5
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 20
-      address: 299440
-    address: 299420
+      address: 299536
+    address: 299516
   - name: 20
     mapsto: if.then.i
     predecessors:
@@ -1821,31 +1897,31 @@ machine-functions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 299460
+      address: 299556
     - index: 1
       opcode: SUBr
       size: 4
-      address: 299464
+      address: 299560
     - index: 2
       opcode: SRr
       size: 4
-      address: 299468
+      address: 299564
     - index: 3
       opcode: SLr
       size: 4
-      address: 299472
+      address: 299568
     - index: 4
       opcode: MOVrp
       size: 4
-      address: 299476
+      address: 299572
     - index: 5
       opcode: MOVpr
       size: 4
-      address: 299480
+      address: 299576
     - index: 6
       opcode: SLr
       size: 4
-      address: 299484
+      address: 299580
     - index: 7
       opcode: BRCFu
       size: 4
@@ -1853,20 +1929,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 24
-      address: 299488
+      address: 299584
     - index: 8
       opcode: ORr
       size: 4
-      address: 299492
+      address: 299588
     - index: 9
       opcode: ORr
       size: 4
-      address: 299496
+      address: 299592
     - index: 10
       opcode: SRr
       size: 4
-      address: 299500
-    address: 299460
+      address: 299596
+    address: 299556
   - name: 21
     mapsto: "(null)"
     predecessors:
@@ -1880,20 +1956,20 @@ machine-functions:
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 299508
+      address: 299604
     - index: 1
       opcode: NOP
       size: 4
-      address: 299512
+      address: 299608
     - index: 2
       opcode: ORl
       size: 8
-      address: 299516
+      address: 299612
     - index: 3
       opcode: MTS
       size: 4
-      address: 299524
-    address: 299508
+      address: 299620
+    address: 299604
   - name: 22
     mapsto: if.else.i
     predecessors:
@@ -1905,19 +1981,19 @@ machine-functions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 299540
+      address: 299636
     - index: 1
       opcode: CMPULT
       size: 4
-      address: 299544
+      address: 299640
     - index: 2
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 26
-      address: 299548
-    address: 299540
+      address: 299644
+    address: 299636
   - name: 23
     mapsto: if.then1.i
     predecessors:
@@ -1928,31 +2004,31 @@ machine-functions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 299552
+      address: 299648
     - index: 1
       opcode: SUBr
       size: 4
-      address: 299556
+      address: 299652
     - index: 2
       opcode: SUBi
       size: 4
-      address: 299560
+      address: 299656
     - index: 3
       opcode: SRr
       size: 4
-      address: 299564
+      address: 299660
     - index: 4
       opcode: SLr
       size: 4
-      address: 299568
+      address: 299664
     - index: 5
       opcode: ORr
       size: 4
-      address: 299572
+      address: 299668
     - index: 6
       opcode: MOVrp
       size: 4
-      address: 299576
+      address: 299672
     - index: 7
       opcode: BRCFu
       size: 4
@@ -1960,20 +2036,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 24
-      address: 299580
+      address: 299676
     - index: 8
       opcode: MOVpr
       size: 4
-      address: 299584
+      address: 299680
     - index: 9
       opcode: ORr
       size: 4
-      address: 299588
+      address: 299684
     - index: 10
       opcode: MOV
       size: 4
-      address: 299592
-    address: 299552
+      address: 299688
+    address: 299648
   - name: 24
     mapsto: if.end27
     predecessors:
@@ -1986,23 +2062,23 @@ machine-functions:
     - index: 0
       opcode: ORr
       size: 4
-      address: 299604
+      address: 299700
     - index: 1
       opcode: LIl
       size: 8
-      address: 299608
+      address: 299704
     - index: 2
       opcode: CMPULT
       size: 4
-      address: 299616
+      address: 299712
     - index: 3
       opcode: MOVpr
       size: 4
-      address: 299620
+      address: 299716
     - index: 4
       opcode: ADDr
       size: 4
-      address: 299624
+      address: 299720
     - index: 5
       opcode: BRCFu
       size: 4
@@ -2010,20 +2086,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 25
-      address: 299628
+      address: 299724
     - index: 6
       opcode: CMPNEQ
       size: 4
-      address: 299632
+      address: 299728
     - index: 7
       opcode: ANDi
       size: 4
-      address: 299636
+      address: 299732
     - index: 8
       opcode: ADDr
       size: 4
-      address: 299640
-    address: 299604
+      address: 299736
+    address: 299700
   - name: 25
     mapsto: return
     predecessors:
@@ -2035,13 +2111,13 @@ machine-functions:
     - index: 0
       opcode: MTS
       size: 4
-      address: 299652
+      address: 299748
     - index: 1
       opcode: RETND
       size: 4
       branch-type: return
-      address: 299656
-    address: 299652
+      address: 299752
+    address: 299748
   - name: 26
     mapsto: "(null)"
     predecessors:
@@ -2054,20 +2130,20 @@ machine-functions:
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 299668
+      address: 299764
     - index: 1
       opcode: NOP
       size: 4
-      address: 299672
+      address: 299768
     - index: 2
       opcode: MOV
       size: 4
-      address: 299676
+      address: 299772
     - index: 3
       opcode: MTS
       size: 4
-      address: 299680
-    address: 299668
+      address: 299776
+    address: 299764
   subfunctions:
   - name: 0
     blocks:
@@ -2135,51 +2211,51 @@ machine-functions:
     - index: 0
       opcode: MFS
       size: 4
-      address: 284612
+      address: 284708
     - index: 1
       opcode: ANDl
       size: 8
-      address: 284616
+      address: 284712
     - index: 2
       opcode: LIl
       size: 8
-      address: 284624
+      address: 284720
     - index: 3
       opcode: SUBi
       size: 4
-      address: 284632
+      address: 284728
     - index: 4
       opcode: CMPULT
       size: 4
-      address: 284636
+      address: 284732
     - index: 5
       opcode: ANDl
       size: 8
-      address: 284640
+      address: 284736
     - index: 6
       opcode: SUBi
       size: 4
-      address: 284648
+      address: 284744
     - index: 7
       opcode: CMPULT
       size: 4
-      address: 284652
+      address: 284748
     - index: 8
       opcode: MOV
       size: 4
-      address: 284656
+      address: 284752
     - index: 9
       opcode: POR
       size: 4
-      address: 284660
+      address: 284756
     - index: 10
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 11
-      address: 284664
-    address: 284612
+      address: 284760
+    address: 284708
   - name: 1
     mapsto: if.then
     predecessors:
@@ -2191,19 +2267,19 @@ machine-functions:
     - index: 0
       opcode: LIl
       size: 8
-      address: 284668
+      address: 284764
     - index: 1
       opcode: CMPULT
       size: 4
-      address: 284676
+      address: 284772
     - index: 2
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 3
-      address: 284680
-    address: 284668
+      address: 284776
+    address: 284764
   - name: 2
     mapsto: if.then1
     predecessors:
@@ -2218,20 +2294,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 29
-      address: 284684
+      address: 284780
     - index: 1
       opcode: NOP
       size: 4
-      address: 284688
+      address: 284784
     - index: 2
       opcode: ORl
       size: 8
-      address: 284692
+      address: 284788
     - index: 3
       opcode: NOP
       size: 4
-      address: 284700
-    address: 284684
+      address: 284796
+    address: 284780
   - name: 3
     mapsto: if.end
     predecessors:
@@ -2243,15 +2319,15 @@ machine-functions:
     - index: 0
       opcode: CMPULT
       size: 4
-      address: 284704
+      address: 284800
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 5
-      address: 284708
-    address: 284704
+      address: 284804
+    address: 284800
   - name: 4
     mapsto: if.then2
     predecessors:
@@ -2266,20 +2342,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 29
-      address: 284712
+      address: 284808
     - index: 1
       opcode: NOP
       size: 4
-      address: 284716
+      address: 284812
     - index: 2
       opcode: ORl
       size: 8
-      address: 284720
+      address: 284816
     - index: 3
       opcode: NOP
       size: 4
-      address: 284728
-    address: 284712
+      address: 284824
+    address: 284808
   - name: 5
     mapsto: if.end3
     predecessors:
@@ -2291,26 +2367,26 @@ machine-functions:
     - index: 0
       opcode: LIl
       size: 8
-      address: 284732
+      address: 284828
     - index: 1
       opcode: CMPNEQ
       size: 4
-      address: 284740
+      address: 284836
     - index: 2
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 7
-      address: 284744
+      address: 284840
     - index: 3
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 6
-      address: 284748
-    address: 284732
+      address: 284844
+    address: 284828
   - name: 6
     mapsto: if.then4
     predecessors:
@@ -2320,38 +2396,38 @@ machine-functions:
     - index: 0
       opcode: XORr
       size: 4
-      address: 284756
+      address: 284852
     - index: 1
       opcode: LIl
       size: 8
-      address: 284760
+      address: 284856
     - index: 2
       opcode: CMPEQ
       size: 4
-      address: 284768
+      address: 284864
     - index: 3
       opcode: LIl
       size: 8
-      address: 284772
+      address: 284868
     - index: 4
       opcode: RET
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 284780
+      address: 284876
     - index: 5
       opcode: CMOV
       size: 4
-      address: 284784
+      address: 284880
     - index: 6
       opcode: MOV
       size: 4
-      address: 284788
+      address: 284884
     - index: 7
       opcode: MTS
       size: 4
-      address: 284792
-    address: 284756
+      address: 284888
+    address: 284852
   - name: 7
     mapsto: if.end6
     predecessors:
@@ -2363,15 +2439,15 @@ machine-functions:
     - index: 0
       opcode: CMPEQ
       size: 4
-      address: 284804
+      address: 284900
     - index: 1
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 29
-      address: 284808
-    address: 284804
+      address: 284904
+    address: 284900
   - name: 8
     mapsto: if.end8
     predecessors:
@@ -2383,15 +2459,15 @@ machine-functions:
     - index: 0
       opcode: MOVrp
       size: 4
-      address: 284812
+      address: 284908
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 10
-      address: 284816
-    address: 284812
+      address: 284912
+    address: 284908
   - name: 9
     mapsto: if.end12
     predecessors:
@@ -2403,26 +2479,26 @@ machine-functions:
     - index: 0
       opcode: MOV
       size: 4
-      address: 284820
+      address: 284916
     - index: 1
       opcode: CMPIEQ
       size: 4
-      address: 284824
+      address: 284920
     - index: 2
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 29
-      address: 284828
+      address: 284924
     - index: 3
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 11
-      address: 284832
-    address: 284820
+      address: 284928
+    address: 284916
   - name: 10
     mapsto: if.then9
     predecessors:
@@ -2437,20 +2513,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 29
-      address: 284836
+      address: 284932
     - index: 1
       opcode: MOVrp
       size: 4
-      address: 284840
+      address: 284936
     - index: 2
       opcode: ANDr
       size: 4
-      address: 284844
+      address: 284940
     - index: 3
       opcode: NOP
       size: 4
-      address: 284848
-    address: 284836
+      address: 284944
+    address: 284932
   - name: 11
     mapsto: if.end15
     predecessors:
@@ -2463,39 +2539,39 @@ machine-functions:
     - index: 0
       opcode: CMPULT
       size: 4
-      address: 284868
+      address: 284964
     - index: 1
       opcode: MOV
       size: 4
-      address: 284872
+      address: 284968
     - index: 2
       opcode: CMOV
       size: 4
-      address: 284876
+      address: 284972
     - index: 3
       opcode: CMOV
       size: 4
-      address: 284880
+      address: 284976
     - index: 4
       opcode: SRi
       size: 4
-      address: 284884
+      address: 284980
     - index: 5
       opcode: ANDi
       size: 4
-      address: 284888
+      address: 284984
     - index: 6
       opcode: SRi
       size: 4
-      address: 284892
+      address: 284988
     - index: 7
       opcode: ANDi
       size: 4
-      address: 284896
+      address: 284992
     - index: 8
       opcode: MOVrp
       size: 4
-      address: 284900
+      address: 284996
     - index: 9
       opcode: BR
       size: 4
@@ -2503,16 +2579,16 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 13
-      address: 284904
+      address: 285000
     - index: 10
       opcode: NOP
       size: 4
-      address: 284908
+      address: 285004
     - index: 11
       opcode: ANDl
       size: 8
-      address: 284912
-    address: 284868
+      address: 285008
+    address: 284964
   - name: 12
     mapsto: if.then18
     predecessors:
@@ -2523,120 +2599,120 @@ machine-functions:
     - index: 0
       opcode: SRi
       size: 4
-      address: 284920
+      address: 285016
     - index: 1
       opcode: ORr
       size: 4
-      address: 284924
+      address: 285020
     - index: 2
       opcode: SRi
       size: 4
-      address: 284928
+      address: 285024
     - index: 3
       opcode: ORr
       size: 4
-      address: 284932
+      address: 285028
     - index: 4
       opcode: SRi
       size: 4
-      address: 284936
+      address: 285032
     - index: 5
       opcode: ORr
       size: 4
-      address: 284940
+      address: 285036
     - index: 6
       opcode: SRi
       size: 4
-      address: 284944
+      address: 285040
     - index: 7
       opcode: ORr
       size: 4
-      address: 284948
+      address: 285044
     - index: 8
       opcode: SRi
       size: 4
-      address: 284952
+      address: 285048
     - index: 9
       opcode: NORr
       size: 4
-      address: 284956
+      address: 285052
     - index: 10
       opcode: SRi
       size: 4
-      address: 284960
+      address: 285056
     - index: 11
       opcode: ANDl
       size: 8
-      address: 284964
+      address: 285060
     - index: 12
       opcode: SUBr
       size: 4
-      address: 284972
+      address: 285068
     - index: 13
       opcode: ANDl
       size: 8
-      address: 284976
+      address: 285072
     - index: 14
       opcode: SRi
       size: 4
-      address: 284984
+      address: 285080
     - index: 15
       opcode: ANDl
       size: 8
-      address: 284988
+      address: 285084
     - index: 16
       opcode: ADDr
       size: 4
-      address: 284996
+      address: 285092
     - index: 17
       opcode: SRi
       size: 4
-      address: 285000
+      address: 285096
     - index: 18
       opcode: ADDr
       size: 4
-      address: 285004
+      address: 285100
     - index: 19
       opcode: ANDl
       size: 8
-      address: 285008
+      address: 285104
     - index: 20
       opcode: LIl
       size: 8
-      address: 285016
+      address: 285112
     - index: 21
       opcode: MUL
       size: 4
-      address: 285024
+      address: 285120
     - index: 22
       opcode: NOP
       size: 4
-      address: 285028
+      address: 285124
     - index: 23
       opcode: MFS
       size: 4
-      address: 285032
+      address: 285128
     - index: 24
       opcode: SRi
       size: 4
-      address: 285036
+      address: 285132
     - index: 25
       opcode: LIi
       size: 4
-      address: 285040
+      address: 285136
     - index: 26
       opcode: SUBr
       size: 4
-      address: 285044
+      address: 285140
     - index: 27
       opcode: SUBi
       size: 4
-      address: 285048
+      address: 285144
     - index: 28
       opcode: SLr
       size: 4
-      address: 285052
-    address: 284920
+      address: 285148
+    address: 285016
   - name: 13
     mapsto: if.end19
     predecessors:
@@ -2649,7 +2725,7 @@ machine-functions:
     - index: 0
       opcode: MOVrp
       size: 4
-      address: 285056
+      address: 285152
     - index: 1
       opcode: BRCF
       size: 4
@@ -2657,27 +2733,27 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 15
-      address: 285060
+      address: 285156
     - index: 2
       opcode: NOP
       size: 4
-      address: 285064
+      address: 285160
     - index: 3
       opcode: ANDl
       size: 8
-      address: 285068
+      address: 285164
     - index: 4
       opcode: NOP
       size: 4
-      address: 285076
+      address: 285172
     - index: 5
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 14
-      address: 285080
-    address: 285056
+      address: 285176
+    address: 285152
   - name: 14
     mapsto: if.then20
     predecessors:
@@ -2688,107 +2764,107 @@ machine-functions:
     - index: 0
       opcode: SRi
       size: 4
-      address: 285092
+      address: 285188
     - index: 1
       opcode: ORr
       size: 4
-      address: 285096
+      address: 285192
     - index: 2
       opcode: SRi
       size: 4
-      address: 285100
+      address: 285196
     - index: 3
       opcode: ORr
       size: 4
-      address: 285104
+      address: 285200
     - index: 4
       opcode: SRi
       size: 4
-      address: 285108
+      address: 285204
     - index: 5
       opcode: ORr
       size: 4
-      address: 285112
+      address: 285208
     - index: 6
       opcode: SRi
       size: 4
-      address: 285116
+      address: 285212
     - index: 7
       opcode: ORr
       size: 4
-      address: 285120
+      address: 285216
     - index: 8
       opcode: SRi
       size: 4
-      address: 285124
+      address: 285220
     - index: 9
       opcode: NORr
       size: 4
-      address: 285128
+      address: 285224
     - index: 10
       opcode: SRi
       size: 4
-      address: 285132
+      address: 285228
     - index: 11
       opcode: ANDl
       size: 8
-      address: 285136
+      address: 285232
     - index: 12
       opcode: SUBr
       size: 4
-      address: 285144
+      address: 285240
     - index: 13
       opcode: ANDl
       size: 8
-      address: 285148
+      address: 285244
     - index: 14
       opcode: SRi
       size: 4
-      address: 285156
+      address: 285252
     - index: 15
       opcode: ANDl
       size: 8
-      address: 285160
+      address: 285256
     - index: 16
       opcode: ADDr
       size: 4
-      address: 285168
+      address: 285264
     - index: 17
       opcode: SRi
       size: 4
-      address: 285172
+      address: 285268
     - index: 18
       opcode: ADDr
       size: 4
-      address: 285176
+      address: 285272
     - index: 19
       opcode: ANDl
       size: 8
-      address: 285180
+      address: 285276
     - index: 20
       opcode: LIl
       size: 8
-      address: 285188
+      address: 285284
     - index: 21
       opcode: MUL
       size: 4
-      address: 285196
+      address: 285292
     - index: 22
       opcode: NOP
       size: 4
-      address: 285200
+      address: 285296
     - index: 23
       opcode: MFS
       size: 4
-      address: 285204
+      address: 285300
     - index: 24
       opcode: SRi
       size: 4
-      address: 285208
+      address: 285304
     - index: 25
       opcode: LIi
       size: 4
-      address: 285212
+      address: 285308
     - index: 26
       opcode: BRCFu
       size: 4
@@ -2796,20 +2872,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 15
-      address: 285216
+      address: 285312
     - index: 27
       opcode: SUBr
       size: 4
-      address: 285220
+      address: 285316
     - index: 28
       opcode: SUBi
       size: 4
-      address: 285224
+      address: 285320
     - index: 29
       opcode: SLr
       size: 4
-      address: 285228
-    address: 285092
+      address: 285324
+    address: 285188
   - name: 15
     mapsto: if.end21
     predecessors:
@@ -2822,7 +2898,7 @@ machine-functions:
     - index: 0
       opcode: CMPEQ
       size: 4
-      address: 285236
+      address: 285332
     - index: 1
       opcode: BR
       size: 4
@@ -2830,16 +2906,16 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 17
-      address: 285240
+      address: 285336
     - index: 2
       opcode: SLi
       size: 4
-      address: 285244
+      address: 285340
     - index: 3
       opcode: ORl
       size: 8
-      address: 285248
-    address: 285236
+      address: 285344
+    address: 285332
   - name: 16
     mapsto: "(null)"
     predecessors:
@@ -2850,15 +2926,15 @@ machine-functions:
     - index: 0
       opcode: MOV
       size: 4
-      address: 285256
+      address: 285352
     - index: 1
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 19
-      address: 285260
-    address: 285256
+      address: 285356
+    address: 285352
   - name: 17
     mapsto: if.then22
     predecessors:
@@ -2870,27 +2946,27 @@ machine-functions:
     - index: 0
       opcode: SUBr
       size: 4
-      address: 285264
+      address: 285360
     - index: 1
       opcode: LIi
       size: 4
-      address: 285268
+      address: 285364
     - index: 2
       opcode: CMPULT
       size: 4
-      address: 285272
+      address: 285368
     - index: 3
       opcode: LIi
       size: 4
-      address: 285276
+      address: 285372
     - index: 4
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 19
-      address: 285280
-    address: 285264
+      address: 285376
+    address: 285360
   - name: 18
     mapsto: if.then23
     predecessors:
@@ -2901,32 +2977,32 @@ machine-functions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 285284
+      address: 285380
     - index: 1
       opcode: SUBr
       size: 4
-      address: 285288
+      address: 285384
     - index: 2
       opcode: SLr
       size: 4
-      address: 285292
+      address: 285388
     - index: 3
       opcode: MOVrp
       size: 4
-      address: 285296
+      address: 285392
     - index: 4
       opcode: MOVpr
       size: 4
-      address: 285300
+      address: 285396
     - index: 5
       opcode: SRr
       size: 4
-      address: 285304
+      address: 285400
     - index: 6
       opcode: ORr
       size: 4
-      address: 285308
-    address: 285284
+      address: 285404
+    address: 285380
   - name: 19
     mapsto: if.end26
     predecessors:
@@ -2940,19 +3016,19 @@ machine-functions:
     - index: 0
       opcode: XORr
       size: 4
-      address: 285312
+      address: 285408
     - index: 1
       opcode: ANDl
       size: 8
-      address: 285316
+      address: 285412
     - index: 2
       opcode: LIin
       size: 4
-      address: 285324
+      address: 285420
     - index: 3
       opcode: CMPLT
       size: 4
-      address: 285328
+      address: 285424
     - index: 4
       opcode: BR
       size: 4
@@ -2960,23 +3036,23 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 20
-      address: 285332
+      address: 285428
     - index: 5
       opcode: SLi
       size: 4
-      address: 285336
+      address: 285432
     - index: 6
       opcode: ORl
       size: 8
-      address: 285340
+      address: 285436
     - index: 7
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 21
-      address: 285348
-    address: 285312
+      address: 285444
+    address: 285408
   - name: 20
     mapsto: if.then27
     predecessors:
@@ -2988,26 +3064,26 @@ machine-functions:
     - index: 0
       opcode: MOV
       size: 4
-      address: 285352
+      address: 285448
     - index: 1
       opcode: CMPEQ
       size: 4
-      address: 285356
+      address: 285452
     - index: 2
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 29
-      address: 285360
+      address: 285456
     - index: 3
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 22
-      address: 285364
-    address: 285352
+      address: 285460
+    address: 285448
   - name: 21
     mapsto: if.else32
     predecessors:
@@ -3018,23 +3094,23 @@ machine-functions:
     - index: 0
       opcode: ADDr
       size: 4
-      address: 285380
+      address: 285476
     - index: 1
       opcode: ANDl
       size: 8
-      address: 285384
+      address: 285480
     - index: 2
       opcode: CMPIEQ
       size: 4
-      address: 285392
+      address: 285488
     - index: 3
       opcode: ADDr
       size: 4
-      address: 285396
+      address: 285492
     - index: 4
       opcode: ANDi
       size: 4
-      address: 285400
+      address: 285496
     - index: 5
       opcode: BRCFu
       size: 4
@@ -3042,20 +3118,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 24
-      address: 285404
+      address: 285500
     - index: 6
       opcode: SRi
       size: 4
-      address: 285408
+      address: 285504
     - index: 7
       opcode: ORr
       size: 4
-      address: 285412
+      address: 285508
     - index: 8
       opcode: ADDi
       size: 4
-      address: 285416
-    address: 285380
+      address: 285512
+    address: 285476
   - name: 22
     mapsto: if.end29
     predecessors:
@@ -3067,23 +3143,23 @@ machine-functions:
     - index: 0
       opcode: SUBr
       size: 4
-      address: 285428
+      address: 285524
     - index: 1
       opcode: LIl
       size: 8
-      address: 285432
+      address: 285528
     - index: 2
       opcode: CMPULT
       size: 4
-      address: 285440
+      address: 285536
     - index: 3
       opcode: BRCFND
       size: 4
       branch-type: conditional
       branch-targets:
       - 24
-      address: 285444
-    address: 285428
+      address: 285540
+    address: 285524
   - name: 23
     mapsto: if.then30
     predecessors:
@@ -3094,103 +3170,103 @@ machine-functions:
     - index: 0
       opcode: SRi
       size: 4
-      address: 285448
+      address: 285544
     - index: 1
       opcode: ORr
       size: 4
-      address: 285452
+      address: 285548
     - index: 2
       opcode: SRi
       size: 4
-      address: 285456
+      address: 285552
     - index: 3
       opcode: ORr
       size: 4
-      address: 285460
+      address: 285556
     - index: 4
       opcode: SRi
       size: 4
-      address: 285464
+      address: 285560
     - index: 5
       opcode: ORr
       size: 4
-      address: 285468
+      address: 285564
     - index: 6
       opcode: SRi
       size: 4
-      address: 285472
+      address: 285568
     - index: 7
       opcode: ORr
       size: 4
-      address: 285476
+      address: 285572
     - index: 8
       opcode: SRi
       size: 4
-      address: 285480
+      address: 285576
     - index: 9
       opcode: NORr
       size: 4
-      address: 285484
+      address: 285580
     - index: 10
       opcode: SRi
       size: 4
-      address: 285488
+      address: 285584
     - index: 11
       opcode: ANDl
       size: 8
-      address: 285492
+      address: 285588
     - index: 12
       opcode: SUBr
       size: 4
-      address: 285500
+      address: 285596
     - index: 13
       opcode: ANDl
       size: 8
-      address: 285504
+      address: 285600
     - index: 14
       opcode: SRi
       size: 4
-      address: 285512
+      address: 285608
     - index: 15
       opcode: ANDl
       size: 8
-      address: 285516
+      address: 285612
     - index: 16
       opcode: ADDr
       size: 4
-      address: 285524
+      address: 285620
     - index: 17
       opcode: SRi
       size: 4
-      address: 285528
+      address: 285624
     - index: 18
       opcode: ADDr
       size: 4
-      address: 285532
+      address: 285628
     - index: 19
       opcode: ANDl
       size: 8
-      address: 285536
+      address: 285632
     - index: 20
       opcode: LIl
       size: 8
-      address: 285544
+      address: 285640
     - index: 21
       opcode: MUL
       size: 4
-      address: 285552
+      address: 285648
     - index: 22
       opcode: NOP
       size: 4
-      address: 285556
+      address: 285652
     - index: 23
       opcode: MFS
       size: 4
-      address: 285560
+      address: 285656
     - index: 24
       opcode: SRi
       size: 4
-      address: 285564
+      address: 285660
     - index: 25
       opcode: BRCFu
       size: 4
@@ -3198,20 +3274,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 24
-      address: 285568
+      address: 285664
     - index: 26
       opcode: SUBi
       size: 4
-      address: 285572
+      address: 285668
     - index: 27
       opcode: SUBr
       size: 4
-      address: 285576
+      address: 285672
     - index: 28
       opcode: SLr
       size: 4
-      address: 285580
-    address: 285448
+      address: 285676
+    address: 285544
   - name: 24
     mapsto: if.end36
     predecessors:
@@ -3225,19 +3301,19 @@ machine-functions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 285588
+      address: 285684
     - index: 1
       opcode: CMPLT
       size: 4
-      address: 285592
+      address: 285688
     - index: 2
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 26
-      address: 285596
-    address: 285588
+      address: 285692
+    address: 285684
   - name: 25
     mapsto: if.then37
     predecessors:
@@ -3252,20 +3328,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 29
-      address: 285600
+      address: 285696
     - index: 1
       opcode: NOP
       size: 4
-      address: 285604
+      address: 285700
     - index: 2
       opcode: ORl
       size: 8
-      address: 285608
+      address: 285704
     - index: 3
       opcode: NOP
       size: 4
-      address: 285616
-    address: 285600
+      address: 285712
+    address: 285696
   - name: 26
     mapsto: if.end38
     predecessors:
@@ -3277,15 +3353,15 @@ machine-functions:
     - index: 0
       opcode: CMPLT
       size: 4
-      address: 285620
+      address: 285716
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 28
-      address: 285624
-    address: 285620
+      address: 285720
+    address: 285716
   - name: 27
     mapsto: if.then39
     predecessors:
@@ -3296,44 +3372,44 @@ machine-functions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 285628
+      address: 285724
     - index: 1
       opcode: SUBr
       size: 4
-      address: 285632
+      address: 285728
     - index: 2
       opcode: LIi
       size: 4
-      address: 285636
+      address: 285732
     - index: 3
       opcode: SUBr
       size: 4
-      address: 285640
+      address: 285736
     - index: 4
       opcode: SRr
       size: 4
-      address: 285644
+      address: 285740
     - index: 5
       opcode: SLr
       size: 4
-      address: 285648
+      address: 285744
     - index: 6
       opcode: MOVrp
       size: 4
-      address: 285652
+      address: 285748
     - index: 7
       opcode: MOVpr
       size: 4
-      address: 285656
+      address: 285752
     - index: 8
       opcode: ORr
       size: 4
-      address: 285660
+      address: 285756
     - index: 9
       opcode: MOV
       size: 4
-      address: 285664
-    address: 285628
+      address: 285760
+    address: 285724
   - name: 28
     mapsto: if.end42
     predecessors:
@@ -3345,43 +3421,43 @@ machine-functions:
     - index: 0
       opcode: SLi
       size: 4
-      address: 285668
+      address: 285764
     - index: 1
       opcode: ORr
       size: 4
-      address: 285672
+      address: 285768
     - index: 2
       opcode: SRi
       size: 4
-      address: 285676
+      address: 285772
     - index: 3
       opcode: ANDl
       size: 8
-      address: 285680
+      address: 285776
     - index: 4
       opcode: ORr
       size: 4
-      address: 285688
+      address: 285784
     - index: 5
       opcode: ANDi
       size: 4
-      address: 285692
+      address: 285788
     - index: 6
       opcode: LIi
       size: 4
-      address: 285696
+      address: 285792
     - index: 7
       opcode: CMPULT
       size: 4
-      address: 285700
+      address: 285796
     - index: 8
       opcode: MOVpr
       size: 4
-      address: 285704
+      address: 285800
     - index: 9
       opcode: ADDr
       size: 4
-      address: 285708
+      address: 285804
     - index: 10
       opcode: BRCFu
       size: 4
@@ -3389,20 +3465,20 @@ machine-functions:
       branch-delay-slots: 3
       branch-targets:
       - 29
-      address: 285712
+      address: 285808
     - index: 11
       opcode: CMPINEQ
       size: 4
-      address: 285716
+      address: 285812
     - index: 12
       opcode: ANDi
       size: 4
-      address: 285720
+      address: 285816
     - index: 13
       opcode: ADDr
       size: 4
-      address: 285724
-    address: 285668
+      address: 285820
+    address: 285764
   - name: 29
     mapsto: return
     predecessors:
@@ -3421,20 +3497,20 @@ machine-functions:
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 285732
+      address: 285828
     - index: 1
       opcode: NOP
       size: 4
-      address: 285736
+      address: 285832
     - index: 2
       opcode: MOV
       size: 4
-      address: 285740
+      address: 285836
     - index: 3
       opcode: MTS
       size: 4
-      address: 285744
-    address: 285732
+      address: 285840
+    address: 285828
   subfunctions:
   - name: 0
     blocks:
@@ -3494,46 +3570,28 @@ bitcode-functions:
   - name: entry
     predecessors: []
     successors:
-    - for.cond.i.i
+    - for.cond.i
     instructions:
     - index: 0
       opcode: alloca
     - index: 1
-      opcode: alloca
+      opcode: bitcast
     - index: 2
-      opcode: alloca
+      opcode: call
     - index: 3
-      opcode: alloca
-    - index: 4
-      opcode: bitcast
-    - index: 5
-      opcode: call
-    - index: 6
-      opcode: bitcast
-    - index: 7
-      opcode: call
-    - index: 8
-      opcode: bitcast
-    - index: 9
-      opcode: call
-    - index: 10
-      opcode: bitcast
-    - index: 11
-      opcode: call
-    - index: 12
       opcode: store
       memmode: store
-    - index: 13
+    - index: 4
       opcode: br
-  - name: for.cond.i.i
+  - name: for.cond.i
     predecessors:
-    - for.body.i.i
+    - for.body.i
     - entry
     successors:
-    - for.cond1.i.i.preheader
-    - for.body.i.i
+    - for.cond1.i
+    - for.body.i
     loops:
-    - for.cond.i.i
+    - for.cond.i
     instructions:
     - index: 0
       opcode: phi
@@ -3543,27 +3601,105 @@ bitcode-functions:
       opcode: icmp
     - index: 3
       opcode: br
-  - name: for.cond1.i.i.preheader
+  - name: for.body.i
     predecessors:
-    - for.cond.i.i
+    - for.cond.i
     successors:
-    - for.cond1.i.i
-    instructions:
-    - index: 0
-      opcode: br
-  - name: for.body.i.i
-    predecessors:
-    - for.cond.i.i
-    successors:
-    - for.cond.i.i
+    - for.cond.i
     loops:
-    - for.cond.i.i
+    - for.cond.i
     instructions:
     - index: 0
-      opcode: bitcast
+      opcode: load
+      memmode: load
     - index: 1
       opcode: load
       memmode: load
+    - index: 2
+      opcode: bitcast
+    - index: 3
+      opcode: getelementptr
+    - index: 4
+      opcode: store
+      memmode: store
+    - index: 5
+      opcode: add
+    - index: 6
+      opcode: br
+  - name: for.cond1.i
+    predecessors:
+    - for.cond.i
+    - for.body2.i
+    successors:
+    - for.cond5.i
+    - for.body2.i
+    loops:
+    - for.cond1.i
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: call
+    - index: 2
+      opcode: icmp
+    - index: 3
+      opcode: br
+  - name: for.body2.i
+    predecessors:
+    - for.cond1.i
+    successors:
+    - for.cond1.i
+    loops:
+    - for.cond1.i
+    instructions:
+    - index: 0
+      opcode: load
+      memmode: load
+    - index: 1
+      opcode: load
+      memmode: load
+    - index: 2
+      opcode: bitcast
+    - index: 3
+      opcode: getelementptr
+    - index: 4
+      opcode: store
+      memmode: store
+    - index: 5
+      opcode: add
+    - index: 6
+      opcode: br
+  - name: for.cond5.i
+    predecessors:
+    - for.cond1.i
+    - for.body6.i
+    successors:
+    - matrix1_pin_down.exit
+    - for.body6.i
+    loops:
+    - for.cond5.i
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: call
+    - index: 2
+      opcode: icmp
+    - index: 3
+      opcode: br
+  - name: for.body6.i
+    predecessors:
+    - for.cond5.i
+    successors:
+    - for.cond5.i
+    loops:
+    - for.cond5.i
+    instructions:
+    - index: 0
+      opcode: load
+      memmode: load
+    - index: 1
+      opcode: bitcast
     - index: 2
       opcode: getelementptr
     - index: 3
@@ -3573,115 +3709,20 @@ bitcode-functions:
       opcode: add
     - index: 5
       opcode: br
-  - name: for.cond1.i.i
+  - name: matrix1_pin_down.exit
     predecessors:
-    - for.body2.i.i
-    - for.cond1.i.i.preheader
-    successors:
-    - for.cond5.i.i
-    - for.body2.i.i
-    loops:
-    - for.cond1.i.i
-    instructions:
-    - index: 0
-      opcode: phi
-    - index: 1
-      opcode: call
-    - index: 2
-      opcode: icmp
-    - index: 3
-      opcode: br
-  - name: for.body2.i.i
-    predecessors:
-    - for.cond1.i.i
-    successors:
-    - for.cond1.i.i
-    loops:
-    - for.cond1.i.i
-    instructions:
-    - index: 0
-      opcode: bitcast
-    - index: 1
-      opcode: load
-      memmode: load
-    - index: 2
-      opcode: getelementptr
-    - index: 3
-      opcode: store
-      memmode: store
-    - index: 4
-      opcode: add
-    - index: 5
-      opcode: br
-  - name: for.cond5.i.i
-    predecessors:
-    - for.cond1.i.i
-    - for.body6.i.i
-    successors:
-    - matrix1_init.exit
-    - for.body6.i.i
-    loops:
-    - for.cond5.i.i
-    instructions:
-    - index: 0
-      opcode: phi
-    - index: 1
-      opcode: call
-    - index: 2
-      opcode: icmp
-    - index: 3
-      opcode: br
-  - name: for.body6.i.i
-    predecessors:
-    - for.cond5.i.i
-    successors:
-    - for.cond5.i.i
-    loops:
-    - for.cond5.i.i
-    instructions:
-    - index: 0
-      opcode: bitcast
-    - index: 1
-      opcode: getelementptr
-    - index: 2
-      opcode: store
-      memmode: store
-    - index: 3
-      opcode: add
-    - index: 4
-      opcode: br
-  - name: matrix1_init.exit
-    predecessors:
-    - for.cond5.i.i
+    - for.cond5.i
     successors: []
     instructions:
     - index: 0
       opcode: bitcast
     - index: 1
-      opcode: bitcast
-    - index: 2
-      opcode: bitcast
-    - index: 3
-      opcode: bitcast
-    - index: 4
-      opcode: bitcast
-    - index: 5
-      opcode: bitcast
-    - index: 6
-      opcode: bitcast
-    - index: 7
       opcode: call
-    - index: 8
+    - index: 2
       opcode: call
       callees:
       - matrix1_main
-    - index: 9
-      opcode: call
-    - index: 10
-      opcode: call
-    - index: 11
-      opcode: call
-    - index: 12
+    - index: 3
       opcode: ret
 - name: matrix1_main
   level: bitcode
@@ -3693,6 +3734,11 @@ bitcode-functions:
     - for.cond
     instructions:
     - index: 0
+      opcode: load
+      memmode: load
+    - index: 1
+      opcode: getelementptr
+    - index: 2
       opcode: br
   - name: for.cond
     predecessors:
@@ -3700,7 +3746,7 @@ bitcode-functions:
     - entry
     successors:
     - for.end8
-    - for.cond1.preheader
+    - for.body
     loops:
     - for.cond
     instructions:
@@ -3709,12 +3755,14 @@ bitcode-functions:
     - index: 1
       opcode: phi
     - index: 2
-      opcode: call
+      opcode: phi
     - index: 3
-      opcode: icmp
+      opcode: call
     - index: 4
+      opcode: icmp
+    - index: 5
       opcode: br
-  - name: for.cond1.preheader
+  - name: for.body
     predecessors:
     - for.cond
     successors:
@@ -3723,15 +3771,16 @@ bitcode-functions:
     - for.cond
     instructions:
     - index: 0
-      opcode: shl
+      opcode: load
+      memmode: load
     - index: 1
-      opcode: getelementptr
+      opcode: bitcast
     - index: 2
       opcode: br
   - name: for.cond1
     predecessors:
     - for.inc5
-    - for.cond1.preheader
+    - for.body
     successors:
     - for.inc7
     - for.body2
@@ -3761,9 +3810,14 @@ bitcode-functions:
     - for.cond
     instructions:
     - index: 0
+      opcode: load
+      memmode: load
+    - index: 1
       opcode: store
       memmode: store
-    - index: 1
+    - index: 2
+      opcode: getelementptr
+    - index: 3
       opcode: br
   - name: for.cond3
     predecessors:
@@ -3780,12 +3834,10 @@ bitcode-functions:
     - index: 0
       opcode: phi
     - index: 1
-      opcode: phi
-    - index: 2
       opcode: call
-    - index: 3
+    - index: 2
       opcode: icmp
-    - index: 4
+    - index: 3
       opcode: br
   - name: for.body4
     predecessors:
@@ -3809,23 +3861,29 @@ bitcode-functions:
       opcode: load
       memmode: load
     - index: 5
-      opcode: load
-      memmode: load
+      opcode: ptrtoint
     - index: 6
-      opcode: fmul
+      opcode: mul
     - index: 7
+      opcode: add
+    - index: 8
+      opcode: inttoptr
+    - index: 9
       opcode: load
       memmode: load
-    - index: 8
+    - index: 10
+      opcode: fmul
+    - index: 11
+      opcode: load
+      memmode: load
+    - index: 12
       opcode: fadd
-    - index: 9
+    - index: 13
       opcode: store
       memmode: store
-    - index: 10
-      opcode: getelementptr
-    - index: 11
+    - index: 14
       opcode: add
-    - index: 12
+    - index: 15
       opcode: br
   - name: for.inc5
     predecessors:
@@ -3857,6 +3915,8 @@ bitcode-functions:
     - index: 1
       opcode: add
     - index: 2
+      opcode: add
+    - index: 3
       opcode: br
   - name: for.end8
     predecessors:
@@ -4924,118 +4984,118 @@ bitcode-functions:
 flowfacts:
 - scope:
     function: main
-    loop: for.cond.i.i
+    loop: for.cond.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond.i.i
+      block: for.cond.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond.i.i
+    loop: for.cond.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond.i.i
+      block: for.cond.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond.i.i
+    loop: for.cond.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond.i.i
+      block: for.cond.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: user.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond1.i.i
+    loop: for.cond1.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond1.i.i
+      block: for.cond1.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond1.i.i
+    loop: for.cond1.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond1.i.i
+      block: for.cond1.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond1.i.i
+    loop: for.cond1.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond1.i.i
+      block: for.cond1.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: user.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond5.i.i
+    loop: for.cond5.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond5.i.i
+      block: for.cond5.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond5.i.i
+    loop: for.cond5.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond5.i.i
+      block: for.cond5.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: main
-    loop: for.cond5.i.i
+    loop: for.cond5.i
   lhs:
   - factor: 1
     program-point:
       function: main
-      block: for.cond5.i.i
+      block: for.cond5.i
   op: less-equal
-  rhs: 17
+  rhs: 1025
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -5048,7 +5108,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -5061,7 +5121,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -5074,7 +5134,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -5087,7 +5147,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond1
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -5100,7 +5160,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond1
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -5113,7 +5173,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond1
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -5126,7 +5186,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond3
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -5139,7 +5199,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond3
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -5152,7 +5212,7 @@ flowfacts:
       function: matrix1_main
       block: for.cond3
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -5189,7 +5249,7 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
       block: 8
@@ -5208,7 +5268,7 @@ flowfacts:
     program-point:
       function: 7
       block: 8
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
       block: 6
@@ -5223,7 +5283,7 @@ flowfacts:
     program-point:
       function: 7
       block: 6
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
       block: 3
@@ -5240,7 +5300,7 @@ flowfacts:
       function: 7
       block: 1
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
@@ -5252,7 +5312,7 @@ flowfacts:
       function: 7
       block: 1
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
@@ -5264,7 +5324,7 @@ flowfacts:
       function: 7
       block: 4
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
@@ -5276,7 +5336,7 @@ flowfacts:
       function: 7
       block: 4
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
@@ -5288,7 +5348,7 @@ flowfacts:
       function: 7
       block: 7
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
@@ -5300,7 +5360,7 @@ flowfacts:
       function: 7
       block: 7
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
@@ -5336,7 +5396,7 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
       block: 8
@@ -5355,7 +5415,7 @@ flowfacts:
     program-point:
       function: 7
       block: 8
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
       block: 6
@@ -5370,7 +5430,7 @@ flowfacts:
     program-point:
       function: 7
       block: 6
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
       block: 3
@@ -5387,7 +5447,7 @@ flowfacts:
       function: 7
       block: 1
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: user
   level: machinecode
 - scope:
@@ -5399,7 +5459,7 @@ flowfacts:
       function: 7
       block: 4
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: user
   level: machinecode
 - scope:
@@ -5411,7 +5471,7 @@ flowfacts:
       function: 7
       block: 7
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: user
   level: machinecode
 relation-graphs:
@@ -5434,34 +5494,31 @@ relation-graphs:
     type: exit
   - name: 2
     type: progress
-    src-block: for.cond.i.i
-    dst-block: 1
+    src-block: for.cond.i
+    dst-block: 2
     src-successors:
-    - 3
     - 4
+    - 5
     dst-successors:
     - 3
     - 4
   - name: 3
-    type: progress
-    src-block: for.body.i.i
-    dst-block: 8
-    src-successors:
-    - 2
+    type: dst
+    dst-block: 3
     dst-successors:
-    - 2
+    - 5
   - name: 4
     type: progress
-    src-block: for.cond1.i.i.preheader
-    dst-block: 2
+    src-block: for.body.i
+    dst-block: 1
     src-successors:
-    - 5
+    - 2
     dst-successors:
-    - 5
+    - 2
   - name: 5
     type: progress
-    src-block: for.cond1.i.i
-    dst-block: 3
+    src-block: for.cond1.i
+    dst-block: 5
     src-successors:
     - 7
     - 8
@@ -5470,21 +5527,21 @@ relation-graphs:
     - 7
   - name: 6
     type: dst
-    dst-block: 4
+    dst-block: 6
     dst-successors:
     - 8
   - name: 7
     type: progress
-    src-block: for.body2.i.i
-    dst-block: 9
+    src-block: for.body2.i
+    dst-block: 4
     src-successors:
     - 5
     dst-successors:
     - 5
   - name: 8
     type: progress
-    src-block: for.cond5.i.i
-    dst-block: 5
+    src-block: for.cond5.i
+    dst-block: 7
     src-successors:
     - 9
     - 10
@@ -5493,16 +5550,16 @@ relation-graphs:
     - 10
   - name: 9
     type: progress
-    src-block: for.body6.i.i
-    dst-block: 6
+    src-block: for.body6.i
+    dst-block: 8
     src-successors:
     - 8
     dst-successors:
     - 8
   - name: 10
     type: progress
-    src-block: matrix1_init.exit
-    dst-block: 7
+    src-block: matrix1_pin_down.exit
+    dst-block: 9
     src-successors:
     - 1
     dst-successors:
@@ -5537,7 +5594,7 @@ relation-graphs:
     - 4
   - name: 3
     type: progress
-    src-block: for.cond1.preheader
+    src-block: for.body
     dst-block: 2
     src-successors:
     - 5
@@ -6276,386 +6333,16 @@ relation-graphs:
 timing:
 - scope:
     function: 7
-  cycles: 766075
+  cycles: -1
   level: machinecode
   origin: platin
-  cache-max-cycles-instr: 717037
-  cache-min-hits-instr: 48
-  cache-max-misses-instr: 1273
+  cache-max-cycles-instr: 0
+  cache-min-hits-instr: 0
+  cache-max-misses-instr: 0
   cache-max-cycles-stack: 0
   cache-max-misses-stack: 0
-  cache-max-cycles-data: 22576
+  cache-max-cycles-data: 0
   cache-min-hits-data: 0
-  cache-max-misses-data: 192
-  cache-max-stores-data: 80
-  cache-unknown-address-data: 272
-  cache-max-cycles: 739613
-  profile:
-  - reference:
-      function: 7
-      edgesource: 0
-      edgetarget: 1
-    cycles: 20
-    wcet-frequency: 1
-    wcet-contribution: 20
-  - reference:
-      function: 7
-      edgesource: 1
-      edgetarget: 3
-    cycles: 585
-    wcet-frequency: 1
-    wcet-contribution: 585
-  - reference:
-      function: 7
-      edgesource: 1
-      edgetarget: 2
-    cycles: 583
-    wcet-frequency: 4
-    wcet-contribution: 2332
-  - reference:
-      function: 7
-      edgesource: 2
-      edgetarget: 4
-    cycles: 7
-    wcet-frequency: 4
-    wcet-contribution: 28
-  - reference:
-      function: 7
-      edgesource: 3
-    cycles: 18
-    wcet-frequency: 1
-    wcet-contribution: 18
-  - reference:
-      function: 7
-      edgesource: 4
-      edgetarget: 6
-    cycles: 253
-    wcet-frequency: 4
-    wcet-contribution: 1012
-  - reference:
-      function: 7
-      edgesource: 4
-      edgetarget: 5
-    cycles: 251
-    wcet-frequency: 16
-    wcet-contribution: 4016
-  - reference:
-      function: 7
-      edgesource: 5
-      edgetarget: 7
-    cycles: 87
-    wcet-frequency: 16
-    wcet-contribution: 1392
-  - reference:
-      function: 7
-      edgesource: 6
-      edgetarget: 1
-    cycles: 4
-    wcet-frequency: 4
-    wcet-contribution: 16
-  - reference:
-      function: 7
-      edgesource: 7
-      edgetarget: 8
-    cycles: 171
-    wcet-frequency: 16
-    wcet-contribution: 2736
-  - reference:
-      function: 7
-      edgesource: 7
-      edgetarget: 9
-    cycles: 171
-    wcet-frequency: 64
-    wcet-contribution: 10944
-  - reference:
-      function: 7
-      edgesource: 8
-      edgetarget: 4
-    cycles: 4
-    wcet-frequency: 16
-    wcet-contribution: 64
-  - reference:
-      function: 7
-      edgesource: 9
-      edgetarget: 7
-    cycles: 1347
-    wcet-frequency: 64
-    wcet-contribution: 70272
-  - reference:
-      function: 95
-      edgesource: 0
-      edgetarget: 1
-    cycles: 758
-    wcet-frequency: 64
-    wcet-contribution: 48512
-  - reference:
-      function: 95
-      edgesource: 1
-      edgetarget: 3
-    cycles: 5
-    wcet-frequency: 64
-    wcet-contribution: 320
-  - reference:
-      function: 95
-      edgesource: 3
-      edgetarget: 5
-    cycles: 4
-    wcet-frequency: 64
-    wcet-contribution: 256
-  - reference:
-      function: 95
-      edgesource: 5
-      edgetarget: 7
-    cycles: 6
-    wcet-frequency: 64
-    wcet-contribution: 384
-  - reference:
-      function: 95
-      edgesource: 7
-      edgetarget: 8
-    cycles: 334
-    wcet-frequency: 64
-    wcet-contribution: 21376
-  - reference:
-      function: 95
-      edgesource: 8
-      edgetarget: 9
-    cycles: 2
-    wcet-frequency: 64
-    wcet-contribution: 128
-  - reference:
-      function: 95
-      edgesource: 9
-      edgetarget: 11
-    cycles: 7
-    wcet-frequency: 64
-    wcet-contribution: 448
-  - reference:
-      function: 95
-      edgesource: 11
-      edgetarget: 12
-    cycles: 1174
-    wcet-frequency: 64
-    wcet-contribution: 75136
-  - reference:
-      function: 95
-      edgesource: 12
-      edgetarget: 13
-    cycles: 29
-    wcet-frequency: 64
-    wcet-contribution: 1856
-  - reference:
-      function: 95
-      edgesource: 13
-      edgetarget: 14
-    cycles: 9
-    wcet-frequency: 64
-    wcet-contribution: 576
-  - reference:
-      function: 95
-      edgesource: 14
-      edgetarget: 15
-    cycles: 777
-    wcet-frequency: 64
-    wcet-contribution: 49728
-  - reference:
-      function: 95
-      edgesource: 15
-      edgetarget: 17
-    cycles: 751
-    wcet-frequency: 64
-    wcet-contribution: 48064
-  - reference:
-      function: 95
-      edgesource: 17
-      edgetarget: 18
-    cycles: 5
-    wcet-frequency: 64
-    wcet-contribution: 320
-  - reference:
-      function: 95
-      edgesource: 18
-      edgetarget: 19
-    cycles: 7
-    wcet-frequency: 64
-    wcet-contribution: 448
-  - reference:
-      function: 95
-      edgesource: 19
-      edgetarget: 20
-    cycles: 7
-    wcet-frequency: 64
-    wcet-contribution: 448
-  - reference:
-      function: 95
-      edgesource: 20
-      edgetarget: 22
-    cycles: 7
-    wcet-frequency: 64
-    wcet-contribution: 448
-  - reference:
-      function: 95
-      edgesource: 22
-      edgetarget: 23
-    cycles: 834
-    wcet-frequency: 64
-    wcet-contribution: 53376
-  - reference:
-      function: 95
-      edgesource: 23
-      edgetarget: 24
-    cycles: 29
-    wcet-frequency: 64
-    wcet-contribution: 1856
-  - reference:
-      function: 95
-      edgesource: 24
-      edgetarget: 26
-    cycles: 752
-    wcet-frequency: 64
-    wcet-contribution: 48128
-  - reference:
-      function: 95
-      edgesource: 26
-      edgetarget: 27
-    cycles: 2
-    wcet-frequency: 64
-    wcet-contribution: 128
-  - reference:
-      function: 95
-      edgesource: 27
-      edgetarget: 28
-    cycles: 10
-    wcet-frequency: 64
-    wcet-contribution: 640
-  - reference:
-      function: 95
-      edgesource: 28
-      edgetarget: 29
-    cycles: 14
-    wcet-frequency: 64
-    wcet-contribution: 896
-  - reference:
-      function: 95
-      edgesource: 29
-    cycles: 170
-    wcet-frequency: 64
-    wcet-contribution: 10880
-  - reference:
-      function: 130
-      edgesource: 0
-      edgetarget: 1
-    cycles: 929
-    wcet-frequency: 64
-    wcet-contribution: 59456
-  - reference:
-      function: 130
-      edgesource: 1
-      edgetarget: 4
-    cycles: 6
-    wcet-frequency: 64
-    wcet-contribution: 384
-  - reference:
-      function: 130
-      edgesource: 4
-      edgetarget: 6
-    cycles: 6
-    wcet-frequency: 64
-    wcet-contribution: 384
-  - reference:
-      function: 130
-      edgesource: 6
-      edgetarget: 8
-    cycles: 669
-    wcet-frequency: 64
-    wcet-contribution: 42816
-  - reference:
-      function: 130
-      edgesource: 8
-      edgetarget: 10
-    cycles: 4
-    wcet-frequency: 64
-    wcet-contribution: 256
-  - reference:
-      function: 130
-      edgesource: 10
-      edgetarget: 11
-    cycles: 3
-    wcet-frequency: 64
-    wcet-contribution: 192
-  - reference:
-      function: 130
-      edgesource: 11
-      edgetarget: 12
-    cycles: 7
-    wcet-frequency: 64
-    wcet-contribution: 448
-  - reference:
-      function: 130
-      edgesource: 12
-      edgetarget: 14
-    cycles: 777
-    wcet-frequency: 64
-    wcet-contribution: 49728
-  - reference:
-      function: 130
-      edgesource: 14
-      edgetarget: 15
-    cycles: 832
-    wcet-frequency: 64
-    wcet-contribution: 53248
-  - reference:
-      function: 130
-      edgesource: 15
-      edgetarget: 16
-    cycles: 30
-    wcet-frequency: 64
-    wcet-contribution: 1920
-  - reference:
-      function: 130
-      edgesource: 16
-      edgetarget: 17
-    cycles: 850
-    wcet-frequency: 64
-    wcet-contribution: 54400
-  - reference:
-      function: 130
-      edgesource: 17
-      edgetarget: 19
-    cycles: 4
-    wcet-frequency: 64
-    wcet-contribution: 256
-  - reference:
-      function: 130
-      edgesource: 19
-      edgetarget: 22
-    cycles: 8
-    wcet-frequency: 64
-    wcet-contribution: 512
-  - reference:
-      function: 130
-      edgesource: 22
-      edgetarget: 23
-    cycles: 335
-    wcet-frequency: 64
-    wcet-contribution: 21440
-  - reference:
-      function: 130
-      edgesource: 23
-      edgetarget: 24
-    cycles: 11
-    wcet-frequency: 64
-    wcet-contribution: 704
-  - reference:
-      function: 130
-      edgesource: 24
-      edgetarget: 25
-    cycles: 258
-    wcet-frequency: 64
-    wcet-contribution: 16512
-  - reference:
-      function: 130
-      edgesource: 25
-    cycles: 88
-    wcet-frequency: 64
-    wcet-contribution: 5632
+  cache-max-misses-data: 0
+  cache-max-cycles: 0
+  profile: []

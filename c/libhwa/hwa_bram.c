@@ -31,6 +31,7 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 
 	if(wr_dim == 2) {
 		for(i = 0; i < factor; i++) {
+			_Pragma("loopbound min ROWS max ROWS")								
 			for(j = 0; j < m; j++) {
 				for(k = 0; k < n/factor; k++) {
 					*(bank_ptr_array[i + array_bank0] + k + m * j / factor)
@@ -43,6 +44,7 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 	else if(wr_dim == 1) {
 		for(i = 0; i < factor; i++) {
 			for(j = 0; j < m/factor; j++) {
+			_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
 					*(bank_ptr_array[i + array_bank0] + k + n * j)
 						= array[j + i * m / factor][k];
@@ -61,6 +63,7 @@ void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 
 	if(wr_dim == 2) {
 		for(i = 0; i < factor; i++) {
+			_Pragma("loopbound min ROWS max ROWS")								
 			for(j = 0; j < m; j++) {
 				for(k = 0; k < n/factor; k++) {
 					*(bank_ptr_array[i + array_bank0] + k + m * j / factor)
@@ -73,6 +76,7 @@ void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 	else if(wr_dim == 1) {
 		for(i = 0; i < factor; i++) {
 			for(j = 0; j < m/factor; j++) {
+			_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
 					*(bank_ptr_array[i + array_bank0] + k + n*j)
 						= (*array)[j + i * m / factor][k];
@@ -92,6 +96,7 @@ void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 
 	if(wr_dim == 2) {
 		for(i = 0; i < factor; i++) {
+			_Pragma("loopbound min ROWS max ROWS")
 			for(j = 0; j < m; j++) {
 				for(k = 0; k < n/factor; k++) {
 					*(bank_ptr_array[i+array_bank0] + k + m * j / factor)
@@ -104,6 +109,7 @@ void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 	else if(wr_dim == 1) {
 		for(i = 0; i < factor; i++) {
 			for(j = 0; j < m/factor; j++) {
+			_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
 					*(bank_ptr_array[i + array_bank0] + k + n * j)
 						= (*array)[j + i * m / factor][k];
@@ -122,6 +128,7 @@ void read_array(mat_type array[ROWS][COLS], int n, int m, int factor,
 
 	if(wr_dim == 2) {
 		for(i = 0; i < factor; i++) {
+			_Pragma("loopbound min ROWS max ROWS")
 			for(j = 0; j < m; j++) {
 				for(k = 0; k < n/factor; k++) {
 					array[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor);
@@ -133,6 +140,7 @@ void read_array(mat_type array[ROWS][COLS], int n, int m, int factor,
 	else if(wr_dim == 1) {
 		for(i = 0; i < factor; i++) {
 			for(j = 0; j < m/factor; j++) {
+				_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
 					array[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j);
 				}
@@ -150,6 +158,7 @@ void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 
 	if(wr_dim == 2) {
 		for(i = 0; i < factor; i++) {
+			_Pragma("loopbound min ROWS max ROWS")
 			for(j = 0; j < m; j++) {
 				for(k = 0; k < n/factor; k++) {
 					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor);
@@ -161,6 +170,7 @@ void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 	else if(wr_dim == 1) {
 		for(i = 0; i < factor; i++) {
 			for(j = 0; j < m/factor; j++) {
+				_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
 					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n*j) ;
 				}
@@ -178,6 +188,7 @@ void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 
 	if(wr_dim == 2) {
 		for(i = 0; i < factor; i++) {
+			_Pragma("loopbound min ROWS max ROWS")			
 			for(j = 0; j < m; j++) {
 				for(k = 0; k < n/factor; k++) {
 					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i+array_bank0] + k + m * j / factor);
@@ -189,8 +200,8 @@ void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 	else if(wr_dim == 1) {
 		for(i = 0; i < factor; i++) {
 			for(j = 0; j < m/factor; j++) {
+				_Pragma("loopbound min COLS max COLS")				
 				for(k = 0; k < n; k++) {
-
 					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j);
 				}
 			}
