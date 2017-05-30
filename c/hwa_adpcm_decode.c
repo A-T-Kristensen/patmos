@@ -231,6 +231,8 @@ int main()
 
 #else
 
+	printf("Benchmarking \n");	
+
 	return adpcm_main();
 
 #endif	

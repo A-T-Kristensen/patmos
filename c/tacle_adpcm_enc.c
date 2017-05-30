@@ -770,12 +770,6 @@ int main(void)
 
 #endif
 
-	int i;
-
-	for(i = 0; i < TEST_SIZE; i++){
-		printf("%d\n", adpcm_enc_compressed[i]);
-	}
-
 	//return adpcm_enc_return(); // For some reason, this gives an error on Patmos
 								// but if it compiled on my computer, it is correct!
 

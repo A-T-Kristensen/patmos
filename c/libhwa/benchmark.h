@@ -3,6 +3,6 @@
 #define DIM 	32
 #define SIZE	1024
 #define VECSIZE 0
-#define NBANKS 	1
+#define NBANKS 	4
 #define WCET	0
 typedef float mat_type;

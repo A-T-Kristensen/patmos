@@ -132,7 +132,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Check results
 
-	//err_cnt = compare_arrays_uncached(&test_matrix->hw_result, sw_result);
+	err_cnt = compare_arrays_uncached(&test_matrix->hw_result, sw_result);
 
 	print_benchmark(return_compute, return_transfer);
 

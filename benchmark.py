@@ -431,7 +431,8 @@ def fir2dim(synth = 0, hw_test = 0):
 	# Parameter space to explore for filterbank
 
 	appList = ["hwa_fir2dim", "hwa_fir2dim_spm", 
-			   "hwa_fir2dim_uncached", "tacle_fir2dim"] 
+			   "hwa_fir2dim_uncached", "tacle_fir2dim", 
+			   "tacle_fir2dim_spm", "tacle_fir2dim_uncached"] 
 
 	# Arrays for data storage
 
@@ -553,12 +554,12 @@ def adpcm(synth = 0, hw_test = 0):
 def main(): 
 
 	#matmul(synth = 0, hw_test = 0)
-	minver(synth = 0, hw_test = 0)
-	filterbank(synth = 0, hw_test = 0)
-	fir2dim(synth = 0, hw_test = 0)
-	adpcm(synth = 0, hw_test = 0)
+	#minver(synth = 0, hw_test = 0)
+	#filterbank(synth = 0, hw_test = 0)
+	#fir2dim(synth = 0, hw_test = 0)
+	#adpcm(synth = 0, hw_test = 0)
 
 	clean_up()
 
 if __name__ == "__main__":
-	sys.exit(main())    
+	sys.exit(main())
