@@ -148,7 +148,7 @@ def matmul(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for matrix multiplication
@@ -183,7 +183,8 @@ def matmul(synth = 0, hw_test = 0):
 
 					app = appList[g]
 					valsDefine = [dimList[k], dimList[k], 
-								  dimList[k], nbanksList[j]]                    
+								  dimList[k], nbanksList[j], 
+								  dimList[k]*dimList[k], 0, 0] # Vectors not used
 
 					print("\n*******************************************")
 					print("Matmul: type = %s, NBANKS = %d, DIM = %d\n" \
@@ -254,7 +255,7 @@ def minver(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for matrix inversion
@@ -288,7 +289,8 @@ def minver(synth = 0, hw_test = 0):
 
 					app = appList[g]
 					valsDefine = [dimList[k], dimList[k], 
-								  dimList[k], nbanksList[j]]                    
+								  dimList[k], nbanksList[j], 
+								  dimList[k]*dimList[k], 0, 0] #Vectors not used
 
 					print("\n*******************************************")
 					print("Minver: type = %s, NBANKS = %d, DIM = %d\n" \
@@ -357,7 +359,7 @@ def filterbank(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE" , "VECSIZE", "WCET"]
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for filterbank
@@ -382,7 +384,7 @@ def filterbank(synth = 0, hw_test = 0):
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [32, 8, 32, 4]                    
+		valsDefine = [32, 8, 32, 4, 256, 256, 0]                    
 
 		print("\n*******************************************")
 		print("Filterbank: type = %s, NBANKS = %d\n" \
@@ -423,7 +425,7 @@ def fir2dim(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for filterbank
@@ -447,7 +449,8 @@ def fir2dim(synth = 0, hw_test = 0):
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [1, 1, 1, 2] # It only uses the last value                
+		valsDefine = [1, 1, 1, 2, 61, 61, 0] #NBANKS is the only one really used
+										 #VECSIZE is for WCET analysis            
 
 		print("\n*******************************************")
 		print("Fir2dim: type = %s, NBANKS = %d\n" \
@@ -481,7 +484,71 @@ def fir2dim(synth = 0, hw_test = 0):
 			totalArray[0][i] = total_time 
 
 	store_benchmark("fir2dim", appList, computeArray, 
-					transferArray, totalArray, csv_rows)	
+					transferArray, totalArray, csv_rows)
+
+def adpcm(synth = 0, hw_test = 0):
+
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
+
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsTypes   = ["mat_type;","vec_type;"]
+
+	# Parameter space to explore for filterbank
+
+	appList = ["hwa_adpcm_encode", "hwa_adpcm_decode", 
+			   "tacle_adpcm_enc", "tacle_adpcm_dec"] 
+
+	# Arrays for data storage
+
+	computeArray = np.zeros([1, len(appList)])
+	transferArray = np.zeros([1, len(appList)]) 
+	totalArray = np.zeros([1, len(appList)]) 
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([2, 1], dtype = "S10") 
+
+	for i in range(0, len(appList)):    # Iterate over apps      
+
+		# Get the current iteration options      
+
+		app = appList[i]
+		valsDefine = [3, 3, 3, 3, 3, 3, 0] #NBANKS is the only one really used
+										 #VECSIZE is for WCET analysis            
+		print("\n*******************************************")
+		print("ADPCM: type = %s, NBANKS = %d\n" \
+			  % ("float", 2))
+		print("APP: %s" % (app))                    
+		print("*******************************************\n")                
+
+		# Update the benchmark.h file
+
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+
+		# Project name string
+		
+		project = ('adpcm')
+
+		[compute_time, transfer_time, retries] \
+			= run_benchmark(project, app, synth, hw_test)
+
+		if retries > 0:
+
+			# Success
+
+			print("#cycles computation: %d" % (compute_time))
+			print("#cycles transfer: %d" % (transfer_time))
+
+			total_time = transfer_time + compute_time
+
+			computeArray[0][i] = compute_time
+			transferArray[0][i] = transfer_time
+			totalArray[0][i] = total_time 
+
+	store_benchmark("adpcm", appList, computeArray, 
+					transferArray, totalArray, csv_rows)		
 
 def main(): 
 
@@ -489,6 +556,7 @@ def main():
 	minver(synth = 0, hw_test = 0)
 	filterbank(synth = 0, hw_test = 0)
 	fir2dim(synth = 0, hw_test = 0)
+	adpcm(synth = 0, hw_test = 0)
 
 	clean_up()
 

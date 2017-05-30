@@ -161,7 +161,16 @@ $(BUILDDIR)/hwa_matmul.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa
 $(BUILDDIR)/hwa_adpcm_encode.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/hwa_adpcm_decode.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 
+$(BUILDDIR)/tacle_adpcm_enc.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/tacle_adpcm_dec.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+
 $(BUILDDIR)/hwa_fir2dim.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/hwa_fir2dim_spm.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/hwa_fir2dim_uncached.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+
+$(BUILDDIR)/tacle_fir2dim.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/tacle_fir2dim_spm.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/tacle_fir2dim_uncached.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 
 $(BUILDDIR)/hwa_filterbank.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/hwa_filterbank_spm.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
