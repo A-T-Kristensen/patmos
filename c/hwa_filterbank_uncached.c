@@ -79,8 +79,8 @@ int filterbank_main(void)
 
 	int i, j;
 
-	unsigned long long start_compute, stop_compute, return_compute;
-	unsigned long long start_transfer, stop_transfer, return_transfer;
+	unsigned long long start_compute, stop_compute, return_compute = 0;
+	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
 
 	printf("Benchmarking \n");
 

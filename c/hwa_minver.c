@@ -67,8 +67,8 @@ int minver_main()
 	int err_cnt = 0;
 	mat_type eps = 1.0e-6;
 
-	unsigned long long start_compute, stop_compute, return_compute;
-	unsigned long long start_transfer, stop_transfer, return_transfer;
+	unsigned long long start_compute, stop_compute, return_compute = 0;
+	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);

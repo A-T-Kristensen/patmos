@@ -1,0 +1,15 @@
+---
+- analysis-entry: adpcm_enc_main
+  source: platin
+  cycles: 65143
+  cache-max-cycles-instr: 14691
+  cache-min-hits-instr: 148
+  cache-max-misses-instr: 12
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 46812
+  cache-min-hits-data: 0
+  cache-max-misses-data: 400
+  cache-max-stores-data: 164
+  cache-unknown-address-data: 564
+  cache-max-cycles: 61503

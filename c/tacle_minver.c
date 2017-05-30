@@ -170,7 +170,7 @@ int main(void)
 
 #else
 
-	unsigned long long start_cycle, stop_cycle, return_cycles;
+	unsigned long long start_cycle, stop_cycle, return_cycles = 0;
 
 	printf("Benchmarking \n");
 

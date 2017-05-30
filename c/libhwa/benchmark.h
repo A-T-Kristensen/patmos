@@ -4,5 +4,5 @@
 #define SIZE	9
 #define VECSIZE 3
 #define NBANKS 	3
-#define WCET	0
+#define WCET	1
 typedef int mat_type;

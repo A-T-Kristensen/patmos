@@ -168,9 +168,10 @@ void _Pragma("entrypoint") matrix1_main(void)
 int main(void)
 {
 
+	matrix1_init();	
+
 #if(WCET)
 
-	matrix1_init();
 	matrix1_main();
 
 #else
@@ -179,8 +180,6 @@ int main(void)
 	static unsigned long long return_cycles = 0;
 
 	printf("Benchmarking \n");
-
-	matrix1_init();
 
 	start_cycle = get_cpu_cycles();
 

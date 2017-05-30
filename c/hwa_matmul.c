@@ -61,8 +61,8 @@ int matmul_main()
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	unsigned long long start_compute, stop_compute, return_compute;
-	unsigned long long start_transfer, stop_transfer, return_transfer;
+	unsigned long long start_compute, stop_compute, return_compute = 0;
+	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
 
 	// Division factor, a and b shares most banks
 
@@ -121,7 +121,6 @@ int matmul_main()
 
 	return err_cnt;
 }
-
 
 int main()
 {

@@ -4,8 +4,8 @@ SAVEDIR?=$(CURDIR)/analysis
 # PROJECT and FUNCTION should just go into a python script as arguments to
 # make: "make PROJECT?=hwa_matmul wcet"
 
-PROJECT?=tacle_minver_uncached
-FUNCTION?=minver_minver
+PROJECT?=tacle_adpcm_enc
+FUNCTION?=adpcm_enc_main
 
 #Delay to global memory per request in cycles
 T_DELAY_CYCLES?=0
