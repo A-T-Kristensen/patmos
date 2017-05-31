@@ -588,6 +588,8 @@ def store_wcet_benchmark(bench_name, appList, dataArray, csv_rows):
 	dataOut = np.vstack((appList, dataArray))
 	dataOut = np.hstack((csv_rows, dataOut))
 
+	os.remove(bench_name + '_wcet.csv')	# Delete old
+
 	np.savetxt(bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 	
 
 
@@ -597,8 +599,11 @@ def matmul_wcet():
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
-	keywordsTypes   = ["mat_type;","vec_type;"]    
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
+	keywordsTypes   = ["mat_type;","vec_type;"]
 
 	# Parameter space to explore for matrix multiplication
 
@@ -633,9 +638,14 @@ def matmul_wcet():
 					# Get the current iteration options      
 
 					app = appList[g]
+					factor = int(nbanksList[j]/2)
+
 					valsDefine = [dimList[k], dimList[k], 
 								  dimList[k], nbanksList[j], 
-								  dimList[k]*dimList[k], 0, 1] # Vectors not used
+								  dimList[k]*dimList[k], 0, 1, # Vectors not used
+								  factor, int(dimList[k]/factor),
+								  1, dimList[k],
+								  0, 0, 0, 0]
 
 					print("\n*******************************************")
 					print("Matmul: type = %s, NBANKS = %d, DIM = %d\n" \
@@ -681,7 +691,10 @@ def minver_wcet():
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for matrix inversion
@@ -716,9 +729,13 @@ def minver_wcet():
 					# Get the current iteration options      
 
 					app = appList[g]
+
 					valsDefine = [dimList[k], dimList[k], 
 								  dimList[k], nbanksList[j], 
-								  dimList[k]*dimList[k], 0, 1] #Vectors not used
+								  dimList[k]*dimList[k], 0, 1, #Vectors not used
+								  nbanksList[j], int(dimList[k]/nbanksList[j]),
+								  nbanksList[j], int(dimList[k]/nbanksList[j]),
+								  0, 0, 0, 0] 
 
 					print("\n*******************************************")
 					print("Minver: type = %s, NBANKS = %d, DIM = %d\n" \
@@ -760,7 +777,10 @@ def filterbank_wcet():
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE" , "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for filterbank
@@ -787,7 +807,9 @@ def filterbank_wcet():
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [32, 8, 32, 4, 256, 256, 1]                    
+		valsDefine = [32, 8, 32, 4, 256, 256, 1,
+						1, 8, 1, 8,
+						1, 256, 1, 256]                    
 
 		print("\n*******************************************")
 		print("Filterbank WCET: type = %s, NBANKS = %d\n" \
@@ -811,7 +833,10 @@ def fir2dim_wcet():
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
 	keywordsTypes   = ["mat_type;","vec_type;"]
 
 	# Parameter space to explore for filterbank
@@ -839,8 +864,12 @@ def fir2dim_wcet():
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [1, 1, 1, 2, 61, 61, 1] #NBANKS is the only one really used
-										 #VECSIZE is for WCET analysis    
+		#NBANKS is the only one really used
+		 #VECSIZE is for WCET analysis 
+
+		valsDefine = [1, 1, 1, 2, 61, 61, 1,
+						0, 0, 0, 0,
+						1, 61, 1, 16] 				   
 
 		print("\n*******************************************")
 		print("Fir2Dim: type = %s, NBANKS = %d\n" \
@@ -868,7 +897,7 @@ def main():
 
 	#filterbank_wcet()
 	#fir2dim_wcet()
-	matmul_wcet()
+	#matmul_wcet()
 	#minver_wcet()
 
 	clean_up()
