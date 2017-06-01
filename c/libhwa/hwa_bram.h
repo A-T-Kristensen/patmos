@@ -52,7 +52,7 @@ void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS],
 
 void write_array(mat_type array[ROWS][COLS], int n, int m,
 				 int factor, int array_bank0,
-				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset);
 
 void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					 int m, int factor, int array_bank0,
@@ -85,7 +85,7 @@ void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 void read_array(mat_type array[ROWS][COLS], int n, int m,
 				int factor, int array_bank0,
 				volatile _IODEV mat_type** bank_ptr_array,
-				int wr_dim);
+				int wr_dim, int offset);
 
 void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					int m, int factor, int array_bank0,

@@ -145,6 +145,8 @@ $(BUILDDIR)/wcet-hwa_minver_uncached.elf: libminver/minver_init_uncached.c libmi
 $(BUILDDIR)/hwa_minver.elf: libminver/minver.c libminver/minver.h libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/wcet-hwa_minver.elf: libminver/minver.c libminver/minver.h libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
 
+$(BUILDDIR)/hwa_minver_2buffer.elf: libminver/minver.c libminver/minver.h libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
+
 $(BUILDDIR)/tacle_minver_std.elf: libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
 #$(BUILDDIR)/wcet-tacle_minver_std.elf: libminver/minver_init.c libminver/minver_init.h libhwa/benchmark.h libhwa/hwa_lib.h
 	

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="ddr2_ctrl_synth_1" LaunchDir="/home/patmos/t-crest/patmos/hardware/vivado/minver_float_1b_32x32_buffer/minver_float.runs/ddr2_ctrl_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="clk_manager_synth_1" LaunchDir="/home/patmos/t-crest/patmos/hardware/vivado/minver_float_1b_32x32_buffer/minver_float.runs/clk_manager_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/patmos/t-crest/patmos/hardware/vivado/minver_float_1b_32x32_buffer/minver_float.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="ddr2_ctrl_synth_1"/>
+		<Parent Id="clk_manager_synth_1"/>
+	</Run>
+</Runs>
+

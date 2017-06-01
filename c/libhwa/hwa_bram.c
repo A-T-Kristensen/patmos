@@ -25,7 +25,7 @@ void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS],
 
 void write_array(mat_type array[ROWS][COLS], int n, int m,
 				 int factor, int array_bank0,
-				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim)
+				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset)
 {
 
 	int i, j, k;
@@ -37,7 +37,7 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 			for(j = 0; j < m; j++) {
 				_Pragma("loopbound min ARRAY_WR_DIV max ARRAY_WR_DIV")
 				for(k = 0; k < n/factor; k++) {
-					*(bank_ptr_array[i + array_bank0] + k + m * j / factor)
+					*(bank_ptr_array[i + array_bank0] + k + m * j / factor + offset)
 						= array[j][k + i * n / factor];
 				}
 			}
@@ -51,7 +51,7 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 			for(j = 0; j < m/factor; j++) {
 				_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
-					*(bank_ptr_array[i + array_bank0] + k + n * j)
+					*(bank_ptr_array[i + array_bank0] + k + n * j + offset)
 						= array[j + i * m / factor][k];
 				}
 			}
@@ -134,7 +134,7 @@ void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 
 void read_array(mat_type array[ROWS][COLS], int n, int m, int factor,
 				int array_bank0, volatile _IODEV mat_type** bank_ptr_array,
-				int wr_dim)
+				int wr_dim, int offset)
 {
 
 	int i, j, k;
@@ -146,7 +146,7 @@ void read_array(mat_type array[ROWS][COLS], int n, int m, int factor,
 			for(j = 0; j < m; j++) {
 				_Pragma("loopbound min ARRAY_RD_DIV max ARRAY_RD_DIV")
 				for(k = 0; k < n/factor; k++) {
-					array[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor);
+					array[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor + offset);
 				}
 			}
 		}
@@ -159,7 +159,7 @@ void read_array(mat_type array[ROWS][COLS], int n, int m, int factor,
 			for(j = 0; j < m/factor; j++) {
 				_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
-					array[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j);
+					array[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j + offset);
 				}
 			}
 		}
