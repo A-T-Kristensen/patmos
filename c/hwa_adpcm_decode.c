@@ -99,7 +99,6 @@ void init(int test_data[MAX_SIZE])
 	int x = 0;
 
 	/* read in amplitude and frequency for test data */
-	//j = 100;
 	j=10;
 	f = 20000;
 
@@ -109,7 +108,6 @@ void init(int test_data[MAX_SIZE])
 	   add the fact: xxmain_0:[]: */
 	for(i = 0 ; i < TEST_SIZE ; i++) {
 		test_data[i] = (int) j * adpcm_cos(f * PI * i);
-		//test_data[i] = (int) j*sin(2*f*i*3.14159265);
 
 		test_data[i] += x;
 	}
@@ -149,10 +147,12 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
+	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array, 0);	
+
 	*(hls_ptr + 1) = 1; 
 	*hls_ptr = 1;
 
-	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array);
+	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array, 0);
 
 	return dec_return(dec_result);
 }
@@ -170,7 +170,7 @@ int adpcm_main()
 
 	start_transfer = get_cpu_cycles();	
 	
-	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
+	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array, 0);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
@@ -188,7 +188,7 @@ int adpcm_main()
 
 	start_transfer = get_cpu_cycles();	
 
-	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array);
+	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array, 0);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	

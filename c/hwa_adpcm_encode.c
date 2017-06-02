@@ -144,14 +144,14 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array);
+	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array, 0);
 
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
 
 	*hls_ptr = 1;	
 	
-	read_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
+	read_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array, 0);
 
 	return enc_return(compressed);
 }
@@ -172,7 +172,7 @@ int adpcm_main()
 
 	start_transfer = get_cpu_cycles();
 
-	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array);
+	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array, 0);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
@@ -191,7 +191,7 @@ int adpcm_main()
 
 	start_transfer = get_cpu_cycles();	
 	
-	read_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
+	read_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array, 0);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	

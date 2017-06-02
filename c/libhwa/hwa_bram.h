@@ -56,12 +56,12 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 
 void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					 int m, int factor, int array_bank0,
-					 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+					 volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset);
 
 void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 						  int n, int m, int factor, int array_bank0,
 						  volatile _IODEV mat_type** bank_ptr_array,
-						  int wr_dim);
+						  int wr_dim, int offset);
 
 /*
 	NAME: read_array()
@@ -89,11 +89,11 @@ void read_array(mat_type array[ROWS][COLS], int n, int m,
 
 void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					int m, int factor, int array_bank0,
-					volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+					volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset);
 
 void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 						 int n, int m, int factor, int array_bank0,
-						 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
+						 volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset);
 
 /*
 	NAME: write_vector()
@@ -113,15 +113,15 @@ void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
  */
 
 void write_vector(mat_type vec[], int length, int factor, int vec_bank0,
-				  volatile _IODEV mat_type** bank_ptr_array);
+				  volatile _IODEV mat_type** bank_ptr_array, int offset);
 
 void write_vector_spm(volatile _SPM mat_type(*vec)[], int length,
 					  int factor, int vec_bank0,
-					  volatile _IODEV mat_type** bank_ptr_array);
+					  volatile _IODEV mat_type** bank_ptr_array, int offset);
 
 void write_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
 						   int factor, int vec_bank0,
-						   volatile _IODEV mat_type** bank_ptr_array);
+						   volatile _IODEV mat_type** bank_ptr_array, int offset);
 
 /*
 	NAME: read_vector()
@@ -141,14 +141,14 @@ void write_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
  */
 
 void read_vector(mat_type vec[], int length, int factor, int vec_bank0,
-				 volatile _IODEV mat_type** bank_ptr_array);
+				 volatile _IODEV mat_type** bank_ptr_array, int offset);
 
 void read_vector_spm(volatile _SPM mat_type(*vec)[], int length,
 					 int factor, int vec_bank0,
-					 volatile _IODEV mat_type** bank_ptr_array);
+					 volatile _IODEV mat_type** bank_ptr_array, int offset);
 
 void read_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
 						  int factor, int vec_bank0,
-						  volatile _IODEV mat_type** bank_ptr_array);
+						  volatile _IODEV mat_type** bank_ptr_array, int offset);
 
 #endif /* __HWA_BRAM_H__ */

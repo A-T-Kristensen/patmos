@@ -59,12 +59,12 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
 
-	write_vector_spm(&spm_filter->r, 256, 1, 0, bank_ptr_array);
-	write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
-	write_array_spm(&spm_filter->H, 32, 8, 1, 2, bank_ptr_array, 1);
-	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1);
+	write_vector_spm(&spm_filter->r, 256, 1, 0, bank_ptr_array, 0);
+	write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array, 0);
+	write_array_spm(&spm_filter->H, 32, 8, 1, 2, bank_ptr_array, 1, 0);
+	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1, 0);
 
-	read_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
+	read_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array, 0);
 
 	return (int)(spm_filter->y[0]) - 9408;
 }
@@ -88,10 +88,10 @@ int filterbank_main(void)
 
 	start_transfer = get_cpu_cycles();
 
-	write_vector_spm(&spm_filter->r, 256, 1, 0, bank_ptr_array);
-	write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
-	write_array_spm(&spm_filter->H, 32, 8, 1, 2, bank_ptr_array, 1);
-	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1);
+	write_vector_spm(&spm_filter->r, 256, 1, 0, bank_ptr_array, 0);
+	write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array, 0);
+	write_array_spm(&spm_filter->H, 32, 8, 1, 2, bank_ptr_array, 1, 0);
+	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1, 0);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -116,7 +116,7 @@ int filterbank_main(void)
 
 	start_transfer = get_cpu_cycles();
 
-	read_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
+	read_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array, 0);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;

@@ -61,7 +61,7 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 
 void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					 int m, int factor, int array_bank0,
-					 volatile _IODEV mat_type** bank_ptr_array, int wr_dim)
+					 volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset)
 {
 
 	int i, j, k;
@@ -73,7 +73,7 @@ void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 			for(j = 0; j < m; j++) {
 				_Pragma("loopbound min ARRAY_WR_DIV max ARRAY_WR_DIV")
 				for(k = 0; k < n/factor; k++) {
-					*(bank_ptr_array[i + array_bank0] + k + m * j / factor)
+					*(bank_ptr_array[i + array_bank0] + k + m * j / factor + offset)
 						= (*array)[j][k + i * n / factor];
 				}
 			}
@@ -87,7 +87,7 @@ void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 			for(j = 0; j < m/factor; j++) {
 			_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
-					*(bank_ptr_array[i + array_bank0] + k + n*j)
+					*(bank_ptr_array[i + array_bank0] + k + n*j + offset)
 						= (*array)[j + i * m / factor][k];
 				}
 			}
@@ -98,7 +98,7 @@ void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 						  int n, int m, int factor, int array_bank0,
 						  volatile _IODEV mat_type** bank_ptr_array,
-						  int wr_dim)
+						  int wr_dim, int offset)
 {
 
 	int i, j, k;
@@ -110,7 +110,7 @@ void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 			for(j = 0; j < m; j++) {
 				_Pragma("loopbound min ARRAY_WR_DIV max ARRAY_WR_DIV")
 				for(k = 0; k < n/factor; k++) {
-					*(bank_ptr_array[i+array_bank0] + k + m * j / factor)
+					*(bank_ptr_array[i+array_bank0] + k + m * j / factor + offset)
 						= (*array)[j][k + i * n / factor];
 				}
 			}
@@ -124,7 +124,7 @@ void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 			for(j = 0; j < m/factor; j++) {
 			_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
-					*(bank_ptr_array[i + array_bank0] + k + n * j)
+					*(bank_ptr_array[i + array_bank0] + k + n * j + offset)
 						= (*array)[j + i * m / factor][k];
 				}
 			}
@@ -168,7 +168,7 @@ void read_array(mat_type array[ROWS][COLS], int n, int m, int factor,
 
 void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					int m, int factor, int array_bank0,
-					volatile _IODEV mat_type** bank_ptr_array, int wr_dim)
+					volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset)
 {
 
 	int i, j, k;
@@ -180,7 +180,7 @@ void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 			for(j = 0; j < m; j++) {
 				_Pragma("loopbound min ARRAY_RD_DIV max ARRAY_RD_DIV")
 				for(k = 0; k < n/factor; k++) {
-					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor);
+					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i + array_bank0] + k + m * j / factor + offset);
 				}
 			}
 		}
@@ -193,7 +193,7 @@ void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 			for(j = 0; j < m/factor; j++) {
 				_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
-					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n*j) ;
+					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n*j + offset) ;
 				}
 			}
 		}
@@ -202,7 +202,7 @@ void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 
 void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 						 int n, int m, int factor, int array_bank0,
-						 volatile _IODEV mat_type** bank_ptr_array, int wr_dim)
+						 volatile _IODEV mat_type** bank_ptr_array, int wr_dim, int offset)
 {
 
 	int i, j, k;
@@ -214,7 +214,7 @@ void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 			for(j = 0; j < m; j++) {
 				_Pragma("loopbound min ARRAY_RD_DIV max ARRAY_RD_DIV")
 				for(k = 0; k < n/factor; k++) {
-					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i+array_bank0] + k + m * j / factor);
+					(*array)[j][k + i * n / factor] = *(bank_ptr_array[i+array_bank0] + k + m * j / factor + offset);
 				}
 			}
 		}
@@ -227,7 +227,7 @@ void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 			for(j = 0; j < m/factor; j++) {
 				_Pragma("loopbound min COLS max COLS")				
 				for(k = 0; k < n; k++) {
-					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j);
+					(*array)[j + i * m / factor][k] = *(bank_ptr_array[i + array_bank0] + k + n * j + offset);
 				}
 			}
 		}
@@ -235,7 +235,7 @@ void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 }
 
 void write_vector(mat_type vec[], int length, int factor, int vec_bank0,
-				  volatile _IODEV mat_type** bank_ptr_array)
+				  volatile _IODEV mat_type** bank_ptr_array, int offset)
 {
 
 	int i, j;
@@ -244,13 +244,13 @@ void write_vector(mat_type vec[], int length, int factor, int vec_bank0,
 	for(i = 0; i < factor; i++) {
 		_Pragma("loopbound min VEC_WR_DIV max VEC_WR_DIV")
 		for(j = 0; j < length/factor; j++) {
-			*(bank_ptr_array[i + vec_bank0] + j) = vec[j + i * length / factor];
+			*(bank_ptr_array[i + vec_bank0] + j + offset) = vec[j + i * length / factor];
 		}
 	}
 }
 
 void write_vector_spm(volatile _SPM mat_type(*vec)[], int length, int factor,
-					  int vec_bank0, volatile _IODEV mat_type** bank_ptr_array)
+					  int vec_bank0, volatile _IODEV mat_type** bank_ptr_array, int offset)
 {
 
 	int i, j;
@@ -259,14 +259,14 @@ void write_vector_spm(volatile _SPM mat_type(*vec)[], int length, int factor,
 	for(i = 0; i < factor; i++) {
 		_Pragma("loopbound min VEC_WR_DIV max VEC_WR_DIV")
 		for(j = 0; j < length/factor; j++) {
-			*(bank_ptr_array[i + vec_bank0] + j) = (*vec)[j + i * length / factor];
+			*(bank_ptr_array[i + vec_bank0] + j + offset) = (*vec)[j + i * length / factor];
 		}
 	}
 }
 
 void write_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
 						   int factor, int vec_bank0,
-						   volatile _IODEV mat_type** bank_ptr_array)
+						   volatile _IODEV mat_type** bank_ptr_array, int offset)
 {
 
 	int i, j;
@@ -275,13 +275,13 @@ void write_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
 	for(i = 0; i < factor; i++) {
 		_Pragma("loopbound min VEC_WR_DIV max VEC_WR_DIV")
 		for(j = 0; j < length/factor; j++) {
-			*(bank_ptr_array[i + vec_bank0] + j) = (*vec)[j + i * length / factor];
+			*(bank_ptr_array[i + vec_bank0] + j + offset) = (*vec)[j + i * length / factor];
 		}
 	}
 }
 
 void read_vector(mat_type vec[], int length, int factor, int vec_bank0,
-				 volatile _IODEV mat_type** bank_ptr_array)
+				 volatile _IODEV mat_type** bank_ptr_array, int offset)
 {
 
 	int i, j;
@@ -290,14 +290,14 @@ void read_vector(mat_type vec[], int length, int factor, int vec_bank0,
 	for(i = 0; i < factor; i++) {
 		_Pragma("loopbound min VEC_RD_DIV max VEC_RD_DIV")		
 		for(j = 0; j < length/factor; j++) {
-			vec[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j);
+			vec[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j + offset);
 		}
 	}
 }
 
 void read_vector_spm(volatile _SPM mat_type(*vec)[], int length,
 					 int factor, int vec_bank0,
-					 volatile _IODEV mat_type** bank_ptr_array)
+					 volatile _IODEV mat_type** bank_ptr_array, int offset)
 {
 
 	int i, j;
@@ -307,14 +307,14 @@ void read_vector_spm(volatile _SPM mat_type(*vec)[], int length,
 		_Pragma("loopbound min VEC_RD_DIV max VEC_RD_DIV")				
 		for(j = 0; j < length/factor; j++) {
 
-			(*vec)[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j);
+			(*vec)[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j + offset);
 		}
 	}
 }
 
 void read_vector_uncached(volatile _UNCACHED  mat_type(*vec)[], int length,
 						  int factor, int vec_bank0,
-						  volatile _IODEV mat_type** bank_ptr_array)
+						  volatile _IODEV mat_type** bank_ptr_array, int offset)
 {
 
 	int i, j;
@@ -324,7 +324,7 @@ void read_vector_uncached(volatile _UNCACHED  mat_type(*vec)[], int length,
 		_Pragma("loopbound min VEC_RD_DIV max VEC_RD_DIV")						
 		for(j = 0; j < length/factor; j++) {
 
-			(*vec)[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j);
+			(*vec)[j + i * length / factor] = *(bank_ptr_array[i + vec_bank0] + j + offset);
 		}
 	}
 }
