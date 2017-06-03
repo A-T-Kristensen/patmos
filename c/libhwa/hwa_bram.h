@@ -3,7 +3,7 @@
 	documentation for the functions in hwa_bram.c
 
 	These functions are used to write to the BRAM and generate
-	an array of pointers to the BRAMs.
+	pointers to the BRAMs.
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: DTU, BSD License
@@ -28,7 +28,7 @@
 
  */
 
-void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[],
+void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS],
 			   unsigned long nbanks);
 
 /*
@@ -52,18 +52,16 @@ void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[],
 
 void write_array(mat_type array[ROWS][COLS], int n, int m,
 				 int factor, int array_bank0,
-				 volatile _IODEV mat_type** bank_ptr_array, 
-				 int wr_dim, int offset);
+				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 void write_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					 int m, int factor, int array_bank0,
-					 volatile _IODEV mat_type** bank_ptr_array, 
-					 int wr_dim, int offset);
+					 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 						  int n, int m, int factor, int array_bank0,
 						  volatile _IODEV mat_type** bank_ptr_array,
-						  int wr_dim, int offset);
+						  int wr_dim);
 
 /*
 	NAME: read_array()
@@ -87,17 +85,15 @@ void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 void read_array(mat_type array[ROWS][COLS], int n, int m,
 				int factor, int array_bank0,
 				volatile _IODEV mat_type** bank_ptr_array,
-				int wr_dim, int offset);
+				int wr_dim);
 
 void read_array_spm(volatile _SPM mat_type(*array)[ROWS][COLS], int n,
 					int m, int factor, int array_bank0,
-					volatile _IODEV mat_type** bank_ptr_array, 
-					int wr_dim, int offset);
+					volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 						 int n, int m, int factor, int array_bank0,
-						 volatile _IODEV mat_type** bank_ptr_array, 
-						 int wr_dim, int offset);
+						 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 
 /*
 	NAME: write_vector()
@@ -117,16 +113,15 @@ void read_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
  */
 
 void write_vector(mat_type vec[], int length, int factor, int vec_bank0,
-				  volatile _IODEV mat_type** bank_ptr_array, int offset);
+				  volatile _IODEV mat_type** bank_ptr_array);
 
 void write_vector_spm(volatile _SPM mat_type(*vec)[], int length,
 					  int factor, int vec_bank0,
-					  volatile _IODEV mat_type** bank_ptr_array, int offset);
+					  volatile _IODEV mat_type** bank_ptr_array);
 
 void write_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
 						   int factor, int vec_bank0,
-						   volatile _IODEV mat_type** bank_ptr_array, 
-						   int offset);
+						   volatile _IODEV mat_type** bank_ptr_array);
 
 /*
 	NAME: read_vector()
@@ -146,15 +141,14 @@ void write_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
  */
 
 void read_vector(mat_type vec[], int length, int factor, int vec_bank0,
-				 volatile _IODEV mat_type** bank_ptr_array, int offset);
+				 volatile _IODEV mat_type** bank_ptr_array);
 
 void read_vector_spm(volatile _SPM mat_type(*vec)[], int length,
 					 int factor, int vec_bank0,
-					 volatile _IODEV mat_type** bank_ptr_array, int offset);
+					 volatile _IODEV mat_type** bank_ptr_array);
 
 void read_vector_uncached(volatile _UNCACHED mat_type(*vec)[], int length,
 						  int factor, int vec_bank0,
-						  volatile _IODEV mat_type** bank_ptr_array, 
-						  int offset);
+						  volatile _IODEV mat_type** bank_ptr_array);
 
 #endif /* __HWA_BRAM_H__ */

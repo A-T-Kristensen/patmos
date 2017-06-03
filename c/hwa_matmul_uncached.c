@@ -41,23 +41,23 @@ int _Pragma("entrypoint") matmul_main_wcet()
 #if(NBANKS==3)
 
 	write_array_uncached(&test_matrix->mat_a, DIM, DIM,
-						 factor, 0, bank_ptr_array, 1, 0);
+						 factor, 0, bank_ptr_array, 1);
 
 #else
 
 	write_array_uncached(&test_matrix->mat_a, DIM, DIM,
-						 factor, 0, bank_ptr_array, 2, 0);
+						 factor, 0, bank_ptr_array, 2);
 
 #endif
 
 	write_array_uncached(&test_matrix->mat_b, DIM, DIM,
-						 factor, factor, bank_ptr_array, 1, 0);
+						 factor, factor, bank_ptr_array, 1);
 
 	*hls_ptr = 1;
 	*hls_ptr;	
 
 	read_array_uncached(&test_matrix->hw_result, DIM, DIM,
-						1, NBANKS-1, bank_ptr_array, 1, 0);
+						1, NBANKS-1, bank_ptr_array, 1);
 
 	return 0;
 
@@ -93,17 +93,17 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 #if(NBANKS==3)
 
 	write_array_uncached(&test_matrix->mat_a, DIM, DIM,
-						 factor, 0, bank_ptr_array, 1, 0);
+						 factor, 0, bank_ptr_array, 1);
 
 #else
 
 	write_array_uncached(&test_matrix->mat_a, DIM, DIM,
-						 factor, 0, bank_ptr_array, 2, 0);
+						 factor, 0, bank_ptr_array, 2);
 
 #endif
 
 	write_array_uncached(&test_matrix->mat_b, DIM, DIM,
-						 factor, factor, bank_ptr_array, 1, 0);
+						 factor, factor, bank_ptr_array, 1);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -126,7 +126,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	start_transfer = get_cpu_cycles();
 
 	read_array_uncached(&test_matrix->hw_result, DIM, DIM,
-						1, NBANKS-1, bank_ptr_array, 1, 0);
+						1, NBANKS-1, bank_ptr_array, 1);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;

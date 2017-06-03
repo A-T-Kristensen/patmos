@@ -158,6 +158,9 @@ $(BUILDDIR)/wcet-tacle_minver_uncached.elf: libminver/minver_init_uncached.c lib
 
 #This seems to work without additions for _spm and _uncached versions, so maybe it is not needed
 $(BUILDDIR)/hwa_matmul.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/wcet-hwa_matmul.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/wcet-hwa_matmul.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/wcet-hwa_matmul.elf: libmatmul/matmul_hwa.c libmatmul/matmul_hwa.h libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 
 $(BUILDDIR)/hwa_adpcm_encode.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/hwa_adpcm_decode.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h

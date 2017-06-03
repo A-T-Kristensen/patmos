@@ -37,11 +37,11 @@ int _Pragma("entrypoint") minver_main_wcet(mat_type minver_hw_i[DIM][DIM])
 
 #if(NBANKS>1)
 
-	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2, 0);
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
 #else
 
-	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1, 0);
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);
 
 #endif
 
@@ -50,11 +50,11 @@ int _Pragma("entrypoint") minver_main_wcet(mat_type minver_hw_i[DIM][DIM])
 
 #if(NBANKS>1)
 
-	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2, 0);
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
 #else
 
-	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1, 0);
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);
 
 #endif
 
@@ -88,11 +88,11 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 
 #if(NBANKS>1)
 
-	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2, 0);
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
 #else
 
-	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1, 0);
+	write_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);
 
 #endif
 
@@ -103,11 +103,11 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 
 #if(NBANKS>1)
 
-	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2, 0);
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 2);
 
 #else
 
-	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1, 0);
+	read_array(minver_hw_i, DIM, DIM, NBANKS, 0, bank_ptr_array, 1);
 
 #endif
 

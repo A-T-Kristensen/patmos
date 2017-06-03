@@ -70,15 +70,15 @@ int _Pragma("entrypoint") filterbank_main_wcet(mat_type r[256],
 	bank_ptrs(bank_ptr_array, NBANKS);
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector(r, 256, 1, 0, bank_ptr_array, 0);
-	write_vector(y, 256, 1, 1, bank_ptr_array, 0);
-	write_array(H, 32, 8, 1, 2, bank_ptr_array, 1, 0);
-	write_array(F, 32, 8, 1, 3, bank_ptr_array, 1, 0);
+	write_vector(r, 256, 1, 0, bank_ptr_array);
+	write_vector(y, 256, 1, 1, bank_ptr_array);
+	write_array(H, 32, 8, 1, 2, bank_ptr_array, 1);
+	write_array(F, 32, 8, 1, 3, bank_ptr_array, 1);
 
 	*hls_ptr = 1;
 	*hls_ptr;
 	
-	read_vector(y, 256, 1, 1, bank_ptr_array, 0);	
+	read_vector(y, 256, 1, 1, bank_ptr_array);	
 
 	return 0;
 }
@@ -104,10 +104,10 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 
 	start_transfer = get_cpu_cycles();
 
-	write_vector(r, 256, 1, 0, bank_ptr_array, 0);
-	write_vector(y, 256, 1, 1, bank_ptr_array, 0);
-	write_array(H, 32, 8, 1, 2, bank_ptr_array, 1, 0);
-	write_array(F, 32, 8, 1, 3, bank_ptr_array, 1, 0);
+	write_vector(r, 256, 1, 0, bank_ptr_array);
+	write_vector(y, 256, 1, 1, bank_ptr_array);
+	write_array(H, 32, 8, 1, 2, bank_ptr_array, 1);
+	write_array(F, 32, 8, 1, 3, bank_ptr_array, 1);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -132,7 +132,7 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 
 	start_transfer = get_cpu_cycles();
 
-	read_vector(y, 256, 1, 1, bank_ptr_array, 0);
+	read_vector(y, 256, 1, 1, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;

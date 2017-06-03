@@ -171,12 +171,12 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 	bank_ptrs(bank_ptr_array, NBANKS);
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;	
 
-	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array, 0);
+	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array);
 
 	*hls_ptr = 1;
 	*hls_ptr;
 
-	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array, 0);
+	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
 
 	return 0;
 }
@@ -198,7 +198,7 @@ int fir2dim_main(void)
 
 	start_transfer = get_cpu_cycles();
 
-	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array, 0);
+	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -218,7 +218,7 @@ int fir2dim_main(void)
 
 	start_transfer = get_cpu_cycles();
 
-	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array, 0);
+	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
