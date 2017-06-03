@@ -20,9 +20,9 @@
 
 #include "minver.h"
 
-mat_type minver_fabs(mat_type n)
+float minver_fabs(float n)
 {
-	mat_type f;
+	float f;
 
 	if(n >= 0)
 		f = n;
@@ -31,13 +31,13 @@ mat_type minver_fabs(mat_type n)
 	return f;
 }
 
-int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps)
+int minver_minver(float minver_a[DIM][DIM], int side, float eps)
 {
 
 	int work[ 500 ], i, j, k, iw;
 	int r = 0;
-	mat_type w, wmax, pivot, api, w1;
-	mat_type minver_det;
+	float w, wmax, pivot, api, w1;
+	float minver_det;
 
 	if(side < 2 || side > 500 || eps <= 0.0)
 		return (999);

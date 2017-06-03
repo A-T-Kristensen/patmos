@@ -29,6 +29,8 @@ int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM],
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
+	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
+
 
 	// Division factor, a and b shares most banks
 
@@ -48,13 +50,13 @@ int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM],
 
 	write_array(mat_b, DIM, DIM, factor, factor, bank_ptr_array, 1, 0);
 
-	// Read back the data
+	*hls_ptr = 1;
+	*hls_ptr;
 
 	read_array(hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1, 0);
 
 	return 0;
 }
-
 
 int matmul_main(mat_type mat_a[DIM][DIM], 
 				mat_type mat_b[DIM][DIM], 

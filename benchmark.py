@@ -148,7 +148,12 @@ def matmul(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
+
+
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for matrix multiplication
@@ -184,7 +189,8 @@ def matmul(synth = 0, hw_test = 0):
 					app = appList[g]
 					valsDefine = [dimList[k], dimList[k], 
 								  dimList[k], nbanksList[j], 
-								  dimList[k]*dimList[k], 0, 0] # Vectors not used
+								  dimList[k]*dimList[k], 0, 0,
+								  0, 0, 0, 0, 0, 0, 0, 0] # Vectors not used
 
 					print("\n*******************************************")
 					print("Matmul: type = %s, NBANKS = %d, DIM = %d\n" \
@@ -255,7 +261,11 @@ def minver(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
+
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for matrix inversion
@@ -290,7 +300,8 @@ def minver(synth = 0, hw_test = 0):
 					app = appList[g]
 					valsDefine = [dimList[k], dimList[k], 
 								  dimList[k], nbanksList[j], 
-								  dimList[k]*dimList[k], 0, 0] #Vectors not used
+								  dimList[k]*dimList[k], 0, 0,
+								  0, 0, 0, 0, 0, 0, 0, 0] #Vectors not used
 
 					print("\n*******************************************")
 					print("Minver: type = %s, NBANKS = %d, DIM = %d\n" \
@@ -359,7 +370,10 @@ def filterbank(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE" , "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for filterbank
@@ -384,7 +398,8 @@ def filterbank(synth = 0, hw_test = 0):
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [32, 8, 32, 4, 256, 256, 0]                    
+		valsDefine = [32, 8, 32, 4, 256, 256, 0,
+						0, 0, 0, 0, 0, 0, 0, 0]                    
 
 		print("\n*******************************************")
 		print("Filterbank: type = %s, NBANKS = %d\n" \
@@ -425,7 +440,10 @@ def fir2dim(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
 	keywordsTypes   = ["mat_type;","vec_type;"]    
 
 	# Parameter space to explore for filterbank
@@ -450,7 +468,8 @@ def fir2dim(synth = 0, hw_test = 0):
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [1, 1, 1, 2, 61, 61, 0] #NBANKS is the only one really used
+		valsDefine = [1, 1, 1, 2, 61, 61, 0,
+						0, 0, 0, 0, 0, 0, 0, 0] #NBANKS is the only one really used
 										 #VECSIZE is for WCET analysis            
 
 		print("\n*******************************************")
@@ -492,7 +511,10 @@ def adpcm(synth = 0, hw_test = 0):
 	# These lists holds the definitions for the
 	# defines and typedefs to be changed
 
-	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET"]
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
 	keywordsTypes   = ["mat_type;","vec_type;"]
 
 	# Parameter space to explore for filterbank
@@ -516,8 +538,9 @@ def adpcm(synth = 0, hw_test = 0):
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [3, 3, 3, 3, 3, 3, 0] #NBANKS is the only one really used
-										 #VECSIZE is for WCET analysis            
+		valsDefine = [3, 3, 3, 2, 9, 3, 0,
+						0, 0, 0, 0, 0, 0, 0, 0]
+
 		print("\n*******************************************")
 		print("ADPCM: type = %s, NBANKS = %d\n" \
 			  % ("float", 2))
@@ -887,6 +910,116 @@ def fir2dim_wcet():
 
 	store_wcet_benchmark("fir2dim", appList, dataArray, csv_rows)
 
+def adpcm_enc_wcet():
+
+
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
+
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
+	keywordsTypes   = ["mat_type;","vec_type;"]
+
+	# Parameter space to explore for filterbank
+
+	appList = ["hwa_adpcm_encode", "tacle_adpcm_enc"] 
+
+	functionList = ["adpcm_main_wcet", "adpcm_enc_main"]			   
+
+	app_type = [0, 1] # 0 is for hardware
+
+	# Arrays for data storage
+
+	dataArray = np.zeros([1, len(appList)])
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([2, 1], dtype = "S10") 
+
+	for i in range(0, len(appList)):    # Iterate over apps      
+
+		# Get the current iteration options      
+
+		app = appList[i]
+		
+		valsDefine = [3, 3, 3, 2, 9, 3, 1,
+						1, 3, 1, 3,
+						1, 3, 1, 3] 	
+
+		print("\n*******************************************")
+		print("ADPCM: type = %s, NBANKS = %d\n" \
+			  % ("float", 2))
+		print("APP: %s" % (app))                    
+		print("*******************************************\n")                
+
+		# Update the benchmark.h file
+
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+
+		wcet_bound = run_wcet(app, functionList[app_type[i]])
+ 
+		dataArray[0][i] = wcet_bound	
+
+	store_wcet_benchmark("adpcm_enc", appList, dataArray, csv_rows)	
+
+def adpcm_dec_wcet():
+
+	# These lists holds the definitions for the
+	# defines and typedefs to be changed
+
+	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
+						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
+						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
+
+	keywordsTypes   = ["mat_type;","vec_type;"]
+
+	# Parameter space to explore for filterbank
+
+	appList = ["hwa_adpcm_decode", "tacle_adpcm_dec"] 
+
+	functionList = ["adpcm_main_wcet", "adpcm_dec_main"]			   
+
+	app_type = [0, 1] # 0 is for hardware
+
+	# Arrays for data storage
+
+	dataArray = np.zeros([1, len(appList)])
+
+	# Add 1 since it will be horizontally stacked later
+	# max string length of 10
+
+	csv_rows = np.zeros([2, 1], dtype = "S10") 
+
+	for i in range(0, len(appList)):    # Iterate over apps      
+
+		# Get the current iteration options      
+
+		app = appList[i]
+
+		valsDefine = [3, 3, 3, 2, 9, 3, 1,
+						1, 3, 1, 3,
+						1, 3, 1, 3] 	
+
+		print("\n*******************************************")
+		print("ADPCM: type = %s, NBANKS = %d\n" \
+			  % ("float", 2))
+		print("APP: %s" % (app))                    
+		print("*******************************************\n")                
+
+		# Update the benchmark.h file
+
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+
+		wcet_bound = run_wcet(app, functionList[app_type[i]])
+ 
+		dataArray[0][i] = wcet_bound	
+
+	store_wcet_benchmark("adpcm_dec", appList, dataArray, csv_rows)	
+
+
 def main(): 
 
 	#matmul(synth = 0, hw_test = 0)
@@ -897,7 +1030,7 @@ def main():
 
 	#filterbank_wcet()
 	#fir2dim_wcet()
-	#matmul_wcet()
+	matmul_wcet()
 	#minver_wcet()
 
 	clean_up()

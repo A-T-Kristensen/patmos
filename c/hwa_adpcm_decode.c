@@ -150,7 +150,11 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array, 0);	
 
 	*(hls_ptr + 1) = 1; 
+	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
+		
 	*hls_ptr = 1;
+
+	*hls_ptr;
 
 	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array, 0);
 
@@ -172,12 +176,12 @@ int adpcm_main()
 	
 	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array, 0);
 
+	*(hls_ptr + 1) = 1; 	
+
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
 
-	*(hls_ptr + 1) = 1; 
-
-	start_compute = get_cpu_cycles();	
+	start_compute = get_cpu_cycles();
 
 	*hls_ptr = 1;
 

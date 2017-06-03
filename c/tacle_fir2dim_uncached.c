@@ -149,9 +149,9 @@ void fir2dim_pin_down(volatile _UNCACHED float *pimage,
 void _Pragma("entrypoint") fir2dim_main()
 {
 
-	volatile _UNCACHED float *parray  = &fir2dim_array[0], *parray2, *parray3 ;
-	volatile _UNCACHED float *pcoeff  = &fir2dim_coefficients[0] ;
-	volatile _UNCACHED float *poutput = &fir2dim_output[0]       ;
+	volatile _UNCACHED float *parray  = &fir2dim_array[0], *parray2, *parray3;
+	volatile _UNCACHED float *pcoeff  = &fir2dim_coefficients[0];
+	volatile _UNCACHED float *poutput = &fir2dim_output[0];
 	int k, f, i;
 
 	fir2dim_pin_down(&fir2dim_image[0], &fir2dim_array[0],
@@ -203,12 +203,14 @@ int main(void)
 	static unsigned long long return_cycles = 0;
 
 	printf("Benchmarking \n");
+
 	start_cycle = get_cpu_cycles();
 
 	fir2dim_main();
 
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
+	
 	print_benchmark(return_cycles, 0);
 
 #endif

@@ -18,7 +18,6 @@
 
 	PARAMETERS:
 		* n: The input value.
-		*
 
 	RETURNS:  The absolute value of n.
 
@@ -26,7 +25,7 @@
 
  */
 
-mat_type minver_fabs(mat_type n);
+float minver_fabs(float n);
 
 /*
 	NAME: minver_minver()
@@ -42,6 +41,6 @@ mat_type minver_fabs(mat_type n);
 
  */
 
-int minver_minver(mat_type minver_a[DIM][DIM], int side, mat_type eps);
+int minver_minver(float minver_a[DIM][DIM], int side, float eps);
 
 #endif

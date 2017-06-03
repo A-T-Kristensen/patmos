@@ -79,7 +79,6 @@ struct matrix {
 
 volatile _UNCACHED struct matrix *spm_matrix;
 
-
 /*
   Forward declaration of functions
 */
@@ -112,24 +111,6 @@ void matrix1_pin_down(void)
 }
 
 /*
-  Return function
-*/
-
-int matrix1_return(void)
-{
-
-	int i;
-	int checksum = 0;
-
-	_Pragma("loopbound min SIZE max SIZE")
-	for(i = 0; i <= X*Z; i++)
-		checksum += spm_matrix->matrix1_C[i];
-
-	return (checksum ==  1000 ? 0 : -1);
-}
-
-
-/*
   Main functions
 */
 
@@ -159,7 +140,6 @@ void _Pragma("entrypoint") matrix1_main(void)
 		}
 	}
 }
-
 
 int main(void)
 {

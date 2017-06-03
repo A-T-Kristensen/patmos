@@ -13,8 +13,8 @@
 
 // These are used to write to SPM and IO devices
 
-#include <machine/spm.h> // Defines _SPM
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+#include <machine/spm.h>
+#include <machine/patmos.h>
 
 #define DIM 4
 

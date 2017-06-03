@@ -1,8 +1,8 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Wed May  3 10:31:50 2017
-| Host         : andreas-W54xEU running 64-bit Ubuntu 16.04.2 LTS
+| Date         : Sat Jun  3 12:14:58 2017
+| Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_io -file patmos_top_io_placed.rpt
 | Design       : patmos_top
 | Device       : xc7a100t

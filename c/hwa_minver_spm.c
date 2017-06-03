@@ -52,6 +52,7 @@ int _Pragma("entrypoint") minver_main_wcet()
 #endif
 
 	*hls_ptr = 1;
+	*hls_ptr;
 
 #if(NBANKS>1)
 

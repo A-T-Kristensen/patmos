@@ -174,11 +174,11 @@ int adpcm_main()
 
 	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array, 0);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
-
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
+
+	stop_transfer = get_cpu_cycles();
+	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
 
 	start_compute = get_cpu_cycles();
 

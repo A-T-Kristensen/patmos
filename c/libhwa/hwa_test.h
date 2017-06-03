@@ -23,7 +23,8 @@
 	RETURNS: The error count.
 
 	DESCRIPTION: Determines if the result from the
-				 HwA differs from that of the software.
+				 HwA differs from that of the software
+				 and returns the number of errors.
 
  */
 
@@ -47,7 +48,8 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type(*hw_result)[ROWS][COLS],
 	RETURNS: The error count.
 
 	DESCRIPTION: Determines if the result from the
-				 HwA differs from that of the software.
+				 HwA differs from that of the software
+				 and returns the number of errors.				 
 
  */
 
@@ -73,22 +75,24 @@ int compare_vectors_uncached(volatile _UNCACHED mat_type(*hw_result)[],
 	RETURNS: None
 
 	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
- 				 different patterns depending on whether the result is correct
+ 				 different patterns depending on whether the 
+ 				 result is correct.
 
  */
 
 void led_blink(int err_cnt);
 
 /*
-NAME: print_benchmark()
 
-PARAMETERS:
-	*return_compute: The clock cycles for computation.
-	*return_transfer: The clock cycles for data transfer
+	NAME: print_benchmark()
 
-RETURNS: None
+	PARAMETERS:
+		*return_compute: The clock cycles for computation.
+		*return_transfer: The clock cycles for data transfer
 
-DESCRIPTION: Prints the benchmark results properly
+	RETURNS: None
+
+	DESCRIPTION: Prints the benchmark results.
 
 */
 

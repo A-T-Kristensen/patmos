@@ -23,7 +23,6 @@
 #include "libhwa/hwa_test.h"
 
 
-
 #define IMAGEDIM      4
 #define ARRAYDIM      (IMAGEDIM + 2)
 #define COEFFICIENTS  3

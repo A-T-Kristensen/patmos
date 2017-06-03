@@ -1,6 +1,6 @@
 /*
 	This c file contains the set_minver() function used to
-  set the values of the matrix to that of an invertible matrix.
+	set the values of the matrix to that of an invertible matrix.
 
 	Author: Andreas T. Kristensen (s144026@student.dtu.dk)
 	Copyright: BSD License
@@ -9,7 +9,7 @@
 
 #include "minver_init.h"
 
-void set_minver_uncached(volatile _UNCACHED mat_type(*minver_a)[DIM][DIM])
+void set_minver_uncached(volatile _UNCACHED float(*minver_a)[DIM][DIM])
 {
 
 #if(DIM == 3)

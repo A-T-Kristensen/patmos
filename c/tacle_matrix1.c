@@ -73,9 +73,11 @@
 */
 
 void matrix1_pin_down(mat_type A[], mat_type B[], mat_type C[]);
+
 void matrix1_init(mat_type matrix1_A[X * Y],
 				  mat_type matrix1_B[Y * Z],
 				  mat_type matrix1_C[X * Z]);
+
 void matrix1_main(mat_type matrix1_A[X * Y],
 				  mat_type matrix1_B[Y * Z],
 				  mat_type matrix1_C[X * Z]) __attribute__((noinline));
@@ -114,23 +116,6 @@ void matrix1_init(mat_type matrix1_A[X * Y],
 				  mat_type matrix1_C[X * Z])
 {
 	matrix1_pin_down(&matrix1_A[0], &matrix1_B[0], &matrix1_C[0]);
-}
-
-/*
-  Return function
-*/
-
-int matrix1_return(mat_type matrix1_C[X * Z])
-{
-
-	int i;
-	int checksum = 0;
-
-	_Pragma("loopbound min SIZE max SIZE")
-	for(i = 0; i <= X*Z; i++)
-		checksum += matrix1_C[i];
-
-	return (checksum ==  1000 ? 0 : -1);
 }
 
 /*

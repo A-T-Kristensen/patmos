@@ -29134,42 +29134,42 @@ relation-graphs:
 timing:
 - scope:
     function: 7
-  cycles: 424761223
+  cycles: 118810815
   level: machinecode
   origin: platin
-  cache-max-cycles-instr: 389625572
-  cache-min-hits-instr: 77756
-  cache-max-misses-instr: 707500
+  cache-max-cycles-instr: 98538300
+  cache-min-hits-instr: 81724
+  cache-max-misses-instr: 706508
   cache-max-cycles-stack: 0
   cache-max-misses-stack: 0
-  cache-max-cycles-data: 20079360
+  cache-max-cycles-data: 5080320
   cache-min-hits-data: 0
   cache-max-misses-data: 137344
   cache-max-stores-data: 104576
   cache-unknown-address-data: 241920
-  cache-max-cycles: 409704932
+  cache-max-cycles: 103618620
   profile:
   - reference:
       function: 7
       edgesource: 0
       edgetarget: 1
-    cycles: 872
+    cycles: 252
     wcet-frequency: 1
-    wcet-contribution: 872
+    wcet-contribution: 252
   - reference:
       function: 7
       edgesource: 1
       edgetarget: 3
-    cycles: 336
+    cycles: 88
     wcet-frequency: 1
-    wcet-contribution: 336
+    wcet-contribution: 88
   - reference:
       function: 7
       edgesource: 2
       edgetarget: 3
-    cycles: 87
+    cycles: 25
     wcet-frequency: 32
-    wcet-contribution: 2784
+    wcet-contribution: 800
   - reference:
       function: 7
       edgesource: 3
@@ -29195,16 +29195,16 @@ timing:
       function: 7
       edgesource: 5
       edgetarget: 7
-    cycles: 339
+    cycles: 91
     wcet-frequency: 32
-    wcet-contribution: 10848
+    wcet-contribution: 2912
   - reference:
       function: 7
       edgesource: 5
       edgetarget: 6
-    cycles: 342
+    cycles: 94
     wcet-frequency: 1
-    wcet-contribution: 342
+    wcet-contribution: 94
   - reference:
       function: 7
       edgesource: 6
@@ -29216,9 +29216,9 @@ timing:
       function: 7
       edgesource: 7
       edgetarget: 8
-    cycles: 88
+    cycles: 26
     wcet-frequency: 1024
-    wcet-contribution: 7859
+    wcet-contribution: 5813
   - reference:
       function: 7
       edgesource: 7
@@ -29230,37 +29230,37 @@ timing:
       function: 7
       edgesource: 8
       edgetarget: 7
-    cycles: 601
+    cycles: 167
     wcet-frequency: 1024
-    wcet-contribution: 121906
+    wcet-contribution: 46142
   - reference:
       function: 7
       edgesource: 9
       edgetarget: 10
-    cycles: 1271
+    cycles: 341
     wcet-frequency: 32
-    wcet-contribution: 22661
+    wcet-contribution: 6355
   - reference:
       function: 7
       edgesource: 10
       edgetarget: 11
-    cycles: 585
+    cycles: 151
     wcet-frequency: 32
-    wcet-contribution: 18720
+    wcet-contribution: 4832
   - reference:
       function: 7
       edgesource: 11
       edgetarget: 13
-    cycles: 343
+    cycles: 95
     wcet-frequency: 32
-    wcet-contribution: 10976
+    wcet-contribution: 3040
   - reference:
       function: 7
       edgesource: 12
       edgetarget: 13
-    cycles: 339
+    cycles: 91
     wcet-frequency: 1024
-    wcet-contribution: 347136
+    wcet-contribution: 93184
   - reference:
       function: 7
       edgesource: 13
@@ -29286,9 +29286,9 @@ timing:
       function: 7
       edgesource: 14
       edgetarget: 15
-    cycles: 168
+    cycles: 44
     wcet-frequency: 32
-    wcet-contribution: 5376
+    wcet-contribution: 1408
   - reference:
       function: 7
       edgesource: 15
@@ -29300,23 +29300,23 @@ timing:
       function: 7
       edgesource: 16
       edgetarget: 14
-    cycles: 426
+    cycles: 116
     wcet-frequency: 1024
-    wcet-contribution: 189216
+    wcet-contribution: 56288
   - reference:
       function: 7
       edgesource: 17
       edgetarget: 18
-    cycles: 168
+    cycles: 44
     wcet-frequency: 1024
-    wcet-contribution: 172032
+    wcet-contribution: 45056
   - reference:
       function: 7
       edgesource: 17
       edgetarget: 19
-    cycles: 171
+    cycles: 47
     wcet-frequency: 32
-    wcet-contribution: 5472
+    wcet-contribution: 1504
   - reference:
       function: 7
       edgesource: 18
@@ -29328,37 +29328,37 @@ timing:
       function: 7
       edgesource: 19
       edgetarget: 5
-    cycles: 514
+    cycles: 142
     wcet-frequency: 32
-    wcet-contribution: 16448
+    wcet-contribution: 4544
   - reference:
       function: 7
       edgesource: 20
       edgetarget: 22
-    cycles: 932
+    cycles: 250
     wcet-frequency: 1024
-    wcet-contribution: 542688
+    wcet-contribution: 151840
   - reference:
       function: 7
       edgesource: 21
       edgetarget: 17
-    cycles: 170
+    cycles: 46
     wcet-frequency: 1024
-    wcet-contribution: 174080
+    wcet-contribution: 47104
   - reference:
       function: 7
       edgesource: 22
       edgetarget: 26
-    cycles: 171
+    cycles: 47
     wcet-frequency: 1024
-    wcet-contribution: 175104
+    wcet-contribution: 48128
   - reference:
       function: 7
       edgesource: 22
       edgetarget: 23
-    cycles: 168
+    cycles: 44
     wcet-frequency: 32768
-    wcet-contribution: 5505024
+    wcet-contribution: 1441792
   - reference:
       function: 7
       edgesource: 23
@@ -29370,30 +29370,30 @@ timing:
       function: 7
       edgesource: 24
       edgetarget: 25
-    cycles: 1263
+    cycles: 333
     wcet-frequency: 32768
-    wcet-contribution: 30846976
+    wcet-contribution: 8245248
   - reference:
       function: 7
       edgesource: 25
       edgetarget: 22
-    cycles: 170
+    cycles: 46
     wcet-frequency: 32768
-    wcet-contribution: 5570560
+    wcet-contribution: 1507328
   - reference:
       function: 7
       edgesource: 26
       edgetarget: 21
-    cycles: 342
+    cycles: 94
     wcet-frequency: 1024
-    wcet-contribution: 350208
+    wcet-contribution: 96256
   - reference:
       function: 7
       edgesource: 27
       edgetarget: 34
-    cycles: 921
+    cycles: 239
     wcet-frequency: 32
-    wcet-contribution: 1169
+    wcet-contribution: 487
   - reference:
       function: 7
       edgesource: 27
@@ -29405,9 +29405,9 @@ timing:
       function: 7
       edgesource: 28
       edgetarget: 30
-    cycles: 337
+    cycles: 89
     wcet-frequency: 32768
-    wcet-contribution: 11042816
+    wcet-contribution: 2916352
   - reference:
       function: 7
       edgesource: 29
@@ -29433,9 +29433,9 @@ timing:
       function: 7
       edgesource: 31
       edgetarget: 30
-    cycles: 260
+    cycles: 74
     wcet-frequency: 1024
-    wcet-contribution: 266240
+    wcet-contribution: 75776
   - reference:
       function: 7
       edgesource: 32
@@ -29461,28 +29461,28 @@ timing:
       function: 7
       edgesource: 34
       edgetarget: 33
-    cycles: 88
+    cycles: 26
     wcet-frequency: 32
-    wcet-contribution: 2816
+    wcet-contribution: 832
   - reference:
       function: 7
       edgesource: 35
-    cycles: 433
+    cycles: 123
     wcet-frequency: 1
-    wcet-contribution: 433
+    wcet-contribution: 123
   - reference:
       function: 133
       edgesource: 0
-    cycles: 518
+    cycles: 146
     wcet-frequency: 32768
-    wcet-contribution: 16973824
+    wcet-contribution: 4784128
   - reference:
       function: 96
       edgesource: 0
       edgetarget: 1
-    cycles: 758
+    cycles: 200
     wcet-frequency: 32768
-    wcet-contribution: 24838144
+    wcet-contribution: 6553600
   - reference:
       function: 96
       edgesource: 1
@@ -29508,9 +29508,9 @@ timing:
       function: 96
       edgesource: 7
       edgetarget: 8
-    cycles: 334
+    cycles: 86
     wcet-frequency: 32768
-    wcet-contribution: 10944512
+    wcet-contribution: 2818048
   - reference:
       function: 96
       edgesource: 8
@@ -29529,9 +29529,9 @@ timing:
       function: 96
       edgesource: 11
       edgetarget: 12
-    cycles: 1174
+    cycles: 306
     wcet-frequency: 32768
-    wcet-contribution: 38469632
+    wcet-contribution: 10027008
   - reference:
       function: 96
       edgesource: 12
@@ -29550,16 +29550,16 @@ timing:
       function: 96
       edgesource: 14
       edgetarget: 15
-    cycles: 777
+    cycles: 219
     wcet-frequency: 32768
-    wcet-contribution: 25460736
+    wcet-contribution: 7176192
   - reference:
       function: 96
       edgesource: 15
       edgetarget: 17
-    cycles: 751
+    cycles: 193
     wcet-frequency: 32768
-    wcet-contribution: 24608768
+    wcet-contribution: 6324224
   - reference:
       function: 96
       edgesource: 17
@@ -29592,9 +29592,9 @@ timing:
       function: 96
       edgesource: 22
       edgetarget: 23
-    cycles: 834
+    cycles: 214
     wcet-frequency: 32768
-    wcet-contribution: 27328512
+    wcet-contribution: 7012352
   - reference:
       function: 96
       edgesource: 23
@@ -29606,9 +29606,9 @@ timing:
       function: 96
       edgesource: 24
       edgetarget: 26
-    cycles: 752
+    cycles: 194
     wcet-frequency: 32768
-    wcet-contribution: 24641536
+    wcet-contribution: 6356992
   - reference:
       function: 96
       edgesource: 26
@@ -29633,16 +29633,16 @@ timing:
   - reference:
       function: 96
       edgesource: 29
-    cycles: 170
+    cycles: 46
     wcet-frequency: 32768
-    wcet-contribution: 5570560
+    wcet-contribution: 1507328
   - reference:
       function: 131
       edgesource: 0
       edgetarget: 1
-    cycles: 929
+    cycles: 247
     wcet-frequency: 32768
-    wcet-contribution: 30441472
+    wcet-contribution: 8093696
   - reference:
       function: 131
       edgesource: 1
@@ -29661,9 +29661,9 @@ timing:
       function: 131
       edgesource: 6
       edgetarget: 8
-    cycles: 669
+    cycles: 173
     wcet-frequency: 32768
-    wcet-contribution: 21921792
+    wcet-contribution: 5668864
   - reference:
       function: 131
       edgesource: 8
@@ -29689,16 +29689,16 @@ timing:
       function: 131
       edgesource: 12
       edgetarget: 14
-    cycles: 777
+    cycles: 219
     wcet-frequency: 32768
-    wcet-contribution: 25460736
+    wcet-contribution: 7176192
   - reference:
       function: 131
       edgesource: 14
       edgetarget: 15
-    cycles: 832
+    cycles: 212
     wcet-frequency: 32768
-    wcet-contribution: 27262976
+    wcet-contribution: 6946816
   - reference:
       function: 131
       edgesource: 15
@@ -29710,9 +29710,9 @@ timing:
       function: 131
       edgesource: 16
       edgetarget: 17
-    cycles: 850
+    cycles: 230
     wcet-frequency: 32768
-    wcet-contribution: 27852800
+    wcet-contribution: 7536640
   - reference:
       function: 131
       edgesource: 17
@@ -29731,9 +29731,9 @@ timing:
       function: 131
       edgesource: 22
       edgetarget: 23
-    cycles: 335
+    cycles: 87
     wcet-frequency: 32768
-    wcet-contribution: 10977280
+    wcet-contribution: 2850816
   - reference:
       function: 131
       edgesource: 23
@@ -29745,22 +29745,22 @@ timing:
       function: 131
       edgesource: 24
       edgetarget: 25
-    cycles: 258
+    cycles: 72
     wcet-frequency: 32768
-    wcet-contribution: 8454144
+    wcet-contribution: 2359296
   - reference:
       function: 131
       edgesource: 25
-    cycles: 88
+    cycles: 26
     wcet-frequency: 32768
-    wcet-contribution: 2883584
+    wcet-contribution: 851968
   - reference:
       function: 109
       edgesource: 0
       edgetarget: 1
-    cycles: 673
+    cycles: 177
     wcet-frequency: 1024
-    wcet-contribution: 689152
+    wcet-contribution: 181248
   - reference:
       function: 109
       edgesource: 1
@@ -29799,9 +29799,9 @@ timing:
       function: 98
       edgesource: 0
       edgetarget: 1
-    cycles: 929
+    cycles: 247
     wcet-frequency: 2080
-    wcet-contribution: 1026624
+    wcet-contribution: 284608
   - reference:
       function: 98
       edgesource: 1
@@ -29820,9 +29820,9 @@ timing:
       function: 98
       edgesource: 6
       edgetarget: 8
-    cycles: 586
+    cycles: 152
     wcet-frequency: 2080
-    wcet-contribution: 642528
+    wcet-contribution: 170336
   - reference:
       function: 98
       edgesource: 8
@@ -29833,85 +29833,78 @@ timing:
   - reference:
       function: 98
       edgesource: 9
-      edgetarget: 14
-    cycles: 5
-    wcet-frequency: 992
-    wcet-contribution: 4960
-  - reference:
-      function: 98
-      edgesource: 9
       edgetarget: 10
     cycles: 2
-    wcet-frequency: 1088
-    wcet-contribution: 2176
+    wcet-frequency: 2080
+    wcet-contribution: 4160
   - reference:
       function: 98
       edgesource: 10
       edgetarget: 11
     cycles: 2
-    wcet-frequency: 1088
-    wcet-contribution: 2176
+    wcet-frequency: 2080
+    wcet-contribution: 4160
   - reference:
       function: 98
       edgesource: 11
       edgetarget: 13
     cycles: 7
-    wcet-frequency: 1088
-    wcet-contribution: 7616
+    wcet-frequency: 2080
+    wcet-contribution: 14560
   - reference:
       function: 98
       edgesource: 13
       edgetarget: 17
-    cycles: 777
-    wcet-frequency: 1088
-    wcet-contribution: 845376
-  - reference:
-      function: 98
-      edgesource: 14
-      edgetarget: 16
-    cycles: 175
-    wcet-frequency: 992
-    wcet-contribution: 173600
+    cycles: 219
+    wcet-frequency: 2080
+    wcet-contribution: 268032
   - reference:
       function: 98
       edgesource: 15
-    cycles: 88
+    cycles: 26
     wcet-frequency: 1088
-    wcet-contribution: 95744
+    wcet-contribution: 28288
   - reference:
       function: 98
       edgesource: 16
-    cycles: 170
+    cycles: 46
     wcet-frequency: 992
-    wcet-contribution: 168640
+    wcet-contribution: 45632
   - reference:
       function: 98
       edgesource: 17
       edgetarget: 18
-    cycles: 832
-    wcet-frequency: 1088
-    wcet-contribution: 905216
+    cycles: 212
+    wcet-frequency: 2080
+    wcet-contribution: 232640
   - reference:
       function: 98
       edgesource: 18
       edgetarget: 19
     cycles: 30
-    wcet-frequency: 1088
-    wcet-contribution: 32640
+    wcet-frequency: 2080
+    wcet-contribution: 62400
   - reference:
       function: 98
       edgesource: 19
       edgetarget: 20
-    cycles: 1477
-    wcet-frequency: 1088
-    wcet-contribution: 1606976
+    cycles: 423
+    wcet-frequency: 2080
+    wcet-contribution: 525696
   - reference:
       function: 98
       edgesource: 20
       edgetarget: 22
-    cycles: 751
-    wcet-frequency: 1088
-    wcet-contribution: 817088
+    cycles: 193
+    wcet-frequency: 2080
+    wcet-contribution: 213952
+  - reference:
+      function: 98
+      edgesource: 22
+      edgetarget: 16
+    cycles: 8
+    wcet-frequency: 992
+    wcet-contribution: 7936
   - reference:
       function: 98
       edgesource: 22
@@ -29937,23 +29930,23 @@ timing:
       function: 98
       edgesource: 25
       edgetarget: 26
-    cycles: 170
+    cycles: 46
     wcet-frequency: 1088
-    wcet-contribution: 184960
+    wcet-contribution: 50048
   - reference:
       function: 98
       edgesource: 26
       edgetarget: 15
-    cycles: 170
+    cycles: 46
     wcet-frequency: 1088
-    wcet-contribution: 184960
+    wcet-contribution: 50048
   - reference:
       function: 106
       edgesource: 0
       edgetarget: 1
-    cycles: 673
+    cycles: 177
     wcet-frequency: 32
-    wcet-contribution: 21536
+    wcet-contribution: 5664
   - reference:
       function: 106
       edgesource: 1
@@ -29992,9 +29985,9 @@ timing:
       function: 107
       edgesource: 0
       edgetarget: 1
-    cycles: 673
+    cycles: 177
     wcet-frequency: 1056
-    wcet-contribution: 31416
+    wcet-contribution: 15048
   - reference:
       function: 107
       edgesource: 1
@@ -30032,16 +30025,16 @@ timing:
   - reference:
       function: 108
       edgesource: 0
-    cycles: 342
+    cycles: 94
     wcet-frequency: 1
-    wcet-contribution: 342
+    wcet-contribution: 94
   - reference:
       function: 112
       edgesource: 0
       edgetarget: 1
-    cycles: 673
+    cycles: 177
     wcet-frequency: 1025
-    wcet-contribution: 31801
+    wcet-contribution: 14937
   - reference:
       function: 112
       edgesource: 1

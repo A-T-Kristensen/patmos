@@ -1754,7 +1754,7 @@ relation-graphs:
 timing:
 - scope:
     function: 7
-  cycles: 596068
+  cycles: 530534
   level: machinecode
   origin: platin
   cache-max-cycles-instr: 0
@@ -1762,19 +1762,19 @@ timing:
   cache-max-misses-instr: 0
   cache-max-cycles-stack: 0
   cache-max-misses-stack: 0
-  cache-max-cycles-data: 87731
+  cache-max-cycles-data: 22197
   cache-min-hits-data: 0
   cache-max-misses-data: 1057
   cache-unknown-address-data: 1057
-  cache-max-cycles: 87731
+  cache-max-cycles: 22197
   profile:
   - reference:
       function: 7
       edgesource: 0
       edgetarget: 1
-    cycles: 91
+    cycles: 29
     wcet-frequency: 1
-    wcet-contribution: 91
+    wcet-contribution: 29
   - reference:
       function: 7
       edgesource: 8
@@ -1800,9 +1800,9 @@ timing:
       function: 7
       edgesource: 2
       edgetarget: 3
-    cycles: 87
+    cycles: 25
     wcet-frequency: 32
-    wcet-contribution: 2784
+    wcet-contribution: 800
   - reference:
       function: 7
       edgesource: 7
@@ -1828,9 +1828,9 @@ timing:
       function: 7
       edgesource: 4
       edgetarget: 5
-    cycles: 89
+    cycles: 27
     wcet-frequency: 1024
-    wcet-contribution: 91136
+    wcet-contribution: 27648
   - reference:
       function: 7
       edgesource: 6

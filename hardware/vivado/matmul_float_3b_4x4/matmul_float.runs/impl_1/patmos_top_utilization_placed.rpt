@@ -1,8 +1,8 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Wed May  3 10:05:46 2017
-| Host         : andreas-W54xEU running 64-bit Ubuntu 16.04.2 LTS
+| Date         : Sat Jun  3 11:22:59 2017
+| Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_utilization -file patmos_top_utilization_placed.rpt -pb patmos_top_utilization_placed.pb
 | Design       : patmos_top
 | Device       : 7a100tcsg324-1
@@ -28,20 +28,20 @@ Table of Contents
 1. Slice Logic
 --------------
 
-+----------------------------+-------+-------+-----------+-------+
-|          Site Type         |  Used | Fixed | Available | Util% |
-+----------------------------+-------+-------+-----------+-------+
-| Slice LUTs                 | 10478 |     0 |     63400 | 16.53 |
-|   LUT as Logic             |  9904 |     0 |     63400 | 15.62 |
-|   LUT as Memory            |   574 |     0 |     19000 |  3.02 |
-|     LUT as Distributed RAM |   536 |     0 |           |       |
-|     LUT as Shift Register  |    38 |     0 |           |       |
-| Slice Registers            |  9093 |     0 |    126800 |  7.17 |
-|   Register as Flip Flop    |  9093 |     0 |    126800 |  7.17 |
-|   Register as Latch        |     0 |     0 |    126800 |  0.00 |
-| F7 Muxes                   |   110 |     0 |     31700 |  0.35 |
-| F8 Muxes                   |    21 |     0 |     15850 |  0.13 |
-+----------------------------+-------+-------+-----------+-------+
++----------------------------+------+-------+-----------+-------+
+|          Site Type         | Used | Fixed | Available | Util% |
++----------------------------+------+-------+-----------+-------+
+| Slice LUTs                 | 9593 |     0 |     63400 | 15.13 |
+|   LUT as Logic             | 9019 |     0 |     63400 | 14.23 |
+|   LUT as Memory            |  574 |     0 |     19000 |  3.02 |
+|     LUT as Distributed RAM |  536 |     0 |           |       |
+|     LUT as Shift Register  |   38 |     0 |           |       |
+| Slice Registers            | 8180 |     0 |    126800 |  6.45 |
+|   Register as Flip Flop    | 8180 |     0 |    126800 |  6.45 |
+|   Register as Latch        |    0 |     0 |    126800 |  0.00 |
+| F7 Muxes                   |  118 |     0 |     31700 |  0.37 |
+| F8 Muxes                   |   21 |     0 |     15850 |  0.13 |
++----------------------------+------+-------+-----------+-------+
 
 
 1.1 Summary of Registers by Type
@@ -59,7 +59,7 @@ Table of Contents
 | 44    |          Yes |           - |          Set |
 | 1     |          Yes |           - |        Reset |
 | 175   |          Yes |         Set |            - |
-| 8873  |          Yes |       Reset |            - |
+| 7960  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -69,13 +69,13 @@ Table of Contents
 +-------------------------------------------+------+-------+-----------+-------+
 |                 Site Type                 | Used | Fixed | Available | Util% |
 +-------------------------------------------+------+-------+-----------+-------+
-| Slice                                     | 3864 |     0 |     15850 | 24.38 |
-|   SLICEL                                  | 2689 |     0 |           |       |
-|   SLICEM                                  | 1175 |     0 |           |       |
-| LUT as Logic                              | 9904 |     0 |     63400 | 15.62 |
+| Slice                                     | 3436 |     0 |     15850 | 21.68 |
+|   SLICEL                                  | 2325 |     0 |           |       |
+|   SLICEM                                  | 1111 |     0 |           |       |
+| LUT as Logic                              | 9019 |     0 |     63400 | 14.23 |
 |   using O5 output only                    |    0 |       |           |       |
-|   using O6 output only                    | 8079 |       |           |       |
-|   using O5 and O6                         | 1825 |       |           |       |
+|   using O6 output only                    | 7285 |       |           |       |
+|   using O5 and O6                         | 1734 |       |           |       |
 | LUT as Memory                             |  574 |     0 |     19000 |  3.02 |
 |   LUT as Distributed RAM                  |  536 |     0 |           |       |
 |     using O5 output only                  |    0 |       |           |       |
@@ -85,11 +85,11 @@ Table of Contents
 |     using O5 output only                  |   17 |       |           |       |
 |     using O6 output only                  |    3 |       |           |       |
 |     using O5 and O6                       |   18 |       |           |       |
-| LUT Flip Flop Pairs                       | 3636 |     0 |     63400 |  5.74 |
-|   fully used LUT-FF pairs                 |  579 |       |           |       |
-|   LUT-FF pairs with one unused LUT output | 2681 |       |           |       |
-|   LUT-FF pairs with one unused Flip Flop  | 2712 |       |           |       |
-| Unique Control Sets                       |  324 |       |           |       |
+| LUT Flip Flop Pairs                       | 2997 |     0 |     63400 |  4.73 |
+|   fully used LUT-FF pairs                 |  529 |       |           |       |
+|   LUT-FF pairs with one unused LUT output | 2142 |       |           |       |
+|   LUT-FF pairs with one unused Flip Flop  | 2151 |       |           |       |
+| Unique Control Sets                       |  317 |       |           |       |
 +-------------------------------------------+------+-------+-----------+-------+
 * Note: Review the Control Sets Report for more information regarding control sets.
 
@@ -100,11 +100,11 @@ Table of Contents
 +-------------------+------+-------+-----------+-------+
 |     Site Type     | Used | Fixed | Available | Util% |
 +-------------------+------+-------+-----------+-------+
-| Block RAM Tile    | 11.5 |     0 |       135 |  8.52 |
-|   RAMB36/FIFO*    |    3 |     0 |       135 |  2.22 |
-|     RAMB36E1 only |    3 |       |           |       |
-|   RAMB18          |   17 |     0 |       270 |  6.30 |
-|     RAMB18E1 only |   17 |       |           |       |
+| Block RAM Tile    | 13.5 |     0 |       135 | 10.00 |
+|   RAMB36/FIFO*    |    7 |     0 |       135 |  5.19 |
+|     RAMB36E1 only |    7 |       |           |       |
+|   RAMB18          |   13 |     0 |       270 |  4.81 |
+|     RAMB18E1 only |   13 |       |           |       |
 +-------------------+------+-------+-----------+-------+
 * Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E1 or one FIFO18E1. However, if a FIFO18E1 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E1
 
@@ -191,18 +191,18 @@ Table of Contents
 +--------------------------+------+---------------------+
 |         Ref Name         | Used | Functional Category |
 +--------------------------+------+---------------------+
-| FDRE                     | 8873 |        Flop & Latch |
-| LUT6                     | 4356 |                 LUT |
-| LUT4                     | 2100 |                 LUT |
-| LUT3                     | 1976 |                 LUT |
-| LUT5                     | 1848 |                 LUT |
-| LUT2                     |  959 |                 LUT |
+| FDRE                     | 7960 |        Flop & Latch |
+| LUT6                     | 3884 |                 LUT |
+| LUT4                     | 2011 |                 LUT |
+| LUT3                     | 1831 |                 LUT |
+| LUT5                     | 1638 |                 LUT |
+| LUT2                     |  900 |                 LUT |
 | RAMD32                   |  756 |  Distributed Memory |
 | CARRY4                   |  542 |          CarryLogic |
-| LUT1                     |  490 |                 LUT |
+| LUT1                     |  489 |                 LUT |
 | RAMS32                   |  284 |  Distributed Memory |
 | FDSE                     |  175 |        Flop & Latch |
-| MUXF7                    |  110 |               MuxFx |
+| MUXF7                    |  118 |               MuxFx |
 | OBUF                     |   61 |                  IO |
 | SRL16E                   |   56 |  Distributed Memory |
 | FDPE                     |   44 |        Flop & Latch |
@@ -210,18 +210,18 @@ Table of Contents
 | IBUF                     |   24 |                  IO |
 | MUXF8                    |   21 |               MuxFx |
 | OBUFT                    |   18 |                  IO |
-| RAMB18E1                 |   17 |        Block Memory |
 | ISERDESE2                |   16 |                  IO |
 | IDELAYE2                 |   16 |                  IO |
 | IBUF_INTERMDISABLE       |   16 |                  IO |
+| RAMB18E1                 |   13 |        Block Memory |
 | DSP48E1                  |    9 |    Block Arithmetic |
+| RAMB36E1                 |    7 |        Block Memory |
 | ODDR                     |    5 |                  IO |
 | PHASER_OUT_PHY           |    4 |                  IO |
 | OUT_FIFO                 |    4 |                  IO |
 | OBUFTDS                  |    4 |                  IO |
 | IBUFDS_INTERMDISABLE_INT |    4 |                  IO |
 | BUFG                     |    4 |               Clock |
-| RAMB36E1                 |    3 |        Block Memory |
 | INV                      |    3 |                 LUT |
 | PHASER_IN_PHY            |    2 |                  IO |
 | OBUFDS                   |    2 |                  IO |

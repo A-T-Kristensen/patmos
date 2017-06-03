@@ -46,6 +46,7 @@ int _Pragma("entrypoint") minver_main_wcet(mat_type minver_hw_i[DIM][DIM])
 #endif
 
 	*hls_ptr = 1;
+	*hls_ptr;
 
 #if(NBANKS>1)
 

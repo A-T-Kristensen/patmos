@@ -9,7 +9,7 @@
 
 #include "minver_init.h"
 
-void set_minver(mat_type minver_a[DIM][DIM])
+void set_minver(float minver_a[DIM][DIM])
 {
 
 #if(DIM == 3)

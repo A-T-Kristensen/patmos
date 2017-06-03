@@ -53,7 +53,8 @@ int _Pragma("entrypoint") matmul_main_wcet()
 	write_array_uncached(&test_matrix->mat_b, DIM, DIM,
 						 factor, factor, bank_ptr_array, 1, 0);
 
-	// Read back the data
+	*hls_ptr = 1;
+	*hls_ptr;	
 
 	read_array_uncached(&test_matrix->hw_result, DIM, DIM,
 						1, NBANKS-1, bank_ptr_array, 1, 0);

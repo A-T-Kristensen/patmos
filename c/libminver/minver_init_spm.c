@@ -9,7 +9,7 @@
 
 #include "minver_init.h"
 
-void set_minver_spm(volatile _SPM mat_type(*minver_a)[DIM][DIM])
+void set_minver_spm(volatile _SPM float(*minver_a)[DIM][DIM])
 {
 
 #if(DIM == 3)

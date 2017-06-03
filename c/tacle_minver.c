@@ -34,16 +34,16 @@
 #include "libminver/minver_init.h"
 #include "libhwa/hwa_test.h"
 
-int minver_minver(mat_type minver_a[DIM][DIM],
-				  int side, mat_type eps)  __attribute__((noinline));
+int minver_minver(float minver_a[DIM][DIM],
+				  int side, float eps)  __attribute__((noinline));
 
-mat_type minver_fabs(mat_type n);
+float minver_fabs(float n);
 int main(void);
 
 
-mat_type minver_fabs(mat_type n)
+float minver_fabs(float n)
 {
-	mat_type f;
+	float f;
 
 	if(n >= 0)
 		f = n;
@@ -52,14 +52,14 @@ mat_type minver_fabs(mat_type n)
 	return f;
 }
 
-int _Pragma("entrypoint") minver_minver(mat_type minver_a[DIM][DIM],
-										int side, mat_type eps)
+int _Pragma("entrypoint") minver_minver(float minver_a[DIM][DIM],
+										int side, float eps)
 {
 
 	int work[ 500 ], i, j, k, iw;
 	int r = 0;
-	mat_type w, wmax, pivot, api, w1;
-	mat_type minver_det;
+	float w, wmax, pivot, api, w1;
+	float minver_det;
 
 	if(side < 2 || side > 500 || eps <= 0.0)
 		return (999);
@@ -151,19 +151,10 @@ int _Pragma("entrypoint") minver_minver(mat_type minver_a[DIM][DIM],
 int main(void)
 {
 
-	mat_type minver_a[DIM][DIM];
-	mat_type minver_aa[DIM][DIM];
-	mat_type minver_a_i[DIM][DIM];
+	float minver_a[DIM][DIM];
 
-	int i, j;
-
-	mat_type eps = 1.0e-6;
+	float eps = 1.0e-6;
 	set_minver(minver_a);
-
-	for(i = 0; i < DIM; i++) {
-		for(j = 0; j < DIM; j++)
-			minver_aa[ i ][ j ] = minver_a[ i ][ j ];
-	}
 
 #if(WCET)
 
