@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Wed May 10 14:10:23 2017
+| Date             : Sat Jun  3 16:02:25 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,13 +30,13 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.131 |
-| Dynamic (W)              | 1.022 |
+| Total On-Chip Power (W)  | 1.103 |
+| Dynamic (W)              | 0.994 |
 | Device Static (W)        | 0.109 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
-| Max Ambient (C)          | 79.8  |
-| Junction Temperature (C) | 30.2  |
+| Max Ambient (C)          | 80.0  |
+| Junction Temperature (C) | 30.0  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -50,25 +50,25 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.025 |       46 |       --- |             --- |
-| Slice Logic              |     0.018 |    26106 |       --- |             --- |
-|   LUT as Logic           |     0.014 |    10114 |     63400 |           15.95 |
-|   LUT as Distributed RAM |    <0.001 |     1048 |     19000 |            5.52 |
-|   LUT as Shift Register  |    <0.001 |      162 |     19000 |            0.85 |
-|   Register               |    <0.001 |    11085 |    126800 |            8.74 |
-|   CARRY4                 |    <0.001 |      591 |     15850 |            3.73 |
+| Clocks                   |     0.023 |       46 |       --- |             --- |
+| Slice Logic              |     0.015 |    22947 |       --- |             --- |
+|   LUT as Logic           |     0.013 |     9733 |     63400 |           15.35 |
+|   CARRY4                 |    <0.001 |      575 |     15850 |            3.63 |
+|   Register               |    <0.001 |     9327 |    126800 |            7.36 |
+|   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
+|   LUT as Shift Register  |    <0.001 |       54 |     19000 |            0.28 |
 |   F7/F8 Muxes            |    <0.001 |      158 |     63400 |            0.25 |
-|   Others                 |     0.000 |      316 |       --- |             --- |
-| Signals                  |     0.032 |    24246 |       --- |             --- |
+|   Others                 |     0.000 |      251 |       --- |             --- |
+| Signals                  |     0.026 |    20049 |       --- |             --- |
 | Block RAM                |     0.030 |     19.5 |       135 |           14.44 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
-| DSPs                     |     0.023 |       52 |       240 |           21.67 |
+| DSPs                     |     0.007 |       16 |       240 |            6.67 |
 | I/O                      |     0.508 |      109 |       210 |           51.90 |
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.109 |          |           |                 |
-| Total                    |     1.131 |          |           |                 |
+| Total                    |     1.103 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,7 +78,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.169 |       0.150 |      0.019 |
+| Vccint    |       1.000 |     0.141 |       0.122 |      0.019 |
 | Vccaux    |       1.800 |     0.268 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -190,519 +190,7 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     1.022 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_0_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                           |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                             |    <0.001 |
-|   b_copy_10_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                           |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                             |    <0.001 |
-|   b_copy_11_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                           |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                             |    <0.001 |
-|   b_copy_12_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                           |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                             |    <0.001 |
-|   b_copy_13_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                           |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                             |    <0.001 |
-|   b_copy_14_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                           |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                             |    <0.001 |
-|   b_copy_15_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                             |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_1_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_2_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_3_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_4_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_5_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_6_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_7_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_8_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_0_0                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_10_10                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_11_11                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_12_12                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_13_13                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_14_14                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_15_15                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_16_16                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_17_17                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_18_18                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_19_19                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_1_1                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_20_20                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_21_21                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_22_22                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_23_23                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_24_24                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_25_25                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_26_26                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_27_27                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_28_28                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_29_29                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_2_2                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_30_30                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_31_31                                            |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_3_3                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_4_4                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_5_5                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_6_6                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_7_7                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_8_8                                              |    <0.001 |
-|   b_copy_9_U/matmul_hw_b_copy_0_ram_U/ram_reg_0_15_9_9                                              |    <0.001 |
+| patmos_top                                                                                          |     0.994 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
 |   ddr2_ctrl_inst_0                                                                                  |     0.800 |
@@ -839,7 +327,7 @@ Table of Contents
 |                       mem_reg_0_15_6_11                                                             |    <0.001 |
 |                       mem_reg_0_15_72_77                                                            |    <0.001 |
 |           mc0                                                                                       |     0.002 |
-|             bank_mach0                                                                              |     0.001 |
+|             bank_mach0                                                                              |     0.002 |
 |               arb_mux0                                                                              |    <0.001 |
 |                 arb_row_col0                                                                        |    <0.001 |
 |                   col_arb0                                                                          |    <0.001 |
@@ -873,7 +361,7 @@ Table of Contents
 |         u_ui_top                                                                                    |     0.001 |
 |           ui_cmd0                                                                                   |    <0.001 |
 |           ui_rd_data0                                                                               |    <0.001 |
-|           ui_wr_data0                                                                               |    <0.001 |
+|           ui_wr_data0                                                                               |     0.001 |
 |             pointer_ram.rams[0].RAM32M0                                                             |    <0.001 |
 |             pointer_ram.rams[1].RAM32M0                                                             |    <0.001 |
 |             write_buffer.wr_buffer_ram[0].RAM32M0                                                   |    <0.001 |
@@ -900,54 +388,8 @@ Table of Contents
 |             write_buffer.wr_buffer_ram[7].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[8].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[9].RAM32M0                                                   |    <0.001 |
-|   matrixmul_inst_0                                                                                  |     0.040 |
-|     b_copy_0_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_10_U                                                                                     |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_11_U                                                                                     |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_12_U                                                                                     |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_13_U                                                                                     |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_14_U                                                                                     |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_15_U                                                                                     |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_1_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_2_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_3_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_4_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_5_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_6_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_7_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_8_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
-|     b_copy_9_U                                                                                      |    <0.001 |
-|       matmul_hw_b_copy_0_ram_U                                                                      |    <0.001 |
+|   matrixmul_inst_0                                                                                  |     0.015 |
 |     matmul_hw_mul_32sdEe_U1                                                                         |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U10                                                                        |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U11                                                                        |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U12                                                                        |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U13                                                                        |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U14                                                                        |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U15                                                                        |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U16                                                                        |     0.002 |
 |       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
 |     matmul_hw_mul_32sdEe_U2                                                                         |     0.002 |
 |       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
@@ -955,27 +397,17 @@ Table of Contents
 |       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
 |     matmul_hw_mul_32sdEe_U4                                                                         |     0.002 |
 |       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U5                                                                         |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U6                                                                         |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U7                                                                         |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U8                                                                         |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|     matmul_hw_mul_32sdEe_U9                                                                         |     0.002 |
-|       matmul_hw_mul_32sdEe_MulnS_0_U                                                                |     0.002 |
-|   n_bank_inst_0                                                                                     |     0.025 |
+|   n_bank_inst_0                                                                                     |     0.023 |
 |     bram_gen[0].bram_array                                                                          |     0.003 |
 |     bram_gen[1].bram_array                                                                          |     0.003 |
-|     bram_gen[2].bram_array                                                                          |     0.003 |
-|     bram_gen[3].bram_array                                                                          |     0.003 |
+|     bram_gen[2].bram_array                                                                          |     0.002 |
+|     bram_gen[3].bram_array                                                                          |     0.002 |
 |     bram_gen[4].bram_array                                                                          |     0.003 |
 |     bram_gen[5].bram_array                                                                          |     0.003 |
-|     bram_gen[6].bram_array                                                                          |     0.003 |
-|     bram_gen[7].bram_array                                                                          |     0.003 |
-|     bram_gen[8].bram_array                                                                          |     0.001 |
-|   nexys4ddr_io_inst_0                                                                               |    <0.001 |
+|     bram_gen[6].bram_array                                                                          |     0.002 |
+|     bram_gen[7].bram_array                                                                          |     0.002 |
+|     bram_gen[8].bram_array                                                                          |     0.002 |
+|   nexys4ddr_io_inst_0                                                                               |     0.001 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
 |   patmos_inst_0                                                                                     |     0.045 |
 |     core                                                                                            |     0.045 |
@@ -1007,7 +439,7 @@ Table of Contents
 |           rf_reg_r2_0_31_24_29                                                                      |    <0.001 |
 |           rf_reg_r2_0_31_30_31                                                                      |    <0.001 |
 |           rf_reg_r2_0_31_6_11                                                                       |    <0.001 |
-|       exc                                                                                           |     0.001 |
+|       exc                                                                                           |     0.002 |
 |         vecDup_reg_0_31_0_5                                                                         |    <0.001 |
 |         vecDup_reg_0_31_12_17                                                                       |    <0.001 |
 |         vecDup_reg_0_31_18_23                                                                       |    <0.001 |
@@ -1047,15 +479,15 @@ Table of Contents
 |         vec_reg_0_31_8_8                                                                            |    <0.001 |
 |         vec_reg_0_31_9_9                                                                            |    <0.001 |
 |       execute                                                                                       |     0.012 |
-|       fetch                                                                                         |     0.005 |
+|       fetch                                                                                         |     0.004 |
 |         MemBlock                                                                                    |     0.001 |
 |         MemBlock_1                                                                                  |     0.001 |
 |       icache                                                                                        |     0.007 |
 |         ctrl                                                                                        |     0.001 |
-|         mem                                                                                         |     0.003 |
+|         mem                                                                                         |     0.002 |
 |           mcacheEven                                                                                |     0.001 |
 |           mcacheOdd                                                                                 |     0.001 |
-|         repl                                                                                        |     0.003 |
+|         repl                                                                                        |     0.004 |
 |       iocomp                                                                                        |     0.006 |
 |         BRamCtrl                                                                                    |    <0.001 |
 |         CpuInfo                                                                                     |    <0.001 |
