@@ -16,93 +16,55 @@ machine-functions:
     - index: 0
       opcode: SRESi
       size: 4
-      stack-cache-argument: 16
-      address: 133796
+      stack-cache-argument: 8
+      address: 133812
     - index: 1
       opcode: MFS
       size: 4
-      address: 133800
+      address: 133816
     - index: 2
       opcode: SWS
       size: 4
       memmode: store
       memtype: stack
-      address: 133804
+      address: 133820
     - index: 3
-      opcode: SWS
+      opcode: LIi
       size: 4
-      memmode: store
-      memtype: stack
-      address: 133808
+      address: 133824
     - index: 4
-      opcode: SWS
+      opcode: MOV
       size: 4
-      memmode: store
-      memtype: stack
-      address: 133812
+      address: 133828
     - index: 5
-      opcode: SWS
+      opcode: MFS
       size: 4
-      memmode: store
-      memtype: stack
-      address: 133816
+      address: 133832
     - index: 6
       opcode: SWS
       size: 4
       memmode: store
       memtype: stack
-      address: 133820
-    - index: 7
-      opcode: SWS
-      size: 4
-      memmode: store
-      memtype: stack
-      address: 133824
-    - index: 8
-      opcode: SWS
-      size: 4
-      memmode: store
-      memtype: stack
-      address: 133828
-    - index: 9
-      opcode: SWS
-      size: 4
-      memmode: store
-      memtype: stack
-      address: 133832
-    - index: 10
-      opcode: MOV
-      size: 4
       address: 133836
-    - index: 11
-      opcode: MFS
-      size: 4
-      address: 133840
-    - index: 12
-      opcode: SWS
-      size: 4
-      memmode: store
-      memtype: stack
-      address: 133844
-    - index: 13
+    - index: 7
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
       - 3
-      address: 133848
-    - index: 14
+      address: 133840
+    - index: 8
       opcode: MFS
       size: 4
-      address: 133852
-    - index: 15
+      address: 133844
+    - index: 9
       opcode: SWS
       size: 4
       memmode: store
       memtype: stack
-      address: 133856
-    address: 133796
+      address: 133848
+    address: 133812
   - name: 1
     mapsto: for.inc3.i
     predecessors:
@@ -119,16 +81,16 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 3
-      address: 133860
+      address: 133852
     - index: 1
       opcode: ADDi
       size: 4
-      address: 133864
+      address: 133856
     - index: 2
       opcode: NOP
       size: 4
-      address: 133868
-    address: 133860
+      address: 133860
+    address: 133852
   - name: 2
     mapsto: for.cond1.i
     predecessors:
@@ -144,26 +106,26 @@ machine-functions:
     - index: 0
       opcode: SUBi
       size: 4
-      address: 133872
+      address: 133864
     - index: 1
       opcode: MOVrp
       size: 4
-      address: 133876
+      address: 133868
     - index: 2
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 2
-      address: 133880
+      address: 133872
     - index: 3
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 1
-      address: 133884
-    address: 133872
+      address: 133876
+    address: 133864
   - name: 3
     mapsto: for.cond.i
     predecessors:
@@ -176,9 +138,9 @@ machine-functions:
     - 3
     instructions:
     - index: 0
-      opcode: CMPIEQ
+      opcode: CMPEQ
       size: 4
-      address: 133888
+      address: 133880
     - index: 1
       opcode: BR
       size: 4
@@ -186,23 +148,23 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 4
-      address: 133892
+      address: 133884
     - index: 2
       opcode: NOP
       size: 4
-      address: 133896
+      address: 133888
     - index: 3
       opcode: LIi
       size: 4
-      address: 133900
+      address: 133892
     - index: 4
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 2
-      address: 133904
-    address: 133888
+      address: 133896
+    address: 133880
   - name: 4
     mapsto: matmul_init.exit
     predecessors:
@@ -211,20 +173,24 @@ machine-functions:
     - 5
     instructions:
     - index: 0
+      opcode: LIi
+      size: 4
+      address: 133900
+    - index: 1
       opcode: LIl
       size: 8
-      address: 133908
-    - index: 1
+      address: 133904
+    - index: 2
       opcode: LWC
       size: 4
       memmode: load
       memtype: cache
-      address: 133916
-    - index: 2
-      opcode: LIin
-      size: 4
-      address: 133920
+      address: 133912
     - index: 3
+      opcode: LIl
+      size: 8
+      address: 133916
+    - index: 4
       opcode: BRCFu
       size: 4
       branch-type: unconditional
@@ -232,19 +198,19 @@ machine-functions:
       branch-targets:
       - 5
       address: 133924
-    - index: 4
+    - index: 5
       opcode: SUBr
       size: 4
       address: 133928
-    - index: 5
-      opcode: LIi
-      size: 4
-      address: 133932
     - index: 6
+      opcode: LIl
+      size: 8
+      address: 133932
+    - index: 7
       opcode: MOV
       size: 4
-      address: 133936
-    address: 133908
+      address: 133940
+    address: 133900
   - name: 5
     mapsto: for.cond.i3
     predecessors:
@@ -252,21 +218,21 @@ machine-functions:
     - 7
     successors:
     - 9
-    - 6
+    - 8
     loops:
     - 5
     instructions:
     - index: 0
-      opcode: CMPIEQ
+      opcode: CMPEQ
       size: 4
       address: 133956
     - index: 1
-      opcode: BRCF
+      opcode: BR
       size: 4
       branch-type: conditional
-      branch-delay-slots: 3
+      branch-delay-slots: 2
       branch-targets:
-      - 6
+      - 8
       address: 133960
     - index: 2
       opcode: LIin
@@ -277,176 +243,139 @@ machine-functions:
       size: 4
       address: 133968
     - index: 4
-      opcode: NOP
-      size: 4
-      address: 133972
-    - index: 5
       opcode: BRCFNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 9
-      address: 133976
+      address: 133972
     address: 133956
   - name: 6
+    mapsto: for.body2.i7
+    predecessors:
+    - 8
+    successors:
+    - 8
+    loops:
+    - 8
+    - 5
+    instructions:
+    - index: 0
+      opcode: ADDr
+      size: 4
+      address: 133976
+    - index: 1
+      opcode: SUBr
+      size: 4
+      address: 133980
+    - index: 2
+      opcode: ADDi
+      size: 4
+      address: 133984
+    - index: 3
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 133988
+    - index: 4
+      opcode: ADDi
+      size: 4
+      address: 133992
+    - index: 5
+      opcode: ADDi
+      size: 4
+      address: 133996
+    - index: 6
+      opcode: NEG
+      size: 4
+      address: 134000
+    - index: 7
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 134004
+    - index: 8
+      opcode: SUBr
+      size: 4
+      address: 134008
+    - index: 9
+      opcode: BRu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 8
+      address: 134012
+    - index: 10
+      opcode: SWM
+      size: 4
+      memmode: store
+      memtype: memory
+      address: 134016
+    - index: 11
+      opcode: SUBi
+      size: 4
+      address: 134020
+    address: 133976
+  - name: 7
+    mapsto: for.inc3.i8
+    predecessors:
+    - 8
+    successors:
+    - 5
+    loops:
+    - 5
+    instructions:
+    - index: 0
+      opcode: BRu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 5
+      address: 134024
+    - index: 1
+      opcode: SUBi
+      size: 4
+      address: 134028
+    - index: 2
+      opcode: ADDi
+      size: 4
+      address: 134032
+    address: 134024
+  - name: 8
     mapsto: for.cond1.i6
     predecessors:
     - 5
-    - 8
+    - 6
     successors:
     - 7
-    - 8
-    loops:
     - 6
+    loops:
+    - 8
     - 5
     instructions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 133988
+      address: 134036
     - index: 1
-      opcode: BRCFND
+      opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
-      - 8
-      address: 133992
+      - 6
+      address: 134040
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 7
-      address: 133996
-    address: 133988
-  - name: 7
-    mapsto: for.inc3.i8
-    predecessors:
-    - 6
-    successors:
-    - 5
-    loops:
-    - 5
-    instructions:
-    - index: 0
-      opcode: BRCFu
-      size: 4
-      branch-type: unconditional
-      branch-delay-slots: 3
-      branch-targets:
-      - 5
-      address: 134000
-    - index: 1
-      opcode: SUBi
-      size: 4
-      address: 134004
-    - index: 2
-      opcode: ADDi
-      size: 4
-      address: 134008
-    - index: 3
-      opcode: NOP
-      size: 4
-      address: 134012
-    address: 134000
-  - name: 8
-    mapsto: for.body2.i7
-    predecessors:
-    - 6
-    successors:
-    - 6
-    loops:
-    - 6
-    - 5
-    instructions:
-    - index: 0
-      opcode: CALL
-      callees:
-      - __floatsisf
-      size: 4
-      branch-type: call
-      branch-delay-slots: 3
-      address: 134020
-    - index: 1
-      opcode: NOP
-      size: 4
-      address: 134024
-    - index: 2
-      opcode: ADDr
-      size: 4
-      address: 134028
-    - index: 3
-      opcode: ADDi
-      size: 4
-      address: 134032
-    - index: 4
-      opcode: SENSi
-      size: 4
-      stack-cache-argument: 16
-      address: 134036
-    - index: 5
-      opcode: SUBr
-      size: 4
-      address: 134040
-    - index: 6
-      opcode: SWM
-      size: 4
-      memmode: store
-      memtype: memory
       address: 134044
-    - index: 7
-      opcode: ADDi
-      size: 4
-      address: 134048
-    - index: 8
-      opcode: CALLND
-      callees:
-      - __floatsisf
-      size: 4
-      branch-type: call
-      address: 134052
-    - index: 9
-      opcode: SENSi
-      size: 4
-      stack-cache-argument: 16
-      address: 134056
-    - index: 10
-      opcode: NEG
-      size: 4
-      address: 134060
-    - index: 11
-      opcode: SWM
-      size: 4
-      memmode: store
-      memtype: memory
-      address: 134064
-    - index: 12
-      opcode: ADDi
-      size: 4
-      address: 134068
-    - index: 13
-      opcode: BRCFu
-      size: 4
-      branch-type: unconditional
-      branch-delay-slots: 3
-      branch-targets:
-      - 6
-      address: 134072
-    - index: 14
-      opcode: SUBr
-      size: 4
-      address: 134076
-    - index: 15
-      opcode: SWM
-      size: 4
-      memmode: store
-      memtype: memory
-      address: 134080
-    - index: 16
-      opcode: SUBi
-      size: 4
-      address: 134084
-    address: 134020
+    address: 134036
   - name: 9
     mapsto: matmul_init_uncached.exit
     predecessors:
@@ -459,104 +388,66 @@ machine-functions:
       - matmul_main_wcet
       size: 4
       branch-type: call
-      address: 134100
+      address: 134052
     - index: 1
       opcode: SENSi
       size: 4
-      stack-cache-argument: 16
-      address: 134104
+      stack-cache-argument: 8
+      address: 134056
     - index: 2
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 134108
+      address: 134060
     - index: 3
-      opcode: LWS
+      opcode: NOP
       size: 4
-      memmode: load
-      memtype: stack
-      address: 134112
+      address: 134064
     - index: 4
-      opcode: LWS
+      opcode: MTS
       size: 4
-      memmode: load
-      memtype: stack
-      address: 134116
+      address: 134068
     - index: 5
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 134120
+      address: 134072
     - index: 6
-      opcode: LWS
+      opcode: NOP
       size: 4
-      memmode: load
-      memtype: stack
-      address: 134124
+      address: 134076
     - index: 7
-      opcode: LWS
+      opcode: MTS
       size: 4
-      memmode: load
-      memtype: stack
-      address: 134128
+      address: 134080
     - index: 8
       opcode: LWS
       size: 4
       memmode: load
       memtype: stack
-      address: 134132
+      address: 134084
     - index: 9
-      opcode: LWS
-      size: 4
-      memmode: load
-      memtype: stack
-      address: 134136
-    - index: 10
-      opcode: MTS
-      size: 4
-      address: 134140
-    - index: 11
-      opcode: LWS
-      size: 4
-      memmode: load
-      memtype: stack
-      address: 134144
-    - index: 12
-      opcode: NOP
-      size: 4
-      address: 134148
-    - index: 13
-      opcode: MTS
-      size: 4
-      address: 134152
-    - index: 14
-      opcode: LWS
-      size: 4
-      memmode: load
-      memtype: stack
-      address: 134156
-    - index: 15
       opcode: RET
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 134160
-    - index: 16
+      address: 134088
+    - index: 10
       opcode: MOV
       size: 4
-      address: 134164
-    - index: 17
+      address: 134092
+    - index: 11
       opcode: MTS
       size: 4
-      address: 134168
-    - index: 18
+      address: 134096
+    - index: 12
       opcode: SFREEi
       size: 4
-      stack-cache-argument: 16
-      address: 134172
-    address: 134100
+      stack-cache-argument: 8
+      address: 134100
+    address: 134052
   subfunctions:
   - name: 0
     blocks:
@@ -568,358 +459,12 @@ machine-functions:
   - name: 5
     blocks:
     - 5
-  - name: 6
-    blocks:
     - 6
     - 7
-  - name: 8
-    blocks:
     - 8
   - name: 9
     blocks:
     - 9
-- name: 124
-  level: machinecode
-  mapsto: __floatsisf
-  arguments:
-  - name: "%a"
-    index: 0
-    registers:
-    - r3
-  hash: 0
-  blocks:
-  - name: 0
-    mapsto: entry
-    predecessors: []
-    successors:
-    - 5
-    - 1
-    instructions:
-    - index: 0
-      opcode: MFS
-      size: 4
-      address: 295156
-    - index: 1
-      opcode: MOV
-      size: 4
-      address: 295160
-    - index: 2
-      opcode: CMPIEQ
-      size: 4
-      address: 295164
-    - index: 3
-      opcode: BRCFND
-      size: 4
-      branch-type: conditional
-      branch-targets:
-      - 5
-      address: 295168
-    address: 295156
-  - name: 1
-    mapsto: if.end
-    predecessors:
-    - 0
-    successors:
-    - 2
-    - 3
-    instructions:
-    - index: 0
-      opcode: SRAi
-      size: 4
-      address: 295172
-    - index: 1
-      opcode: ADDr
-      size: 4
-      address: 295176
-    - index: 2
-      opcode: XORr
-      size: 4
-      address: 295180
-    - index: 3
-      opcode: SRi
-      size: 4
-      address: 295184
-    - index: 4
-      opcode: ORr
-      size: 4
-      address: 295188
-    - index: 5
-      opcode: SRi
-      size: 4
-      address: 295192
-    - index: 6
-      opcode: ORr
-      size: 4
-      address: 295196
-    - index: 7
-      opcode: SRi
-      size: 4
-      address: 295200
-    - index: 8
-      opcode: ORr
-      size: 4
-      address: 295204
-    - index: 9
-      opcode: SRi
-      size: 4
-      address: 295208
-    - index: 10
-      opcode: ORr
-      size: 4
-      address: 295212
-    - index: 11
-      opcode: SRi
-      size: 4
-      address: 295216
-    - index: 12
-      opcode: NORr
-      size: 4
-      address: 295220
-    - index: 13
-      opcode: SRi
-      size: 4
-      address: 295224
-    - index: 14
-      opcode: ANDl
-      size: 8
-      address: 295228
-    - index: 15
-      opcode: SUBr
-      size: 4
-      address: 295236
-    - index: 16
-      opcode: ANDl
-      size: 8
-      address: 295240
-    - index: 17
-      opcode: SRi
-      size: 4
-      address: 295248
-    - index: 18
-      opcode: ANDl
-      size: 8
-      address: 295252
-    - index: 19
-      opcode: ADDr
-      size: 4
-      address: 295260
-    - index: 20
-      opcode: SRi
-      size: 4
-      address: 295264
-    - index: 21
-      opcode: ADDr
-      size: 4
-      address: 295268
-    - index: 22
-      opcode: ANDl
-      size: 8
-      address: 295272
-    - index: 23
-      opcode: LIl
-      size: 8
-      address: 295280
-    - index: 24
-      opcode: MUL
-      size: 4
-      address: 295288
-    - index: 25
-      opcode: ANDl
-      size: 8
-      address: 295292
-    - index: 26
-      opcode: MFS
-      size: 4
-      address: 295300
-    - index: 27
-      opcode: SRi
-      size: 4
-      address: 295304
-    - index: 28
-      opcode: XORi
-      size: 4
-      address: 295308
-    - index: 29
-      opcode: LIi
-      size: 4
-      address: 295312
-    - index: 30
-      opcode: CMPULT
-      size: 4
-      address: 295316
-    - index: 31
-      opcode: BRCFND
-      size: 4
-      branch-type: conditional
-      branch-targets:
-      - 3
-      address: 295320
-    address: 295172
-  - name: 2
-    mapsto: if.then3
-    predecessors:
-    - 1
-    successors:
-    - 4
-    instructions:
-    - index: 0
-      opcode: BRCFu
-      size: 4
-      branch-type: unconditional
-      branch-delay-slots: 3
-      branch-targets:
-      - 4
-      address: 295324
-    - index: 1
-      opcode: SUBr
-      size: 4
-      address: 295328
-    - index: 2
-      opcode: SLr
-      size: 4
-      address: 295332
-    - index: 3
-      opcode: XORl
-      size: 8
-      address: 295336
-    address: 295324
-  - name: 3
-    mapsto: if.else
-    predecessors:
-    - 1
-    successors:
-    - 4
-    instructions:
-    - index: 0
-      opcode: LIi
-      size: 4
-      address: 295348
-    - index: 1
-      opcode: SUBr
-      size: 4
-      address: 295352
-    - index: 2
-      opcode: LIl
-      size: 8
-      address: 295356
-    - index: 3
-      opcode: SLr
-      size: 4
-      address: 295364
-    - index: 4
-      opcode: CMPULT
-      size: 4
-      address: 295368
-    - index: 5
-      opcode: CMPNEQ
-      size: 4
-      address: 295372
-    - index: 6
-      opcode: MOVpr
-      size: 4
-      address: 295376
-    - index: 7
-      opcode: SUBi
-      size: 4
-      address: 295380
-    - index: 8
-      opcode: SRr
-      size: 4
-      address: 295384
-    - index: 9
-      opcode: XORl
-      size: 8
-      address: 295388
-    - index: 10
-      opcode: ADDr
-      size: 4
-      address: 295396
-    - index: 11
-      opcode: BRCFu
-      size: 4
-      branch-type: unconditional
-      branch-delay-slots: 3
-      branch-targets:
-      - 4
-      address: 295400
-    - index: 12
-      opcode: ANDi
-      size: 4
-      address: 295404
-    - index: 13
-      opcode: ADDr
-      size: 4
-      address: 295408
-    - index: 14
-      opcode: ADDr
-      size: 4
-      address: 295412
-    address: 295348
-  - name: 4
-    mapsto: if.end9
-    predecessors:
-    - 2
-    - 3
-    successors:
-    - 5
-    instructions:
-    - index: 0
-      opcode: SLi
-      size: 4
-      address: 295428
-    - index: 1
-      opcode: BRCFu
-      size: 4
-      branch-type: unconditional
-      branch-delay-slots: 3
-      branch-targets:
-      - 5
-      address: 295432
-    - index: 2
-      opcode: ADDr
-      size: 4
-      address: 295436
-    - index: 3
-      opcode: ADDl
-      size: 8
-      address: 295440
-    - index: 4
-      opcode: ORr
-      size: 4
-      address: 295448
-    address: 295428
-  - name: 5
-    mapsto: return
-    predecessors:
-    - 0
-    - 4
-    successors: []
-    instructions:
-    - index: 0
-      opcode: MTS
-      size: 4
-      address: 295460
-    - index: 1
-      opcode: RETND
-      size: 4
-      branch-type: return
-      address: 295464
-    address: 295460
-  subfunctions:
-  - name: 0
-    blocks:
-    - 0
-    - 1
-    - 2
-  - name: 3
-    blocks:
-    - 3
-  - name: 4
-    blocks:
-    - 4
-  - name: 5
-    blocks:
-    - 5
 - name: 7
   level: machinecode
   mapsto: matmul_main_wcet
@@ -1015,101 +560,109 @@ machine-functions:
     - 4
     instructions:
     - index: 0
+      opcode: LIl
+      size: 8
+      address: 133244
+    - index: 1
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133252
+    - index: 2
       opcode: BRCFu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 3
       branch-targets:
       - 4
-      address: 133244
-    - index: 1
-      opcode: LIl
-      size: 8
-      address: 133248
-    - index: 2
-      opcode: LWC
-      size: 4
-      memmode: load
-      memtype: cache
       address: 133256
     - index: 3
-      opcode: MOV
+      opcode: LIi
       size: 4
       address: 133260
+    - index: 4
+      opcode: MOV
+      size: 4
+      address: 133264
+    - index: 5
+      opcode: NOP
+      size: 4
+      address: 133268
     address: 133244
   - name: 4
-    mapsto: for.cond10.i14
+    mapsto: for.cond.i14
     predecessors:
     - 3
-    - 8
+    - 9
     successors:
+    - 12
     - 11
-    - 10
     loops:
     - 4
     instructions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 133268
+      address: 133284
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
-      - 11
-      address: 133272
+      - 12
+      address: 133288
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 10
-      address: 133276
-    address: 133268
+      - 11
+      address: 133292
+    address: 133284
   - name: 5
-    mapsto: for.body15.i22
+    mapsto: for.body4.i
     predecessors:
     - 7
     successors:
     - 7
     loops:
     - 7
-    - 9
+    - 10
     - 4
     instructions:
     - index: 0
+      opcode: ADDi
+      size: 4
+      address: 133296
+    - index: 1
+      opcode: SHADD2r
+      size: 4
+      address: 133300
+    - index: 2
       opcode: LWM
       size: 4
       memmode: load
       memtype: memory
-      address: 133280
-    - index: 1
-      opcode: ADDi
-      size: 4
-      address: 133284
-    - index: 2
-      opcode: ADDi
-      size: 4
-      address: 133288
+      address: 133304
     - index: 3
-      opcode: SHADD2r
-      size: 4
-      address: 133292
-    - index: 4
       opcode: LWC
       size: 4
       memmode: load
       memtype: cache
-      address: 133296
-    - index: 5
-      opcode: SUBi
+      address: 133308
+    - index: 4
+      opcode: ADDi
       size: 4
-      address: 133300
-    - index: 6
+      address: 133312
+    - index: 5
       opcode: ADDr
       size: 4
-      address: 133304
+      address: 133316
+    - index: 6
+      opcode: SHADD2r
+      size: 4
+      address: 133320
     - index: 7
       opcode: BRu
       size: 4
@@ -1117,85 +670,112 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 7
-      address: 133308
+      address: 133324
     - index: 8
       opcode: SWL
       size: 4
       memmode: store
       memtype: local
-      address: 133312
+      address: 133328
     - index: 9
       opcode: ADDi
       size: 4
-      address: 133316
-    address: 133280
+      address: 133332
+    address: 133296
   - name: 6
-    mapsto: for.inc18.i23
+    mapsto: for.inc5.i
     predecessors:
     - 7
     successors:
-    - 9
+    - 10
     loops:
-    - 9
+    - 10
     - 4
     instructions:
     - index: 0
-      opcode: ADDi
-      size: 4
-      address: 133320
-    - index: 1
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 9
-      address: 133324
+      - 10
+      address: 133336
+    - index: 1
+      opcode: ADDi
+      size: 4
+      address: 133340
     - index: 2
       opcode: ADDi
       size: 4
-      address: 133328
-    - index: 3
-      opcode: ADDi
-      size: 4
-      address: 133332
-    address: 133320
+      address: 133344
+    address: 133336
   - name: 7
-    mapsto: for.cond14.i20
+    mapsto: for.cond3.i
     predecessors:
-    - 9
+    - 8
     - 5
     successors:
     - 6
     - 5
     loops:
     - 7
-    - 9
+    - 10
     - 4
     instructions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 133336
+      address: 133348
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
       - 5
-      address: 133340
+      address: 133352
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 6
-      address: 133344
-    address: 133336
+      address: 133356
+    address: 133348
   - name: 8
-    mapsto: for.inc20.i24
+    mapsto: for.cond3.preheader.i
     predecessors:
-    - 9
+    - 10
+    successors:
+    - 7
+    loops:
+    - 10
+    - 4
+    instructions:
+    - index: 0
+      opcode: SLi
+      size: 4
+      address: 133360
+    - index: 1
+      opcode: BRu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 7
+      address: 133364
+    - index: 2
+      opcode: MOV
+      size: 4
+      address: 133368
+    - index: 3
+      opcode: MOV
+      size: 4
+      address: 133372
+    address: 133360
+  - name: 9
+    mapsto: for.inc7.i
+    predecessors:
+    - 10
     successors:
     - 4
     loops:
@@ -1208,138 +788,117 @@ machine-functions:
       branch-delay-slots: 2
       branch-targets:
       - 4
-      address: 133348
+      address: 133376
     - index: 1
       opcode: ADDi
       size: 4
-      address: 133352
+      address: 133380
     - index: 2
-      opcode: ADDi
+      opcode: NOP
       size: 4
-      address: 133356
-    address: 133348
-  - name: 9
-    mapsto: for.cond12.i17
+      address: 133384
+    address: 133376
+  - name: 10
+    mapsto: for.cond1.i
     predecessors:
-    - 10
+    - 11
     - 6
     successors:
-    - 8
-    - 7
-    loops:
     - 9
+    - 8
+    loops:
+    - 10
     - 4
     instructions:
     - index: 0
-      opcode: LIi
+      opcode: CMPEQ
       size: 4
-      address: 133360
+      address: 133388
     - index: 1
-      opcode: CMPIEQ
-      size: 4
-      address: 133364
-    - index: 2
-      opcode: BR
+      opcode: BRND
       size: 4
       branch-type: conditional
-      branch-delay-slots: 2
       branch-targets:
-      - 7
-      address: 133368
-    - index: 3
-      opcode: MOV
-      size: 4
-      address: 133372
-    - index: 4
-      opcode: MOV
-      size: 4
-      address: 133376
-    - index: 5
+      - 9
+      address: 133392
+    - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
       - 8
-      address: 133380
-    address: 133360
-  - name: 10
-    mapsto: for.cond12.preheader.i15
+      address: 133396
+    address: 133388
+  - name: 11
+    mapsto: for.cond1.preheader.i
     predecessors:
     - 4
     successors:
-    - 9
+    - 10
     loops:
     - 4
     instructions:
     - index: 0
-      opcode: MOV
+      opcode: SLi
       size: 4
-      address: 133384
+      address: 133400
     - index: 1
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 9
-      address: 133388
+      - 10
+      address: 133404
     - index: 2
-      opcode: MOV
+      opcode: ADDr
       size: 4
-      address: 133392
+      address: 133408
     - index: 3
       opcode: MOV
       size: 4
-      address: 133396
-    address: 133384
-  - name: 11
-    mapsto: write_array_uncached.exit25
+      address: 133412
+    address: 133400
+  - name: 12
+    mapsto: write_array_uncached.exit15
     predecessors:
     - 4
     successors:
-    - 12
+    - 13
     instructions:
     - index: 0
-      opcode: LIl
-      size: 8
-      address: 133400
-    - index: 1
-      opcode: LWC
-      size: 4
-      memmode: load
-      memtype: cache
-      address: 133408
-    - index: 2
       opcode: BRCFu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 3
       branch-targets:
-      - 12
-      address: 133412
+      - 13
+      address: 133416
+    - index: 1
+      opcode: LIl
+      size: 8
+      address: 133420
+    - index: 2
+      opcode: LWC
+      size: 4
+      memmode: load
+      memtype: cache
+      address: 133428
     - index: 3
       opcode: MOV
       size: 4
-      address: 133416
-    - index: 4
-      opcode: ADDi
-      size: 4
-      address: 133420
-    - index: 5
-      opcode: NOP
-      size: 4
-      address: 133424
-    address: 133400
-  - name: 12
+      address: 133432
+    address: 133416
+  - name: 13
     mapsto: for.cond10.i2
     predecessors:
-    - 11
-    - 16
-    successors:
-    - 19
-    - 18
-    loops:
     - 12
+    - 17
+    successors:
+    - 20
+    - 19
+    loops:
+    - 13
     instructions:
     - index: 0
       opcode: CMPIEQ
@@ -1350,44 +909,44 @@ machine-functions:
       size: 4
       branch-type: conditional
       branch-targets:
-      - 19
+      - 20
       address: 133448
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 18
+      - 19
       address: 133452
     address: 133444
-  - name: 13
+  - name: 14
     mapsto: for.body15.i10
     predecessors:
-    - 15
+    - 16
     successors:
-    - 15
+    - 16
     loops:
-    - 15
-    - 17
-    - 12
+    - 16
+    - 18
+    - 13
     instructions:
     - index: 0
+      opcode: ADDi
+      size: 4
+      address: 133456
+    - index: 1
+      opcode: SUBr
+      size: 4
+      address: 133460
+    - index: 2
+      opcode: SHADD2r
+      size: 4
+      address: 133464
+    - index: 3
       opcode: LWM
       size: 4
       memmode: load
       memtype: memory
-      address: 133456
-    - index: 1
-      opcode: ADDi
-      size: 4
-      address: 133460
-    - index: 2
-      opcode: ADDi
-      size: 4
-      address: 133464
-    - index: 3
-      opcode: SHADD2r
-      size: 4
       address: 133468
     - index: 4
       opcode: LWC
@@ -1396,103 +955,107 @@ machine-functions:
       memtype: cache
       address: 133472
     - index: 5
-      opcode: SUBi
+      opcode: NOP
       size: 4
       address: 133476
     - index: 6
-      opcode: ADDr
+      opcode: SUBr
       size: 4
       address: 133480
     - index: 7
-      opcode: BRu
-      size: 4
-      branch-type: unconditional
-      branch-delay-slots: 2
-      branch-targets:
-      - 15
+      opcode: ADDl
+      size: 8
       address: 133484
     - index: 8
       opcode: SWL
       size: 4
       memmode: store
       memtype: local
-      address: 133488
-    - index: 9
-      opcode: ADDi
-      size: 4
       address: 133492
-    address: 133456
-  - name: 14
-    mapsto: for.inc18.i11
-    predecessors:
-    - 15
-    successors:
-    - 17
-    loops:
-    - 17
-    - 12
-    instructions:
-    - index: 0
-      opcode: ADDi
-      size: 4
-      address: 133496
-    - index: 1
+    - index: 9
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 17
+      - 16
+      address: 133496
+    - index: 10
+      opcode: SUBi
+      size: 4
       address: 133500
+    - index: 11
+      opcode: SUBi
+      size: 4
+      address: 133504
+    address: 133456
+  - name: 15
+    mapsto: for.inc18.i11
+    predecessors:
+    - 16
+    successors:
+    - 18
+    loops:
+    - 18
+    - 13
+    instructions:
+    - index: 0
+      opcode: BRu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 18
+      address: 133508
+    - index: 1
+      opcode: SUBi
+      size: 4
+      address: 133512
     - index: 2
       opcode: ADDi
       size: 4
-      address: 133504
-    - index: 3
-      opcode: ADDi
-      size: 4
-      address: 133508
-    address: 133496
-  - name: 15
+      address: 133516
+    address: 133508
+  - name: 16
     mapsto: for.cond14.i8
     predecessors:
-    - 17
-    - 13
-    successors:
+    - 18
     - 14
-    - 13
-    loops:
+    successors:
     - 15
-    - 17
-    - 12
+    - 14
+    loops:
+    - 16
+    - 18
+    - 13
     instructions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 133512
+      address: 133520
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
-      - 13
-      address: 133516
+      - 14
+      address: 133524
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 14
-      address: 133520
-    address: 133512
-  - name: 16
-    mapsto: for.cond10.i2.loopexit
+      - 15
+      address: 133528
+    address: 133520
+  - name: 17
+    mapsto: for.inc20.i12
     predecessors:
-    - 17
+    - 18
     successors:
-    - 12
+    - 13
     loops:
-    - 12
+    - 13
     instructions:
     - index: 0
       opcode: BRu
@@ -1500,320 +1063,316 @@ machine-functions:
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 12
-      address: 133524
+      - 13
+      address: 133532
     - index: 1
       opcode: ADDi
       size: 4
-      address: 133528
-    - index: 2
-      opcode: MOV
-      size: 4
-      address: 133532
-    address: 133524
-  - name: 17
-    mapsto: for.cond12.i5
-    predecessors:
-    - 18
-    - 14
-    successors:
-    - 16
-    - 15
-    loops:
-    - 17
-    - 12
-    instructions:
-    - index: 0
-      opcode: LIi
-      size: 4
       address: 133536
-    - index: 1
-      opcode: CMPIEQ
+    - index: 2
+      opcode: NOP
       size: 4
       address: 133540
-    - index: 2
+    address: 133532
+  - name: 18
+    mapsto: for.cond12.i5
+    predecessors:
+    - 19
+    - 15
+    successors:
+    - 17
+    - 16
+    loops:
+    - 18
+    - 13
+    instructions:
+    - index: 0
+      opcode: CMPIEQ
+      size: 4
+      address: 133544
+    - index: 1
       opcode: BR
       size: 4
       branch-type: conditional
       branch-delay-slots: 2
       branch-targets:
-      - 15
-      address: 133544
+      - 16
+      address: 133548
+    - index: 2
+      opcode: LIi
+      size: 4
+      address: 133552
     - index: 3
       opcode: MOV
       size: 4
-      address: 133548
+      address: 133556
     - index: 4
-      opcode: MOV
-      size: 4
-      address: 133552
-    - index: 5
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 16
-      address: 133556
-    address: 133536
-  - name: 18
+      - 17
+      address: 133560
+    address: 133544
+  - name: 19
     mapsto: for.cond12.preheader.i3
     predecessors:
-    - 12
+    - 13
     successors:
-    - 17
+    - 18
     loops:
-    - 12
+    - 13
     instructions:
     - index: 0
-      opcode: MOV
-      size: 4
-      address: 133560
-    - index: 1
-      opcode: ADDi
+      opcode: SLi
       size: 4
       address: 133564
+    - index: 1
+      opcode: ADDr
+      size: 4
+      address: 133568
     - index: 2
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 17
-      address: 133568
-    - index: 3
-      opcode: MOV
-      size: 4
+      - 18
       address: 133572
+    - index: 3
+      opcode: LIl
+      size: 8
+      address: 133576
     - index: 4
       opcode: MOV
       size: 4
-      address: 133576
-    address: 133560
-  - name: 19
+      address: 133584
+    address: 133564
+  - name: 20
     mapsto: write_array_uncached.exit
     predecessors:
-    - 12
+    - 13
     successors:
-    - 20
+    - 21
     instructions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 133580
+      address: 133588
     - index: 1
       opcode: LIl
       size: 8
-      address: 133584
+      address: 133592
     - index: 2
       opcode: SWL
       size: 4
       memmode: store
       memtype: local
-      address: 133592
+      address: 133600
     - index: 3
       opcode: LWL
       size: 4
       memmode: load
       memtype: local
-      address: 133596
+      address: 133604
     - index: 4
       opcode: LIl
       size: 8
-      address: 133600
+      address: 133608
     - index: 5
       opcode: LWC
       size: 4
       memmode: load
       memtype: cache
-      address: 133608
+      address: 133616
     - index: 6
       opcode: BRCFu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 3
       branch-targets:
-      - 20
-      address: 133612
+      - 21
+      address: 133620
     - index: 7
-      opcode: ADDi
-      size: 4
-      address: 133616
+      opcode: ADDl
+      size: 8
+      address: 133624
     - index: 8
       opcode: MOV
       size: 4
-      address: 133620
+      address: 133632
     - index: 9
       opcode: NOP
       size: 4
-      address: 133624
-    address: 133580
-  - name: 20
+      address: 133636
+    address: 133588
+  - name: 21
     mapsto: for.cond10.i
     predecessors:
-    - 19
-    - 24
-    successors:
-    - 27
-    - 26
-    loops:
     - 20
+    - 25
+    successors:
+    - 28
+    - 27
+    loops:
+    - 21
     instructions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 133636
+      address: 133652
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
-      - 27
-      address: 133640
+      - 28
+      address: 133656
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 26
-      address: 133644
-    address: 133636
-  - name: 21
+      - 27
+      address: 133660
+    address: 133652
+  - name: 22
     mapsto: for.body15.i
     predecessors:
-    - 23
+    - 24
     successors:
-    - 23
+    - 24
     loops:
-    - 23
-    - 25
-    - 20
+    - 24
+    - 26
+    - 21
     instructions:
     - index: 0
       opcode: ADDi
       size: 4
-      address: 133648
+      address: 133664
     - index: 1
       opcode: SHADD2r
       size: 4
-      address: 133652
+      address: 133668
     - index: 2
       opcode: LWC
       size: 4
       memmode: load
       memtype: cache
-      address: 133656
+      address: 133672
     - index: 3
       opcode: NOP
       size: 4
-      address: 133660
+      address: 133676
     - index: 4
       opcode: ADDr
       size: 4
-      address: 133664
+      address: 133680
     - index: 5
       opcode: LWL
       size: 4
       memmode: load
       memtype: local
-      address: 133668
+      address: 133684
     - index: 6
       opcode: SUBi
       size: 4
-      address: 133672
+      address: 133688
     - index: 7
       opcode: SWM
       size: 4
       memmode: store
       memtype: memory
-      address: 133676
+      address: 133692
     - index: 8
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 23
-      address: 133680
+      - 24
+      address: 133696
     - index: 9
       opcode: ADDi
       size: 4
-      address: 133684
+      address: 133700
     - index: 10
       opcode: ADDi
       size: 4
-      address: 133688
-    address: 133648
-  - name: 22
+      address: 133704
+    address: 133664
+  - name: 23
     mapsto: for.inc18.i
     predecessors:
-    - 23
+    - 24
     successors:
-    - 25
+    - 26
     loops:
-    - 25
-    - 20
+    - 26
+    - 21
     instructions:
     - index: 0
       opcode: ADDi
       size: 4
-      address: 133692
+      address: 133708
     - index: 1
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 25
-      address: 133696
+      - 26
+      address: 133712
     - index: 2
       opcode: ADDi
       size: 4
-      address: 133700
+      address: 133716
     - index: 3
       opcode: ADDi
       size: 4
-      address: 133704
-    address: 133692
-  - name: 23
+      address: 133720
+    address: 133708
+  - name: 24
     mapsto: for.cond14.i
     predecessors:
-    - 25
-    - 21
-    successors:
+    - 26
     - 22
-    - 21
-    loops:
+    successors:
     - 23
-    - 25
-    - 20
+    - 22
+    loops:
+    - 24
+    - 26
+    - 21
     instructions:
     - index: 0
       opcode: CMPIEQ
       size: 4
-      address: 133708
+      address: 133724
     - index: 1
       opcode: BRND
       size: 4
       branch-type: conditional
       branch-targets:
-      - 21
-      address: 133712
+      - 22
+      address: 133728
     - index: 2
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 22
-      address: 133716
-    address: 133708
-  - name: 24
+      - 23
+      address: 133732
+    address: 133724
+  - name: 25
     mapsto: for.inc20.i
     predecessors:
-    - 25
+    - 26
     successors:
-    - 20
+    - 21
     loops:
-    - 20
+    - 21
     instructions:
     - index: 0
       opcode: BRu
@@ -1821,95 +1380,95 @@ machine-functions:
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 20
-      address: 133720
+      - 21
+      address: 133736
     - index: 1
-      opcode: ADDi
-      size: 4
-      address: 133724
+      opcode: ADDl
+      size: 8
+      address: 133740
     - index: 2
       opcode: ADDi
       size: 4
-      address: 133728
-    address: 133720
-  - name: 25
+      address: 133748
+    address: 133736
+  - name: 26
     mapsto: for.cond12.i
     predecessors:
-    - 26
-    - 22
-    successors:
-    - 24
+    - 27
     - 23
-    loops:
+    successors:
     - 25
-    - 20
+    - 24
+    loops:
+    - 26
+    - 21
     instructions:
     - index: 0
       opcode: LIi
       size: 4
-      address: 133732
+      address: 133752
     - index: 1
-      opcode: CMPIEQ
+      opcode: CMPEQ
       size: 4
-      address: 133736
+      address: 133756
     - index: 2
       opcode: BR
       size: 4
       branch-type: conditional
       branch-delay-slots: 2
       branch-targets:
-      - 23
-      address: 133740
+      - 24
+      address: 133760
     - index: 3
       opcode: MOV
       size: 4
-      address: 133744
+      address: 133764
     - index: 4
       opcode: MOV
       size: 4
-      address: 133748
+      address: 133768
     - index: 5
       opcode: BRNDu
       size: 4
       branch-type: unconditional
       branch-targets:
-      - 24
-      address: 133752
-    address: 133732
-  - name: 26
+      - 25
+      address: 133772
+    address: 133752
+  - name: 27
     mapsto: for.cond12.preheader.i
     predecessors:
-    - 20
+    - 21
     successors:
-    - 25
+    - 26
     loops:
-    - 20
+    - 21
     instructions:
     - index: 0
       opcode: MOV
       size: 4
-      address: 133756
+      address: 133776
     - index: 1
       opcode: BRu
       size: 4
       branch-type: unconditional
       branch-delay-slots: 2
       branch-targets:
-      - 25
-      address: 133760
+      - 26
+      address: 133780
     - index: 2
       opcode: MOV
       size: 4
-      address: 133764
+      address: 133784
     - index: 3
       opcode: MOV
       size: 4
-      address: 133768
-    address: 133756
-  - name: 27
+      address: 133788
+    address: 133776
+  - name: 28
     mapsto: read_array_uncached.exit
     predecessors:
-    - 20
+    - 21
     successors: []
     instructions:
     - index: 0
@@ -1917,20 +1476,20 @@ machine-functions:
       size: 4
       branch-type: return
       branch-delay-slots: 3
-      address: 133772
+      address: 133792
     - index: 1
       opcode: MOV
       size: 4
-      address: 133776
+      address: 133796
     - index: 2
       opcode: MTS
       size: 4
-      address: 133780
+      address: 133800
     - index: 3
       opcode: ADDi
       size: 4
-      address: 133784
-    address: 133772
+      address: 133804
+    address: 133792
   subfunctions:
   - name: 0
     blocks:
@@ -1948,9 +1507,9 @@ machine-functions:
     - 9
     - 10
     - 11
-  - name: 12
-    blocks:
     - 12
+  - name: 13
+    blocks:
     - 13
     - 14
     - 15
@@ -1958,9 +1517,9 @@ machine-functions:
     - 17
     - 18
     - 19
-  - name: 20
-    blocks:
     - 20
+  - name: 21
+    blocks:
     - 21
     - 22
     - 23
@@ -1968,6 +1527,7 @@ machine-functions:
     - 25
     - 26
     - 27
+    - 28
 bitcode-functions:
 - name: main
   level: bitcode
@@ -2097,47 +1657,43 @@ bitcode-functions:
     - for.cond.i3
     instructions:
     - index: 0
-      opcode: add
-    - index: 1
-      opcode: add
-    - index: 2
-      opcode: sitofp
-    - index: 3
       opcode: mul
-    - index: 4
+    - index: 1
       opcode: inttoptr
-    - index: 5
+    - index: 2
       opcode: getelementptr
-    - index: 6
+    - index: 3
+      opcode: add
+    - index: 4
+      opcode: add
+    - index: 5
       opcode: store
       memmode: store
+    - index: 6
+      opcode: mul
     - index: 7
-      opcode: add
+      opcode: inttoptr
     - index: 8
       opcode: add
     - index: 9
-      opcode: sitofp
+      opcode: add
     - index: 10
-      opcode: mul
+      opcode: store
+      memmode: store
     - index: 11
-      opcode: inttoptr
-    - index: 12
-      opcode: store
-      memmode: store
-    - index: 13
       opcode: mul
-    - index: 14
+    - index: 12
       opcode: inttoptr
-    - index: 15
+    - index: 13
       opcode: getelementptr
-    - index: 16
+    - index: 14
       opcode: store
       memmode: store
+    - index: 15
+      opcode: add
+    - index: 16
+      opcode: add
     - index: 17
-      opcode: add
-    - index: 18
-      opcode: add
-    - index: 19
       opcode: br
   - name: for.inc3.i8
     predecessors:
@@ -2164,130 +1720,6 @@ bitcode-functions:
       - matmul_main_wcet
     - index: 1
       opcode: ret
-- name: __floatsisf
-  level: bitcode
-  hash: 0
-  blocks:
-  - name: entry
-    predecessors: []
-    successors:
-    - return
-    - if.end
-    instructions:
-    - index: 0
-      opcode: icmp
-    - index: 1
-      opcode: br
-  - name: if.end
-    predecessors:
-    - entry
-    successors:
-    - if.then3
-    - if.else
-    instructions:
-    - index: 0
-      opcode: icmp
-    - index: 1
-      opcode: sub
-    - index: 2
-      opcode: and
-    - index: 3
-      opcode: select
-    - index: 4
-      opcode: call
-    - index: 5
-      opcode: xor
-    - index: 6
-      opcode: icmp
-    - index: 7
-      opcode: br
-  - name: if.then3
-    predecessors:
-    - if.end
-    successors:
-    - if.end9
-    instructions:
-    - index: 0
-      opcode: sub
-    - index: 1
-      opcode: shl
-    - index: 2
-      opcode: xor
-    - index: 3
-      opcode: br
-  - name: if.else
-    predecessors:
-    - if.end
-    successors:
-    - if.then7
-    - if.end9
-    instructions:
-    - index: 0
-      opcode: add
-    - index: 1
-      opcode: lshr
-    - index: 2
-      opcode: xor
-    - index: 3
-      opcode: sub
-    - index: 4
-      opcode: shl
-    - index: 5
-      opcode: icmp
-    - index: 6
-      opcode: zext
-    - index: 7
-      opcode: add
-    - index: 8
-      opcode: icmp
-    - index: 9
-      opcode: br
-  - name: if.then7
-    predecessors:
-    - if.else
-    successors:
-    - if.end9
-    instructions:
-    - index: 0
-      opcode: add
-    - index: 1
-      opcode: and
-    - index: 2
-      opcode: add
-    - index: 3
-      opcode: br
-  - name: if.end9
-    predecessors:
-    - if.then7
-    - if.else
-    - if.then3
-    successors:
-    - return
-    instructions:
-    - index: 0
-      opcode: phi
-    - index: 1
-      opcode: shl
-    - index: 2
-      opcode: add
-    - index: 3
-      opcode: add
-    - index: 4
-      opcode: or
-    - index: 5
-      opcode: bitcast
-    - index: 6
-      opcode: br
-  - name: return
-    predecessors:
-    - if.end9
-    - entry
-    successors: []
-    instructions:
-    - index: 0
-      opcode: phi
-    - index: 1
-      opcode: ret
 - name: matmul_main_wcet
   level: bitcode
   hash: 0
@@ -2300,6 +1732,10 @@ bitcode-functions:
     - index: 0
       opcode: alloca
     - index: 1
+      opcode: bitcast
+    - index: 2
+      opcode: call
+    - index: 3
       opcode: br
   - name: for.cond.i
     predecessors:
@@ -2348,22 +1784,59 @@ bitcode-functions:
     predecessors:
     - for.cond.i
     successors:
-    - for.cond10.i14
+    - for.cond.i14
     instructions:
     - index: 0
       opcode: load
       memmode: load
     - index: 1
       opcode: br
-  - name: for.cond10.i14
+  - name: for.cond.i14
     predecessors:
-    - for.inc20.i24
+    - for.inc7.i
     - bank_ptrs.exit
     successors:
-    - write_array_uncached.exit25
-    - for.cond12.preheader.i15
+    - write_array_uncached.exit15
+    - for.cond1.preheader.i
     loops:
-    - for.cond10.i14
+    - for.cond.i14
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: call
+    - index: 2
+      opcode: icmp
+    - index: 3
+      opcode: br
+  - name: for.cond1.preheader.i
+    predecessors:
+    - for.cond.i14
+    successors:
+    - for.cond1.i
+    loops:
+    - for.cond.i14
+    instructions:
+    - index: 0
+      opcode: shl
+    - index: 1
+      opcode: sdiv
+    - index: 2
+      opcode: getelementptr
+    - index: 3
+      opcode: bitcast
+    - index: 4
+      opcode: br
+  - name: for.cond1.i
+    predecessors:
+    - for.inc5.i
+    - for.cond1.preheader.i
+    successors:
+    - for.inc7.i
+    - for.cond3.preheader.i
+    loops:
+    - for.cond1.i
+    - for.cond.i14
     instructions:
     - index: 0
       opcode: phi
@@ -2375,72 +1848,54 @@ bitcode-functions:
       opcode: icmp
     - index: 4
       opcode: br
-  - name: for.cond12.preheader.i15
+  - name: for.cond3.preheader.i
     predecessors:
-    - for.cond10.i14
+    - for.cond1.i
     successors:
-    - for.cond12.i17
+    - for.cond3.i
     loops:
-    - for.cond10.i14
+    - for.cond1.i
+    - for.cond.i14
     instructions:
     - index: 0
+      opcode: shl
+    - index: 1
+      opcode: sdiv
+    - index: 2
+      opcode: mul
+    - index: 3
       opcode: br
-  - name: for.cond12.i17
+  - name: for.cond3.i
     predecessors:
-    - for.inc18.i23
-    - for.cond12.preheader.i15
+    - for.body4.i
+    - for.cond3.preheader.i
     successors:
-    - for.inc20.i24
-    - for.cond14.i20
+    - for.inc5.i
+    - for.body4.i
     loops:
-    - for.cond12.i17
-    - for.cond10.i14
+    - for.cond3.i
+    - for.cond1.i
+    - for.cond.i14
     instructions:
     - index: 0
       opcode: phi
     - index: 1
       opcode: phi
     - index: 2
-      opcode: phi
-    - index: 3
       opcode: call
-    - index: 4
-      opcode: icmp
-    - index: 5
-      opcode: br
-  - name: for.cond14.i20
-    predecessors:
-    - for.cond12.i17
-    - for.body15.i22
-    successors:
-    - for.inc18.i23
-    - for.body15.i22
-    loops:
-    - for.cond14.i20
-    - for.cond12.i17
-    - for.cond10.i14
-    instructions:
-    - index: 0
-      opcode: phi
-    - index: 1
-      opcode: phi
-    - index: 2
-      opcode: phi
     - index: 3
-      opcode: call
-    - index: 4
       opcode: icmp
-    - index: 5
+    - index: 4
       opcode: br
-  - name: for.body15.i22
+  - name: for.body4.i
     predecessors:
-    - for.cond14.i20
+    - for.cond3.i
     successors:
-    - for.cond14.i20
+    - for.cond3.i
     loops:
-    - for.cond14.i20
-    - for.cond12.i17
-    - for.cond10.i14
+    - for.cond3.i
+    - for.cond1.i
+    - for.cond.i14
     instructions:
     - index: 0
       opcode: bitcast
@@ -2465,44 +1920,26 @@ bitcode-functions:
     - index: 9
       opcode: bitcast
     - index: 10
+      opcode: getelementptr
+    - index: 11
       opcode: store
       memmode: store
-    - index: 11
-      opcode: add
     - index: 12
-      opcode: getelementptr
-    - index: 13
-      opcode: bitcast
-    - index: 14
       opcode: add
+    - index: 13
+      opcode: getelementptr
+    - index: 14
+      opcode: bitcast
     - index: 15
       opcode: br
-  - name: for.inc18.i23
+  - name: for.inc5.i
     predecessors:
-    - for.cond14.i20
+    - for.cond3.i
     successors:
-    - for.cond12.i17
+    - for.cond1.i
     loops:
-    - for.cond12.i17
-    - for.cond10.i14
-    instructions:
-    - index: 0
-      opcode: add
-    - index: 1
-      opcode: add
-    - index: 2
-      opcode: getelementptr
-    - index: 3
-      opcode: bitcast
-    - index: 4
-      opcode: br
-  - name: for.inc20.i24
-    predecessors:
-    - for.cond12.i17
-    successors:
-    - for.cond10.i14
-    loops:
-    - for.cond10.i14
+    - for.cond1.i
+    - for.cond.i14
     instructions:
     - index: 0
       opcode: add
@@ -2512,9 +1949,21 @@ bitcode-functions:
       opcode: bitcast
     - index: 3
       opcode: br
-  - name: write_array_uncached.exit25
+  - name: for.inc7.i
     predecessors:
-    - for.cond10.i14
+    - for.cond1.i
+    successors:
+    - for.cond.i14
+    loops:
+    - for.cond.i14
+    instructions:
+    - index: 0
+      opcode: add
+    - index: 1
+      opcode: br
+  - name: write_array_uncached.exit15
+    predecessors:
+    - for.cond.i14
     successors:
     - for.cond10.i2
     instructions:
@@ -2522,29 +1971,11 @@ bitcode-functions:
       opcode: load
       memmode: load
     - index: 1
-      opcode: getelementptr
-    - index: 2
-      opcode: bitcast
-    - index: 3
-      opcode: br
-  - name: for.cond10.i2.loopexit
-    predecessors:
-    - for.cond12.i5
-    successors:
-    - for.cond10.i2
-    loops:
-    - for.cond10.i2
-    instructions:
-    - index: 0
-      opcode: getelementptr
-    - index: 1
-      opcode: bitcast
-    - index: 2
       opcode: br
   - name: for.cond10.i2
     predecessors:
-    - for.cond10.i2.loopexit
-    - write_array_uncached.exit25
+    - for.inc20.i12
+    - write_array_uncached.exit15
     successors:
     - write_array_uncached.exit
     - for.cond12.preheader.i3
@@ -2554,12 +1985,10 @@ bitcode-functions:
     - index: 0
       opcode: phi
     - index: 1
-      opcode: phi
-    - index: 2
       opcode: call
-    - index: 3
+    - index: 2
       opcode: icmp
-    - index: 4
+    - index: 3
       opcode: br
   - name: for.cond12.preheader.i3
     predecessors:
@@ -2570,15 +1999,19 @@ bitcode-functions:
     - for.cond10.i2
     instructions:
     - index: 0
-      opcode: add
+      opcode: shl
     - index: 1
+      opcode: sdiv
+    - index: 2
+      opcode: getelementptr
+    - index: 3
       opcode: br
   - name: for.cond12.i5
     predecessors:
     - for.inc18.i11
     - for.cond12.preheader.i3
     successors:
-    - for.cond10.i2.loopexit
+    - for.inc20.i12
     - for.cond14.i8
     loops:
     - for.cond12.i5
@@ -2589,12 +2022,10 @@ bitcode-functions:
     - index: 1
       opcode: phi
     - index: 2
-      opcode: phi
-    - index: 3
       opcode: call
-    - index: 4
+    - index: 3
       opcode: icmp
-    - index: 5
+    - index: 4
       opcode: br
   - name: for.cond14.i8
     predecessors:
@@ -2613,12 +2044,10 @@ bitcode-functions:
     - index: 1
       opcode: phi
     - index: 2
-      opcode: phi
-    - index: 3
       opcode: call
-    - index: 4
+    - index: 3
       opcode: icmp
-    - index: 5
+    - index: 4
       opcode: br
   - name: for.body15.i10
     predecessors:
@@ -2633,39 +2062,45 @@ bitcode-functions:
     - index: 0
       opcode: bitcast
     - index: 1
-      opcode: load
-      memmode: load
-    - index: 2
-      opcode: ptrtoint
-    - index: 3
       opcode: mul
+    - index: 2
+      opcode: getelementptr
+    - index: 3
+      opcode: bitcast
     - index: 4
-      opcode: add
-    - index: 5
-      opcode: add
-    - index: 6
-      opcode: inttoptr
-    - index: 7
       opcode: load
       memmode: load
-    - index: 8
-      opcode: bitcast
-    - index: 9
-      opcode: getelementptr
-    - index: 10
-      opcode: bitcast
-    - index: 11
-      opcode: store
-      memmode: store
-    - index: 12
+    - index: 5
+      opcode: ptrtoint
+    - index: 6
+      opcode: mul
+    - index: 7
       opcode: add
+    - index: 8
+      opcode: add
+    - index: 9
+      opcode: inttoptr
+    - index: 10
+      opcode: load
+      memmode: load
+    - index: 11
+      opcode: bitcast
+    - index: 12
+      opcode: mul
     - index: 13
       opcode: getelementptr
     - index: 14
       opcode: bitcast
     - index: 15
-      opcode: add
+      opcode: getelementptr
     - index: 16
+      opcode: store
+      memmode: store
+    - index: 17
+      opcode: add
+    - index: 18
+      opcode: add
+    - index: 19
       opcode: br
   - name: for.inc18.i11
     predecessors:
@@ -2681,10 +2116,18 @@ bitcode-functions:
     - index: 1
       opcode: add
     - index: 2
-      opcode: getelementptr
-    - index: 3
-      opcode: bitcast
-    - index: 4
+      opcode: br
+  - name: for.inc20.i12
+    predecessors:
+    - for.cond12.i5
+    successors:
+    - for.cond10.i2
+    loops:
+    - for.cond10.i2
+    instructions:
+    - index: 0
+      opcode: add
+    - index: 1
       opcode: br
   - name: write_array_uncached.exit
     predecessors:
@@ -2872,6 +2315,10 @@ bitcode-functions:
     successors: []
     instructions:
     - index: 0
+      opcode: bitcast
+    - index: 1
+      opcode: call
+    - index: 2
       opcode: ret
 flowfacts:
 - scope:
@@ -2883,7 +2330,7 @@ flowfacts:
       function: main
       block: for.cond.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -2896,7 +2343,7 @@ flowfacts:
       function: main
       block: for.cond.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -2909,7 +2356,7 @@ flowfacts:
       function: main
       block: for.cond.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -2922,7 +2369,7 @@ flowfacts:
       function: main
       block: for.cond1.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -2935,7 +2382,7 @@ flowfacts:
       function: main
       block: for.cond1.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -2948,7 +2395,7 @@ flowfacts:
       function: main
       block: for.cond1.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -2961,7 +2408,7 @@ flowfacts:
       function: main
       block: for.cond.i3
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -2974,7 +2421,7 @@ flowfacts:
       function: main
       block: for.cond.i3
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -2987,7 +2434,7 @@ flowfacts:
       function: main
       block: for.cond.i3
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -3000,7 +2447,7 @@ flowfacts:
       function: main
       block: for.cond1.i6
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3013,7 +2460,7 @@ flowfacts:
       function: main
       block: for.cond1.i6
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3026,7 +2473,7 @@ flowfacts:
       function: main
       block: for.cond1.i6
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -3039,7 +2486,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond.i
   op: less-equal
-  rhs: 4
+  rhs: 10
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3052,7 +2499,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond.i
   op: less-equal
-  rhs: 4
+  rhs: 10
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3065,57 +2512,18 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond.i
   op: less-equal
-  rhs: 4
+  rhs: 10
   level: bitcode
   origin: user.bc
   classification: loop-global
 - scope:
     function: matmul_main_wcet
-    loop: for.cond10.i14
+    loop: for.cond.i14
   lhs:
   - factor: 1
     program-point:
       function: matmul_main_wcet
-      block: for.cond10.i14
-  op: less-equal
-  rhs: 2
-  level: bitcode
-  origin: llvm.bc
-  classification: loop-global
-- scope:
-    function: matmul_main_wcet
-    loop: for.cond10.i14
-  lhs:
-  - factor: 1
-    program-point:
-      function: matmul_main_wcet
-      block: for.cond10.i14
-  op: less-equal
-  rhs: 2
-  level: bitcode
-  origin: llvm.bc
-  classification: loop-global
-- scope:
-    function: matmul_main_wcet
-    loop: for.cond10.i14
-  lhs:
-  - factor: 1
-    program-point:
-      function: matmul_main_wcet
-      block: for.cond10.i14
-  op: less-equal
-  rhs: 2
-  level: bitcode
-  origin: user.bc
-  classification: loop-global
-- scope:
-    function: matmul_main_wcet
-    loop: for.cond12.i17
-  lhs:
-  - factor: 1
-    program-point:
-      function: matmul_main_wcet
-      block: for.cond12.i17
+      block: for.cond.i14
   op: less-equal
   rhs: 5
   level: bitcode
@@ -3123,12 +2531,12 @@ flowfacts:
   classification: loop-global
 - scope:
     function: matmul_main_wcet
-    loop: for.cond12.i17
+    loop: for.cond.i14
   lhs:
   - factor: 1
     program-point:
       function: matmul_main_wcet
-      block: for.cond12.i17
+      block: for.cond.i14
   op: less-equal
   rhs: 5
   level: bitcode
@@ -3136,12 +2544,12 @@ flowfacts:
   classification: loop-global
 - scope:
     function: matmul_main_wcet
-    loop: for.cond12.i17
+    loop: for.cond.i14
   lhs:
   - factor: 1
     program-point:
       function: matmul_main_wcet
-      block: for.cond12.i17
+      block: for.cond.i14
   op: less-equal
   rhs: 5
   level: bitcode
@@ -3149,40 +2557,79 @@ flowfacts:
   classification: loop-global
 - scope:
     function: matmul_main_wcet
-    loop: for.cond14.i20
+    loop: for.cond1.i
   lhs:
   - factor: 1
     program-point:
       function: matmul_main_wcet
-      block: for.cond14.i20
+      block: for.cond1.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: matmul_main_wcet
-    loop: for.cond14.i20
+    loop: for.cond1.i
   lhs:
   - factor: 1
     program-point:
       function: matmul_main_wcet
-      block: for.cond14.i20
+      block: for.cond1.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
 - scope:
     function: matmul_main_wcet
-    loop: for.cond14.i20
+    loop: for.cond1.i
   lhs:
   - factor: 1
     program-point:
       function: matmul_main_wcet
-      block: for.cond14.i20
+      block: for.cond1.i
   op: less-equal
-  rhs: 5
+  rhs: 33
+  level: bitcode
+  origin: user.bc
+  classification: loop-global
+- scope:
+    function: matmul_main_wcet
+    loop: for.cond3.i
+  lhs:
+  - factor: 1
+    program-point:
+      function: matmul_main_wcet
+      block: for.cond3.i
+  op: less-equal
+  rhs: 9
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: matmul_main_wcet
+    loop: for.cond3.i
+  lhs:
+  - factor: 1
+    program-point:
+      function: matmul_main_wcet
+      block: for.cond3.i
+  op: less-equal
+  rhs: 9
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: matmul_main_wcet
+    loop: for.cond3.i
+  lhs:
+  - factor: 1
+    program-point:
+      function: matmul_main_wcet
+      block: for.cond3.i
+  op: less-equal
+  rhs: 9
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -3195,7 +2642,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond10.i2
   op: less-equal
-  rhs: 2
+  rhs: 5
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3208,7 +2655,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond10.i2
   op: less-equal
-  rhs: 2
+  rhs: 5
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3221,51 +2668,51 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond10.i2
   op: less-equal
-  rhs: 2
-  level: bitcode
-  origin: user.bc
-  classification: loop-global
-- scope:
-    function: matmul_main_wcet
-    loop: for.cond12.i5
-  lhs:
-  - factor: 1
-    program-point:
-      function: matmul_main_wcet
-      block: for.cond12.i5
-  op: less-equal
-  rhs: 5
-  level: bitcode
-  origin: llvm.bc
-  classification: loop-global
-- scope:
-    function: matmul_main_wcet
-    loop: for.cond12.i5
-  lhs:
-  - factor: 1
-    program-point:
-      function: matmul_main_wcet
-      block: for.cond12.i5
-  op: less-equal
-  rhs: 5
-  level: bitcode
-  origin: llvm.bc
-  classification: loop-global
-- scope:
-    function: matmul_main_wcet
-    loop: for.cond12.i5
-  lhs:
-  - factor: 1
-    program-point:
-      function: matmul_main_wcet
-      block: for.cond12.i5
-  op: less-equal
   rhs: 5
   level: bitcode
   origin: user.bc
   classification: loop-global
 - scope:
     function: matmul_main_wcet
+    loop: for.cond12.i5
+  lhs:
+  - factor: 1
+    program-point:
+      function: matmul_main_wcet
+      block: for.cond12.i5
+  op: less-equal
+  rhs: 9
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: matmul_main_wcet
+    loop: for.cond12.i5
+  lhs:
+  - factor: 1
+    program-point:
+      function: matmul_main_wcet
+      block: for.cond12.i5
+  op: less-equal
+  rhs: 9
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: matmul_main_wcet
+    loop: for.cond12.i5
+  lhs:
+  - factor: 1
+    program-point:
+      function: matmul_main_wcet
+      block: for.cond12.i5
+  op: less-equal
+  rhs: 9
+  level: bitcode
+  origin: user.bc
+  classification: loop-global
+- scope:
+    function: matmul_main_wcet
     loop: for.cond14.i8
   lhs:
   - factor: 1
@@ -3273,7 +2720,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond14.i8
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3286,7 +2733,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond14.i8
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3299,7 +2746,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond14.i8
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -3351,7 +2798,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond12.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3364,7 +2811,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond12.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3377,7 +2824,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond12.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
@@ -3390,7 +2837,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond14.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3403,7 +2850,7 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond14.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: llvm.bc
   classification: loop-global
@@ -3416,14 +2863,14 @@ flowfacts:
       function: matmul_main_wcet
       block: for.cond14.i
   op: less-equal
-  rhs: 5
+  rhs: 33
   level: bitcode
   origin: user.bc
   classification: loop-global
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: -8
     program-point:
       function: 7
       block: 6
@@ -3442,10 +2889,10 @@ flowfacts:
     program-point:
       function: 7
       block: 6
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
-      block: 8
+      block: 9
   op: less-equal
   rhs: '0'
   origin: llvm
@@ -3453,29 +2900,14 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
-      block: 14
-  - factor: 1
-    program-point:
-      function: 7
-      block: 13
-  op: less-equal
-  rhs: '0'
-  origin: llvm
-  level: machinecode
-- scope:
-    function: 7
-  lhs:
+      block: 15
   - factor: 1
     program-point:
       function: 7
       block: 14
-  - factor: -4
-    program-point:
-      function: 7
-      block: 16
   op: less-equal
   rhs: '0'
   origin: llvm
@@ -3483,14 +2915,29 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: 1
+    program-point:
+      function: 7
+      block: 15
+  - factor: -8
+    program-point:
+      function: 7
+      block: 17
+  op: less-equal
+  rhs: '0'
+  origin: llvm
+  level: machinecode
+- scope:
+    function: 7
+  lhs:
+  - factor: -32
+    program-point:
+      function: 7
+      block: 23
+  - factor: 1
     program-point:
       function: 7
       block: 22
-  - factor: 1
-    program-point:
-      function: 7
-      block: 21
   op: less-equal
   rhs: '0'
   origin: llvm
@@ -3501,11 +2948,41 @@ flowfacts:
   - factor: 1
     program-point:
       function: 7
-      block: 22
+      block: 23
+  - factor: -32
+    program-point:
+      function: 7
+      block: 25
+  op: less-equal
+  rhs: '0'
+  origin: llvm
+  level: machinecode
+- scope:
+    function: 7
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 25
+  - factor: -1
+    program-point:
+      function: 7
+      block: 28
+  op: less-equal
+  rhs: '0'
+  origin: llvm
+  level: machinecode
+- scope:
+    function: 7
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 17
   - factor: -4
     program-point:
       function: 7
-      block: 24
+      block: 28
   op: less-equal
   rhs: '0'
   origin: llvm
@@ -3516,11 +2993,11 @@ flowfacts:
   - factor: 1
     program-point:
       function: 7
-      block: 24
-  - factor: -1
+      block: 9
+  - factor: -4
     program-point:
       function: 7
-      block: 27
+      block: 28
   op: less-equal
   rhs: '0'
   origin: llvm
@@ -3528,40 +3005,10 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: 1
+  - factor: -9
     program-point:
       function: 7
-      block: 16
-  - factor: -1
-    program-point:
-      function: 7
-      block: 27
-  op: less-equal
-  rhs: '0'
-  origin: llvm
-  level: machinecode
-- scope:
-    function: 7
-  lhs:
-  - factor: 1
-    program-point:
-      function: 7
-      block: 8
-  - factor: -1
-    program-point:
-      function: 7
-      block: 27
-  op: less-equal
-  rhs: '0'
-  origin: llvm
-  level: machinecode
-- scope:
-    function: 7
-  lhs:
-  - factor: -3
-    program-point:
-      function: 7
-      block: 27
+      block: 28
   - factor: 1
     program-point:
       function: 7
@@ -3579,7 +3026,7 @@ flowfacts:
       function: 7
       block: 2
   op: less-equal
-  rhs: '4'
+  rhs: '10'
   origin: llvm
   level: machinecode
 - scope:
@@ -3591,7 +3038,7 @@ flowfacts:
       function: 7
       block: 2
   op: less-equal
-  rhs: '4'
+  rhs: '10'
   origin: llvm
   level: machinecode
 - scope:
@@ -3603,7 +3050,7 @@ flowfacts:
       function: 7
       block: 4
   op: less-equal
-  rhs: '2'
+  rhs: '5'
   origin: llvm
   level: machinecode
 - scope:
@@ -3615,127 +3062,127 @@ flowfacts:
       function: 7
       block: 4
   op: less-equal
-  rhs: '2'
+  rhs: '5'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 12
+    loop: 13
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 12
+      block: 13
   op: less-equal
-  rhs: '2'
+  rhs: '5'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 12
+    loop: 13
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 12
+      block: 13
   op: less-equal
-  rhs: '2'
+  rhs: '5'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 20
+    loop: 21
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 20
-  op: less-equal
-  rhs: '2'
-  origin: llvm
-  level: machinecode
-- scope:
-    function: 7
-    loop: 20
-  lhs:
-  - factor: 1
-    program-point:
-      function: 7
-      block: 20
+      block: 21
   op: less-equal
   rhs: '2'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 9
+    loop: 21
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 9
+      block: 21
   op: less-equal
-  rhs: '5'
+  rhs: '2'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 9
+    loop: 10
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 9
+      block: 10
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 17
+    loop: 10
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 17
+      block: 10
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 17
+    loop: 18
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 17
+      block: 18
   op: less-equal
-  rhs: '5'
+  rhs: '9'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 25
+    loop: 18
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 25
+      block: 18
   op: less-equal
-  rhs: '5'
+  rhs: '9'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 25
+    loop: 26
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 25
+      block: 26
   op: less-equal
-  rhs: '5'
+  rhs: '33'
+  origin: llvm
+  level: machinecode
+- scope:
+    function: 7
+    loop: 26
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 26
+  op: less-equal
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
@@ -3747,7 +3194,7 @@ flowfacts:
       function: 7
       block: 7
   op: less-equal
-  rhs: '5'
+  rhs: '9'
   origin: llvm
   level: machinecode
 - scope:
@@ -3759,61 +3206,61 @@ flowfacts:
       function: 7
       block: 7
   op: less-equal
-  rhs: '5'
+  rhs: '9'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 15
+    loop: 16
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 15
+      block: 16
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 15
+    loop: 16
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 15
+      block: 16
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 23
+    loop: 24
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 23
+      block: 24
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
-    loop: 23
+    loop: 24
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 23
+      block: 24
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: llvm
   level: machinecode
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: -8
     program-point:
       function: 7
       block: 6
@@ -3832,10 +3279,10 @@ flowfacts:
     program-point:
       function: 7
       block: 6
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
-      block: 8
+      block: 9
   op: less-equal
   rhs: '0'
   origin: user
@@ -3843,29 +3290,14 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: -32
     program-point:
       function: 7
-      block: 14
-  - factor: 1
-    program-point:
-      function: 7
-      block: 13
-  op: less-equal
-  rhs: '0'
-  origin: user
-  level: machinecode
-- scope:
-    function: 7
-  lhs:
+      block: 15
   - factor: 1
     program-point:
       function: 7
       block: 14
-  - factor: -4
-    program-point:
-      function: 7
-      block: 16
   op: less-equal
   rhs: '0'
   origin: user
@@ -3873,14 +3305,29 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: -4
+  - factor: 1
+    program-point:
+      function: 7
+      block: 15
+  - factor: -8
+    program-point:
+      function: 7
+      block: 17
+  op: less-equal
+  rhs: '0'
+  origin: user
+  level: machinecode
+- scope:
+    function: 7
+  lhs:
+  - factor: -32
+    program-point:
+      function: 7
+      block: 23
+  - factor: 1
     program-point:
       function: 7
       block: 22
-  - factor: 1
-    program-point:
-      function: 7
-      block: 21
   op: less-equal
   rhs: '0'
   origin: user
@@ -3891,11 +3338,41 @@ flowfacts:
   - factor: 1
     program-point:
       function: 7
-      block: 22
+      block: 23
+  - factor: -32
+    program-point:
+      function: 7
+      block: 25
+  op: less-equal
+  rhs: '0'
+  origin: user
+  level: machinecode
+- scope:
+    function: 7
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 25
+  - factor: -1
+    program-point:
+      function: 7
+      block: 28
+  op: less-equal
+  rhs: '0'
+  origin: user
+  level: machinecode
+- scope:
+    function: 7
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 17
   - factor: -4
     program-point:
       function: 7
-      block: 24
+      block: 28
   op: less-equal
   rhs: '0'
   origin: user
@@ -3906,11 +3383,11 @@ flowfacts:
   - factor: 1
     program-point:
       function: 7
-      block: 24
-  - factor: -1
+      block: 9
+  - factor: -4
     program-point:
       function: 7
-      block: 27
+      block: 28
   op: less-equal
   rhs: '0'
   origin: user
@@ -3918,40 +3395,10 @@ flowfacts:
 - scope:
     function: 7
   lhs:
-  - factor: 1
+  - factor: -9
     program-point:
       function: 7
-      block: 16
-  - factor: -1
-    program-point:
-      function: 7
-      block: 27
-  op: less-equal
-  rhs: '0'
-  origin: user
-  level: machinecode
-- scope:
-    function: 7
-  lhs:
-  - factor: 1
-    program-point:
-      function: 7
-      block: 8
-  - factor: -1
-    program-point:
-      function: 7
-      block: 27
-  op: less-equal
-  rhs: '0'
-  origin: user
-  level: machinecode
-- scope:
-    function: 7
-  lhs:
-  - factor: -3
-    program-point:
-      function: 7
-      block: 27
+      block: 28
   - factor: 1
     program-point:
       function: 7
@@ -3969,7 +3416,7 @@ flowfacts:
       function: 7
       block: 2
   op: less-equal
-  rhs: '4'
+  rhs: '10'
   origin: user
   level: machinecode
 - scope:
@@ -3981,67 +3428,67 @@ flowfacts:
       function: 7
       block: 4
   op: less-equal
-  rhs: '2'
+  rhs: '5'
   origin: user
   level: machinecode
 - scope:
     function: 7
-    loop: 12
+    loop: 13
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 12
-  op: less-equal
-  rhs: '2'
-  origin: user
-  level: machinecode
-- scope:
-    function: 7
-    loop: 20
-  lhs:
-  - factor: 1
-    program-point:
-      function: 7
-      block: 20
-  op: less-equal
-  rhs: '2'
-  origin: user
-  level: machinecode
-- scope:
-    function: 7
-    loop: 9
-  lhs:
-  - factor: 1
-    program-point:
-      function: 7
-      block: 9
+      block: 13
   op: less-equal
   rhs: '5'
   origin: user
   level: machinecode
 - scope:
     function: 7
-    loop: 17
+    loop: 21
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 17
+      block: 21
   op: less-equal
-  rhs: '5'
+  rhs: '2'
   origin: user
   level: machinecode
 - scope:
     function: 7
-    loop: 25
+    loop: 10
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 25
+      block: 10
   op: less-equal
-  rhs: '5'
+  rhs: '33'
+  origin: user
+  level: machinecode
+- scope:
+    function: 7
+    loop: 18
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 18
+  op: less-equal
+  rhs: '9'
+  origin: user
+  level: machinecode
+- scope:
+    function: 7
+    loop: 26
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 26
+  op: less-equal
+  rhs: '33'
   origin: user
   level: machinecode
 - scope:
@@ -4053,31 +3500,31 @@ flowfacts:
       function: 7
       block: 7
   op: less-equal
-  rhs: '5'
+  rhs: '9'
   origin: user
   level: machinecode
 - scope:
     function: 7
-    loop: 15
+    loop: 16
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 15
+      block: 16
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: user
   level: machinecode
 - scope:
     function: 7
-    loop: 23
+    loop: 24
   lhs:
   - factor: 1
     program-point:
       function: 7
-      block: 23
+      block: 24
   op: less-equal
-  rhs: '5'
+  rhs: '33'
   origin: user
   level: machinecode
 relation-graphs:
@@ -4139,7 +3586,7 @@ relation-graphs:
   - name: 6
     type: progress
     src-block: for.cond1.i6
-    dst-block: 6
+    dst-block: 8
     src-successors:
     - 8
     - 9
@@ -4157,7 +3604,7 @@ relation-graphs:
   - name: 8
     type: progress
     src-block: for.body2.i7
-    dst-block: 8
+    dst-block: 6
     src-successors:
     - 6
     dst-successors:
@@ -4178,74 +3625,6 @@ relation-graphs:
     - 2
     dst-successors:
     - 2
-  status: valid
-- src:
-    function: __floatsisf
-    level: bitcode
-  dst:
-    function: 124
-    level: machinecode
-  nodes:
-  - name: 0
-    type: entry
-    src-block: entry
-    dst-block: 0
-    src-successors:
-    - 2
-    - 3
-    dst-successors:
-    - 2
-    - 3
-  - name: 1
-    type: exit
-  - name: 2
-    type: progress
-    src-block: if.end
-    dst-block: 1
-    src-successors:
-    - 4
-    - 5
-    dst-successors:
-    - 4
-    - 5
-  - name: 3
-    type: progress
-    src-block: return
-    dst-block: 5
-    src-successors:
-    - 1
-    dst-successors:
-    - 1
-  - name: 4
-    type: progress
-    src-block: if.else
-    dst-block: 3
-    src-successors:
-    - 7
-    - 6
-    dst-successors:
-    - 6
-  - name: 5
-    type: progress
-    src-block: if.then3
-    dst-block: 2
-    src-successors:
-    - 6
-    dst-successors:
-    - 6
-  - name: 6
-    type: progress
-    src-block: if.end9
-    dst-block: 4
-    src-successors:
-    - 3
-    dst-successors:
-    - 3
-  - name: 7
-    type: src
-    src-block: if.then7
-    src-successors:
-    - 6
   status: valid
 - src:
     function: matmul_main_wcet
@@ -4292,7 +3671,7 @@ relation-graphs:
     - 2
   - name: 5
     type: progress
-    src-block: for.cond10.i14
+    src-block: for.cond.i14
     dst-block: 4
     src-successors:
     - 6
@@ -4302,16 +3681,16 @@ relation-graphs:
     - 7
   - name: 6
     type: progress
-    src-block: for.cond12.preheader.i15
-    dst-block: 10
+    src-block: for.cond1.preheader.i
+    dst-block: 11
     src-successors:
     - 24
     dst-successors:
     - 24
   - name: 7
     type: progress
-    src-block: write_array_uncached.exit25
-    dst-block: 11
+    src-block: write_array_uncached.exit15
+    dst-block: 12
     src-successors:
     - 8
     dst-successors:
@@ -4319,7 +3698,7 @@ relation-graphs:
   - name: 8
     type: progress
     src-block: for.cond10.i2
-    dst-block: 12
+    dst-block: 13
     src-successors:
     - 9
     - 10
@@ -4329,7 +3708,7 @@ relation-graphs:
   - name: 9
     type: progress
     src-block: for.cond12.preheader.i3
-    dst-block: 18
+    dst-block: 19
     src-successors:
     - 19
     dst-successors:
@@ -4337,7 +3716,7 @@ relation-graphs:
   - name: 10
     type: progress
     src-block: write_array_uncached.exit
-    dst-block: 19
+    dst-block: 20
     src-successors:
     - 11
     dst-successors:
@@ -4345,7 +3724,7 @@ relation-graphs:
   - name: 11
     type: progress
     src-block: for.cond10.i
-    dst-block: 20
+    dst-block: 21
     src-successors:
     - 12
     - 13
@@ -4355,7 +3734,7 @@ relation-graphs:
   - name: 12
     type: progress
     src-block: for.cond12.preheader.i
-    dst-block: 26
+    dst-block: 27
     src-successors:
     - 14
     dst-successors:
@@ -4363,7 +3742,7 @@ relation-graphs:
   - name: 13
     type: progress
     src-block: read_array_uncached.exit
-    dst-block: 27
+    dst-block: 28
     src-successors:
     - 1
     dst-successors:
@@ -4371,7 +3750,7 @@ relation-graphs:
   - name: 14
     type: progress
     src-block: for.cond12.i
-    dst-block: 25
+    dst-block: 26
     src-successors:
     - 15
     - 16
@@ -4381,7 +3760,7 @@ relation-graphs:
   - name: 15
     type: progress
     src-block: for.cond14.i
-    dst-block: 23
+    dst-block: 24
     src-successors:
     - 17
     - 18
@@ -4391,7 +3770,7 @@ relation-graphs:
   - name: 16
     type: progress
     src-block: for.inc20.i
-    dst-block: 24
+    dst-block: 25
     src-successors:
     - 11
     dst-successors:
@@ -4399,7 +3778,7 @@ relation-graphs:
   - name: 17
     type: progress
     src-block: for.body15.i
-    dst-block: 21
+    dst-block: 22
     src-successors:
     - 15
     dst-successors:
@@ -4407,7 +3786,7 @@ relation-graphs:
   - name: 18
     type: progress
     src-block: for.inc18.i
-    dst-block: 22
+    dst-block: 23
     src-successors:
     - 14
     dst-successors:
@@ -4415,7 +3794,7 @@ relation-graphs:
   - name: 19
     type: progress
     src-block: for.cond12.i5
-    dst-block: 17
+    dst-block: 18
     src-successors:
     - 20
     - 21
@@ -4424,42 +3803,42 @@ relation-graphs:
     - 21
   - name: 20
     type: progress
-    src-block: for.cond10.i2.loopexit
+    src-block: for.cond14.i8
     dst-block: 16
     src-successors:
-    - 8
+    - 22
+    - 23
     dst-successors:
-    - 8
+    - 22
+    - 23
   - name: 21
     type: progress
-    src-block: for.cond14.i8
-    dst-block: 15
+    src-block: for.inc20.i12
+    dst-block: 17
     src-successors:
-    - 22
-    - 23
+    - 8
     dst-successors:
-    - 22
-    - 23
+    - 8
   - name: 22
     type: progress
     src-block: for.body15.i10
-    dst-block: 13
+    dst-block: 14
     src-successors:
-    - 21
+    - 20
     dst-successors:
-    - 21
+    - 20
   - name: 23
     type: progress
     src-block: for.inc18.i11
-    dst-block: 14
+    dst-block: 15
     src-successors:
     - 19
     dst-successors:
     - 19
   - name: 24
     type: progress
-    src-block: for.cond12.i17
-    dst-block: 9
+    src-block: for.cond1.i
+    dst-block: 10
     src-successors:
     - 25
     - 26
@@ -4468,33 +3847,41 @@ relation-graphs:
     - 26
   - name: 25
     type: progress
-    src-block: for.cond14.i20
-    dst-block: 7
+    src-block: for.cond3.preheader.i
+    dst-block: 8
     src-successors:
     - 27
-    - 28
     dst-successors:
     - 27
-    - 28
   - name: 26
     type: progress
-    src-block: for.inc20.i24
-    dst-block: 8
+    src-block: for.inc7.i
+    dst-block: 9
     src-successors:
     - 5
     dst-successors:
     - 5
   - name: 27
     type: progress
-    src-block: for.body15.i22
-    dst-block: 5
+    src-block: for.cond3.i
+    dst-block: 7
     src-successors:
-    - 25
+    - 28
+    - 29
     dst-successors:
-    - 25
+    - 28
+    - 29
   - name: 28
     type: progress
-    src-block: for.inc18.i23
+    src-block: for.body4.i
+    dst-block: 5
+    src-successors:
+    - 27
+    dst-successors:
+    - 27
+  - name: 29
+    type: progress
+    src-block: for.inc5.i
     dst-block: 6
     src-successors:
     - 24
@@ -4504,21 +3891,21 @@ relation-graphs:
 timing:
 - scope:
     function: 7
-  cycles: 3817
+  cycles: 179328
   level: machinecode
   origin: platin
   cache-max-cycles-instr: 693
-  cache-min-hits-instr: 3
+  cache-min-hits-instr: 9
   cache-max-misses-instr: 3
   cache-max-cycles-stack: 0
   cache-max-misses-stack: 0
-  cache-max-cycles-data: 2142
+  cache-max-cycles-data: 129276
   cache-min-hits-data: 0
-  cache-max-misses-data: 51
-  cache-max-stores-data: 19
-  cache-max-bypass-data: 48
-  cache-unknown-address-data: 102
-  cache-max-cycles: 2835
+  cache-max-misses-data: 3075
+  cache-max-stores-data: 1033
+  cache-max-bypass-data: 3072
+  cache-unknown-address-data: 6156
+  cache-max-cycles: 129969
   profile:
   - reference:
       function: 7
@@ -4532,8 +3919,8 @@ timing:
       edgesource: 1
       edgetarget: 2
     cycles: 24
-    wcet-frequency: 3
-    wcet-contribution: 72
+    wcet-frequency: 9
+    wcet-contribution: 216
   - reference:
       function: 7
       edgesource: 2
@@ -4546,242 +3933,249 @@ timing:
       edgesource: 2
       edgetarget: 1
     cycles: 4
-    wcet-frequency: 3
-    wcet-contribution: 12
+    wcet-frequency: 9
+    wcet-contribution: 36
   - reference:
       function: 7
       edgesource: 3
       edgetarget: 4
-    cycles: 25
-    wcet-frequency: 1
-    wcet-contribution: 25
-  - reference:
-      function: 7
-      edgesource: 4
-      edgetarget: 11
-    cycles: 235
-    wcet-frequency: 1
-    wcet-contribution: 235
-  - reference:
-      function: 7
-      edgesource: 4
-      edgetarget: 10
-    cycles: 5
-    wcet-frequency: 1
-    wcet-contribution: 5
-  - reference:
-      function: 7
-      edgesource: 5
-      edgetarget: 7
-    cycles: 52
-    wcet-frequency: 16
-    wcet-contribution: 832
-  - reference:
-      function: 7
-      edgesource: 6
-      edgetarget: 9
-    cycles: 4
-    wcet-frequency: 4
-    wcet-contribution: 16
-  - reference:
-      function: 7
-      edgesource: 7
-      edgetarget: 6
-    cycles: 5
-    wcet-frequency: 4
-    wcet-contribution: 20
-  - reference:
-      function: 7
-      edgesource: 7
-      edgetarget: 5
-    cycles: 4
-    wcet-frequency: 16
-    wcet-contribution: 64
-  - reference:
-      function: 7
-      edgesource: 8
-      edgetarget: 4
-    cycles: 3
-    wcet-frequency: 1
-    wcet-contribution: 3
-  - reference:
-      function: 7
-      edgesource: 9
-      edgetarget: 8
-    cycles: 8
-    wcet-frequency: 1
-    wcet-contribution: 8
-  - reference:
-      function: 7
-      edgesource: 9
-      edgetarget: 7
-    cycles: 5
-    wcet-frequency: 4
-    wcet-contribution: 20
-  - reference:
-      function: 7
-      edgesource: 10
-      edgetarget: 9
-    cycles: 4
-    wcet-frequency: 1
-    wcet-contribution: 4
-  - reference:
-      function: 7
-      edgesource: 11
-      edgetarget: 12
     cycles: 27
     wcet-frequency: 1
     wcet-contribution: 27
   - reference:
       function: 7
-      edgesource: 12
-      edgetarget: 19
-    cycles: 256
+      edgesource: 4
+      edgetarget: 12
+    cycles: 214
     wcet-frequency: 1
-    wcet-contribution: 256
+    wcet-contribution: 214
   - reference:
       function: 7
-      edgesource: 12
-      edgetarget: 18
+      edgesource: 4
+      edgetarget: 11
     cycles: 5
-    wcet-frequency: 1
-    wcet-contribution: 5
+    wcet-frequency: 4
+    wcet-contribution: 20
   - reference:
       function: 7
-      edgesource: 13
-      edgetarget: 15
+      edgesource: 5
+      edgetarget: 7
     cycles: 52
-    wcet-frequency: 16
-    wcet-contribution: 832
+    wcet-frequency: 1024
+    wcet-contribution: 53248
   - reference:
       function: 7
-      edgesource: 14
-      edgetarget: 17
+      edgesource: 6
+      edgetarget: 10
+    cycles: 3
+    wcet-frequency: 128
+    wcet-contribution: 384
+  - reference:
+      function: 7
+      edgesource: 7
+      edgetarget: 6
+    cycles: 5
+    wcet-frequency: 128
+    wcet-contribution: 640
+  - reference:
+      function: 7
+      edgesource: 7
+      edgetarget: 5
+    cycles: 4
+    wcet-frequency: 1024
+    wcet-contribution: 4096
+  - reference:
+      function: 7
+      edgesource: 8
+      edgetarget: 7
+    cycles: 4
+    wcet-frequency: 128
+    wcet-contribution: 512
+  - reference:
+      function: 7
+      edgesource: 9
+      edgetarget: 4
+    cycles: 3
+    wcet-frequency: 4
+    wcet-contribution: 12
+  - reference:
+      function: 7
+      edgesource: 10
+      edgetarget: 9
     cycles: 4
     wcet-frequency: 4
     wcet-contribution: 16
   - reference:
       function: 7
-      edgesource: 15
-      edgetarget: 14
+      edgesource: 10
+      edgetarget: 8
+    cycles: 5
+    wcet-frequency: 128
+    wcet-contribution: 640
+  - reference:
+      function: 7
+      edgesource: 11
+      edgetarget: 10
+    cycles: 4
+    wcet-frequency: 4
+    wcet-contribution: 16
+  - reference:
+      function: 7
+      edgesource: 12
+      edgetarget: 13
+    cycles: 25
+    wcet-frequency: 1
+    wcet-contribution: 25
+  - reference:
+      function: 7
+      edgesource: 13
+      edgetarget: 20
+    cycles: 277
+    wcet-frequency: 1
+    wcet-contribution: 277
+  - reference:
+      function: 7
+      edgesource: 13
+      edgetarget: 19
     cycles: 5
     wcet-frequency: 4
     wcet-contribution: 20
   - reference:
       function: 7
+      edgesource: 14
+      edgetarget: 16
+    cycles: 54
+    wcet-frequency: 1024
+    wcet-contribution: 55296
+  - reference:
+      function: 7
       edgesource: 15
-      edgetarget: 13
-    cycles: 4
-    wcet-frequency: 16
-    wcet-contribution: 64
+      edgetarget: 18
+    cycles: 3
+    wcet-frequency: 32
+    wcet-contribution: 96
   - reference:
       function: 7
       edgesource: 16
-      edgetarget: 12
-    cycles: 3
-    wcet-frequency: 1
-    wcet-contribution: 3
-  - reference:
-      function: 7
-      edgesource: 17
-      edgetarget: 16
-    cycles: 8
-    wcet-frequency: 1
-    wcet-contribution: 8
-  - reference:
-      function: 7
-      edgesource: 17
       edgetarget: 15
     cycles: 5
+    wcet-frequency: 32
+    wcet-contribution: 160
+  - reference:
+      function: 7
+      edgesource: 16
+      edgetarget: 14
+    cycles: 4
+    wcet-frequency: 1024
+    wcet-contribution: 4096
+  - reference:
+      function: 7
+      edgesource: 17
+      edgetarget: 13
+    cycles: 3
     wcet-frequency: 4
-    wcet-contribution: 20
+    wcet-contribution: 12
   - reference:
       function: 7
       edgesource: 18
       edgetarget: 17
-    cycles: 5
-    wcet-frequency: 1
-    wcet-contribution: 5
+    cycles: 7
+    wcet-frequency: 4
+    wcet-contribution: 28
+  - reference:
+      function: 7
+      edgesource: 18
+      edgetarget: 16
+    cycles: 4
+    wcet-frequency: 32
+    wcet-contribution: 128
   - reference:
       function: 7
       edgesource: 19
-      edgetarget: 20
+      edgetarget: 18
+    cycles: 5
+    wcet-frequency: 4
+    wcet-contribution: 20
+  - reference:
+      function: 7
+      edgesource: 20
+      edgetarget: 21
     cycles: 31
     wcet-frequency: 1
     wcet-contribution: 31
   - reference:
       function: 7
-      edgesource: 20
-      edgetarget: 27
-    cycles: 4
+      edgesource: 21
+      edgetarget: 28
+    cycles: 214
     wcet-frequency: 1
-    wcet-contribution: 4
-  - reference:
-      function: 7
-      edgesource: 20
-      edgetarget: 26
-    cycles: 215
-    wcet-frequency: 1
-    wcet-contribution: 215
+    wcet-contribution: 214
   - reference:
       function: 7
       edgesource: 21
-      edgetarget: 23
-    cycles: 53
-    wcet-frequency: 16
-    wcet-contribution: 848
+      edgetarget: 27
+    cycles: 5
+    wcet-frequency: 1
+    wcet-contribution: 5
   - reference:
       function: 7
       edgesource: 22
-      edgetarget: 25
-    cycles: 4
-    wcet-frequency: 4
-    wcet-contribution: 16
+      edgetarget: 24
+    cycles: 53
+    wcet-frequency: 1024
+    wcet-contribution: 54272
   - reference:
       function: 7
       edgesource: 23
-      edgetarget: 22
-    cycles: 5
-    wcet-frequency: 4
-    wcet-contribution: 20
-  - reference:
-      function: 7
-      edgesource: 23
-      edgetarget: 21
+      edgetarget: 26
     cycles: 4
-    wcet-frequency: 16
-    wcet-contribution: 64
+    wcet-frequency: 32
+    wcet-contribution: 128
   - reference:
       function: 7
       edgesource: 24
-      edgetarget: 20
+      edgetarget: 23
+    cycles: 5
+    wcet-frequency: 32
+    wcet-contribution: 160
+  - reference:
+      function: 7
+      edgesource: 24
+      edgetarget: 22
+    cycles: 4
+    wcet-frequency: 1024
+    wcet-contribution: 4096
+  - reference:
+      function: 7
+      edgesource: 25
+      edgetarget: 21
     cycles: 3
     wcet-frequency: 1
     wcet-contribution: 3
   - reference:
       function: 7
-      edgesource: 25
-      edgetarget: 24
+      edgesource: 26
+      edgetarget: 25
     cycles: 8
     wcet-frequency: 1
     wcet-contribution: 8
   - reference:
       function: 7
-      edgesource: 25
-      edgetarget: 23
+      edgesource: 26
+      edgetarget: 24
     cycles: 5
-    wcet-frequency: 4
-    wcet-contribution: 20
+    wcet-frequency: 32
+    wcet-contribution: 160
   - reference:
       function: 7
-      edgesource: 26
-      edgetarget: 25
+      edgesource: 27
+      edgetarget: 26
     cycles: 4
     wcet-frequency: 1
     wcet-contribution: 4
   - reference:
       function: 7
-      edgesource: 27
+      edgesource: 28
     cycles: 4
     wcet-frequency: 1
     wcet-contribution: 4

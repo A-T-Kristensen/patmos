@@ -636,7 +636,7 @@ def matmul_wcet():
 	valsType    = ["float", "int"]
 	appList     = ["hwa_matmul", "hwa_matmul_spm", 
 				   "hwa_matmul_uncached", "tacle_matrix1", 
-				   "tacle_matrix1_spm", "tacle_matrix1_uncached"]
+				   "tacle_matrix1_spm"]
 
 	functionList = ["matmul_main_wcet", "matrix1_main"]
 
@@ -952,7 +952,7 @@ def adpcm_enc_wcet():
 
 		print("\n*******************************************")
 		print("ADPCM: type = %s, NBANKS = %d\n" \
-			  % ("float", 2))
+			  % ("float", 3))
 		print("APP: %s" % (app))                    
 		print("*******************************************\n")                
 
@@ -1006,7 +1006,7 @@ def adpcm_dec_wcet():
 
 		print("\n*******************************************")
 		print("ADPCM: type = %s, NBANKS = %d\n" \
-			  % ("float", 2))
+			  % ("float", 3))
 		print("APP: %s" % (app))                    
 		print("*******************************************\n")                
 
@@ -1023,16 +1023,16 @@ def adpcm_dec_wcet():
 
 def main(): 
 
-	#matmul(synth = 0, hw_test = 0)
+	matmul(synth = 0, hw_test = 0)
 	#minver(synth = 0, hw_test = 0)
 	#filterbank(synth = 0, hw_test = 0)
 	#fir2dim(synth = 0, hw_test = 0)
 	#adpcm(synth = 0, hw_test = 0)
 
-	matmul_wcet()
-	filterbank_wcet()
-	fir2dim_wcet()
-	minver_wcet()
+	#matmul_wcet()
+	#filterbank_wcet()
+	#fir2dim_wcet()
+	#minver_wcet()
 
 	#adpcm_dec_wcet()
 	#adpcm_enc_wcet()
