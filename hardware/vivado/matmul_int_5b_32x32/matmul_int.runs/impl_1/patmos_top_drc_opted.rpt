@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Wed May 10 14:01:16 2017
+| Date         : Sat Jun  3 15:05:59 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_drc -file patmos_top_drc_opted.rpt
 | Design       : patmos_top
@@ -24,14 +24,14 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 67
+             Violations found: 37
 +-----------+----------+-----------------------------------------------------+------------+
 | Rule      | Severity | Description                                         | Violations |
 +-----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1  | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
 | CHECK-3   | Warning  | Report rule limit reached                           | 1          |
 | DPIP-1    | Warning  | Input pipelining                                    | 8          |
-| DPOP-1    | Warning  | PREG Output pipelining                              | 35         |
+| DPOP-1    | Warning  | PREG Output pipelining                              | 5          |
 | DPOP-2    | Warning  | MREG Output pipelining                              | 1          |
 | REQP-1709 | Warning  | Clock output buffering                              | 1          |
 | REQP-1840 | Warning  | RAMB18 async control check                          | 20         |
@@ -104,170 +104,20 @@ Related violations: <none>
 
 DPOP-1#2 Warning
 PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U10/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U10/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP matrixmul_inst_0/matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#3 Warning
 PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U11/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U11/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP patmos_inst_0/core/execute/mulHLReg_reg output patmos_inst_0/core/execute/mulHLReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#4 Warning
 PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U12/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U12/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#5 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U13/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U13/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#6 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U14/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U14/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#7 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U15/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U15/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#8 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U16/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U16/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#9 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U17/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U17/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#10 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U18/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U18/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#11 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U19/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U19/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#12 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#13 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U20/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U20/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#14 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U21/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U21/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#15 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U22/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U22/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#16 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U23/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U23/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#17 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U24/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U24/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#18 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U25/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U25/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#19 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U26/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U26/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#20 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U27/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U27/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#21 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U28/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U28/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#22 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U29/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U29/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#23 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U3/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U3/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#24 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U30/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U30/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#25 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U31/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U31/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#26 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U32/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U32/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#27 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U4/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U4/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#28 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U5/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#29 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#30 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U7/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U7/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#31 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U8/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U8/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#32 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U9/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#33 Warning
-PREG Output pipelining  
-DSP patmos_inst_0/core/execute/mulHLReg_reg output patmos_inst_0/core/execute/mulHLReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#34 Warning
-PREG Output pipelining  
 DSP patmos_inst_0/core/execute/mulLHReg_reg output patmos_inst_0/core/execute/mulLHReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
-DPOP-1#35 Warning
+DPOP-1#5 Warning
 PREG Output pipelining  
 DSP patmos_inst_0/core/execute/mulLLReg_reg output patmos_inst_0/core/execute/mulLLReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
