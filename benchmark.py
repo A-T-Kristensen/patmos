@@ -832,7 +832,7 @@ def filterbank_wcet():
 
 		app = appList[i]
 		valsDefine = [32, 8, 32, 4, 256, 256, 1,
-						1, 8, 1, 8,
+						1, 32, 1, 32,
 						1, 256, 1, 256]                    
 
 		print("\n*******************************************")
@@ -1029,13 +1029,13 @@ def main():
 	#fir2dim(synth = 0, hw_test = 0)
 	#adpcm(synth = 0, hw_test = 0)
 
-	#filterbank_wcet()
-	#fir2dim_wcet()
+	filterbank_wcet()
+	fir2dim_wcet()
 	#matmul_wcet()
 	#minver_wcet()
 
-	adpcm_dec_wcet()
-	adpcm_enc_wcet()
+	#adpcm_dec_wcet()
+	#adpcm_enc_wcet()
 
 	clean_up()
 

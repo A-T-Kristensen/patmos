@@ -177,6 +177,11 @@ $(BUILDDIR)/hwa_filterbank.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_t
 $(BUILDDIR)/hwa_filterbank_spm.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/hwa_filterbank_uncached.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
 
+$(BUILDDIR)/wcet-hwa_filterbank.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/wcet-hwa_filterbank_spm.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+$(BUILDDIR)/wcet-hwa_filterbank_uncached.elf: libhwa/hwa_bram.c libhwa/hwa_bram.h libhwa/hwa_test.c libhwa/hwa_test.h libhwa/benchmark.h libhwa/hwa_lib.h
+
+
 $(BUILDDIR)/tacle_filterbank_spm.elf: libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/tacle_filterbank_uncached.elf: libhwa/benchmark.h libhwa/hwa_lib.h
 $(BUILDDIR)/tacle_filterbank.elf: libhwa/benchmark.h libhwa/hwa_lib.h
