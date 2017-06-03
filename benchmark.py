@@ -538,7 +538,7 @@ def adpcm(synth = 0, hw_test = 0):
 		# Get the current iteration options      
 
 		app = appList[i]
-		valsDefine = [3, 3, 3, 2, 9, 3, 0,
+		valsDefine = [3, 3, 3, 3, 9, 3, 0,
 						0, 0, 0, 0, 0, 0, 0, 0]
 
 		print("\n*******************************************")
@@ -549,7 +549,7 @@ def adpcm(synth = 0, hw_test = 0):
 
 		# Update the benchmark.h file
 
-		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "int")   
 
 		# Project name string
 		
@@ -611,11 +611,12 @@ def store_wcet_benchmark(bench_name, appList, dataArray, csv_rows):
 	dataOut = np.vstack((appList, dataArray))
 	dataOut = np.hstack((csv_rows, dataOut))
 
-	os.remove(bench_name + '_wcet.csv')	# Delete old
+	try:
+		os.remove(bench_name + '_wcet.csv')	# Delete old
+	except:
+		print("Deleting file")
 
-	np.savetxt(bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 	
-
-
+	np.savetxt(bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 
 
 def matmul_wcet():
 
@@ -944,8 +945,8 @@ def adpcm_enc_wcet():
 		# Get the current iteration options      
 
 		app = appList[i]
-		
-		valsDefine = [3, 3, 3, 2, 9, 3, 1,
+
+		valsDefine = [3, 3, 3, 3, 9, 3, 1,
 						1, 3, 1, 3,
 						1, 3, 1, 3] 	
 
@@ -957,7 +958,7 @@ def adpcm_enc_wcet():
 
 		# Update the benchmark.h file
 
-		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "int")   
 
 		wcet_bound = run_wcet(app, functionList[app_type[i]])
  
@@ -999,7 +1000,7 @@ def adpcm_dec_wcet():
 
 		app = appList[i]
 
-		valsDefine = [3, 3, 3, 2, 9, 3, 1,
+		valsDefine = [3, 3, 3, 3, 9, 3, 1,
 						1, 3, 1, 3,
 						1, 3, 1, 3] 	
 
@@ -1011,7 +1012,7 @@ def adpcm_dec_wcet():
 
 		# Update the benchmark.h file
 
-		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "float")   
+		update_header(keywordsDefine, valsDefine, keywordsTypes[0], "int")   
 
 		wcet_bound = run_wcet(app, functionList[app_type[i]])
  
@@ -1030,8 +1031,11 @@ def main():
 
 	#filterbank_wcet()
 	#fir2dim_wcet()
-	matmul_wcet()
+	#matmul_wcet()
 	#minver_wcet()
+
+	adpcm_dec_wcet()
+	adpcm_enc_wcet()
 
 	clean_up()
 

@@ -1,0 +1,1718 @@
+---
+format: pml-0.1
+triple: patmos-unknown-unknown-elf
+machine-functions:
+- name: 8
+  level: machinecode
+  mapsto: main
+  hash: 0
+  blocks:
+  - name: 0
+    mapsto: entry
+    predecessors: []
+    successors:
+    - 1
+    instructions:
+    - index: 0
+      opcode: SRESi
+      size: 4
+      stack-cache-argument: 8
+      address: 133252
+    - index: 1
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133256
+    - index: 2
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133260
+    - index: 3
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133264
+    - index: 4
+      opcode: MFS
+      size: 4
+      address: 133268
+    - index: 5
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133272
+    - index: 6
+      opcode: LIi
+      size: 4
+      address: 133276
+    - index: 7
+      opcode: LIl
+      size: 8
+      address: 133280
+    - index: 8
+      opcode: LIl
+      size: 8
+      address: 133288
+    - index: 9
+      opcode: LIl
+      size: 8
+      address: 133296
+    - index: 10
+      opcode: MFS
+      size: 4
+      address: 133304
+    - index: 11
+      opcode: BRCFu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 3
+      branch-targets:
+      - 1
+      address: 133308
+    - index: 12
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133312
+    - index: 13
+      opcode: MFS
+      size: 4
+      address: 133316
+    - index: 14
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 133320
+    address: 133252
+  - name: 1
+    mapsto: while.body5.i.i.i
+    predecessors:
+    - 0
+    - 1
+    successors:
+    - 1
+    - 2
+    loops:
+    - 1
+    instructions:
+    - index: 0
+      opcode: MUL
+      size: 4
+      address: 133332
+    - index: 1
+      opcode: NOP
+      size: 4
+      address: 133336
+    - index: 2
+      opcode: MFS
+      size: 4
+      address: 133340
+    - index: 3
+      opcode: ADDi
+      size: 4
+      address: 133344
+    - index: 4
+      opcode: CALL
+      callees:
+      - __divsi3
+      size: 4
+      branch-type: call
+      branch-delay-slots: 3
+      address: 133348
+    - index: 5
+      opcode: MUL
+      size: 4
+      address: 133352
+    - index: 6
+      opcode: NOP
+      size: 4
+      address: 133356
+    - index: 7
+      opcode: MFS
+      size: 4
+      address: 133360
+    - index: 8
+      opcode: ADDi
+      size: 4
+      address: 133364
+    - index: 9
+      opcode: SRAi
+      size: 4
+      address: 133368
+    - index: 10
+      opcode: ADDr
+      size: 4
+      address: 133372
+    - index: 11
+      opcode: XORr
+      size: 4
+      address: 133376
+    - index: 12
+      opcode: CMPLT
+      size: 4
+      address: 133380
+    - index: 13
+      opcode: BR
+      size: 4
+      branch-type: conditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 1
+      address: 133384
+    - index: 14
+      opcode: ADDr
+      size: 4
+      address: 133388
+    - index: 15
+      opcode: SENSi
+      size: 4
+      stack-cache-argument: 8
+      address: 133392
+    - index: 16
+      opcode: BRCFNDu
+      size: 4
+      branch-type: unconditional
+      branch-targets:
+      - 2
+      address: 133396
+    address: 133332
+  - name: 2
+    mapsto: while.body5.i.i.preheader.1.i
+    predecessors:
+    - 1
+    successors:
+    - 3
+    instructions:
+    - index: 0
+      opcode: SHADD2r
+      size: 4
+      address: 133412
+    - index: 1
+      opcode: LIl
+      size: 8
+      address: 133416
+    - index: 2
+      opcode: SLi
+      size: 4
+      address: 133424
+    - index: 3
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133428
+    - index: 4
+      opcode: LIi
+      size: 4
+      address: 133432
+    - index: 5
+      opcode: BRCFu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 3
+      branch-targets:
+      - 3
+      address: 133436
+    - index: 6
+      opcode: LIl
+      size: 8
+      address: 133440
+    - index: 7
+      opcode: LIl
+      size: 8
+      address: 133448
+    - index: 8
+      opcode: LIl
+      size: 8
+      address: 133456
+    address: 133412
+  - name: 3
+    mapsto: while.body5.i.i.1.i
+    predecessors:
+    - 2
+    - 3
+    successors:
+    - 3
+    - 4
+    loops:
+    - 3
+    instructions:
+    - index: 0
+      opcode: MUL
+      size: 4
+      address: 133476
+    - index: 1
+      opcode: NOP
+      size: 4
+      address: 133480
+    - index: 2
+      opcode: MFS
+      size: 4
+      address: 133484
+    - index: 3
+      opcode: ADDi
+      size: 4
+      address: 133488
+    - index: 4
+      opcode: CALL
+      callees:
+      - __divsi3
+      size: 4
+      branch-type: call
+      branch-delay-slots: 3
+      address: 133492
+    - index: 5
+      opcode: MUL
+      size: 4
+      address: 133496
+    - index: 6
+      opcode: NOP
+      size: 4
+      address: 133500
+    - index: 7
+      opcode: MFS
+      size: 4
+      address: 133504
+    - index: 8
+      opcode: ADDi
+      size: 4
+      address: 133508
+    - index: 9
+      opcode: SRAi
+      size: 4
+      address: 133512
+    - index: 10
+      opcode: ADDr
+      size: 4
+      address: 133516
+    - index: 11
+      opcode: XORr
+      size: 4
+      address: 133520
+    - index: 12
+      opcode: CMPLT
+      size: 4
+      address: 133524
+    - index: 13
+      opcode: BR
+      size: 4
+      branch-type: conditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 3
+      address: 133528
+    - index: 14
+      opcode: ADDr
+      size: 4
+      address: 133532
+    - index: 15
+      opcode: SENSi
+      size: 4
+      stack-cache-argument: 8
+      address: 133536
+    - index: 16
+      opcode: BRCFNDu
+      size: 4
+      branch-type: unconditional
+      branch-targets:
+      - 4
+      address: 133540
+    address: 133476
+  - name: 4
+    mapsto: while.body5.i.i.preheader.2.i
+    predecessors:
+    - 3
+    successors:
+    - 5
+    instructions:
+    - index: 0
+      opcode: SHADD2r
+      size: 4
+      address: 133556
+    - index: 1
+      opcode: LIl
+      size: 8
+      address: 133560
+    - index: 2
+      opcode: SLi
+      size: 4
+      address: 133568
+    - index: 3
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133572
+    - index: 4
+      opcode: LIi
+      size: 4
+      address: 133576
+    - index: 5
+      opcode: BRCFu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 3
+      branch-targets:
+      - 5
+      address: 133580
+    - index: 6
+      opcode: LIl
+      size: 8
+      address: 133584
+    - index: 7
+      opcode: LIl
+      size: 8
+      address: 133592
+    - index: 8
+      opcode: LIl
+      size: 8
+      address: 133600
+    address: 133556
+  - name: 5
+    mapsto: while.body5.i.i.2.i
+    predecessors:
+    - 4
+    - 5
+    successors:
+    - 5
+    - 6
+    loops:
+    - 5
+    instructions:
+    - index: 0
+      opcode: MUL
+      size: 4
+      address: 133620
+    - index: 1
+      opcode: NOP
+      size: 4
+      address: 133624
+    - index: 2
+      opcode: MFS
+      size: 4
+      address: 133628
+    - index: 3
+      opcode: ADDi
+      size: 4
+      address: 133632
+    - index: 4
+      opcode: CALL
+      callees:
+      - __divsi3
+      size: 4
+      branch-type: call
+      branch-delay-slots: 3
+      address: 133636
+    - index: 5
+      opcode: MUL
+      size: 4
+      address: 133640
+    - index: 6
+      opcode: NOP
+      size: 4
+      address: 133644
+    - index: 7
+      opcode: MFS
+      size: 4
+      address: 133648
+    - index: 8
+      opcode: ADDi
+      size: 4
+      address: 133652
+    - index: 9
+      opcode: SRAi
+      size: 4
+      address: 133656
+    - index: 10
+      opcode: ADDr
+      size: 4
+      address: 133660
+    - index: 11
+      opcode: XORr
+      size: 4
+      address: 133664
+    - index: 12
+      opcode: CMPLT
+      size: 4
+      address: 133668
+    - index: 13
+      opcode: BR
+      size: 4
+      branch-type: conditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 5
+      address: 133672
+    - index: 14
+      opcode: ADDr
+      size: 4
+      address: 133676
+    - index: 15
+      opcode: SENSi
+      size: 4
+      stack-cache-argument: 8
+      address: 133680
+    - index: 16
+      opcode: BRCFNDu
+      size: 4
+      branch-type: unconditional
+      branch-targets:
+      - 6
+      address: 133684
+    address: 133620
+  - name: 6
+    mapsto: init.exit
+    predecessors:
+    - 5
+    successors: []
+    instructions:
+    - index: 0
+      opcode: SHADD2r
+      size: 4
+      address: 133700
+    - index: 1
+      opcode: LIl
+      size: 8
+      address: 133704
+    - index: 2
+      opcode: SLi
+      size: 4
+      address: 133712
+    - index: 3
+      opcode: SWC
+      size: 4
+      memmode: store
+      memtype: cache
+      address: 133716
+    - index: 4
+      opcode: CALLND
+      callees:
+      - adpcm_main_wcet
+      size: 4
+      branch-type: call
+      address: 133720
+    - index: 5
+      opcode: SENSi
+      size: 4
+      stack-cache-argument: 8
+      address: 133724
+    - index: 6
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133728
+    - index: 7
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133732
+    - index: 8
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133736
+    - index: 9
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133740
+    - index: 10
+      opcode: MTS
+      size: 4
+      address: 133744
+    - index: 11
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133748
+    - index: 12
+      opcode: NOP
+      size: 4
+      address: 133752
+    - index: 13
+      opcode: MTS
+      size: 4
+      address: 133756
+    - index: 14
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 133760
+    - index: 15
+      opcode: RET
+      size: 4
+      branch-type: return
+      branch-delay-slots: 3
+      address: 133764
+    - index: 16
+      opcode: MOV
+      size: 4
+      address: 133768
+    - index: 17
+      opcode: MTS
+      size: 4
+      address: 133772
+    - index: 18
+      opcode: SFREEi
+      size: 4
+      stack-cache-argument: 8
+      address: 133776
+    address: 133700
+  subfunctions:
+  - name: 0
+    blocks:
+    - 0
+  - name: 1
+    blocks:
+    - 1
+  - name: 2
+    blocks:
+    - 2
+  - name: 3
+    blocks:
+    - 3
+  - name: 4
+    blocks:
+    - 4
+  - name: 5
+    blocks:
+    - 5
+  - name: 6
+    blocks:
+    - 6
+- name: 140
+  level: machinecode
+  mapsto: __divsi3
+  arguments:
+  - name: "%a"
+    index: 0
+    registers:
+    - r3
+  - name: "%b"
+    index: 1
+    registers:
+    - r4
+  hash: 0
+  blocks:
+  - name: 0
+    mapsto: entry
+    predecessors: []
+    successors: []
+    instructions:
+    - index: 0
+      opcode: SRESi
+      size: 4
+      stack-cache-argument: 8
+      address: 301620
+    - index: 1
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 301624
+    - index: 2
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 301628
+    - index: 3
+      opcode: MFS
+      size: 4
+      address: 301632
+    - index: 4
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 301636
+    - index: 5
+      opcode: MOV
+      size: 4
+      address: 301640
+    - index: 6
+      opcode: SRAi
+      size: 4
+      address: 301644
+    - index: 7
+      opcode: XORr
+      size: 4
+      address: 301648
+    - index: 8
+      opcode: SUBr
+      size: 4
+      address: 301652
+    - index: 9
+      opcode: MOV
+      size: 4
+      address: 301656
+    - index: 10
+      opcode: MFS
+      size: 4
+      address: 301660
+    - index: 11
+      opcode: SRAi
+      size: 4
+      address: 301664
+    - index: 12
+      opcode: CALL
+      callees:
+      - __udivsi3
+      size: 4
+      branch-type: call
+      branch-delay-slots: 3
+      address: 301668
+    - index: 13
+      opcode: XORr
+      size: 4
+      address: 301672
+    - index: 14
+      opcode: SUBr
+      size: 4
+      address: 301676
+    - index: 15
+      opcode: SWS
+      size: 4
+      memmode: store
+      memtype: stack
+      address: 301680
+    - index: 16
+      opcode: SENSi
+      size: 4
+      stack-cache-argument: 8
+      address: 301684
+    - index: 17
+      opcode: XORr
+      size: 4
+      address: 301688
+    - index: 18
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 301692
+    - index: 19
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 301696
+    - index: 20
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 301700
+    - index: 21
+      opcode: MTS
+      size: 4
+      address: 301704
+    - index: 22
+      opcode: LWS
+      size: 4
+      memmode: load
+      memtype: stack
+      address: 301708
+    - index: 23
+      opcode: NOP
+      size: 4
+      address: 301712
+    - index: 24
+      opcode: MTS
+      size: 4
+      address: 301716
+    - index: 25
+      opcode: SRAi
+      size: 4
+      address: 301720
+    - index: 26
+      opcode: RET
+      size: 4
+      branch-type: return
+      branch-delay-slots: 3
+      address: 301724
+    - index: 27
+      opcode: XORr
+      size: 4
+      address: 301728
+    - index: 28
+      opcode: SUBr
+      size: 4
+      address: 301732
+    - index: 29
+      opcode: SFREEi
+      size: 4
+      stack-cache-argument: 8
+      address: 301736
+    address: 301620
+  subfunctions:
+  - name: 0
+    blocks:
+    - 0
+- name: 7
+  level: machinecode
+  mapsto: adpcm_main_wcet
+  hash: 0
+  blocks:
+  - name: 0
+    mapsto: entry
+    predecessors: []
+    successors:
+    - 1
+    instructions:
+    - index: 0
+      opcode: LIi
+      size: 4
+      address: 133188
+    - index: 1
+      opcode: MFS
+      size: 4
+      address: 133192
+    address: 133188
+  - name: 1
+    mapsto: for.cond.i
+    predecessors:
+    - 0
+    - 1
+    successors:
+    - 2
+    - 1
+    loops:
+    - 1
+    instructions:
+    - index: 0
+      opcode: SUBi
+      size: 4
+      address: 133196
+    - index: 1
+      opcode: MOVrp
+      size: 4
+      address: 133200
+    - index: 2
+      opcode: BRND
+      size: 4
+      branch-type: conditional
+      branch-targets:
+      - 1
+      address: 133204
+    address: 133196
+  - name: 2
+    mapsto: bank_ptrs.exit
+    predecessors:
+    - 1
+    successors: []
+    instructions:
+    - index: 0
+      opcode: LIl
+      size: 8
+      address: 133208
+    - index: 1
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133216
+    - index: 2
+      opcode: LIi
+      size: 4
+      address: 133220
+    - index: 3
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133224
+    - index: 4
+      opcode: LIi
+      size: 4
+      address: 133228
+    - index: 5
+      opcode: RET
+      size: 4
+      branch-type: return
+      branch-delay-slots: 3
+      address: 133232
+    - index: 6
+      opcode: SWL
+      size: 4
+      memmode: store
+      memtype: local
+      address: 133236
+    - index: 7
+      opcode: MOV
+      size: 4
+      address: 133240
+    - index: 8
+      opcode: MTS
+      size: 4
+      address: 133244
+    address: 133208
+  subfunctions:
+  - name: 0
+    blocks:
+    - 0
+    - 1
+    - 2
+- name: 148
+  level: machinecode
+  mapsto: __udivsi3
+  arguments:
+  - name: "%n"
+    index: 0
+    registers:
+    - r3
+  - name: "%d"
+    index: 1
+    registers:
+    - r4
+  hash: 0
+  blocks:
+  - name: 0
+    mapsto: entry
+    predecessors: []
+    successors:
+    - 1
+    instructions:
+    - index: 0
+      opcode: MOV
+      size: 4
+      address: 304740
+    - index: 1
+      opcode: LIi
+      size: 4
+      address: 304744
+    - index: 2
+      opcode: LIi
+      size: 4
+      address: 304748
+    - index: 3
+      opcode: BRu
+      size: 4
+      branch-type: unconditional
+      branch-delay-slots: 2
+      branch-targets:
+      - 1
+      address: 304752
+    - index: 4
+      opcode: MOV
+      size: 4
+      address: 304756
+    - index: 5
+      opcode: MFS
+      size: 4
+      address: 304760
+    address: 304740
+  - name: 2
+    mapsto: for.body
+    predecessors:
+    - 1
+    successors:
+    - 1
+    loops:
+    - 1
+    instructions:
+    - index: 0
+      opcode: SRr
+      size: 4
+      address: 304764
+    - index: 1
+      opcode: SLi
+      size: 4
+      address: 304768
+    - index: 2
+      opcode: ANDi
+      size: 4
+      address: 304772
+    - index: 3
+      opcode: ORr
+      size: 4
+      address: 304776
+    - index: 4
+      opcode: CMPULT
+      size: 4
+      address: 304780
+    - index: 5
+      opcode: SLr
+      size: 4
+      address: 304784
+    - index: 6
+      opcode: SUBr
+      size: 4
+      address: 304788
+    - index: 7
+      opcode: ORr
+      size: 4
+      address: 304792
+    - index: 8
+      opcode: SUBi
+      size: 4
+      address: 304796
+    address: 304764
+  - name: 1
+    mapsto: for.cond
+    predecessors:
+    - 0
+    - 2
+    successors:
+    - 2
+    - 3
+    loops:
+    - 1
+    instructions:
+    - index: 0
+      opcode: CMPILT
+      size: 4
+      address: 304800
+    - index: 1
+      opcode: BRND
+      size: 4
+      branch-type: conditional
+      branch-targets:
+      - 2
+      address: 304804
+    address: 304800
+  - name: 3
+    mapsto: for.end
+    predecessors:
+    - 1
+    successors: []
+    instructions:
+    - index: 0
+      opcode: MTS
+      size: 4
+      address: 304808
+    - index: 1
+      opcode: RETND
+      size: 4
+      branch-type: return
+      address: 304812
+    address: 304808
+  subfunctions:
+  - name: 0
+    blocks:
+    - 0
+    - 2
+    - 1
+    - 3
+bitcode-functions:
+- name: main
+  level: bitcode
+  hash: 0
+  blocks:
+  - name: entry
+    predecessors: []
+    successors:
+    - while.body5.i.i.i
+    instructions:
+    - index: 0
+      opcode: br
+  - name: while.body5.i.i.i
+    predecessors:
+    - while.body5.i.i.i
+    - entry
+    successors:
+    - while.body5.i.i.i
+    - while.body5.i.i.preheader.1.i
+    loops:
+    - while.body5.i.i.i
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: phi
+    - index: 2
+      opcode: phi
+    - index: 3
+      opcode: mul
+    - index: 4
+      opcode: add
+    - index: 5
+      opcode: mul
+    - index: 6
+      opcode: sdiv
+    - index: 7
+      opcode: add
+    - index: 8
+      opcode: icmp
+    - index: 9
+      opcode: sub
+    - index: 10
+      opcode: select
+    - index: 11
+      opcode: icmp
+    - index: 12
+      opcode: add
+    - index: 13
+      opcode: br
+  - name: while.body5.i.i.preheader.1.i
+    predecessors:
+    - while.body5.i.i.i
+    successors:
+    - while.body5.i.i.1.i
+    instructions:
+    - index: 0
+      opcode: mul
+    - index: 1
+      opcode: store
+      memmode: store
+    - index: 2
+      opcode: br
+  - name: while.body5.i.i.1.i
+    predecessors:
+    - while.body5.i.i.1.i
+    - while.body5.i.i.preheader.1.i
+    successors:
+    - while.body5.i.i.1.i
+    - while.body5.i.i.preheader.2.i
+    loops:
+    - while.body5.i.i.1.i
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: phi
+    - index: 2
+      opcode: phi
+    - index: 3
+      opcode: mul
+    - index: 4
+      opcode: add
+    - index: 5
+      opcode: mul
+    - index: 6
+      opcode: sdiv
+    - index: 7
+      opcode: add
+    - index: 8
+      opcode: icmp
+    - index: 9
+      opcode: sub
+    - index: 10
+      opcode: select
+    - index: 11
+      opcode: icmp
+    - index: 12
+      opcode: add
+    - index: 13
+      opcode: br
+  - name: while.body5.i.i.preheader.2.i
+    predecessors:
+    - while.body5.i.i.1.i
+    successors:
+    - while.body5.i.i.2.i
+    instructions:
+    - index: 0
+      opcode: mul
+    - index: 1
+      opcode: store
+      memmode: store
+    - index: 2
+      opcode: br
+  - name: while.body5.i.i.2.i
+    predecessors:
+    - while.body5.i.i.2.i
+    - while.body5.i.i.preheader.2.i
+    successors:
+    - while.body5.i.i.2.i
+    - init.exit
+    loops:
+    - while.body5.i.i.2.i
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: phi
+    - index: 2
+      opcode: phi
+    - index: 3
+      opcode: mul
+    - index: 4
+      opcode: add
+    - index: 5
+      opcode: mul
+    - index: 6
+      opcode: sdiv
+    - index: 7
+      opcode: add
+    - index: 8
+      opcode: icmp
+    - index: 9
+      opcode: sub
+    - index: 10
+      opcode: select
+    - index: 11
+      opcode: icmp
+    - index: 12
+      opcode: add
+    - index: 13
+      opcode: br
+  - name: init.exit
+    predecessors:
+    - while.body5.i.i.2.i
+    successors: []
+    instructions:
+    - index: 0
+      opcode: mul
+    - index: 1
+      opcode: store
+      memmode: store
+    - index: 2
+      opcode: call
+      callees:
+      - adpcm_main_wcet
+    - index: 3
+      opcode: ret
+- name: __divsi3
+  level: bitcode
+  hash: 0
+  blocks:
+  - name: entry
+    predecessors: []
+    successors: []
+    instructions:
+    - index: 0
+      opcode: ashr
+    - index: 1
+      opcode: ashr
+    - index: 2
+      opcode: xor
+    - index: 3
+      opcode: sub
+    - index: 4
+      opcode: xor
+    - index: 5
+      opcode: sub
+    - index: 6
+      opcode: xor
+    - index: 7
+      opcode: udiv
+    - index: 8
+      opcode: xor
+    - index: 9
+      opcode: sub
+    - index: 10
+      opcode: ret
+- name: adpcm_main_wcet
+  level: bitcode
+  hash: 0
+  blocks:
+  - name: entry
+    predecessors: []
+    successors:
+    - for.cond.i
+    instructions:
+    - index: 0
+      opcode: br
+  - name: for.cond.i
+    predecessors:
+    - for.cond.i
+    - entry
+    successors:
+    - bank_ptrs.exit
+    - for.cond.i
+    loops:
+    - for.cond.i
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: call
+    - index: 2
+      opcode: add
+    - index: 3
+      opcode: icmp
+    - index: 4
+      opcode: br
+  - name: bank_ptrs.exit
+    predecessors:
+    - for.cond.i
+    successors: []
+    instructions:
+    - index: 0
+      opcode: store
+      memmode: store
+    - index: 1
+      opcode: store
+      memmode: store
+    - index: 2
+      opcode: store
+      memmode: store
+    - index: 3
+      opcode: ret
+- name: __udivsi3
+  level: bitcode
+  hash: 0
+  blocks:
+  - name: entry
+    predecessors: []
+    successors:
+    - for.cond
+    instructions:
+    - index: 0
+      opcode: br
+  - name: for.cond
+    predecessors:
+    - for.inc
+    - entry
+    successors:
+    - for.body
+    - for.end
+    loops:
+    - for.cond
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: phi
+    - index: 2
+      opcode: phi
+    - index: 3
+      opcode: call
+    - index: 4
+      opcode: icmp
+    - index: 5
+      opcode: br
+  - name: for.body
+    predecessors:
+    - for.cond
+    successors:
+    - for.inc
+    - if.then
+    loops:
+    - for.cond
+    instructions:
+    - index: 0
+      opcode: shl
+    - index: 1
+      opcode: lshr
+    - index: 2
+      opcode: and
+    - index: 3
+      opcode: or
+    - index: 4
+      opcode: icmp
+    - index: 5
+      opcode: br
+  - name: if.then
+    predecessors:
+    - for.body
+    successors:
+    - for.inc
+    loops:
+    - for.cond
+    instructions:
+    - index: 0
+      opcode: sub
+    - index: 1
+      opcode: shl
+    - index: 2
+      opcode: or
+    - index: 3
+      opcode: br
+  - name: for.inc
+    predecessors:
+    - if.then
+    - for.body
+    successors:
+    - for.cond
+    loops:
+    - for.cond
+    instructions:
+    - index: 0
+      opcode: phi
+    - index: 1
+      opcode: phi
+    - index: 2
+      opcode: add
+    - index: 3
+      opcode: br
+  - name: for.end
+    predecessors:
+    - for.cond
+    successors: []
+    instructions:
+    - index: 0
+      opcode: ret
+flowfacts:
+- scope:
+    function: adpcm_main_wcet
+    loop: for.cond.i
+  lhs:
+  - factor: 1
+    program-point:
+      function: adpcm_main_wcet
+      block: for.cond.i
+  op: less-equal
+  rhs: 4
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: adpcm_main_wcet
+    loop: for.cond.i
+  lhs:
+  - factor: 1
+    program-point:
+      function: adpcm_main_wcet
+      block: for.cond.i
+  op: less-equal
+  rhs: 4
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: adpcm_main_wcet
+    loop: for.cond.i
+  lhs:
+  - factor: 1
+    program-point:
+      function: adpcm_main_wcet
+      block: for.cond.i
+  op: less-equal
+  rhs: 4
+  level: bitcode
+  origin: user.bc
+  classification: loop-global
+- scope:
+    function: __udivsi3
+    loop: for.cond
+  lhs:
+  - factor: 1
+    program-point:
+      function: __udivsi3
+      block: for.cond
+  op: less-equal
+  rhs: 33
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: __udivsi3
+    loop: for.cond
+  lhs:
+  - factor: 1
+    program-point:
+      function: __udivsi3
+      block: for.cond
+  op: less-equal
+  rhs: 33
+  level: bitcode
+  origin: llvm.bc
+  classification: loop-global
+- scope:
+    function: __udivsi3
+    loop: for.cond
+  lhs:
+  - factor: 1
+    program-point:
+      function: __udivsi3
+      block: for.cond
+  op: less-equal
+  rhs: 33
+  level: bitcode
+  origin: user.bc
+  classification: loop-global
+- scope:
+    function: 7
+  lhs:
+  - factor: -4
+    program-point:
+      function: 7
+      block: 2
+  - factor: 1
+    program-point:
+      function: 7
+      block: 1
+  op: less-equal
+  rhs: '0'
+  origin: llvm
+  level: machinecode
+- scope:
+    function: 7
+    loop: 1
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 1
+  op: less-equal
+  rhs: '4'
+  origin: llvm
+  level: machinecode
+- scope:
+    function: 7
+    loop: 1
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 1
+  op: less-equal
+  rhs: '4'
+  origin: llvm
+  level: machinecode
+- scope:
+    function: 7
+  lhs:
+  - factor: -4
+    program-point:
+      function: 7
+      block: 2
+  - factor: 1
+    program-point:
+      function: 7
+      block: 1
+  op: less-equal
+  rhs: '0'
+  origin: user
+  level: machinecode
+- scope:
+    function: 7
+    loop: 1
+  lhs:
+  - factor: 1
+    program-point:
+      function: 7
+      block: 1
+  op: less-equal
+  rhs: '4'
+  origin: user
+  level: machinecode
+relation-graphs:
+- src:
+    function: main
+    level: bitcode
+  dst:
+    function: 8
+    level: machinecode
+  nodes:
+  - name: 0
+    type: entry
+    src-block: entry
+    dst-block: 0
+    src-successors:
+    - 2
+    dst-successors:
+    - 2
+  - name: 1
+    type: exit
+  - name: 2
+    type: progress
+    src-block: while.body5.i.i.i
+    dst-block: 1
+    src-successors:
+    - 2
+    - 3
+    dst-successors:
+    - 2
+    - 3
+  - name: 3
+    type: progress
+    src-block: while.body5.i.i.preheader.1.i
+    dst-block: 2
+    src-successors:
+    - 4
+    dst-successors:
+    - 4
+  - name: 4
+    type: progress
+    src-block: while.body5.i.i.1.i
+    dst-block: 3
+    src-successors:
+    - 4
+    - 5
+    dst-successors:
+    - 4
+    - 5
+  - name: 5
+    type: progress
+    src-block: while.body5.i.i.preheader.2.i
+    dst-block: 4
+    src-successors:
+    - 6
+    dst-successors:
+    - 6
+  - name: 6
+    type: progress
+    src-block: while.body5.i.i.2.i
+    dst-block: 5
+    src-successors:
+    - 7
+    - 6
+    dst-successors:
+    - 7
+    - 6
+  - name: 7
+    type: progress
+    src-block: init.exit
+    dst-block: 6
+    src-successors:
+    - 1
+    dst-successors:
+    - 1
+  status: valid
+- src:
+    function: __divsi3
+    level: bitcode
+  dst:
+    function: 140
+    level: machinecode
+  nodes:
+  - name: 0
+    type: entry
+    src-block: entry
+    dst-block: 0
+    src-successors:
+    - 1
+    dst-successors:
+    - 1
+  - name: 1
+    type: exit
+  status: valid
+- src:
+    function: adpcm_main_wcet
+    level: bitcode
+  dst:
+    function: 7
+    level: machinecode
+  nodes:
+  - name: 0
+    type: entry
+    src-block: entry
+    dst-block: 0
+    src-successors:
+    - 2
+    dst-successors:
+    - 2
+  - name: 1
+    type: exit
+  - name: 2
+    type: progress
+    src-block: for.cond.i
+    dst-block: 1
+    src-successors:
+    - 3
+    - 2
+    dst-successors:
+    - 3
+    - 2
+  - name: 3
+    type: progress
+    src-block: bank_ptrs.exit
+    dst-block: 2
+    src-successors:
+    - 1
+    dst-successors:
+    - 1
+  status: valid
+- src:
+    function: __udivsi3
+    level: bitcode
+  dst:
+    function: 148
+    level: machinecode
+  nodes:
+  - name: 0
+    type: entry
+    src-block: entry
+    dst-block: 0
+    src-successors:
+    - 2
+    dst-successors:
+    - 2
+  - name: 1
+    type: exit
+  - name: 2
+    type: progress
+    src-block: for.cond
+    dst-block: 1
+    src-successors:
+    - 3
+    - 4
+    dst-successors:
+    - 3
+    - 4
+  - name: 3
+    type: progress
+    src-block: for.body
+    dst-block: 2
+    src-successors:
+    - 5
+    - 6
+    dst-successors:
+    - 2
+  - name: 4
+    type: progress
+    src-block: for.end
+    dst-block: 3
+    src-successors:
+    - 1
+    dst-successors:
+    - 1
+  - name: 5
+    type: src
+    src-block: for.inc
+    src-successors:
+    - 2
+  - name: 6
+    type: src
+    src-block: if.then
+    src-successors:
+    - 5
+  status: valid
+timing:
+- scope:
+    function: 7
+  cycles: 29
+  level: machinecode
+  origin: platin
+  cache-max-cycles-instr: 0
+  cache-min-hits-instr: 0
+  cache-max-misses-instr: 0
+  cache-max-cycles-stack: 0
+  cache-max-misses-stack: 0
+  cache-max-cycles-data: 0
+  cache-min-hits-data: 0
+  cache-max-misses-data: 0
+  cache-max-cycles: 0
+  profile:
+  - reference:
+      function: 7
+      edgesource: 0
+      edgetarget: 1
+    cycles: 2
+    wcet-frequency: 1
+    wcet-contribution: 2
+  - reference:
+      function: 7
+      edgesource: 1
+      edgetarget: 2
+    cycles: 3
+    wcet-frequency: 1
+    wcet-contribution: 3
+  - reference:
+      function: 7
+      edgesource: 1
+      edgetarget: 1
+    cycles: 5
+    wcet-frequency: 3
+    wcet-contribution: 15
+  - reference:
+      function: 7
+      edgesource: 2
+    cycles: 9
+    wcet-frequency: 1
+    wcet-contribution: 9
