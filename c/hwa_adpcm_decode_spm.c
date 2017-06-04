@@ -49,7 +49,6 @@ struct adpcm_struct {
 
 volatile _SPM struct adpcm_struct *adpcm_data = (volatile _SPM struct adpcm_struct *) SPM_BASE;
 
-
 int adpcm_abs(int n)
 {
 	int m;
@@ -102,7 +101,6 @@ int adpcm_cos(int rad)
 
 void init()
 {
-
 
 	int i, j, f;
 	int x = 0;

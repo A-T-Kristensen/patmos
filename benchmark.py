@@ -133,13 +133,28 @@ def store_benchmark(bench_name, appList, computeArray,
 
 	dataOut = np.vstack((computeOut, transferOut, totalOut))
 
-	np.savetxt(bench_name + '_compute.csv', 
+	try:
+		os.remove('reports/' + bench_name + '_compute.csv')	# Delete old
+	except:
+		print("Deleting file")
+
+	try:
+		os.remove('reports/' + bench_name + '_transfer.csv')	# Delete old
+	except:
+		print("Deleting file")
+
+	try:
+		os.remove('reports/' + bench_name + '.csv')	# Delete old
+	except:
+		print("Deleting file")		
+
+	np.savetxt('reports/' + bench_name + '_compute.csv', 
 			   computeOut, delimiter=',', fmt='%s') 
 
-	np.savetxt(bench_name + '_transfer.csv', 
+	np.savetxt('reports/' + bench_name + '_transfer.csv', 
 			   transferOut, delimiter=',', fmt='%s') 
 
-	np.savetxt(bench_name + '.csv', dataOut, delimiter=',', fmt='%s') 
+	np.savetxt('reports/' + bench_name + '.csv', dataOut, delimiter=',', fmt='%s') 
 
 # matmul() is used to run the benchmarks for matrix multiplication
 
@@ -519,7 +534,9 @@ def adpcm(synth = 0, hw_test = 0):
 
 	# Parameter space to explore for filterbank
 
-	appList = ["hwa_adpcm_encode", "hwa_adpcm_decode", 
+	appList = ["hwa_adpcm_encode", "hwa_adpcm_encode_spm", 
+			   "hwa_adpcm_encode_uncached", "hwa_adpcm_decode", 
+			   "hwa_adpcm_decode_spm", "hwa_adpcm_decode_uncached",
 			   "tacle_adpcm_enc", "tacle_adpcm_dec"] 
 
 	# Arrays for data storage
@@ -543,7 +560,7 @@ def adpcm(synth = 0, hw_test = 0):
 
 		print("\n*******************************************")
 		print("ADPCM: type = %s, NBANKS = %d\n" \
-			  % ("float", 2))
+			  % ("float", 3))
 		print("APP: %s" % (app))                    
 		print("*******************************************\n")                
 
@@ -612,11 +629,11 @@ def store_wcet_benchmark(bench_name, appList, dataArray, csv_rows):
 	dataOut = np.hstack((csv_rows, dataOut))
 
 	try:
-		os.remove(bench_name + '_wcet.csv')	# Delete old
+		os.remove('reports/' + bench_name + '_wcet.csv')	# Delete old
 	except:
 		print("Deleting file")
 
-	np.savetxt(bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 
+	np.savetxt('reports/' + bench_name + '_wcet.csv', dataOut, delimiter=',', fmt='%s') 
 
 def matmul_wcet():
 
@@ -925,11 +942,12 @@ def adpcm_enc_wcet():
 
 	# Parameter space to explore for filterbank
 
-	appList = ["hwa_adpcm_encode", "tacle_adpcm_enc"] 
+	appList = ["hwa_adpcm_encode", "hwa_adpcm_encode_spm", 
+				"hwa_adpcm_encode_uncached","tacle_adpcm_enc"] 
 
 	functionList = ["adpcm_main_wcet", "adpcm_enc_main"]			   
 
-	app_type = [0, 1] # 0 is for hardware
+	app_type = [0, 0, 0, 1] # 0 is for hardware
 
 	# Arrays for data storage
 
@@ -979,11 +997,12 @@ def adpcm_dec_wcet():
 
 	# Parameter space to explore for filterbank
 
-	appList = ["hwa_adpcm_decode", "tacle_adpcm_dec"] 
+	appList = ["hwa_adpcm_decode", "hwa_adpcm_decode_spm", 
+				"hwa_adpcm_decode_uncached", "tacle_adpcm_dec"] 
 
 	functionList = ["adpcm_main_wcet", "adpcm_dec_main"]			   
 
-	app_type = [0, 1] # 0 is for hardware
+	app_type = [0, 0, 0, 1] # 0 is for hardware
 
 	# Arrays for data storage
 
@@ -1023,19 +1042,19 @@ def adpcm_dec_wcet():
 
 def main(): 
 
-	matmul(synth = 0, hw_test = 0)
+	#matmul(synth = 0, hw_test = 0)
 	#minver(synth = 0, hw_test = 0)
 	#filterbank(synth = 0, hw_test = 0)
 	#fir2dim(synth = 0, hw_test = 0)
-	#adpcm(synth = 0, hw_test = 0)
+	adpcm(synth = 0, hw_test = 0)
 
 	#matmul_wcet()
 	#filterbank_wcet()
 	#fir2dim_wcet()
 	#minver_wcet()
 
-	#adpcm_dec_wcet()
-	#adpcm_enc_wcet()
+	adpcm_dec_wcet()
+	adpcm_enc_wcet()
 
 	clean_up()
 
