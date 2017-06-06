@@ -1,10 +1,10 @@
-#define ROWS 	3
-#define COLS	3
-#define DIM 	3
-#define SIZE	9
-#define VECSIZE 3
+#define ROWS 	32
+#define COLS	32
+#define DIM 	32
+#define SIZE	1024
+#define VECSIZE 0
 #define NBANKS 	3
-#define WCET	1
+#define WCET	0
 #define ARRAY_WR_FACTOR	1
 #define ARRAY_WR_DIV	3
 #define ARRAY_RD_FACTOR	1
@@ -13,4 +13,4 @@
 #define VEC_WR_DIV		3
 #define VEC_RD_FACTOR	1
 #define VEC_RD_DIV		3
-typedef int mat_type;
+typedef float mat_type;
