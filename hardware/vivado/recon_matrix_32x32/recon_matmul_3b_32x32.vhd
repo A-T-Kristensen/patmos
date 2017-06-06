@@ -11,7 +11,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.MEM_PACKAGE_MATMUL.all;
-use work.HWA_PACKAGE.all;
+use work.HWA_PACKAGE_MATMUL.all;
 
 entity recon_matrix is
 	port (
@@ -35,7 +35,7 @@ end recon_matrix;
 
 architecture rtl of recon_matrix is
 	
-	component n_bank is
+	component n_bank_matmul is
 		port (
 		    clk     : in  std_logic;
 
@@ -108,7 +108,7 @@ architecture rtl of recon_matrix is
 begin
 
 
-	n_bank_inst_0 : n_bank port map(
+	n_bank_inst_0 : n_bank_matmul port map(
 	    clk     => clk,
 
 	    -- Patmos side

@@ -25,7 +25,7 @@ object BRamCtrlICAP extends DeviceObject {
   }
 
   trait Pins {
-    val bRamCtrlPins = new Bundle() {
+    val bRamCtrlICAPPins = new Bundle() {
       val MCmd = UInt(OUTPUT,3)
       val MAddr = UInt(OUTPUT,extAddrWidth)
       val MData = UInt(OUTPUT,dataWidth)
@@ -40,10 +40,10 @@ class BRamCtrlICAP(extAddrWidth : Int = 32,
                      dataWidth : Int = 32) extends CoreDevice() {
   override val io = new CoreDeviceIO() with BRamCtrlICAP.Pins
   //Assigments of inputs and outputs
-  io.bRamCtrlPins.MCmd := io.ocp.M.Cmd
-  io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth-1, 0)
-  io.bRamCtrlPins.MData := io.ocp.M.Data
-  io.bRamCtrlPins.MByteEn := io.ocp.M.ByteEn
-  io.ocp.S.Resp := io.bRamCtrlPins.SResp
-  io.ocp.S.Data := io.bRamCtrlPins.SData
+  io.bRamCtrlICAPPins.MCmd := io.ocp.M.Cmd
+  io.bRamCtrlICAPPins.MAddr := io.ocp.M.Addr(extAddrWidth-1, 0)
+  io.bRamCtrlICAPPins.MData := io.ocp.M.Data
+  io.bRamCtrlICAPPins.MByteEn := io.ocp.M.ByteEn
+  io.ocp.S.Resp := io.bRamCtrlICAPPins.SResp
+  io.ocp.S.Data := io.bRamCtrlICAPPins.SData
 }

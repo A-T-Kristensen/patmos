@@ -12,8 +12,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
---use work.MEM_PACKAGE.all;
-use work.HWA_PACKAGE.all;
 
 entity patmos_top is
 	port(
@@ -116,9 +114,9 @@ component recon_matrix is
 
 	    -- Patmos side
 	    p_we    : in  std_logic;
-	    p_addr  : in  std_logic_vector(ADDR_WIDTH - 1 downto 0);
-	    p_dout  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
-	    p_din   : out std_logic_vector(DATA_WIDTH - 1 downto 0);
+	    p_addr  : in  std_logic_vector(15 downto 0);
+	    p_dout  : in  std_logic_vector(31 downto 0);
+	    p_din   : out std_logic_vector(31 downto 0);
 
 		ap_start_in : in std_logic;
 		ap_reset_in : in std_logic;
