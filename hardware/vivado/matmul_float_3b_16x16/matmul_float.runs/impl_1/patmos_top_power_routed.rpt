@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Sat Jun  3 11:41:39 2017
+| Date             : Fri Jun  9 15:03:58 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.085 |
-| Dynamic (W)              | 0.977 |
+| Total On-Chip Power (W)  | 1.087 |
+| Dynamic (W)              | 0.978 |
 | Device Static (W)        | 0.108 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
@@ -52,14 +52,14 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.024 |       46 |       --- |             --- |
 | Slice Logic              |     0.014 |    22286 |       --- |             --- |
-|   LUT as Logic           |     0.012 |     9349 |     63400 |           14.75 |
+|   LUT as Logic           |     0.012 |     9346 |     63400 |           14.74 |
 |   Register               |    <0.001 |     9027 |    126800 |            7.12 |
 |   CARRY4                 |    <0.001 |      542 |     15850 |            3.42 |
 |   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
 |   F7/F8 Muxes            |    <0.001 |      132 |     63400 |            0.21 |
 |   LUT as Shift Register  |    <0.001 |       86 |     19000 |            0.45 |
 |   Others                 |     0.000 |      305 |       --- |             --- |
-| Signals                  |     0.021 |    18601 |       --- |             --- |
+| Signals                  |     0.022 |    18593 |       --- |             --- |
 | Block RAM                |     0.018 |     13.5 |       135 |           10.00 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
@@ -68,7 +68,7 @@ Table of Contents
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.108 |          |           |                 |
-| Total                    |     1.085 |          |           |                 |
+| Total                    |     1.087 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,7 +78,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.121 |       0.102 |      0.018 |
+| Vccint    |       1.000 |     0.122 |       0.104 |      0.018 |
 | Vccaux    |       1.800 |     0.269 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -190,7 +190,7 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     0.977 |
+| patmos_top                                                                                          |     0.978 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
 |   ddr2_ctrl_inst_0                                                                                  |     0.805 |
@@ -326,7 +326,7 @@ Table of Contents
 |                       mem_reg_0_15_66_71                                                            |    <0.001 |
 |                       mem_reg_0_15_6_11                                                             |    <0.001 |
 |                       mem_reg_0_15_72_77                                                            |    <0.001 |
-|           mc0                                                                                       |     0.002 |
+|           mc0                                                                                       |     0.003 |
 |             bank_mach0                                                                              |     0.002 |
 |               arb_mux0                                                                              |    <0.001 |
 |                 arb_row_col0                                                                        |    <0.001 |
@@ -388,8 +388,8 @@ Table of Contents
 |             write_buffer.wr_buffer_ram[7].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[8].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[9].RAM32M0                                                   |    <0.001 |
-|   matrixmul_inst_0                                                                                  |     0.010 |
-|     matmul_hw_fadd_32bkb_U1                                                                         |     0.003 |
+|   matrixmul_inst_0                                                                                  |     0.011 |
+|     matmul_hw_fadd_32bkb_U1                                                                         |     0.004 |
 |       matmul_hw_ap_fadd_3_full_dsp_32_u                                                             |     0.003 |
 |         U0                                                                                          |     0.003 |
 |           i_synth                                                                                   |     0.003 |
@@ -476,23 +476,23 @@ Table of Contents
 |                   i_pipe                                                                            |    <0.001 |
 |                 STATE_DELAY                                                                         |    <0.001 |
 |                   i_pipe                                                                            |    <0.001 |
-|               MULT                                                                                  |     0.002 |
-|                 DSP48E1_SPD_SGL_VARIANT.FIX_MULT                                                    |     0.002 |
+|               MULT                                                                                  |     0.001 |
+|                 DSP48E1_SPD_SGL_VARIANT.FIX_MULT                                                    |     0.001 |
 |                   DSP1                                                                              |    <0.001 |
 |                   DSP2                                                                              |    <0.001 |
-|               OP                                                                                    |    <0.001 |
+|               OP                                                                                    |     0.001 |
 |               R_AND_R                                                                               |    <0.001 |
 |                 LAT_OPT.FULL.R_AND_R                                                                |    <0.001 |
 |                   DSP48E1_SGL_EXP_IP.OLD_ADD.ADD                                                    |    <0.001 |
 |   n_bank_inst_0                                                                                     |     0.006 |
-|     bram_gen[0].bram_array                                                                          |     0.003 |
+|     bram_gen[0].bram_array                                                                          |     0.002 |
 |     bram_gen[1].bram_array                                                                          |     0.002 |
 |     bram_gen[2].bram_array                                                                          |     0.001 |
 |   nexys4ddr_io_inst_0                                                                               |     0.001 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
-|   patmos_inst_0                                                                                     |     0.044 |
-|     core                                                                                            |     0.044 |
-|       dcache                                                                                        |     0.010 |
+|   patmos_inst_0                                                                                     |     0.045 |
+|     core                                                                                            |     0.045 |
+|       dcache                                                                                        |     0.011 |
 |         bp                                                                                          |    <0.001 |
 |         dm                                                                                          |     0.006 |
 |           MemBlock                                                                                  |    <0.001 |

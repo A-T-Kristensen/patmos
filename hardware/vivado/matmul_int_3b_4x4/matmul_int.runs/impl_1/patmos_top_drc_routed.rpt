@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Wed Apr 26 11:43:08 2017
+| Date         : Fri Jun  9 16:23:44 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_drc -file patmos_top_drc_routed.rpt -pb patmos_top_drc_routed.pb -rpx patmos_top_drc_routed.rpx
 | Design       : patmos_top
@@ -24,14 +24,14 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 40
+             Violations found: 37
 +-----------+----------+-----------------------------------------------------+------------+
 | Rule      | Severity | Description                                         | Violations |
 +-----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1  | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
 | CHECK-3   | Warning  | Report rule limit reached                           | 1          |
 | DPIP-1    | Warning  | Input pipelining                                    | 8          |
-| DPOP-1    | Warning  | PREG Output pipelining                              | 7          |
+| DPOP-1    | Warning  | PREG Output pipelining                              | 4          |
 | DPOP-2    | Warning  | MREG Output pipelining                              | 1          |
 | REQP-1709 | Warning  | Clock output buffering                              | 1          |
 | REQP-1840 | Warning  | RAMB18 async control check                          | 20         |
@@ -100,35 +100,20 @@ Related violations: <none>
 
 DPOP-1#1 Warning
 PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U2/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP matrixmul_inst_0/matmul_hw_mul_32sbkb_U1/matmul_hw_mul_32sbkb_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32sbkb_U1/matmul_hw_mul_32sbkb_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#2 Warning
 PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U4/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U4/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP patmos_inst_0/core/execute/mulHLReg_reg output patmos_inst_0/core/execute/mulHLReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#3 Warning
 PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U6/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#4 Warning
-PREG Output pipelining  
-DSP matrixmul_inst_0/matmul_hw_mul_32scud_U8/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg output matrixmul_inst_0/matmul_hw_mul_32scud_U8/matmul_hw_mul_32scud_MulnS_0_U/buff0_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#5 Warning
-PREG Output pipelining  
-DSP patmos_inst_0/core/execute/mulHLReg_reg output patmos_inst_0/core/execute/mulHLReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
-Related violations: <none>
-
-DPOP-1#6 Warning
-PREG Output pipelining  
 DSP patmos_inst_0/core/execute/mulLHReg_reg output patmos_inst_0/core/execute/mulLHReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
-DPOP-1#7 Warning
+DPOP-1#4 Warning
 PREG Output pipelining  
 DSP patmos_inst_0/core/execute/mulLLReg_reg output patmos_inst_0/core/execute/mulLLReg_reg/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
@@ -155,97 +140,97 @@ Related violations: <none>
 
 REQP-1840#3 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[10] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[5]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock/mem_reg/ADDRARDADDR[5] (net: patmos_inst_0/core/fetch/MemBlock/D[0]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#4 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[11] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[6]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock/mem_reg/ADDRARDADDR[6] (net: patmos_inst_0/core/fetch/MemBlock/D[1]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#5 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[12] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[7]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock/mem_reg/ADDRARDADDR[7] (net: patmos_inst_0/core/fetch/MemBlock/D[2]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#6 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[13] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[8]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock/mem_reg/ADDRARDADDR[8] (net: patmos_inst_0/core/fetch/MemBlock/D[3]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#7 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[5] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[0]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock/mem_reg/ADDRARDADDR[9] (net: patmos_inst_0/core/fetch/MemBlock/D[4]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#8 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[6] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[1]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock_1/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock_1/mem_reg/ADDRARDADDR[10] (net: patmos_inst_0/core/fetch/MemBlock_1/D[5]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#9 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[7] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[2]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock_1/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock_1/mem_reg/ADDRARDADDR[11] (net: patmos_inst_0/core/fetch/MemBlock_1/addrOddReg_reg[7][0]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#10 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[8] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[3]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock_1/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock_1/mem_reg/ADDRARDADDR[5] (net: patmos_inst_0/core/fetch/MemBlock_1/D[0]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#11 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[9] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[4]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock_1/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock_1/mem_reg/ADDRARDADDR[6] (net: patmos_inst_0/core/fetch/MemBlock_1/D[1]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#12 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[10] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[5]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock_1/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock_1/mem_reg/ADDRARDADDR[7] (net: patmos_inst_0/core/fetch/MemBlock_1/D[2]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#13 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[11] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[6]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock_1/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock_1/mem_reg/ADDRARDADDR[8] (net: patmos_inst_0/core/fetch/MemBlock_1/D[3]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#14 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[12] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[7]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/fetch/MemBlock_1/mem_reg has an input control pin patmos_inst_0/core/fetch/MemBlock_1/mem_reg/ADDRARDADDR[9] (net: patmos_inst_0/core/fetch/MemBlock_1/D[4]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#15 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[13] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[8]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[10] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[5]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#16 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[5] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[0]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[11] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[6]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#17 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[6] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[1]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[12] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[7]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#18 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[7] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[2]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[13] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[8]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#19 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[8] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[3]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[8] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[3]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#20 Warning
 RAMB18 async control check  
-The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheOdd/mem_reg/ADDRARDADDR[9] (net: patmos_inst_0/core/icache/mem/mcacheOdd/hitReg_reg[4]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 patmos_inst_0/core/icache/mem/mcacheEven/mem_reg has an input control pin patmos_inst_0/core/icache/mem/mcacheEven/mem_reg/ADDRARDADDR[9] (net: patmos_inst_0/core/icache/mem/mcacheEven/D[4]) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-66 net(s) have no routable loads. The problem bus(es) and/or net(s) are hwa_addr_i[0][addr][10], hwa_addr_i[0][addr][11], hwa_addr_i[0][addr][12], hwa_addr_i[0][addr][13], hwa_addr_i[0][addr][14], hwa_addr_i[0][addr][15], hwa_addr_i[0][addr][16], hwa_addr_i[0][addr][17], hwa_addr_i[0][addr][18], hwa_addr_i[0][addr][19], hwa_addr_i[0][addr][20], hwa_addr_i[0][addr][21], hwa_addr_i[0][addr][22], hwa_addr_i[0][addr][23], hwa_addr_i[0][addr][24] (the first 15 of 66 listed).
+72 net(s) have no routable loads. The problem bus(es) and/or net(s) are hwa_addr_i[0][addr][0], hwa_addr_i[0][addr][1], hwa_addr_i[0][addr][10], hwa_addr_i[0][addr][11], hwa_addr_i[0][addr][12], hwa_addr_i[0][addr][13], hwa_addr_i[0][addr][14], hwa_addr_i[0][addr][15], hwa_addr_i[0][addr][16], hwa_addr_i[0][addr][17], hwa_addr_i[0][addr][18], hwa_addr_i[0][addr][19], hwa_addr_i[0][addr][20], hwa_addr_i[0][addr][21], hwa_addr_i[0][addr][22] (the first 15 of 72 listed).
 Related violations: <none>
 
 

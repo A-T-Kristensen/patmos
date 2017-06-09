@@ -32,6 +32,9 @@ package HWA_PACKAGE is
     -- Number of bits used to select between banks from Patmos
     constant ADDR_SELECT_BITS : integer := integer(ceil(log2(real(NBANKS)))); 
 
+    -- Number of bits used to select between banks from Patmos
+    constant ADDR_SIZE_BRAM : integer := integer(ceil(log2(real(MEM_SIZE)))) - 2;
+
 	-- The actual number of address bits used by each of the BRAMs
     constant ADDR_BITS: integer := integer(ceil(log2(real(MEM_SIZE)))); 
 

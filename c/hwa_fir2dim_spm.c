@@ -239,6 +239,12 @@ int fir2dim_main(void)
 
 	fir2dim_result_hw = spm_filter->fir2dim_output_hw[0] + spm_filter->fir2dim_output_hw[5] + fir2dim_array[9];
 
+	if(!fir2dim_return(fir2dim_result_hw)) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}		
+
 	print_benchmark(return_compute, return_transfer);
 
 	return fir2dim_return(fir2dim_result_hw);

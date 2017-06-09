@@ -555,7 +555,7 @@ begin
 	hwa_rst <= hwACtrl_ap_reset_out or reset_int;		
 
 	addr_map: for i in (NBANKS-1) downto 0 generate
-	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
+	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_WIDTH - 1 downto 0);
     end generate;		
 					  				
 end architecture rtl;

@@ -62,17 +62,17 @@ def run_benchmark(project, app, synth, hw_test):
 			   'APP={app} '
 			   'comp hwa_synth hwa_config download') \
 				.format(prj=project, app = app)
+
 	else:
 		cmd = ('make -B COM_PORT?=/dev/ttyUSB1 '
 			   'HWA_PROJECT={prj} '
 			   'APP={app} '
 			   'comp hwa_config download') \
-				.format(prj=project, app = app)          
-
+				.format(prj=project, app = app)
 
 	# We now try to do the benchmarking
 
-	retries = 2          
+	retries = 2				
 
 	while retries > 0:
 
@@ -166,7 +166,6 @@ def matmul(synth = 0, hw_test = 0):
 	keywordsDefine  = ["DIM", "ROWS", "COLS", "NBANKS", "SIZE", "VECSIZE", "WCET",
 						"ARRAY_WR_FACTOR", "ARRAY_WR_DIV", "ARRAY_RD_FACTOR", "ARRAY_RD_DIV",
 						"VEC_WR_FACTOR", "VEC_WR_DIV", "VEC_RD_FACTOR", "VEC_RD_DIV"]
-
 
 
 	keywordsTypes   = ["mat_type;","vec_type;"]    
@@ -1044,17 +1043,16 @@ def main():
 
 	#matmul(synth = 0, hw_test = 0)
 	#minver(synth = 0, hw_test = 0)
-	#filterbank(synth = 0, hw_test = 0)
-	#fir2dim(synth = 0, hw_test = 0)
-	adpcm(synth = 0, hw_test = 0)
+	#filterbank(synth = 1, hw_test = 0)
+	#fir2dim(synth = 1, hw_test = 0)
+	#adpcm(synth = 1, hw_test = 0)
 
 	#matmul_wcet()
 	#filterbank_wcet()
 	#fir2dim_wcet()
 	#minver_wcet()
-
-	adpcm_dec_wcet()
-	adpcm_enc_wcet()
+	#adpcm_dec_wcet()
+	#adpcm_enc_wcet()
 
 	clean_up()
 

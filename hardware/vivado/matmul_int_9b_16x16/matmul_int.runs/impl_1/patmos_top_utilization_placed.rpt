@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Sat Jun  3 15:57:07 2017
+| Date         : Fri Jun  9 17:25:46 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_utilization -file patmos_top_utilization_placed.rpt -pb patmos_top_utilization_placed.pb
 | Design       : patmos_top
@@ -31,8 +31,8 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs                 | 10323 |     0 |     63400 | 16.28 |
-|   LUT as Logic             |  9733 |     0 |     63400 | 15.35 |
+| Slice LUTs                 | 10343 |     0 |     63400 | 16.31 |
+|   LUT as Logic             |  9753 |     0 |     63400 | 15.38 |
 |   LUT as Memory            |   590 |     0 |     19000 |  3.11 |
 |     LUT as Distributed RAM |   536 |     0 |           |       |
 |     LUT as Shift Register  |    54 |     0 |           |       |
@@ -69,13 +69,13 @@ Table of Contents
 +-------------------------------------------+------+-------+-----------+-------+
 |                 Site Type                 | Used | Fixed | Available | Util% |
 +-------------------------------------------+------+-------+-----------+-------+
-| Slice                                     | 3990 |     0 |     15850 | 25.17 |
-|   SLICEL                                  | 2808 |     0 |           |       |
-|   SLICEM                                  | 1182 |     0 |           |       |
-| LUT as Logic                              | 9733 |     0 |     63400 | 15.35 |
+| Slice                                     | 3892 |     0 |     15850 | 24.56 |
+|   SLICEL                                  | 2655 |     0 |           |       |
+|   SLICEM                                  | 1237 |     0 |           |       |
+| LUT as Logic                              | 9753 |     0 |     63400 | 15.38 |
 |   using O5 output only                    |    0 |       |           |       |
-|   using O6 output only                    | 7959 |       |           |       |
-|   using O5 and O6                         | 1774 |       |           |       |
+|   using O6 output only                    | 7999 |       |           |       |
+|   using O5 and O6                         | 1754 |       |           |       |
 | LUT as Memory                             |  590 |     0 |     19000 |  3.11 |
 |   LUT as Distributed RAM                  |  536 |     0 |           |       |
 |     using O5 output only                  |    0 |       |           |       |
@@ -85,10 +85,10 @@ Table of Contents
 |     using O5 output only                  |   17 |       |           |       |
 |     using O6 output only                  |    5 |       |           |       |
 |     using O5 and O6                       |   32 |       |           |       |
-| LUT Flip Flop Pairs                       | 3038 |     0 |     63400 |  4.79 |
+| LUT Flip Flop Pairs                       | 3001 |     0 |     63400 |  4.73 |
 |   fully used LUT-FF pairs                 |  539 |       |           |       |
-|   LUT-FF pairs with one unused LUT output | 2167 |       |           |       |
-|   LUT-FF pairs with one unused Flip Flop  | 2176 |       |           |       |
+|   LUT-FF pairs with one unused LUT output | 2135 |       |           |       |
+|   LUT-FF pairs with one unused Flip Flop  | 2162 |       |           |       |
 | Unique Control Sets                       |  314 |       |           |       |
 +-------------------------------------------+------+-------+-----------+-------+
 * Note: Review the Control Sets Report for more information regarding control sets.

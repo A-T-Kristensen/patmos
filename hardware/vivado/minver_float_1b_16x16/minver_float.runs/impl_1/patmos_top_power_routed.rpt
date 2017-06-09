@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Wed May 10 12:41:32 2017
+| Date             : Fri Jun  9 17:58:29 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.093 |
-| Dynamic (W)              | 0.985 |
+| Total On-Chip Power (W)  | 1.092 |
+| Dynamic (W)              | 0.983 |
 | Device Static (W)        | 0.108 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
@@ -50,16 +50,16 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.027 |       46 |       --- |             --- |
+| Clocks                   |     0.026 |       46 |       --- |             --- |
 | Slice Logic              |     0.019 |    25735 |       --- |             --- |
-|   LUT as Logic           |     0.016 |    10876 |     63400 |           17.15 |
+|   LUT as Logic           |     0.016 |    10873 |     63400 |           17.15 |
 |   CARRY4                 |     0.001 |      778 |     15850 |            4.91 |
 |   Register               |    <0.001 |    10371 |    126800 |            8.18 |
 |   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
 |   LUT as Shift Register  |    <0.001 |       53 |     19000 |            0.28 |
 |   F7/F8 Muxes            |    <0.001 |      128 |     63400 |            0.20 |
 |   Others                 |     0.000 |      633 |       --- |             --- |
-| Signals                  |     0.027 |    21067 |       --- |             --- |
+| Signals                  |     0.026 |    21062 |       --- |             --- |
 | Block RAM                |     0.015 |       12 |       135 |            8.89 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
@@ -68,7 +68,7 @@ Table of Contents
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.108 |          |           |                 |
-| Total                    |     1.093 |          |           |                 |
+| Total                    |     1.092 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,7 +78,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.132 |       0.114 |      0.018 |
+| Vccint    |       1.000 |     0.131 |       0.113 |      0.018 |
 | Vccaux    |       1.800 |     0.268 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -190,7 +190,7 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     0.985 |
+| patmos_top                                                                                          |     0.983 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
 |   ddr2_ctrl_inst_0                                                                                  |     0.801 |
@@ -388,7 +388,7 @@ Table of Contents
 |             write_buffer.wr_buffer_ram[7].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[8].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[9].RAM32M0                                                   |    <0.001 |
-|   minver_hwa_inst_0                                                                                 |     0.024 |
+|   minver_hwa_inst_0                                                                                 |     0.023 |
 |     minver_hwa_dcmp_6g8j_U7                                                                         |    <0.001 |
 |       minver_hwa_ap_dcmp_0_no_dsp_64_u                                                              |    <0.001 |
 |         U0                                                                                          |    <0.001 |
@@ -462,7 +462,7 @@ Table of Contents
 |                   i_pipe                                                                            |    <0.001 |
 |                 STATE_UP_DELAY                                                                      |    <0.001 |
 |                   i_pipe                                                                            |    <0.001 |
-|               MANT_DIV                                                                              |     0.009 |
+|               MANT_DIV                                                                              |     0.008 |
 |                 RT[0].ADDSUB                                                                        |    <0.001 |
 |                   ADDSUB                                                                            |    <0.001 |
 |                 RT[10].ADDSUB                                                                       |    <0.001 |
@@ -579,10 +579,10 @@ Table of Contents
 |                 RND_BIT_GEN                                                                         |    <0.001 |
 |                   NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1                                               |    <0.001 |
 |     minver_hwa_fmul_3cud_U2                                                                         |     0.004 |
-|       minver_hwa_ap_fmul_2_max_dsp_32_u                                                             |     0.004 |
-|         U0                                                                                          |     0.004 |
-|           i_synth                                                                                   |     0.004 |
-|             MULT.OP                                                                                 |     0.004 |
+|       minver_hwa_ap_fmul_2_max_dsp_32_u                                                             |     0.003 |
+|         U0                                                                                          |     0.003 |
+|           i_synth                                                                                   |     0.003 |
+|             MULT.OP                                                                                 |     0.003 |
 |               EXP                                                                                   |    <0.001 |
 |                 COND_DET_A                                                                          |    <0.001 |
 |                   MANT_CARRY.MANT_ALL_ZERO_DET                                                      |    <0.001 |
@@ -688,9 +688,9 @@ Table of Contents
 |     bram_gen[0].bram_array                                                                          |     0.004 |
 |   nexys4ddr_io_inst_0                                                                               |     0.001 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
-|   patmos_inst_0                                                                                     |     0.045 |
-|     core                                                                                            |     0.045 |
-|       dcache                                                                                        |     0.011 |
+|   patmos_inst_0                                                                                     |     0.044 |
+|     core                                                                                            |     0.044 |
+|       dcache                                                                                        |     0.010 |
 |         bp                                                                                          |    <0.001 |
 |         dm                                                                                          |     0.006 |
 |           MemBlock                                                                                  |    <0.001 |
@@ -698,11 +698,11 @@ Table of Contents
 |           MemBlock_2                                                                                |    <0.001 |
 |           MemBlock_3                                                                                |    <0.001 |
 |           tagMem                                                                                    |     0.001 |
-|         sc                                                                                          |     0.004 |
+|         sc                                                                                          |     0.003 |
 |           MemBlock                                                                                  |    <0.001 |
 |           MemBlock_1                                                                                |    <0.001 |
 |           MemBlock_2                                                                                |    <0.001 |
-|           MemBlock_3                                                                                |     0.001 |
+|           MemBlock_3                                                                                |    <0.001 |
 |         wc                                                                                          |    <0.001 |
 |       decode                                                                                        |     0.002 |
 |         rf                                                                                          |    <0.001 |
@@ -765,13 +765,13 @@ Table of Contents
 |         ctrl                                                                                        |    <0.001 |
 |         mem                                                                                         |     0.002 |
 |           mcacheEven                                                                                |     0.001 |
-|           mcacheOdd                                                                                 |    <0.001 |
+|           mcacheOdd                                                                                 |     0.001 |
 |         repl                                                                                        |     0.004 |
 |       iocomp                                                                                        |     0.006 |
 |         BRamCtrl                                                                                    |    <0.001 |
 |         CpuInfo                                                                                     |    <0.001 |
 |         HwACtrl                                                                                     |    <0.001 |
-|         Timer                                                                                       |     0.001 |
+|         Timer                                                                                       |    <0.001 |
 |         Uart                                                                                        |    <0.001 |
 |           rxQueue                                                                                   |    <0.001 |
 |             ram_reg_0_15_0_5                                                                        |    <0.001 |

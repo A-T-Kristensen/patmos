@@ -126,7 +126,13 @@ int filterbank_main(void)
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
-	print_benchmark(return_compute, return_transfer);
+	if(!(int)(test_filter->y[0]) - 9408) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}		
+
+	print_benchmark(return_compute, return_transfer);	
 
 	return (int)(test_filter->y[0]) - 9408;
 }

@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Sat Jun  3 11:27:53 2017
+| Date             : Fri Jun  9 14:54:20 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.080 |
-| Dynamic (W)              | 0.971 |
+| Total On-Chip Power (W)  | 1.081 |
+| Dynamic (W)              | 0.972 |
 | Device Static (W)        | 0.108 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
@@ -50,16 +50,16 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.022 |       46 |       --- |             --- |
-| Slice Logic              |     0.014 |    21018 |       --- |             --- |
-|   LUT as Logic           |     0.012 |     9019 |     63400 |           14.23 |
+| Clocks                   |     0.024 |       46 |       --- |             --- |
+| Slice Logic              |     0.013 |    21018 |       --- |             --- |
+|   LUT as Logic           |     0.012 |     9027 |     63400 |           14.24 |
 |   CARRY4                 |    <0.001 |      542 |     15850 |            3.42 |
 |   Register               |    <0.001 |     8180 |    126800 |            6.45 |
 |   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
 |   F7/F8 Muxes            |    <0.001 |      139 |     63400 |            0.22 |
 |   LUT as Shift Register  |    <0.001 |       38 |     19000 |            0.20 |
 |   Others                 |     0.000 |      305 |       --- |             --- |
-| Signals                  |     0.020 |    17421 |       --- |             --- |
+| Signals                  |     0.020 |    17412 |       --- |             --- |
 | Block RAM                |     0.018 |     13.5 |       135 |           10.00 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
@@ -68,7 +68,7 @@ Table of Contents
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.108 |          |           |                 |
-| Total                    |     1.080 |          |           |                 |
+| Total                    |     1.081 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,7 +78,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.119 |       0.100 |      0.018 |
+| Vccint    |       1.000 |     0.120 |       0.101 |      0.018 |
 | Vccaux    |       1.800 |     0.268 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -190,10 +190,10 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     0.971 |
+| patmos_top                                                                                          |     0.972 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
-|   ddr2_ctrl_inst_0                                                                                  |     0.801 |
+|   ddr2_ctrl_inst_0                                                                                  |     0.802 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_12_17 |    <0.001 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_24_29 |    <0.001 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_30_35 |    <0.001 |
@@ -259,15 +259,15 @@ Table of Contents
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_6_11             |    <0.001 |
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_72_77            |    <0.001 |
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_78_79            |    <0.001 |
-|     u_ddr2_ctrl_mig                                                                                 |     0.800 |
+|     u_ddr2_ctrl_mig                                                                                 |     0.801 |
 |       temp_mon_enabled.u_tempmon                                                                    |     0.006 |
 |       u_ddr2_clk_ibuf                                                                               |     0.000 |
 |       u_ddr2_infrastructure                                                                         |     0.206 |
 |       u_iodelay_ctrl                                                                                |    <0.001 |
-|       u_memc_ui_top_std                                                                             |     0.588 |
+|       u_memc_ui_top_std                                                                             |     0.589 |
 |         mem_intfc0                                                                                  |     0.587 |
 |           ddr_phy_top0                                                                              |     0.585 |
-|             u_ddr_calib_top                                                                         |     0.005 |
+|             u_ddr_calib_top                                                                         |     0.006 |
 |               ddr_phy_rdlvl_gen.u_ddr_phy_rdlvl                                                     |     0.002 |
 |               ddr_phy_tempmon_0                                                                     |    <0.001 |
 |               dqsfind_calib_left.u_ddr_phy_dqs_found_cal_hr                                         |    <0.001 |
@@ -500,11 +500,11 @@ Table of Contents
 |           MemBlock_2                                                                                |    <0.001 |
 |           MemBlock_3                                                                                |    <0.001 |
 |           tagMem                                                                                    |     0.001 |
-|         sc                                                                                          |     0.004 |
+|         sc                                                                                          |     0.003 |
 |           MemBlock                                                                                  |    <0.001 |
 |           MemBlock_1                                                                                |    <0.001 |
 |           MemBlock_2                                                                                |    <0.001 |
-|           MemBlock_3                                                                                |     0.001 |
+|           MemBlock_3                                                                                |    <0.001 |
 |         wc                                                                                          |    <0.001 |
 |       decode                                                                                        |     0.002 |
 |         rf                                                                                          |    <0.001 |

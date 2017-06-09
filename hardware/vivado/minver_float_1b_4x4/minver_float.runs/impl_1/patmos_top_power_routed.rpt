@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Sat May  6 15:59:17 2017
+| Date             : Fri Jun  9 17:47:53 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.086 |
-| Dynamic (W)              | 0.978 |
+| Total On-Chip Power (W)  | 1.089 |
+| Dynamic (W)              | 0.980 |
 | Device Static (W)        | 0.108 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
@@ -50,25 +50,25 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.025 |       46 |       --- |             --- |
-| Slice Logic              |     0.017 |    24247 |       --- |             --- |
-|   LUT as Logic           |     0.015 |    10293 |     63400 |           16.24 |
+| Clocks                   |     0.026 |       46 |       --- |             --- |
+| Slice Logic              |     0.017 |    24252 |       --- |             --- |
+|   LUT as Logic           |     0.015 |    10306 |     63400 |           16.26 |
 |   CARRY4                 |     0.001 |      778 |     15850 |            4.91 |
 |   Register               |    <0.001 |     9466 |    126800 |            7.47 |
 |   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
 |   LUT as Shift Register  |    <0.001 |       52 |     19000 |            0.27 |
 |   F7/F8 Muxes            |    <0.001 |      128 |     63400 |            0.20 |
-|   Others                 |     0.000 |      629 |       --- |             --- |
-| Signals                  |     0.023 |    19551 |       --- |             --- |
-| Block RAM                |     0.013 |       10 |       135 |            7.41 |
+|   Others                 |     0.000 |      633 |       --- |             --- |
+| Signals                  |     0.023 |    19538 |       --- |             --- |
+| Block RAM                |     0.015 |       12 |       135 |            8.89 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
 | DSPs                     |     0.003 |        9 |       240 |            3.75 |
-| I/O                      |     0.511 |      109 |       210 |           51.90 |
+| I/O                      |     0.510 |      109 |       210 |           51.90 |
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.108 |          |           |                 |
-| Total                    |     1.086 |          |           |                 |
+| Total                    |     1.089 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,7 +78,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.123 |       0.105 |      0.018 |
+| Vccint    |       1.000 |     0.126 |       0.107 |      0.018 |
 | Vccaux    |       1.800 |     0.269 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -87,7 +87,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.001 |       0.001 |      0.001 |
+| Vccbram   |       1.000 |     0.002 |       0.001 |      0.001 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccadc    |       1.800 |     0.022 |       0.002 |      0.020 |
@@ -190,7 +190,7 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     0.978 |
+| patmos_top                                                                                          |     0.980 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
 |   ddr2_ctrl_inst_0                                                                                  |     0.805 |
@@ -688,8 +688,8 @@ Table of Contents
 |     bram_gen[0].bram_array                                                                          |     0.003 |
 |   nexys4ddr_io_inst_0                                                                               |     0.001 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
-|   patmos_inst_0                                                                                     |     0.039 |
-|     core                                                                                            |     0.039 |
+|   patmos_inst_0                                                                                     |     0.042 |
+|     core                                                                                            |     0.042 |
 |       dcache                                                                                        |     0.011 |
 |         bp                                                                                          |    <0.001 |
 |         dm                                                                                          |     0.006 |
@@ -698,7 +698,7 @@ Table of Contents
 |           MemBlock_2                                                                                |    <0.001 |
 |           MemBlock_3                                                                                |    <0.001 |
 |           tagMem                                                                                    |     0.001 |
-|         sc                                                                                          |     0.004 |
+|         sc                                                                                          |     0.003 |
 |           MemBlock                                                                                  |    <0.001 |
 |           MemBlock_1                                                                                |    <0.001 |
 |           MemBlock_2                                                                                |    <0.001 |
@@ -767,7 +767,7 @@ Table of Contents
 |           mcacheEven                                                                                |     0.001 |
 |           mcacheOdd                                                                                 |    <0.001 |
 |         repl                                                                                        |     0.004 |
-|       iocomp                                                                                        |     0.004 |
+|       iocomp                                                                                        |     0.006 |
 |         BRamCtrl                                                                                    |    <0.001 |
 |         CpuInfo                                                                                     |    <0.001 |
 |         HwACtrl                                                                                     |    <0.001 |
@@ -779,12 +779,12 @@ Table of Contents
 |           txQueue                                                                                   |    <0.001 |
 |             ram_reg_0_15_0_5                                                                        |    <0.001 |
 |             ram_reg_0_15_6_7                                                                        |    <0.001 |
-|         spm                                                                                         |     0.003 |
-|           MemBlock                                                                                  |    <0.001 |
-|           MemBlock_1                                                                                |    <0.001 |
-|           MemBlock_2                                                                                |    <0.001 |
-|           MemBlock_3                                                                                |    <0.001 |
-|       memory                                                                                        |     0.001 |
+|         spm                                                                                         |     0.005 |
+|           MemBlock                                                                                  |     0.001 |
+|           MemBlock_1                                                                                |     0.001 |
+|           MemBlock_2                                                                                |     0.001 |
+|           MemBlock_3                                                                                |     0.001 |
+|       memory                                                                                        |    <0.001 |
 +-----------------------------------------------------------------------------------------------------+-----------+
 
 

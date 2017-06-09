@@ -14,6 +14,6 @@ package MEM_PACKAGE is
     constant NBANKS  : integer := 4; 
 
     -- The number of entries for each the memory banks 
-    constant MEM_SIZE : integer := 4096;
+    constant MEM_SIZE : integer := 1024;
 
 end package;

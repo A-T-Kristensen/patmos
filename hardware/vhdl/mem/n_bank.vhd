@@ -36,20 +36,20 @@ architecture rtl of n_bank is
     component bram_tdp is
     	generic (
     		DATA: integer := DATA_WIDTH;
-    		ADDR: integer := ADDR_BITS
+    		ADDR: integer := ADDR_SIZE_BRAM
     		);
         port (
             -- Port A (Patmos side)
             a_clk   : in  std_logic;
             a_wr    : in  std_logic;
-            a_addr  : in  std_logic_vector(ADDR_BITS - 1 downto 0); -- The MSB will be used to select bram block
+            a_addr  : in  std_logic_vector(ADDR_SIZE_BRAM - 1 downto 0); -- The MSB will be used to select bram block
             a_din   : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
             a_dout  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
 
             -- Port B (HwA side)
             b_clk   : in  std_logic;
             b_wr    : in  std_logic;
-            b_addr  : in  std_logic_vector(ADDR_BITS - 1 downto 0);
+            b_addr  : in  std_logic_vector(ADDR_SIZE_BRAM - 1 downto 0);
             b_din   : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
             b_dout  : out std_logic_vector(DATA_WIDTH - 1 downto 0)
         );
@@ -77,14 +77,14 @@ begin
 	        -- Port A
 	        a_clk   => clk,
 	        a_wr    => p_b_we(i),
-	        a_addr  => p_addr(ADDR_BITS - 1 downto 0), 
+	        a_addr  => p_addr(ADDR_BITS - 1 downto 2), 
 	        a_din   => p_dout,
 	        a_dout  => p_b_data(i).dout,
 	        
 	        -- Port B
 	        b_clk   => clk,
             b_wr    => bram_m_i(i).wr(0),
-            b_addr  => bram_m_i(i).addr,
+            b_addr  => bram_m_i(i).addr(ADDR_BITS - 1 downto 2),
             b_din   => bram_m_i(i).din,
             b_dout  => bram_s_i(i).dout
 	    );

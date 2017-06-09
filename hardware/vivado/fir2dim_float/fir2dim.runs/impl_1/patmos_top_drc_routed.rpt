@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Tue May 30 17:51:50 2017
+| Date         : Fri Jun  9 14:10:23 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_drc -file patmos_top_drc_routed.rpt -pb patmos_top_drc_routed.pb -rpx patmos_top_drc_routed.rpx
 | Design       : patmos_top
@@ -378,7 +378,7 @@ Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-44 net(s) have no routable loads. The problem bus(es) and/or net(s) are hwa_addr_i[0][addr][10], hwa_addr_i[0][addr][11], hwa_addr_i[0][addr][12], hwa_addr_i[0][addr][13], hwa_addr_i[0][addr][14], hwa_addr_i[0][addr][15], hwa_addr_i[0][addr][16], hwa_addr_i[0][addr][17], hwa_addr_i[0][addr][18], hwa_addr_i[0][addr][19], hwa_addr_i[0][addr][20], hwa_addr_i[0][addr][21], hwa_addr_i[0][addr][22], hwa_addr_i[0][addr][23], hwa_addr_i[0][addr][24] (the first 15 of 44 listed).
+48 net(s) have no routable loads. The problem bus(es) and/or net(s) are hwa_addr_i[0][addr][0], hwa_addr_i[0][addr][1], hwa_addr_i[0][addr][10], hwa_addr_i[0][addr][11], hwa_addr_i[0][addr][12], hwa_addr_i[0][addr][13], hwa_addr_i[0][addr][14], hwa_addr_i[0][addr][15], hwa_addr_i[0][addr][16], hwa_addr_i[0][addr][17], hwa_addr_i[0][addr][18], hwa_addr_i[0][addr][19], hwa_addr_i[0][addr][20], hwa_addr_i[0][addr][21], hwa_addr_i[0][addr][22] (the first 15 of 48 listed).
 Related violations: <none>
 
 AVAL-4#1 Advisory

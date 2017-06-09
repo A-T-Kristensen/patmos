@@ -137,6 +137,12 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
+	if(!(int)(y[0]) - 9408) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}		
+
 	print_benchmark(return_compute, return_transfer);
 
 	return (int)(y[0]) - 9408;

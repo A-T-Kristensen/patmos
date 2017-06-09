@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Wed May 10 13:20:53 2017
+| Date             : Fri Jun  9 18:35:07 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,13 +30,13 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.116 |
-| Dynamic (W)              | 1.007 |
+| Total On-Chip Power (W)  | 1.100 |
+| Dynamic (W)              | 0.992 |
 | Device Static (W)        | 0.109 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
-| Max Ambient (C)          | 79.9  |
-| Junction Temperature (C) | 30.1  |
+| Max Ambient (C)          | 80.0  |
+| Junction Temperature (C) | 30.0  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -51,24 +51,24 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.028 |       46 |       --- |             --- |
-| Slice Logic              |     0.020 |    28959 |       --- |             --- |
-|   LUT as Logic           |     0.018 |    12542 |     63400 |           19.78 |
+| Slice Logic              |     0.020 |    28955 |       --- |             --- |
+|   LUT as Logic           |     0.018 |    12548 |     63400 |           19.79 |
 |   CARRY4                 |     0.001 |      797 |     15850 |            5.03 |
 |   Register               |    <0.001 |    11681 |    126800 |            9.21 |
 |   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
-|   LUT as Shift Register  |    <0.001 |       53 |     19000 |            0.28 |
+|   LUT as Shift Register  |    <0.001 |       51 |     19000 |            0.27 |
 |   F7/F8 Muxes            |    <0.001 |      129 |     63400 |            0.20 |
-|   Others                 |     0.000 |      701 |       --- |             --- |
-| Signals                  |     0.032 |    24072 |       --- |             --- |
-| Block RAM                |     0.029 |       19 |       135 |           14.07 |
+|   Others                 |     0.000 |      699 |       --- |             --- |
+| Signals                  |     0.030 |    24054 |       --- |             --- |
+| Block RAM                |     0.017 |       13 |       135 |            9.63 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
-| DSPs                     |     0.004 |       11 |       240 |            4.58 |
+| DSPs                     |     0.003 |       11 |       240 |            4.58 |
 | I/O                      |     0.508 |      109 |       210 |           51.90 |
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.109 |          |           |                 |
-| Total                    |     1.116 |          |           |                 |
+| Total                    |     1.100 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,7 +78,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.153 |       0.135 |      0.019 |
+| Vccint    |       1.000 |     0.139 |       0.120 |      0.018 |
 | Vccaux    |       1.800 |     0.268 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -87,7 +87,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.003 |       0.002 |      0.001 |
+| Vccbram   |       1.000 |     0.002 |       0.001 |      0.001 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccadc    |       1.800 |     0.022 |       0.002 |      0.020 |
@@ -190,7 +190,7 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     1.007 |
+| patmos_top                                                                                          |     0.992 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
 |   ddr2_ctrl_inst_0                                                                                  |     0.801 |
@@ -388,7 +388,7 @@ Table of Contents
 |             write_buffer.wr_buffer_ram[7].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[8].RAM32M0                                                   |    <0.001 |
 |             write_buffer.wr_buffer_ram[9].RAM32M0                                                   |    <0.001 |
-|   minver_hwa_inst_0                                                                                 |     0.027 |
+|   minver_hwa_inst_0                                                                                 |     0.024 |
 |     minver_hwa_dcmp_6mb6_U8                                                                         |    <0.001 |
 |       minver_hwa_ap_dcmp_0_no_dsp_64_u                                                              |    <0.001 |
 |         U0                                                                                          |    <0.001 |
@@ -682,12 +682,12 @@ Table of Contents
 |                   FULL_USAGE_DSP.ROUND_BIT_DELAY                                                    |    <0.001 |
 |                     i_pipe                                                                          |    <0.001 |
 |                   FULL_USAGE_DSP.SHIFT_RND                                                          |    <0.001 |
-|     minver_hwa_fsub_3hbi_U2                                                                         |     0.003 |
-|       minver_hwa_ap_fsub_3_full_dsp_32_u                                                            |     0.003 |
-|         U0                                                                                          |     0.003 |
-|           i_synth                                                                                   |     0.003 |
-|             ADDSUB_OP.ADDSUB                                                                        |     0.003 |
-|               SPEED_OP.DSP.OP                                                                       |     0.003 |
+|     minver_hwa_fsub_3hbi_U2                                                                         |    <0.001 |
+|       minver_hwa_ap_fsub_3_full_dsp_32_u                                                            |    <0.001 |
+|         U0                                                                                          |    <0.001 |
+|           i_synth                                                                                   |    <0.001 |
+|             ADDSUB_OP.ADDSUB                                                                        |    <0.001 |
+|               SPEED_OP.DSP.OP                                                                       |    <0.001 |
 |                 A_IP_DELAY                                                                          |    <0.001 |
 |                   i_pipe                                                                            |    <0.001 |
 |                 B_IP_DELAY                                                                          |    <0.001 |
@@ -750,13 +750,13 @@ Table of Contents
 |                   FULL_USAGE_DSP.SHIFT_RND                                                          |    <0.001 |
 |     work_U                                                                                          |    <0.001 |
 |       minver_hwa_work_ram_U                                                                         |    <0.001 |
-|   n_bank_inst_0                                                                                     |     0.023 |
-|     bram_gen[0].bram_array                                                                          |     0.011 |
-|     bram_gen[1].bram_array                                                                          |     0.012 |
+|   n_bank_inst_0                                                                                     |     0.011 |
+|     bram_gen[0].bram_array                                                                          |     0.005 |
+|     bram_gen[1].bram_array                                                                          |     0.006 |
 |   nexys4ddr_io_inst_0                                                                               |     0.001 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
-|   patmos_inst_0                                                                                     |     0.045 |
-|     core                                                                                            |     0.045 |
+|   patmos_inst_0                                                                                     |     0.044 |
+|     core                                                                                            |     0.044 |
 |       dcache                                                                                        |     0.010 |
 |         bp                                                                                          |    <0.001 |
 |         dm                                                                                          |     0.006 |
@@ -765,11 +765,11 @@ Table of Contents
 |           MemBlock_2                                                                                |    <0.001 |
 |           MemBlock_3                                                                                |    <0.001 |
 |           tagMem                                                                                    |     0.001 |
-|         sc                                                                                          |     0.004 |
+|         sc                                                                                          |     0.003 |
 |           MemBlock                                                                                  |    <0.001 |
 |           MemBlock_1                                                                                |    <0.001 |
 |           MemBlock_2                                                                                |    <0.001 |
-|           MemBlock_3                                                                                |     0.001 |
+|           MemBlock_3                                                                                |    <0.001 |
 |         wc                                                                                          |    <0.001 |
 |       decode                                                                                        |     0.002 |
 |         rf                                                                                          |    <0.001 |
@@ -824,21 +824,21 @@ Table of Contents
 |         vec_reg_0_31_7_7                                                                            |    <0.001 |
 |         vec_reg_0_31_8_8                                                                            |    <0.001 |
 |         vec_reg_0_31_9_9                                                                            |    <0.001 |
-|       execute                                                                                       |     0.013 |
+|       execute                                                                                       |     0.012 |
 |       fetch                                                                                         |     0.005 |
 |         MemBlock                                                                                    |     0.001 |
 |         MemBlock_1                                                                                  |     0.001 |
 |       icache                                                                                        |     0.007 |
-|         ctrl                                                                                        |     0.001 |
+|         ctrl                                                                                        |    <0.001 |
 |         mem                                                                                         |     0.002 |
 |           mcacheEven                                                                                |     0.001 |
-|           mcacheOdd                                                                                 |    <0.001 |
+|           mcacheOdd                                                                                 |     0.001 |
 |         repl                                                                                        |     0.003 |
 |       iocomp                                                                                        |     0.006 |
 |         BRamCtrl                                                                                    |    <0.001 |
 |         CpuInfo                                                                                     |    <0.001 |
 |         HwACtrl                                                                                     |    <0.001 |
-|         Timer                                                                                       |    <0.001 |
+|         Timer                                                                                       |     0.001 |
 |         Uart                                                                                        |    <0.001 |
 |           rxQueue                                                                                   |    <0.001 |
 |             ram_reg_0_15_0_5                                                                        |    <0.001 |

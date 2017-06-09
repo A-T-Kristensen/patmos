@@ -195,6 +195,12 @@ int adpcm_main()
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
 
+	if(!enc_return(compressed)) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}		
+
 	print_benchmark(return_compute, return_transfer);
 
 	return enc_return(compressed);

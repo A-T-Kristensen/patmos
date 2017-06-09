@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Tue May 30 17:52:11 2017
+| Date             : Fri Jun  9 14:11:00 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -50,16 +50,16 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.025 |       46 |       --- |             --- |
+| Clocks                   |     0.024 |       46 |       --- |             --- |
 | Slice Logic              |     0.015 |    23790 |       --- |             --- |
-|   LUT as Logic           |     0.014 |    10338 |     63400 |           16.31 |
+|   LUT as Logic           |     0.014 |    10333 |     63400 |           16.30 |
 |   Register               |    <0.001 |     9502 |    126800 |            7.49 |
 |   CARRY4                 |    <0.001 |      565 |     15850 |            3.56 |
 |   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
 |   F7/F8 Muxes            |    <0.001 |      128 |     63400 |            0.20 |
 |   LUT as Shift Register  |    <0.001 |       18 |     19000 |            0.09 |
 |   Others                 |     0.000 |      389 |       --- |             --- |
-| Signals                  |     0.024 |    20060 |       --- |             --- |
+| Signals                  |     0.025 |    20058 |       --- |             --- |
 | Block RAM                |     0.016 |     12.5 |       135 |            9.26 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
@@ -542,8 +542,8 @@ Table of Contents
 |                   i_pipe                                                                            |    <0.001 |
 |                 STATE_DELAY                                                                         |    <0.001 |
 |                   i_pipe                                                                            |    <0.001 |
-|               MULT                                                                                  |     0.002 |
-|                 DSP48E1_SPD_SGL_VARIANT.FIX_MULT                                                    |     0.002 |
+|               MULT                                                                                  |     0.001 |
+|                 DSP48E1_SPD_SGL_VARIANT.FIX_MULT                                                    |     0.001 |
 |                   DSP1                                                                              |    <0.001 |
 |                   DSP2                                                                              |    <0.001 |
 |               OP                                                                                    |     0.001 |
@@ -584,8 +584,8 @@ Table of Contents
 |     bram_gen[1].bram_array                                                                          |     0.001 |
 |   nexys4ddr_io_inst_0                                                                               |     0.001 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
-|   patmos_inst_0                                                                                     |     0.046 |
-|     core                                                                                            |     0.046 |
+|   patmos_inst_0                                                                                     |     0.047 |
+|     core                                                                                            |     0.047 |
 |       dcache                                                                                        |     0.010 |
 |         bp                                                                                          |    <0.001 |
 |         dm                                                                                          |     0.006 |
@@ -653,7 +653,7 @@ Table of Contents
 |         vec_reg_0_31_7_7                                                                            |    <0.001 |
 |         vec_reg_0_31_8_8                                                                            |    <0.001 |
 |         vec_reg_0_31_9_9                                                                            |    <0.001 |
-|       execute                                                                                       |     0.012 |
+|       execute                                                                                       |     0.013 |
 |       fetch                                                                                         |     0.005 |
 |         MemBlock                                                                                    |     0.001 |
 |         MemBlock_1                                                                                  |     0.001 |

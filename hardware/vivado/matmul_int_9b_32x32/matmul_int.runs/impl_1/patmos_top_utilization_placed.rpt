@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Sat Jun  3 16:12:09 2017
+| Date         : Fri Jun  9 17:35:33 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_utilization -file patmos_top_utilization_placed.rpt -pb patmos_top_utilization_placed.pb
 | Design       : patmos_top
@@ -31,8 +31,8 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs                 | 10830 |     0 |     63400 | 17.08 |
-|   LUT as Logic             | 10240 |     0 |     63400 | 16.15 |
+| Slice LUTs                 | 10794 |     0 |     63400 | 17.03 |
+|   LUT as Logic             | 10204 |     0 |     63400 | 16.09 |
 |   LUT as Memory            |   590 |     0 |     19000 |  3.11 |
 |     LUT as Distributed RAM |   536 |     0 |           |       |
 |     LUT as Shift Register  |    54 |     0 |           |       |
@@ -69,13 +69,13 @@ Table of Contents
 +-------------------------------------------+-------+-------+-----------+-------+
 |                 Site Type                 |  Used | Fixed | Available | Util% |
 +-------------------------------------------+-------+-------+-----------+-------+
-| Slice                                     |  4404 |     0 |     15850 | 27.79 |
-|   SLICEL                                  |  3061 |     0 |           |       |
-|   SLICEM                                  |  1343 |     0 |           |       |
-| LUT as Logic                              | 10240 |     0 |     63400 | 16.15 |
+| Slice                                     |  4402 |     0 |     15850 | 27.77 |
+|   SLICEL                                  |  3103 |     0 |           |       |
+|   SLICEM                                  |  1299 |     0 |           |       |
+| LUT as Logic                              | 10204 |     0 |     63400 | 16.09 |
 |   using O5 output only                    |     0 |       |           |       |
-|   using O6 output only                    |  8373 |       |           |       |
-|   using O5 and O6                         |  1867 |       |           |       |
+|   using O6 output only                    |  8325 |       |           |       |
+|   using O5 and O6                         |  1879 |       |           |       |
 | LUT as Memory                             |   590 |     0 |     19000 |  3.11 |
 |   LUT as Distributed RAM                  |   536 |     0 |           |       |
 |     using O5 output only                  |     0 |       |           |       |
@@ -85,10 +85,10 @@ Table of Contents
 |     using O5 output only                  |    17 |       |           |       |
 |     using O6 output only                  |     5 |       |           |       |
 |     using O5 and O6                       |    32 |       |           |       |
-| LUT Flip Flop Pairs                       |  3155 |     0 |     63400 |  4.98 |
+| LUT Flip Flop Pairs                       |  3183 |     0 |     63400 |  5.02 |
 |   fully used LUT-FF pairs                 |   542 |       |           |       |
-|   LUT-FF pairs with one unused LUT output |  2245 |       |           |       |
-|   LUT-FF pairs with one unused Flip Flop  |  2275 |       |           |       |
+|   LUT-FF pairs with one unused LUT output |  2263 |       |           |       |
+|   LUT-FF pairs with one unused Flip Flop  |  2353 |       |           |       |
 | Unique Control Sets                       |   323 |       |           |       |
 +-------------------------------------------+-------+-------+-----------+-------+
 * Note: Review the Control Sets Report for more information regarding control sets.
@@ -100,9 +100,9 @@ Table of Contents
 +-------------------+------+-------+-----------+-------+
 |     Site Type     | Used | Fixed | Available | Util% |
 +-------------------+------+-------+-----------+-------+
-| Block RAM Tile    | 46.5 |     0 |       135 | 34.44 |
-|   RAMB36/FIFO*    |   40 |     0 |       135 | 29.63 |
-|     RAMB36E1 only |   40 |       |           |       |
+| Block RAM Tile    | 19.5 |     0 |       135 | 14.44 |
+|   RAMB36/FIFO*    |   13 |     0 |       135 |  9.63 |
+|     RAMB36E1 only |   13 |       |           |       |
 |   RAMB18          |   13 |     0 |       270 |  4.81 |
 |     RAMB18E1 only |   13 |       |           |       |
 +-------------------+------+-------+-----------+-------+
@@ -194,7 +194,7 @@ Table of Contents
 | FDRE                     | 10457 |        Flop & Latch |
 | LUT6                     |  4660 |                 LUT |
 | LUT4                     |  2121 |                 LUT |
-| LUT3                     |  2039 |                 LUT |
+| LUT3                     |  2015 |                 LUT |
 | LUT5                     |  1666 |                 LUT |
 | LUT2                     |   956 |                 LUT |
 | RAMD32                   |   756 |  Distributed Memory |
@@ -207,7 +207,6 @@ Table of Contents
 | OBUF                     |    61 |                  IO |
 | FDPE                     |    44 |        Flop & Latch |
 | OSERDESE2                |    42 |                  IO |
-| RAMB36E1                 |    40 |        Block Memory |
 | IBUF                     |    24 |                  IO |
 | MUXF8                    |    21 |               MuxFx |
 | OBUFT                    |    18 |                  IO |
@@ -215,6 +214,7 @@ Table of Contents
 | IDELAYE2                 |    16 |                  IO |
 | IBUF_INTERMDISABLE       |    16 |                  IO |
 | DSP48E1                  |    16 |    Block Arithmetic |
+| RAMB36E1                 |    13 |        Block Memory |
 | RAMB18E1                 |    13 |        Block Memory |
 | ODDR                     |     5 |                  IO |
 | PHASER_OUT_PHY           |     4 |                  IO |
