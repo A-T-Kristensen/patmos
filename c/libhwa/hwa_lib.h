@@ -29,8 +29,12 @@
 
 #define CYCLE_CALIBRATION 	3
 
-#define BRAM_BASE 			0xF00B0000
+/*#define BRAM_BASE 			0xF00B0000
 #define HWA_CTRL_BASE 		0xF00C0000
+#define LED_BASE 			0xF0090000*/
+
+#define BRAM_BASE 			0xF00A0000
+#define HWA_CTRL_BASE 		0xF00D0000
 #define LED_BASE 			0xF0090000
 
 
