@@ -4,6 +4,7 @@ CC=patmos-clang # variable CC is "magic", so we define it here to a sane default
 -include config.mk
 
 BUILDDIR?=../tmp
+LIBRTICAP=$(BUILDDIR)/librticap.a
 LIBNOC=$(BUILDDIR)/libnoc.a
 LIBMP=$(BUILDDIR)/libmp.a
 LIBCORETHREAD=$(BUILDDIR)/libcorethread.a
@@ -85,9 +86,9 @@ $(BUILDDIR)/%.o: %.c Makefile
 # Add you application here
 # added -lm ad the end due to issues with math library
 # -lhwa should be compiled before everything else that you run on the FPGA
-$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBHWA) $(LIBSHA) $(LIBMATMUL) $(LIBMINVER) $(LIBELF) Makefile
+$(BUILDDIR)/%.elf: %.c $(NOCINIT) $(LIBMP) $(LIBNOC) $(LIBRTICAP) $(LIBCORETHREAD) $(LIBETH) $(LIBAUDIO) $(LIBHWA) $(LIBSHA) $(LIBMATMUL) $(LIBMINVER) $(LIBELF) Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lcorethread -leth -lm -laudio -lhwa -lsha -lmatmul -lminver -lm -lelf 
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(filter %.c %.s,$^) -L$(BUILDDIR) -lmp -lnoc -lrticap -lcorethread -leth -lm -laudio -lhwa -lsha -lmatmul -lminver -lm -lelf 
 
 $(BUILDDIR)/%.s: %.c Makefile
 	mkdir -p $(BUILDDIR)/$(dir $*)
@@ -191,7 +192,7 @@ $(BUILDDIR)/tacle_filterbank.elf: libhwa/benchmark.h libhwa/hwa_lib.h
 
 # touch the nocinit file
 $(NOCINIT):
-	touch $@
+	touch $@	
 
 # library for network-on-chip
 .PHONY: libnoc
@@ -199,6 +200,13 @@ libnoc: $(LIBNOC)
 $(BUILDDIR)/libnoc/noc.o: libnoc/noc.h libnoc/coreset.h
 $(LIBNOC): $(BUILDDIR)/libnoc/noc.o
 	patmos-ar r $@ $^
+
+# library for the rticap
+.PHONY: librticap
+librticap: $(LIBRTICAP)
+$(BUILDDIR)/librticap/rticap.o: librticap/rticap.h
+$(LIBRTICAP): $(BUILDDIR)/librticap/rticap.o
+	patmos-ar r $@ $^	
 
 # library for message passing
 .PHONY: libmp
