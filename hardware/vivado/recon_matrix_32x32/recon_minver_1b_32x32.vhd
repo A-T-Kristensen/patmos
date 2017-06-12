@@ -10,8 +10,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.MEM_PACKAGE_MINVER.all;
 use work.HWA_PACKAGE_MINVER.all;
+
 
 entity recon_matrix is
 	port (
@@ -35,7 +35,7 @@ end recon_matrix;
 
 architecture rtl of recon_matrix is
 	
-	component n_bank_minver is
+	component n_bank is
 		port (
 		    clk     : in  std_logic;
 
@@ -94,7 +94,7 @@ architecture rtl of recon_matrix is
 begin
 
 
-	n_bank_inst_0 : n_bank_minver port map(
+	n_bank_inst_0 : n_bank port map(
 	    clk     => clk,
 
 	    -- Patmos side
@@ -128,7 +128,7 @@ begin
 	hwa_rst <= ap_reset_in or rst;		
 
 	addr_map: for i in (NBANKS-1) downto 0 generate
-	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_BITS - 1 downto 0);
+	    	bram_m_i(i).addr <= hwa_addr_i(i).addr(ADDR_WIDTH - 1 downto 0);
     end generate;	
 
 

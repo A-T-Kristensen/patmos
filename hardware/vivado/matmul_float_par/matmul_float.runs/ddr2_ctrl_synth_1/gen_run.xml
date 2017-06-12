@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="ddr2_ctrl_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1496767893">
-  <File Type="RDS-DCP" Name="ddr2_ctrl.dcp"/>
+  <File Type="RDS-UTIL" Name="ddr2_ctrl_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="ddr2_ctrl_drc_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="ddr2_ctrl_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="ddr2_ctrl.dcp"/>
   <File Type="VDS-TIMINGSUMMARY" Name="ddr2_ctrl_timing_summary_synth.rpt"/>
   <File Type="VDS-TIMING-PB" Name="ddr2_ctrl_timing_summary_synth.pb"/>
   <File Type="RDS-RDS" Name="ddr2_ctrl.vds"/>
   <File Type="PA-TCL" Name="ddr2_ctrl.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="ddr2_ctrl_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="ddr2_ctrl_utilization_synth.rpt"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ddr2_ctrl">
     <File Path="$PSRCDIR/sources_1/ip/ddr2_ctrl/ddr2_ctrl.xci">
       <FileInfo>

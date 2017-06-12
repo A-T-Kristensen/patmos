@@ -2,8 +2,8 @@
 # Vivado v2016.4 (64-bit)
 # SW Build 1733598 on Wed Dec 14 22:35:42 MST 2016
 # IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
-# Start of session at: Tue Jun  6 20:49:31 2017
-# Process ID: 31896
+# Start of session at: Sat Jun 10 11:05:46 2017
+# Process ID: 42805
 # Current directory: /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1
 # Command line: vivado -log patmos_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source patmos_top.tcl
 # Log file: /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/patmos_top.vds
@@ -15,21 +15,21 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 31903 
+INFO: Helper process launched with PID 42818 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1106.070 ; gain = 174.086 ; free physical = 6661 ; free virtual = 14364
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 1106.059 ; gain = 174.086 ; free physical = 195 ; free virtual = 14818
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'patmos_top' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:52]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:312]
-INFO: [Synth 8-3491] module 'clk_manager' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/realtime/clk_manager_stub.v:5' bound to instance 'clk_manager_inst_0' of component 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:383]
-INFO: [Synth 8-638] synthesizing module 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/realtime/clk_manager_stub.v:5]
-INFO: [Synth 8-256] done synthesizing module 'clk_manager' (1#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/realtime/clk_manager_stub.v:5]
+INFO: [Synth 8-3491] module 'clk_manager' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/realtime/clk_manager_stub.v:5' bound to instance 'clk_manager_inst_0' of component 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:383]
+INFO: [Synth 8-638] synthesizing module 'clk_manager' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/realtime/clk_manager_stub.v:5]
+INFO: [Synth 8-256] done synthesizing module 'clk_manager' (1#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/realtime/clk_manager_stub.v:5]
 INFO: [Synth 8-3491] module 'ocp_burst_to_ddr2_ctrl' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:34' bound to instance 'ocp_burst_to_ddr2_ctrl_inst_0' of component 'ocp_burst_to_ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:427]
 INFO: [Synth 8-638] synthesizing module 'ocp_burst_to_ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:78]
 INFO: [Synth 8-256] done synthesizing module 'ocp_burst_to_ddr2_ctrl' (2#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.srcs/sources_1/new/ocp_burst_to_ddr2_ctrl.vhd:78]
-INFO: [Synth 8-3491] module 'ddr2_ctrl' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/realtime/ddr2_ctrl_stub.v:5' bound to instance 'ddr2_ctrl_inst_0' of component 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:457]
-INFO: [Synth 8-638] synthesizing module 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/realtime/ddr2_ctrl_stub.v:5]
-INFO: [Synth 8-256] done synthesizing module 'ddr2_ctrl' (3#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/realtime/ddr2_ctrl_stub.v:5]
+INFO: [Synth 8-3491] module 'ddr2_ctrl' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/realtime/ddr2_ctrl_stub.v:5' bound to instance 'ddr2_ctrl_inst_0' of component 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:457]
+INFO: [Synth 8-638] synthesizing module 'ddr2_ctrl' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/realtime/ddr2_ctrl_stub.v:5]
+INFO: [Synth 8-256] done synthesizing module 'ddr2_ctrl' (3#1) [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/realtime/ddr2_ctrl_stub.v:5]
 INFO: [Synth 8-3491] module 'Patmos' declared at '/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/Patmos_matmul_float.v:18269' bound to instance 'patmos_inst_0' of component 'Patmos' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:498]
 INFO: [Synth 8-638] synthesizing module 'Patmos' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/Patmos_matmul_float.v:18269]
 INFO: [Synth 8-638] synthesizing module 'PatmosCore' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/Patmos_matmul_float.v:17350]
@@ -288,7 +288,7 @@ WARNING: [Synth 8-3331] design xbip_pipe_v3_0_3_viv__parameterized220 has unconn
 WARNING: [Synth 8-3331] design xbip_pipe_v3_0_3_viv__parameterized220 has unconnected port SINIT
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1281.539 ; gain = 349.555 ; free physical = 6484 ; free virtual = 14189
+Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1277.527 ; gain = 345.555 ; free physical = 186 ; free virtual = 14645
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -298,7 +298,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1281.539 ; gain = 349.555 ; free physical = 6484 ; free virtual = 14190
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1277.527 ; gain = 345.555 ; free physical = 187 ; free virtual = 14646
 ---------------------------------------------------------------------------------
 WARNING: [Project 1-486] Could not resolve non-primitive black box cell 'clk_manager' instantiated as 'clk_manager_inst_0' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:383]
 WARNING: [Project 1-486] Could not resolve non-primitive black box cell 'ddr2_ctrl' instantiated as 'ddr2_ctrl_inst_0' [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/patmos_nexys4ddr.vhdl:457]
@@ -309,10 +309,10 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc] for cell 'ddr2_ctrl_inst_0'
-Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc] for cell 'ddr2_ctrl_inst_0'
-Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp_2/clk_manager_in_context.xdc] for cell 'clk_manager_inst_0'
-Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp_2/clk_manager_in_context.xdc] for cell 'clk_manager_inst_0'
+Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc] for cell 'ddr2_ctrl_inst_0'
+Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc] for cell 'ddr2_ctrl_inst_0'
+Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp_2/clk_manager_in_context.xdc] for cell 'clk_manager_inst_0'
+Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp_2/clk_manager_in_context.xdc] for cell 'clk_manager_inst_0'
 Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.xdc]
 Finished Parsing XDC File [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/patmos_top_propImpl.xdc].
@@ -325,114 +325,114 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 3 instances were transformed.
   FDE => FDRE: 3 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1544.875 ; gain = 0.000 ; free physical = 7095 ; free virtual = 14800
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1542.863 ; gain = 0.000 ; free physical = 206 ; free virtual = 14491
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1544.875 ; gain = 612.891 ; free physical = 7124 ; free virtual = 14829
+Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:38 . Memory (MB): peak = 1542.863 ; gain = 610.891 ; free physical = 206 ; free virtual = 14491
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1544.875 ; gain = 612.891 ; free physical = 7124 ; free virtual = 14829
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:38 . Memory (MB): peak = 1542.863 ; gain = 610.891 ; free physical = 206 ; free virtual = 14491
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 2).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 3).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 4).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 5).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 6).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 7).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 8).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 9).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 10).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 11).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 12).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 13).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 14).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 15).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 16).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 17).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 18).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 19).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 20).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 21).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 22).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 23).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 24).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 25).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 26).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 27).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 28).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 29).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 30).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 31).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 32).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 33).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cas_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 34).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cas_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 35).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cke[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 36).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cke[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 37).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 38).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 39).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dm[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 40).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dm[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 41).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dm[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 42).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dm[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 43).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 44).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 45).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 46).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 47).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 48).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 49).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 50).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 51).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[13]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 52).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[13]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 53).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[14]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 54).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[14]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 55).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[15]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 56).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[15]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 57).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 58).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 59).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 60).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 61).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 62).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 63).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 64).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 65).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 66).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 67).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 68).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 69).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 70).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 71).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 72).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 73).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 74).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 75).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 76).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 77).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_n[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 78).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_n[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 79).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_p[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 80).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_p[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 81).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_p[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 82).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_p[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 83).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_odt[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 84).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_odt[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 85).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ras_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 86).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ras_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 87).
-Applied set_property IO_BUFFER_TYPE = NONE for ddr2_we_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 88).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_we_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 89).
-Applied set_property IO_BUFFER_TYPE = NONE for clk_in. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp_2/clk_manager_in_context.xdc, line 4).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for clk_in. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-31896-ubuntu/dcp_2/clk_manager_in_context.xdc, line 5).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 2).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 3).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 5).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 6).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 7).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 8).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 9).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 10).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 11).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 12).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 13).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 14).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 15).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 16).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 17).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 18).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 19).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 20).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 21).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 22).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 23).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 24).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 25).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_addr[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 26).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_addr[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 27).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 28).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 29).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 30).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 31).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ba[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 32).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ba[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 33).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cas_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 34).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cas_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 35).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cke[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 36).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cke[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 37).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_cs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 38).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_cs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 39).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dm[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 40).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dm[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 41).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dm[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 42).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dm[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 43).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 44).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 45).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 46).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[10]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 47).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 48).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[11]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 49).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 50).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[12]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 51).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[13]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 52).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[13]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 53).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[14]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 54).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[14]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 55).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[15]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 56).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[15]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 57).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 58).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 59).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 60).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[2]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 61).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 62).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[3]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 63).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 64).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[4]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 65).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 66).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[5]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 67).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 68).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[6]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 69).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 70).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[7]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 71).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 72).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[8]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 73).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dq[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 74).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dq[9]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 75).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 76).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_n[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 77).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_n[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 78).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_n[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 79).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_p[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 80).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_p[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 81).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_dqs_p[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 82).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_dqs_p[1]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 83).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_odt[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 84).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_odt[0]. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 85).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_ras_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 86).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_ras_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 87).
+Applied set_property IO_BUFFER_TYPE = NONE for ddr2_we_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 88).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for ddr2_we_n. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp/ddr2_ctrl_in_context.xdc, line 89).
+Applied set_property IO_BUFFER_TYPE = NONE for clk_in. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp_2/clk_manager_in_context.xdc, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for clk_in. (constraint file  /home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/.Xil/Vivado-42805-ubuntu/dcp_2/clk_manager_in_context.xdc, line 5).
 Applied set_property DONT_TOUCH = true for matrixmul_inst_0/matmul_hw_fadd_32bkb_U1/matmul_hw_ap_fadd_3_full_dsp_32_u. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for matrixmul_inst_0/matmul_hw_fmul_32cud_U2/matmul_hw_ap_fmul_2_max_dsp_32_u. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1544.875 ; gain = 612.891 ; free physical = 7124 ; free virtual = 14829
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:38 . Memory (MB): peak = 1542.863 ; gain = 610.891 ; free physical = 206 ; free virtual = 14491
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'ocp_burst_to_ddr2_ctrl'
 INFO: [Synth 8-5544] ROM "SCmdAccept" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
@@ -533,7 +533,7 @@ INFO: [Synth 8-5546] ROM "cpu_reset_btn_debounced" won't be mapped to RAM becaus
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'ocp_burst_to_ddr2_ctrl'
 INFO: [Synth 8-3971] The signal mem_reg was recognized as a true dual port RAM template.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1544.875 ; gain = 612.891 ; free physical = 7112 ; free virtual = 14817
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 1542.863 ; gain = 610.891 ; free physical = 196 ; free virtual = 14481
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -542,7 +542,7 @@ Report RTL Partitions:
 +------+----------------+------------+----------+
 |1     |PatmosCore__GB0 |           1|     32175|
 |2     |PatmosCore__GB1 |           1|     11842|
-|3     |patmos_top__GC0 |           1|     34488|
+|3     |patmos_top__GC0 |           1|     34479|
 +------+----------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -875,7 +875,7 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/exc/\masterReg_Cmd_reg[2] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (corei_2_0/icache/\ctrl/ocpSlaveReg_Resp_reg[1] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:04 ; elapsed = 00:02:10 . Memory (MB): peak = 1788.289 ; gain = 856.305 ; free physical = 5581 ; free virtual = 14529
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:55 ; elapsed = 00:02:13 . Memory (MB): peak = 1782.277 ; gain = 850.305 ; free physical = 159 ; free virtual = 14208
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -884,7 +884,7 @@ Report RTL Partitions:
 +------+----------------+------------+----------+
 |1     |PatmosCore__GB0 |           1|     14332|
 |2     |PatmosCore__GB1 |           1|      7243|
-|3     |patmos_top__GC0 |           1|     29016|
+|3     |patmos_top__GC0 |           1|     29007|
 +------+----------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -897,10 +897,10 @@ INFO: [Synth 8-5578] Moved timing constraint from pin 'clk_manager_inst_0/clk_ou
 INFO: [Synth 8-5578] Moved timing constraint from pin 'clk_manager_inst_0/clk_out_2' to pin 'clk_manager_inst_0/bbstub_clk_out_2/O'
 INFO: [Synth 8-5819] Moved 3 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:15 ; elapsed = 00:02:21 . Memory (MB): peak = 1928.578 ; gain = 996.594 ; free physical = 5440 ; free virtual = 14388
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:05 ; elapsed = 00:02:25 . Memory (MB): peak = 1920.566 ; gain = 988.594 ; free physical = 168 ; free virtual = 14072
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:34 ; elapsed = 00:02:42 . Memory (MB): peak = 1973.609 ; gain = 1041.625 ; free physical = 5367 ; free virtual = 14315
+Finished Timing Optimization : Time (s): cpu = 00:02:20 ; elapsed = 00:02:42 . Memory (MB): peak = 1961.598 ; gain = 1029.625 ; free physical = 168 ; free virtual = 14032
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -908,7 +908,7 @@ Report RTL Partitions:
 |      |RTL Partition  |Replication |Instances |
 +------+---------------+------------+----------+
 |1     |patmos_top_GT0 |           1|     12959|
-|2     |patmos_top_GT1 |           1|     37465|
+|2     |patmos_top_GT1 |           1|     37456|
 +------+---------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Technology Mapping
@@ -925,25 +925,16 @@ INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/M
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_1/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_2/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/iocomp/spm/MemBlock_3/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_0 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_2 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg_3 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_0 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_2 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg_3 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_0 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_2 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg_3 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[1].bram_array/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[2].bram_array/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance n_bank_inst_0/bram_gen[0].bram_array/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_2/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_1/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/MemBlock_3/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance patmos_inst_0/core/dcache/dm/tagMem/mem_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:47 ; elapsed = 00:02:54 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished Technology Mapping : Time (s): cpu = 00:02:31 ; elapsed = 00:02:54 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 230 ; free virtual = 14094
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -967,7 +958,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:48 ; elapsed = 00:02:56 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished IO Insertion : Time (s): cpu = 00:02:33 ; elapsed = 00:02:56 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 228 ; free virtual = 14091
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -980,7 +971,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:49 ; elapsed = 00:02:56 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:33 ; elapsed = 00:02:56 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 228 ; free virtual = 14091
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -992,25 +983,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:51 ; elapsed = 00:02:59 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:35 ; elapsed = 00:02:59 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 228 ; free virtual = 14091
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:51 ; elapsed = 00:02:59 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:36 ; elapsed = 00:02:59 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 228 ; free virtual = 14091
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:52 ; elapsed = 00:03:00 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:36 ; elapsed = 00:02:59 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 228 ; free virtual = 14091
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:52 ; elapsed = 00:03:00 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:36 ; elapsed = 00:02:59 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 228 ; free virtual = 14091
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1052,7 +1043,7 @@ Report Cell Usage:
 |22    |RAMB18E1    |     5|
 |23    |RAMB18E1_1  |     8|
 |24    |RAMB18E1_2  |     4|
-|25    |RAMB36E1    |    12|
+|25    |RAMB36E1    |     3|
 |26    |SRL16E      |   385|
 |27    |XORCY       |    25|
 |28    |FDE         |     3|
@@ -1062,13 +1053,13 @@ Report Cell Usage:
 |32    |OBUF        |    41|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:52 ; elapsed = 00:03:00 . Memory (MB): peak = 1989.305 ; gain = 1057.320 ; free physical = 5384 ; free virtual = 14332
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:36 ; elapsed = 00:03:00 . Memory (MB): peak = 1977.293 ; gain = 1045.320 ; free physical = 228 ; free virtual = 14091
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 466 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:02:40 ; elapsed = 00:02:48 . Memory (MB): peak = 1989.305 ; gain = 695.898 ; free physical = 5384 ; free virtual = 14332
-Synthesis Optimization Complete : Time (s): cpu = 00:02:52 ; elapsed = 00:03:00 . Memory (MB): peak = 1989.312 ; gain = 1057.328 ; free physical = 5384 ; free virtual = 14332
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:27 ; elapsed = 00:02:45 . Memory (MB): peak = 1977.293 ; gain = 681.898 ; free physical = 228 ; free virtual = 14091
+Synthesis Optimization Complete : Time (s): cpu = 00:02:36 ; elapsed = 00:03:00 . Memory (MB): peak = 1977.301 ; gain = 1045.328 ; free physical = 229 ; free virtual = 14092
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 960 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 951 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -1080,9 +1071,9 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32X1S => RAM32X1S (RAMS32): 32 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-507 Infos, 214 Warnings, 0 Critical Warnings and 0 Errors encountered.
+498 Infos, 214 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:55 ; elapsed = 00:03:03 . Memory (MB): peak = 1989.312 ; gain = 980.824 ; free physical = 5386 ; free virtual = 14335
+synth_design: Time (s): cpu = 00:02:39 ; elapsed = 00:03:00 . Memory (MB): peak = 1977.301 ; gain = 968.824 ; free physical = 222 ; free virtual = 14087
 INFO: [Common 17-1381] The checkpoint '/home/patmos/t-crest/patmos/hardware/vivado/matmul_float_par/matmul_float.runs/synth_1/patmos_top.dcp' has been generated.
-report_utilization: Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:00.26 . Memory (MB): peak = 2013.316 ; gain = 0.000 ; free physical = 5383 ; free virtual = 14334
-INFO: [Common 17-206] Exiting Vivado at Tue Jun  6 20:52:47 2017...
+report_utilization: Time (s): cpu = 00:00:00.17 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2001.305 ; gain = 0.000 ; free physical = 218 ; free virtual = 14086
+INFO: [Common 17-206] Exiting Vivado at Sat Jun 10 11:09:03 2017...

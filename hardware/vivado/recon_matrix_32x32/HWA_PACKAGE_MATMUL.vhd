@@ -12,9 +12,15 @@ use ieee.numeric_std.all;
 use IEEE.math_real."ceil";
 use IEEE.math_real."log2";
 
-use work.MEM_PACKAGE_MATMUL.all;
-
 package HWA_PACKAGE_MATMUL is
+
+    -- Constants used for the memory (BRAM) between Patmos and the HwA
+
+    -- Number of banks used by the currently active design.
+    constant NBANKS  : integer := 3; 
+
+    -- The number of entries for each the memory banks 
+    constant MEM_SIZE : integer := 4096;
 
 	-- Constants used for the memory (BRAM) between Patmos and the HwA
 
@@ -31,6 +37,9 @@ package HWA_PACKAGE_MATMUL is
 
     -- Number of bits used to select between banks from Patmos
     constant ADDR_SELECT_BITS : integer := integer(ceil(log2(real(NBANKS)))); 
+
+    -- Number of bits used to select between banks from Patmos
+    constant ADDR_SIZE_BRAM : integer := integer(ceil(log2(real(MEM_SIZE)))) - 2;     
 
 	-- The actual number of address bits used by each of the BRAMs
     constant ADDR_BITS: integer := integer(ceil(log2(real(MEM_SIZE)))); 
