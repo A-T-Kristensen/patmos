@@ -50,7 +50,7 @@ void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS],
 
  */
 
-void write_array(mat_type array[ROWS][COLS], int n, int m,
+void write_array(mat_type *array, int n, int m,
 				 int factor, int array_bank0,
 				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim);
 

@@ -23,7 +23,7 @@ void bank_ptrs(volatile _IODEV mat_type *bank_ptr_array[NBANKS],
 	}
 }
 
-void write_array(mat_type array[ROWS][COLS], int n, int m,
+void write_array(mat_type *array, int n, int m,
 				 int factor, int array_bank0,
 				 volatile _IODEV mat_type** bank_ptr_array, int wr_dim)
 {
@@ -39,7 +39,8 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 				for(k = 0; k < n/factor; k++) {
 					*(bank_ptr_array[i + array_bank0] 
 						+ k + m * j / factor)
-						= array[j][k + i * n / factor];
+						= *((array + j*m) + k + i * n / factor);
+						//= array[j][k + i * n / factor];
 				}
 			}
 		}
@@ -53,7 +54,8 @@ void write_array(mat_type array[ROWS][COLS], int n, int m,
 			_Pragma("loopbound min COLS max COLS")
 				for(k = 0; k < n; k++) {
 					*(bank_ptr_array[i + array_bank0] + k + n * j)
-						= array[j + i * m / factor][k];
+						= *((array + m*(j + i * m / factor)) + k);					
+						//= array[j + i * m / factor][k];
 				}
 			}
 		}
