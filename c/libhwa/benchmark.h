@@ -3,7 +3,7 @@
 #define DIM 	4
 #define SIZE	16
 #define VECSIZE 0
-#define NBANKS 	1
+#define NBANKS 	3
 #define WCET	0
 #define ARRAY_WR_FACTOR	0
 #define ARRAY_WR_DIV	0
