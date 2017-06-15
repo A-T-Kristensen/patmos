@@ -35,7 +35,8 @@ VENDOR?=XilinxVivado
 #BOARD=bemicro
 #BOARD?=altde2-70
 #BOARD?=altde2-115
-BOARD?=nexys4ddr-recon
+BOARD?=nexys4ddr
+#BOARD?=nexys4ddr-recon
 
 # My custom projects for HwAs built using HLS
 #HWA_PROJECT?=minver_float_1b_4x4
