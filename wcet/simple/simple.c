@@ -16,10 +16,12 @@ int foo(int b, int val, int val2) {
   int i;
 
   if (b) {
+    _Pragma( "loopbound min 73 max 73")        
     for (i=0; i<51; ++i) {
       val = val * val2;
     }
   } else {
+    _Pragma( "loopbound min 73 max 73")    
     for (i=0; i<73; ++i) {
       val = val + val2;
     }

@@ -15,7 +15,7 @@ machine-functions:
           - index:           0
             opcode:          SRESi
             size:            4
-            stack-cache-argument: 3
+            stack-cache-argument: 8
           - index:           1
             opcode:          MFS
             size:            4
@@ -242,7 +242,7 @@ machine-functions:
           - index:           5
             opcode:          SENSi
             size:            4
-            stack-cache-argument: 3
+            stack-cache-argument: 8
       - name:            10
         mapsto:          for.cond.i
         predecessors:    [ 9, 11 ]
@@ -343,7 +343,7 @@ machine-functions:
           - index:           13
             opcode:          SFREEi
             size:            4
-            stack-cache-argument: 3
+            stack-cache-argument: 8
     subfunctions:    
       - name:            0
         blocks:          [ 0, 1, 2, 3, 4, 5, 6 ]
