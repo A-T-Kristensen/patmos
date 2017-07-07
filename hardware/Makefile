@@ -184,3 +184,6 @@ HwACtrlExt:
 
 HwACtrlExt-test:
 	$(SBT) "run-main io.HwACtrlExtTester --targetDir $(HWGENDIR) --cse --backend v"
+
+BRamCtrl:
+	$(SBT) "run-main io.BRamCtrl --targetDir $(HWGENDIR) --cse --backend v"
