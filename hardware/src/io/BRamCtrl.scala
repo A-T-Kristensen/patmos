@@ -113,8 +113,8 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 	 }.elsewhen(io.ocp.M.Cmd === OcpCmd.WR || io.ocp.M.Cmd === OcpCmd.RD){
 
+		io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth - 1, 0)
 		respReg := OcpResp.DVA
-
 		}
 	}
 
@@ -197,7 +197,10 @@ class BRamCtrl(extAddrWidth : Int = 32,
 				state := s_settings
 				settings := io.ocp.M.Data
 			}
-		}    
+		}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD){
+			io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth - 1, 0)
+			respReg := OcpResp.DVA			
+		}
 	}
 
 	when(state === s_array_wr2) {
@@ -239,6 +242,9 @@ class BRamCtrl(extAddrWidth : Int = 32,
 				state := s_settings
 				settings := io.ocp.M.Data
 			}
+		}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD){
+			io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth - 1, 0)
+			respReg := OcpResp.DVA			
 		}
 	}  
 
@@ -280,6 +286,9 @@ class BRamCtrl(extAddrWidth : Int = 32,
 				state := s_settings
 				settings := io.ocp.M.Data
 			}
+		}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD){
+			io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth - 1, 0)
+			respReg := OcpResp.DVA			
 		}
 	}
 }
@@ -327,7 +336,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 		expect(dut.io.ocp.S.Resp, resp)
 	}    
 
-	println("\nSet to initial state\n")  
+	println("\nSet to initial state\n")
 
 	idle()
 	expectOut(0, 0, 0, 0)
@@ -507,6 +516,8 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	step(1)
 
+	println("\nWrite new settings\n")
+
 	wr(0, Bits("b00100000000100000000010000100001").litValue() , Bits("b1111").litValue())
 	expectState(3)
 	expectOut(0, 0, 0, 0) // The bram should not see this
@@ -566,7 +577,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	*/   
 
-	println("\nWr_dim_1 test\n")  
+	println("\nWr_dim_1 test\n")
 
 	wr(0, Bits("b00010000000010000000001000100000").litValue() , Bits("b1111").litValue())
 	expectState(3)
@@ -670,9 +681,9 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 		1) Write settings
 		2) Write vec (4)
 
-	*/   
+	*/   	
 
-	println("\nWr_dim_1 test\n")  
+	println("\nVector test\n")
 
 	wr(0, Bits("b01000000000100000000000000100000").litValue() , Bits("b1111").litValue())
 	expectState(2)
@@ -685,10 +696,10 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.io.ocp.S.Resp, 0)
 	expectState(1)  
 // Old value
-	expect(dut.col_cnt, 0)  
+	expect(dut.col_cnt, 0)
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
-	expect(dut.start_bank, 0) 
+	expect(dut.start_bank, 0)
 
 	step(1)
 
@@ -696,10 +707,10 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expectState(4)  
 // Updated
 	expect(dut.rows, 1)
-	expect(dut.col_cnt, 0)  
+	expect(dut.col_cnt, 0)
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
-	expect(dut.start_bank, 0) 
+	expect(dut.start_bank, 0)
 
 	step(1)
 
@@ -727,7 +738,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	expect(dut.row_cnt, 1)
 	expect(dut.cur_bank, 0)
-	expect(dut.io.ocp.S.Resp, 0)	
+	expect(dut.io.ocp.S.Resp, 0)
 
 	step(1)
 
@@ -758,12 +769,17 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	expect(dut.row_cnt, 1)
 	expect(dut.cur_bank, 1)
-	expect(dut.io.ocp.S.Resp, 0)	
+	expect(dut.io.ocp.S.Resp, 0)
 
 	step(1)
-	expectState(4)  
+	expectState(4)
 	idle()
 	expect(dut.io.ocp.S.Resp, 1)
+
+	step(1)
+	expectOut(0, 0, 0, 0)
+	expectState(4)
+	expect(dut.io.ocp.S.Resp, 0)
 
 }
 
