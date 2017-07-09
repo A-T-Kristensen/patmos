@@ -336,7 +336,9 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 		expect(dut.io.ocp.S.Resp, resp)
 	}    
 
+	println("\n*************************")
 	println("\nSet to initial state\n")
+	println("*************************\n")	
 
 	idle()
 	expectOut(0, 0, 0, 0)
@@ -353,10 +355,13 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 		Put into wr_dim 2 state
 
 		1) Write settings
-		2) Write array
+		2) Write array (4x4), factor 2, start_bank = 0
 	*/  
 
+	println("\n*************************")
 	println("\nWrite settings\n")  
+	println("*************************\n")
+
 
 	wr(0, Bits("b00100000000100000000010000100000").litValue() , Bits("b1111").litValue())
 	expectState(0)
@@ -364,7 +369,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	step(1)
 
-	idle() 
+	idle()
 
 	// settings are being set and we now go to state 1
 	expect(dut.io.ocp.S.Resp, 0)
@@ -372,6 +377,10 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	step(1)
 
+	println("\n*************************")
+	println("\nTest wr_dim 2 state\n")  
+	println("*************************\n")
+	
 	// Now into wr_dim_2 state, give slave response since settings are set.
 	expect(dut.io.ocp.S.Resp, 1)  
 	expectState(3)
@@ -499,11 +508,12 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expectState(3)
 
 	step(5)
-	idle()
 	expectOut(0, 0, 0, 0)
 	expectState(3)
 
-	step(1)
+	step(1) 
+
+	// And resume
 
 	wr(4, 3, Bits("b1111").litValue())
 	expectOut(1, Bits("b0000000000010000").litValue(), 3, Bits("b1111").litValue())
@@ -516,7 +526,12 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	step(1)
 
-	println("\nWrite new settings\n")
+	println("\n*************************")
+	println("\nWrite new settings while not finished\n")
+	println("*************************\n")
+
+	// Now start_bank is = 1
+
 
 	wr(0, Bits("b00100000000100000000010000100001").litValue() , Bits("b1111").litValue())
 	expectState(3)
@@ -537,7 +552,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	step(1)
 
-	// settings are śet
+	// settings are set
 
 	expect(dut.io.ocp.S.Resp, 1)
 	expectState(3)  
@@ -577,7 +592,9 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	*/   
 
+	println("\n*************************")
 	println("\nWr_dim_1 test\n")
+	println("*************************\n")	
 
 	wr(0, Bits("b00010000000010000000001000100000").litValue() , Bits("b1111").litValue())
 	expectState(3)
@@ -682,8 +699,9 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 		2) Write vec (4)
 
 	*/   	
-
+	println("\n*************************")
 	println("\nVector test\n")
+	println("*************************\n")
 
 	wr(0, Bits("b01000000000100000000000000100000").litValue() , Bits("b1111").litValue())
 	expectState(2)
@@ -772,14 +790,18 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.io.ocp.S.Resp, 0)
 
 	step(1)
+
+	// Do a read, check that we do not change state.
+
 	expectState(4)
 	idle()
 	expect(dut.io.ocp.S.Resp, 1)
+	rd(0, Bits("b1111").litValue())
 
 	step(1)
 	expectOut(0, 0, 0, 0)
 	expectState(4)
-	expect(dut.io.ocp.S.Resp, 0)
+	expect(dut.io.ocp.S.Resp, 1)
 
 }
 
