@@ -160,8 +160,8 @@ class BRamCtrl(extAddrWidth : Int = 32,
 				// Write out
 
 				io.bRamCtrlPins.MCmd  := OcpCmd.WR
+				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)				
 				io.bRamCtrlPins.MAddr(15, 12) := cur_bank + start_bank
-				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)
 				memories(cur_bank) := memories(cur_bank) + Bits(4)
 				io.bRamCtrlPins.MData := io.ocp.M.Data
 				io.bRamCtrlPins.MByteEn := Bits(15)
@@ -212,8 +212,8 @@ class BRamCtrl(extAddrWidth : Int = 32,
 				// Write out
 
 				io.bRamCtrlPins.MCmd  := OcpCmd.WR
+				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)				
 				io.bRamCtrlPins.MAddr(15, 12) := cur_bank + start_bank
-				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)
 				memories(cur_bank) := memories(cur_bank) + Bits(4)
 
 				io.bRamCtrlPins.MData := io.ocp.M.Data
@@ -257,8 +257,8 @@ class BRamCtrl(extAddrWidth : Int = 32,
 				// Write out
 
 				io.bRamCtrlPins.MCmd  := OcpCmd.WR
+				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)				
 				io.bRamCtrlPins.MAddr(15, 12) := cur_bank + start_bank
-				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)
 				memories(cur_bank) := memories(cur_bank) + Bits(4)
 				io.bRamCtrlPins.MData := io.ocp.M.Data
 				io.bRamCtrlPins.MByteEn := Bits(15)
@@ -596,7 +596,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	println("\nWr_dim_1 test\n")
 	println("*************************\n")	
 
-	wr(0, Bits("b00010000000010000000001000100000").litValue() , Bits("b1111").litValue())
+	wr(0, Bits("b00010000000010000000001000100010").litValue() , Bits("b1111").litValue())
 	expectState(3)
 	expectOut(0, 0, 0, 0) // The bram should not see this  
 
@@ -612,7 +612,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.col_cnt, 0)  
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
-	expect(dut.start_bank, 1) // Updated
+	expect(dut.start_bank, 1) // Old value
 	expect(dut.cur_bank, 0)    
 
 	step(1)
@@ -625,7 +625,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.col_cnt, 0)  
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
-	expect(dut.start_bank, 0) // Old value
+	expect(dut.start_bank, 2) // Updated
 	expect(dut.cur_bank, 0)      
 
 	step(1)
@@ -634,12 +634,13 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	// We now test a write
 	wr(4, 1, Bits("b1111").litValue()) // We always write to addr 4 when just writing
-	expectOut(1, Bits("b0000000000000000").litValue(), 1, Bits("b1111").litValue())
+	expectOut(1, Bits("b0010000000000000").litValue(), 1, Bits("b1111").litValue())
 	expectState(2)
 
 	expect(dut.col_cnt, 0)
 	expect(dut.cur_bank, 0)
 	expect(dut.io.ocp.S.Resp, 0)
+	expect(dut.start_bank, 2) // Updated	
 
 	step(1)
 
@@ -649,7 +650,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	step(1)
 
 	wr(4, 2, Bits("b1111").litValue())
-	expectOut(1, Bits("b0000000000000100").litValue(), 2, Bits("b1111").litValue())
+	expectOut(1, Bits("b0010000000000100").litValue(), 2, Bits("b1111").litValue())
 	expectState(2)  
 
 	expect(dut.col_cnt, 1)
@@ -665,7 +666,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 	// We now test a write
 	wr(4, 1, Bits("b1111").litValue()) // We always write to addr 4 when just writing
-	expectOut(1, Bits("b0001000000000000").litValue(), 1, Bits("b1111").litValue())
+	expectOut(1, Bits("b0011000000000000").litValue(), 1, Bits("b1111").litValue())
 	expectState(2)
 
 	expect(dut.col_cnt, 0)
@@ -680,7 +681,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	step(1)
 
 	wr(4, 2, Bits("b1111").litValue())
-	expectOut(1, Bits("b0001000000000100").litValue(), 2, Bits("b1111").litValue())
+	expectOut(1, Bits("b0011000000000100").litValue(), 2, Bits("b1111").litValue())
 	expectState(2)  
 
 	expect(dut.col_cnt, 1)
@@ -717,7 +718,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.col_cnt, 0)
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
-	expect(dut.start_bank, 0)
+	expect(dut.start_bank, 2)
 
 	step(1)
 

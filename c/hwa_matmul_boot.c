@@ -19,7 +19,7 @@
 #define LED_ROUNDS			10
 
 #define BRAM_BASE 			0xF00B0000
-#define BRAM_BASE_READ 		0xF00B2000
+#define BRAM_BASE_READ 		0xF00B4000
 #define HWA_CTRL_BASE 		0xF00C0000
 #define LED_BASE 			0xF0090000
 
@@ -150,12 +150,12 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Division factor, a and b shares most banks
 
-	int wr_dim = 1;	
-	int factor = 1; // 1 means no division
+	int wr_dim = 2;	
+	int factor = 2; // 1 means no division
 	int array_vect =  0; // Array
 	int M = DIM;
 	int N = DIM;
-	int start_bank = 0;	
+	int start_bank = 0;
 
 	// Set up BRAM
 	*(bram_ptr) =  (array_vect << 30) | (wr_dim << 28) | (M << 18) 
@@ -170,8 +170,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Set up BRAM for B	
 
-	start_bank = 1;	
-	wr_dim = 1;	
+	start_bank = 2;	
+	wr_dim = 1;
 
 	*(bram_ptr) =  (array_vect << 30) | (wr_dim << 28) | (M << 18) 
 					| (N << 8) | (factor << 4) | start_bank;
