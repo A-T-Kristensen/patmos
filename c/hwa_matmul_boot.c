@@ -27,7 +27,7 @@
 #define COLS	4
 #define DIM 	4
 #define SIZE	16
-#define NBANKS 	9
+#define NBANKS	5
 typedef int mat_type; // Float does not work for simulation
 
 void matmul_init(mat_type mat_a[DIM][DIM],
@@ -184,7 +184,6 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	}	
 
 	// Start HLS module
-
 
 	*hls_ptr = 1;
 

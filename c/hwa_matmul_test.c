@@ -7,85 +7,22 @@
 	Copyright: BSD License
  */
 
-#include <machine/patmos.h> // Defines _IODEV, used to access memory mapped IO devices.
+#include "libhwa/hwa_lib.h"
+#include "libmatmul/matmul_hwa.h"
+#include "libhwa/hwa_bram.h"
+#include "libhwa/hwa_test.h"
 
-#define ADDR_BITS 			16
 
-#define LED_RUN_LENGTH 		2
-#define LED_ROUNDS			10
+// 3 banks
+#define BRAM_BASE_WRITE 		0xF00B0000
+//#define BRAM_BASE_READ 		0xF00B2000
 
-#define BRAM_BASE 			0xF00B0000
-#define BRAM_BASE_2 		0xF00B1000
-#define BRAM_BASE_READ 		0xF00B2000
-#define HWA_CTRL_BASE 		0xF00C0000
-#define LED_BASE 			0xF0090000
+// 5 banks
+#define BRAM_BASE_READ 		0xF00B4000
 
-#define ROWS 	4
-#define COLS	4
-#define DIM 	4
-#define SIZE	16
-#define NBANKS 	3
-typedef float mat_type; // Float does not work for simulation
+// 9 banks
+//#define BRAM_BASE_READ 		0xF00B8000
 
-#include <stdio.h>
-#include <stdlib.h>
-
-void matmul_init(mat_type mat_a[DIM][DIM],
-				 mat_type mat_b[DIM][DIM],
-				 mat_type sw_result[DIM][DIM])
-{
-
-	int i, j;
-
-	for(i = 0; i < DIM; i++) {
-		for(j = 0; j < DIM; j++) {
-
-			mat_a[i][j] = i + j + 1;
-			mat_b[i][j] = i + j + 1 + DIM;
-			sw_result[i][j] = 0;
-		}
-	}
-}
-
-void matmul_expected(mat_type mat_a[DIM][DIM],
-					 mat_type mat_b[DIM][DIM],
-					 mat_type sw_result[DIM][DIM])
-{
-	int i, j, k;
-
-	for(i = 0; i < DIM; i++) {
-		for(j = 0; j < DIM; j++) {
-			for(k = 0; k < DIM; k++) {
-				sw_result[i][j] += mat_a[i][k] * mat_b[k][j];
-			}
-		}
-	}
-}
-
-int compare_arrays(mat_type hw_result[ROWS][COLS],
-				   mat_type sw_result[ROWS][COLS])
-{
-
-	int i, j, err_cnt = 0;
-
-	for(i = 0; i < ROWS; i++) {
-		for(j = 0; j < COLS; j++) {
-			if(hw_result[i][j] != sw_result[i][j]) {
-				err_cnt++;
-			}
-		}
-	}
-
-	if(!err_cnt) {
-		puts("Results correct");
-	}
-
-	else {
-		puts("Results incorrect");
-	}
-
-	return err_cnt;
-}
 
 int matmul_main(mat_type mat_a[DIM][DIM], 
 				mat_type mat_b[DIM][DIM], 
@@ -95,14 +32,12 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	int err_cnt = 0;
 
-	volatile _IODEV mat_type *bram_ptr = (volatile _IODEV mat_type *) BRAM_BASE;
-	volatile _IODEV mat_type *bram_ptr_2 = (volatile _IODEV mat_type *) BRAM_BASE_2;
+	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) BRAM_BASE;
+	volatile _IODEV mat_type *bram_ptr_write = (volatile _IODEV mat_type *) BRAM_BASE_WRITE;
 
 	volatile _IODEV mat_type *bram_ptr_read = (volatile _IODEV mat_type *) BRAM_BASE_READ;
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-
-	volatile _IODEV int *led_ptr  = (volatile _IODEV int *) 0xF0090000;
 
 	int i;
 
@@ -112,8 +47,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Division factor, a and b shares most banks
 
-	int wr_dim = 1;	
-	int factor = 1; // 1 means no division
+	int wr_dim = 2;	
+	int factor = 2; // 1 means no division
 	int array_vect =  0; // Array
 	int M = DIM;
 	int N = DIM;
@@ -125,25 +60,23 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Write data to BRAM 
 	
-	for(i = 0; i < M*N; i++)
-	{
-		*(bram_ptr + 1) = *(&mat_a[0][0] + i);
+	for(i = 0; i < M*N; i++) {
+		*(bram_ptr_write + 1) = *(&mat_a[0][0] + i);
 	}
 
 	// Set up BRAM for B	
 
-	start_bank = 1;	
-	wr_dim = 1;	
+	start_bank = 2; // For NBANKS == 5
+	wr_dim = 1;
 
 	*(bram_ptr) =  (array_vect << 30) | (wr_dim << 28) | (M << 18) 
 					| (N << 8) | (factor << 4) | start_bank;
 
 	// Write data to BRAM
 	
-	for(i = 0; i < M*N; i++)
-	{
-		*(bram_ptr + 1) = *(&mat_b[0][0] + i);
-	}	
+	for(i = 0; i < M*N; i++) {
+		*(bram_ptr_write + 1) = *(&mat_b[0][0] + i);
+	}
 
 	// Start HLS module
 
@@ -153,45 +86,11 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	while((*hls_ptr) != 1);
 
-/*	for(i = 0; i < M*N; i++)
-	{
+	for(i = 0; i < M*N; i++) {
 		*(&hw_result[0][0] + i) = *(bram_ptr_read + i);
 	}
-*/
-
-	for(i = 0; i < M*N; i++)
-	{
-		*(&hw_result[0][0] + i) = *(bram_ptr_read + i);
-	}
-
-	for(i = 0; i < M*N*3; i++)
-	{
-		printf("%f ", *(bram_ptr_2 + i));
-	}	
-
-	printf("\n");
 
 	int j;
-
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
-			printf("%f ", mat_a[i][j]);
-		}
-		printf("\n");
-	}
-
-	printf("\n");
-
-
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
-			printf("%f ", mat_b[i][j]);
-		}
-		printf("\n");
-	}
-
-	printf("\n");
-
 
 	for(i = 0; i < DIM; i++){
 		for(j = 0; j < DIM; j++){
