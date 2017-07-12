@@ -12,17 +12,23 @@
 #include "libhwa/hwa_bram.h"
 #include "libhwa/hwa_test.h"
 
+#if(NBANKS==3)
 
-// 3 banks
-#define BRAM_BASE_WRITE 		0xF00B0000
-//#define BRAM_BASE_READ 		0xF00B2000
+#define BRAM_BASE_READ 		0xF00B2000
 
-// 5 banks
+#elif(NBANKS==5)
+
 #define BRAM_BASE_READ 		0xF00B4000
 
-// 9 banks
-//#define BRAM_BASE_READ 		0xF00B8000
+#elif(NBANKS==9)
 
+#define BRAM_BASE_READ 		0xF00B8000
+
+#else
+
+#define BRAM_BASE_READ 		0xF00B0000
+
+#endif
 
 int matmul_main(mat_type mat_a[DIM][DIM], 
 				mat_type mat_b[DIM][DIM], 
@@ -33,10 +39,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	int err_cnt = 0;
 
 	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) BRAM_BASE;
-	volatile _IODEV mat_type *bram_ptr_write = (volatile _IODEV mat_type *) BRAM_BASE_WRITE;
-
+	volatile _IODEV mat_type *bram_ptr_write = (volatile _IODEV mat_type *) BRAM_BASE;
 	volatile _IODEV mat_type *bram_ptr_read = (volatile _IODEV mat_type *) BRAM_BASE_READ;
-
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	int i;
