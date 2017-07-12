@@ -56,10 +56,10 @@ void write_array_spm(volatile _SPM mat_type *array, int n,
 					| (DIM << 8) | (factor << 4) | array_bank0;		
 
 	_Pragma("loopbound min SIZE max SIZE")						
-	for(i = 0; i < SIZE; i++) {
-			*(bram_ptr_write + i) = *(array + i);
-		}
+	for(i = 0; i < m*n; i++) {
+			*(bram_ptr_write + 1) = *(array + i);
 	}
+}
 
 void write_array_uncached(volatile _UNCACHED mat_type(*array)[ROWS][COLS],
 						  int n, int m, int factor, int array_bank0,

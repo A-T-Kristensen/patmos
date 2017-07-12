@@ -63,7 +63,6 @@ void fir2dim_init(float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
 int fir2dim_return(int fir2dim_result);
 
 int main(void);
-int fir2dim_main(void);
 int fir2dim_main_wcet(void) __attribute__((noinline));
 
 int fir2dim_result_hw;
@@ -193,64 +192,6 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 }
 
 
-int fir2dim_main(void)
-{
-
-	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
-	bank_ptrs(bank_ptr_array, NBANKS);
-
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-
-	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
-
-	printf("Benchmarking \n");
-
-	// Run hardware
-
-	start_transfer = get_cpu_cycles();
-
-	write_vector_spm(&spm_filter->fir2dim_input, SIZE, 1, 0, bank_ptr_array);
-
-	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
-
-	// Start HLS module
-
-	start_compute = get_cpu_cycles();
-
-	*hls_ptr = 1;
-
-	// Poll status of HLS module
-
-	while((*hls_ptr) != 1);
-
-	stop_compute = get_cpu_cycles();
-	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
-
-	start_transfer = get_cpu_cycles();
-
-	read_vector_spm(&spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
-
-	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
-
-	// Check results
-
-	fir2dim_result_hw = spm_filter->fir2dim_output_hw[0] + spm_filter->fir2dim_output_hw[5] + fir2dim_array[9];
-
-	if(!fir2dim_return(fir2dim_result_hw)) {
-		puts("Results correct");
-	} else {
-		puts("Results incorrect");
-	}		
-
-	print_benchmark(return_compute, return_transfer);
-
-	return fir2dim_return(fir2dim_result_hw);
-}
-
-
 int main(void)
 {
 
@@ -282,7 +223,7 @@ int main(void)
 
 #else
 
-	return fir2dim_main();
+	return 0;
 
 #endif
 }
