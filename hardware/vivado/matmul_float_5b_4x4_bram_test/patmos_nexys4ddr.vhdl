@@ -357,25 +357,25 @@ architecture rtl of patmos_top is
 	-- SIGNALS THAT SHOULD NOT BE TOUCHED
 
 	attribute dont_touch : string;  
-	attribute mark_debug : string;  
+	--attribute mark_debug : string;  
 
-	--attribute dont_touch of hwa_addr_i 	: signal is "true";		
+	attribute dont_touch of hwa_addr_i 	: signal is "true";		
 
-	attribute mark_debug of hwa_addr_i 	: signal is "true";
-	attribute mark_debug of bRamCtrl_Mcmd 	: signal is "true";
-	attribute mark_debug of bRamCtrl_MAddr 	: signal is "true";
-	attribute mark_debug of bRamCtrl_MData 	: signal is "true";
-	attribute mark_debug of bRamCtrl_MByteEn 	: signal is "true";
-	attribute mark_debug of bRamCtrl_SData 	: signal is "true";
+	--attribute mark_debug of hwa_addr_i 	: signal is "true";
+	--attribute mark_debug of bRamCtrl_Mcmd 	: signal is "true";
+	--attribute mark_debug of bRamCtrl_MAddr 	: signal is "true";
+	--attribute mark_debug of bRamCtrl_MData 	: signal is "true";
+	--attribute mark_debug of bRamCtrl_MByteEn 	: signal is "true";
+	--attribute mark_debug of bRamCtrl_SData 	: signal is "true";
 
-	attribute mark_debug of bram_m_i 	: signal is "true";
-	attribute mark_debug of bram_s_i 	: signal is "true";
+	--attribute mark_debug of bram_m_i 	: signal is "true";
+	--attribute mark_debug of bram_s_i 	: signal is "true";
 
-	attribute mark_debug of hwACtrl_ap_start_out 	: signal is "true";
-	attribute mark_debug of hwACtrl_ap_reset_out 	: signal is "true";
-	attribute mark_debug of hwACtrl_ap_ready_in 	: signal is "true";
-	attribute mark_debug of hwACtrl_ap_idle_in 	: signal is "true";
-	attribute mark_debug of hwACtrl_ap_done_in 	: signal is "true";
+	--attribute mark_debug of hwACtrl_ap_start_out 	: signal is "true";
+	--attribute mark_debug of hwACtrl_ap_reset_out 	: signal is "true";
+	--attribute mark_debug of hwACtrl_ap_ready_in 	: signal is "true";
+	--attribute mark_debug of hwACtrl_ap_idle_in 	: signal is "true";
+	--attribute mark_debug of hwACtrl_ap_done_in 	: signal is "true";
 
 begin
 
