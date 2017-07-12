@@ -37,8 +37,8 @@
 
 void fir2dim_initSeed(void);
 long fir2dim_randomInteger();
-void fir2dim_pin_down(float *pimage, float *parray, float *pcoeff,
-					  float *poutput);
+void fir2dim_pin_down(mat_type *pimage, mat_type *parray, mat_type *pcoeff,
+					  mat_type *poutput);
 void fir2dim_init();
 int fir2dim_return();
 void fir2dim_main() __attribute__((noinline));
@@ -48,21 +48,21 @@ int main(void);
   Declaration of global variables
 */
 
-volatile _SPM float *fir2dim_coefficients_spm = (volatile _SPM float *) SPM_BASE;
-volatile _SPM float *fir2dim_image_spm = (volatile _SPM float *) SPM_BASE + IMAGE_OFFSET;
-volatile _SPM float *fir2dim_array_spm = (volatile _SPM float *) SPM_BASE + ARRAY_OFFSET;
-volatile _SPM float *fir2dim_output_spm = (volatile _SPM float *) SPM_BASE + OUTPUT_OFFSET;
+volatile _SPM mat_type *fir2dim_coefficients_spm = (volatile _SPM mat_type *) SPM_BASE;
+volatile _SPM mat_type *fir2dim_image_spm = (volatile _SPM mat_type *) SPM_BASE + IMAGE_OFFSET;
+volatile _SPM mat_type *fir2dim_array_spm = (volatile _SPM mat_type *) SPM_BASE + ARRAY_OFFSET;
+volatile _SPM mat_type *fir2dim_output_spm = (volatile _SPM mat_type *) SPM_BASE + OUTPUT_OFFSET;
 
-static float  fir2dim_coefficients[3 * 3] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+static mat_type  fir2dim_coefficients[3 * 3] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-static float  fir2dim_image[4 * 4] = {
+static mat_type  fir2dim_image[4 * 4] = {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-static float  fir2dim_array[6 * 6]  = {
+static mat_type  fir2dim_array[6 * 6]  = {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-static float  fir2dim_output[4 * 4] = {
+static mat_type  fir2dim_output[4 * 4] = {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
@@ -112,9 +112,9 @@ int fir2dim_return()
   Helper functions
 */
 
-void fir2dim_pin_down(float *pimage, float *parray, float *pcoeff, float *poutput)
+void fir2dim_pin_down(mat_type *pimage, mat_type *parray, mat_type *pcoeff, mat_type *poutput)
 {
-	register float    i, f;
+	register mat_type    i, f;
 
 	_Pragma("loopbound min 4 max 4")
 	for(i = 0 ; i < 4 ; i++) {
@@ -159,9 +159,9 @@ void fir2dim_pin_down(float *pimage, float *parray, float *pcoeff, float *poutpu
 void _Pragma("entrypoint") fir2dim_main()
 {
 
-	volatile _SPM float *parray  = fir2dim_array_spm, *parray2, *parray3;
-	volatile _SPM float *pcoeff  = fir2dim_coefficients_spm;
-	volatile _SPM float *poutput = fir2dim_output_spm;
+	volatile _SPM mat_type *parray  = fir2dim_array_spm, *parray2, *parray3;
+	volatile _SPM mat_type *pcoeff  = fir2dim_coefficients_spm;
+	volatile _SPM mat_type *poutput = fir2dim_output_spm;
 	int k, f, i;
 
 	poutput = fir2dim_output_spm;

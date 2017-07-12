@@ -153,7 +153,7 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 	*hls_ptr = 1;	
 	
-	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 1);
+	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 0xF00B1000);
 
 	return 0;
 }

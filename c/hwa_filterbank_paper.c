@@ -65,7 +65,7 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 	*hls_ptr = 1;
 	*hls_ptr;	
 
-	read_vector_spm(spm_filter->y, 256, 1, 1);
+	read_vector_spm(spm_filter->y, 256, 1, 0xF00B1000);
 
 	return (int)(spm_filter->y[0]) - 9408;
 }

@@ -158,7 +158,7 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 	*hls_ptr = 1;
 	*hls_ptr;
 
-	read_vector_spm(adpcm_data->dec_result, TEST_SIZE, 1, 2);
+	read_vector_spm(adpcm_data->dec_result, TEST_SIZE, 1, 0xF00B2000);
 
 	return 0;
 }
@@ -175,7 +175,7 @@ int adpcm_main_encode()
 
 	while((*hls_ptr) != 1);	
 	
-	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 1);
+	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 0xF00B1000);
 
 	return enc_return();
 }

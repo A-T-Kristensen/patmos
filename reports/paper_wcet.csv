@@ -1,0 +1,12 @@
+HwA,Matmul,Fir2Dim,Filterbank,ADPCM enc,ADPCM dec
+,32x32,,,,
+Latency,8202,137,106140,772,502
+Write,28879,220,12561,119,120
+Read,0,0,0,0,0
+Other,0,0,0,0,0
+Total,37081,357,118701,891,622
+,,,,,
+SW,Matmul,Fir2Dim,Filterbank,ADPCM enc,ADPCM dec
+WCET,530534,4155,20124256,0,0
+,,,,,
+Speedup,14.3074350746,11.6386554622,169.5373754223,0,0
