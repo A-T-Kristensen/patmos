@@ -144,20 +144,16 @@ int dec_return()
 
 int _Pragma("entrypoint") adpcm_main_wcet()
 {
-
-	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
-	bank_ptrs(bank_ptr_array, NBANKS);
-
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector_spm(&adpcm_data->test_data, TEST_SIZE, 1, 0, bank_ptr_array);
+	write_vector_spm(adpcm_data->test_data, TEST_SIZE, 1, 0);
 
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
 
 	*hls_ptr = 1;	
 	
-	read_vector_spm(&adpcm_data->compressed, TEST_SIZE, 1, 1, bank_ptr_array);
+	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 1);
 
 	return 0;
 }

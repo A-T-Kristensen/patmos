@@ -53,18 +53,15 @@ int _Pragma("entrypoint") matmul_main_wcet()
 
 #if(NBANKS==3)
 
-	write_array_spm(spm_matrix->mat_a, DIM, DIM,
-					factor, 0, 1);
+	write_array_spm(spm_matrix->mat_a, DIM, DIM, factor, 0, 1);
 
 #else
 
-	write_array_spm(spm_matrix->mat_a, DIM, DIM,
-					factor, 0, 2);
+	write_array_spm(spm_matrix->mat_a, DIM, DIM, factor, 0, 2);
 
 #endif
 
-	write_array_spm(spm_matrix->mat_b, DIM, DIM,
-					factor, factor, 1);
+	write_array_spm(spm_matrix->mat_b, DIM, DIM, factor, factor, 1);
 
 	*hls_ptr = 1;
 	*hls_ptr;	
