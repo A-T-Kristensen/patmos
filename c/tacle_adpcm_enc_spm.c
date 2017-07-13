@@ -40,9 +40,9 @@
 	Forward declaration of functions
 */
 
-int adpcm_enc_encode(int, int);
-int adpcm_enc_filtez(int *bpl, int *dlt);
-void adpcm_enc_upzero(int dlt, int *dlti, int *bli);
+int adpcm_enc_encode(volatile _SPM int*, volatile _SPM int*);
+int adpcm_enc_filtez(volatile _SPM int (*bpl)[6], volatile _SPM int (*dlt)[6]);
+void adpcm_enc_upzero(int dlt, volatile _SPM int (*dlti)[6], volatile _SPM int (*bli)[6]);
 int adpcm_enc_filtep(int rlt1, int al1, int rlt2, int al2);
 int adpcm_enc_quantl(int el, int detl);
 int adpcm_enc_logscl(int il, int nbl);
@@ -67,11 +67,21 @@ int main(void);
 
 int adpcm_enc_test_data[TEST_SIZE * 2], adpcm_enc_compressed[TEST_SIZE];
 
+struct adpcm_struct {
+	int compressed[TEST_SIZE];
+	int dec_result[TEST_SIZE];
+	int test_data[TEST_SIZE];
+};
+
+volatile _SPM struct adpcm_struct *adpcm_data = (volatile _SPM struct adpcm_struct *) SPM_BASE;
 
 /* G722 C code */
 
 /* variables for transimit quadrature mirror filter here */
 int adpcm_enc_tqmf[24];
+
+volatile _SPM int (*adpcm_enc_tqmf_p)[24];
+
 
 /* QMF filter coefficients:
 scaled by a factor of 4 compared to G722 CCITT recommendation */
@@ -80,6 +90,9 @@ int adpcm_enc_h[24] = {
 	-840, -3220,  3804, 15504, 15504,  3804, -3220,  -840,
 	1448,   128,  -624,    48,   212,   -44,   -44,    12
 };
+
+volatile _SPM int (*adpcm_enc_h_p)[24];
+
 
 int adpcm_enc_xl, adpcm_enc_xh;
 
@@ -92,12 +105,18 @@ int adpcm_enc_qq4_code4_table[16] = {
 	20456,   12896,    8968,    6288,    4240,    2584,    1200,       0
 };
 
+volatile _SPM int (*adpcm_enc_qq4_code4_table_p)[16];
+
+
 int adpcm_enc_qq5_code5_table[32] = {
 	-280,    -280,  -23352,  -17560,  -14120,  -11664,   -9752,   -8184,
 	-6864,   -5712,   -4696,   -3784,   -2960,   -2208,   -1520,    -880,
 	23352,   17560,   14120,   11664,    9752,    8184,    6864,    5712,
 	4696,    3784,    2960,    2208,    1520,     880,     280,    -280
 };
+
+volatile _SPM int (*adpcm_enc_qq5_code5_table_p)[32];
+
 
 int adpcm_enc_qq6_code6_table[64] = {
 	-136,    -136,    -136,    -136,  -24808,  -21904,  -19008,  -16704,
@@ -110,14 +129,25 @@ int adpcm_enc_qq6_code6_table[64] = {
 	1688,    1360,    1040,     728,     432,     136,    -432,    -136
 };
 
+volatile _SPM int (*adpcm_enc_qq6_code6_table_p)[64];
+
+
 int adpcm_enc_delay_bpl[6];
 
+volatile _SPM int (*adpcm_enc_delay_bpl_p)[6];
+
 int adpcm_enc_delay_dltx[6];
+
+volatile _SPM int (*adpcm_enc_delay_dltx_p)[6];
+
 
 int adpcm_enc_wl_code_table[16] = {
 	-60,  3042,  1198,   538,   334,   172,    58,   -30,
 	3042,  1198,   538,   334,   172,    58,   -30,   -60
 };
+
+volatile _SPM int (*adpcm_enc_wl_code_table_p)[16];
+
 
 int adpcm_enc_ilb_table[32] = {
 	2048,  2093,  2139,  2186,  2233,  2282,  2332,  2383,
@@ -125,6 +155,9 @@ int adpcm_enc_ilb_table[32] = {
 	2896,  2960,  3025,  3091,  3158,  3228,  3298,  3371,
 	3444,  3520,  3597,  3676,  3756,  3838,  3922,  4008
 };
+
+volatile _SPM int (*adpcm_enc_ilb_table_p)[32];
+
 
 int adpcm_enc_nbl; 		 /* delay line */
 int adpcm_enc_al1, adpcm_enc_al2;
@@ -140,6 +173,9 @@ int adpcm_enc_decis_levl[30] = {
 	14120, 15840, 17560, 20456, 23352, 32767
 };
 
+volatile _SPM int (*adpcm_enc_decis_levl_p)[30];
+
+
 int adpcm_enc_detl;
 
 /* quantization table 31 long to make quantl look-up easier,
@@ -151,6 +187,9 @@ int adpcm_enc_quant26bt_pos[31] = {
 	37,    36,    35,    34,    33,    32,    32
 };
 
+volatile _SPM int (*adpcm_enc_quant26bt_pos_p)[31];
+
+
 /* quantization table 31 long to make quantl look-up easier,
 last entry is for mil=30 case when wd is max */
 int adpcm_enc_quant26bt_neg[31] = {
@@ -159,6 +198,8 @@ int adpcm_enc_quant26bt_neg[31] = {
 	17,    16,    15,    14,    13,    12,    11,    10,
 	9,     8,     7,     6,     5,     4,     4
 };
+
+volatile _SPM int (*adpcm_enc_quant26bt_neg_p)[31];
 
 
 int adpcm_enc_deth;
@@ -180,6 +221,10 @@ int adpcm_enc_sph, adpcm_enc_ph, adpcm_enc_yh;
 
 int adpcm_enc_delay_dhx[6];
 int adpcm_enc_delay_bph[6];
+
+volatile _SPM int (*adpcm_enc_delay_dhx_p)[6];
+volatile _SPM int (*adpcm_enc_delay_bph_p)[6];
+
 
 int adpcm_enc_ah1, adpcm_enc_ah2;
 int adpcm_enc_ph1, adpcm_enc_ph2;
@@ -267,17 +312,17 @@ int adpcm_enc_cos(int rad)
 
 
 /* MAX: 1 */
-int adpcm_enc_encode(int xin1, int xin2)
+int adpcm_enc_encode(volatile _SPM int* xin1, volatile _SPM int* xin2)
 {
 	int i;
-	int *h_ptr, *tqmf_ptr, *tqmf_ptr1;
+	volatile _SPM int *h_ptr, *tqmf_ptr, *tqmf_ptr1;
 	long int xa, xb;
 	int decis;
 
-
 	/* transmit quadrature mirror filters implemented here */
-	h_ptr = adpcm_enc_h;
-	tqmf_ptr = adpcm_enc_tqmf;
+	h_ptr = &(*adpcm_enc_h_p)[0];
+	tqmf_ptr = &(*adpcm_enc_tqmf_p)[0];
+
 	xa = (long)(*tqmf_ptr++) * (*h_ptr++);
 	xb = (long)(*tqmf_ptr++) * (*h_ptr++);
 
@@ -301,8 +346,8 @@ int adpcm_enc_encode(int xin1, int xin2)
 		*tqmf_ptr-- = *tqmf_ptr1--;
 	}
 
-	*tqmf_ptr-- = xin1;
-	*tqmf_ptr = xin2;
+	*tqmf_ptr-- = *xin1;
+	*tqmf_ptr = *xin2;
 
 	/* scale outputs */
 	adpcm_enc_xl = (xa + xb) >> 15;
@@ -313,7 +358,7 @@ int adpcm_enc_encode(int xin1, int xin2)
 	/* starting with lower sub band encoder */
 
 	/* filtez - compute predictor output section - zero section */
-	adpcm_enc_szl = adpcm_enc_filtez(adpcm_enc_delay_bpl, adpcm_enc_delay_dltx);
+	adpcm_enc_szl = adpcm_enc_filtez(adpcm_enc_delay_bpl_p, adpcm_enc_delay_dltx_p);
 
 	/* filtep - compute predictor output signal (pole section) */
 	adpcm_enc_spl = adpcm_enc_filtep(adpcm_enc_rlt1, adpcm_enc_al1, adpcm_enc_rlt2, adpcm_enc_al2);
@@ -343,7 +388,7 @@ int adpcm_enc_encode(int xin1, int xin2)
 	/* calling parameters: dlt, dlt1, dlt2, ..., dlt6 from dlt */
 	/*  bpli (linear_buffer in which all six values are delayed */
 	/* return params:      updated bpli, delayed dltx */
-	adpcm_enc_upzero(adpcm_enc_dlt, adpcm_enc_delay_dltx, adpcm_enc_delay_bpl);
+	adpcm_enc_upzero(adpcm_enc_dlt, adpcm_enc_delay_dltx_p, adpcm_enc_delay_bpl_p);
 
 	/* uppol2- update second predictor coefficient apl2 and delay it as al2 */
 	/* calling parameters: al1, al2, plt, plt1, plt2 */
@@ -364,7 +409,7 @@ int adpcm_enc_encode(int xin1, int xin2)
 
 	/* high band encode */
 
-	adpcm_enc_szh = adpcm_enc_filtez(adpcm_enc_delay_bph, adpcm_enc_delay_dhx);
+	adpcm_enc_szh = adpcm_enc_filtez(adpcm_enc_delay_bph_p, adpcm_enc_delay_dhx_p);
 
 	adpcm_enc_sph = adpcm_enc_filtep(adpcm_enc_rh1, adpcm_enc_ah1, adpcm_enc_rh2, adpcm_enc_ah2);
 
@@ -399,7 +444,7 @@ int adpcm_enc_encode(int xin1, int xin2)
 	/* upzero: update zero section predictor coefficients (sixth order) */
 	/* calling parameters: dh, dhi, bphi */
 	/* return params: updated bphi, delayed dhx */
-	adpcm_enc_upzero(adpcm_enc_dh, adpcm_enc_delay_dhx, adpcm_enc_delay_bph);
+	adpcm_enc_upzero(adpcm_enc_dh, adpcm_enc_delay_dhx_p, adpcm_enc_delay_bph_p);
 
 	/* uppol2: update second predictor coef aph2 and delay as ah2 */
 	/* calling params: ah1, ah2, ph, ph1, ph2 */
@@ -424,18 +469,20 @@ int adpcm_enc_encode(int xin1, int xin2)
 
 /* filtez - compute predictor output signal (zero section) */
 /* input: bpl1-6 and dlt1-6, output: szl */
-int adpcm_enc_filtez(int *bpl, int *dlt)
+int adpcm_enc_filtez(volatile _SPM int (*bpl)[6], volatile _SPM int (*dlt)[6])
 {
 	int i;
 	long int zl;
 
+	volatile _SPM int *bpl_p = &(*bpl)[0];
+	volatile _SPM int *dlt_p = &(*dlt)[0];	
 
-	zl = (long)(*bpl++) * (*dlt++);
+	zl = (long)(*bpl_p++) * (*dlt_p++);
 
 	/* MAX: 5 */
 	_Pragma("loopbound min 5 max 5")
 	for(i = 1; i < 6; i++) {
-		zl += (long)(*bpl++) * (*dlt++);
+		zl += (long)(*bpl_p++) * (*dlt_p++);
 	}
 
 	return((int)(zl >> 14));     /* x2 here */
@@ -532,38 +579,40 @@ int adpcm_enc_scalel(int nbl, int shift_constant)
 
 /* upzero - inputs: dlt, dlti[0-5], bli[0-5], outputs: updated bli[0-5] */
 /* also implements delay of bli and update of dlti from dlt */
-void adpcm_enc_upzero(int dlt, int *dlti, int *bli)
+void adpcm_enc_upzero(int dlt, volatile _SPM int (*dlti)[6], volatile _SPM int (*bli)[6])
 {
 	int i, wd2, wd3;
 
+	volatile _SPM int *dlti_p = &(*dlti)[0];
+	volatile _SPM int *bli_p = &(*bli)[0];	
 
 	/*if dlt is zero, then no sum into bli */
 	if(dlt == 0) {
 		_Pragma("loopbound min 6 max 6")
 		for(i = 0; i < 6; i++) {
-			bli[i] = (int)((255L * bli[i]) >> 8L); /* leak factor of 255/256 */
+			(*bli)[i] = (int)((255L * (*bli)[i]) >> 8L); /* leak factor of 255/256 */
 		}
 
 	} else {
 		_Pragma("loopbound min 6 max 6")
 		for(i = 0; i < 6; i++) {
-			if((long)dlt * dlti[i] >= 0)
+			if((long)dlt * (*dlti)[i] >= 0)
 				wd2 = 128;
 			else
 				wd2 = -128;
 
-			wd3 = (int)((255L * bli[i]) >> 8L);    /* leak factor of 255/256 */
-			bli[i] = wd2 + wd3;
+			wd3 = (int)((255L * (*bli)[i]) >> 8L);    /* leak factor of 255/256 */
+			(*bli)[i] = wd2 + wd3;
 		}
 
 	}
 
 	/* implement delay line for dlt */
-	dlti[5] = dlti[4];
-	dlti[4] = dlti[3];
-	dlti[3] = dlti[2];
-	dlti[1] = dlti[0];
-	dlti[0] = dlt;
+	(*dlti)[5] = (*dlti)[4];
+	(*dlti)[4] = (*dlti)[3];
+	(*dlti)[3] = (*dlti)[2];
+	(*dlti)[1] = (*dlti)[0];
+	(*dlti)[0] = dlt;
 
 	return;
 }
@@ -708,10 +757,8 @@ void adpcm_enc_init(void)
 		 add the fact: xxmain_0:[]: */
 	_Pragma("loopbound min 3 max 3")
 	for(i = 0 ; i < TEST_SIZE ; i++) {
-		adpcm_enc_test_data[i] = (int) j * adpcm_enc_cos(f * PI * i);
-
-		/* avoid constant-propagation optimizations */
-		adpcm_enc_test_data[i] += x;
+		adpcm_data->test_data[i] = (int) j * adpcm_enc_cos(f * PI * i);
+		adpcm_data->test_data[i] += x;
 	}
 }
 
@@ -722,7 +769,7 @@ int adpcm_enc_return(void)
 	int check_sum = 0;
 
 	for(i = 0 ; i < IN_END ; i += 2) {
-		check_sum += adpcm_enc_compressed[i/2];
+		check_sum += adpcm_data->compressed[i/2];
 	}
 
 	return check_sum != 385;
@@ -739,15 +786,53 @@ void _Pragma("entrypoint") adpcm_enc_main(void)
 	/* MAX: 2 */
 	_Pragma("loopbound min 2 max 2")
 	for(i = 0 ; i < IN_END ; i += 2) {
-		adpcm_enc_compressed[i/2] = adpcm_enc_encode(adpcm_enc_test_data[i], adpcm_enc_test_data[i+1]);
+		adpcm_data->compressed[i/2] = adpcm_enc_encode(&adpcm_data->test_data[i], &adpcm_data->test_data[i+1]);
 	}
-
 }
 
 int main(void)
 {
 	adpcm_enc_init();
 
+	int i;
+
+	for(i = 0; i < 24; i++){
+		(*adpcm_enc_h_p)[i] = adpcm_enc_h[i];
+	}
+
+	for(i = 0; i < 6; i++){
+		(*adpcm_enc_delay_bpl_p)[i] = adpcm_enc_delay_bpl[i];
+	}
+
+	for(i = 0; i < 6; i++){
+		(*adpcm_enc_delay_dltx_p)[i] = adpcm_enc_delay_dltx[i];
+	}
+
+/*
+	for(i = 0; i < 64; i++){
+		(*adpcm_enc_qq6_code6_table_p)[i] = adpcm_enc_qq6_code6_table[i];
+	}
+
+	for(i = 0; i < 16; i++){
+		(*adpcm_enc_wl_code_table_p)[i] = adpcm_enc_wl_code_table[i];
+	}
+
+	for(i = 0; i < 32; i++){
+		(*adpcm_enc_ilb_table_p)[i] = adpcm_enc_ilb_table[i];
+	}
+
+	for(i = 0; i < 30; i++){
+		(*adpcm_enc_decis_levl_p)[i] = adpcm_enc_decis_levl[i];
+	}
+
+	for(i = 0; i < 31; i++){
+		(*adpcm_enc_quant26bt_pos_p)[i] = adpcm_enc_quant26bt_pos[i];
+	}
+
+	for(i = 0; i < 31; i++){
+		(*adpcm_enc_quant26bt_neg_p)[i] = adpcm_enc_quant26bt_neg[i];
+	}								
+*/
 #if(WCET)
 
 	adpcm_enc_main();
