@@ -169,7 +169,7 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
-	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;	
+	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array);
 
@@ -231,7 +231,7 @@ int fir2dim_main(void)
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
-	}		
+	}
 
 	print_benchmark(return_compute, return_transfer);
 

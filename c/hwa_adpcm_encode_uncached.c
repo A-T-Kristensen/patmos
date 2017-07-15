@@ -156,8 +156,8 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
 
-	*hls_ptr = 1;	
-	
+	*hls_ptr = 1;
+
 	read_vector_uncached(&adpcm_data->compressed, TEST_SIZE, 1, 1, bank_ptr_array);
 
 	return 0;
@@ -172,7 +172,7 @@ int adpcm_main()
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;	
+	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
 
 	int err_cnt = 0;
 
@@ -184,29 +184,29 @@ int adpcm_main()
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
 
 	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
 	start_compute = get_cpu_cycles();
 
-	*hls_ptr = 1;	
+	*hls_ptr = 1;
 
-	while((*hls_ptr) != 1);	
+	while((*hls_ptr) != 1);
 
 	stop_compute = get_cpu_cycles();
-	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;	
+	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
-	start_transfer = get_cpu_cycles();	
-	
+	start_transfer = get_cpu_cycles();
+
 	read_vector_uncached(&adpcm_data->compressed, TEST_SIZE, 1, 1, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
 	if(!enc_return()) {
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
-	}	
+	}
 
 	print_benchmark(return_compute, return_transfer);
 
@@ -216,7 +216,7 @@ int adpcm_main()
 int main()
 {
 
-	init();	
+	init();
 
 #if(WCET)
 
@@ -224,9 +224,9 @@ int main()
 
 #else
 
-	printf("Benchmarking \n");		
+	printf("Benchmarking \n");
 
 	return adpcm_main();
 
-#endif	
+#endif
 }

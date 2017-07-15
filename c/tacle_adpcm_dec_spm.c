@@ -207,7 +207,6 @@ int adpcm_dec_dec_ph1, adpcm_dec_dec_ph2;
 
 // SPM variables
 
-
 struct adpcm_struct {
 	int compressed[TEST_SIZE];
 	int dec_result[2*TEST_SIZE];
@@ -236,16 +235,6 @@ volatile _SPM int *adpcm_dec_dec_del_bpl_p	= (volatile _SPM int *) ADDR_BPL;
 volatile _SPM int *adpcm_dec_dec_del_dltx_p	= (volatile _SPM int *) ADDR_DLTX;
 volatile _SPM int *adpcm_dec_delay_dhx_p	= (volatile _SPM int *) ADDR_DEL_DHX;
 volatile _SPM int *adpcm_dec_delay_bph_p	= (volatile _SPM int *) ADDR_DEL_BPH;
-
-
-/*volatile _SPM int *adpcm_enc_delay_dltx_p 	= (volatile _SPM int *) ADDR_DLTX;
-volatile _SPM int *adpcm_enc_delay_bpl_p 	= (volatile _SPM int *) ADDR_BPL;
-volatile _SPM int *adpcm_enc_tqmf_p 		= (volatile _SPM int *) ADDR_TQMF; 
-volatile _SPM int *adpcm_enc_h_p 			= (volatile _SPM int *) ADDR_H;
-volatile _SPM int *adpcm_enc_delay_dhx_p 	= (volatile _SPM int *) ADDR_DHX;
-volatile _SPM int *adpcm_enc_delay_bph_p 	= (volatile _SPM int *) ADDR_BPH;
-*/
-
 
 /*
   Arithmetic math functions
@@ -755,11 +744,11 @@ int main(void)
 
 	int i;
 
-	for(i = 0; i < 24; i++){
+	for(i = 0; i < 24; i++) {
 		adpcm_dec_h_p[i] = adpcm_dec_h[i];
-	}	
+	}
 
-	for(i = 0; i < 3; i++){
+	for(i = 0; i < 3; i++) {
 		adpcm_data->compressed[i] =  adpcm_dec_compressed[i];
 	}
 
@@ -774,14 +763,14 @@ int main(void)
 
 	printf("Benchmarking \n");
 
-	start_cycle = get_cpu_cycles();	
+	start_cycle = get_cpu_cycles();
 
 	adpcm_dec_main();
 
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-	print_benchmark(return_cycles, 0);	
+	print_benchmark(return_cycles, 0);
 
 #endif
 

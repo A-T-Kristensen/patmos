@@ -30,9 +30,9 @@
 
 #endif
 
-int matmul_main(mat_type mat_a[DIM][DIM], 
-				mat_type mat_b[DIM][DIM], 
-				mat_type sw_result[DIM][DIM], 
+int matmul_main(mat_type mat_a[DIM][DIM],
+				mat_type mat_b[DIM][DIM],
+				mat_type sw_result[DIM][DIM],
 				mat_type hw_result[DIM][DIM])
 {
 
@@ -51,33 +51,33 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Division factor, a and b shares most banks
 
-	int wr_dim = 2;	
+	int wr_dim = 2;
 	int factor = 2; // 1 means no division
 	int array_vect =  0; // Array
 	int M = DIM;
 	int N = DIM;
-	int start_bank = 0;	
+	int start_bank = 0;
 
 	// Set up BRAM
-	*(bram_ptr) =  (array_vect << 30) | (wr_dim << 28) | (M << 18) 
-					| (N << 8) | (factor << 4) | start_bank;
+	*(bram_ptr) = (array_vect << 30) | (wr_dim << 28) | (M << 18)
+				  | (N << 8) | (factor << 4) | start_bank;
 
-	// Write data to BRAM 
-	
+	// Write data to BRAM
+
 	for(i = 0; i < M*N; i++) {
 		*(bram_ptr_write + 1) = *(&mat_a[0][0] + i);
 	}
 
-	// Set up BRAM for B	
+	// Set up BRAM for B
 
 	start_bank = 2; // For NBANKS == 5
 	wr_dim = 1;
 
-	*(bram_ptr) =  (array_vect << 30) | (wr_dim << 28) | (M << 18) 
-					| (N << 8) | (factor << 4) | start_bank;
+	*(bram_ptr) = (array_vect << 30) | (wr_dim << 28) | (M << 18)
+				  | (N << 8) | (factor << 4) | start_bank;
 
 	// Write data to BRAM
-	
+
 	for(i = 0; i < M*N; i++) {
 		*(bram_ptr_write + 1) = *(&mat_b[0][0] + i);
 	}
@@ -96,8 +96,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	int j;
 
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
 			printf("%f ", hw_result[i][j]);
 		}
 		printf("\n");
@@ -112,7 +112,7 @@ int main()
 {
 
 	mat_type mat_a[DIM][DIM], mat_b[DIM][DIM];
-	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];	
+	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
 
 	// Initialize matrices
 

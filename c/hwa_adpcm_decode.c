@@ -147,11 +147,11 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);	
+	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
 
-	*(hls_ptr + 1) = 1; 
+	*(hls_ptr + 1) = 1;
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
-		
+
 	*hls_ptr = 1;
 	*hls_ptr;
 
@@ -169,38 +169,38 @@ int adpcm_main()
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;	
+	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
 
-	start_transfer = get_cpu_cycles();	
-	
+	start_transfer = get_cpu_cycles();
+
 	write_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
 
-	*(hls_ptr + 1) = 1; 	
+	*(hls_ptr + 1) = 1;
 
 	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
 	start_compute = get_cpu_cycles();
 
 	*hls_ptr = 1;
 
-	while((*hls_ptr) != 1);	
+	while((*hls_ptr) != 1);
 
 	stop_compute = get_cpu_cycles();
-	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;		
+	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
-	start_transfer = get_cpu_cycles();	
+	start_transfer = get_cpu_cycles();
 
 	read_vector(dec_result, TEST_SIZE, 1, 2, bank_ptr_array);
 
 	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
 	if(!dec_return(dec_result)) {
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
-	}		
+	}
 
 	print_benchmark(return_compute, return_transfer);
 
@@ -213,16 +213,16 @@ int adpcm_main_encode()
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
 
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;	
+	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	write_vector(test_data, TEST_SIZE, 1, 0, bank_ptr_array);
 
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
-	*hls_ptr = 1;	
+	*hls_ptr = 1;
 
-	while((*hls_ptr) != 1);	
-	
+	while((*hls_ptr) != 1);
+
 	read_vector(compressed, TEST_SIZE, 1, 1, bank_ptr_array);
 
 	return enc_return(compressed);
@@ -231,7 +231,7 @@ int adpcm_main_encode()
 int main()
 {
 
-	init(test_data);	
+	init(test_data);
 	adpcm_main_encode(); // Get the compressed values
 
 #if(WCET)
@@ -240,9 +240,9 @@ int main()
 
 #else
 
-	printf("Benchmarking \n");	
+	printf("Benchmarking \n");
 
 	return adpcm_main();
 
-#endif	
+#endif
 }

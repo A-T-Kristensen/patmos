@@ -64,7 +64,7 @@ int _Pragma("entrypoint") matmul_main_wcet()
 	write_array_spm(spm_matrix->mat_b, DIM, DIM, factor, factor, 1);
 
 	*hls_ptr = 1;
-	*hls_ptr;	
+	*hls_ptr;
 
 	// Read back
 	read_array_spm(spm_matrix->hw_result, DIM, DIM,
@@ -78,7 +78,7 @@ int main()
 
 	mat_type mat_a[DIM][DIM];
 	mat_type mat_b[DIM][DIM];
-	mat_type sw_result[DIM][DIM];	
+	mat_type sw_result[DIM][DIM];
 
 	// Initialize matrices
 

@@ -215,7 +215,7 @@ const unsigned int ADDR_BPH 	= ADDR_DHX + sizeof(adpcm_enc_delay_dhx);
 
 volatile _SPM int *adpcm_enc_delay_dltx_p 	= (volatile _SPM int *) ADDR_DLTX;
 volatile _SPM int *adpcm_enc_delay_bpl_p 	= (volatile _SPM int *) ADDR_BPL;
-volatile _SPM int *adpcm_enc_tqmf_p 		= (volatile _SPM int *) ADDR_TQMF; 
+volatile _SPM int *adpcm_enc_tqmf_p 		= (volatile _SPM int *) ADDR_TQMF;
 volatile _SPM int *adpcm_enc_h_p 			= (volatile _SPM int *) ADDR_H;
 volatile _SPM int *adpcm_enc_delay_dhx_p 	= (volatile _SPM int *) ADDR_DHX;
 volatile _SPM int *adpcm_enc_delay_bph_p 	= (volatile _SPM int *) ADDR_BPH;
@@ -779,7 +779,7 @@ int main(void)
 
 	int i;
 
-	for(i = 0; i < 24; i++){
+	for(i = 0; i < 24; i++) {
 		adpcm_enc_h_p[i] = adpcm_enc_h[i];
 	}
 
@@ -794,19 +794,19 @@ int main(void)
 
 	printf("Benchmarking \n");
 
-	start_cycle = get_cpu_cycles();	
+	start_cycle = get_cpu_cycles();
 
 	adpcm_enc_main();
 
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-	print_benchmark(return_cycles, 0);	
+	print_benchmark(return_cycles, 0);
 
 #endif
 
 	//return adpcm_enc_return(); // For some reason, this gives an error on Patmos
-								// but if it compiled on my computer, it is correct!
+	// but if it compiled on my computer, it is correct!
 
 	return 0;
 }

@@ -158,9 +158,9 @@ int main(void)
 
 	mat_type matrix1_A[X * Y];
 	mat_type matrix1_B[Y * Z];
-	mat_type matrix1_C[X * Z];	
+	mat_type matrix1_C[X * Z];
 
-	matrix1_init(matrix1_A, matrix1_B, matrix1_C);	
+	matrix1_init(matrix1_A, matrix1_B, matrix1_C);
 
 #if(WCET)
 

@@ -46,7 +46,7 @@ int _Pragma("entrypoint") minver_main_wcet(mat_type minver_hw_i[DIM][DIM])
 #endif
 
 	*hls_ptr = 1;
-	*hls_ptr;	
+	*hls_ptr;
 
 #if(NBANKS>1)
 
@@ -98,7 +98,7 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 
 	// Poll status of HLS module
 	*hls_ptr = 1;
-	
+
 	while((*hls_ptr) != 1);
 
 #if(NBANKS>1)
@@ -124,7 +124,7 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 int main(void)
 {
 	mat_type minver_hw_i[DIM][DIM];
-	mat_type minver_sw_i[DIM][DIM];	
+	mat_type minver_sw_i[DIM][DIM];
 
 	set_minver(minver_hw_i);
 	set_minver(minver_sw_i);

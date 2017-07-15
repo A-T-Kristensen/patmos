@@ -13,18 +13,18 @@
 #include "libhwa/hwa_test.h"
 
 int main(void);
-int matmul_main(mat_type mat_a[DIM][DIM], 
-				mat_type mat_b[DIM][DIM], 
-				mat_type sw_result[DIM][DIM], 
+int matmul_main(mat_type mat_a[DIM][DIM],
+				mat_type mat_b[DIM][DIM],
+				mat_type sw_result[DIM][DIM],
 				mat_type hw_result[DIM][DIM]
-) ;
-int matmul_main_wcet(mat_type mat_a[DIM][DIM], 
-					 mat_type mat_b[DIM][DIM], 
+			   ) ;
+int matmul_main_wcet(mat_type mat_a[DIM][DIM],
+					 mat_type mat_b[DIM][DIM],
 					 mat_type hw_result[DIM][DIM]) __attribute__((noinline));
 
-int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM], 
-										   mat_type mat_b[DIM][DIM], 
-										   mat_type hw_result[DIM][DIM])
+int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM],
+		mat_type mat_b[DIM][DIM],
+		mat_type hw_result[DIM][DIM])
 {
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
@@ -48,9 +48,9 @@ int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM],
 	return 0;
 }
 
-int matmul_main(mat_type mat_a[DIM][DIM], 
-				mat_type mat_b[DIM][DIM], 
-				mat_type sw_result[DIM][DIM], 
+int matmul_main(mat_type mat_a[DIM][DIM],
+				mat_type mat_b[DIM][DIM],
+				mat_type sw_result[DIM][DIM],
 				mat_type hw_result[DIM][DIM])
 {
 
@@ -124,10 +124,10 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	for(i = 0; i < DIM*DIM; i++) {
 		hw_sum+= (int) hw_result_vec[i];
-	}	
-	
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
+	}
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
 			sw_sum+= (int) sw_result[i][j];
 		}
 	}
@@ -141,7 +141,7 @@ int main()
 {
 
 	mat_type mat_a[DIM][DIM], mat_b[DIM][DIM];
-	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];	
+	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
 
 	// Initialize matrices
 

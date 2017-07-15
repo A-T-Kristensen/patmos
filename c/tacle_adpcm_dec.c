@@ -718,16 +718,16 @@ int main(void)
 
 	printf("Benchmarking \n");
 
-	start_cycle = get_cpu_cycles();	
+	start_cycle = get_cpu_cycles();
 
 	adpcm_dec_main();
 
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-	print_benchmark(return_cycles, 0);	
+	print_benchmark(return_cycles, 0);
 
 #endif
-	
+
 	return adpcm_dec_return();
 }

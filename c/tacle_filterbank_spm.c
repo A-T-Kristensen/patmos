@@ -64,11 +64,16 @@ volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data
 const unsigned int ADDR_H	= 1024*sizeof(int);
 const unsigned int ADDR_DN 	= ADDR_H + 256*sizeof(int);
 const unsigned int ADDR_UP	= ADDR_DN + 32*sizeof(int);
-const unsigned int ADDR_F 	= ADDR_UP + 256*sizeof(int);		
+const unsigned int ADDR_F 	= ADDR_UP + 256*sizeof(int);
+
+//mat_type Vect_H[ 256 ]; /* (output of the H) */
+//mat_type Vect_Dn[(int) 256 / 8 ];    /* output of the down sampler; */
+//mat_type Vect_Up[ 256 ]; /* output of the up sampler; */
+//mat_type Vect_F[ 256 ]; /* this is the output of the */
 
 volatile _SPM int *Vect_H_p 	= (volatile _SPM int *) ADDR_H;
 volatile _SPM int *Vect_Dn_p 	= (volatile _SPM int *) ADDR_DN;
-volatile _SPM int *Vect_Up_p 	= (volatile _SPM int *) ADDR_UP; 
+volatile _SPM int *Vect_Up_p 	= (volatile _SPM int *) ADDR_UP;
 volatile _SPM int *Vect_F_p 	= (volatile _SPM int *) ADDR_F;
 
 /*
@@ -138,11 +143,6 @@ void filterbank_core(volatile _SPM mat_type(*r)[256],
 
 	_Pragma("loopbound min 8 max 8")
 	for(i = 0; i < 8; i++) {
-		
-		//mat_type Vect_H[ 256 ]; /* (output of the H) */
-		//mat_type Vect_Dn[(int) 256 / 8 ];    /* output of the down sampler; */
-		//mat_type Vect_Up[ 256 ]; /* output of the up sampler; */
-		//mat_type Vect_F[ 256 ]; /* this is the output of the */
 
 		/* convolving H */
 		_Pragma("loopbound min 256 max 256")

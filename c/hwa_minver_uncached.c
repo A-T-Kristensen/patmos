@@ -148,7 +148,7 @@ int minver_main(mat_type sw_result[DIM][DIM])
 int main(void)
 {
 
-	mat_type sw_result[DIM][DIM];	
+	mat_type sw_result[DIM][DIM];
 
 	set_minver_uncached(&test_matrix->hw_result);
 	set_minver(sw_result);

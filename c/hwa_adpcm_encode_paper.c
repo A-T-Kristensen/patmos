@@ -151,8 +151,8 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
 
-	*hls_ptr = 1;	
-	
+	*hls_ptr = 1;
+
 	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 0xF00B1000);
 
 	return 0;
@@ -161,15 +161,15 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 int main()
 {
 
-	init();	
+	init();
 
 #if(WCET)
 
 	return adpcm_main_wcet();
 
-#else	
+#else
 
 	return 0;
 
-#endif	
+#endif
 }

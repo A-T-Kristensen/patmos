@@ -150,11 +150,11 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 1);	
+	write_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 1);
 
-	*(hls_ptr + 1) = 1; 
+	*(hls_ptr + 1) = 1;
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
-		
+
 	*hls_ptr = 1;
 	*hls_ptr;
 
@@ -165,16 +165,16 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 int adpcm_main_encode()
 {
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;	
+	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	write_vector_spm(adpcm_data->test_data, TEST_SIZE, 1, 0);
 
 	*(hls_ptr + 1) = 0; // Select encoder
 	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
-	*hls_ptr = 1;	
+	*hls_ptr = 1;
 
-	while((*hls_ptr) != 1);	
-	
+	while((*hls_ptr) != 1);
+
 	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 0xF00B1000);
 
 	return enc_return();
@@ -183,7 +183,7 @@ int adpcm_main_encode()
 int main()
 {
 
-	init();	
+	init();
 	adpcm_main_encode(); // Get the compressed values
 
 #if(WCET)
@@ -194,5 +194,5 @@ int main()
 
 	return 0;
 
-#endif	
+#endif
 }

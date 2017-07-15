@@ -59,7 +59,7 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-	
+
 
 	write_vector_spm(&spm_filter->r, 256, 1, 0, bank_ptr_array);
 	write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
@@ -67,7 +67,7 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1);
 
 	*hls_ptr = 1;
-	*hls_ptr;	
+	*hls_ptr;
 
 	read_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
 
@@ -130,7 +130,7 @@ int filterbank_main(void)
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
-	}		
+	}
 
 	print_benchmark(return_compute, return_transfer);
 

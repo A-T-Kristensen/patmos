@@ -71,24 +71,24 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 	int i, j;
 
 	mat_type minver_hw_i_2[DIM][DIM];
-	mat_type minver_sw_i_2[DIM][DIM];	
+	mat_type minver_sw_i_2[DIM][DIM];
 
 	mat_type minver_hw_i_3[DIM][DIM];
-	mat_type minver_sw_i_3[DIM][DIM];	
+	mat_type minver_sw_i_3[DIM][DIM];
 
-	for(i = 0; i < DIM; i++){
-		for(j = 0; j < DIM; j++){
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
 			minver_sw_i_2[i][j] = minver_sw_i[i][j]+1;
-			minver_hw_i_2[i][j] = minver_hw_i[i][j]+1;			
+			minver_hw_i_2[i][j] = minver_hw_i[i][j]+1;
 
 			minver_sw_i_3[i][j] = minver_sw_i[i][j]+2;
-			minver_hw_i_3[i][j] = minver_hw_i[i][j]+2;				
+			minver_hw_i_3[i][j] = minver_hw_i[i][j]+2;
 		}
-	}	
+	}
 
-	minver_minver(minver_sw_i, DIM, eps);	
-	minver_minver(minver_sw_i_2, DIM, eps);	
-	minver_minver(minver_sw_i_3, DIM, eps);	
+	minver_minver(minver_sw_i, DIM, eps);
+	minver_minver(minver_sw_i_2, DIM, eps);
+	minver_minver(minver_sw_i_3, DIM, eps);
 
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
@@ -116,7 +116,7 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 #endif
 
 	*(hls_ptr + 1) = 0; // Write offset out
-	*hls_ptr = 1;	
+	*hls_ptr = 1;
 
 #if(NBANKS>1)
 
@@ -126,7 +126,7 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 
 	write_array(minver_hw_i_2, DIM, DIM, NBANKS, 0, bank_ptr_array, 1, DIM*DIM);
 
-#endif	
+#endif
 
 
 #if(NBANKS>1)
@@ -137,9 +137,9 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 
 	write_array(minver_hw_i_3, DIM, DIM, NBANKS, 0, bank_ptr_array, 1, 2*DIM*DIM);
 
-#endif	
+#endif
 
-	while((*hls_ptr) != 1);	
+	while((*hls_ptr) != 1);
 
 	*(hls_ptr + 1) = DIM*DIM*4; // Write offset out
 	*hls_ptr = 1;
@@ -155,10 +155,10 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 
 #endif
 
-	while((*hls_ptr) != 1);	
+	while((*hls_ptr) != 1);
 
 	*(hls_ptr + 1) = 2*DIM*DIM*4; // Write offset out
-	*hls_ptr = 1;	
+	*hls_ptr = 1;
 
 
 #if(NBANKS>1)
@@ -171,7 +171,7 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 
 #endif
 
-	while((*hls_ptr) != 1);	
+	while((*hls_ptr) != 1);
 
 #if(NBANKS>1)
 
@@ -199,7 +199,7 @@ int minver_main(mat_type minver_hw_i[DIM][DIM],
 int main(void)
 {
 	mat_type minver_hw_i[DIM][DIM];
-	mat_type minver_sw_i[DIM][DIM];	
+	mat_type minver_sw_i[DIM][DIM];
 
 	set_minver(minver_hw_i);
 	set_minver(minver_sw_i);

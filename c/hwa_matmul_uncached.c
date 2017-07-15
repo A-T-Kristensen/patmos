@@ -13,8 +13,8 @@
 #include "libhwa/hwa_test.h"
 
 int main(void);
-int matmul_main(mat_type mat_a[DIM][DIM], 
-				mat_type mat_b[DIM][DIM], 
+int matmul_main(mat_type mat_a[DIM][DIM],
+				mat_type mat_b[DIM][DIM],
 				mat_type sw_result[DIM][DIM]);
 int matmul_main_wcet(void) __attribute__((noinline));
 
@@ -54,7 +54,7 @@ int _Pragma("entrypoint") matmul_main_wcet()
 						 factor, factor, bank_ptr_array, 1);
 
 	*hls_ptr = 1;
-	*hls_ptr;	
+	*hls_ptr;
 
 	read_array_uncached(&test_matrix->hw_result, DIM, DIM,
 						1, NBANKS-1, bank_ptr_array, 1);
@@ -63,8 +63,8 @@ int _Pragma("entrypoint") matmul_main_wcet()
 
 }
 
-int matmul_main(mat_type mat_a[DIM][DIM], 
-				mat_type mat_b[DIM][DIM], 
+int matmul_main(mat_type mat_a[DIM][DIM],
+				mat_type mat_b[DIM][DIM],
 				mat_type sw_result[DIM][DIM])
 {
 
@@ -145,7 +145,7 @@ int main()
 
 	mat_type mat_a[DIM][DIM];
 	mat_type mat_b[DIM][DIM];
-	mat_type sw_result[DIM][DIM];	
+	mat_type sw_result[DIM][DIM];
 
 	// Initialize matrices
 
@@ -154,7 +154,7 @@ int main()
 	matmul_init_uncached(&test_matrix->mat_a,
 						 &test_matrix->mat_b,
 						 &test_matrix->hw_result);
-	
+
 #if(WCET)
 
 	return matmul_main_wcet();

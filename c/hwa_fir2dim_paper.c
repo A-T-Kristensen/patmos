@@ -177,12 +177,12 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 
 	int i;
 
-	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;	
+	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	write_vector_spm(spm_filter->fir2dim_input, SIZE, 1, 0);
 
 	*hls_ptr = 1;
-	*hls_ptr;		
+	*hls_ptr;
 
 	read_vector_spm(spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 0xF00B1000);
 

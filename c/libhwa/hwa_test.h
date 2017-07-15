@@ -49,7 +49,7 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type(*hw_result)[ROWS][COLS],
 
 	DESCRIPTION: Determines if the result from the
 				 HwA differs from that of the software
-				 and returns the number of errors.				 
+				 and returns the number of errors.
 
  */
 
@@ -75,7 +75,7 @@ int compare_vectors_uncached(volatile _UNCACHED mat_type(*hw_result)[],
 	RETURNS: None
 
 	DESCRIPTION: led_blink() blinks the LEDs on the FPGA in
- 				 different patterns depending on whether the 
+ 				 different patterns depending on whether the
  				 result is correct.
 
  */

@@ -77,8 +77,8 @@ int _Pragma("entrypoint") filterbank_main_wcet(mat_type r[256],
 
 	*hls_ptr = 1;
 	*hls_ptr;
-	
-	read_vector(y, 256, 1, 1, bank_ptr_array);	
+
+	read_vector(y, 256, 1, 1, bank_ptr_array);
 
 	return 0;
 }
@@ -141,7 +141,7 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
-	}		
+	}
 
 	print_benchmark(return_compute, return_transfer);
 

@@ -67,7 +67,7 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 	write_array_uncached(&test_filter->F, 32, 8, 1, 3, bank_ptr_array, 1);
 
 	*hls_ptr = 1;
-	*hls_ptr;	
+	*hls_ptr;
 
 	read_vector_uncached(&test_filter->y, 256, 1, 1, bank_ptr_array);
 
@@ -130,9 +130,9 @@ int filterbank_main(void)
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
-	}		
+	}
 
-	print_benchmark(return_compute, return_transfer);	
+	print_benchmark(return_compute, return_transfer);
 
 	return (int)(test_filter->y[0]) - 9408;
 }
