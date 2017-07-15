@@ -728,6 +728,6 @@ int main(void)
 	print_benchmark(return_cycles, 0);	
 
 #endif
-
+	
 	return adpcm_dec_return();
 }

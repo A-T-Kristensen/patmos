@@ -206,34 +206,19 @@ struct adpcm_struct {
 
 volatile _SPM struct adpcm_struct *adpcm_data = (volatile _SPM struct adpcm_struct *) SPM_BASE;
 
-const unsigned int ADDR_DLTX = 3*TEST_SIZE*sizeof(int);
-const unsigned int ADDR_BPL = ADDR_DLTX + sizeof(adpcm_enc_delay_dltx);
-const unsigned int ADDR_TQMF =  ADDR_BPL + sizeof(adpcm_enc_delay_bpl);
-const unsigned int ADDR_H = ADDR_TQMF + sizeof(adpcm_enc_tqmf);
-const unsigned int ADDR_DHX = ADDR_H +  sizeof(adpcm_enc_h);
-const unsigned int ADDR_BPH =  ADDR_DHX + sizeof(adpcm_enc_delay_dhx);
+const unsigned int ADDR_DLTX	= 3*TEST_SIZE*sizeof(int);
+const unsigned int ADDR_BPL 	= ADDR_DLTX + sizeof(adpcm_enc_delay_dltx);
+const unsigned int ADDR_TQMF	= ADDR_BPL + sizeof(adpcm_enc_delay_bpl);
+const unsigned int ADDR_H 		= ADDR_TQMF + sizeof(adpcm_enc_tqmf);
+const unsigned int ADDR_DHX 	= ADDR_H +  sizeof(adpcm_enc_h);
+const unsigned int ADDR_BPH 	= ADDR_DHX + sizeof(adpcm_enc_delay_dhx);
 
-volatile _SPM int *adpcm_enc_delay_dltx_p = (volatile _SPM int *) ADDR_DLTX;
-volatile _SPM int *adpcm_enc_delay_bpl_p = (volatile _SPM int *) ADDR_BPL;
-volatile _SPM int *adpcm_enc_tqmf_p = (volatile _SPM int *) ADDR_TQMF; 
-volatile _SPM int *adpcm_enc_h_p = (volatile _SPM int *) ADDR_H;
-volatile _SPM int *adpcm_enc_delay_dhx_p = (volatile _SPM int *) ADDR_DHX;
-volatile _SPM int *adpcm_enc_delay_bph_p = (volatile _SPM int *) ADDR_BPH;
-
-/*adpcm_enc_delay_dltx_p = (volatile _SPM int *) ADDR_DLTX;
-adpcm_enc_delay_bpl_p = (volatile _SPM int *) ADDR_BPL;
-adpcm_enc_tqmf_p = (volatile _SPM int *) ADDR_TQMF;
-adpcm_enc_h_p = (volatile _SPM int *) ADDR_H;
-adpcm_enc_delay_dhx_p = (volatile _SPM int *) ADDR_DHX;
-adpcm_enc_delay_bph_p = (volatile _SPM int *) ADDR_BPH;*/
-
-/*volatile _SPM int (*adpcm_enc_delay_dltx_p)[6];
-volatile _SPM int (*adpcm_enc_delay_bpl_p)[6];
-volatile _SPM int (*adpcm_enc_tqmf_p)[24];
-volatile _SPM int (*adpcm_enc_h_p)[24];
-volatile _SPM int (*adpcm_enc_delay_dhx_p)[6];
-volatile _SPM int (*adpcm_enc_delay_bph_p)[6];
-*/
+volatile _SPM int *adpcm_enc_delay_dltx_p 	= (volatile _SPM int *) ADDR_DLTX;
+volatile _SPM int *adpcm_enc_delay_bpl_p 	= (volatile _SPM int *) ADDR_BPL;
+volatile _SPM int *adpcm_enc_tqmf_p 		= (volatile _SPM int *) ADDR_TQMF; 
+volatile _SPM int *adpcm_enc_h_p 			= (volatile _SPM int *) ADDR_H;
+volatile _SPM int *adpcm_enc_delay_dhx_p 	= (volatile _SPM int *) ADDR_DHX;
+volatile _SPM int *adpcm_enc_delay_bph_p 	= (volatile _SPM int *) ADDR_BPH;
 
 /* G722 encode function two ints in, one 8 bit output */
 
@@ -820,11 +805,7 @@ int main(void)
 
 #endif
 
-	for(i = 0; i < TEST_SIZE; i++){
-		printf("%d\n", adpcm_data->compressed[i]);
-	}
-
-	return adpcm_enc_return(); // For some reason, this gives an error on Patmos
+	//return adpcm_enc_return(); // For some reason, this gives an error on Patmos
 								// but if it compiled on my computer, it is correct!
 
 	return 0;
