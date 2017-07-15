@@ -28,17 +28,11 @@
 #include "libhwa/hwa_lib.h"
 #include "libhwa/hwa_test.h"
 
-
 /*
   Forward declaration of functions
 */
 
-struct filter_data {
-	mat_type r[ 256 ];
-	mat_type y[ 256 ];
-	mat_type H[ 8 ][ 32 ];
-	mat_type F[ 8 ][ 32 ];
-};
+
 
 void filterbank_init(void);
 void filterbank_main(void) __attribute__((noinline));
@@ -56,8 +50,26 @@ void filterbank_core(volatile _SPM mat_type(*r)[256],
 
 static int filterbank_return_value;
 static int filterbank_numiters;
+
+
+struct filter_data {
+	mat_type r[ 256 ];
+	mat_type y[ 256 ];
+	mat_type H[ 8 ][ 32 ];
+	mat_type F[ 8 ][ 32 ];
+};
+
 volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data *) SPM_BASE;
 
+const unsigned int ADDR_H	= 1024*sizeof(int);
+const unsigned int ADDR_DN 	= ADDR_H + 256*sizeof(int);
+const unsigned int ADDR_UP	= ADDR_DN + 32*sizeof(int);
+const unsigned int ADDR_F 	= ADDR_UP + 256*sizeof(int);		
+
+volatile _SPM int *Vect_H_p 	= (volatile _SPM int *) ADDR_H;
+volatile _SPM int *Vect_Dn_p 	= (volatile _SPM int *) ADDR_DN;
+volatile _SPM int *Vect_Up_p 	= (volatile _SPM int *) ADDR_UP; 
+volatile _SPM int *Vect_F_p 	= (volatile _SPM int *) ADDR_F;
 
 /*
   Initialization- and return-value-related functions
@@ -126,47 +138,48 @@ void filterbank_core(volatile _SPM mat_type(*r)[256],
 
 	_Pragma("loopbound min 8 max 8")
 	for(i = 0; i < 8; i++) {
-		mat_type Vect_H[ 256 ]; /* (output of the H) */
-		mat_type Vect_Dn[(int) 256 / 8 ];    /* output of the down sampler; */
-		mat_type Vect_Up[ 256 ]; /* output of the up sampler; */
-		mat_type Vect_F[ 256 ]; /* this is the output of the */
+		
+		//mat_type Vect_H[ 256 ]; /* (output of the H) */
+		//mat_type Vect_Dn[(int) 256 / 8 ];    /* output of the down sampler; */
+		//mat_type Vect_Up[ 256 ]; /* output of the up sampler; */
+		//mat_type Vect_F[ 256 ]; /* this is the output of the */
 
 		/* convolving H */
 		_Pragma("loopbound min 256 max 256")
 		for(j = 0; j < 256; j++) {
-			Vect_H[ j ] = 0;
+			Vect_H_p[ j ] = 0;
 			_Pragma("loopbound min 1 max 32")
 			for(k = 0; ((k < 32) & ((j - k) >= 0)); k++)
-				Vect_H[ j ] += (*H)[ i ][ k ] * (*r)[ j - k ];
+				Vect_H_p[ j ] += (*H)[ i ][ k ] * (*r)[ j - k ];
 		}
 
 		/* Down Sampling */
 		_Pragma("loopbound min 32 max 32")
 		for(j = 0; j < 256 / 8; j++)
-			Vect_Dn[ j ] = Vect_H[ j * 8 ];
+			Vect_Dn_p[ j ] = Vect_H_p[ j * 8 ];
 
 		/* Up Sampling */
 		_Pragma("loopbound min 256 max 256")
 		for(j = 0; j < 256; j++)
-			Vect_Up[ j ] = 0;
+			Vect_Up_p[ j ] = 0;
 		_Pragma("loopbound min 32 max 32")
 		for(j = 0; j < 256 / 8; j++)
-			Vect_Up[ j * 8 ] = Vect_Dn[ j ];
+			Vect_Up_p[ j * 8 ] = Vect_Dn_p[ j ];
 
 		/* convolving F */
 		_Pragma("loopbound min 256 max 256")
 		for(j = 0; j < 256; j++) {
-			Vect_F[ j ] = 0;
+			Vect_F_p[ j ] = 0;
 			_Pragma("loopbound min 1 max 32")
 			for(k = 0; ((k < 32) & ((j - k) >= 0)); k++)
-				Vect_F[ j ] += (*F)[ i ][ k ] * Vect_Up[ j - k ];
+				Vect_F_p[ j ] += (*F)[ i ][ k ] * Vect_Up_p[ j - k ];
 		}
 
 		/* adding the results to the y matrix */
 
 		_Pragma("loopbound min 256 max 256")
 		for(j = 0; j < 256; j++)
-			(*y)[ j ] += Vect_F[ j ];
+			(*y)[ j ] += Vect_F_p[ j ];
 	}
 }
 
