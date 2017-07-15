@@ -4,7 +4,7 @@
 #define SIZE	3
 #define VECSIZE 3
 #define NBANKS 	3
-#define WCET	0
+#define WCET	1
 #define ARRAY_WR_FACTOR	1
 #define ARRAY_WR_DIV	32
 #define ARRAY_RD_FACTOR	1

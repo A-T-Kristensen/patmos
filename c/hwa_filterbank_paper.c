@@ -56,7 +56,6 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 {
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-
 	write_vector_spm(spm_filter->r, 256, 1, 0);
 	write_vector_spm(spm_filter->y, 256, 1, 1);
 	write_array_spm(spm_filter->H, 32, 8, 1, 2, 1);
