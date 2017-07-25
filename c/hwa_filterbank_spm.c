@@ -94,7 +94,7 @@ int filterbank_main(void)
 	start_transfer = get_cpu_cycles();
 
 	write_vector_spm(&spm_filter->r, 256, 1, 0, bank_ptr_array);
-	write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
+	//write_vector_spm(&spm_filter->y, 256, 1, 1, bank_ptr_array);
 	write_array_spm(&spm_filter->H, 32, 8, 1, 2, bank_ptr_array, 1);
 	write_array_spm(&spm_filter->F, 32, 8, 1, 3, bank_ptr_array, 1);
 
@@ -126,7 +126,7 @@ int filterbank_main(void)
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
 
-	if(!(int)(spm_filter->y[0]) - 9408) {
+	if(!((int)(spm_filter->y[0]) - 9408)) {
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
