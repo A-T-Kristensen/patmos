@@ -17,7 +17,7 @@
 
 #define PI 3141
 
-#define TEST_SIZE 3
+#define TEST_SIZE 6
 
 #define IN_END TEST_SIZE+1
 
@@ -165,15 +165,7 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 int adpcm_main_encode()
 {
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector_spm(adpcm_data->test_data, TEST_SIZE, 1, 0);
-
-	*(hls_ptr + 1) = 0; // Select encoder
-	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
-	*hls_ptr = 1;
-
-	while((*hls_ptr) != 1);
 
 	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 0xF00B1000);
 

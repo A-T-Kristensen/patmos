@@ -17,7 +17,7 @@
 
 #define PI 3141
 
-#define TEST_SIZE 3
+#define TEST_SIZE 6
 
 #define IN_END TEST_SIZE+1
 
@@ -153,7 +153,7 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 
 	*hls_ptr = 1;
 
-	read_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 0xF00B1000);
+
 
 	return 0;
 }
