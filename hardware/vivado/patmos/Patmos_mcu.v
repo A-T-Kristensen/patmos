@@ -9848,7 +9848,7 @@ module BRamCtrl(input clk, input reset,
   wire T7;
   wire T8;
   reg [2:0] state;
-  wire[2:0] T361;
+  wire[2:0] T360;
   wire[2:0] T9;
   wire[2:0] T10;
   wire[2:0] T11;
@@ -9866,7 +9866,7 @@ module BRamCtrl(input clk, input reset,
   wire T23;
   wire[1:0] T24;
   reg [31:0] settings;
-  wire[31:0] T362;
+  wire[31:0] T361;
   wire[31:0] T25;
   wire[31:0] T26;
   wire[31:0] T27;
@@ -9903,7 +9903,7 @@ module BRamCtrl(input clk, input reset,
   wire[31:0] T58;
   wire[31:0] T59;
   wire[31:0] T60;
-  wire[15:0] T363;
+  wire[15:0] T362;
   wire[16:0] T61;
   wire[16:0] T62;
   wire[16:0] T63;
@@ -9912,7 +9912,7 @@ module BRamCtrl(input clk, input reset,
   wire[16:0] T66;
   wire[16:0] T67;
   wire[16:0] T68;
-  wire[16:0] T364;
+  wire[16:0] T363;
   wire[15:0] T69;
   wire[15:0] T70;
   wire[15:0] T71;
@@ -9923,16 +9923,16 @@ module BRamCtrl(input clk, input reset,
   wire T76;
   wire T77;
   wire[15:0] T78;
-  wire[15:0] T365;
+  wire[15:0] T364;
   wire[11:0] T79;
   wire[11:0] T80;
-  wire[11:0] T366;
+  wire[11:0] T365;
   wire[9:0] T81;
   wire[9:0] T82;
   wire[9:0] T83;
   wire[9:0] T84;
   reg [9:0] memories_0;
-  wire[9:0] T367;
+  wire[9:0] T366;
   wire[9:0] T85;
   wire[9:0] T86;
   wire[9:0] T87;
@@ -9943,7 +9943,7 @@ module BRamCtrl(input clk, input reset,
   wire[15:0] T92;
   wire[3:0] T93;
   reg [3:0] cur_bank;
-  wire[3:0] T368;
+  wire[3:0] T367;
   wire[3:0] T94;
   wire[3:0] T95;
   wire[3:0] T96;
@@ -9954,247 +9954,249 @@ module BRamCtrl(input clk, input reset,
   wire T101;
   wire T102;
   reg [9:0] rows;
-  wire[9:0] T369;
+  wire[9:0] T368;
   wire[9:0] T103;
   wire[9:0] T104;
   wire[3:0] T105;
-  wire[3:0] T106;
-  wire[9:0] T107;
-  wire T108;
-  wire[9:0] T109;
+  wire[9:0] T106;
+  wire T107;
+  wire[9:0] T108;
   reg [9:0] row_cnt;
-  wire[9:0] T370;
+  wire[9:0] T369;
+  wire[9:0] T109;
   wire[9:0] T110;
   wire[9:0] T111;
   wire[9:0] T112;
   wire[9:0] T113;
   wire[9:0] T114;
   wire[9:0] T115;
-  wire[9:0] T116;
+  wire T116;
   wire T117;
-  wire T118;
-  wire[9:0] T119;
+  wire[9:0] T118;
+  wire T119;
   wire T120;
   wire T121;
-  wire T122;
-  wire[9:0] T123;
+  wire[9:0] T122;
+  wire T123;
   wire T124;
-  wire T125;
+  wire[9:0] T125;
   wire[9:0] T126;
-  wire[9:0] T127;
   reg [9:0] col_cnt;
-  wire[9:0] T371;
+  wire[9:0] T370;
+  wire[9:0] T127;
   wire[9:0] T128;
   wire[9:0] T129;
   wire[9:0] T130;
   wire[9:0] T131;
   wire[9:0] T132;
-  wire[9:0] T133;
+  wire T133;
   wire T134;
   wire T135;
   wire T136;
   wire T137;
-  wire T138;
   reg [9:0] cols;
-  wire[9:0] T372;
+  wire[9:0] T371;
+  wire[9:0] T138;
   wire[9:0] T139;
-  wire[9:0] T140;
-  wire[3:0] T141;
-  wire[3:0] T142;
+  wire[3:0] T140;
+  wire[9:0] T141;
+  wire T142;
   wire[9:0] T143;
-  wire T144;
-  wire[9:0] T145;
-  wire[9:0] T146;
-  wire T147;
-  wire T148;
+  wire[9:0] T144;
+  wire T145;
+  wire T146;
   reg [3:0] start_bank;
-  wire[3:0] T373;
-  wire[3:0] T149;
-  wire[3:0] T150;
-  wire T151;
-  wire T152;
+  wire[3:0] T372;
+  wire[3:0] T147;
+  wire[3:0] T148;
+  wire T149;
+  wire T150;
   reg [3:0] max_bank;
-  wire[3:0] T374;
-  wire[3:0] T153;
+  wire[3:0] T373;
+  wire[15:0] T374;
+  wire[15:0] T151;
+  wire[15:0] T375;
+  wire[15:0] T152;
+  wire[15:0] T153;
   wire[3:0] T154;
   wire[3:0] T155;
-  wire[3:0] T156;
+  wire T156;
   wire T157;
-  wire T158;
-  wire[3:0] T159;
-  wire T160;
-  wire[9:0] T161;
-  wire T162;
-  wire[9:0] T163;
-  wire T164;
+  wire[3:0] T158;
+  wire T159;
+  wire[9:0] T160;
+  wire T161;
+  wire[9:0] T162;
+  wire T163;
   reg [9:0] memories_1;
-  wire[9:0] T375;
+  wire[9:0] T376;
+  wire[9:0] T164;
   wire[9:0] T165;
   wire[9:0] T166;
   wire[9:0] T167;
-  wire[9:0] T168;
+  wire T168;
   wire T169;
   wire T170;
   wire T171;
   wire T172;
-  wire T173;
-  wire[9:0] T174;
+  wire[9:0] T173;
   reg [9:0] memories_2;
-  wire[9:0] T376;
+  wire[9:0] T377;
+  wire[9:0] T174;
   wire[9:0] T175;
   wire[9:0] T176;
   wire[9:0] T177;
-  wire[9:0] T178;
+  wire T178;
   wire T179;
   wire T180;
   wire T181;
-  wire T182;
   reg [9:0] memories_3;
-  wire[9:0] T377;
+  wire[9:0] T378;
+  wire[9:0] T182;
   wire[9:0] T183;
   wire[9:0] T184;
   wire[9:0] T185;
-  wire[9:0] T186;
+  wire T186;
   wire T187;
   wire T188;
   wire T189;
   wire T190;
   wire T191;
-  wire T192;
+  wire[9:0] T192;
   wire[9:0] T193;
-  wire[9:0] T194;
   reg [9:0] memories_4;
-  wire[9:0] T378;
+  wire[9:0] T379;
+  wire[9:0] T194;
   wire[9:0] T195;
   wire[9:0] T196;
   wire[9:0] T197;
-  wire[9:0] T198;
+  wire T198;
   wire T199;
   wire T200;
   wire T201;
-  wire T202;
   reg [9:0] memories_5;
-  wire[9:0] T379;
+  wire[9:0] T380;
+  wire[9:0] T202;
   wire[9:0] T203;
   wire[9:0] T204;
   wire[9:0] T205;
-  wire[9:0] T206;
+  wire T206;
   wire T207;
   wire T208;
   wire T209;
   wire T210;
-  wire T211;
-  wire[9:0] T212;
+  wire[9:0] T211;
   reg [9:0] memories_6;
-  wire[9:0] T380;
+  wire[9:0] T381;
+  wire[9:0] T212;
   wire[9:0] T213;
   wire[9:0] T214;
   wire[9:0] T215;
-  wire[9:0] T216;
+  wire T216;
   wire T217;
   wire T218;
   wire T219;
-  wire T220;
   reg [9:0] memories_7;
-  wire[9:0] T381;
+  wire[9:0] T382;
+  wire[9:0] T220;
   wire[9:0] T221;
   wire[9:0] T222;
   wire[9:0] T223;
-  wire[9:0] T224;
+  wire T224;
   wire T225;
   wire T226;
   wire T227;
   wire T228;
   wire T229;
   wire T230;
-  wire T231;
+  wire[9:0] T231;
   wire[9:0] T232;
   wire[9:0] T233;
-  wire[9:0] T234;
   reg [9:0] memories_8;
-  wire[9:0] T382;
+  wire[9:0] T383;
+  wire[9:0] T234;
   wire[9:0] T235;
   wire[9:0] T236;
   wire[9:0] T237;
-  wire[9:0] T238;
+  wire T238;
   wire T239;
   wire T240;
   wire T241;
-  wire T242;
   reg [9:0] memories_9;
-  wire[9:0] T383;
+  wire[9:0] T384;
+  wire[9:0] T242;
   wire[9:0] T243;
   wire[9:0] T244;
   wire[9:0] T245;
-  wire[9:0] T246;
+  wire T246;
   wire T247;
   wire T248;
   wire T249;
   wire T250;
-  wire T251;
-  wire[9:0] T252;
+  wire[9:0] T251;
   reg [9:0] memories_10;
-  wire[9:0] T384;
+  wire[9:0] T385;
+  wire[9:0] T252;
   wire[9:0] T253;
   wire[9:0] T254;
   wire[9:0] T255;
-  wire[9:0] T256;
+  wire T256;
   wire T257;
   wire T258;
   wire T259;
-  wire T260;
   reg [9:0] memories_11;
-  wire[9:0] T385;
+  wire[9:0] T386;
+  wire[9:0] T260;
   wire[9:0] T261;
   wire[9:0] T262;
   wire[9:0] T263;
-  wire[9:0] T264;
+  wire T264;
   wire T265;
   wire T266;
   wire T267;
   wire T268;
   wire T269;
-  wire T270;
+  wire[9:0] T270;
   wire[9:0] T271;
-  wire[9:0] T272;
   reg [9:0] memories_12;
-  wire[9:0] T386;
+  wire[9:0] T387;
+  wire[9:0] T272;
   wire[9:0] T273;
   wire[9:0] T274;
   wire[9:0] T275;
-  wire[9:0] T276;
+  wire T276;
   wire T277;
   wire T278;
   wire T279;
-  wire T280;
   reg [9:0] memories_13;
-  wire[9:0] T387;
+  wire[9:0] T388;
+  wire[9:0] T280;
   wire[9:0] T281;
   wire[9:0] T282;
   wire[9:0] T283;
-  wire[9:0] T284;
+  wire T284;
   wire T285;
   wire T286;
   wire T287;
   wire T288;
-  wire T289;
-  wire[9:0] T290;
+  wire[9:0] T289;
   reg [9:0] memories_14;
-  wire[9:0] T388;
+  wire[9:0] T389;
+  wire[9:0] T290;
   wire[9:0] T291;
   wire[9:0] T292;
   wire[9:0] T293;
-  wire[9:0] T294;
+  wire T294;
   wire T295;
   wire T296;
   wire T297;
-  wire T298;
   reg [9:0] memories_15;
-  wire[9:0] T389;
+  wire[9:0] T390;
+  wire[9:0] T298;
   wire[9:0] T299;
   wire[9:0] T300;
   wire[9:0] T301;
-  wire[9:0] T302;
+  wire T302;
   wire T303;
   wire T304;
   wire T305;
@@ -10202,62 +10204,62 @@ module BRamCtrl(input clk, input reset,
   wire T307;
   wire T308;
   wire T309;
-  wire T310;
-  wire[15:0] T311;
-  wire[16:0] T312;
-  wire[16:0] T390;
-  wire[15:0] T313;
-  wire[3:0] T314;
-  wire[3:0] T315;
-  wire[16:0] T316;
+  wire[15:0] T310;
+  wire[16:0] T311;
   wire[16:0] T391;
+  wire[15:0] T312;
+  wire[3:0] T313;
+  wire[3:0] T314;
+  wire[16:0] T315;
   wire[16:0] T392;
-  wire[15:0] T317;
+  wire[16:0] T393;
+  wire[15:0] T316;
+  wire T317;
   wire T318;
   wire T319;
   wire T320;
-  wire T321;
-  wire[16:0] T322;
-  wire[16:0] T393;
+  wire[16:0] T321;
+  wire[16:0] T394;
+  wire[11:0] T322;
   wire[11:0] T323;
-  wire[11:0] T324;
-  wire[11:0] T394;
+  wire[11:0] T395;
+  wire[16:0] T324;
   wire[16:0] T325;
-  wire[16:0] T326;
-  wire[16:0] T395;
-  wire[15:0] T327;
-  wire[3:0] T328;
-  wire[3:0] T329;
-  wire[16:0] T330;
   wire[16:0] T396;
-  wire[15:0] T331;
+  wire[15:0] T326;
+  wire[3:0] T327;
+  wire[3:0] T328;
+  wire[16:0] T329;
+  wire[16:0] T397;
+  wire[15:0] T330;
+  wire T331;
   wire T332;
   wire T333;
   wire T334;
-  wire T335;
-  wire[16:0] T336;
-  wire[16:0] T397;
+  wire[16:0] T335;
+  wire[16:0] T398;
+  wire[11:0] T336;
   wire[11:0] T337;
-  wire[11:0] T338;
-  wire[11:0] T398;
+  wire[11:0] T399;
+  wire[16:0] T338;
   wire[16:0] T339;
-  wire[16:0] T340;
-  wire[16:0] T399;
-  wire[15:0] T341;
-  wire[3:0] T342;
-  wire[3:0] T343;
-  wire[16:0] T344;
   wire[16:0] T400;
-  wire[15:0] T345;
+  wire[15:0] T340;
+  wire[3:0] T341;
+  wire[3:0] T342;
+  wire[16:0] T343;
+  wire[16:0] T401;
+  wire[15:0] T344;
+  wire T345;
   wire T346;
   wire T347;
   wire T348;
-  wire T349;
+  wire[2:0] T349;
   wire[2:0] T350;
   wire[2:0] T351;
-  wire[2:0] T352;
   reg [1:0] respReg;
-  wire[1:0] T401;
+  wire[1:0] T402;
+  wire[1:0] T352;
   wire[1:0] T353;
   wire[1:0] T354;
   wire[1:0] T355;
@@ -10265,7 +10267,6 @@ module BRamCtrl(input clk, input reset,
   wire[1:0] T357;
   wire[1:0] T358;
   wire[1:0] T359;
-  wire[1:0] T360;
 
 `ifndef SYNTHESIS
 // synthesis translate_off
@@ -10312,7 +10313,7 @@ module BRamCtrl(input clk, input reset,
   assign T6 = T8 & T7;
   assign T7 = io_ocp_M_Cmd == 3'h1;
   assign T8 = state == 3'h2;
-  assign T361 = reset ? 3'h0 : T9;
+  assign T360 = reset ? 3'h0 : T9;
   assign T9 = T49 ? 3'h1 : T10;
   assign T10 = T42 ? 3'h1 : T11;
   assign T11 = T40 ? 3'h1 : T12;
@@ -10329,7 +10330,7 @@ module BRamCtrl(input clk, input reset,
   assign T22 = T29 & T23;
   assign T23 = T24 == 2'h1;
   assign T24 = settings[5'h1d:5'h1c];
-  assign T362 = reset ? 32'h0 : T25;
+  assign T361 = reset ? 32'h0 : T25;
   assign T25 = T49 ? io_ocp_M_Data : T26;
   assign T26 = T42 ? io_ocp_M_Data : T27;
   assign T27 = T40 ? io_ocp_M_Data : T28;
@@ -10367,17 +10368,17 @@ module BRamCtrl(input clk, input reset,
   assign T58 = T57 ? io_ocp_M_Data : T59;
   assign T59 = T56 ? io_ocp_M_Data : T60;
   assign T60 = T3 ? io_ocp_M_Data : 32'h0;
-  assign io_bRamCtrlPins_MAddr = T363;
-  assign T363 = T61[4'hf:1'h0];
-  assign T61 = T346 ? T400 : T62;
-  assign T62 = T57 ? T340 : T63;
-  assign T63 = T57 ? T336 : T64;
-  assign T64 = T332 ? T396 : T65;
-  assign T65 = T56 ? T326 : T66;
-  assign T66 = T56 ? T322 : T67;
-  assign T67 = T318 ? T392 : T68;
-  assign T68 = T3 ? T312 : T364;
-  assign T364 = {1'h0, T69};
+  assign io_bRamCtrlPins_MAddr = T362;
+  assign T362 = T61[4'hf:1'h0];
+  assign T61 = T345 ? T401 : T62;
+  assign T62 = T57 ? T339 : T63;
+  assign T63 = T57 ? T335 : T64;
+  assign T64 = T331 ? T397 : T65;
+  assign T65 = T56 ? T325 : T66;
+  assign T66 = T56 ? T321 : T67;
+  assign T67 = T317 ? T393 : T68;
+  assign T68 = T3 ? T311 : T363;
+  assign T363 = {1'h0, T69};
   assign T69 = T3 ? T78 : T70;
   assign T70 = T72 ? T71 : 16'h0;
   assign T71 = io_ocp_M_Addr[4'hf:1'h0];
@@ -10387,18 +10388,18 @@ module BRamCtrl(input clk, input reset,
   assign T75 = io_ocp_M_Cmd == 3'h2;
   assign T76 = io_ocp_M_Cmd == 3'h1;
   assign T77 = T17 ^ 1'h1;
-  assign T78 = T311 | T365;
-  assign T365 = {4'h0, T79};
+  assign T78 = T310 | T364;
+  assign T364 = {4'h0, T79};
   assign T79 = T80 << 1'h0;
-  assign T80 = T366 & 12'hfff;
-  assign T366 = {2'h0, T81};
-  assign T81 = T310 ? T232 : T82;
-  assign T82 = T231 ? T193 : T83;
-  assign T83 = T192 ? T174 : T84;
-  assign T84 = T173 ? memories_1 : memories_0;
-  assign T367 = reset ? 10'h0 : T85;
-  assign T85 = T164 ? T163 : T86;
-  assign T86 = T162 ? T161 : T87;
+  assign T80 = T365 & 12'hfff;
+  assign T365 = {2'h0, T81};
+  assign T81 = T309 ? T231 : T82;
+  assign T82 = T230 ? T192 : T83;
+  assign T83 = T191 ? T173 : T84;
+  assign T84 = T172 ? memories_1 : memories_0;
+  assign T366 = reset ? 10'h0 : T85;
+  assign T85 = T163 ? T162 : T86;
+  assign T86 = T161 ? T160 : T87;
   assign T87 = T90 ? T89 : T88;
   assign T88 = T32 ? 10'h0 : memories_0;
   assign T89 = T81 + 10'h4;
@@ -10406,310 +10407,311 @@ module BRamCtrl(input clk, input reset,
   assign T91 = T92[1'h0:1'h0];
   assign T92 = 1'h1 << T93;
   assign T93 = cur_bank;
-  assign T368 = reset ? 4'h0 : T94;
-  assign T94 = T160 ? T159 : T95;
-  assign T95 = T157 ? T156 : T96;
-  assign T96 = T151 ? start_bank : T97;
+  assign T367 = reset ? 4'h0 : T94;
+  assign T94 = T159 ? T158 : T95;
+  assign T95 = T156 ? T155 : T96;
+  assign T96 = T149 ? start_bank : T97;
   assign T97 = T100 ? T99 : T98;
   assign T98 = T32 ? 4'h0 : cur_bank;
   assign T99 = cur_bank + 4'h1;
-  assign T100 = T124 & T101;
-  assign T101 = T108 | T102;
+  assign T100 = T123 & T101;
+  assign T101 = T107 | T102;
   assign T102 = rows == 10'h0;
-  assign T369 = reset ? 10'h0 : T103;
+  assign T368 = reset ? 10'h0 : T103;
   assign T103 = T32 ? T104 : rows;
-  assign T104 = T107 >> T105;
-  assign T105 = T106 - 4'h1;
-  assign T106 = settings[3'h7:3'h4];
-  assign T107 = settings[5'h1b:5'h12];
-  assign T108 = row_cnt == T109;
-  assign T109 = rows - 10'h1;
-  assign T370 = reset ? 10'h0 : T110;
-  assign T110 = T120 ? T119 : T111;
-  assign T111 = T160 ? 10'h0 : T112;
-  assign T112 = T57 ? 10'h0 : T113;
-  assign T113 = T117 ? T116 : T114;
-  assign T114 = T100 ? 10'h0 : T115;
-  assign T115 = T32 ? 10'h0 : row_cnt;
-  assign T116 = row_cnt + 10'h1;
-  assign T117 = T124 & T118;
-  assign T118 = T101 ^ 1'h1;
-  assign T119 = row_cnt + 10'h1;
-  assign T120 = T57 & T121;
-  assign T121 = T122 ^ 1'h1;
-  assign T122 = row_cnt == T123;
-  assign T123 = rows - 10'h1;
-  assign T124 = T3 & T125;
-  assign T125 = col_cnt == T126;
-  assign T126 = T127 - 10'h1;
-  assign T127 = settings[5'h11:4'h8];
-  assign T371 = reset ? 10'h0 : T128;
-  assign T128 = T147 ? T146 : T129;
-  assign T129 = T136 ? 10'h0 : T130;
-  assign T130 = T134 ? T133 : T131;
-  assign T131 = T124 ? 10'h0 : T132;
-  assign T132 = T32 ? 10'h0 : col_cnt;
-  assign T133 = col_cnt + 10'h1;
-  assign T134 = T3 & T135;
-  assign T135 = T125 ^ 1'h1;
-  assign T136 = T56 & T137;
-  assign T137 = T144 | T138;
-  assign T138 = cols == 10'h0;
-  assign T372 = reset ? 10'h0 : T139;
-  assign T139 = T32 ? T140 : cols;
-  assign T140 = T143 >> T141;
-  assign T141 = T142 - 4'h1;
-  assign T142 = settings[3'h7:3'h4];
-  assign T143 = settings[5'h11:4'h8];
-  assign T144 = col_cnt == T145;
-  assign T145 = cols - 10'h1;
-  assign T146 = col_cnt + 10'h1;
-  assign T147 = T56 & T148;
-  assign T148 = T137 ^ 1'h1;
-  assign T373 = reset ? 4'h0 : T149;
-  assign T149 = T32 ? T150 : start_bank;
-  assign T150 = settings[2'h3:1'h0];
-  assign T151 = T136 & T152;
-  assign T152 = cur_bank == max_bank;
-  assign T374 = reset ? 4'h0 : T153;
-  assign T153 = T32 ? T154 : max_bank;
-  assign T154 = T155 - 4'h1;
-  assign T155 = settings[3'h7:3'h4];
-  assign T156 = cur_bank + 4'h1;
-  assign T157 = T136 & T158;
-  assign T158 = T152 ^ 1'h1;
-  assign T159 = cur_bank + 4'h1;
-  assign T160 = T57 & T122;
-  assign T161 = T81 + 10'h4;
-  assign T162 = T56 & T91;
-  assign T163 = T81 + 10'h4;
-  assign T164 = T57 & T91;
-  assign T375 = reset ? 10'h0 : T165;
-  assign T165 = T172 ? T163 : T166;
-  assign T166 = T171 ? T161 : T167;
-  assign T167 = T169 ? T89 : T168;
-  assign T168 = T32 ? 10'h0 : memories_1;
-  assign T169 = T3 & T170;
-  assign T170 = T92[1'h1:1'h1];
-  assign T171 = T56 & T170;
-  assign T172 = T57 & T170;
-  assign T173 = T93[1'h0:1'h0];
-  assign T174 = T191 ? memories_3 : memories_2;
-  assign T376 = reset ? 10'h0 : T175;
-  assign T175 = T182 ? T163 : T176;
-  assign T176 = T181 ? T161 : T177;
-  assign T177 = T179 ? T89 : T178;
-  assign T178 = T32 ? 10'h0 : memories_2;
-  assign T179 = T3 & T180;
-  assign T180 = T92[2'h2:2'h2];
-  assign T181 = T56 & T180;
-  assign T182 = T57 & T180;
-  assign T377 = reset ? 10'h0 : T183;
-  assign T183 = T190 ? T163 : T184;
-  assign T184 = T189 ? T161 : T185;
-  assign T185 = T187 ? T89 : T186;
-  assign T186 = T32 ? 10'h0 : memories_3;
-  assign T187 = T3 & T188;
-  assign T188 = T92[2'h3:2'h3];
-  assign T189 = T56 & T188;
-  assign T190 = T57 & T188;
-  assign T191 = T93[1'h0:1'h0];
-  assign T192 = T93[1'h1:1'h1];
-  assign T193 = T230 ? T212 : T194;
-  assign T194 = T211 ? memories_5 : memories_4;
-  assign T378 = reset ? 10'h0 : T195;
-  assign T195 = T202 ? T163 : T196;
-  assign T196 = T201 ? T161 : T197;
-  assign T197 = T199 ? T89 : T198;
-  assign T198 = T32 ? 10'h0 : memories_4;
-  assign T199 = T3 & T200;
-  assign T200 = T92[3'h4:3'h4];
-  assign T201 = T56 & T200;
-  assign T202 = T57 & T200;
-  assign T379 = reset ? 10'h0 : T203;
-  assign T203 = T210 ? T163 : T204;
-  assign T204 = T209 ? T161 : T205;
-  assign T205 = T207 ? T89 : T206;
-  assign T206 = T32 ? 10'h0 : memories_5;
-  assign T207 = T3 & T208;
-  assign T208 = T92[3'h5:3'h5];
-  assign T209 = T56 & T208;
-  assign T210 = T57 & T208;
-  assign T211 = T93[1'h0:1'h0];
-  assign T212 = T229 ? memories_7 : memories_6;
-  assign T380 = reset ? 10'h0 : T213;
-  assign T213 = T220 ? T163 : T214;
-  assign T214 = T219 ? T161 : T215;
-  assign T215 = T217 ? T89 : T216;
-  assign T216 = T32 ? 10'h0 : memories_6;
-  assign T217 = T3 & T218;
-  assign T218 = T92[3'h6:3'h6];
-  assign T219 = T56 & T218;
-  assign T220 = T57 & T218;
-  assign T381 = reset ? 10'h0 : T221;
-  assign T221 = T228 ? T163 : T222;
-  assign T222 = T227 ? T161 : T223;
-  assign T223 = T225 ? T89 : T224;
-  assign T224 = T32 ? 10'h0 : memories_7;
-  assign T225 = T3 & T226;
-  assign T226 = T92[3'h7:3'h7];
-  assign T227 = T56 & T226;
-  assign T228 = T57 & T226;
-  assign T229 = T93[1'h0:1'h0];
-  assign T230 = T93[1'h1:1'h1];
-  assign T231 = T93[2'h2:2'h2];
-  assign T232 = T309 ? T271 : T233;
-  assign T233 = T270 ? T252 : T234;
-  assign T234 = T251 ? memories_9 : memories_8;
-  assign T382 = reset ? 10'h0 : T235;
-  assign T235 = T242 ? T163 : T236;
-  assign T236 = T241 ? T161 : T237;
-  assign T237 = T239 ? T89 : T238;
-  assign T238 = T32 ? 10'h0 : memories_8;
-  assign T239 = T3 & T240;
-  assign T240 = T92[4'h8:4'h8];
-  assign T241 = T56 & T240;
-  assign T242 = T57 & T240;
-  assign T383 = reset ? 10'h0 : T243;
-  assign T243 = T250 ? T163 : T244;
-  assign T244 = T249 ? T161 : T245;
-  assign T245 = T247 ? T89 : T246;
-  assign T246 = T32 ? 10'h0 : memories_9;
-  assign T247 = T3 & T248;
-  assign T248 = T92[4'h9:4'h9];
-  assign T249 = T56 & T248;
-  assign T250 = T57 & T248;
-  assign T251 = T93[1'h0:1'h0];
-  assign T252 = T269 ? memories_11 : memories_10;
-  assign T384 = reset ? 10'h0 : T253;
-  assign T253 = T260 ? T163 : T254;
-  assign T254 = T259 ? T161 : T255;
-  assign T255 = T257 ? T89 : T256;
-  assign T256 = T32 ? 10'h0 : memories_10;
-  assign T257 = T3 & T258;
-  assign T258 = T92[4'ha:4'ha];
-  assign T259 = T56 & T258;
-  assign T260 = T57 & T258;
-  assign T385 = reset ? 10'h0 : T261;
-  assign T261 = T268 ? T163 : T262;
-  assign T262 = T267 ? T161 : T263;
-  assign T263 = T265 ? T89 : T264;
-  assign T264 = T32 ? 10'h0 : memories_11;
-  assign T265 = T3 & T266;
-  assign T266 = T92[4'hb:4'hb];
-  assign T267 = T56 & T266;
-  assign T268 = T57 & T266;
-  assign T269 = T93[1'h0:1'h0];
-  assign T270 = T93[1'h1:1'h1];
-  assign T271 = T308 ? T290 : T272;
-  assign T272 = T289 ? memories_13 : memories_12;
-  assign T386 = reset ? 10'h0 : T273;
-  assign T273 = T280 ? T163 : T274;
-  assign T274 = T279 ? T161 : T275;
-  assign T275 = T277 ? T89 : T276;
-  assign T276 = T32 ? 10'h0 : memories_12;
-  assign T277 = T3 & T278;
-  assign T278 = T92[4'hc:4'hc];
-  assign T279 = T56 & T278;
-  assign T280 = T57 & T278;
-  assign T387 = reset ? 10'h0 : T281;
-  assign T281 = T288 ? T163 : T282;
-  assign T282 = T287 ? T161 : T283;
-  assign T283 = T285 ? T89 : T284;
-  assign T284 = T32 ? 10'h0 : memories_13;
-  assign T285 = T3 & T286;
-  assign T286 = T92[4'hd:4'hd];
-  assign T287 = T56 & T286;
-  assign T288 = T57 & T286;
-  assign T289 = T93[1'h0:1'h0];
-  assign T290 = T307 ? memories_15 : memories_14;
-  assign T388 = reset ? 10'h0 : T291;
-  assign T291 = T298 ? T163 : T292;
-  assign T292 = T297 ? T161 : T293;
-  assign T293 = T295 ? T89 : T294;
-  assign T294 = T32 ? 10'h0 : memories_14;
-  assign T295 = T3 & T296;
-  assign T296 = T92[4'he:4'he];
-  assign T297 = T56 & T296;
-  assign T298 = T57 & T296;
-  assign T389 = reset ? 10'h0 : T299;
-  assign T299 = T306 ? T163 : T300;
-  assign T300 = T305 ? T161 : T301;
-  assign T301 = T303 ? T89 : T302;
-  assign T302 = T32 ? 10'h0 : memories_15;
-  assign T303 = T3 & T304;
-  assign T304 = T92[4'hf:4'hf];
-  assign T305 = T56 & T304;
-  assign T306 = T57 & T304;
-  assign T307 = T93[1'h0:1'h0];
-  assign T308 = T93[1'h1:1'h1];
-  assign T309 = T93[2'h2:2'h2];
-  assign T310 = T93[2'h3:2'h3];
-  assign T311 = T70 & 16'h1000;
-  assign T312 = T316 | T390;
-  assign T390 = {1'h0, T313};
-  assign T313 = T314 << 4'hc;
-  assign T314 = T315 & 4'hf;
-  assign T315 = cur_bank + start_bank;
-  assign T316 = T391 & 17'h10fff;
-  assign T391 = {1'h0, T69};
-  assign T392 = {1'h0, T317};
-  assign T317 = io_ocp_M_Addr[4'hf:1'h0];
-  assign T318 = T8 & T319;
-  assign T319 = T321 & T320;
-  assign T320 = io_ocp_M_Cmd == 3'h2;
-  assign T321 = T7 ^ 1'h1;
-  assign T322 = T325 | T393;
-  assign T393 = {5'h0, T323};
-  assign T323 = T324 << 1'h0;
-  assign T324 = T394 & 12'hfff;
-  assign T394 = {2'h0, T81};
-  assign T325 = T67 & 17'h1000;
-  assign T326 = T330 | T395;
-  assign T395 = {1'h0, T327};
-  assign T327 = T328 << 4'hc;
-  assign T328 = T329 & 4'hf;
-  assign T329 = cur_bank + start_bank;
-  assign T330 = T66 & 17'h10fff;
-  assign T396 = {1'h0, T331};
-  assign T331 = io_ocp_M_Addr[4'hf:1'h0];
-  assign T332 = T48 & T333;
-  assign T333 = T335 & T334;
-  assign T334 = io_ocp_M_Cmd == 3'h2;
-  assign T335 = T47 ^ 1'h1;
-  assign T336 = T339 | T397;
-  assign T397 = {5'h0, T337};
-  assign T337 = T338 << 1'h0;
-  assign T338 = T398 & 12'hfff;
-  assign T398 = {2'h0, T81};
-  assign T339 = T64 & 17'h1000;
-  assign T340 = T344 | T399;
-  assign T399 = {1'h0, T341};
-  assign T341 = T342 << 4'hc;
-  assign T342 = T343 & 4'hf;
-  assign T343 = cur_bank + start_bank;
-  assign T344 = T63 & 17'h10fff;
-  assign T400 = {1'h0, T345};
-  assign T345 = io_ocp_M_Addr[4'hf:1'h0];
-  assign T346 = T55 & T347;
-  assign T347 = T349 & T348;
-  assign T348 = io_ocp_M_Cmd == 3'h2;
-  assign T349 = T54 ^ 1'h1;
-  assign io_bRamCtrlPins_MCmd = T350;
-  assign T350 = T57 ? 3'h1 : T351;
-  assign T351 = T56 ? 3'h1 : T352;
-  assign T352 = T3 ? 3'h1 : 3'h0;
+  assign T104 = T106 >> T105;
+  assign T105 = settings[3'h7:3'h4];
+  assign T106 = settings[5'h1b:5'h12];
+  assign T107 = row_cnt == T108;
+  assign T108 = rows - 10'h1;
+  assign T369 = reset ? 10'h0 : T109;
+  assign T109 = T119 ? T118 : T110;
+  assign T110 = T159 ? 10'h0 : T111;
+  assign T111 = T57 ? 10'h0 : T112;
+  assign T112 = T116 ? T115 : T113;
+  assign T113 = T100 ? 10'h0 : T114;
+  assign T114 = T32 ? 10'h0 : row_cnt;
+  assign T115 = row_cnt + 10'h1;
+  assign T116 = T123 & T117;
+  assign T117 = T101 ^ 1'h1;
+  assign T118 = row_cnt + 10'h1;
+  assign T119 = T57 & T120;
+  assign T120 = T121 ^ 1'h1;
+  assign T121 = row_cnt == T122;
+  assign T122 = rows - 10'h1;
+  assign T123 = T3 & T124;
+  assign T124 = col_cnt == T125;
+  assign T125 = T126 - 10'h1;
+  assign T126 = settings[5'h11:4'h8];
+  assign T370 = reset ? 10'h0 : T127;
+  assign T127 = T145 ? T144 : T128;
+  assign T128 = T135 ? 10'h0 : T129;
+  assign T129 = T133 ? T132 : T130;
+  assign T130 = T123 ? 10'h0 : T131;
+  assign T131 = T32 ? 10'h0 : col_cnt;
+  assign T132 = col_cnt + 10'h1;
+  assign T133 = T3 & T134;
+  assign T134 = T124 ^ 1'h1;
+  assign T135 = T56 & T136;
+  assign T136 = T142 | T137;
+  assign T137 = cols == 10'h0;
+  assign T371 = reset ? 10'h0 : T138;
+  assign T138 = T32 ? T139 : cols;
+  assign T139 = T141 >> T140;
+  assign T140 = settings[3'h7:3'h4];
+  assign T141 = settings[5'h11:4'h8];
+  assign T142 = col_cnt == T143;
+  assign T143 = cols - 10'h1;
+  assign T144 = col_cnt + 10'h1;
+  assign T145 = T56 & T146;
+  assign T146 = T136 ^ 1'h1;
+  assign T372 = reset ? 4'h0 : T147;
+  assign T147 = T32 ? T148 : start_bank;
+  assign T148 = settings[2'h3:1'h0];
+  assign T149 = T135 & T150;
+  assign T150 = cur_bank == max_bank;
+  assign T373 = T374[2'h3:1'h0];
+  assign T374 = reset ? 16'h0 : T151;
+  assign T151 = T32 ? T152 : T375;
+  assign T375 = {12'h0, max_bank};
+  assign T152 = T153 - 16'h1;
+  assign T153 = 1'h1 << T154;
+  assign T154 = settings[3'h7:3'h4];
+  assign T155 = cur_bank + 4'h1;
+  assign T156 = T135 & T157;
+  assign T157 = T150 ^ 1'h1;
+  assign T158 = cur_bank + 4'h1;
+  assign T159 = T57 & T121;
+  assign T160 = T81 + 10'h4;
+  assign T161 = T56 & T91;
+  assign T162 = T81 + 10'h4;
+  assign T163 = T57 & T91;
+  assign T376 = reset ? 10'h0 : T164;
+  assign T164 = T171 ? T162 : T165;
+  assign T165 = T170 ? T160 : T166;
+  assign T166 = T168 ? T89 : T167;
+  assign T167 = T32 ? 10'h0 : memories_1;
+  assign T168 = T3 & T169;
+  assign T169 = T92[1'h1:1'h1];
+  assign T170 = T56 & T169;
+  assign T171 = T57 & T169;
+  assign T172 = T93[1'h0:1'h0];
+  assign T173 = T190 ? memories_3 : memories_2;
+  assign T377 = reset ? 10'h0 : T174;
+  assign T174 = T181 ? T162 : T175;
+  assign T175 = T180 ? T160 : T176;
+  assign T176 = T178 ? T89 : T177;
+  assign T177 = T32 ? 10'h0 : memories_2;
+  assign T178 = T3 & T179;
+  assign T179 = T92[2'h2:2'h2];
+  assign T180 = T56 & T179;
+  assign T181 = T57 & T179;
+  assign T378 = reset ? 10'h0 : T182;
+  assign T182 = T189 ? T162 : T183;
+  assign T183 = T188 ? T160 : T184;
+  assign T184 = T186 ? T89 : T185;
+  assign T185 = T32 ? 10'h0 : memories_3;
+  assign T186 = T3 & T187;
+  assign T187 = T92[2'h3:2'h3];
+  assign T188 = T56 & T187;
+  assign T189 = T57 & T187;
+  assign T190 = T93[1'h0:1'h0];
+  assign T191 = T93[1'h1:1'h1];
+  assign T192 = T229 ? T211 : T193;
+  assign T193 = T210 ? memories_5 : memories_4;
+  assign T379 = reset ? 10'h0 : T194;
+  assign T194 = T201 ? T162 : T195;
+  assign T195 = T200 ? T160 : T196;
+  assign T196 = T198 ? T89 : T197;
+  assign T197 = T32 ? 10'h0 : memories_4;
+  assign T198 = T3 & T199;
+  assign T199 = T92[3'h4:3'h4];
+  assign T200 = T56 & T199;
+  assign T201 = T57 & T199;
+  assign T380 = reset ? 10'h0 : T202;
+  assign T202 = T209 ? T162 : T203;
+  assign T203 = T208 ? T160 : T204;
+  assign T204 = T206 ? T89 : T205;
+  assign T205 = T32 ? 10'h0 : memories_5;
+  assign T206 = T3 & T207;
+  assign T207 = T92[3'h5:3'h5];
+  assign T208 = T56 & T207;
+  assign T209 = T57 & T207;
+  assign T210 = T93[1'h0:1'h0];
+  assign T211 = T228 ? memories_7 : memories_6;
+  assign T381 = reset ? 10'h0 : T212;
+  assign T212 = T219 ? T162 : T213;
+  assign T213 = T218 ? T160 : T214;
+  assign T214 = T216 ? T89 : T215;
+  assign T215 = T32 ? 10'h0 : memories_6;
+  assign T216 = T3 & T217;
+  assign T217 = T92[3'h6:3'h6];
+  assign T218 = T56 & T217;
+  assign T219 = T57 & T217;
+  assign T382 = reset ? 10'h0 : T220;
+  assign T220 = T227 ? T162 : T221;
+  assign T221 = T226 ? T160 : T222;
+  assign T222 = T224 ? T89 : T223;
+  assign T223 = T32 ? 10'h0 : memories_7;
+  assign T224 = T3 & T225;
+  assign T225 = T92[3'h7:3'h7];
+  assign T226 = T56 & T225;
+  assign T227 = T57 & T225;
+  assign T228 = T93[1'h0:1'h0];
+  assign T229 = T93[1'h1:1'h1];
+  assign T230 = T93[2'h2:2'h2];
+  assign T231 = T308 ? T270 : T232;
+  assign T232 = T269 ? T251 : T233;
+  assign T233 = T250 ? memories_9 : memories_8;
+  assign T383 = reset ? 10'h0 : T234;
+  assign T234 = T241 ? T162 : T235;
+  assign T235 = T240 ? T160 : T236;
+  assign T236 = T238 ? T89 : T237;
+  assign T237 = T32 ? 10'h0 : memories_8;
+  assign T238 = T3 & T239;
+  assign T239 = T92[4'h8:4'h8];
+  assign T240 = T56 & T239;
+  assign T241 = T57 & T239;
+  assign T384 = reset ? 10'h0 : T242;
+  assign T242 = T249 ? T162 : T243;
+  assign T243 = T248 ? T160 : T244;
+  assign T244 = T246 ? T89 : T245;
+  assign T245 = T32 ? 10'h0 : memories_9;
+  assign T246 = T3 & T247;
+  assign T247 = T92[4'h9:4'h9];
+  assign T248 = T56 & T247;
+  assign T249 = T57 & T247;
+  assign T250 = T93[1'h0:1'h0];
+  assign T251 = T268 ? memories_11 : memories_10;
+  assign T385 = reset ? 10'h0 : T252;
+  assign T252 = T259 ? T162 : T253;
+  assign T253 = T258 ? T160 : T254;
+  assign T254 = T256 ? T89 : T255;
+  assign T255 = T32 ? 10'h0 : memories_10;
+  assign T256 = T3 & T257;
+  assign T257 = T92[4'ha:4'ha];
+  assign T258 = T56 & T257;
+  assign T259 = T57 & T257;
+  assign T386 = reset ? 10'h0 : T260;
+  assign T260 = T267 ? T162 : T261;
+  assign T261 = T266 ? T160 : T262;
+  assign T262 = T264 ? T89 : T263;
+  assign T263 = T32 ? 10'h0 : memories_11;
+  assign T264 = T3 & T265;
+  assign T265 = T92[4'hb:4'hb];
+  assign T266 = T56 & T265;
+  assign T267 = T57 & T265;
+  assign T268 = T93[1'h0:1'h0];
+  assign T269 = T93[1'h1:1'h1];
+  assign T270 = T307 ? T289 : T271;
+  assign T271 = T288 ? memories_13 : memories_12;
+  assign T387 = reset ? 10'h0 : T272;
+  assign T272 = T279 ? T162 : T273;
+  assign T273 = T278 ? T160 : T274;
+  assign T274 = T276 ? T89 : T275;
+  assign T275 = T32 ? 10'h0 : memories_12;
+  assign T276 = T3 & T277;
+  assign T277 = T92[4'hc:4'hc];
+  assign T278 = T56 & T277;
+  assign T279 = T57 & T277;
+  assign T388 = reset ? 10'h0 : T280;
+  assign T280 = T287 ? T162 : T281;
+  assign T281 = T286 ? T160 : T282;
+  assign T282 = T284 ? T89 : T283;
+  assign T283 = T32 ? 10'h0 : memories_13;
+  assign T284 = T3 & T285;
+  assign T285 = T92[4'hd:4'hd];
+  assign T286 = T56 & T285;
+  assign T287 = T57 & T285;
+  assign T288 = T93[1'h0:1'h0];
+  assign T289 = T306 ? memories_15 : memories_14;
+  assign T389 = reset ? 10'h0 : T290;
+  assign T290 = T297 ? T162 : T291;
+  assign T291 = T296 ? T160 : T292;
+  assign T292 = T294 ? T89 : T293;
+  assign T293 = T32 ? 10'h0 : memories_14;
+  assign T294 = T3 & T295;
+  assign T295 = T92[4'he:4'he];
+  assign T296 = T56 & T295;
+  assign T297 = T57 & T295;
+  assign T390 = reset ? 10'h0 : T298;
+  assign T298 = T305 ? T162 : T299;
+  assign T299 = T304 ? T160 : T300;
+  assign T300 = T302 ? T89 : T301;
+  assign T301 = T32 ? 10'h0 : memories_15;
+  assign T302 = T3 & T303;
+  assign T303 = T92[4'hf:4'hf];
+  assign T304 = T56 & T303;
+  assign T305 = T57 & T303;
+  assign T306 = T93[1'h0:1'h0];
+  assign T307 = T93[1'h1:1'h1];
+  assign T308 = T93[2'h2:2'h2];
+  assign T309 = T93[2'h3:2'h3];
+  assign T310 = T70 & 16'h1000;
+  assign T311 = T315 | T391;
+  assign T391 = {1'h0, T312};
+  assign T312 = T313 << 4'hc;
+  assign T313 = T314 & 4'hf;
+  assign T314 = cur_bank + start_bank;
+  assign T315 = T392 & 17'h10fff;
+  assign T392 = {1'h0, T69};
+  assign T393 = {1'h0, T316};
+  assign T316 = io_ocp_M_Addr[4'hf:1'h0];
+  assign T317 = T8 & T318;
+  assign T318 = T320 & T319;
+  assign T319 = io_ocp_M_Cmd == 3'h2;
+  assign T320 = T7 ^ 1'h1;
+  assign T321 = T324 | T394;
+  assign T394 = {5'h0, T322};
+  assign T322 = T323 << 1'h0;
+  assign T323 = T395 & 12'hfff;
+  assign T395 = {2'h0, T81};
+  assign T324 = T67 & 17'h1000;
+  assign T325 = T329 | T396;
+  assign T396 = {1'h0, T326};
+  assign T326 = T327 << 4'hc;
+  assign T327 = T328 & 4'hf;
+  assign T328 = cur_bank + start_bank;
+  assign T329 = T66 & 17'h10fff;
+  assign T397 = {1'h0, T330};
+  assign T330 = io_ocp_M_Addr[4'hf:1'h0];
+  assign T331 = T48 & T332;
+  assign T332 = T334 & T333;
+  assign T333 = io_ocp_M_Cmd == 3'h2;
+  assign T334 = T47 ^ 1'h1;
+  assign T335 = T338 | T398;
+  assign T398 = {5'h0, T336};
+  assign T336 = T337 << 1'h0;
+  assign T337 = T399 & 12'hfff;
+  assign T399 = {2'h0, T81};
+  assign T338 = T64 & 17'h1000;
+  assign T339 = T343 | T400;
+  assign T400 = {1'h0, T340};
+  assign T340 = T341 << 4'hc;
+  assign T341 = T342 & 4'hf;
+  assign T342 = cur_bank + start_bank;
+  assign T343 = T63 & 17'h10fff;
+  assign T401 = {1'h0, T344};
+  assign T344 = io_ocp_M_Addr[4'hf:1'h0];
+  assign T345 = T55 & T346;
+  assign T346 = T348 & T347;
+  assign T347 = io_ocp_M_Cmd == 3'h2;
+  assign T348 = T54 ^ 1'h1;
+  assign io_bRamCtrlPins_MCmd = T349;
+  assign T349 = T57 ? 3'h1 : T350;
+  assign T350 = T56 ? 3'h1 : T351;
+  assign T351 = T3 ? 3'h1 : 3'h0;
   assign io_ocp_S_Data = io_bRamCtrlPins_SData;
   assign io_ocp_S_Resp = respReg;
-  assign T401 = reset ? 2'h0 : T353;
-  assign T353 = T346 ? 2'h1 : T354;
-  assign T354 = T57 ? 2'h1 : T355;
-  assign T355 = T332 ? 2'h1 : T356;
-  assign T356 = T56 ? 2'h1 : T357;
-  assign T357 = T318 ? 2'h1 : T358;
-  assign T358 = T3 ? 2'h1 : T359;
-  assign T359 = T32 ? 2'h1 : T360;
-  assign T360 = T72 ? 2'h1 : 2'h0;
+  assign T402 = reset ? 2'h0 : T352;
+  assign T352 = T345 ? 2'h1 : T353;
+  assign T353 = T57 ? 2'h1 : T354;
+  assign T354 = T331 ? 2'h1 : T355;
+  assign T355 = T56 ? 2'h1 : T356;
+  assign T356 = T317 ? 2'h1 : T357;
+  assign T357 = T3 ? 2'h1 : T358;
+  assign T358 = T32 ? 2'h1 : T359;
+  assign T359 = T72 ? 2'h1 : 2'h0;
 
   always @(posedge clk) begin
     if(reset) begin
@@ -10742,10 +10744,10 @@ module BRamCtrl(input clk, input reset,
     end
     if(reset) begin
       memories_0 <= 10'h0;
-    end else if(T164) begin
-      memories_0 <= T163;
-    end else if(T162) begin
-      memories_0 <= T161;
+    end else if(T163) begin
+      memories_0 <= T162;
+    end else if(T161) begin
+      memories_0 <= T160;
     end else if(T90) begin
       memories_0 <= T89;
     end else if(T32) begin
@@ -10753,11 +10755,11 @@ module BRamCtrl(input clk, input reset,
     end
     if(reset) begin
       cur_bank <= 4'h0;
-    end else if(T160) begin
-      cur_bank <= T159;
-    end else if(T157) begin
-      cur_bank <= T156;
-    end else if(T151) begin
+    end else if(T159) begin
+      cur_bank <= T158;
+    end else if(T156) begin
+      cur_bank <= T155;
+    end else if(T149) begin
       cur_bank <= start_bank;
     end else if(T100) begin
       cur_bank <= T99;
@@ -10771,14 +10773,14 @@ module BRamCtrl(input clk, input reset,
     end
     if(reset) begin
       row_cnt <= 10'h0;
-    end else if(T120) begin
-      row_cnt <= T119;
-    end else if(T160) begin
+    end else if(T119) begin
+      row_cnt <= T118;
+    end else if(T159) begin
       row_cnt <= 10'h0;
     end else if(T57) begin
       row_cnt <= 10'h0;
-    end else if(T117) begin
-      row_cnt <= T116;
+    end else if(T116) begin
+      row_cnt <= T115;
     end else if(T100) begin
       row_cnt <= 10'h0;
     end else if(T32) begin
@@ -10786,13 +10788,13 @@ module BRamCtrl(input clk, input reset,
     end
     if(reset) begin
       col_cnt <= 10'h0;
-    end else if(T147) begin
-      col_cnt <= T146;
-    end else if(T136) begin
+    end else if(T145) begin
+      col_cnt <= T144;
+    end else if(T135) begin
       col_cnt <= 10'h0;
-    end else if(T134) begin
-      col_cnt <= T133;
-    end else if(T124) begin
+    end else if(T133) begin
+      col_cnt <= T132;
+    end else if(T123) begin
       col_cnt <= 10'h0;
     end else if(T32) begin
       col_cnt <= 10'h0;
@@ -10800,194 +10802,190 @@ module BRamCtrl(input clk, input reset,
     if(reset) begin
       cols <= 10'h0;
     end else if(T32) begin
-      cols <= T140;
+      cols <= T139;
     end
     if(reset) begin
       start_bank <= 4'h0;
     end else if(T32) begin
-      start_bank <= T150;
+      start_bank <= T148;
     end
-    if(reset) begin
-      max_bank <= 4'h0;
-    end else if(T32) begin
-      max_bank <= T154;
-    end
+    max_bank <= T373;
     if(reset) begin
       memories_1 <= 10'h0;
-    end else if(T172) begin
-      memories_1 <= T163;
     end else if(T171) begin
-      memories_1 <= T161;
-    end else if(T169) begin
+      memories_1 <= T162;
+    end else if(T170) begin
+      memories_1 <= T160;
+    end else if(T168) begin
       memories_1 <= T89;
     end else if(T32) begin
       memories_1 <= 10'h0;
     end
     if(reset) begin
       memories_2 <= 10'h0;
-    end else if(T182) begin
-      memories_2 <= T163;
     end else if(T181) begin
-      memories_2 <= T161;
-    end else if(T179) begin
+      memories_2 <= T162;
+    end else if(T180) begin
+      memories_2 <= T160;
+    end else if(T178) begin
       memories_2 <= T89;
     end else if(T32) begin
       memories_2 <= 10'h0;
     end
     if(reset) begin
       memories_3 <= 10'h0;
-    end else if(T190) begin
-      memories_3 <= T163;
     end else if(T189) begin
-      memories_3 <= T161;
-    end else if(T187) begin
+      memories_3 <= T162;
+    end else if(T188) begin
+      memories_3 <= T160;
+    end else if(T186) begin
       memories_3 <= T89;
     end else if(T32) begin
       memories_3 <= 10'h0;
     end
     if(reset) begin
       memories_4 <= 10'h0;
-    end else if(T202) begin
-      memories_4 <= T163;
     end else if(T201) begin
-      memories_4 <= T161;
-    end else if(T199) begin
+      memories_4 <= T162;
+    end else if(T200) begin
+      memories_4 <= T160;
+    end else if(T198) begin
       memories_4 <= T89;
     end else if(T32) begin
       memories_4 <= 10'h0;
     end
     if(reset) begin
       memories_5 <= 10'h0;
-    end else if(T210) begin
-      memories_5 <= T163;
     end else if(T209) begin
-      memories_5 <= T161;
-    end else if(T207) begin
+      memories_5 <= T162;
+    end else if(T208) begin
+      memories_5 <= T160;
+    end else if(T206) begin
       memories_5 <= T89;
     end else if(T32) begin
       memories_5 <= 10'h0;
     end
     if(reset) begin
       memories_6 <= 10'h0;
-    end else if(T220) begin
-      memories_6 <= T163;
     end else if(T219) begin
-      memories_6 <= T161;
-    end else if(T217) begin
+      memories_6 <= T162;
+    end else if(T218) begin
+      memories_6 <= T160;
+    end else if(T216) begin
       memories_6 <= T89;
     end else if(T32) begin
       memories_6 <= 10'h0;
     end
     if(reset) begin
       memories_7 <= 10'h0;
-    end else if(T228) begin
-      memories_7 <= T163;
     end else if(T227) begin
-      memories_7 <= T161;
-    end else if(T225) begin
+      memories_7 <= T162;
+    end else if(T226) begin
+      memories_7 <= T160;
+    end else if(T224) begin
       memories_7 <= T89;
     end else if(T32) begin
       memories_7 <= 10'h0;
     end
     if(reset) begin
       memories_8 <= 10'h0;
-    end else if(T242) begin
-      memories_8 <= T163;
     end else if(T241) begin
-      memories_8 <= T161;
-    end else if(T239) begin
+      memories_8 <= T162;
+    end else if(T240) begin
+      memories_8 <= T160;
+    end else if(T238) begin
       memories_8 <= T89;
     end else if(T32) begin
       memories_8 <= 10'h0;
     end
     if(reset) begin
       memories_9 <= 10'h0;
-    end else if(T250) begin
-      memories_9 <= T163;
     end else if(T249) begin
-      memories_9 <= T161;
-    end else if(T247) begin
+      memories_9 <= T162;
+    end else if(T248) begin
+      memories_9 <= T160;
+    end else if(T246) begin
       memories_9 <= T89;
     end else if(T32) begin
       memories_9 <= 10'h0;
     end
     if(reset) begin
       memories_10 <= 10'h0;
-    end else if(T260) begin
-      memories_10 <= T163;
     end else if(T259) begin
-      memories_10 <= T161;
-    end else if(T257) begin
+      memories_10 <= T162;
+    end else if(T258) begin
+      memories_10 <= T160;
+    end else if(T256) begin
       memories_10 <= T89;
     end else if(T32) begin
       memories_10 <= 10'h0;
     end
     if(reset) begin
       memories_11 <= 10'h0;
-    end else if(T268) begin
-      memories_11 <= T163;
     end else if(T267) begin
-      memories_11 <= T161;
-    end else if(T265) begin
+      memories_11 <= T162;
+    end else if(T266) begin
+      memories_11 <= T160;
+    end else if(T264) begin
       memories_11 <= T89;
     end else if(T32) begin
       memories_11 <= 10'h0;
     end
     if(reset) begin
       memories_12 <= 10'h0;
-    end else if(T280) begin
-      memories_12 <= T163;
     end else if(T279) begin
-      memories_12 <= T161;
-    end else if(T277) begin
+      memories_12 <= T162;
+    end else if(T278) begin
+      memories_12 <= T160;
+    end else if(T276) begin
       memories_12 <= T89;
     end else if(T32) begin
       memories_12 <= 10'h0;
     end
     if(reset) begin
       memories_13 <= 10'h0;
-    end else if(T288) begin
-      memories_13 <= T163;
     end else if(T287) begin
-      memories_13 <= T161;
-    end else if(T285) begin
+      memories_13 <= T162;
+    end else if(T286) begin
+      memories_13 <= T160;
+    end else if(T284) begin
       memories_13 <= T89;
     end else if(T32) begin
       memories_13 <= 10'h0;
     end
     if(reset) begin
       memories_14 <= 10'h0;
-    end else if(T298) begin
-      memories_14 <= T163;
     end else if(T297) begin
-      memories_14 <= T161;
-    end else if(T295) begin
+      memories_14 <= T162;
+    end else if(T296) begin
+      memories_14 <= T160;
+    end else if(T294) begin
       memories_14 <= T89;
     end else if(T32) begin
       memories_14 <= 10'h0;
     end
     if(reset) begin
       memories_15 <= 10'h0;
-    end else if(T306) begin
-      memories_15 <= T163;
     end else if(T305) begin
-      memories_15 <= T161;
-    end else if(T303) begin
+      memories_15 <= T162;
+    end else if(T304) begin
+      memories_15 <= T160;
+    end else if(T302) begin
       memories_15 <= T89;
     end else if(T32) begin
       memories_15 <= 10'h0;
     end
     if(reset) begin
       respReg <= 2'h0;
-    end else if(T346) begin
+    end else if(T345) begin
       respReg <= 2'h1;
     end else if(T57) begin
       respReg <= 2'h1;
-    end else if(T332) begin
+    end else if(T331) begin
       respReg <= 2'h1;
     end else if(T56) begin
       respReg <= 2'h1;
-    end else if(T318) begin
+    end else if(T317) begin
       respReg <= 2'h1;
     end else if(T3) begin
       respReg <= 2'h1;

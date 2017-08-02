@@ -21,6 +21,12 @@ void matmul_init(mat_type mat_a[DIM][DIM],
 
 	int i, j;
 
+/*	for(i = 0; i < DIM*DIM; i++) {
+		*(&mat_a[0][0] + i) = i + 1;
+		*(&mat_b[0][0] + i) = i + DIM*DIM;
+		sw_result[i][j] = 0;
+	}	*/
+
 	_Pragma("loopbound min DIM max DIM")
 	for(i = 0; i < DIM; i++) {
 		_Pragma("loopbound min DIM max DIM")

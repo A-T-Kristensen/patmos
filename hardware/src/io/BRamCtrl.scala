@@ -137,10 +137,10 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 		respReg := OcpResp.DVA
 
-		cols := settings(17, 8) >> (settings(7, 4) - Bits(1)) 
-		rows := settings(27, 18) >> (settings(7, 4) - Bits(1)) 
+		cols := settings(17, 8) >> (settings(7, 4)) 
+		rows := settings(27, 18) >> (settings(7, 4)) 
 
-		max_bank := settings(7, 4) - Bits(1) // # banks - 1
+		max_bank := (Bits(1) << settings(7, 4)) - Bits(1) // # banks - 1
 		start_bank := settings(3, 0)
 		cur_bank := Bits(0)  
 		col_cnt := Bits(0)
@@ -378,7 +378,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	println("*************************\n")
 
 
-	wr(0, Bits("b00100000000100000000010000100000").litValue() , Bits("b1111").litValue())
+	wr(0, Bits("b00100000000100000000010000010000").litValue() , Bits("b1111").litValue())
 	expectState(0)
 	expectOut(0, 0, 0, 0) // The bram should not see this
 
@@ -401,7 +401,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expectState(3)
 	expectOut(0, 0, 0, 0)
 
-	expect(dut.rows, 2) // Max rows per - 1
+	expect(dut.rows, 2) // Max rows per
 	expect(dut.cols, 2)
 	expect(dut.col_cnt, 0)
 	expect(dut.row_cnt, 0)
@@ -548,7 +548,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	// Now start_bank is = 1
 
 
-	wr(0, Bits("b00100000000100000000010000100001").litValue() , Bits("b1111").litValue())
+	wr(0, Bits("b00100000000100000000010000010001").litValue() , Bits("b1111").litValue())
 	expectState(3)
 	expectOut(0, 0, 0, 0) // The bram should not see this
 
@@ -590,7 +590,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expectState(3)  
 
 	expect(dut.rows, 2)
-	expect(dut.cols, 2)  // Max rows per
+	expect(dut.cols, 2)  // Max rows per - 1
 	expect(dut.col_cnt, 0)  
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
@@ -612,7 +612,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	println("\nWr_dim_1 test\n")
 	println("*************************\n")	
 
-	wr(0, Bits("b00010000000010000000001000100010").litValue() , Bits("b1111").litValue())
+	wr(0, Bits("b00010000000010000000001000010010").litValue() , Bits("b1111").litValue())
 	expectState(3)
 	expectOut(0, 0, 0, 0) // The bram should not see this  
 
@@ -721,7 +721,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	println("\nVector test\n")
 	println("*************************\n")
 
-	wr(0, Bits("b01000000000100000000000000100000").litValue() , Bits("b1111").litValue())
+	wr(0, Bits("b01000000000100000000000000010000").litValue() , Bits("b1111").litValue())
 	expectState(2)
 	expectOut(0, 0, 0, 0) // The bram should not see this  
 
@@ -834,7 +834,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	println("*************************\n")
 
 
-	wr(0, Bits("b00100000000100000000010001000000").litValue() , Bits("b1111").litValue())
+	wr(0, Bits("b00100000000100000000010000100000").litValue() , Bits("b1111").litValue())
 	expectState(4)
 	expectOut(0, 0, 0, 0) // The bram should not see this
 
@@ -857,8 +857,8 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expectState(3)
 	expectOut(0, 0, 0, 0)
 
-	expect(dut.rows, 0) // Max rows per
-	expect(dut.cols, 0)
+	expect(dut.rows, 1) // Max rows per
+	expect(dut.cols, 1)
 	expect(dut.col_cnt, 0)
 	expect(dut.max_bank, 3)
 	expect(dut.start_bank, 0)
