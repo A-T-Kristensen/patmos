@@ -105,7 +105,7 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 	start_transfer = get_cpu_cycles();
 
 	write_vector(r, 256, 1, 0, bank_ptr_array);
-	//write_vector(y, 256, 1, 1, bank_ptr_array);
+	write_vector(y, 256, 1, 1, bank_ptr_array);
 	write_array(H, 32, 8, 1, 2, bank_ptr_array, 1);
 	write_array(F, 32, 8, 1, 3, bank_ptr_array, 1);
 
@@ -119,7 +119,7 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 		// Start HLS module
 
 		*hls_ptr = 1;
-		*hls_ptr = 0;
+		*hls_ptr = 0;	
 
 		// Poll status of HLS module
 
@@ -145,7 +145,7 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 
 	print_benchmark(return_compute, return_transfer);
 
-	return (int)(y[0]) - 9408;
+	return (int)((y[0]) - 9408);
 }
 
 /*

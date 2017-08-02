@@ -103,18 +103,12 @@ int filterbank_main(void)
 
 	start_compute = get_cpu_cycles();
 
-	while(filterbank_numiters-- > 0) {
-
-		// Start HLS module
-
 		*hls_ptr = 1;
 		*hls_ptr = 0;
 
 		// Poll status of HLS module
 
 		while((*hls_ptr) != 1);
-
-	}
 
 	stop_compute = get_cpu_cycles();
 	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
@@ -132,9 +126,13 @@ int filterbank_main(void)
 		puts("Results incorrect");
 	}		
 
+	for(i = 0; i <256; i++){
+		printf("%f\n", spm_filter->y[i]);
+	}
+
 	print_benchmark(return_compute, return_transfer);
 
-	return (int)(spm_filter->y[0]) - 9408;
+	return (int)((spm_filter->y[0]) - 9408);
 }
 
 /*
