@@ -52,7 +52,10 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	// Division factor, a and b shares most banks
 
 	int wr_dim = 2;
+//	int factor = 1; // 1 means no division
 	int factor = 2; // 1 means no division
+	//int factor = 4; // 1 means no division
+
 	int array_vect =  0; // Array
 	int M = DIM;
 	int N = DIM;
@@ -71,7 +74,10 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	// Set up BRAM for B
 
 	start_bank = 2; // For NBANKS == 5
+	//start_bank = 4; // For NBANKS == 9
+
 	wr_dim = 1;
+
 
 	*(bram_ptr) = (array_vect << 30) | (wr_dim << 28) | (M << 18)
 				  | (N << 8) | (factor << 4) | start_bank;
@@ -98,10 +104,19 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	for(i = 0; i < DIM; i++) {
 		for(j = 0; j < DIM; j++) {
-			printf("%f ", hw_result[i][j]);
+			printf("%d ", hw_result[i][j]);
 		}
 		printf("\n");
 	}
+
+	printf("\n");
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
+			printf("%d ", sw_result[i][j]);
+		}
+		printf("\n");
+	}	
 
 	err_cnt = compare_arrays(hw_result, sw_result);
 

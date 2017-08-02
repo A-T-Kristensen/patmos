@@ -1,10 +1,10 @@
-#define ROWS 	6
-#define COLS	6
-#define DIM 	6
-#define SIZE	6
-#define VECSIZE 6
-#define NBANKS 	3
-#define WCET	1
+#define ROWS 	4
+#define COLS	4
+#define DIM 	4
+#define SIZE	16
+#define VECSIZE 16
+#define NBANKS 	5
+#define WCET	0
 #define ARRAY_WR_FACTOR	1
 #define ARRAY_WR_DIV	32
 #define ARRAY_RD_FACTOR	1
