@@ -1,8 +1,8 @@
 // Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-// Date        : Mon Feb 27 10:56:19 2017
-// Host        : andreas-W54xEU running 64-bit Ubuntu 16.04.1 LTS
+// Date        : Wed Mar  1 16:53:46 2017
+// Host        : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 // Command     : write_verilog -force -mode synth_stub -rename_top ddr2_ctrl -prefix
 //               ddr2_ctrl_ ddr2_ctrl_stub.v
 // Design      : ddr2_ctrl

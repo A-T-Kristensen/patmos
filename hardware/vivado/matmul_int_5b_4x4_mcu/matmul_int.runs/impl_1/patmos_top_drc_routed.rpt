@@ -1,8 +1,8 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Wed Aug  2 16:27:02 2017
-| Host         : andreas-W54xEU running 64-bit Ubuntu 16.04.2 LTS
+| Date         : Wed Aug  2 19:52:32 2017
+| Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_drc -file patmos_top_drc_routed.rpt -pb patmos_top_drc_routed.pb -rpx patmos_top_drc_routed.rpx
 | Design       : patmos_top
 | Device       : xc7a100tcsg324-1

@@ -12,6 +12,25 @@
 #include "libhwa/hwa_bram.h"
 #include "libhwa/hwa_test.h"
 
+#define BRAM0	0xF00B0000
+#define BRAM1	0xF00B1000
+#define BRAM2	0xF00B2000
+#define BRAM3	0xF00B3000
+#define BRAM4	0xF00B4000
+#define BRAM5	0xF00B5000
+#define BRAM6	0xF00B6000
+#define BRAM7	0xF00B7000
+
+volatile _IODEV mat_type *bram_ptr_read0 = (volatile _IODEV mat_type *) BRAM0;
+volatile _IODEV mat_type *bram_ptr_read1 = (volatile _IODEV mat_type *) BRAM1;
+volatile _IODEV mat_type *bram_ptr_read2 = (volatile _IODEV mat_type *) BRAM2;
+volatile _IODEV mat_type *bram_ptr_read3 = (volatile _IODEV mat_type *) BRAM3;
+volatile _IODEV mat_type *bram_ptr_read4 = (volatile _IODEV mat_type *) BRAM4;
+volatile _IODEV mat_type *bram_ptr_read5 = (volatile _IODEV mat_type *) BRAM5;
+volatile _IODEV mat_type *bram_ptr_read6 = (volatile _IODEV mat_type *) BRAM6;
+volatile _IODEV mat_type *bram_ptr_read7 = (volatile _IODEV mat_type *) BRAM7;
+
+
 #if(NBANKS==3)
 
 #define BRAM_BASE_READ 		0xF00B2000
@@ -53,8 +72,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	int wr_dim = 2;
 //	int factor = 1; // 1 means no division
-	int factor = 2; // 1 means no division
-	//int factor = 4; // 1 means no division
+	//int factor = 2; // 2 means 2 banks
+	int factor = 4; // 4 means 4 banks
 
 	int array_vect =  0; // Array
 	int M = DIM;
@@ -73,8 +92,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Set up BRAM for B
 
-	start_bank = 2; // For NBANKS == 5
-	//start_bank = 4; // For NBANKS == 9
+	//start_bank = 2; // For NBANKS == 5
+	start_bank = 4; // For NBANKS == 9
 
 	wr_dim = 1;
 
@@ -104,6 +123,26 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	for(i = 0; i < DIM; i++) {
 		for(j = 0; j < DIM; j++) {
+			printf("%d ", mat_a[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n");
+
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
+			printf("%d ", mat_b[i][j]);
+		}
+		printf("\n");
+	}		
+
+	printf("\n");
+
+
+	for(i = 0; i < DIM; i++) {
+		for(j = 0; j < DIM; j++) {
 			printf("%d ", hw_result[i][j]);
 		}
 		printf("\n");
@@ -117,6 +156,56 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 		}
 		printf("\n");
 	}	
+
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read0 + i));
+	}		
+
+	printf("\n");
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read1 + i));
+	}		
+
+	printf("\n");
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read2 + i));
+	}		
+
+	printf("\n");
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read3 + i));
+	}		
+
+	printf("\n");
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read4 + i));
+	}		
+
+	printf("\n");		
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read5 + i));
+	}		
+
+	printf("\n");	
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read6 + i));
+	}		
+
+	printf("\n");	
+
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read7 + i));
+	}		
+
+	printf("\n");				
+
 
 	err_cnt = compare_arrays(hw_result, sw_result);
 

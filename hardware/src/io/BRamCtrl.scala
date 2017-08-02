@@ -60,6 +60,21 @@ class BRamCtrl(extAddrWidth : Int = 32,
 	// |1b|1b|2b|10b|10b|4b|4b|
 	// rst, array/vect (0/1), wr_dim (0, 1, 10), M, N, factor, startbank
 	// M is also for vectors
+
+	// rst
+
+	// array/vect
+
+	// wr_dim
+
+	// M
+
+	// N
+
+	// factor = (settings(7, 4)
+
+
+	// startbank
 	val settings = Reg(init = Bits(0, width = 32))
 	settings := settings
 
@@ -122,10 +137,10 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 		respReg := OcpResp.DVA
 
-		cols := (settings(17, 8) >> (settings(7, 4) - Bits(1))) - Bits(1)
-		rows := (settings(27, 18) >> (settings(7, 4) - Bits(1))) - Bits(1)
+		cols := settings(17, 8) >> (settings(7, 4) - Bits(1)) 
+		rows := settings(27, 18) >> (settings(7, 4) - Bits(1)) 
 
-		max_bank := settings(7, 4) - Bits(1) // Counter
+		max_bank := settings(7, 4) - Bits(1) // # banks - 1
 		start_bank := settings(3, 0)
 		cur_bank := Bits(0)  
 		col_cnt := Bits(0)
@@ -160,22 +175,22 @@ class BRamCtrl(extAddrWidth : Int = 32,
 				// Write out
 
 				io.bRamCtrlPins.MCmd  := OcpCmd.WR
-				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)				
-				io.bRamCtrlPins.MAddr(15, 12) := cur_bank + start_bank
+				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)
+				io.bRamCtrlPins.MAddr(15, 12) := cur_bank + start_bank // Upper most 4 bits select bank
 				memories(cur_bank) := memories(cur_bank) + Bits(4)
 				io.bRamCtrlPins.MData := io.ocp.M.Data
 				io.bRamCtrlPins.MByteEn := Bits(15)
 
 				respReg := OcpResp.DVA
 
-				when(col_cnt === (settings(17, 8) - Bits(1))){ // Check if end of row
+				when(col_cnt === settings(17, 8) - Bits(1)){ // Check if end of row
 
 					col_cnt := Bits(0)
 
 					// check if time to change row
 					// no need to check max bank, since this is always the last
 
-					when(row_cnt === rows){
+					when(row_cnt === rows - Bits(1) || rows === Bits(0)){
 
 						row_cnt := Bits(0)
 						cur_bank := cur_bank + Bits(1)          
@@ -183,7 +198,7 @@ class BRamCtrl(extAddrWidth : Int = 32,
 					}.otherwise{
 
 						row_cnt := row_cnt + Bits(1)
-						
+
 					}     					
 
 				}.otherwise{
@@ -221,7 +236,7 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 				respReg := OcpResp.DVA
 
-				when(col_cnt === cols){ // Check when we reach end of column
+				when(col_cnt === cols - Bits(1) || cols === Bits(0)){ // Check when we reach end of column
 
 					col_cnt := Bits(0)
 
@@ -269,7 +284,7 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 				// check if time to change bank
 
-				when(row_cnt === rows){
+				when(row_cnt === rows - Bits(1)){
 
 					row_cnt := Bits(0)
 					cur_bank := cur_bank + Bits(1)
@@ -355,7 +370,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 		Put into wr_dim 2 state
 
 		1) Write settings
-		2) Write array (4x4), factor 2, start_bank = 0
+		2) Write array (4x4), banks = 2, start_bank = 0
 	*/  
 
 	println("\n*************************")
@@ -386,8 +401,8 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expectState(3)
 	expectOut(0, 0, 0, 0)
 
-	expect(dut.rows, 1) // Max rows per - 1
-	expect(dut.cols, 1)
+	expect(dut.rows, 2) // Max rows per - 1
+	expect(dut.cols, 2)
 	expect(dut.col_cnt, 0)
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
@@ -557,8 +572,8 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.io.ocp.S.Resp, 1)
 	expectState(3)  
 
-	expect(dut.rows, 1)
-	expect(dut.cols, 1)  // Max rows per - 1
+	expect(dut.rows, 2)
+	expect(dut.cols, 2)  // Max rows per -1
 	expect(dut.col_cnt, 0)
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
@@ -574,8 +589,8 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.io.ocp.S.Resp, 0)
 	expectState(3)  
 
-	expect(dut.rows, 1)
-	expect(dut.cols, 1)  // Max rows per - 1
+	expect(dut.rows, 2)
+	expect(dut.cols, 2)  // Max rows per
 	expect(dut.col_cnt, 0)  
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
@@ -589,6 +604,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 		1) Write settings
 		2) Write array (2x2)
+		3) Banks = 2
 
 	*/   
 
@@ -607,8 +623,8 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.io.ocp.S.Resp, 0)
 	expectState(1)  
 
-	expect(dut.rows, 1)
-	expect(dut.cols, 1)  // Max rows per - 1
+	expect(dut.rows, 2)
+	expect(dut.cols, 2)  // Max rows per from previous
 	expect(dut.col_cnt, 0)  
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
@@ -620,8 +636,8 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.io.ocp.S.Resp, 1)
 	expectState(2)  
 
-	expect(dut.rows, 0)
-	expect(dut.cols, 0)  // Max rows per - 1
+	expect(dut.rows, 1)
+	expect(dut.cols, 1)  // Max rows per - 1
 	expect(dut.col_cnt, 0)  
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
@@ -698,6 +714,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 
 		1) Write settings
 		2) Write vec (4)
+		3) 2 banks
 
 	*/   	
 	println("\n*************************")
@@ -725,7 +742,7 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expect(dut.io.ocp.S.Resp, 1)
 	expectState(4)  
 // Updated
-	expect(dut.rows, 1)
+	expect(dut.rows, 2)
 	expect(dut.col_cnt, 0)
 	expect(dut.row_cnt, 0)
 	expect(dut.max_bank, 1)
@@ -803,6 +820,167 @@ class BRamCtrlTester(dut: BRamCtrl) extends Tester(dut) {
 	expectOut(0, 0, 0, 0)
 	expectState(4)
 	expect(dut.io.ocp.S.Resp, 1)
+
+
+	/*
+		Put into wr_dim 2 state
+
+		1) Write settings
+		2) Write array (4x4), (4 banks), start_bank = 0
+	*/  
+
+	println("\n*************************")
+	println("\nWrite settings\n")  
+	println("*************************\n")
+
+
+	wr(0, Bits("b00100000000100000000010001000000").litValue() , Bits("b1111").litValue())
+	expectState(4)
+	expectOut(0, 0, 0, 0) // The bram should not see this
+
+	step(1)
+
+	idle()
+
+	// settings are being set and we now go to state 1
+	expect(dut.io.ocp.S.Resp, 0)
+	expectState(1)
+
+	step(1)
+
+	println("\n*************************")
+	println("\nTest wr_dim 2 state with 4 banks\n")  
+	println("*************************\n")
+	
+	// Now into wr_dim_2 state, give slave response since settings are set.
+	expect(dut.io.ocp.S.Resp, 1)  
+	expectState(3)
+	expectOut(0, 0, 0, 0)
+
+	expect(dut.rows, 0) // Max rows per
+	expect(dut.cols, 0)
+	expect(dut.col_cnt, 0)
+	expect(dut.max_bank, 3)
+	expect(dut.start_bank, 0)
+	expect(dut.cur_bank, 0)
+
+	step(1)  
+
+	expectState(3)
+	expectOut(0, 0, 0, 0)
+
+	step(1) 
+
+	// We now test a write
+	wr(4, 1, Bits("b1111").litValue()) // We always write to addr 4 when just writing
+	expectOut(1, Bits("b0000000000000000").litValue(), 1, Bits("b1111").litValue())
+	expectState(3)
+
+	expect(dut.cur_bank, 0)
+	expect(dut.io.ocp.S.Resp, 0)
+
+	step(1)
+
+	idle()
+	expect(dut.io.ocp.S.Resp, 1)
+
+	step(1)
+
+	wr(4, 2, Bits("b1111").litValue())
+	expectOut(1, Bits("b0001000000000000").litValue(), 2, Bits("b1111").litValue())
+	expectState(3)  
+
+	expect(dut.cur_bank, 1)
+	expect(dut.io.ocp.S.Resp, 0)	
+
+	step(1)
+
+	idle()
+	expect(dut.io.ocp.S.Resp, 1)
+
+	step(1)
+
+	wr(4, 3, Bits("b1111").litValue())
+	expectOut(1, Bits("b0010000000000000").litValue(), 3, Bits("b1111").litValue())
+	expectState(3)	
+
+	expect(dut.cur_bank, 2)
+	expect(dut.io.ocp.S.Resp, 0)  
+
+	step(1)	
+
+	wr(4, 1, Bits("b1111").litValue()) // We always write to addr 4 when just writing
+	expectOut(1, Bits("b0011000000000000").litValue(), 1, Bits("b1111").litValue())
+	expectState(3)
+
+	expect(dut.cur_bank, 3)
+	expect(dut.io.ocp.S.Resp, 1)  
+
+	step(1)
+
+	idle()
+	expect(dut.io.ocp.S.Resp, 1)
+
+	step(1)
+
+	wr(4, 2, Bits("b1111").litValue())
+	expectOut(1, Bits("b0000000000000100").litValue(), 2, Bits("b1111").litValue())
+	expectState(3)	
+
+	expect(dut.cur_bank, 0)
+	expect(dut.io.ocp.S.Resp, 0)  
+
+	step(1)
+
+	wr(4, 3, Bits("b1111").litValue())
+	expectOut(1, Bits("b0001000000000100").litValue(), 3, Bits("b1111").litValue())
+	expectState(3)	
+
+	expect(dut.cur_bank, 1)
+
+	step(1)
+
+	idle()
+	expect(dut.io.ocp.S.Resp, 1)	
+
+	step(1)
+
+	wr(4, 2, Bits("b1111").litValue())
+	expectOut(1, Bits("b0010000000000100").litValue(), 2, Bits("b1111").litValue())
+	expectState(3)
+
+	expect(dut.cur_bank, 2)
+	expect(dut.io.ocp.S.Resp, 0)		
+
+	step(1)
+
+	wr(4, 3, Bits("b1111").litValue())
+	expectOut(1, Bits("b0011000000000100").litValue(), 3, Bits("b1111").litValue())
+	expectState(3)
+
+	expect(dut.cur_bank, 3)
+
+	// We now stay idle for several clock cycles
+
+	step(1)
+
+	idle()
+	expectOut(0, 0, 0, 0)
+	expectState(3)
+
+	step(5)
+	expectOut(0, 0, 0, 0)
+	expectState(3)
+
+	step(1) 
+
+	// And resume
+
+	wr(4, 3, Bits("b1111").litValue())
+	expectOut(1, Bits("b0000000000001000").litValue(), 3, Bits("b1111").litValue())
+	expectState(3)
+
+	expect(dut.cur_bank, 0)	
 
 }
 
