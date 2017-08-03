@@ -114,13 +114,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/fir2dim_int_mcu/hls_fir2dim/fir2dim/impl/vhdl/fir2dim_hwa_mul_3bkb.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/fir2dim_int/hls_fir2dim/fir2dim/impl/vhdl/fir2dim_hwa_mul_3bkb.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/fir2dim_int_mcu/hls_fir2dim/fir2dim/impl/vhdl/fir2dim_hwa.vhd">
+      <File Path="$PPRDIR/../../../../../github/bachelor_project_HLS/hls/tacle-bench/kernel/fir2dim_int/hls_fir2dim/fir2dim/impl/vhdl/fir2dim_hwa.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

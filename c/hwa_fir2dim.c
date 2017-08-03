@@ -28,6 +28,8 @@
 #include "libhwa/hwa_bram.h"
 #include "libhwa/hwa_test.h"
 
+#define BRAM_BASE_READ 		0xF00B1000
+
 #define IMAGEDIM      4
 #define ARRAYDIM      (IMAGEDIM + 2)
 #define COEFFICIENTS  3
@@ -35,7 +37,7 @@
 #define COEFF_OFFSET 0
 #define IMAGE_OFFSET (COEFFICIENTS*COEFFICIENTS)
 #define ARRAY_OFFSET (IMAGE_OFFSET+IMAGEDIM*IMAGEDIM)
-#define SIZE (COEFFICIENTS * COEFFICIENTS + 1*IMAGEDIM * IMAGEDIM + ARRAYDIM * ARRAYDIM)
+#define TEST_SIZE (COEFFICIENTS * COEFFICIENTS + 1*IMAGEDIM * IMAGEDIM + ARRAYDIM * ARRAYDIM)
 
 /*
   Forward declaration of functions
@@ -44,13 +46,13 @@
 void fir2dim_initSeed(void);
 
 long fir2dim_randomInteger();
-void fir2dim_pin_down(float *pimage, float *parray,
-					  float *pcoeff, float *poutput);
+void fir2dim_pin_down(mat_type *pimage, mat_type *parray,
+					  mat_type *pcoeff, mat_type *poutput);
 
-void fir2dim_init(float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
-				  float fir2dim_image[IMAGEDIM * IMAGEDIM],
-				  float fir2dim_array[ARRAYDIM * ARRAYDIM],
-				  float fir2dim_output[IMAGEDIM * IMAGEDIM]);
+void fir2dim_init(mat_type fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
+				  mat_type fir2dim_image[IMAGEDIM * IMAGEDIM],
+				  mat_type fir2dim_array[ARRAYDIM * ARRAYDIM],
+				  mat_type fir2dim_output[IMAGEDIM * IMAGEDIM]);
 
 int fir2dim_return(int fir2dim_result);
 
@@ -59,20 +61,20 @@ int fir2dim_main(void);
 int fir2dim_main_wcet(void) __attribute__((noinline));
 
 int fir2dim_result_hw;
-float fir2dim_input[SIZE];
-float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS];
-float fir2dim_image[IMAGEDIM * IMAGEDIM];
-float fir2dim_array[ARRAYDIM * ARRAYDIM];
-float fir2dim_output_hw[IMAGEDIM * IMAGEDIM];
+mat_type fir2dim_input[TEST_SIZE];
+mat_type fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS];
+mat_type fir2dim_image[IMAGEDIM * IMAGEDIM];
+mat_type fir2dim_array[ARRAYDIM * ARRAYDIM];
+mat_type fir2dim_output_hw[IMAGEDIM * IMAGEDIM];
 
 /*
   Initialization- and return-value-related functions
 */
 
-void fir2dim_init(float fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
-				  float fir2dim_image[IMAGEDIM * IMAGEDIM],
-				  float fir2dim_array[ARRAYDIM * ARRAYDIM],
-				  float fir2dim_output[IMAGEDIM * IMAGEDIM])
+void fir2dim_init(mat_type fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
+				  mat_type fir2dim_image[IMAGEDIM * IMAGEDIM],
+				  mat_type fir2dim_array[ARRAYDIM * ARRAYDIM],
+				  mat_type fir2dim_output[IMAGEDIM * IMAGEDIM])
 {
 
 	unsigned int i;
@@ -115,11 +117,11 @@ int fir2dim_return(int fir2dim_result)
   Helper functions
 */
 
-void fir2dim_pin_down(float *pimage, float *parray,
-					  float *pcoeff, float *poutput)
+void fir2dim_pin_down(mat_type *pimage, mat_type *parray,
+					  mat_type *pcoeff, mat_type *poutput)
 {
 
-	float i, f;
+	mat_type i, f;
 
 	_Pragma("loopbound min 4 max 4")
 	for(i = 0 ; i < IMAGEDIM ; i++) {
@@ -171,12 +173,12 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 	bank_ptrs(bank_ptr_array, NBANKS);
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array);
+	write_vector(fir2dim_input, TEST_SIZE, 0, 0);
 
 	*hls_ptr = 1;
 	*hls_ptr;
 
-	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
+	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 0, BRAM_BASE_READ);
 
 	return 0;
 }
@@ -198,7 +200,7 @@ int fir2dim_main(void)
 
 	start_transfer = get_cpu_cycles();
 
-	write_vector(fir2dim_input, SIZE, 1, 0, bank_ptr_array);
+	write_vector(fir2dim_input, TEST_SIZE, 0, 0);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -218,7 +220,7 @@ int fir2dim_main(void)
 
 	start_transfer = get_cpu_cycles();
 
-	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 1, bank_ptr_array);
+	read_vector(fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 0, BRAM_BASE_READ);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;

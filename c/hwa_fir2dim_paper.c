@@ -35,10 +35,10 @@
 #define COEFF_OFFSET 0
 #define IMAGE_OFFSET (COEFFICIENTS*COEFFICIENTS)
 #define ARRAY_OFFSET (IMAGE_OFFSET+IMAGEDIM*IMAGEDIM)
-#define SIZE (COEFFICIENTS * COEFFICIENTS + 1*IMAGEDIM * IMAGEDIM + ARRAYDIM * ARRAYDIM)
+#define TEST_SIZE (COEFFICIENTS * COEFFICIENTS + 1*IMAGEDIM * IMAGEDIM + ARRAYDIM * ARRAYDIM)
 
 struct filter_data {
-	mat_type fir2dim_input[SIZE];
+	mat_type fir2dim_input[TEST_SIZE];
 	mat_type fir2dim_output_hw[IMAGEDIM * IMAGEDIM];
 };
 
@@ -66,7 +66,7 @@ int main(void);
 int fir2dim_main_wcet(void) __attribute__((noinline));
 
 int fir2dim_result_hw;
-mat_type fir2dim_input[SIZE];
+mat_type fir2dim_input[TEST_SIZE];
 mat_type fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS];
 mat_type fir2dim_image[IMAGEDIM * IMAGEDIM];
 mat_type fir2dim_array[ARRAYDIM * ARRAYDIM];
@@ -179,12 +179,12 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	write_vector_spm(spm_filter->fir2dim_input, SIZE, 1, 0);
+	write_vector_spm(spm_filter->fir2dim_input, TEST_SIZE, 0, 0);
 
 	*hls_ptr = 1;
 	*hls_ptr;
 
-	read_vector_spm(spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 1, 0xF00B1000);
+	read_vector_spm(spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 0, BRAM_BASE_READ);
 
 	return 0;
 }

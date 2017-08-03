@@ -3,7 +3,7 @@
 #define DIM 	32
 #define SIZE	1024
 #define VECSIZE 1024
-#define NBANKS 	9
+#define NBANKS 	2
 #define WCET	0
 #define ARRAY_WR_FACTOR	1
 #define ARRAY_WR_DIV	32

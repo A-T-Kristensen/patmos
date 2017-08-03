@@ -21,7 +21,7 @@ Please remember to ensure that the dimensions are correct in the benchmark.h fil
 
 ### Int
 
-- [] fir2dim_int_mcu
+- [x] fir2dim_int_mcu
 
 ## Matmul (Ports for each array)
 
