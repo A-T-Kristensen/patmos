@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date             : Wed Aug  2 19:52:50 2017
+| Date             : Thu Aug  3 07:33:56 2017
 | Host             : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command          : report_power -file patmos_top_power_routed.rpt -pb patmos_top_power_summary_routed.pb -rpx patmos_top_power_routed.rpx
 | Design           : patmos_top
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.083 |
-| Dynamic (W)              | 0.975 |
+| Total On-Chip Power (W)  | 1.080 |
+| Dynamic (W)              | 0.971 |
 | Device Static (W)        | 0.109 |
 | Total Off-Chip Power (W) | 0.633 |
 | Effective TJA (C/W)      | 4.6   |
@@ -50,25 +50,25 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.023 |       46 |       --- |             --- |
-| Slice Logic              |     0.012 |    21126 |       --- |             --- |
-|   LUT as Logic           |     0.011 |     9150 |     63400 |           14.43 |
-|   Register               |    <0.001 |     8258 |    126800 |            6.51 |
+| Clocks                   |     0.021 |       46 |       --- |             --- |
+| Slice Logic              |     0.013 |    21137 |       --- |             --- |
+|   LUT as Logic           |     0.011 |     9138 |     63400 |           14.41 |
 |   CARRY4                 |    <0.001 |      530 |     15850 |            3.34 |
+|   Register               |    <0.001 |     8256 |    126800 |            6.51 |
 |   LUT as Distributed RAM |    <0.001 |      536 |     19000 |            2.82 |
 |   LUT as Shift Register  |    <0.001 |       43 |     19000 |            0.23 |
-|   F7/F8 Muxes            |    <0.001 |      138 |     63400 |            0.22 |
-|   Others                 |     0.000 |      236 |       --- |             --- |
-| Signals                  |     0.018 |    17807 |       --- |             --- |
+|   F7/F8 Muxes            |    <0.001 |      144 |     63400 |            0.23 |
+|   Others                 |     0.000 |      234 |       --- |             --- |
+| Signals                  |     0.019 |    17810 |       --- |             --- |
 | Block RAM                |     0.019 |     13.5 |       135 |           10.00 |
 | MMCM                     |     0.222 |        2 |         6 |           33.33 |
 | PLL                      |     0.090 |        1 |         6 |           16.67 |
 | DSPs                     |     0.004 |       10 |       240 |            4.17 |
-| I/O                      |     0.512 |      109 |       210 |           51.90 |
+| I/O                      |     0.509 |      109 |       210 |           51.90 |
 | PHASER                   |     0.070 |       14 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.109 |          |           |                 |
-| Total                    |     1.083 |          |           |                 |
+| Total                    |     1.080 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,11 +78,11 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.118 |       0.100 |      0.018 |
-| Vccaux    |       1.800 |     0.269 |       0.250 |      0.018 |
+| Vccint    |       1.000 |     0.117 |       0.099 |      0.018 |
+| Vccaux    |       1.800 |     0.268 |       0.250 |      0.018 |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18    |       1.800 |     0.588 |       0.584 |      0.004 |
+| Vcco18    |       1.800 |     0.587 |       0.583 |      0.004 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
@@ -190,10 +190,10 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                | Power (W) |
 +-----------------------------------------------------------------------------------------------------+-----------+
-| patmos_top                                                                                          |     0.975 |
+| patmos_top                                                                                          |     0.971 |
 |   clk_manager_inst_0                                                                                |     0.107 |
 |     inst                                                                                            |     0.107 |
-|   ddr2_ctrl_inst_0                                                                                  |     0.806 |
+|   ddr2_ctrl_inst_0                                                                                  |     0.801 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_12_17 |    <0.001 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_24_29 |    <0.001 |
 |     ddr_byte_lane_A.ddr_byte_lane_A/dq_gen_40.if_post_fifo_gen.u_ddr_if_post_fifo/mem_reg_0_3_30_35 |    <0.001 |
@@ -259,22 +259,22 @@ Table of Contents
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_6_11             |    <0.001 |
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_72_77            |    <0.001 |
 |     ddr_byte_lane_C.ddr_byte_lane_C/of_pre_fifo_gen.u_ddr_of_pre_fifo/mem_reg_0_15_78_79            |    <0.001 |
-|     u_ddr2_ctrl_mig                                                                                 |     0.805 |
+|     u_ddr2_ctrl_mig                                                                                 |     0.800 |
 |       temp_mon_enabled.u_tempmon                                                                    |     0.006 |
 |       u_ddr2_clk_ibuf                                                                               |     0.000 |
 |       u_ddr2_infrastructure                                                                         |     0.206 |
 |       u_iodelay_ctrl                                                                                |    <0.001 |
-|       u_memc_ui_top_std                                                                             |     0.592 |
-|         mem_intfc0                                                                                  |     0.591 |
-|           ddr_phy_top0                                                                              |     0.588 |
-|             u_ddr_calib_top                                                                         |     0.006 |
+|       u_memc_ui_top_std                                                                             |     0.588 |
+|         mem_intfc0                                                                                  |     0.587 |
+|           ddr_phy_top0                                                                              |     0.585 |
+|             u_ddr_calib_top                                                                         |     0.005 |
 |               ddr_phy_rdlvl_gen.u_ddr_phy_rdlvl                                                     |     0.002 |
 |               ddr_phy_tempmon_0                                                                     |    <0.001 |
 |               dqsfind_calib_left.u_ddr_phy_dqs_found_cal_hr                                         |    <0.001 |
 |               mb_wrlvl_off.u_phy_wrlvl_off_delay                                                    |    <0.001 |
 |               u_ddr_phy_init                                                                        |     0.001 |
 |               u_ddr_phy_wrcal                                                                       |    <0.001 |
-|             u_ddr_mc_phy_wrapper                                                                    |     0.583 |
+|             u_ddr_mc_phy_wrapper                                                                    |     0.579 |
 |               gen_dq_iobuf_HR.gen_dq_iobuf[0].u_iobuf_dq                                            |     0.013 |
 |               gen_dq_iobuf_HR.gen_dq_iobuf[10].u_iobuf_dq                                           |     0.013 |
 |               gen_dq_iobuf_HR.gen_dq_iobuf[11].u_iobuf_dq                                           |     0.013 |
@@ -326,7 +326,7 @@ Table of Contents
 |                       mem_reg_0_15_66_71                                                            |    <0.001 |
 |                       mem_reg_0_15_6_11                                                             |    <0.001 |
 |                       mem_reg_0_15_72_77                                                            |    <0.001 |
-|           mc0                                                                                       |     0.003 |
+|           mc0                                                                                       |     0.002 |
 |             bank_mach0                                                                              |     0.002 |
 |               arb_mux0                                                                              |    <0.001 |
 |                 arb_row_col0                                                                        |    <0.001 |
@@ -401,8 +401,8 @@ Table of Contents
 |     bram_gen[4].bram_array                                                                          |     0.001 |
 |   nexys4ddr_io_inst_0                                                                               |     0.001 |
 |   ocp_burst_to_ddr2_ctrl_inst_0                                                                     |    <0.001 |
-|   patmos_inst_0                                                                                     |     0.043 |
-|     core                                                                                            |     0.043 |
+|   patmos_inst_0                                                                                     |     0.044 |
+|     core                                                                                            |     0.044 |
 |       dcache                                                                                        |     0.010 |
 |         bp                                                                                          |    <0.001 |
 |         dm                                                                                          |     0.006 |

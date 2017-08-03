@@ -72,8 +72,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	int wr_dim = 2;
 //	int factor = 0; // 0 means no division
-	//int factor = 1; // 1 means 2 banks
-	int factor = 2; // 2 means 4 banks
+	int factor = 1; // 1 means 2 banks
+	//int factor = 2; // 2 means 4 banks
 
 	int array_vect =  0; // Array
 	int M = DIM;
@@ -92,8 +92,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Set up BRAM for B
 
-//	start_bank = 2; // For NBANKS == 5
-	start_bank = 4; // For NBANKS == 9
+	start_bank = 2; // For NBANKS == 5
+	//start_bank = 4; // For NBANKS == 9
 
 	wr_dim = 1;
 
@@ -118,7 +118,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 		*(&hw_result[0][0] + i) = *(bram_ptr_read + i);
 	}
 
-/*	int j;
+	int j;
 
 	for(i = 0; i < DIM; i++) {
 		for(j = 0; j < DIM; j++) {
@@ -206,7 +206,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	}		
 
 	printf("\n");			
-*/
+
 
 	err_cnt = compare_arrays(hw_result, sw_result);
 
