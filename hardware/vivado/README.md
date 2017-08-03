@@ -15,7 +15,7 @@ Please remember to ensure that the dimensions are correct in the benchmark.h fil
 
 ### Int
 
-- [] filterbank_int_mcu
+- [x] filterbank_int_mcu
 
 ## Fir2Dim
 

@@ -1,8 +1,8 @@
-#define ROWS 	8
+#define ROWS 	32
 #define COLS	32
 #define DIM 	32
-#define SIZE	256
-#define VECSIZE 256
+#define SIZE	1024
+#define VECSIZE 1024
 #define NBANKS 	9
 #define WCET	0
 #define ARRAY_WR_FACTOR	1
