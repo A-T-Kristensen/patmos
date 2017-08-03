@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-| Date         : Fri Jun  9 14:27:45 2017
+| Date         : Thu Aug  3 14:19:14 2017
 | Host         : ubuntu running 64-bit Ubuntu 16.04.2 LTS
 | Command      : report_drc -file patmos_top_drc_routed.rpt -pb patmos_top_drc_routed.pb -rpx patmos_top_drc_routed.rpx
 | Design       : patmos_top
@@ -146,12 +146,12 @@ Related violations: <none>
 
 REQP-1839#1 Warning
 RAMB36 async control check  
-The RAMB36E1 n_bank_inst_0/bram_gen[0].bram_array/mem_reg has an input control pin n_bank_inst_0/bram_gen[0].bram_array/mem_reg/ENBWREN (net: n_bank_inst_0/bram_gen[0].bram_array/mem_reg_ENBWREN_cooolgate_en_sig_8) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 n_bank_inst_0/bram_gen[0].bram_array/mem_reg has an input control pin n_bank_inst_0/bram_gen[0].bram_array/mem_reg/ENBWREN (net: n_bank_inst_0/bram_gen[0].bram_array/mem_reg_ENBWREN_cooolgate_en_sig_7) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#2 Warning
 RAMB36 async control check  
-The RAMB36E1 n_bank_inst_0/bram_gen[1].bram_array/mem_reg has an input control pin n_bank_inst_0/bram_gen[1].bram_array/mem_reg/ENBWREN (net: n_bank_inst_0/bram_gen[1].bram_array/mem_reg_ENBWREN_cooolgate_en_sig_9) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 n_bank_inst_0/bram_gen[1].bram_array/mem_reg has an input control pin n_bank_inst_0/bram_gen[1].bram_array/mem_reg/ENBWREN (net: n_bank_inst_0/bram_gen[1].bram_array/mem_reg_ENBWREN_cooolgate_en_sig_8) which is driven by a register (ddr2_ctrl_inst_0/u_ddr2_ctrl_mig/u_ddr2_infrastructure/rstdiv0_sync_r1_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#1 Warning

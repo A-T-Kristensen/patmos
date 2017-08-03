@@ -9,7 +9,7 @@ Please remember to ensure that the dimensions are correct in the benchmark.h fil
 
 ### Int
 
-- [] adpcm_mcu
+- [x] adpcm_mcu
 
 ## Filterbank
 
