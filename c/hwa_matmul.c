@@ -12,6 +12,32 @@
 #include "libhwa/hwa_bram.h"
 #include "libhwa/hwa_test.h"
 
+#if(NBANKS==3)
+
+#define BRAM_BASE_READ 		0xF00B2000
+#define FACTOR				0
+#define B_START				1
+
+#elif(NBANKS==5)
+
+#define BRAM_BASE_READ 		0xF00B4000
+#define FACTOR				1
+#define B_START				2
+
+#elif(NBANKS==9)
+
+#define BRAM_BASE_READ 		0xF00B8000
+#define FACTOR				2
+#define B_START				4
+
+#else
+
+#define BRAM_BASE_READ 		0xF00B0000
+#define FACTOR				0
+#define B_START				1
+
+#endif
+
 int main(void);
 int matmul_main(mat_type mat_a[DIM][DIM],
 				mat_type mat_b[DIM][DIM],
@@ -27,33 +53,26 @@ int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM],
 		mat_type hw_result[DIM][DIM])
 {
 
-	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
-	bank_ptrs(bank_ptr_array, NBANKS);
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
-
-
-	// Division factor, a and b shares most banks
-
-	int factor = (int) floor(NBANKS/2);
 
 	// Write to BRAM
 
 #if(NBANKS==3)
 
-	write_array(mat_a, DIM, DIM, factor, 0, bank_ptr_array, 1);
+	write_array(mat_a, DIM, DIM, FACTOR, 0, 1);
 
 #else
 
-	write_array(mat_a, DIM, DIM, factor, 0, bank_ptr_array, 2);
+	write_array(mat_a, DIM, DIM, FACTOR, 0, 2);
 
 #endif
 
-	write_array(mat_b, DIM, DIM, factor, factor, bank_ptr_array, 1);
+	write_array(mat_b, DIM, DIM, FACTOR, B_START, 1);
 
 	*hls_ptr = 1;
 	*hls_ptr;
 
-	read_array(hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1);
+	read_array(hw_result, DIM, DIM, 1, BRAM_BASE_READ);
 
 	return 0;
 }
@@ -66,17 +85,10 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	int err_cnt = 0;
 
-	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
-	bank_ptrs(bank_ptr_array, NBANKS);
-
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
 	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
-
-	// Division factor, a and b shares most banks
-
-	int factor = (int) floor(NBANKS/2);
 
 	printf("Benchmarking \n");
 
@@ -90,15 +102,15 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 #if(NBANKS==3)
 
-	write_array(mat_a, DIM, DIM, factor, 0, bank_ptr_array, 1);
+	write_array(mat_a, DIM, DIM, FACTOR, 0, 1);
 
 #else
 
-	write_array(mat_a, DIM, DIM, factor, 0, bank_ptr_array, 2);
+	write_array(mat_a, DIM, DIM, FACTOR, 0, 2);
 
 #endif
 
-	write_array(mat_b, DIM, DIM, factor, factor, bank_ptr_array, 1);
+	write_array(mat_b, DIM, DIM, FACTOR, B_START, 1);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -120,7 +132,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	start_transfer = get_cpu_cycles();
 
-	read_array(hw_result, DIM, DIM, 1, NBANKS-1, bank_ptr_array, 1);
+	read_array(hw_result, DIM, DIM, 1, BRAM_BASE_READ);
 
 	stop_transfer = get_cpu_cycles();
 	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
@@ -128,6 +140,12 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	err_cnt = compare_arrays(hw_result, sw_result);
 
 	print_benchmark(return_compute, return_transfer);
+
+	volatile _IODEV mat_type *bram_ptr_read = (volatile _IODEV mat_type *) 0xF00B0000;
+	int i;
+	for(i = 0; i < DIM*DIM; i++) {
+		printf("%d ", *(bram_ptr_read + i));
+	}		
 
 	return err_cnt;
 }

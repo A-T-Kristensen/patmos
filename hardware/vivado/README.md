@@ -3,94 +3,46 @@
 # Status
 
 The status is whether it has been synthesised and tested on the FPGA board (with the C code).
-Please remember to ensure that the dimensions are correct in the hwa_lib.h file (done automatically when using benchmark.py).
+Please remember to ensure that the dimensions are correct in the benchmark.h file (done automatically when using benchmark.py).
 
-## Matmul (Ports for each array)
-
-### Float
-
-- [x] matmul_float_3b_4x4
-- [x] matmul_float_3b_16x16
-- [x] matmul_float_3b_32x32
-- [x] matmul_float_5b_4x4
-- [x] matmul_float_5b_16x16
-- [x] matmul_float_5b_32x32
-- [x] matmul_float_9b_4x4
-- [x] matmul_float_9b_16x16
-- [x] matmul_float_9b_32x32
+## ADPCM
 
 ### Int
 
-- [x] matmul_int_3b_4x4
-- [x] matmul_int_3b_16x16
-- [x] matmul_int_3b_32x32
-- [x] matmul_int_5b_4x4
-- [x] matmul_int_5b_16x16
-- [x] matmul_int_5b_32x32
-- [x] matmul_int_9b_4x4
-- [x] matmul_int_9b_16x16
-- [x] matmul_int_9b_32x32
-
-## Matmul (Elements in same array)
-
-### Float
-
-- [] matmul_misc_float_1b_4x4
-- [] matmul_misc_float_1b_16x16
-- [] matmul_misc_float_1b_32x32
-- [] matmul_misc_float_2b_4x4
-- [] matmul_misc_float_2b_16x16
-- [] matmul_misc_float_2b_32x32
-- [] matmul_misc_float_3b_4x4
-- [] matmul_misc_float_3b_16x16
-- [] matmul_misc_float_3b_32x32
-
-### Int
-
-- [] matmul_misc_int_1b_4x4
-- [] matmul_misc_int_1b_16x16
-- [] matmul_misc_int_1b_32x32
-- [] matmul_misc_int_2b_4x4
-- [] matmul_misc_int_2b_16x16
-- [] matmul_misc_int_2b_32x32
-- [] matmul_misc_int_3b_4x4
-- [] matmul_misc_int_3b_16x16
-- [] matmul_misc_int_3b_32x32
-
-## Minver
-
-### Float
-
-- [] minver_float_1b_4x4
-- [] minver_float_1b_16x16
-- [] minver_float_1b_32x32
-- [] minver_float_2b_4x4
-- [] minver_float_2b_16x16
-- [] minver_float_2b_32x32
-- [] minver_float_4b_4x4
-- [] minver_float_4b_16x16
-- [] minver_float_4b_32x32
+- [] adpcm_mcu
 
 ## Filterbank
 
-### Float
+### Int
 
+- [] filterbank_int_mcu
 
 ## Fir2Dim
 
-### Float
+### Int
 
-## SHA
+- [] fir2dim_int_mcu
 
-## Md5
+## Matmul (Ports for each array)
+
+### Int
+
+- [] matmul_int_3b_4x4_mcu
+- [] matmul_int_3b_16x16_mcu
+- [] matmul_int_3b_32x32_mcu
+- [] matmul_int_5b_4x4_mcu
+- [x] matmul_int_5b_16x16_mcu
+- [x] matmul_int_5b_32x32_mcu
+- [] matmul_int_9b_4x4_mcu
+- [] matmul_int_9b_16x16_mcu
+- [x] matmul_int_9b_32x32_mcu
 
 # Using Vivado
 
 There does occur some bugs from time to time, here are some ways of fixing them.
 
 * Vivado stalls at synthesis.
-	* One possible workaround is to ensure that the number of jobs selected is correct.
-	* Another workaround is to not use the gui, but run vivado from batch mode "vivado -mode batch -source synth.tcl".
+	* A workaround is to not use the gui, but run vivado from batch mode "vivado -mode batch -source synth.tcl".
 
 * Loading a package in
 	* See [link](https://forums.xilinx.com/t5/Simulation-and-Verification/VHDL-package-not-comiled-in-work-library-gt-Vivado-2013-3/td-p/410645) and [link](https://forums.xilinx.com/t5/7-Series-FPGAs/A-VHDL-package-in-Vivado/td-p/660301)

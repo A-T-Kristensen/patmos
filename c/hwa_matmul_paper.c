@@ -15,18 +15,26 @@
 #if(NBANKS==3)
 
 #define BRAM_BASE_READ 		0xF00B2000
+#define FACTOR				0
+#define B_START				1
 
 #elif(NBANKS==5)
 
 #define BRAM_BASE_READ 		0xF00B4000
+#define FACTOR				1
+#define B_START				2
 
 #elif(NBANKS==9)
 
 #define BRAM_BASE_READ 		0xF00B8000
+#define FACTOR				2
+#define B_START				4
 
 #else
 
 #define BRAM_BASE_READ 		0xF00B0000
+#define FACTOR				0
+#define B_START				1
 
 #endif
 
@@ -46,29 +54,25 @@ int _Pragma("entrypoint") matmul_main_wcet()
 
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
-	// Division factor, a and b shares most banks
-	int factor = (int) floor(NBANKS/2);
-
 	// Write to BRAM
 
 #if(NBANKS==3)
 
-	write_array_spm(spm_matrix->mat_a, DIM, DIM, factor, 0, 1);
+	write_array_spm(spm_matrix->mat_a, DIM, DIM, FACTOR, 0, 1);
 
 #else
 
-	write_array_spm(spm_matrix->mat_a, DIM, DIM, factor, 0, 2);
+	write_array_spm(spm_matrix->mat_a, DIM, DIM, FACTOR, 0, 2);
 
 #endif
 
-	write_array_spm(spm_matrix->mat_b, DIM, DIM, factor, factor, 1);
+	write_array_spm(spm_matrix->mat_b, DIM, DIM, FACTOR, B_START, 1);
 
 	*hls_ptr = 1;
 	*hls_ptr;
 
 	// Read back
-	read_array_spm(spm_matrix->hw_result, DIM, DIM,
-				   1, BRAM_BASE_READ);
+	read_array_spm(spm_matrix->hw_result, DIM, DIM, 1, BRAM_BASE_READ);
 
 	return 0;
 }

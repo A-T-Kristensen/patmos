@@ -34,7 +34,7 @@ void matmul_init_spm(volatile _SPM mat_type(*mat_a)[DIM][DIM],
 {
 	int i, j;
 
-	_Pragma("loopbound min DIM max DIM")
+/*	_Pragma("loopbound min DIM max DIM")
 	for(i = 0; i < DIM; i++) {
 		_Pragma("loopbound min DIM max DIM")
 		for(j = 0; j < DIM; j++) {
@@ -43,6 +43,11 @@ void matmul_init_spm(volatile _SPM mat_type(*mat_a)[DIM][DIM],
 			(*mat_b)[i][j] = i + j + 1 + DIM;
 			(*sw_result)[i][j] = 0;
 		}
+	}*/
+	for(i = 0; i < DIM*DIM; i++) {
+		*(&(*mat_a)[0][0] + i) = i + 1;
+		*(&(*mat_b)[0][0] + i) = i + DIM*DIM;
+		*(&(*sw_result)[0][0] + i) = 0;
 	}
 }
 

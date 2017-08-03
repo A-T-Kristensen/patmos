@@ -79,22 +79,22 @@ class BRamCtrl(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevice
 
 	// cols is the maximum number of columns (-1) for the partitioned array
 
-	val cols = Reg(init = Bits(0, width = 10))
+	val cols = Reg(init = Bits(0, width = 12))
 	cols := cols
 
 	// col_cnt keeps track of the current column in the partitioned array
 
-	val col_cnt = Reg(init = Bits(0, width = 10))
+	val col_cnt = Reg(init = Bits(0, width = 12))
 	col_cnt := col_cnt  
 
 	// rows is the maximum number of rows (-1) for the partitioned array
 
-	val rows = Reg(init = Bits(0, width = 10))
+	val rows = Reg(init = Bits(0, width = 12))
 	rows := rows
 
 	// row_cnt keeps track of the current ow in the partitioned array	
 
-	val row_cnt = Reg(init = Bits(0, width = 10))
+	val row_cnt = Reg(init = Bits(0, width = 12))
 	row_cnt := row_cnt  
 
 	// The maximum number of memory banks for partitioning - 1.
@@ -117,7 +117,7 @@ class BRamCtrl(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevice
 	// These keep check of where we are in the different banks
 	// Maximum of 1024 elements for each memory bank
 
-	val memories = Vec.fill(16) {Reg(init = Bits(0, width = 10))}  
+	val memories = Vec.fill(16) {Reg(init = Bits(0, width = 12))}  
 
 	for (j <- 0 until 16) {
 		memories(j) := memories(j)

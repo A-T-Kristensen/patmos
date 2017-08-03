@@ -9034,25 +9034,25 @@ module Exceptions(input clk, input reset,
 endmodule
 
 module MemBlock_2(input clk,
-    input [10:0] io_rdAddr,
+    input [11:0] io_rdAddr,
     output[7:0] io_rdData,
-    input [10:0] io_wrAddr,
+    input [11:0] io_wrAddr,
     input  io_wrEna,
     input [7:0] io_wrData
 );
 
   wire[7:0] T0;
-  reg [7:0] mem [2047:0];
+  reg [7:0] mem [4095:0];
   wire[7:0] T1;
   wire T2;
-  reg [10:0] rdAddrReg;
+  reg [11:0] rdAddrReg;
 
 `ifndef SYNTHESIS
 // synthesis translate_off
   integer initvar;
   initial begin
     #0.002;
-    for (initvar = 0; initvar < 2048; initvar = initvar+1)
+    for (initvar = 0; initvar < 4096; initvar = initvar+1)
       mem[initvar] = {1{$random}};
     rdAddrReg = {1{$random}};
   end
@@ -9072,7 +9072,7 @@ endmodule
 
 module Spm(input clk,
     input [2:0] io_M_Cmd,
-    input [12:0] io_M_Addr,
+    input [13:0] io_M_Addr,
     input [31:0] io_M_Data,
     input [3:0] io_M_ByteEn,
     output[1:0] io_S_Resp,
@@ -9083,20 +9083,20 @@ module Spm(input clk,
   wire T1;
   wire[3:0] T2;
   wire T3;
-  wire[10:0] T4;
-  wire[10:0] T5;
+  wire[11:0] T4;
+  wire[11:0] T5;
   wire[7:0] T6;
   wire T7;
-  wire[10:0] T8;
-  wire[10:0] T9;
+  wire[11:0] T8;
+  wire[11:0] T9;
   wire[7:0] T10;
   wire T11;
-  wire[10:0] T12;
-  wire[10:0] T13;
+  wire[11:0] T12;
+  wire[11:0] T13;
   wire[7:0] T14;
   wire T15;
-  wire[10:0] T16;
-  wire[10:0] T17;
+  wire[11:0] T16;
+  wire[11:0] T17;
   wire[31:0] T18;
   wire[23:0] T19;
   wire[15:0] T20;
@@ -9124,20 +9124,20 @@ module Spm(input clk,
   assign T1 = T2[2'h3:2'h3];
   assign T2 = T3 ? io_M_ByteEn : 4'h0;
   assign T3 = io_M_Cmd == 3'h1;
-  assign T4 = io_M_Addr[4'hc:2'h2];
-  assign T5 = io_M_Addr[4'hc:2'h2];
+  assign T4 = io_M_Addr[4'hd:2'h2];
+  assign T5 = io_M_Addr[4'hd:2'h2];
   assign T6 = io_M_Data[5'h17:5'h10];
   assign T7 = T2[2'h2:2'h2];
-  assign T8 = io_M_Addr[4'hc:2'h2];
-  assign T9 = io_M_Addr[4'hc:2'h2];
+  assign T8 = io_M_Addr[4'hd:2'h2];
+  assign T9 = io_M_Addr[4'hd:2'h2];
   assign T10 = io_M_Data[4'hf:4'h8];
   assign T11 = T2[1'h1:1'h1];
-  assign T12 = io_M_Addr[4'hc:2'h2];
-  assign T13 = io_M_Addr[4'hc:2'h2];
+  assign T12 = io_M_Addr[4'hd:2'h2];
+  assign T13 = io_M_Addr[4'hd:2'h2];
   assign T14 = io_M_Data[3'h7:1'h0];
   assign T15 = T2[1'h0:1'h0];
-  assign T16 = io_M_Addr[4'hc:2'h2];
-  assign T17 = io_M_Addr[4'hc:2'h2];
+  assign T16 = io_M_Addr[4'hd:2'h2];
+  assign T17 = io_M_Addr[4'hd:2'h2];
   assign io_S_Data = T18;
   assign T18 = {MemBlock_3_io_rdData, T19};
   assign T19 = {MemBlock_2_io_rdData, T20};
@@ -9926,24 +9926,23 @@ module BRamCtrl(input clk, input reset,
   wire[15:0] T364;
   wire[11:0] T79;
   wire[11:0] T80;
+  wire[11:0] T81;
+  wire[11:0] T82;
+  wire[11:0] T83;
+  wire[11:0] T84;
+  reg [11:0] memories_0;
   wire[11:0] T365;
-  wire[9:0] T81;
-  wire[9:0] T82;
-  wire[9:0] T83;
-  wire[9:0] T84;
-  reg [9:0] memories_0;
-  wire[9:0] T366;
-  wire[9:0] T85;
-  wire[9:0] T86;
-  wire[9:0] T87;
-  wire[9:0] T88;
-  wire[9:0] T89;
+  wire[11:0] T85;
+  wire[11:0] T86;
+  wire[11:0] T87;
+  wire[11:0] T88;
+  wire[11:0] T89;
   wire T90;
   wire T91;
   wire[15:0] T92;
   wire[3:0] T93;
   reg [3:0] cur_bank;
-  wire[3:0] T367;
+  wire[3:0] T366;
   wire[3:0] T94;
   wire[3:0] T95;
   wire[3:0] T96;
@@ -9953,69 +9952,72 @@ module BRamCtrl(input clk, input reset,
   wire T100;
   wire T101;
   wire T102;
-  reg [9:0] rows;
-  wire[9:0] T368;
-  wire[9:0] T103;
+  reg [11:0] rows;
+  wire[11:0] T367;
+  wire[11:0] T103;
+  wire[11:0] T368;
   wire[9:0] T104;
   wire[3:0] T105;
   wire[9:0] T106;
   wire T107;
-  wire[9:0] T108;
-  reg [9:0] row_cnt;
-  wire[9:0] T369;
-  wire[9:0] T109;
-  wire[9:0] T110;
-  wire[9:0] T111;
-  wire[9:0] T112;
-  wire[9:0] T113;
-  wire[9:0] T114;
-  wire[9:0] T115;
+  wire[11:0] T108;
+  reg [11:0] row_cnt;
+  wire[11:0] T369;
+  wire[11:0] T109;
+  wire[11:0] T110;
+  wire[11:0] T111;
+  wire[11:0] T112;
+  wire[11:0] T113;
+  wire[11:0] T114;
+  wire[11:0] T115;
   wire T116;
   wire T117;
-  wire[9:0] T118;
+  wire[11:0] T118;
   wire T119;
   wire T120;
   wire T121;
-  wire[9:0] T122;
+  wire[11:0] T122;
   wire T123;
   wire T124;
+  wire[11:0] T370;
   wire[9:0] T125;
   wire[9:0] T126;
-  reg [9:0] col_cnt;
-  wire[9:0] T370;
-  wire[9:0] T127;
-  wire[9:0] T128;
-  wire[9:0] T129;
-  wire[9:0] T130;
-  wire[9:0] T131;
-  wire[9:0] T132;
+  reg [11:0] col_cnt;
+  wire[11:0] T371;
+  wire[11:0] T127;
+  wire[11:0] T128;
+  wire[11:0] T129;
+  wire[11:0] T130;
+  wire[11:0] T131;
+  wire[11:0] T132;
   wire T133;
   wire T134;
   wire T135;
   wire T136;
   wire T137;
-  reg [9:0] cols;
-  wire[9:0] T371;
-  wire[9:0] T138;
+  reg [11:0] cols;
+  wire[11:0] T372;
+  wire[11:0] T138;
+  wire[11:0] T373;
   wire[9:0] T139;
   wire[3:0] T140;
   wire[9:0] T141;
   wire T142;
-  wire[9:0] T143;
-  wire[9:0] T144;
+  wire[11:0] T143;
+  wire[11:0] T144;
   wire T145;
   wire T146;
   reg [3:0] start_bank;
-  wire[3:0] T372;
+  wire[3:0] T374;
   wire[3:0] T147;
   wire[3:0] T148;
   wire T149;
   wire T150;
   reg [3:0] max_bank;
-  wire[3:0] T373;
-  wire[15:0] T374;
+  wire[3:0] T375;
+  wire[15:0] T376;
   wire[15:0] T151;
-  wire[15:0] T375;
+  wire[15:0] T377;
   wire[15:0] T152;
   wire[15:0] T153;
   wire[3:0] T154;
@@ -10024,84 +10026,84 @@ module BRamCtrl(input clk, input reset,
   wire T157;
   wire[3:0] T158;
   wire T159;
-  wire[9:0] T160;
+  wire[11:0] T160;
   wire T161;
-  wire[9:0] T162;
+  wire[11:0] T162;
   wire T163;
-  reg [9:0] memories_1;
-  wire[9:0] T376;
-  wire[9:0] T164;
-  wire[9:0] T165;
-  wire[9:0] T166;
-  wire[9:0] T167;
+  reg [11:0] memories_1;
+  wire[11:0] T378;
+  wire[11:0] T164;
+  wire[11:0] T165;
+  wire[11:0] T166;
+  wire[11:0] T167;
   wire T168;
   wire T169;
   wire T170;
   wire T171;
   wire T172;
-  wire[9:0] T173;
-  reg [9:0] memories_2;
-  wire[9:0] T377;
-  wire[9:0] T174;
-  wire[9:0] T175;
-  wire[9:0] T176;
-  wire[9:0] T177;
+  wire[11:0] T173;
+  reg [11:0] memories_2;
+  wire[11:0] T379;
+  wire[11:0] T174;
+  wire[11:0] T175;
+  wire[11:0] T176;
+  wire[11:0] T177;
   wire T178;
   wire T179;
   wire T180;
   wire T181;
-  reg [9:0] memories_3;
-  wire[9:0] T378;
-  wire[9:0] T182;
-  wire[9:0] T183;
-  wire[9:0] T184;
-  wire[9:0] T185;
+  reg [11:0] memories_3;
+  wire[11:0] T380;
+  wire[11:0] T182;
+  wire[11:0] T183;
+  wire[11:0] T184;
+  wire[11:0] T185;
   wire T186;
   wire T187;
   wire T188;
   wire T189;
   wire T190;
   wire T191;
-  wire[9:0] T192;
-  wire[9:0] T193;
-  reg [9:0] memories_4;
-  wire[9:0] T379;
-  wire[9:0] T194;
-  wire[9:0] T195;
-  wire[9:0] T196;
-  wire[9:0] T197;
+  wire[11:0] T192;
+  wire[11:0] T193;
+  reg [11:0] memories_4;
+  wire[11:0] T381;
+  wire[11:0] T194;
+  wire[11:0] T195;
+  wire[11:0] T196;
+  wire[11:0] T197;
   wire T198;
   wire T199;
   wire T200;
   wire T201;
-  reg [9:0] memories_5;
-  wire[9:0] T380;
-  wire[9:0] T202;
-  wire[9:0] T203;
-  wire[9:0] T204;
-  wire[9:0] T205;
+  reg [11:0] memories_5;
+  wire[11:0] T382;
+  wire[11:0] T202;
+  wire[11:0] T203;
+  wire[11:0] T204;
+  wire[11:0] T205;
   wire T206;
   wire T207;
   wire T208;
   wire T209;
   wire T210;
-  wire[9:0] T211;
-  reg [9:0] memories_6;
-  wire[9:0] T381;
-  wire[9:0] T212;
-  wire[9:0] T213;
-  wire[9:0] T214;
-  wire[9:0] T215;
+  wire[11:0] T211;
+  reg [11:0] memories_6;
+  wire[11:0] T383;
+  wire[11:0] T212;
+  wire[11:0] T213;
+  wire[11:0] T214;
+  wire[11:0] T215;
   wire T216;
   wire T217;
   wire T218;
   wire T219;
-  reg [9:0] memories_7;
-  wire[9:0] T382;
-  wire[9:0] T220;
-  wire[9:0] T221;
-  wire[9:0] T222;
-  wire[9:0] T223;
+  reg [11:0] memories_7;
+  wire[11:0] T384;
+  wire[11:0] T220;
+  wire[11:0] T221;
+  wire[11:0] T222;
+  wire[11:0] T223;
   wire T224;
   wire T225;
   wire T226;
@@ -10109,93 +10111,93 @@ module BRamCtrl(input clk, input reset,
   wire T228;
   wire T229;
   wire T230;
-  wire[9:0] T231;
-  wire[9:0] T232;
-  wire[9:0] T233;
-  reg [9:0] memories_8;
-  wire[9:0] T383;
-  wire[9:0] T234;
-  wire[9:0] T235;
-  wire[9:0] T236;
-  wire[9:0] T237;
+  wire[11:0] T231;
+  wire[11:0] T232;
+  wire[11:0] T233;
+  reg [11:0] memories_8;
+  wire[11:0] T385;
+  wire[11:0] T234;
+  wire[11:0] T235;
+  wire[11:0] T236;
+  wire[11:0] T237;
   wire T238;
   wire T239;
   wire T240;
   wire T241;
-  reg [9:0] memories_9;
-  wire[9:0] T384;
-  wire[9:0] T242;
-  wire[9:0] T243;
-  wire[9:0] T244;
-  wire[9:0] T245;
+  reg [11:0] memories_9;
+  wire[11:0] T386;
+  wire[11:0] T242;
+  wire[11:0] T243;
+  wire[11:0] T244;
+  wire[11:0] T245;
   wire T246;
   wire T247;
   wire T248;
   wire T249;
   wire T250;
-  wire[9:0] T251;
-  reg [9:0] memories_10;
-  wire[9:0] T385;
-  wire[9:0] T252;
-  wire[9:0] T253;
-  wire[9:0] T254;
-  wire[9:0] T255;
+  wire[11:0] T251;
+  reg [11:0] memories_10;
+  wire[11:0] T387;
+  wire[11:0] T252;
+  wire[11:0] T253;
+  wire[11:0] T254;
+  wire[11:0] T255;
   wire T256;
   wire T257;
   wire T258;
   wire T259;
-  reg [9:0] memories_11;
-  wire[9:0] T386;
-  wire[9:0] T260;
-  wire[9:0] T261;
-  wire[9:0] T262;
-  wire[9:0] T263;
+  reg [11:0] memories_11;
+  wire[11:0] T388;
+  wire[11:0] T260;
+  wire[11:0] T261;
+  wire[11:0] T262;
+  wire[11:0] T263;
   wire T264;
   wire T265;
   wire T266;
   wire T267;
   wire T268;
   wire T269;
-  wire[9:0] T270;
-  wire[9:0] T271;
-  reg [9:0] memories_12;
-  wire[9:0] T387;
-  wire[9:0] T272;
-  wire[9:0] T273;
-  wire[9:0] T274;
-  wire[9:0] T275;
+  wire[11:0] T270;
+  wire[11:0] T271;
+  reg [11:0] memories_12;
+  wire[11:0] T389;
+  wire[11:0] T272;
+  wire[11:0] T273;
+  wire[11:0] T274;
+  wire[11:0] T275;
   wire T276;
   wire T277;
   wire T278;
   wire T279;
-  reg [9:0] memories_13;
-  wire[9:0] T388;
-  wire[9:0] T280;
-  wire[9:0] T281;
-  wire[9:0] T282;
-  wire[9:0] T283;
+  reg [11:0] memories_13;
+  wire[11:0] T390;
+  wire[11:0] T280;
+  wire[11:0] T281;
+  wire[11:0] T282;
+  wire[11:0] T283;
   wire T284;
   wire T285;
   wire T286;
   wire T287;
   wire T288;
-  wire[9:0] T289;
-  reg [9:0] memories_14;
-  wire[9:0] T389;
-  wire[9:0] T290;
-  wire[9:0] T291;
-  wire[9:0] T292;
-  wire[9:0] T293;
+  wire[11:0] T289;
+  reg [11:0] memories_14;
+  wire[11:0] T391;
+  wire[11:0] T290;
+  wire[11:0] T291;
+  wire[11:0] T292;
+  wire[11:0] T293;
   wire T294;
   wire T295;
   wire T296;
   wire T297;
-  reg [9:0] memories_15;
-  wire[9:0] T390;
-  wire[9:0] T298;
-  wire[9:0] T299;
-  wire[9:0] T300;
-  wire[9:0] T301;
+  reg [11:0] memories_15;
+  wire[11:0] T392;
+  wire[11:0] T298;
+  wire[11:0] T299;
+  wire[11:0] T300;
+  wire[11:0] T301;
   wire T302;
   wire T303;
   wire T304;
@@ -10206,41 +10208,39 @@ module BRamCtrl(input clk, input reset,
   wire T309;
   wire[15:0] T310;
   wire[16:0] T311;
-  wire[16:0] T391;
+  wire[16:0] T393;
   wire[15:0] T312;
   wire[3:0] T313;
   wire[3:0] T314;
   wire[16:0] T315;
-  wire[16:0] T392;
-  wire[16:0] T393;
+  wire[16:0] T394;
+  wire[16:0] T395;
   wire[15:0] T316;
   wire T317;
   wire T318;
   wire T319;
   wire T320;
   wire[16:0] T321;
-  wire[16:0] T394;
+  wire[16:0] T396;
   wire[11:0] T322;
   wire[11:0] T323;
-  wire[11:0] T395;
   wire[16:0] T324;
   wire[16:0] T325;
-  wire[16:0] T396;
+  wire[16:0] T397;
   wire[15:0] T326;
   wire[3:0] T327;
   wire[3:0] T328;
   wire[16:0] T329;
-  wire[16:0] T397;
+  wire[16:0] T398;
   wire[15:0] T330;
   wire T331;
   wire T332;
   wire T333;
   wire T334;
   wire[16:0] T335;
-  wire[16:0] T398;
+  wire[16:0] T399;
   wire[11:0] T336;
   wire[11:0] T337;
-  wire[11:0] T399;
   wire[16:0] T338;
   wire[16:0] T339;
   wire[16:0] T400;
@@ -10373,10 +10373,10 @@ module BRamCtrl(input clk, input reset,
   assign T61 = T345 ? T401 : T62;
   assign T62 = T57 ? T339 : T63;
   assign T63 = T57 ? T335 : T64;
-  assign T64 = T331 ? T397 : T65;
+  assign T64 = T331 ? T398 : T65;
   assign T65 = T56 ? T325 : T66;
   assign T66 = T56 ? T321 : T67;
-  assign T67 = T317 ? T393 : T68;
+  assign T67 = T317 ? T395 : T68;
   assign T68 = T3 ? T311 : T363;
   assign T363 = {1'h0, T69};
   assign T69 = T3 ? T78 : T70;
@@ -10391,23 +10391,22 @@ module BRamCtrl(input clk, input reset,
   assign T78 = T310 | T364;
   assign T364 = {4'h0, T79};
   assign T79 = T80 << 1'h0;
-  assign T80 = T365 & 12'hfff;
-  assign T365 = {2'h0, T81};
+  assign T80 = T81 & 12'hfff;
   assign T81 = T309 ? T231 : T82;
   assign T82 = T230 ? T192 : T83;
   assign T83 = T191 ? T173 : T84;
   assign T84 = T172 ? memories_1 : memories_0;
-  assign T366 = reset ? 10'h0 : T85;
+  assign T365 = reset ? 12'h0 : T85;
   assign T85 = T163 ? T162 : T86;
   assign T86 = T161 ? T160 : T87;
   assign T87 = T90 ? T89 : T88;
-  assign T88 = T32 ? 10'h0 : memories_0;
-  assign T89 = T81 + 10'h4;
+  assign T88 = T32 ? 12'h0 : memories_0;
+  assign T89 = T81 + 12'h4;
   assign T90 = T3 & T91;
   assign T91 = T92[1'h0:1'h0];
   assign T92 = 1'h1 << T93;
   assign T93 = cur_bank;
-  assign T367 = reset ? 4'h0 : T94;
+  assign T366 = reset ? 4'h0 : T94;
   assign T94 = T159 ? T158 : T95;
   assign T95 = T156 ? T155 : T96;
   assign T96 = T149 ? start_bank : T97;
@@ -10416,64 +10415,67 @@ module BRamCtrl(input clk, input reset,
   assign T99 = cur_bank + 4'h1;
   assign T100 = T123 & T101;
   assign T101 = T107 | T102;
-  assign T102 = rows == 10'h0;
-  assign T368 = reset ? 10'h0 : T103;
-  assign T103 = T32 ? T104 : rows;
+  assign T102 = rows == 12'h0;
+  assign T367 = reset ? 12'h0 : T103;
+  assign T103 = T32 ? T368 : rows;
+  assign T368 = {2'h0, T104};
   assign T104 = T106 >> T105;
   assign T105 = settings[3'h7:3'h4];
   assign T106 = settings[5'h1b:5'h12];
   assign T107 = row_cnt == T108;
-  assign T108 = rows - 10'h1;
-  assign T369 = reset ? 10'h0 : T109;
+  assign T108 = rows - 12'h1;
+  assign T369 = reset ? 12'h0 : T109;
   assign T109 = T119 ? T118 : T110;
-  assign T110 = T159 ? 10'h0 : T111;
-  assign T111 = T57 ? 10'h0 : T112;
+  assign T110 = T159 ? 12'h0 : T111;
+  assign T111 = T57 ? 12'h0 : T112;
   assign T112 = T116 ? T115 : T113;
-  assign T113 = T100 ? 10'h0 : T114;
-  assign T114 = T32 ? 10'h0 : row_cnt;
-  assign T115 = row_cnt + 10'h1;
+  assign T113 = T100 ? 12'h0 : T114;
+  assign T114 = T32 ? 12'h0 : row_cnt;
+  assign T115 = row_cnt + 12'h1;
   assign T116 = T123 & T117;
   assign T117 = T101 ^ 1'h1;
-  assign T118 = row_cnt + 10'h1;
+  assign T118 = row_cnt + 12'h1;
   assign T119 = T57 & T120;
   assign T120 = T121 ^ 1'h1;
   assign T121 = row_cnt == T122;
-  assign T122 = rows - 10'h1;
+  assign T122 = rows - 12'h1;
   assign T123 = T3 & T124;
-  assign T124 = col_cnt == T125;
+  assign T124 = col_cnt == T370;
+  assign T370 = {2'h0, T125};
   assign T125 = T126 - 10'h1;
   assign T126 = settings[5'h11:4'h8];
-  assign T370 = reset ? 10'h0 : T127;
+  assign T371 = reset ? 12'h0 : T127;
   assign T127 = T145 ? T144 : T128;
-  assign T128 = T135 ? 10'h0 : T129;
+  assign T128 = T135 ? 12'h0 : T129;
   assign T129 = T133 ? T132 : T130;
-  assign T130 = T123 ? 10'h0 : T131;
-  assign T131 = T32 ? 10'h0 : col_cnt;
-  assign T132 = col_cnt + 10'h1;
+  assign T130 = T123 ? 12'h0 : T131;
+  assign T131 = T32 ? 12'h0 : col_cnt;
+  assign T132 = col_cnt + 12'h1;
   assign T133 = T3 & T134;
   assign T134 = T124 ^ 1'h1;
   assign T135 = T56 & T136;
   assign T136 = T142 | T137;
-  assign T137 = cols == 10'h0;
-  assign T371 = reset ? 10'h0 : T138;
-  assign T138 = T32 ? T139 : cols;
+  assign T137 = cols == 12'h0;
+  assign T372 = reset ? 12'h0 : T138;
+  assign T138 = T32 ? T373 : cols;
+  assign T373 = {2'h0, T139};
   assign T139 = T141 >> T140;
   assign T140 = settings[3'h7:3'h4];
   assign T141 = settings[5'h11:4'h8];
   assign T142 = col_cnt == T143;
-  assign T143 = cols - 10'h1;
-  assign T144 = col_cnt + 10'h1;
+  assign T143 = cols - 12'h1;
+  assign T144 = col_cnt + 12'h1;
   assign T145 = T56 & T146;
   assign T146 = T136 ^ 1'h1;
-  assign T372 = reset ? 4'h0 : T147;
+  assign T374 = reset ? 4'h0 : T147;
   assign T147 = T32 ? T148 : start_bank;
   assign T148 = settings[2'h3:1'h0];
   assign T149 = T135 & T150;
   assign T150 = cur_bank == max_bank;
-  assign T373 = T374[2'h3:1'h0];
-  assign T374 = reset ? 16'h0 : T151;
-  assign T151 = T32 ? T152 : T375;
-  assign T375 = {12'h0, max_bank};
+  assign T375 = T376[2'h3:1'h0];
+  assign T376 = reset ? 16'h0 : T151;
+  assign T151 = T32 ? T152 : T377;
+  assign T377 = {12'h0, max_bank};
   assign T152 = T153 - 16'h1;
   assign T153 = 1'h1 << T154;
   assign T154 = settings[3'h7:3'h4];
@@ -10482,35 +10484,35 @@ module BRamCtrl(input clk, input reset,
   assign T157 = T150 ^ 1'h1;
   assign T158 = cur_bank + 4'h1;
   assign T159 = T57 & T121;
-  assign T160 = T81 + 10'h4;
+  assign T160 = T81 + 12'h4;
   assign T161 = T56 & T91;
-  assign T162 = T81 + 10'h4;
+  assign T162 = T81 + 12'h4;
   assign T163 = T57 & T91;
-  assign T376 = reset ? 10'h0 : T164;
+  assign T378 = reset ? 12'h0 : T164;
   assign T164 = T171 ? T162 : T165;
   assign T165 = T170 ? T160 : T166;
   assign T166 = T168 ? T89 : T167;
-  assign T167 = T32 ? 10'h0 : memories_1;
+  assign T167 = T32 ? 12'h0 : memories_1;
   assign T168 = T3 & T169;
   assign T169 = T92[1'h1:1'h1];
   assign T170 = T56 & T169;
   assign T171 = T57 & T169;
   assign T172 = T93[1'h0:1'h0];
   assign T173 = T190 ? memories_3 : memories_2;
-  assign T377 = reset ? 10'h0 : T174;
+  assign T379 = reset ? 12'h0 : T174;
   assign T174 = T181 ? T162 : T175;
   assign T175 = T180 ? T160 : T176;
   assign T176 = T178 ? T89 : T177;
-  assign T177 = T32 ? 10'h0 : memories_2;
+  assign T177 = T32 ? 12'h0 : memories_2;
   assign T178 = T3 & T179;
   assign T179 = T92[2'h2:2'h2];
   assign T180 = T56 & T179;
   assign T181 = T57 & T179;
-  assign T378 = reset ? 10'h0 : T182;
+  assign T380 = reset ? 12'h0 : T182;
   assign T182 = T189 ? T162 : T183;
   assign T183 = T188 ? T160 : T184;
   assign T184 = T186 ? T89 : T185;
-  assign T185 = T32 ? 10'h0 : memories_3;
+  assign T185 = T32 ? 12'h0 : memories_3;
   assign T186 = T3 & T187;
   assign T187 = T92[2'h3:2'h3];
   assign T188 = T56 & T187;
@@ -10519,40 +10521,40 @@ module BRamCtrl(input clk, input reset,
   assign T191 = T93[1'h1:1'h1];
   assign T192 = T229 ? T211 : T193;
   assign T193 = T210 ? memories_5 : memories_4;
-  assign T379 = reset ? 10'h0 : T194;
+  assign T381 = reset ? 12'h0 : T194;
   assign T194 = T201 ? T162 : T195;
   assign T195 = T200 ? T160 : T196;
   assign T196 = T198 ? T89 : T197;
-  assign T197 = T32 ? 10'h0 : memories_4;
+  assign T197 = T32 ? 12'h0 : memories_4;
   assign T198 = T3 & T199;
   assign T199 = T92[3'h4:3'h4];
   assign T200 = T56 & T199;
   assign T201 = T57 & T199;
-  assign T380 = reset ? 10'h0 : T202;
+  assign T382 = reset ? 12'h0 : T202;
   assign T202 = T209 ? T162 : T203;
   assign T203 = T208 ? T160 : T204;
   assign T204 = T206 ? T89 : T205;
-  assign T205 = T32 ? 10'h0 : memories_5;
+  assign T205 = T32 ? 12'h0 : memories_5;
   assign T206 = T3 & T207;
   assign T207 = T92[3'h5:3'h5];
   assign T208 = T56 & T207;
   assign T209 = T57 & T207;
   assign T210 = T93[1'h0:1'h0];
   assign T211 = T228 ? memories_7 : memories_6;
-  assign T381 = reset ? 10'h0 : T212;
+  assign T383 = reset ? 12'h0 : T212;
   assign T212 = T219 ? T162 : T213;
   assign T213 = T218 ? T160 : T214;
   assign T214 = T216 ? T89 : T215;
-  assign T215 = T32 ? 10'h0 : memories_6;
+  assign T215 = T32 ? 12'h0 : memories_6;
   assign T216 = T3 & T217;
   assign T217 = T92[3'h6:3'h6];
   assign T218 = T56 & T217;
   assign T219 = T57 & T217;
-  assign T382 = reset ? 10'h0 : T220;
+  assign T384 = reset ? 12'h0 : T220;
   assign T220 = T227 ? T162 : T221;
   assign T221 = T226 ? T160 : T222;
   assign T222 = T224 ? T89 : T223;
-  assign T223 = T32 ? 10'h0 : memories_7;
+  assign T223 = T32 ? 12'h0 : memories_7;
   assign T224 = T3 & T225;
   assign T225 = T92[3'h7:3'h7];
   assign T226 = T56 & T225;
@@ -10563,40 +10565,40 @@ module BRamCtrl(input clk, input reset,
   assign T231 = T308 ? T270 : T232;
   assign T232 = T269 ? T251 : T233;
   assign T233 = T250 ? memories_9 : memories_8;
-  assign T383 = reset ? 10'h0 : T234;
+  assign T385 = reset ? 12'h0 : T234;
   assign T234 = T241 ? T162 : T235;
   assign T235 = T240 ? T160 : T236;
   assign T236 = T238 ? T89 : T237;
-  assign T237 = T32 ? 10'h0 : memories_8;
+  assign T237 = T32 ? 12'h0 : memories_8;
   assign T238 = T3 & T239;
   assign T239 = T92[4'h8:4'h8];
   assign T240 = T56 & T239;
   assign T241 = T57 & T239;
-  assign T384 = reset ? 10'h0 : T242;
+  assign T386 = reset ? 12'h0 : T242;
   assign T242 = T249 ? T162 : T243;
   assign T243 = T248 ? T160 : T244;
   assign T244 = T246 ? T89 : T245;
-  assign T245 = T32 ? 10'h0 : memories_9;
+  assign T245 = T32 ? 12'h0 : memories_9;
   assign T246 = T3 & T247;
   assign T247 = T92[4'h9:4'h9];
   assign T248 = T56 & T247;
   assign T249 = T57 & T247;
   assign T250 = T93[1'h0:1'h0];
   assign T251 = T268 ? memories_11 : memories_10;
-  assign T385 = reset ? 10'h0 : T252;
+  assign T387 = reset ? 12'h0 : T252;
   assign T252 = T259 ? T162 : T253;
   assign T253 = T258 ? T160 : T254;
   assign T254 = T256 ? T89 : T255;
-  assign T255 = T32 ? 10'h0 : memories_10;
+  assign T255 = T32 ? 12'h0 : memories_10;
   assign T256 = T3 & T257;
   assign T257 = T92[4'ha:4'ha];
   assign T258 = T56 & T257;
   assign T259 = T57 & T257;
-  assign T386 = reset ? 10'h0 : T260;
+  assign T388 = reset ? 12'h0 : T260;
   assign T260 = T267 ? T162 : T261;
   assign T261 = T266 ? T160 : T262;
   assign T262 = T264 ? T89 : T263;
-  assign T263 = T32 ? 10'h0 : memories_11;
+  assign T263 = T32 ? 12'h0 : memories_11;
   assign T264 = T3 & T265;
   assign T265 = T92[4'hb:4'hb];
   assign T266 = T56 & T265;
@@ -10605,40 +10607,40 @@ module BRamCtrl(input clk, input reset,
   assign T269 = T93[1'h1:1'h1];
   assign T270 = T307 ? T289 : T271;
   assign T271 = T288 ? memories_13 : memories_12;
-  assign T387 = reset ? 10'h0 : T272;
+  assign T389 = reset ? 12'h0 : T272;
   assign T272 = T279 ? T162 : T273;
   assign T273 = T278 ? T160 : T274;
   assign T274 = T276 ? T89 : T275;
-  assign T275 = T32 ? 10'h0 : memories_12;
+  assign T275 = T32 ? 12'h0 : memories_12;
   assign T276 = T3 & T277;
   assign T277 = T92[4'hc:4'hc];
   assign T278 = T56 & T277;
   assign T279 = T57 & T277;
-  assign T388 = reset ? 10'h0 : T280;
+  assign T390 = reset ? 12'h0 : T280;
   assign T280 = T287 ? T162 : T281;
   assign T281 = T286 ? T160 : T282;
   assign T282 = T284 ? T89 : T283;
-  assign T283 = T32 ? 10'h0 : memories_13;
+  assign T283 = T32 ? 12'h0 : memories_13;
   assign T284 = T3 & T285;
   assign T285 = T92[4'hd:4'hd];
   assign T286 = T56 & T285;
   assign T287 = T57 & T285;
   assign T288 = T93[1'h0:1'h0];
   assign T289 = T306 ? memories_15 : memories_14;
-  assign T389 = reset ? 10'h0 : T290;
+  assign T391 = reset ? 12'h0 : T290;
   assign T290 = T297 ? T162 : T291;
   assign T291 = T296 ? T160 : T292;
   assign T292 = T294 ? T89 : T293;
-  assign T293 = T32 ? 10'h0 : memories_14;
+  assign T293 = T32 ? 12'h0 : memories_14;
   assign T294 = T3 & T295;
   assign T295 = T92[4'he:4'he];
   assign T296 = T56 & T295;
   assign T297 = T57 & T295;
-  assign T390 = reset ? 10'h0 : T298;
+  assign T392 = reset ? 12'h0 : T298;
   assign T298 = T305 ? T162 : T299;
   assign T299 = T304 ? T160 : T300;
   assign T300 = T302 ? T89 : T301;
-  assign T301 = T32 ? 10'h0 : memories_15;
+  assign T301 = T32 ? 12'h0 : memories_15;
   assign T302 = T3 & T303;
   assign T303 = T92[4'hf:4'hf];
   assign T304 = T56 & T303;
@@ -10648,42 +10650,40 @@ module BRamCtrl(input clk, input reset,
   assign T308 = T93[2'h2:2'h2];
   assign T309 = T93[2'h3:2'h3];
   assign T310 = T70 & 16'h1000;
-  assign T311 = T315 | T391;
-  assign T391 = {1'h0, T312};
+  assign T311 = T315 | T393;
+  assign T393 = {1'h0, T312};
   assign T312 = T313 << 4'hc;
   assign T313 = T314 & 4'hf;
   assign T314 = cur_bank + start_bank;
-  assign T315 = T392 & 17'h10fff;
-  assign T392 = {1'h0, T69};
-  assign T393 = {1'h0, T316};
+  assign T315 = T394 & 17'h10fff;
+  assign T394 = {1'h0, T69};
+  assign T395 = {1'h0, T316};
   assign T316 = io_ocp_M_Addr[4'hf:1'h0];
   assign T317 = T8 & T318;
   assign T318 = T320 & T319;
   assign T319 = io_ocp_M_Cmd == 3'h2;
   assign T320 = T7 ^ 1'h1;
-  assign T321 = T324 | T394;
-  assign T394 = {5'h0, T322};
+  assign T321 = T324 | T396;
+  assign T396 = {5'h0, T322};
   assign T322 = T323 << 1'h0;
-  assign T323 = T395 & 12'hfff;
-  assign T395 = {2'h0, T81};
+  assign T323 = T81 & 12'hfff;
   assign T324 = T67 & 17'h1000;
-  assign T325 = T329 | T396;
-  assign T396 = {1'h0, T326};
+  assign T325 = T329 | T397;
+  assign T397 = {1'h0, T326};
   assign T326 = T327 << 4'hc;
   assign T327 = T328 & 4'hf;
   assign T328 = cur_bank + start_bank;
   assign T329 = T66 & 17'h10fff;
-  assign T397 = {1'h0, T330};
+  assign T398 = {1'h0, T330};
   assign T330 = io_ocp_M_Addr[4'hf:1'h0];
   assign T331 = T48 & T332;
   assign T332 = T334 & T333;
   assign T333 = io_ocp_M_Cmd == 3'h2;
   assign T334 = T47 ^ 1'h1;
-  assign T335 = T338 | T398;
-  assign T398 = {5'h0, T336};
+  assign T335 = T338 | T399;
+  assign T399 = {5'h0, T336};
   assign T336 = T337 << 1'h0;
-  assign T337 = T399 & 12'hfff;
-  assign T399 = {2'h0, T81};
+  assign T337 = T81 & 12'hfff;
   assign T338 = T64 & 17'h1000;
   assign T339 = T343 | T400;
   assign T400 = {1'h0, T340};
@@ -10743,7 +10743,7 @@ module BRamCtrl(input clk, input reset,
       settings <= io_ocp_M_Data;
     end
     if(reset) begin
-      memories_0 <= 10'h0;
+      memories_0 <= 12'h0;
     end else if(T163) begin
       memories_0 <= T162;
     end else if(T161) begin
@@ -10751,7 +10751,7 @@ module BRamCtrl(input clk, input reset,
     end else if(T90) begin
       memories_0 <= T89;
     end else if(T32) begin
-      memories_0 <= 10'h0;
+      memories_0 <= 12'h0;
     end
     if(reset) begin
       cur_bank <= 4'h0;
@@ -10767,51 +10767,51 @@ module BRamCtrl(input clk, input reset,
       cur_bank <= 4'h0;
     end
     if(reset) begin
-      rows <= 10'h0;
+      rows <= 12'h0;
     end else if(T32) begin
-      rows <= T104;
+      rows <= T368;
     end
     if(reset) begin
-      row_cnt <= 10'h0;
+      row_cnt <= 12'h0;
     end else if(T119) begin
       row_cnt <= T118;
     end else if(T159) begin
-      row_cnt <= 10'h0;
+      row_cnt <= 12'h0;
     end else if(T57) begin
-      row_cnt <= 10'h0;
+      row_cnt <= 12'h0;
     end else if(T116) begin
       row_cnt <= T115;
     end else if(T100) begin
-      row_cnt <= 10'h0;
+      row_cnt <= 12'h0;
     end else if(T32) begin
-      row_cnt <= 10'h0;
+      row_cnt <= 12'h0;
     end
     if(reset) begin
-      col_cnt <= 10'h0;
+      col_cnt <= 12'h0;
     end else if(T145) begin
       col_cnt <= T144;
     end else if(T135) begin
-      col_cnt <= 10'h0;
+      col_cnt <= 12'h0;
     end else if(T133) begin
       col_cnt <= T132;
     end else if(T123) begin
-      col_cnt <= 10'h0;
+      col_cnt <= 12'h0;
     end else if(T32) begin
-      col_cnt <= 10'h0;
+      col_cnt <= 12'h0;
     end
     if(reset) begin
-      cols <= 10'h0;
+      cols <= 12'h0;
     end else if(T32) begin
-      cols <= T139;
+      cols <= T373;
     end
     if(reset) begin
       start_bank <= 4'h0;
     end else if(T32) begin
       start_bank <= T148;
     end
-    max_bank <= T373;
+    max_bank <= T375;
     if(reset) begin
-      memories_1 <= 10'h0;
+      memories_1 <= 12'h0;
     end else if(T171) begin
       memories_1 <= T162;
     end else if(T170) begin
@@ -10819,10 +10819,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T168) begin
       memories_1 <= T89;
     end else if(T32) begin
-      memories_1 <= 10'h0;
+      memories_1 <= 12'h0;
     end
     if(reset) begin
-      memories_2 <= 10'h0;
+      memories_2 <= 12'h0;
     end else if(T181) begin
       memories_2 <= T162;
     end else if(T180) begin
@@ -10830,10 +10830,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T178) begin
       memories_2 <= T89;
     end else if(T32) begin
-      memories_2 <= 10'h0;
+      memories_2 <= 12'h0;
     end
     if(reset) begin
-      memories_3 <= 10'h0;
+      memories_3 <= 12'h0;
     end else if(T189) begin
       memories_3 <= T162;
     end else if(T188) begin
@@ -10841,10 +10841,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T186) begin
       memories_3 <= T89;
     end else if(T32) begin
-      memories_3 <= 10'h0;
+      memories_3 <= 12'h0;
     end
     if(reset) begin
-      memories_4 <= 10'h0;
+      memories_4 <= 12'h0;
     end else if(T201) begin
       memories_4 <= T162;
     end else if(T200) begin
@@ -10852,10 +10852,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T198) begin
       memories_4 <= T89;
     end else if(T32) begin
-      memories_4 <= 10'h0;
+      memories_4 <= 12'h0;
     end
     if(reset) begin
-      memories_5 <= 10'h0;
+      memories_5 <= 12'h0;
     end else if(T209) begin
       memories_5 <= T162;
     end else if(T208) begin
@@ -10863,10 +10863,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T206) begin
       memories_5 <= T89;
     end else if(T32) begin
-      memories_5 <= 10'h0;
+      memories_5 <= 12'h0;
     end
     if(reset) begin
-      memories_6 <= 10'h0;
+      memories_6 <= 12'h0;
     end else if(T219) begin
       memories_6 <= T162;
     end else if(T218) begin
@@ -10874,10 +10874,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T216) begin
       memories_6 <= T89;
     end else if(T32) begin
-      memories_6 <= 10'h0;
+      memories_6 <= 12'h0;
     end
     if(reset) begin
-      memories_7 <= 10'h0;
+      memories_7 <= 12'h0;
     end else if(T227) begin
       memories_7 <= T162;
     end else if(T226) begin
@@ -10885,10 +10885,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T224) begin
       memories_7 <= T89;
     end else if(T32) begin
-      memories_7 <= 10'h0;
+      memories_7 <= 12'h0;
     end
     if(reset) begin
-      memories_8 <= 10'h0;
+      memories_8 <= 12'h0;
     end else if(T241) begin
       memories_8 <= T162;
     end else if(T240) begin
@@ -10896,10 +10896,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T238) begin
       memories_8 <= T89;
     end else if(T32) begin
-      memories_8 <= 10'h0;
+      memories_8 <= 12'h0;
     end
     if(reset) begin
-      memories_9 <= 10'h0;
+      memories_9 <= 12'h0;
     end else if(T249) begin
       memories_9 <= T162;
     end else if(T248) begin
@@ -10907,10 +10907,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T246) begin
       memories_9 <= T89;
     end else if(T32) begin
-      memories_9 <= 10'h0;
+      memories_9 <= 12'h0;
     end
     if(reset) begin
-      memories_10 <= 10'h0;
+      memories_10 <= 12'h0;
     end else if(T259) begin
       memories_10 <= T162;
     end else if(T258) begin
@@ -10918,10 +10918,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T256) begin
       memories_10 <= T89;
     end else if(T32) begin
-      memories_10 <= 10'h0;
+      memories_10 <= 12'h0;
     end
     if(reset) begin
-      memories_11 <= 10'h0;
+      memories_11 <= 12'h0;
     end else if(T267) begin
       memories_11 <= T162;
     end else if(T266) begin
@@ -10929,10 +10929,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T264) begin
       memories_11 <= T89;
     end else if(T32) begin
-      memories_11 <= 10'h0;
+      memories_11 <= 12'h0;
     end
     if(reset) begin
-      memories_12 <= 10'h0;
+      memories_12 <= 12'h0;
     end else if(T279) begin
       memories_12 <= T162;
     end else if(T278) begin
@@ -10940,10 +10940,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T276) begin
       memories_12 <= T89;
     end else if(T32) begin
-      memories_12 <= 10'h0;
+      memories_12 <= 12'h0;
     end
     if(reset) begin
-      memories_13 <= 10'h0;
+      memories_13 <= 12'h0;
     end else if(T287) begin
       memories_13 <= T162;
     end else if(T286) begin
@@ -10951,10 +10951,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T284) begin
       memories_13 <= T89;
     end else if(T32) begin
-      memories_13 <= 10'h0;
+      memories_13 <= 12'h0;
     end
     if(reset) begin
-      memories_14 <= 10'h0;
+      memories_14 <= 12'h0;
     end else if(T297) begin
       memories_14 <= T162;
     end else if(T296) begin
@@ -10962,10 +10962,10 @@ module BRamCtrl(input clk, input reset,
     end else if(T294) begin
       memories_14 <= T89;
     end else if(T32) begin
-      memories_14 <= 10'h0;
+      memories_14 <= 12'h0;
     end
     if(reset) begin
-      memories_15 <= 10'h0;
+      memories_15 <= 12'h0;
     end else if(T305) begin
       memories_15 <= T162;
     end else if(T304) begin
@@ -10973,7 +10973,7 @@ module BRamCtrl(input clk, input reset,
     end else if(T302) begin
       memories_15 <= T89;
     end else if(T32) begin
-      memories_15 <= 10'h0;
+      memories_15 <= 12'h0;
     end
     if(reset) begin
       respReg <= 2'h0;
@@ -11261,7 +11261,7 @@ module CpuInfo(input clk,
   assign io_ocp_S_Data = data;
   assign data = T0;
   assign T0 = T32 ? romData : T1;
-  assign T1 = T29 ? 32'h2000 : T2;
+  assign T1 = T29 ? 32'h4000 : T2;
   assign T2 = T28 ? 32'h400 : T3;
   assign T3 = T27 ? 32'h0 : T4;
   assign T4 = T26 ? 32'h800 : T5;
@@ -11684,7 +11684,7 @@ module InOut(input clk, input reset,
   wire T39;
   wire selNI;
   wire[3:0] T40;
-  wire[12:0] T172;
+  wire[13:0] T172;
   wire[2:0] T41;
   wire selSpm;
   wire T42;
@@ -12045,7 +12045,7 @@ module InOut(input clk, input reset,
   assign T39 = io_memInOut_M_Addr[5'h1b:5'h1b];
   assign selNI = T40 == 4'he;
   assign T40 = io_memInOut_M_Addr[5'h1f:5'h1c];
-  assign T172 = io_memInOut_M_Addr[4'hc:1'h0];
+  assign T172 = io_memInOut_M_Addr[4'hd:1'h0];
   assign T41 = selSpm ? io_memInOut_M_Cmd : 3'h0;
   assign selSpm = T44 & T42;
   assign T42 = T43 == 1'h0;
