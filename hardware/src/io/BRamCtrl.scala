@@ -1,9 +1,27 @@
 /*
- * BRam interface for Patmos
+ * BRAM controller supporting data distribution in memory banks.
  *
- * Authors: Luca Pezzarossa (lpez@dtu.dk)
- *          Andreas T. Kristensen (s144026@student.dtu.dk)
+ *
+ * Data to setup the controller is written in fields
+ * settings = |1b|1b|2b|10b|10b|4b|4b|
+ *
+ * corresponding to:
+ * rst, array/vect (0/1), wr_dim (0, 1, 10), M, N, banks, startbank
+ *
+ * Fields:
+ * rst = Not used
+ * array/vect = 0 -> array, 1 -> vector
+ * wr_dim = 0 -> write dim 0, 1 -> write dim 1, 2-> write dim 2
+ * M = Dimension of matrix (rows) or length of vector
+ * N = Dimension of matrix (columns)
+ * banks = 2^banks is the number of memory banks, settings(7, 4)
+ * startbank = the start bank
+ *
+ * Authors: Andreas T. Kristensen (s144026@student.dtu.dk)
+ *
  */
+
+
 
 package io
 
@@ -35,16 +53,12 @@ object BRamCtrl extends DeviceObject {
 	}
 }
 
-class BRamCtrl(extAddrWidth : Int = 32,
-										 dataWidth : Int = 32) extends CoreDevice() {
+class BRamCtrl(extAddrWidth : Int = 32, dataWidth : Int = 32) extends CoreDevice() {
 
 	override val io = new CoreDeviceIO() with BRamCtrl.Pins
 
-	// Assigments of inputs and outputs
-/*  io.bRamCtrlPins.MCmd  := io.ocp.M.Cmd
-	io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth-1, 0)
-	io.bRamCtrlPins.MData := io.ocp.M.Data
-	io.bRamCtrlPins.MByteEn := io.ocp.M.ByteEn*/
+	// As default, we do not activate the memory banks
+	// Only when data is ready and the address has been translated
 
 	io.bRamCtrlPins.MCmd  := Bits(0)
 	io.bRamCtrlPins.MAddr := Bits(0)
@@ -57,54 +71,51 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 	io.ocp.S.Resp := respReg
 
-	// |1b|1b|2b|10b|10b|4b|4b|
-	// rst, array/vect (0/1), wr_dim (0, 1, 10), M, N, factor, startbank
-	// M is also for vectors
-
-	// rst
-
-	// array/vect
-
-	// wr_dim
-
-	// M
-
-	// N
-
-	// factor = (settings(7, 4)
-
-
-	// startbank
 	val settings = Reg(init = Bits(0, width = 32))
 	settings := settings
 
-	// Registes for misc.
+	// Registers for calculations
+
+
+	// cols is the maximum number of columns (-1) for the partitioned array
 
 	val cols = Reg(init = Bits(0, width = 10))
 	cols := cols
 
+	// col_cnt keeps track of the current column in the partitioned array
+
 	val col_cnt = Reg(init = Bits(0, width = 10))
 	col_cnt := col_cnt  
+
+	// rows is the maximum number of rows (-1) for the partitioned array
 
 	val rows = Reg(init = Bits(0, width = 10))
 	rows := rows
 
+	// row_cnt keeps track of the current ow in the partitioned array	
+
 	val row_cnt = Reg(init = Bits(0, width = 10))
 	row_cnt := row_cnt  
+
+	// The maximum number of memory banks for partitioning - 1.
 
 	val max_bank = Reg(init = Bits(0, width = 4))
 	max_bank := max_bank
 
+	// The start bank for data distribution, works as
+	// an offset for the memory banks.
+
 	val start_bank = Reg(init = Bits(0, width = 4))
 	start_bank := start_bank
+
+	// The currently selected bank
 
 	val cur_bank = Reg(init = Bits(0, width = 4))
 	cur_bank := cur_bank
 
-	// Number of banks used in the application
-	val bank_bits = Bits(4)
-
 	// Used for the maximum of 16 counters to memory banks
+	// These keep check of where we are in the different banks
+	// Maximum of 1024 elements for each memory bank
 
 	val memories = Vec.fill(16) {Reg(init = Bits(0, width = 10))}  
 
@@ -112,14 +123,19 @@ class BRamCtrl(extAddrWidth : Int = 32,
 		memories(j) := memories(j)
 	}
 
-	//States for the controller
-
+	// States for the controller
 	val s_idle :: s_settings :: s_array_wr1 :: s_array_wr2 :: s_vec :: Nil = Enum(UInt(), 5)
 	val state = Reg(init = s_idle)  
 
+
+	//********** State logic ******************//
+
+
+	// s_idle is the starting state
+
 	when (state === s_idle){
 
-		when(io.ocp.M.Addr(2) === Bits(0) && io.ocp.M.Cmd === OcpCmd.WR) {
+		when(io.ocp.M.Addr(2) === Bits(0) && io.ocp.M.Cmd === OcpCmd.WR){
 
 			// Update settings
 
@@ -128,23 +144,29 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 	 }.elsewhen(io.ocp.M.Cmd === OcpCmd.WR || io.ocp.M.Cmd === OcpCmd.RD){
 
-		io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth - 1, 0)
-		respReg := OcpResp.DVA
+			io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth - 1, 0)
+			respReg := OcpResp.DVA
 		}
 	}
+
+	// In s_settings, we calculate the different settings from the input
 
 	when(state === s_settings){
 
 		respReg := OcpResp.DVA
 
-		cols := settings(17, 8) >> (settings(7, 4)) 
-		rows := settings(27, 18) >> (settings(7, 4)) 
-
-		max_bank := (Bits(1) << settings(7, 4)) - Bits(1) // # banks - 1
+		cols := settings(17, 8) >> settings(7, 4)
+		rows := settings(27, 18) >> settings(7, 4) 
+		max_bank := (Bits(1) << settings(7, 4)) - Bits(1) // # max_bank - 1
 		start_bank := settings(3, 0)
+
+		// Zero initialization
+
 		cur_bank := Bits(0)  
 		col_cnt := Bits(0)
 		row_cnt := Bits(0)
+
+		// Zero initialize all 16 counters
 
 		for (j <- 0 until 16) {
 			memories(j) := Bits(0)
@@ -160,11 +182,13 @@ class BRamCtrl(extAddrWidth : Int = 32,
 			}.elsewhen(settings(29, 28) === Bits(2)){ // wr_dim = 2
 				state := s_array_wr2
 				
-			}        
+			}
 		}.otherwise{ // vector
 			state := s_vec
 		}
 	}
+
+	// s_array_wr1 is for distributing an array based on rows
 
 	when(state === s_array_wr1) {
 
@@ -172,7 +196,7 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 			when(io.ocp.M.Addr(2) === Bits(1)){ // Use offset for data
 
-				// Write out
+				// Translate the address
 
 				io.bRamCtrlPins.MCmd  := OcpCmd.WR
 				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)
@@ -207,16 +231,19 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 			}.otherwise{
 
-				// Update settings
+				// Update settings if we write new settings
 
 				state := s_settings
 				settings := io.ocp.M.Data
 			}
 		}.elsewhen(io.ocp.M.Cmd === OcpCmd.RD){
+			
 			io.bRamCtrlPins.MAddr := io.ocp.M.Addr(extAddrWidth - 1, 0)
 			respReg := OcpResp.DVA			
 		}
 	}
+
+	// s_array_wr2 is for distributing an array based on columns
 
 	when(state === s_array_wr2) {
 
@@ -224,13 +251,12 @@ class BRamCtrl(extAddrWidth : Int = 32,
 
 			when(io.ocp.M.Addr(2) === Bits(1)){ // Use offset for data
 
-				// Write out
+				// Translate the address
 
 				io.bRamCtrlPins.MCmd  := OcpCmd.WR
 				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)				
 				io.bRamCtrlPins.MAddr(15, 12) := cur_bank + start_bank
 				memories(cur_bank) := memories(cur_bank) + Bits(4)
-
 				io.bRamCtrlPins.MData := io.ocp.M.Data
 				io.bRamCtrlPins.MByteEn := Bits(15)
 
@@ -263,16 +289,18 @@ class BRamCtrl(extAddrWidth : Int = 32,
 		}
 	}  
 
+	// s_vec is for distributing a vector, same as s_array_wr1
+
 	when(state === s_vec) {
 
 		when(io.ocp.M.Cmd === OcpCmd.WR){
 
 			when(io.ocp.M.Addr(2) === Bits(1)){ // Use offset for data
 
-				// Write out
+				// Translate the address
 
 				io.bRamCtrlPins.MCmd  := OcpCmd.WR
-				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)				
+				io.bRamCtrlPins.MAddr(11, 0) := memories(cur_bank)
 				io.bRamCtrlPins.MAddr(15, 12) := cur_bank + start_bank
 				memories(cur_bank) := memories(cur_bank) + Bits(4)
 				io.bRamCtrlPins.MData := io.ocp.M.Data
