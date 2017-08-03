@@ -1,4 +1,4 @@
-#define ROWS 	32
+#define ROWS 	8
 #define COLS	32
 #define DIM 	32
 #define SIZE	256
