@@ -142,13 +142,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	// Check results
 	err_cnt = compare_arrays_spm(&spm_matrix->hw_result,
 								 sw_result);
-
-	volatile _IODEV mat_type *bram_ptr_read = (volatile _IODEV mat_type *) 0xF00B0000;
-	int i;
-	for(i = 0; i < DIM*DIM; i++) {
-		printf("%d ", *(bram_ptr_read + i));
-	}	
-
+	
 	print_benchmark(return_compute, return_transfer);
 
 	return err_cnt;

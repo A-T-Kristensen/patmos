@@ -141,12 +141,6 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	print_benchmark(return_compute, return_transfer);
 
-	volatile _IODEV mat_type *bram_ptr_read = (volatile _IODEV mat_type *) 0xF00B0000;
-	int i;
-	for(i = 0; i < DIM*DIM; i++) {
-		printf("%d ", *(bram_ptr_read + i));
-	}		
-
 	return err_cnt;
 }
 
