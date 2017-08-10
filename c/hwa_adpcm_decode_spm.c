@@ -176,32 +176,34 @@ int adpcm_main()
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;	
+	unsigned long long start_write, stop_write, return_write = 0;	
+	unsigned long long start_read, stop_read, return_read = 0;	
 
-	start_transfer = get_cpu_cycles();	
+
+	start_write = get_cpu_cycles();	
 	
 	write_vector_spm(&adpcm_data->compressed, TEST_SIZE, 1, 1, bank_ptr_array);
 
 	*(hls_ptr + 1) = 1; 	
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+	stop_write = get_cpu_cycles();
+	return_write = stop_write-start_write-CYCLE_CALIBRATION;	
 
 	start_compute = get_cpu_cycles();
 
 	*hls_ptr = 1;
 
-	while((*hls_ptr) != 1);	
+	while((*hls_ptr) != 1);
 
 	stop_compute = get_cpu_cycles();
 	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;		
 
-	start_transfer = get_cpu_cycles();	
+	start_read = get_cpu_cycles();	
 
 	read_vector_spm(&adpcm_data->dec_result, TEST_SIZE, 1, 2, bank_ptr_array);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;	
+	stop_read = get_cpu_cycles();
+	return_read = stop_read-start_read-CYCLE_CALIBRATION;	
 
 	if(!dec_return()) {
 		puts("Results correct");
@@ -209,7 +211,9 @@ int adpcm_main()
 		puts("Results incorrect");
 	}		
 
-	print_benchmark(return_compute, return_transfer);
+	printf("Read: %llu\n", return_read);
+
+	print_benchmark(return_compute, return_write);
 
 	return dec_return();
 }

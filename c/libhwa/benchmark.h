@@ -3,7 +3,7 @@
 #define DIM 	32
 #define SIZE	256
 #define VECSIZE 256
-#define NBANKS 	4
+#define NBANKS 	2
 #define WCET	0
 #define ARRAY_WR_FACTOR	0
 #define ARRAY_WR_DIV	0
@@ -13,4 +13,4 @@
 #define VEC_WR_DIV		0
 #define VEC_RD_FACTOR	0
 #define VEC_RD_DIV		0
-typedef float mat_type;
+typedef int mat_type;
