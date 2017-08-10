@@ -678,6 +678,9 @@ void adpcm_dec_reset()
 	for(i = 0; i < 11; i++) {
 		adpcm_dec_accumc[i] = 0;
 		adpcm_dec_accumd[i] = 0;
+		*(adpcm_dec_accumd_p + i) = 0;
+		*(adpcm_dec_accumc_p + i) = 0;
+
 	}
 
 	return;
