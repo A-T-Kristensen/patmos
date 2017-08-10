@@ -99,10 +99,13 @@ def run_benchmark(project, app, synth, hw_test):
 			compute_time = int((re.search('<compute>(.*)</compute>', 
 								result)).group(1))
 
-			transfer_time = int((re.search('<transfer>(.*)</transfer>', 
+			write_time = int((re.search('<write>(.*)</write>', 
 								 result)).group(1))
 
-			return [compute_time, transfer_time, retries]
+			read_time = int((re.search('<read>(.*)</read>', 
+								 result)).group(1))			
+
+			return [compute_time, write_time, read_time, retries]
 
 		except:
 
@@ -115,23 +118,26 @@ def run_benchmark(project, app, synth, hw_test):
 			else:
 				break
 
-	return [0, 0, retries]
+	return [0, 0, 0, retries]
 
 # store_benchmark() stores the benchmark data in .csv format    
 
 def store_benchmark(bench_name, appList, computeArray, 
-					transferArray, totalArray, csv_rows):
+					writeArray, readArray, totalArray, csv_rows):
 
 	computeOut = np.vstack((appList, computeArray))
 	computeOut = np.hstack((csv_rows, computeOut))
 
-	transferOut = np.vstack((appList, transferArray))
-	transferOut = np.hstack((csv_rows, transferOut))
+	writeOut = np.vstack((appList, writeArray))
+	writeOut = np.hstack((csv_rows, writeOut))
+
+	readOut = np.vstack((appList, readArray))
+	readOut = np.hstack((csv_rows, readOut))	
 
 	totalOut = np.vstack((appList, totalArray))
 	totalOut = np.hstack((csv_rows, totalOut))    
 
-	dataOut = np.vstack((computeOut, transferOut, totalOut))
+	dataOut = np.vstack((computeOut, writeOut, readOut, totalOut))
 
 	try:
 		os.remove('reports/' + bench_name + '_compute.csv')	# Delete old
@@ -139,9 +145,14 @@ def store_benchmark(bench_name, appList, computeArray,
 		print("Deleting file")
 
 	try:
-		os.remove('reports/' + bench_name + '_transfer.csv')	# Delete old
+		os.remove('reports/' + bench_name + '_write.csv')	# Delete old
 	except:
 		print("Deleting file")
+
+	try:
+		os.remove('reports/' + bench_name + '_read.csv')	# Delete old
+	except:
+		print("Deleting file")		
 
 	try:
 		os.remove('reports/' + bench_name + '.csv')	# Delete old
@@ -151,8 +162,11 @@ def store_benchmark(bench_name, appList, computeArray,
 	np.savetxt('reports/' + bench_name + '_compute.csv', 
 			   computeOut, delimiter=',', fmt='%s') 
 
-	np.savetxt('reports/' + bench_name + '_transfer.csv', 
-			   transferOut, delimiter=',', fmt='%s') 
+	np.savetxt('reports/' + bench_name + '_write.csv', 
+			   writeOut, delimiter=',', fmt='%s') 
+
+	np.savetxt('reports/' + bench_name + '_read.csv', 
+			   readOut, delimiter=',', fmt='%s') 	
 
 	np.savetxt('reports/' + bench_name + '.csv', dataOut, delimiter=',', fmt='%s') 
 
@@ -174,9 +188,10 @@ def matmul(synth = 0, hw_test = 0):
 
 	# Arrays for data storage
 
-	computeArray = np.zeros([1, len(appList)])
-	transferArray = np.zeros([1, len(appList)]) 
-	totalArray = np.zeros([1, len(appList)]) 
+	computeArray 	= np.zeros([1, len(appList)])
+	writeArray 		= np.zeros([1, len(appList)])
+	readArray 		= np.zeros([1, len(appList)])	
+	totalArray 		= np.zeros([1, len(appList)])
 
 	# Add 1 since it will be horizontally stacked later
 	# max string length of 10
@@ -204,7 +219,7 @@ def matmul(synth = 0, hw_test = 0):
 		project = ('matmul_{type}_{nbank}b_{dim}x{dim}_mcu') \
 				  .format(type = "int", nbank=9, dim=32)
 
-		[compute_time, transfer_time, retries] \
+		[compute_time, write_time, read_time, retries] \
 			= run_benchmark(project, app, synth, hw_test)
 
 		if retries > 0:
@@ -212,16 +227,18 @@ def matmul(synth = 0, hw_test = 0):
 			# Success
 
 			print("#cycles computation: %d" % (compute_time))
-			print("#cycles transfer: %d" % (transfer_time))
+			print("#cycles write: %d" % (write_time))
+			print("#cycles read: %d" % (read_time))
 
-			total_time = transfer_time + compute_time
+			total_time = write_time + read_time + compute_time
 
 			computeArray[0][i] = compute_time
-			transferArray[0][i] = transfer_time
+			writeArray[0][i] = write_time
+			readArray[0][i] = read_time			
 			totalArray[0][i] = total_time 
 
 	store_benchmark("matmul_mcu", appList, computeArray, 
-					transferArray, totalArray, csv_rows)
+					writeArray, readArray, totalArray, csv_rows)
 
 
 def filterbank(synth = 0, hw_test = 0):
@@ -240,9 +257,10 @@ def filterbank(synth = 0, hw_test = 0):
 
 	# Arrays for data storage
 
-	computeArray = np.zeros([1, len(appList)])
-	transferArray = np.zeros([1, len(appList)]) 
-	totalArray = np.zeros([1, len(appList)]) 
+	computeArray 	= np.zeros([1, len(appList)])
+	writeArray 		= np.zeros([1, len(appList)])
+	readArray 		= np.zeros([1, len(appList)])	
+	totalArray 		= np.zeros([1, len(appList)])
 
 	# Add 1 since it will be horizontally stacked later
 	# max string length of 10
@@ -272,7 +290,7 @@ def filterbank(synth = 0, hw_test = 0):
 		project = ('filterbank_{type}_mcu') \
 				  .format(type = "int")
 
-		[compute_time, transfer_time, retries] \
+		[compute_time, write_time, read_time, retries] \
 			= run_benchmark(project, app, synth, hw_test)
 
 		if retries > 0:
@@ -280,16 +298,18 @@ def filterbank(synth = 0, hw_test = 0):
 			# Success
 
 			print("#cycles computation: %d" % (compute_time))
-			print("#cycles transfer: %d" % (transfer_time))
+			print("#cycles write: %d" % (write_time))
+			print("#cycles read: %d" % (read_time))
 
-			total_time = transfer_time + compute_time
+			total_time = write_time + read_time + compute_time
 
 			computeArray[0][i] = compute_time
-			transferArray[0][i] = transfer_time
+			writeArray[0][i] = write_time
+			readArray[0][i] = read_time			
 			totalArray[0][i] = total_time 
 
 	store_benchmark("filterbank_mcu", appList, computeArray, 
-					transferArray, totalArray, csv_rows)
+					writeArray, readArray, totalArray, csv_rows)
 
 def fir2dim(synth = 0, hw_test = 0):
 
@@ -307,9 +327,10 @@ def fir2dim(synth = 0, hw_test = 0):
 
 	# Arrays for data storage
 
-	computeArray = np.zeros([1, len(appList)])
-	transferArray = np.zeros([1, len(appList)]) 
-	totalArray = np.zeros([1, len(appList)]) 
+	computeArray 	= np.zeros([1, len(appList)])
+	writeArray 		= np.zeros([1, len(appList)])
+	readArray 		= np.zeros([1, len(appList)])	
+	totalArray 		= np.zeros([1, len(appList)])
 
 	# Add 1 since it will be horizontally stacked later
 	# max string length of 10
@@ -340,7 +361,7 @@ def fir2dim(synth = 0, hw_test = 0):
 		project = ('fir2dim_{type}_mcu') \
 				  .format(type = "int")
 
-		[compute_time, transfer_time, retries] \
+		[compute_time, write_time, read_time, retries] \
 			= run_benchmark(project, app, synth, hw_test)
 
 		if retries > 0:
@@ -348,16 +369,18 @@ def fir2dim(synth = 0, hw_test = 0):
 			# Success
 
 			print("#cycles computation: %d" % (compute_time))
-			print("#cycles transfer: %d" % (transfer_time))
+			print("#cycles write: %d" % (write_time))
+			print("#cycles read: %d" % (read_time))
 
-			total_time = transfer_time + compute_time
+			total_time = write_time + read_time + compute_time
 
 			computeArray[0][i] = compute_time
-			transferArray[0][i] = transfer_time
+			writeArray[0][i] = write_time
+			readArray[0][i] = read_time			
 			totalArray[0][i] = total_time 
 
 	store_benchmark("fir2dim_mcu", appList, computeArray, 
-					transferArray, totalArray, csv_rows)
+					writeArray, readArray, totalArray, csv_rows)
 
 def adpcm(synth = 0, hw_test = 0):
 
@@ -377,9 +400,10 @@ def adpcm(synth = 0, hw_test = 0):
 
 	# Arrays for data storage
 
-	computeArray = np.zeros([1, len(appList)])
-	transferArray = np.zeros([1, len(appList)]) 
-	totalArray = np.zeros([1, len(appList)]) 
+	computeArray 	= np.zeros([1, len(appList)])
+	writeArray 		= np.zeros([1, len(appList)])
+	readArray 		= np.zeros([1, len(appList)])	
+	totalArray 		= np.zeros([1, len(appList)])
 
 	# Add 1 since it will be horizontally stacked later
 	# max string length of 10
@@ -408,7 +432,7 @@ def adpcm(synth = 0, hw_test = 0):
 		
 		project = ('adpcm_mcu')
 
-		[compute_time, transfer_time, retries] \
+		[compute_time, write_time, read_time, retries] \
 			= run_benchmark(project, app, synth, hw_test)
 
 		if retries > 0:
@@ -416,16 +440,18 @@ def adpcm(synth = 0, hw_test = 0):
 			# Success
 
 			print("#cycles computation: %d" % (compute_time))
-			print("#cycles transfer: %d" % (transfer_time))
+			print("#cycles write: %d" % (write_time))
+			print("#cycles read: %d" % (read_time))
 
-			total_time = transfer_time + compute_time
+			total_time = write_time + read_time + compute_time
 
 			computeArray[0][i] = compute_time
-			transferArray[0][i] = transfer_time
+			writeArray[0][i] = write_time
+			readArray[0][i] = read_time			
 			totalArray[0][i] = total_time 
 
 	store_benchmark("adpcm_mcu", appList, computeArray, 
-					transferArray, totalArray, csv_rows)		
+					writeArray, readArray, totalArray, csv_rows)		
 
 
 def run_wcet(app, function):
@@ -740,16 +766,16 @@ def adpcm_dec_wcet():
 
 def main(): 
 
-	#matmul(synth = 0, hw_test = 0)
-	#filterbank(synth = 0, hw_test = 0)
-	#fir2dim(synth = 0, hw_test = 0)
-	#adpcm(synth = 0, hw_test = 0)
+	matmul(synth = 0, hw_test = 0)
+	filterbank(synth = 0, hw_test = 0)
+	fir2dim(synth = 0, hw_test = 0)
+	adpcm(synth = 0, hw_test = 0)
 
 	#matmul_wcet()
-	filterbank_wcet()
-	fir2dim_wcet()
-	adpcm_dec_wcet()
-	adpcm_enc_wcet()
+	#filterbank_wcet()
+	#fir2dim_wcet()
+	#adpcm_dec_wcet()
+	#adpcm_enc_wcet()
 
 	clean_up()
 

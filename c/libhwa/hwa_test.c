@@ -210,7 +210,7 @@ void print_benchmark(long long unsigned return_compute,
 {
 
 	printf("<compute>%llu</compute>\n", return_compute);
-	printf("<transfer>%llu</transfer>\n", return_write);
-	printf("<transfer>%llu</transfer>\n", return_read);
+	printf("<write>%llu</write>\n", return_write);
+	printf("<read>%llu</read>\n", return_read);
 
 }

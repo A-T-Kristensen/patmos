@@ -137,7 +137,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	read_array_spm(spm_matrix->hw_result, DIM, DIM, 1, BRAM_BASE_READ);
 
-	stop_transfer = get_cpu_cycles();
+	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
 	// Check results

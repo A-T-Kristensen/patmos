@@ -88,7 +88,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
+	unsigned long long start_write, stop_write, return_write = 0;
+	unsigned long long start_read, stop_read, return_read = 0;	
 
 	printf("Benchmarking \n");
 
@@ -98,7 +99,7 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Write to BRAM
 
-	start_transfer = get_cpu_cycles();
+	start_write = get_cpu_cycles();
 
 #if(NBANKS==3)
 
@@ -112,8 +113,8 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	write_array(mat_b, DIM, DIM, FACTOR, B_START, 1);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_write = get_cpu_cycles();
+	return_write = stop_write-start_write-CYCLE_CALIBRATION;
 
 	// Start HLS module
 
@@ -130,16 +131,16 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	// Read back the data
 
-	start_transfer = get_cpu_cycles();
+	start_read = get_cpu_cycles();
 
 	read_array(hw_result, DIM, DIM, 1, BRAM_BASE_READ);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_read = get_cpu_cycles();
+	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
 	err_cnt = compare_arrays(hw_result, sw_result);
 
-	print_benchmark(return_compute, return_transfer);
+	print_benchmark(return_compute, return_write, return_read);
 
 	return err_cnt;
 }
