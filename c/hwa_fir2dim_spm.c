@@ -224,18 +224,19 @@ int fir2dim_main(void)
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
+	unsigned long long start_write, stop_write, return_write = 0;
+	unsigned long long start_read, stop_read, return_read = 0;	
 
 	printf("Benchmarking \n");
 
 	// Run hardware
 
-	start_transfer = get_cpu_cycles();
+	start_write = get_cpu_cycles();
 
 	write_vector_spm(spm_filter->fir2dim_input, TEST_SIZE, 0, 0);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_write = get_cpu_cycles();
+	return_write = stop_write-start_write-CYCLE_CALIBRATION;
 
 	// Start HLS module
 
@@ -250,12 +251,12 @@ int fir2dim_main(void)
 	stop_compute = get_cpu_cycles();
 	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
-	start_transfer = get_cpu_cycles();
+	start_read = get_cpu_cycles();
 
 	read_vector_spm(spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 0, BRAM_BASE_READ);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_read = get_cpu_cycles();
+	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
 	// Check results
 
@@ -267,7 +268,7 @@ int fir2dim_main(void)
 		puts("Results incorrect");
 	}
 
-	print_benchmark(return_compute, return_transfer);
+	print_benchmark(return_compute, return_write, return_read);
 
 	return fir2dim_return(fir2dim_result_hw);
 }

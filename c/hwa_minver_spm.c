@@ -77,7 +77,8 @@ int minver_main(mat_type sw_result[DIM][DIM])
 	mat_type eps = 1.0e-6;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
+	unsigned long long start_write, stop_write, return_write = 0;
+	unsigned long long start_read, stop_read, return_read = 0;	
 
 	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
 	bank_ptrs(bank_ptr_array, NBANKS);
@@ -92,7 +93,7 @@ int minver_main(mat_type sw_result[DIM][DIM])
 
 	// Run accelerator
 
-	start_transfer = get_cpu_cycles();
+	start_write = get_cpu_cycles();
 
 #if(NBANKS>1)
 
@@ -106,8 +107,8 @@ int minver_main(mat_type sw_result[DIM][DIM])
 
 #endif
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_write = get_cpu_cycles();
+	return_write = stop_write-start_write-CYCLE_CALIBRATION;
 
 	// Poll status of HLS module
 
@@ -120,7 +121,7 @@ int minver_main(mat_type sw_result[DIM][DIM])
 	stop_compute = get_cpu_cycles();
 	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
-	start_transfer = get_cpu_cycles();
+	start_read = get_cpu_cycles();
 
 #if(NBANKS>1)
 
@@ -134,13 +135,13 @@ int minver_main(mat_type sw_result[DIM][DIM])
 
 #endif
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_read = get_cpu_cycles();
+	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
 	err_cnt = compare_arrays_spm(&spm_matrix->hw_result,
 								 sw_result);
 
-	print_benchmark(return_compute, return_transfer);
+	print_benchmark(return_compute, return_write, return_read);
 
 	return err_cnt;
 }

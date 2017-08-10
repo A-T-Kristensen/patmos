@@ -88,21 +88,22 @@ int filterbank_main(void)
 	int i, j;
 
 	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_transfer, stop_transfer, return_transfer = 0;
+	unsigned long long start_write, stop_write, return_write = 0;
+	unsigned long long start_read, stop_read, return_read = 0;	
 
 	printf("Benchmarking \n");
 
 	// Move data into hardware
 
-	start_transfer = get_cpu_cycles();
+	start_write = get_cpu_cycles();
 
 	write_vector_spm(spm_filter->r, 256, 0, 0);
 	//write_vector_spm(spm_filter->y, 256, 0, 1);
 	write_array_spm(spm_filter->H, 32, 8, 0, 2, 1);
 	write_array_spm(spm_filter->F, 32, 8, 0, 3, 1);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer = stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_write = get_cpu_cycles();
+	return_write = stop_write-start_write-CYCLE_CALIBRATION;
 
 	start_compute = get_cpu_cycles();
 
@@ -122,12 +123,12 @@ int filterbank_main(void)
 	stop_compute = get_cpu_cycles();
 	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
-	start_transfer = get_cpu_cycles();
+	start_read = get_cpu_cycles();
 
 	read_vector_spm(spm_filter->y, 256, 0, BRAM_BASE_READ);
 
-	stop_transfer = get_cpu_cycles();
-	return_transfer += stop_transfer-start_transfer-CYCLE_CALIBRATION;
+	stop_read = get_cpu_cycles();
+	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
 	if(!(int)((spm_filter->y[0]) - 9408)) {
 		puts("Results correct");
@@ -135,7 +136,7 @@ int filterbank_main(void)
 		puts("Results incorrect");
 	}
 
-	print_benchmark(return_compute, return_transfer);
+	print_benchmark(return_compute, return_write, return_read);
 
 	return (int)((spm_filter->y[0]) - 9408);
 }

@@ -225,7 +225,6 @@ const unsigned int ADDR_DLTX 	= ADDR_BPL + sizeof(adpcm_dec_dec_del_bpl);
 const unsigned int ADDR_DEL_DHX = ADDR_DLTX + sizeof(adpcm_dec_dec_del_dltx);
 const unsigned int ADDR_DEL_BPH = ADDR_DEL_DHX + sizeof(adpcm_dec_delay_dhx);
 
-
 volatile _SPM int *adpcm_dec_h_p 			= (volatile _SPM int *) ADDR_H;
 volatile _SPM int *adpcm_dec_accumc_p		= (volatile _SPM int *) ADDR_ACCUMC;
 volatile _SPM int *adpcm_dec_accumd_p		= (volatile _SPM int *) ADDR_ACCUMD;
@@ -770,7 +769,7 @@ int main(void)
 	stop_cycle = get_cpu_cycles();
 	return_cycles = stop_cycle-start_cycle-CYCLE_CALIBRATION;
 
-	print_benchmark(return_cycles, 0);
+	print_benchmark(return_cycles, 0, 0);
 
 #endif
 

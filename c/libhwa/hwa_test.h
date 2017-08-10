@@ -88,7 +88,8 @@ void led_blink(int err_cnt);
 
 	PARAMETERS:
 		*return_compute: The clock cycles for computation.
-		*return_transfer: The clock cycles for data transfer
+		*return_write: The clock cycles for data write
+		*return_read: The clock cycles for data read
 
 	RETURNS: None
 
@@ -97,6 +98,7 @@ void led_blink(int err_cnt);
 */
 
 void print_benchmark(long long unsigned return_compute,
-					 long long unsigned return_transfer);
+					 long long unsigned return_write,
+					 long long unsigned return_read);
 
 #endif /* __HWA_TEST_H__ */
