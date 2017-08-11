@@ -33,9 +33,11 @@ void _Pragma("entrypoint") bram_main(void)
 	int temp[DIM];
 	volatile _SPM int* test_spm = (volatile _SPM int *) SPM_BASE;
 
+	printf("Test writing to my bram\n");
+
 	start_write = get_cpu_cycles();	
 
-	// Write data to BRAM
+	// Write data to my BRAM
 
 	_Pragma("loopbound min DIM max DIM")
 	for(i = 0; i < DIM; i++) {
@@ -43,7 +45,7 @@ void _Pragma("entrypoint") bram_main(void)
 	}
 
 	stop_write = get_cpu_cycles();
-	return_write = stop_write-start_write-3;		
+	return_write = stop_write-start_write-6;		
 
 	start_read = get_cpu_cycles();		
 
@@ -55,7 +57,7 @@ void _Pragma("entrypoint") bram_main(void)
 	}
 
 	stop_read = get_cpu_cycles();
-	return_read = stop_read-start_read-3;	
+	return_read = stop_read-start_read-6;	
 
 	printf("Read: %llu\n", return_read);
 	printf("Write: %llu\n", return_read);
@@ -69,6 +71,8 @@ void _Pragma("entrypoint") bram_main(void)
 
 	// Write data to BRAM from SPM
 
+	printf("Test writing to my bram from SPM\n");	
+
 
 	_Pragma("loopbound min DIM max DIM")
 	for(i = 0; i < DIM; i++) {
@@ -76,7 +80,7 @@ void _Pragma("entrypoint") bram_main(void)
 	}
 
 	stop_write = get_cpu_cycles();
-	return_write = stop_write-start_write-3;		
+	return_write = stop_write-start_write-6;		
 
 	start_read = get_cpu_cycles();		
 
@@ -88,10 +92,37 @@ void _Pragma("entrypoint") bram_main(void)
 	}
 
 	stop_read = get_cpu_cycles();
-	return_read = stop_read-start_read-3;	
+	return_read = stop_read-start_read-6;	
 
 	printf("Read: %llu\n", return_read);
 	printf("Write: %llu\n", return_read);
+
+	// Write data to SPM
+
+	printf("Test writing to SPM\n");	
+
+	_Pragma("loopbound min DIM max DIM")
+	for(i = 0; i < DIM; i++) {
+		*(test_spm + i) = 1 + i;
+	}
+
+	stop_write = get_cpu_cycles();
+	return_write = stop_write-start_write-6;		
+
+	start_read = get_cpu_cycles();		
+
+	// Read back data from SPM
+
+	_Pragma("loopbound min DIM max DIM")
+	for(i = 0; i < DIM; i++) {
+		temp[i]  = *(test_spm + i);
+	}
+
+	stop_read = get_cpu_cycles();
+	return_read = stop_read-start_read-6;	
+
+	printf("Read: %llu\n", return_read);
+	printf("Write: %llu\n", return_read);	
 
 }
 
