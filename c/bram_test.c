@@ -13,27 +13,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DIM 2
+#define DIM 1
 
 void bram_main(void) __attribute__((noinline));
+
+
+unsigned long long start_write, stop_write, return_write = 0;	
+unsigned long long start_read, stop_read, return_read = 0;
+
 
 void _Pragma("entrypoint") bram_main(void)
 {
 
 	volatile _IODEV int *bram_ptr = (volatile _IODEV int *) 0xF00B0000;
 
-	unsigned long long calib_start, calib_end;	
-	calib_start = get_cpu_cycles();	
-	calib_end = get_cpu_cycles();		
-
-	unsigned long long start_write, stop_write, return_write = 0;	
-	unsigned long long start_read, stop_read, return_read = 0;		
-
-	volatile int i;
+	int i;
 	int temp[DIM];
 	volatile _SPM int* test_spm = (volatile _SPM int *) SPM_BASE;
 
-	//printf("Test writing to my bram\n");
+	// Initialize
+
+	for(i = 0; i < DIM; i++) {
+		*(test_spm + i) = i + 1;
+	}
 
 	start_write = get_cpu_cycles();	
 
@@ -59,17 +61,7 @@ void _Pragma("entrypoint") bram_main(void)
 	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-6;	
 
-	printf("Read: %llu\n", return_read);
-	printf("Write: %llu\n", return_write);
-
-	for(i = 0; i < DIM; i++) {
-		*(test_spm + i) = i + 1;
-	}
-
-
-	start_write = get_cpu_cycles();	
-
-	// Write data to BRAM from SPM
+/*	// Write data to BRAM from SPM
 
 	printf("Test writing to my bram from SPM\n");	
 
@@ -98,6 +90,8 @@ void _Pragma("entrypoint") bram_main(void)
 
 	// Write data to SPM
 
+	start_write = get_cpu_cycles();		
+
 	printf("Test writing to SPM\n");	
 
 	_Pragma("loopbound min DIM max DIM")
@@ -121,7 +115,7 @@ void _Pragma("entrypoint") bram_main(void)
 	return_read = stop_read-start_read-6;	
 
 	printf("Read: %llu\n", return_read);
-	printf("Write: %llu\n", return_write);	
+	printf("Write: %llu\n", return_write);	*/
 
 }
 
@@ -129,6 +123,11 @@ int main()
 {
 
 	bram_main();
+
+
+	printf("Read: %llu\n", return_read);
+	printf("Write: %llu\n", return_write);
+
 
 	return 0;
 }
