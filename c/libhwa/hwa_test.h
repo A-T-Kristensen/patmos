@@ -28,14 +28,12 @@
 
  */
 
-int compare_arrays(mat_type hw_result[ROWS][COLS],
+int __attribute__ ((noinline)) compare_arrays(mat_type hw_result[ROWS][COLS],
 				   mat_type sw_result[ROWS][COLS]);
 
-int compare_arrays_spm(volatile _SPM mat_type(*hw_result)[ROWS][COLS],
+int __attribute__ ((noinline)) compare_arrays_spm(volatile _SPM mat_type(*hw_result)[ROWS][COLS],
 					   mat_type sw_result[ROWS][COLS]);
 
-int compare_arrays_uncached(volatile _UNCACHED mat_type(*hw_result)[ROWS][COLS],
-							mat_type sw_result[ROWS][COLS]);
 
 /*
 	NAME: compare_vectors()
@@ -53,17 +51,13 @@ int compare_arrays_uncached(volatile _UNCACHED mat_type(*hw_result)[ROWS][COLS],
 
  */
 
-int compare_vectors(mat_type hw_result[],
+int __attribute__ ((noinline)) compare_vectors(mat_type hw_result[],
 					mat_type sw_result[],
 					int length);
 
-int compare_vectors_spm(volatile _SPM mat_type(*hw_result)[],
+int __attribute__ ((noinline)) compare_vectors_spm(volatile _SPM mat_type(*hw_result)[],
 						volatile _SPM mat_type(*sw_result)[],
 						int length);
-
-int compare_vectors_uncached(volatile _UNCACHED mat_type(*hw_result)[],
-							 volatile _UNCACHED mat_type(*sw_result)[],
-							 int length);
 
 /*
 	NAME: led_blink()
@@ -97,7 +91,7 @@ void led_blink(int err_cnt);
 
 */
 
-void print_benchmark(long long unsigned return_compute,
+void __attribute__ ((noinline)) print_benchmark(long long unsigned return_compute,
 					 long long unsigned return_write,
 					 long long unsigned return_read);
 

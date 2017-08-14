@@ -160,14 +160,14 @@ int _Pragma("entrypoint") adpcm_main_wcet()
 	return 0;
 }
 
+unsigned long long start_compute, stop_compute, return_compute = 0;
+unsigned long long start_write, stop_write, return_write = 0;
+unsigned long long start_read, stop_read, return_read = 0;	
+
 int adpcm_main()
 {
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-
-	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_write, stop_write, return_write = 0;
-	unsigned long long start_read, stop_read, return_read = 0;	
 
 	int err_cnt = 0;
 
@@ -197,15 +197,7 @@ int adpcm_main()
 	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
-	if(!enc_return()) {
-		puts("Results correct");
-	} else {
-		puts("Results incorrect");
-	}
-
-	print_benchmark(return_compute, return_write, return_read);
-
-	return enc_return();
+	return 0;
 }
 
 int main()
@@ -219,9 +211,17 @@ int main()
 
 #else
 
-	printf("Benchmarking \n");
+	adpcm_main();
 
-	return adpcm_main();
+	if(!enc_return()) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}
+
+	print_benchmark(return_compute, return_write, return_read);
+
+	return enc_return();	
 
 #endif
 }

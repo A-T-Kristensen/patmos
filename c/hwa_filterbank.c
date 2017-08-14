@@ -86,6 +86,10 @@ int _Pragma("entrypoint") filterbank_main_wcet(mat_type r[256],
 	return 0;
 }
 
+unsigned long long start_compute, stop_compute, return_compute = 0;
+unsigned long long start_write, stop_write, return_write = 0;
+unsigned long long start_read, stop_read, return_read = 0;	
+
 int filterbank_main(mat_type r[256], mat_type H[8][32],
 					mat_type F[8][32], mat_type y[256])
 {
@@ -97,12 +101,6 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	int i, j;
-
-	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_write, stop_write, return_write = 0;
-	unsigned long long start_read, stop_read, return_read = 0;	
-
-	printf("Benchmarking \n");
 
 	// Move data into hardware
 
@@ -141,15 +139,7 @@ int filterbank_main(mat_type r[256], mat_type H[8][32],
 	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
-	if(!((int)(y[0]) - 9408)) {
-		puts("Results correct");
-	} else {
-		puts("Results incorrect");
-	}
-
-	print_benchmark(return_compute, return_write, return_read);
-
-	return (int)((y[0]) - 9408);
+	return 0;
 }
 
 /*
@@ -174,6 +164,16 @@ int main(void)
 #else
 
 	return filterbank_main(r, H, F, y);
+
+	if(!((int)(y[0]) - 9408)) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}
+
+	print_benchmark(return_compute, return_write, return_read);
+
+	return (int)((y[0]) - 9408);	
 
 #endif
 }

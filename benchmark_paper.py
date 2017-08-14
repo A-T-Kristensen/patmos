@@ -89,8 +89,7 @@ def run_benchmark(project, app, synth, hw_test):
 			else:
 				print("Correct")
 
-		test_out = (result.partition("Benchmarking")[2])
-		print(test_out)
+		print(result)
 
 		# Try to see if we got a result
 

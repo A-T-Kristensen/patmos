@@ -187,6 +187,8 @@ void filterbank_core(volatile _SPM mat_type(*r)[256],
   Main function
 */
 
+unsigned long long start_cycle, stop_cycle, return_cycles = 0;
+
 int main(void)
 {
 
@@ -198,10 +200,6 @@ int main(void)
 	filterbank_main();
 
 #else
-
-	unsigned long long start_cycle, stop_cycle, return_cycles = 0;
-
-	printf("Benchmarking \n");
 
 	start_cycle = get_cpu_cycles();
 

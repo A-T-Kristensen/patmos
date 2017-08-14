@@ -183,6 +183,9 @@ void _Pragma("entrypoint") fir2dim_main()
 	}
 }
 
+static unsigned long long start_cycle, stop_cycle;
+static unsigned long long return_cycles = 0;
+
 int main(void)
 {
 
@@ -196,10 +199,6 @@ int main(void)
 
 #else
 
-	static unsigned long long start_cycle, stop_cycle;
-	static unsigned long long return_cycles = 0;
-
-	printf("Benchmarking \n");
 	start_cycle = get_cpu_cycles();
 
 	fir2dim_main();

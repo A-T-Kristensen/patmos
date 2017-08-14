@@ -152,6 +152,9 @@ void _Pragma("entrypoint") matrix1_main(mat_type matrix1_A[X * Y],
 	}
 }
 
+static unsigned long long start_cycle, stop_cycle;
+static unsigned long long return_cycles = 0;
+
 
 int main(void)
 {
@@ -167,11 +170,6 @@ int main(void)
 	matrix1_main(matrix1_A, matrix1_B, matrix1_C);
 
 #else
-
-	static unsigned long long start_cycle, stop_cycle;
-	static unsigned long long return_cycles = 0;
-
-	printf("Benchmarking \n");
 
 	start_cycle = get_cpu_cycles();
 

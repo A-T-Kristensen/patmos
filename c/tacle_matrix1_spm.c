@@ -142,6 +142,8 @@ void _Pragma("entrypoint") matrix1_main(void)
 	}
 }
 
+static unsigned long long start_cycle, stop_cycle;
+static unsigned long long return_cycles = 0;
 
 int main(void)
 {
@@ -152,11 +154,6 @@ int main(void)
 	matrix1_main();
 
 #else
-
-	static unsigned long long start_cycle, stop_cycle;
-	static unsigned long long return_cycles = 0;
-
-	printf("Benchmarking \n");
 
 	matrix1_pin_down();
 

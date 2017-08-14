@@ -173,6 +173,8 @@ void filterbank_core(mat_type r[ 256 ],
   Main function
 */
 
+unsigned long long start_cycle, stop_cycle, return_cycles = 0;
+
 int main(void)
 {
 
@@ -190,11 +192,8 @@ int main(void)
 
 #else
 
-	unsigned long long start_cycle, stop_cycle, return_cycles = 0;
 
 	filterbank_init();
-
-	printf("Benchmarking \n");
 
 	start_cycle = get_cpu_cycles();
 

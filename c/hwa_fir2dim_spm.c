@@ -214,6 +214,9 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 	return 0;
 }
 
+unsigned long long start_compute, stop_compute, return_compute = 0;
+unsigned long long start_write, stop_write, return_write = 0;
+unsigned long long start_read, stop_read, return_read = 0;	
 
 int fir2dim_main(void)
 {
@@ -222,12 +225,6 @@ int fir2dim_main(void)
 	bank_ptrs(bank_ptr_array, NBANKS);
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-
-	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_write, stop_write, return_write = 0;
-	unsigned long long start_read, stop_read, return_read = 0;	
-
-	printf("Benchmarking \n");
 
 	// Run hardware
 
@@ -258,19 +255,8 @@ int fir2dim_main(void)
 	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
-	// Check results
+	return 0;
 
-	fir2dim_result_hw = spm_filter->fir2dim_output_hw[0] + spm_filter->fir2dim_output_hw[5] + fir2dim_array[9];
-
-	if(!fir2dim_return(fir2dim_result_hw)) {
-		puts("Results correct");
-	} else {
-		puts("Results incorrect");
-	}
-
-	print_benchmark(return_compute, return_write, return_read);
-
-	return fir2dim_return(fir2dim_result_hw);
 }
 
 
@@ -305,7 +291,19 @@ int main(void)
 
 #else
 
-	return fir2dim_main();
+	fir2dim_main();
+
+	fir2dim_result_hw = spm_filter->fir2dim_output_hw[0] + spm_filter->fir2dim_output_hw[5] + fir2dim_array[9];
+
+	if(!fir2dim_return(fir2dim_result_hw)) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}
+
+	print_benchmark(return_compute, return_write, return_read);	
+
+	return fir2dim_return(fir2dim_result_hw);
 
 #endif
 }

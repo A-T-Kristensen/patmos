@@ -77,6 +77,10 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 	return (int)(spm_filter->y[0]) - 9408;
 }
 
+unsigned long long start_compute, stop_compute, return_compute = 0;
+unsigned long long start_write, stop_write, return_write = 0;
+unsigned long long start_read, stop_read, return_read = 0;	
+
 int filterbank_main(void)
 {
 
@@ -86,12 +90,6 @@ int filterbank_main(void)
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	int i, j;
-
-	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_write, stop_write, return_write = 0;
-	unsigned long long start_read, stop_read, return_read = 0;	
-
-	printf("Benchmarking \n");
 
 	// Move data into hardware
 
@@ -130,15 +128,7 @@ int filterbank_main(void)
 	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
-	if(!(int)((spm_filter->y[0]) - 9408)) {
-		puts("Results correct");
-	} else {
-		puts("Results incorrect");
-	}
-
-	print_benchmark(return_compute, return_write, return_read);
-
-	return (int)((spm_filter->y[0]) - 9408);
+	return 0;
 }
 
 /*
@@ -157,7 +147,17 @@ int main(void)
 
 #else
 
-	return filterbank_main();
+	filterbank_main();
+
+	if(!(int)((spm_filter->y[0]) - 9408)) {
+		puts("Results correct");
+	} else {
+		puts("Results incorrect");
+	}
+
+	print_benchmark(return_compute, return_write, return_read);
+
+	return (int)((spm_filter->y[0]) - 9408);	
 
 #endif
 

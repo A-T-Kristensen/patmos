@@ -77,6 +77,10 @@ int _Pragma("entrypoint") matmul_main_wcet(mat_type mat_a[DIM][DIM],
 	return 0;
 }
 
+unsigned long long start_compute, stop_compute, return_compute = 0;
+unsigned long long start_write, stop_write, return_write = 0;
+unsigned long long start_read, stop_read, return_read = 0;	
+
 int matmul_main(mat_type mat_a[DIM][DIM],
 				mat_type mat_b[DIM][DIM],
 				mat_type sw_result[DIM][DIM],
@@ -86,12 +90,6 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 	int err_cnt = 0;
 
 	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-
-	unsigned long long start_compute, stop_compute, return_compute = 0;
-	unsigned long long start_write, stop_write, return_write = 0;
-	unsigned long long start_read, stop_read, return_read = 0;	
-
-	printf("Benchmarking \n");
 
 	// Compute expected results
 
@@ -140,13 +138,13 @@ int matmul_main(mat_type mat_a[DIM][DIM],
 
 	err_cnt = compare_arrays(hw_result, sw_result);
 
-	print_benchmark(return_compute, return_write, return_read);
-
 	return err_cnt;
 }
 
 int main()
 {
+
+	int err_cnt = 0;
 
 	mat_type mat_a[DIM][DIM], mat_b[DIM][DIM];
 	mat_type sw_result[DIM][DIM], hw_result[DIM][DIM];
@@ -161,7 +159,11 @@ int main()
 
 #else
 
-	return matmul_main(mat_a, mat_b, sw_result, hw_result);
+	err_cnt = matmul_main(mat_a, mat_b, sw_result, hw_result);
+
+	print_benchmark(return_compute, return_write, return_read);	
+
+	return err_cnt;
 
 #endif
 }

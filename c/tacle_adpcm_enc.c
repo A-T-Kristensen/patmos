@@ -744,6 +744,9 @@ void _Pragma("entrypoint") adpcm_enc_main(void)
 
 }
 
+static unsigned long long start_cycle, stop_cycle;
+static unsigned long long return_cycles = 0;
+
 int main(void)
 {
 	adpcm_enc_init();
@@ -753,11 +756,6 @@ int main(void)
 	adpcm_enc_main();
 
 #else
-
-	static unsigned long long start_cycle, stop_cycle;
-	static unsigned long long return_cycles = 0;
-
-	printf("Benchmarking \n");
 
 	start_cycle = get_cpu_cycles();
 
