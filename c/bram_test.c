@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DIM 1
+#define DIM 2
 
 void bram_main(void) __attribute__((noinline));
 
@@ -33,7 +33,7 @@ void _Pragma("entrypoint") bram_main(void)
 	int temp[DIM];
 	volatile _SPM int* test_spm = (volatile _SPM int *) SPM_BASE;
 
-	printf("Test writing to my bram\n");
+	//printf("Test writing to my bram\n");
 
 	start_write = get_cpu_cycles();	
 
@@ -60,7 +60,7 @@ void _Pragma("entrypoint") bram_main(void)
 	return_read = stop_read-start_read-6;	
 
 	printf("Read: %llu\n", return_read);
-	printf("Write: %llu\n", return_read);
+	printf("Write: %llu\n", return_write);
 
 	for(i = 0; i < DIM; i++) {
 		*(test_spm + i) = i + 1;
@@ -72,7 +72,6 @@ void _Pragma("entrypoint") bram_main(void)
 	// Write data to BRAM from SPM
 
 	printf("Test writing to my bram from SPM\n");	
-
 
 	_Pragma("loopbound min DIM max DIM")
 	for(i = 0; i < DIM; i++) {
@@ -95,7 +94,7 @@ void _Pragma("entrypoint") bram_main(void)
 	return_read = stop_read-start_read-6;	
 
 	printf("Read: %llu\n", return_read);
-	printf("Write: %llu\n", return_read);
+	printf("Write: %llu\n", return_write);
 
 	// Write data to SPM
 
@@ -122,7 +121,7 @@ void _Pragma("entrypoint") bram_main(void)
 	return_read = stop_read-start_read-6;	
 
 	printf("Read: %llu\n", return_read);
-	printf("Write: %llu\n", return_read);	
+	printf("Write: %llu\n", return_write);	
 
 }
 
