@@ -45,8 +45,12 @@ BOARD?=nexys4ddr
 #HWA_PROJECT?=matmul_float_5b_4x4
 #HWA_PROJECT?=minver_float_2b_32x32
 #HWA_PROJECT?=filterbank_float_256
-#HWA_PROJECT?=fir2dim_float
-HWA_PROJECT?=adpcm
+
+#HWA_PROJECT?=filterbank_int_mcu
+#HWA_PROJECT?=matmul_int_9b_32x32_mcu
+#HWA_PROJECT?=fir2dim_int_mcu
+HWA_PROJECT?=adpcm_mcu
+
 
 # Where to put elf files and binaries
 BUILDDIR?=$(CURDIR)/tmp

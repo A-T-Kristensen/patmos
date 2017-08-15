@@ -163,7 +163,7 @@ int main(void)
 
 #else
 
-	return filterbank_main(r, H, F, y);
+	filterbank_main(r, H, F, y);
 
 	if(!((int)(y[0]) - 9408)) {
 		puts("Results correct");

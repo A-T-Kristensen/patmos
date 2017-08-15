@@ -17,7 +17,7 @@
 
 #define PI 3141
 
-#define TEST_SIZE 3
+#define TEST_SIZE 4
 
 #define IN_END TEST_SIZE+1
 
@@ -29,7 +29,7 @@ int adpcm_abs(int n);
 int enc_return();
 int dec_return();
 
-int adpcm_main(void);
+int __attribute__((noinline)) adpcm_main(void);
 int adpcm_main_wcet() __attribute__((noinline));
 int adpcm_main_encode();
 
@@ -48,6 +48,7 @@ struct adpcm_struct {
 };
 
 volatile _SPM struct adpcm_struct *adpcm_data = (volatile _SPM struct adpcm_struct *) SPM_BASE;
+volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 int adpcm_abs(int n)
 {
@@ -148,17 +149,32 @@ int dec_return()
 
 int _Pragma("entrypoint") adpcm_main_wcet()
 {
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
+#if(WRITE)
+
+	// For equivalent to TACLe = 3
 	write_vector_spm(adpcm_data->compressed, TEST_SIZE, 1, 0xF00B1000);
 
+#endif	
+
+#if(COMP)	
+
 	*(hls_ptr + 1) = 1;
-	*(hls_ptr + 2) = TEST_SIZE;	// Set the size
-
+	*(hls_ptr + 2) = TEST_SIZE;	// Set the size	
 	*hls_ptr = 1;
-	*hls_ptr;
 
+	_Pragma("loopbound min 1 max 1")
+	while((*hls_ptr) != 1){
+	}
+
+#endif	
+
+#if(READ)
+
+	// For equivalent to TACLe = 6
 	read_vector_spm(adpcm_data->dec_result, TEST_SIZE, 1, 0xF00B2000);
+
+#endif			
 
 	return 0;
 }
@@ -167,28 +183,37 @@ unsigned long long start_compute, stop_compute, return_compute = 0;
 unsigned long long start_write, stop_write, return_write = 0;
 unsigned long long start_read, stop_read, return_read = 0;	
 
-int adpcm_main()
+int __attribute__((noinline)) adpcm_main()
 {
 
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
+#if(WRITE)
 
 	start_write = get_cpu_cycles();
 
 	write_vector_spm(adpcm_data->compressed, TEST_SIZE, 0, 0xF00B1000);
 
-	*(hls_ptr + 1) = 1;
 
 	stop_write = get_cpu_cycles();
-	return_write = stop_write-start_write-CYCLE_CALIBRATION;
+	return_write = stop_write-start_write-CYCLE_CALIBRATION;	
+
+#endif	
+
+#if(COMP)	
 
 	start_compute = get_cpu_cycles();
 
+	*(hls_ptr + 1) = 1;
+	*(hls_ptr + 2) = TEST_SIZE;	// Set the size	
 	*hls_ptr = 1;
 
 	while((*hls_ptr) != 1);
 
 	stop_compute = get_cpu_cycles();
 	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
+
+#endif
+
+#if(READ)
 
 	start_read = get_cpu_cycles();
 
@@ -197,13 +222,14 @@ int adpcm_main()
 	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-CYCLE_CALIBRATION;
 
+#endif			
+
+
 	return 0;
 }
 
 int adpcm_main_encode()
 {
-
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 	write_vector_spm(adpcm_data->test_data, TEST_SIZE, 0, 0);
 
@@ -232,13 +258,13 @@ int main()
 
 	adpcm_main();
 
+	print_benchmark(return_compute, return_write, return_read);
+
 	if(!dec_return()) {
 		puts("Results correct");
 	} else {
 		puts("Results incorrect");
-	}
-
-	print_benchmark(return_compute, return_write, return_read);
+	}	
 
 	return dec_return();	
 

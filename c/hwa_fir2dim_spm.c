@@ -50,6 +50,8 @@ volatile _IODEV mat_type *bram_ptr_read6 = (volatile _IODEV mat_type *) BRAM6;
 volatile _IODEV mat_type *bram_ptr_read7 = (volatile _IODEV mat_type *) BRAM7;
 
 
+
+
 #define IMAGEDIM      4
 #define ARRAYDIM      (IMAGEDIM + 2)
 #define COEFFICIENTS  3
@@ -57,7 +59,7 @@ volatile _IODEV mat_type *bram_ptr_read7 = (volatile _IODEV mat_type *) BRAM7;
 #define COEFF_OFFSET 0
 #define IMAGE_OFFSET (COEFFICIENTS*COEFFICIENTS)
 #define ARRAY_OFFSET (IMAGE_OFFSET+IMAGEDIM*IMAGEDIM)
-#define TEST_SIZE (COEFFICIENTS * COEFFICIENTS + 1*IMAGEDIM * IMAGEDIM + ARRAYDIM * ARRAYDIM)
+#define TEST_SIZE (COEFFICIENTS * COEFFICIENTS + 1*IMAGEDIM * IMAGEDIM + ARRAYDIM * ARRAYDIM) // 61, what we write
 
 struct filter_data {
 	mat_type fir2dim_input[TEST_SIZE];
@@ -65,6 +67,7 @@ struct filter_data {
 };
 
 volatile _SPM struct filter_data *spm_filter = (volatile _SPM struct filter_data *) SPM_BASE;
+volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
 
 /*
   Forward declaration of functions
@@ -85,8 +88,8 @@ void fir2dim_init(mat_type fir2dim_coefficients[COEFFICIENTS * COEFFICIENTS],
 int fir2dim_return(int fir2dim_result);
 
 int main(void);
-int fir2dim_main(void);
-int fir2dim_main_wcet(void) __attribute__((noinline));
+int __attribute__((noinline)) fir2dim_main(void);
+int __attribute__((noinline)) fir2dim_main_wcet(void) ;
 
 int fir2dim_result_hw;
 mat_type fir2dim_input[TEST_SIZE];
@@ -197,19 +200,28 @@ void fir2dim_pin_down(mat_type *pimage, mat_type *parray,
 
 int _Pragma("entrypoint") fir2dim_main_wcet(void)
 {
-
-	int i;
-
-	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
-	bank_ptrs(bank_ptr_array, NBANKS);
-	volatile _IODEV int *hls_ptr = (volatile _IODEV int *) HWA_CTRL_BASE;
-
+	
+#if(WRITE)	
+	// Write size 61
 	write_vector_spm(spm_filter->fir2dim_input, TEST_SIZE, 0, 0);
 
-	*hls_ptr = 1;
-	*hls_ptr;
+#endif
 
+#if(COMP)	
+
+	*hls_ptr = 1;
+
+	_Pragma("loopbound min 1 max 1")
+	while((*hls_ptr) != 1){
+	}	
+
+#endif	
+
+#if(READ)
+	// Read size 16
 	read_vector_spm(spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 0, BRAM_BASE_READ);
+
+#endif
 
 	return 0;
 }
@@ -218,14 +230,10 @@ unsigned long long start_compute, stop_compute, return_compute = 0;
 unsigned long long start_write, stop_write, return_write = 0;
 unsigned long long start_read, stop_read, return_read = 0;	
 
-int fir2dim_main(void)
+int __attribute__((noinline)) fir2dim_main(void)
 {
 
-	volatile _IODEV mat_type *bank_ptr_array[NBANKS];
-	bank_ptrs(bank_ptr_array, NBANKS);
-
-	volatile _IODEV int *hls_ptr  = (volatile _IODEV int *) HWA_CTRL_BASE;
-
+#if(WRITE)
 	// Run hardware
 
 	start_write = get_cpu_cycles();
@@ -234,6 +242,10 @@ int fir2dim_main(void)
 
 	stop_write = get_cpu_cycles();
 	return_write = stop_write-start_write-CYCLE_CALIBRATION;
+
+#endif	
+
+#if(COMP)
 
 	// Start HLS module
 
@@ -248,12 +260,19 @@ int fir2dim_main(void)
 	stop_compute = get_cpu_cycles();
 	return_compute = stop_compute-start_compute-CYCLE_CALIBRATION;
 
+#endif	
+
+#if(READ)
+
+
 	start_read = get_cpu_cycles();
 
 	read_vector_spm(spm_filter->fir2dim_output_hw, IMAGEDIM * IMAGEDIM, 0, BRAM_BASE_READ);
 
 	stop_read = get_cpu_cycles();
 	return_read = stop_read-start_read-CYCLE_CALIBRATION;
+
+#endif	
 
 	return 0;
 
