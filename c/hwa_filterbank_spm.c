@@ -63,8 +63,8 @@ int _Pragma("entrypoint") filterbank_main_wcet(void)
 #if(WRITE)
 
 	write_vector_spm(spm_filter->r, 256, 0, 0);
-	write_array_spm(spm_filter->H, 32, 8, 0, 2, 1);
-	write_array_spm(spm_filter->F, 32, 8, 0, 3, 1);
+	//write_array_spm(spm_filter->H, 32, 8, 0, 2, 1);
+	//write_array_spm(spm_filter->F, 32, 8, 0, 3, 1);
 
 #endif
 
@@ -105,8 +105,8 @@ int __attribute__ ((noinline)) filterbank_main(void)
 	start_write = get_cpu_cycles();
 
 	write_vector_spm(spm_filter->r, 256, 0, 0);
-	write_array_spm(spm_filter->H, 32, 8, 0, 2, 1);
-	write_array_spm(spm_filter->F, 32, 8, 0, 3, 1);
+	//write_array_spm(spm_filter->H, 32, 8, 0, 2, 1);
+	//write_array_spm(spm_filter->F, 32, 8, 0, 3, 1);
 
 	stop_write = get_cpu_cycles();
 	return_write = stop_write-start_write-CYCLE_CALIBRATION;

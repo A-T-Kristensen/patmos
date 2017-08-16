@@ -202,8 +202,10 @@ int _Pragma("entrypoint") fir2dim_main_wcet(void)
 {
 	
 #if(WRITE)	
-	// Write size 61
-	write_vector_spm(spm_filter->fir2dim_input, TEST_SIZE, 0, 0);
+	// Write size 61 - 9 = 52
+	write_vector_spm(spm_filter->fir2dim_input, 52, 0, 0);
+	//write_vector_spm(spm_filter->fir2dim_input, TEST_SIZE, 0, 0);
+
 
 #endif
 
