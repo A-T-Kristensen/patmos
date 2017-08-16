@@ -240,7 +240,8 @@ int __attribute__((noinline)) fir2dim_main(void)
 
 	start_write = get_cpu_cycles();
 
-	write_vector_spm(spm_filter->fir2dim_input, TEST_SIZE, 0, 0);
+	write_vector_spm(spm_filter->fir2dim_input, 52, 0, 0);
+	//write_vector_spm(spm_filter->fir2dim_input, TEST_SIZE, 0, 0);
 
 	stop_write = get_cpu_cycles();
 	return_write = stop_write-start_write-CYCLE_CALIBRATION;

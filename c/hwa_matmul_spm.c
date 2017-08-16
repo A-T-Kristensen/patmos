@@ -102,7 +102,7 @@ int __attribute__ ((noinline)) matmul_main(mat_type mat_a[DIM][DIM],
 	
 #if(WRITE)
 
-	// Write to BRAM	
+	// Write to BRAM
 
 	start_write = get_cpu_cycles();
 
@@ -114,12 +114,13 @@ int __attribute__ ((noinline)) matmul_main(mat_type mat_a[DIM][DIM],
 
 		write_array_spm(spm_matrix->mat_a, DIM, DIM, FACTOR, 0, 2);
 
+
 	#endif
 
 	write_array_spm(spm_matrix->mat_b, DIM, DIM, FACTOR, B_START, 1);
 
 	stop_write = get_cpu_cycles();
-	return_write = stop_write-start_write-CYCLE_CALIBRATION;
+	return_write = stop_write - start_write -CYCLE_CALIBRATION; // Calibration without any writes
 
 #endif	
 

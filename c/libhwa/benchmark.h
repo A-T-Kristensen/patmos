@@ -1,14 +1,14 @@
 #define ROWS 	32
 #define COLS	32
 #define DIM 	32
-#define SIZE	256
-#define VECSIZE 256
-#define NBANKS 	3
+#define SIZE	1024
+#define VECSIZE 1024
+#define NBANKS 	9
 
-#define WCET	1
+#define WCET	0
 
-#define READ	0
-#define WRITE	1
+#define READ	1
+#define WRITE	0
 #define COMP	0
 
 #define ARRAY_WR_FACTOR	0

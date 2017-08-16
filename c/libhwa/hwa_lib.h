@@ -27,7 +27,7 @@
 #define LED_RUN_LENGTH 		2000
 #define LED_ROUNDS			1
 
-#define CYCLE_CALIBRATION 	6
+#define CYCLE_CALIBRATION 	16 // Calculated by removing all things benchmarked except the get_cpu_cycle calls
 
 #define BRAM_BASE 			0xF00B0000
 #define HWA_CTRL_BASE 		0xF00C0000
